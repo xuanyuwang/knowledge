@@ -1,3 +1,5 @@
+# Daily Engineering Notes – 2025-11-24
+
 ## 1. Fixes (Bugs / Issues Resolved)
 - Problem:
 - Symptoms:
@@ -7,11 +9,14 @@
 - Preventative Ideas:
 
 ## 2. Learnings (New Knowledge)
-- What I learned:
+- What I learned: documentation is more and more important in coding
 - Context:
-- Why it's important:
-- Example:
-- When to apply:
+I start to use AI to explore problems, which generate a good documentation of the whole trace of bugs. It's easy to share with others. 
+Also, since I use AI to explore solutions, there is naturally a README for other engineers, more importantly, other engineers can use AI to understand a project quickly and start to work.
+The problem of documentation before is that writing documentation is time comsuming, especially when a project is updated frequently. But since we're using AI to discuss solutions as conversations, so it's pretty easy to summarize the update to an existing documentation
+- Why it's important: communation between engineers become much easier
+- Example: a cron job with well documentation can be picked up by other engineers immediately
+- When to apply: anytime
 
 ## 3. Surprises (Unexpected Behavior)
 - What surprised me:
