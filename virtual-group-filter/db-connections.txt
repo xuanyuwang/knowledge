@@ -1,0 +1,2 @@
+App DB: `cresta-cli connstring -i --read-only chat-staging chat-staging cox-sales`
+Auth DB: `cresta-cli connstring -i --read-only chat-staging auth-staging cox`

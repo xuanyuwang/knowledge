@@ -1,7 +1,7 @@
 # Duplicate Scorecard Template to Another Use Case - Implementation Summary
 
 **Linear Ticket:** CONVI-6116
-**Date:** 2026-02-03
+**Date:** 2026-02-06 (Updated)
 
 ## Overview
 
@@ -24,11 +24,7 @@ A new React component implementing the two-step modal:
 - **Step 2 (Select Use Case):** Use case selector using ListSelect component
 - Filters use cases: same profile, excludes current UC, excludes CARE_EFFICIENCY
 - On Create: navigates to template builder with `copyFrom` and `targetUsecase` query params
-
-### 2. `DuplicateScorecardTemplateModal.module.css`
-**Path:** `/director/packages/director-app/src/features/admin/coaching/scorecard-templates/`
-
-CSS module for the modal styling.
+- Uses `TablerIcon` for channel icons with `getIconForConversationChannel` helper
 
 ## Files Modified
 
@@ -53,6 +49,7 @@ CSS module for the modal styling.
 ### 4. `consts.ts` (template-builder)
 **Changes:**
 - Added `TARGET_USECASE_PARAM = 'targetUsecase'` constant
+- Added `DEFAULT_OUTCOME_CRITERION` constant with explicit undefined for optional properties
 
 ### 5. `ScorecardTemplateBuilder.tsx`
 **Changes:**
@@ -60,8 +57,27 @@ CSS module for the modal styling.
 - When `targetUsecase` is present with `copyFrom`:
   - Clears `audience` (will default to all agents)
   - Sets `usecaseNames` to target use case
-  - Clears outcome references (auto_qa for metadata type criteria)
-- Added `clearOutcomeReferences()` helper function
+- Passes `targetUsecase` to `TemplateBuilderForm`
+
+### 6. `TemplateBuilderForm.tsx`
+**Changes:**
+- Added `targetUsecase` prop
+- Passes `targetUsecase` to `TemplateBuilderFormConfigurationStep`
+- Derives `isCrossUseCaseDuplicate` from `targetUsecase` for backfill prompt logic
+
+### 7. `TemplateBuilderFormConfigurationStep.tsx`
+**Changes:**
+- Added `targetUsecase` prop
+- **Smart outcome reset logic:**
+  - Uses `useOutcomeMetadata` with target use case filter
+  - Uses `useWatch` to observe template items
+  - Calls `resetUnavailableOutcome` helper to reset only unavailable outcomes
+  - Preserves outcomes that exist in both source and target use cases
+
+### 8. `useOutcomeMetadata.ts` (director-api)
+**Changes:**
+- Added optional `usecases` parameter to `UseOutcomeMetadataOptions` interface
+- Passes `usecases` filter to `useAllMoments` hooks
 
 ## User Flow
 
@@ -73,8 +89,13 @@ CSS module for the modal styling.
 6. Use case selector appears
 7. User selects target use case and clicks "Create"
 8. User is redirected to template builder with copied template
-9. Title shows " Copy" suffix
-10. User edits and saves as new template
+9. The duplicated template has:
+   - Title shows " Copy" suffix
+   - Audience cleared (defaults to all agents)
+   - Use case set to selected target
+   - **Outcome criteria that exist in target use case remain configured**
+   - **Outcome criteria that don't exist in target use case are reset to "New Conversation Outcome"**
+10. User reviews/adjusts the template and saves
 
 ## What Gets Copied
 
@@ -88,12 +109,22 @@ CSS module for the modal styling.
 
 ## What Does NOT Get Copied
 
-| Item | Cleared |
-|------|---------|
+| Item | Behavior |
+|------|----------|
 | Audience | Defaults to all agents |
 | QA task configuration | Cleared |
 | Auto-QA triggers (Opera integration) | Cleared |
-| Outcome metadata references | Cleared |
+| Outcome metadata references | **Smart reset**: Only outcomes unavailable in target use case are reset |
+
+## Smart Outcome Reset Logic
+
+When duplicating across use cases, the system:
+1. Fetches available outcome metadata for the target use case
+2. For each outcome criterion in the template:
+   - Checks if the metadata `resource_name` exists in target use case
+   - If **available**: keeps the outcome configuration intact
+   - If **unavailable**: resets to empty state with generic "New Conversation Outcome" name
+3. Uses early return pattern for readability in `resetUnavailableOutcome` helper
 
 ## Constraints
 
@@ -102,6 +133,10 @@ CSS module for the modal styling.
 - Cannot duplicate archived templates
 - Same template type preserved
 
-## Testing Notes
+## Code Quality Improvements
 
-The implementation follows the same patterns as `DuplicatePolicyModal.tsx`. TypeScript shows some implicit `any` type warnings which are consistent with the existing codebase patterns.
+- Uses `TablerIcon` instead of `FeatherIcon` for icon wrapping
+- Extracts `getIconForConversationChannel` helper function
+- Uses `useWatch` instead of `form.getValues()` for reactive form updates
+- Uses early return pattern for better readability
+- Derives `isCrossUseCaseDuplicate` from `targetUsecase` (no redundant prop)

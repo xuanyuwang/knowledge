@@ -1,0 +1,6412 @@
+[
+  {
+    "createdAt": "2017-07-06T03:15:56Z",
+    "additions": 990,
+    "deletions": 896,
+    "repository": {
+      "nameWithOwner": "athi-prakash/SmartDrumsticks1"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2017-07-20T23:16:28Z",
+    "additions": 1079,
+    "deletions": 896,
+    "repository": {
+      "nameWithOwner": "athi-prakash/SmartDrumsticks1"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2020-09-20T15:52:33Z",
+    "additions": 46,
+    "deletions": 68,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-09-23T00:12:25Z",
+    "additions": 31,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-09-24T13:48:40Z",
+    "additions": 34,
+    "deletions": 306,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-09-30T00:24:35Z",
+    "additions": 30,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-09-30T04:03:18Z",
+    "additions": 70,
+    "deletions": 600,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-10-01T00:41:21Z",
+    "additions": 12,
+    "deletions": 9,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-10-03T04:00:34Z",
+    "additions": 249,
+    "deletions": 21927,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-10-04T03:02:38Z",
+    "additions": 161,
+    "deletions": 116,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-10-04T16:06:56Z",
+    "additions": 2,
+    "deletions": 22033,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-10-06T02:28:39Z",
+    "additions": 282,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-10-06T21:09:12Z",
+    "additions": 435,
+    "deletions": 51,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/xuanyuwang.github.io"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-10-07T00:10:07Z",
+    "additions": 54,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/xuanyuwang.github.io"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-02T05:16:07Z",
+    "additions": 301,
+    "deletions": 214,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-05T01:34:44Z",
+    "additions": 23,
+    "deletions": 12,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-05T06:01:28Z",
+    "additions": 85,
+    "deletions": 46,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-07T03:18:58Z",
+    "additions": 5,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-08T04:16:54Z",
+    "additions": 359,
+    "deletions": 493,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-08T21:45:10Z",
+    "additions": 2,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2020-11-08T22:01:51Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-10T00:29:35Z",
+    "additions": 9,
+    "deletions": 37,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-10T03:49:20Z",
+    "additions": 34,
+    "deletions": 35,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-12T21:31:50Z",
+    "additions": 57,
+    "deletions": 19,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-13T03:09:30Z",
+    "additions": 17,
+    "deletions": 16,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-13T03:11:57Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-14T01:54:11Z",
+    "additions": 195,
+    "deletions": 80,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-21T17:51:02Z",
+    "additions": 683,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/xuanyuwang.github.io"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-11-23T01:27:36Z",
+    "additions": 376,
+    "deletions": 270,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/xuanyuwang.github.io"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-12-04T22:43:49Z",
+    "additions": 34,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-12-05T04:35:47Z",
+    "additions": 2,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2020-12-17T23:46:54Z",
+    "additions": 2,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "yongheonline-org/yonghe-online"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2021-02-18T05:16:51Z",
+    "additions": 15,
+    "deletions": 15,
+    "repository": {
+      "nameWithOwner": "elyra-ai/examples"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2022-04-28T01:47:07Z",
+    "additions": 52,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "zhangynyn/personal-financial-analysis"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2022-04-28T03:47:26Z",
+    "additions": 308,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "zhangynyn/personal-financial-analysis"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2022-08-14T04:01:44Z",
+    "additions": 184,
+    "deletions": 345,
+    "repository": {
+      "nameWithOwner": "zhangynyn/personal-financial-analysis"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2023-07-09T19:19:58Z",
+    "additions": 126,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/event-scheduler"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2023-07-09T23:55:15Z",
+    "additions": 115,
+    "deletions": 24,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/event-scheduler"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2023-07-11T03:42:59Z",
+    "additions": 318,
+    "deletions": 180,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/event-scheduler"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2023-07-16T04:39:14Z",
+    "additions": 1444,
+    "deletions": 151,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/event-scheduler"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2023-07-27T02:39:56Z",
+    "additions": 62,
+    "deletions": 14,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/event-scheduler"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2023-12-22T16:21:01Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2023-12-28T20:11:43Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2023-12-28T20:14:59Z",
+    "additions": 22,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-01-04T18:22:53Z",
+    "additions": 20,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-01-09T16:48:50Z",
+    "additions": 304,
+    "deletions": 10,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-01-11T15:21:49Z",
+    "additions": 11,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-01-15T15:25:20Z",
+    "additions": 333,
+    "deletions": 10,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-01-16T21:39:16Z",
+    "additions": 10,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-01-17T20:41:16Z",
+    "additions": 15,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-01-18T19:40:06Z",
+    "additions": 10,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-01-23T16:08:55Z",
+    "additions": 289,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-01-24T15:59:13Z",
+    "additions": 4,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-01-26T20:47:16Z",
+    "additions": 10,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-02-02T15:25:29Z",
+    "additions": 873,
+    "deletions": 46,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-02-16T00:25:11Z",
+    "additions": 1038,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-02-16T00:32:46Z",
+    "additions": 19,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-02-21T23:33:30Z",
+    "additions": 55,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-02-22T21:33:10Z",
+    "additions": 10,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-02-23T19:34:46Z",
+    "additions": 18,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-02-23T19:46:07Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-02-26T19:59:59Z",
+    "additions": 12,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-02-27T19:17:17Z",
+    "additions": 5,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-02-27T22:17:07Z",
+    "additions": 362,
+    "deletions": 29,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-02-28T18:57:32Z",
+    "additions": 4,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-02-29T00:06:34Z",
+    "additions": 81,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-04T22:37:54Z",
+    "additions": 492,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-06T20:38:41Z",
+    "additions": 6,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-13T23:57:53Z",
+    "additions": 5,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-14T20:33:45Z",
+    "additions": 349,
+    "deletions": 27,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-18T19:15:39Z",
+    "additions": 8,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-18T20:16:58Z",
+    "additions": 6,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-03-19T23:32:13Z",
+    "additions": 635,
+    "deletions": 185,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-21T18:13:17Z",
+    "additions": 9,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-23T04:07:28Z",
+    "additions": 132,
+    "deletions": 26,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-27T00:50:44Z",
+    "additions": 48,
+    "deletions": 8,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-27T15:08:05Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-27T15:18:15Z",
+    "additions": 147,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-27T19:23:42Z",
+    "additions": 4,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-28T15:54:44Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-03-28T17:05:24Z",
+    "additions": 97,
+    "deletions": 22,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-01T15:15:54Z",
+    "additions": 7,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-01T16:15:19Z",
+    "additions": 91,
+    "deletions": 27,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-01T23:41:33Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-03T19:41:37Z",
+    "additions": 10,
+    "deletions": 14,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-03T20:40:44Z",
+    "additions": 9,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-08T14:23:50Z",
+    "additions": 9,
+    "deletions": 15,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-08T18:08:10Z",
+    "additions": 375,
+    "deletions": 116,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-09T15:53:43Z",
+    "additions": 213,
+    "deletions": 23,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-11T00:32:33Z",
+    "additions": 19,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-11T16:38:03Z",
+    "additions": 20,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-11T16:43:09Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-11T19:34:46Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-15T16:50:55Z",
+    "additions": 6,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-15T20:07:54Z",
+    "additions": 13,
+    "deletions": 14,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-16T19:52:13Z",
+    "additions": 65,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-18T01:04:08Z",
+    "additions": 118,
+    "deletions": 30,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-18T15:32:54Z",
+    "additions": 86,
+    "deletions": 22,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-18T19:04:18Z",
+    "additions": 237,
+    "deletions": 63,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-22T23:55:07Z",
+    "additions": 298,
+    "deletions": 73,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-23T16:27:37Z",
+    "additions": 126,
+    "deletions": 52,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-25T13:08:28Z",
+    "additions": 137,
+    "deletions": 57,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-26T17:07:33Z",
+    "additions": 276,
+    "deletions": 178,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-26T21:00:29Z",
+    "additions": 157,
+    "deletions": 20,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-04-26T21:39:42Z",
+    "additions": 51,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-01T13:44:07Z",
+    "additions": 7,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-02T00:07:35Z",
+    "additions": 37,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-02T14:53:46Z",
+    "additions": 28,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-02T17:34:22Z",
+    "additions": 4,
+    "deletions": 13,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-02T20:19:58Z",
+    "additions": 65,
+    "deletions": 17,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-03T03:31:30Z",
+    "additions": 45,
+    "deletions": 7,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-07T18:03:31Z",
+    "additions": 1603,
+    "deletions": 207,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-07T20:00:53Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-08T18:10:33Z",
+    "additions": 46,
+    "deletions": 10,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-09T01:40:28Z",
+    "additions": 15,
+    "deletions": 7,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-10T00:14:09Z",
+    "additions": 161,
+    "deletions": 62,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-13T23:29:45Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-15T02:55:30Z",
+    "additions": 217,
+    "deletions": 66,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-15T19:13:37Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-16T04:31:11Z",
+    "additions": 705,
+    "deletions": 10,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-17T00:56:21Z",
+    "additions": 566,
+    "deletions": 58,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-18T00:37:59Z",
+    "additions": 200,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-22T19:05:04Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-22T21:29:54Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-23T15:07:29Z",
+    "additions": 17,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-24T02:49:01Z",
+    "additions": 95,
+    "deletions": 49,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-24T14:59:35Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-24T15:51:20Z",
+    "additions": 29,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-24T19:19:04Z",
+    "additions": 45,
+    "deletions": 7,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-27T17:38:59Z",
+    "additions": 22,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-27T19:12:17Z",
+    "additions": 4,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-28T02:28:34Z",
+    "additions": 74,
+    "deletions": 36,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-28T19:01:37Z",
+    "additions": 322,
+    "deletions": 9,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-29T15:09:19Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-29T16:31:00Z",
+    "additions": 11,
+    "deletions": 8,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-29T20:20:53Z",
+    "additions": 18,
+    "deletions": 8,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-29T23:14:08Z",
+    "additions": 17,
+    "deletions": 10,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-30T00:42:17Z",
+    "additions": 7,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-05-30T01:44:12Z",
+    "additions": 18,
+    "deletions": 19,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-30T14:48:27Z",
+    "additions": 20,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-30T18:46:22Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-30T20:49:32Z",
+    "additions": 12,
+    "deletions": 16,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-31T00:48:53Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-31T01:22:50Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-31T01:41:28Z",
+    "additions": 12,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-31T01:54:31Z",
+    "additions": 2,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-31T02:08:47Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-31T13:30:00Z",
+    "additions": 6,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-31T17:45:26Z",
+    "additions": 2,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-31T19:54:26Z",
+    "additions": 39,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-31T20:53:34Z",
+    "additions": 23,
+    "deletions": 12,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-05-31T21:33:43Z",
+    "additions": 5,
+    "deletions": 32,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-03T14:43:19Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-03T15:09:59Z",
+    "additions": 12,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-03T15:17:36Z",
+    "additions": 12,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-03T19:39:54Z",
+    "additions": 8,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-05T14:22:38Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-06-07T16:11:13Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-12T18:14:35Z",
+    "additions": 77,
+    "deletions": 7,
+    "repository": {
+      "nameWithOwner": "cresta/clickhouse-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-12T18:59:25Z",
+    "additions": 926,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-12T20:14:17Z",
+    "additions": 35,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-13T19:30:03Z",
+    "additions": 9,
+    "deletions": 47,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-14T03:19:25Z",
+    "additions": 542,
+    "deletions": 441,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-14T20:10:40Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-17T15:51:29Z",
+    "additions": 18,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-17T20:07:22Z",
+    "additions": 44,
+    "deletions": 148,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-17T20:33:18Z",
+    "additions": 0,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-18T15:19:02Z",
+    "additions": 2,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-18T20:27:27Z",
+    "additions": 8,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-19T14:41:42Z",
+    "additions": 149,
+    "deletions": 82,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-19T19:39:27Z",
+    "additions": 623,
+    "deletions": 251,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-20T14:37:11Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-06-20T15:00:50Z",
+    "additions": 14,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-01T20:37:06Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-01T21:01:54Z",
+    "additions": 0,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-02T15:39:34Z",
+    "additions": 39,
+    "deletions": 17,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-02T15:56:35Z",
+    "additions": 2,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-02T16:17:40Z",
+    "additions": 3,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-02T20:31:16Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-07-02T22:24:24Z",
+    "additions": 13,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-03T18:26:49Z",
+    "additions": 47,
+    "deletions": 13,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-03T21:12:39Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-04T15:45:06Z",
+    "additions": 59,
+    "deletions": 51,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-08T15:41:54Z",
+    "additions": 50,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-09T08:21:10Z",
+    "additions": 2,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-09T20:06:33Z",
+    "additions": 17,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-09T20:32:42Z",
+    "additions": 12,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-09T21:04:06Z",
+    "additions": 4,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-09T21:45:43Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-10T01:21:18Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-10T01:59:22Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-10T13:49:12Z",
+    "additions": 12,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-07-10T14:00:26Z",
+    "additions": 12,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-10T14:00:34Z",
+    "additions": 12,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-10T14:44:51Z",
+    "additions": 8,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-10T15:29:12Z",
+    "additions": 22,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-10T16:54:27Z",
+    "additions": 2,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-10T17:36:15Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-10T18:34:11Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-10T19:33:51Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-15T13:52:00Z",
+    "additions": 23,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-16T18:49:18Z",
+    "additions": 64,
+    "deletions": 23,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-17T00:30:57Z",
+    "additions": 71,
+    "deletions": 67,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-20T01:48:38Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-20T21:21:47Z",
+    "additions": 564,
+    "deletions": 199,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-21T00:33:15Z",
+    "additions": 184,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-24T14:40:55Z",
+    "additions": 1,
+    "deletions": 22,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-24T20:23:22Z",
+    "additions": 51,
+    "deletions": 30,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-25T15:10:56Z",
+    "additions": 27,
+    "deletions": 18,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-25T20:34:47Z",
+    "additions": 44,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-07-31T18:33:54Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-07-31T20:56:26Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-07-31T23:31:30Z",
+    "additions": 27,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-01T20:44:06Z",
+    "additions": 16,
+    "deletions": 11,
+    "repository": {
+      "nameWithOwner": "cresta/clickhouse-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-02T15:12:12Z",
+    "additions": 126,
+    "deletions": 14,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-05T20:10:52Z",
+    "additions": 29,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-06T02:46:34Z",
+    "additions": 6,
+    "deletions": 11,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-06T17:35:30Z",
+    "additions": 2,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-06T18:44:28Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-06T19:17:14Z",
+    "additions": 3,
+    "deletions": 7,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-07T20:29:01Z",
+    "additions": 1,
+    "deletions": 28,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-09T21:50:18Z",
+    "additions": 109,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-12T15:29:28Z",
+    "additions": 4,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-13T18:45:47Z",
+    "additions": 0,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-13T20:38:36Z",
+    "additions": 9,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-14T04:28:56Z",
+    "additions": 125,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-14T18:58:11Z",
+    "additions": 7,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-08-16T15:25:22Z",
+    "additions": 727,
+    "deletions": 62,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-19T20:56:33Z",
+    "additions": 78,
+    "deletions": 13,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-21T14:31:16Z",
+    "additions": 10,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-08-22T18:14:50Z",
+    "additions": 6,
+    "deletions": 13,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-23T21:06:11Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-23T21:44:46Z",
+    "additions": 2,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-28T14:46:54Z",
+    "additions": 11,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-28T17:51:27Z",
+    "additions": 244,
+    "deletions": 78,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-29T00:27:32Z",
+    "additions": 540,
+    "deletions": 55,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-30T00:51:20Z",
+    "additions": 240,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-08-30T22:33:42Z",
+    "additions": 13,
+    "deletions": 8,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-01T19:24:45Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-01T20:51:19Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-01T22:30:17Z",
+    "additions": 8,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-02T00:44:18Z",
+    "additions": 5,
+    "deletions": 8,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-02T01:20:56Z",
+    "additions": 5,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-02T01:44:03Z",
+    "additions": 2,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-02T02:11:17Z",
+    "additions": 8,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-02T02:53:09Z",
+    "additions": 6,
+    "deletions": 9,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-02T03:20:31Z",
+    "additions": 16,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-03T18:25:07Z",
+    "additions": 141,
+    "deletions": 137,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-04T22:00:04Z",
+    "additions": 136,
+    "deletions": 86,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-05T17:32:38Z",
+    "additions": 182,
+    "deletions": 9,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-05T19:31:06Z",
+    "additions": 2,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-05T23:42:36Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-06T13:56:11Z",
+    "additions": 2,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-09-09T23:04:49Z",
+    "additions": 50,
+    "deletions": 171,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-10T00:33:58Z",
+    "additions": 2,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-09-10T18:02:29Z",
+    "additions": 40,
+    "deletions": 10,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-09-10T20:13:47Z",
+    "additions": 9,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-11T00:07:14Z",
+    "additions": 0,
+    "deletions": 10,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-11T03:42:07Z",
+    "additions": 117,
+    "deletions": 64,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-12T01:50:41Z",
+    "additions": 8,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-12T18:38:36Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-09-12T19:35:12Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-13T10:31:16Z",
+    "additions": 28,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-13T11:24:39Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-13T12:49:50Z",
+    "additions": 45,
+    "deletions": 30,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-09-16T13:14:31Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-16T21:08:03Z",
+    "additions": 6,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-17T19:44:20Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-18T00:19:53Z",
+    "additions": 1422,
+    "deletions": 193,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-09-18T01:16:58Z",
+    "additions": 35,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-18T14:31:54Z",
+    "additions": 13,
+    "deletions": 17,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-18T14:44:01Z",
+    "additions": 1,
+    "deletions": 15,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-18T14:50:10Z",
+    "additions": 1,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-18T17:14:44Z",
+    "additions": 15,
+    "deletions": 10,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-22T20:13:21Z",
+    "additions": 329,
+    "deletions": 169,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-24T16:10:28Z",
+    "additions": 23,
+    "deletions": 7,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-24T19:32:07Z",
+    "additions": 13,
+    "deletions": 9,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-09-25T20:44:28Z",
+    "additions": 19,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-01T20:38:09Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-02T01:30:54Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-02T20:20:49Z",
+    "additions": 0,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-03T17:58:08Z",
+    "additions": 6,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-03T19:33:45Z",
+    "additions": 73,
+    "deletions": 23,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-04T03:54:45Z",
+    "additions": 203,
+    "deletions": 43,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-04T19:28:59Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-06T02:34:56Z",
+    "additions": 289,
+    "deletions": 48,
+    "repository": {
+      "nameWithOwner": "xuanyuwang/go-db-examples"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-07T03:40:40Z",
+    "additions": 6,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-07T18:59:39Z",
+    "additions": 4,
+    "deletions": 7,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-10-07T20:37:58Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-07T20:52:03Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-08T17:19:09Z",
+    "additions": 37,
+    "deletions": 45,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-08T18:26:22Z",
+    "additions": 6,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-09T01:13:24Z",
+    "additions": 83,
+    "deletions": 11,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-09T19:03:29Z",
+    "additions": 7,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-10T15:26:21Z",
+    "additions": 1353,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-10T18:07:53Z",
+    "additions": 60,
+    "deletions": 20,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-10T19:55:15Z",
+    "additions": 15,
+    "deletions": 12,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-15T18:46:13Z",
+    "additions": 24,
+    "deletions": 33,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-16T04:51:19Z",
+    "additions": 797,
+    "deletions": 81,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-16T17:51:00Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-16T20:21:33Z",
+    "additions": 3,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-17T14:41:42Z",
+    "additions": 29,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-18T20:18:42Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-21T00:02:40Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-21T13:35:54Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-21T13:58:52Z",
+    "additions": 9,
+    "deletions": 9,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-21T22:14:53Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-21T22:58:02Z",
+    "additions": 166,
+    "deletions": 40,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-22T13:48:44Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-22T14:13:42Z",
+    "additions": 3,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-23T01:54:01Z",
+    "additions": 1,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-23T01:54:23Z",
+    "additions": 1,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-23T16:42:18Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/terraform"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-24T14:30:15Z",
+    "additions": 3,
+    "deletions": 19,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-24T14:32:51Z",
+    "additions": 4,
+    "deletions": 24,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-24T19:39:11Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-24T22:32:52Z",
+    "additions": 0,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-24T22:47:09Z",
+    "additions": 0,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/python-ai-services"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-25T16:28:36Z",
+    "additions": 66,
+    "deletions": 17,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-25T18:31:16Z",
+    "additions": 12,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-28T18:57:11Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-29T16:58:39Z",
+    "additions": 28,
+    "deletions": 25,
+    "repository": {
+      "nameWithOwner": "cresta/chat-ai"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-10-29T22:35:05Z",
+    "additions": 151,
+    "deletions": 320,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-30T03:22:46Z",
+    "additions": 40,
+    "deletions": 40,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-30T13:39:36Z",
+    "additions": 14,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-30T19:29:10Z",
+    "additions": 26,
+    "deletions": 23,
+    "repository": {
+      "nameWithOwner": "cresta/chat-ai"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-10-31T18:44:28Z",
+    "additions": 82,
+    "deletions": 50,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-10-31T19:16:51Z",
+    "additions": 6,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-01T15:15:38Z",
+    "additions": 3,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-04T19:39:09Z",
+    "additions": 52,
+    "deletions": 20,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-05T21:26:46Z",
+    "additions": 143,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/python-ai-services"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-06T17:24:26Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-06T20:28:48Z",
+    "additions": 38,
+    "deletions": 11,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-06T20:47:19Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-07T16:09:15Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-11-07T16:38:05Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-07T19:06:35Z",
+    "additions": 2,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-08T16:06:37Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-10T19:29:34Z",
+    "additions": 6,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-11T00:45:25Z",
+    "additions": 1265,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-13T01:46:48Z",
+    "additions": 16,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/python-ai-services"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-13T21:55:41Z",
+    "additions": 2,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-13T22:28:57Z",
+    "additions": 2,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-14T14:30:47Z",
+    "additions": 28,
+    "deletions": 12,
+    "repository": {
+      "nameWithOwner": "cresta/python-ai-services"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-14T15:06:38Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-14T15:31:21Z",
+    "additions": 17,
+    "deletions": 14,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-11-16T16:30:28Z",
+    "additions": 94,
+    "deletions": 22,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-11-16T16:38:06Z",
+    "additions": 143,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-17T17:08:23Z",
+    "additions": 140,
+    "deletions": 181,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-18T20:15:15Z",
+    "additions": 8,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/python-ai-services"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-19T01:08:51Z",
+    "additions": 9,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-19T02:58:28Z",
+    "additions": 53,
+    "deletions": 22,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-19T15:13:08Z",
+    "additions": 3,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-19T18:04:34Z",
+    "additions": 2,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/python-ai-services"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-19T19:38:51Z",
+    "additions": 19,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-20T17:46:00Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-20T19:41:23Z",
+    "additions": 26,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-20T20:26:04Z",
+    "additions": 23,
+    "deletions": 15,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-11-20T23:10:32Z",
+    "additions": 161,
+    "deletions": 7,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-21T03:35:07Z",
+    "additions": 152,
+    "deletions": 15,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-21T17:35:55Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-25T22:03:50Z",
+    "additions": 25,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-25T23:57:17Z",
+    "additions": 4,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-26T16:23:54Z",
+    "additions": 46,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/shared-go"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-26T20:01:06Z",
+    "additions": 16,
+    "deletions": 27,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-28T21:28:07Z",
+    "additions": 468,
+    "deletions": 180,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-11-29T18:58:29Z",
+    "additions": 67,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-03T22:00:05Z",
+    "additions": 598,
+    "deletions": 64,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-06T03:06:06Z",
+    "additions": 610,
+    "deletions": 22,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-12-07T00:18:17Z",
+    "additions": 140,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-07T00:23:16Z",
+    "additions": 902,
+    "deletions": 59,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-12-09T16:36:05Z",
+    "additions": 21,
+    "deletions": 43,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-09T20:13:41Z",
+    "additions": 349,
+    "deletions": 85,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-11T15:23:59Z",
+    "additions": 13,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-12-11T15:31:39Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-12-11T23:26:31Z",
+    "additions": 74,
+    "deletions": 21,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-11T23:27:24Z",
+    "additions": 14,
+    "deletions": 10,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-12T00:05:25Z",
+    "additions": 5,
+    "deletions": 13,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-12T02:37:11Z",
+    "additions": 21,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-12T04:04:41Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-12-12T16:17:55Z",
+    "additions": 21,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-12T16:31:30Z",
+    "additions": 11,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-12T21:37:03Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-12-12T21:53:03Z",
+    "additions": 21,
+    "deletions": 74,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-12T22:23:35Z",
+    "additions": 1028,
+    "deletions": 151,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2024-12-12T22:26:00Z",
+    "additions": 47,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-13T19:33:26Z",
+    "additions": 24,
+    "deletions": 13,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-15T22:21:28Z",
+    "additions": 6,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-16T20:13:30Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-17T01:27:11Z",
+    "additions": 52,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-17T03:57:02Z",
+    "additions": 1028,
+    "deletions": 130,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2024-12-20T15:31:58Z",
+    "additions": 904,
+    "deletions": 128,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-03T07:15:07Z",
+    "additions": 126,
+    "deletions": 36,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-08T16:56:19Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-10T23:28:59Z",
+    "additions": 1797,
+    "deletions": 304,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-01-12T01:57:36Z",
+    "additions": 24,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-14T02:38:41Z",
+    "additions": 379,
+    "deletions": 357,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-14T15:07:54Z",
+    "additions": 4,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-14T15:50:47Z",
+    "additions": 4,
+    "deletions": 15,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-14T18:41:06Z",
+    "additions": 11,
+    "deletions": 12,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-15T05:16:27Z",
+    "additions": 1975,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-15T16:56:49Z",
+    "additions": 2,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-21T08:28:56Z",
+    "additions": 166,
+    "deletions": 31,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-23T13:26:53Z",
+    "additions": 4,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-01-23T14:37:16Z",
+    "additions": 188,
+    "deletions": 11,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-24T00:00:52Z",
+    "additions": 79,
+    "deletions": 8,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-24T02:49:55Z",
+    "additions": 181,
+    "deletions": 53,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-24T10:50:01Z",
+    "additions": 14,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-24T11:43:44Z",
+    "additions": 9,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-24T12:49:47Z",
+    "additions": 2,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-24T23:55:08Z",
+    "additions": 12,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-01-25T12:22:30Z",
+    "additions": 117,
+    "deletions": 27,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-02-20T19:59:08Z",
+    "additions": 8,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-02-20T20:10:26Z",
+    "additions": 27,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-02-21T16:39:54Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-02-27T17:48:17Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-02-27T20:25:32Z",
+    "additions": 13,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-02-28T19:38:48Z",
+    "additions": 322,
+    "deletions": 108,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-03T16:35:19Z",
+    "additions": 86,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-03-03T16:41:44Z",
+    "additions": 23,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-03T19:54:11Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-04T16:30:29Z",
+    "additions": 1316,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-04T19:36:07Z",
+    "additions": 7,
+    "deletions": 12,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-04T21:37:36Z",
+    "additions": 6,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-05T22:54:48Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-03-06T00:02:44Z",
+    "additions": 682,
+    "deletions": 282,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-06T01:39:56Z",
+    "additions": 250,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-10T17:47:27Z",
+    "additions": 12,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-10T20:03:29Z",
+    "additions": 6,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-12T21:14:29Z",
+    "additions": 651,
+    "deletions": 222,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-14T14:06:25Z",
+    "additions": 6,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-03-17T14:09:03Z",
+    "additions": 1539,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-19T21:37:45Z",
+    "additions": 2,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-19T22:58:34Z",
+    "additions": 44,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-20T18:22:05Z",
+    "additions": 7,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-20T18:46:58Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-21T16:09:30Z",
+    "additions": 22,
+    "deletions": 32,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-21T18:13:35Z",
+    "additions": 1,
+    "deletions": 14,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-21T23:39:31Z",
+    "additions": 162,
+    "deletions": 117,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-21T23:53:19Z",
+    "additions": 65,
+    "deletions": 38,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-22T00:06:24Z",
+    "additions": 166,
+    "deletions": 127,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-22T00:09:45Z",
+    "additions": 105,
+    "deletions": 179,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-24T16:26:37Z",
+    "additions": 4,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-25T00:55:03Z",
+    "additions": 174,
+    "deletions": 112,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-25T14:41:02Z",
+    "additions": 332,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-25T14:55:00Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-25T15:42:00Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-26T16:18:11Z",
+    "additions": 21,
+    "deletions": 24,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-26T18:03:41Z",
+    "additions": 16,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-27T03:33:44Z",
+    "additions": 522,
+    "deletions": 32,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-27T13:41:37Z",
+    "additions": 16,
+    "deletions": 16,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-03-27T20:11:42Z",
+    "additions": 128,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-01T14:27:17Z",
+    "additions": 9,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-01T14:35:11Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-01T17:47:48Z",
+    "additions": 127,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-01T17:58:40Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-02T03:14:30Z",
+    "additions": 3,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-02T15:29:07Z",
+    "additions": 28,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-02T19:01:55Z",
+    "additions": 126,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-02T23:49:11Z",
+    "additions": 39,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-03T14:11:28Z",
+    "additions": 37,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-03T19:06:34Z",
+    "additions": 174,
+    "deletions": 24,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-03T19:46:58Z",
+    "additions": 24,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-04T00:21:12Z",
+    "additions": 2,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-04-04T19:20:17Z",
+    "additions": 44,
+    "deletions": 26,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-04T23:58:26Z",
+    "additions": 357,
+    "deletions": 14,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-07T12:21:21Z",
+    "additions": 466,
+    "deletions": 393,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-07T21:28:21Z",
+    "additions": 390,
+    "deletions": 288,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-04-07T21:50:25Z",
+    "additions": 286,
+    "deletions": 288,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-08T02:04:30Z",
+    "additions": 808,
+    "deletions": 58,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-08T18:44:32Z",
+    "additions": 4,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-08T18:47:30Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-09T23:43:26Z",
+    "additions": 67,
+    "deletions": 39,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-10T15:05:46Z",
+    "additions": 243,
+    "deletions": 9,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-11T16:46:15Z",
+    "additions": 76,
+    "deletions": 14,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-14T15:02:34Z",
+    "additions": 1,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-14T16:30:28Z",
+    "additions": 6,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-14T20:49:27Z",
+    "additions": 28,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-14T21:07:52Z",
+    "additions": 3,
+    "deletions": 56,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-15T23:22:52Z",
+    "additions": 403,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-16T17:36:30Z",
+    "additions": 15,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-04-16T18:47:19Z",
+    "additions": 69,
+    "deletions": 9,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-16T23:42:38Z",
+    "additions": 11,
+    "deletions": 8,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-17T15:57:02Z",
+    "additions": 706,
+    "deletions": 49,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-21T16:18:15Z",
+    "additions": 139,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-23T13:47:50Z",
+    "additions": 4,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-24T16:01:47Z",
+    "additions": 320,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-28T03:21:48Z",
+    "additions": 1796,
+    "deletions": 67,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-28T14:39:05Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-29T19:43:24Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/sql-schema"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-04-29T23:09:00Z",
+    "additions": 51,
+    "deletions": 11,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-05T22:01:00Z",
+    "additions": 402,
+    "deletions": 79,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-07T18:36:57Z",
+    "additions": 411,
+    "deletions": 97,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-09T13:54:27Z",
+    "additions": 1,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-09T14:01:07Z",
+    "additions": 6,
+    "deletions": 22,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-09T18:15:34Z",
+    "additions": 115,
+    "deletions": 75,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-05-09T18:16:50Z",
+    "additions": 113,
+    "deletions": 81,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-09T20:19:19Z",
+    "additions": 194,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-09T23:03:21Z",
+    "additions": 20,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-12T14:09:57Z",
+    "additions": 2,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-13T12:48:01Z",
+    "additions": 3,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-13T17:22:46Z",
+    "additions": 14,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-14T19:33:48Z",
+    "additions": 374,
+    "deletions": 35,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-15T22:42:22Z",
+    "additions": 28,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-16T02:00:57Z",
+    "additions": 193,
+    "deletions": 76,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-16T02:16:56Z",
+    "additions": 12,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-16T14:10:34Z",
+    "additions": 5,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-20T01:45:17Z",
+    "additions": 68,
+    "deletions": 18,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-20T14:39:18Z",
+    "additions": 62,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-21T00:22:08Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-05-21T01:48:50Z",
+    "additions": 331,
+    "deletions": 17,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-21T02:38:47Z",
+    "additions": 6,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-21T04:20:03Z",
+    "additions": 8,
+    "deletions": 12,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-21T04:30:49Z",
+    "additions": 3,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-21T17:04:12Z",
+    "additions": 29,
+    "deletions": 11,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-21T20:36:23Z",
+    "additions": 66,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-22T16:45:34Z",
+    "additions": 25,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-22T19:10:32Z",
+    "additions": 253,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-23T16:50:57Z",
+    "additions": 8,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-25T02:09:24Z",
+    "additions": 93,
+    "deletions": 14,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-25T02:34:00Z",
+    "additions": 18,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-25T02:45:01Z",
+    "additions": 14,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-27T20:56:04Z",
+    "additions": 4,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-29T13:18:59Z",
+    "additions": 0,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-05-29T13:30:53Z",
+    "additions": 0,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-29T14:16:43Z",
+    "additions": 0,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-29T14:28:42Z",
+    "additions": 31,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-05-29T14:59:45Z",
+    "additions": 10,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-06-03T20:52:30Z",
+    "additions": 269,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-06-04T00:08:56Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-06-06T17:18:34Z",
+    "additions": 1388,
+    "deletions": 281,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-06-09T15:49:16Z",
+    "additions": 0,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-06-11T14:59:27Z",
+    "additions": 382,
+    "deletions": 35,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-06-11T20:54:53Z",
+    "additions": 59,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-06-13T15:00:16Z",
+    "additions": 48,
+    "deletions": 41,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-09-19T18:25:33Z",
+    "additions": 21,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-09-22T00:34:29Z",
+    "additions": 6,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-09-22T21:53:20Z",
+    "additions": 3,
+    "deletions": 10,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-09-22T22:07:16Z",
+    "additions": 0,
+    "deletions": 824,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-09-23T14:54:16Z",
+    "additions": 20,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-09-23T15:59:08Z",
+    "additions": 9,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-09-23T18:06:04Z",
+    "additions": 161,
+    "deletions": 97,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-09-23T21:29:47Z",
+    "additions": 38,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-09-24T19:09:42Z",
+    "additions": 259,
+    "deletions": 8,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-09-25T23:10:03Z",
+    "additions": 300,
+    "deletions": 16,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-09-26T18:58:11Z",
+    "additions": 87,
+    "deletions": 7,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-09-29T21:34:36Z",
+    "additions": 71,
+    "deletions": 61,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-10-01T18:22:50Z",
+    "additions": 12,
+    "deletions": 12,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-10-09T18:53:39Z",
+    "additions": 35,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-10-14T15:43:50Z",
+    "additions": 516,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-10-14T19:09:55Z",
+    "additions": 290,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-10-15T22:18:16Z",
+    "additions": 10,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-10-16T03:24:54Z",
+    "additions": 235,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-10-21T19:25:16Z",
+    "additions": 539,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-10-22T20:22:03Z",
+    "additions": 24,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/python-ai-services"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-10-22T20:43:55Z",
+    "additions": 0,
+    "deletions": 9,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-11-01T01:00:48Z",
+    "additions": 118,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/python-ai-services"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-11-03T22:43:09Z",
+    "additions": 104,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-11-05T05:15:15Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-11-05T17:33:48Z",
+    "additions": 282,
+    "deletions": 136,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-11-05T21:19:00Z",
+    "additions": 12,
+    "deletions": 12,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-11-06T16:56:47Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-11-06T22:49:18Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-11-07T17:36:52Z",
+    "additions": 231,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-11-10T17:24:02Z",
+    "additions": 2657,
+    "deletions": 79,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-11-10T20:01:16Z",
+    "additions": 420,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/historic-analytics"
+    },
+    "state": "OPEN",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-11-10T21:26:16Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/historic-analytics"
+    },
+    "state": "OPEN",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-11-11T21:06:00Z",
+    "additions": 1288,
+    "deletions": 26,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2025-11-15T22:45:12Z",
+    "additions": 593,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-11-15T23:10:01Z",
+    "additions": 66,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-11-22T00:06:13Z",
+    "additions": 184,
+    "deletions": 37,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-02T20:10:42Z",
+    "additions": 37,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-02T21:31:28Z",
+    "additions": 104,
+    "deletions": 236,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-03T18:54:50Z",
+    "additions": 79,
+    "deletions": 885,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-03T19:14:10Z",
+    "additions": 0,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-03T19:27:38Z",
+    "additions": 11,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-03T19:36:52Z",
+    "additions": 0,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-03T21:15:42Z",
+    "additions": 1,
+    "deletions": 13,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-03T21:57:54Z",
+    "additions": 40,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-05T20:05:41Z",
+    "additions": 353,
+    "deletions": 37,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-08T20:53:41Z",
+    "additions": 1826,
+    "deletions": 50,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-15T20:04:51Z",
+    "additions": 106,
+    "deletions": 45,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-19T00:24:20Z",
+    "additions": 43,
+    "deletions": 23,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-30T04:42:31Z",
+    "additions": 4,
+    "deletions": 14,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2025-12-30T04:44:30Z",
+    "additions": 0,
+    "deletions": 22,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-05T01:47:08Z",
+    "additions": 534,
+    "deletions": 9,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2026-01-06T11:42:55Z",
+    "additions": 6,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-08T19:38:26Z",
+    "additions": 22,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-09T02:15:24Z",
+    "additions": 2,
+    "deletions": 4,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-09T19:34:09Z",
+    "additions": 12,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-09T20:04:32Z",
+    "additions": 495,
+    "deletions": 77,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-09T20:13:22Z",
+    "additions": 38,
+    "deletions": 22,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-09T21:09:48Z",
+    "additions": 3,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-11T17:08:37Z",
+    "additions": 3,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-11T17:21:28Z",
+    "additions": 3,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-13T01:45:23Z",
+    "additions": 88,
+    "deletions": 29,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-13T02:09:35Z",
+    "additions": 89,
+    "deletions": 30,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-13T12:02:41Z",
+    "additions": 89,
+    "deletions": 30,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-13T21:44:49Z",
+    "additions": 84,
+    "deletions": 28,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-13T21:51:01Z",
+    "additions": 89,
+    "deletions": 30,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-13T21:56:35Z",
+    "additions": 88,
+    "deletions": 29,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-13T22:09:05Z",
+    "additions": 84,
+    "deletions": 28,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-13T22:11:30Z",
+    "additions": 84,
+    "deletions": 28,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-13T22:17:52Z",
+    "additions": 84,
+    "deletions": 28,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-14T11:48:54Z",
+    "additions": 109,
+    "deletions": 36,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-14T19:08:01Z",
+    "additions": 87,
+    "deletions": 29,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-14T19:09:22Z",
+    "additions": 22,
+    "deletions": 5,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-16T05:31:57Z",
+    "additions": 170,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-17T12:57:33Z",
+    "additions": 12,
+    "deletions": 12,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-18T18:26:22Z",
+    "additions": 6,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-18T22:10:56Z",
+    "additions": 3,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-20T15:34:52Z",
+    "additions": 15,
+    "deletions": 12,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "OPEN",
+    "merged": false
+  },
+  {
+    "createdAt": "2026-01-21T00:31:47Z",
+    "additions": 32,
+    "deletions": 6,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-21T23:52:45Z",
+    "additions": 207,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2026-01-22T21:32:54Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-23T11:46:34Z",
+    "additions": 0,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-23T15:51:02Z",
+    "additions": 173,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-23T20:30:43Z",
+    "additions": 13,
+    "deletions": 13,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-23T21:12:45Z",
+    "additions": 9,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-24T14:56:02Z",
+    "additions": 3,
+    "deletions": 3,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "OPEN",
+    "merged": false
+  },
+  {
+    "createdAt": "2026-01-24T16:53:51Z",
+    "additions": 26,
+    "deletions": 19,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-27T17:00:59Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-29T15:45:34Z",
+    "additions": 1,
+    "deletions": 1,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-29T16:53:59Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-29T17:14:17Z",
+    "additions": 2,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-29T17:42:59Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-29T18:50:16Z",
+    "additions": 0,
+    "deletions": 8,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-29T20:35:02Z",
+    "additions": 8,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-29T22:16:47Z",
+    "additions": 415,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "OPEN",
+    "merged": false
+  },
+  {
+    "createdAt": "2026-01-29T22:18:14Z",
+    "additions": 16,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/flux-deployments"
+    },
+    "state": "OPEN",
+    "merged": false
+  },
+  {
+    "createdAt": "2026-01-30T01:01:29Z",
+    "additions": 10,
+    "deletions": 2,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "OPEN",
+    "merged": false
+  },
+  {
+    "createdAt": "2026-01-30T15:49:52Z",
+    "additions": 341,
+    "deletions": 54,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-01-30T16:44:02Z",
+    "additions": 351,
+    "deletions": 54,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "OPEN",
+    "merged": false
+  },
+  {
+    "createdAt": "2026-02-01T17:28:10Z",
+    "additions": 561,
+    "deletions": 117,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "OPEN",
+    "merged": false
+  },
+  {
+    "createdAt": "2026-02-02T15:10:59Z",
+    "additions": 78,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-02-02T17:50:13Z",
+    "additions": 0,
+    "deletions": 78,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-02-02T18:03:54Z",
+    "additions": 120,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-02-03T23:44:49Z",
+    "additions": 346,
+    "deletions": 8,
+    "repository": {
+      "nameWithOwner": "cresta/director"
+    },
+    "state": "OPEN",
+    "merged": false
+  },
+  {
+    "createdAt": "2026-02-04T22:17:56Z",
+    "additions": 14,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/cresta-proto"
+    },
+    "state": "MERGED",
+    "merged": true
+  },
+  {
+    "createdAt": "2026-02-04T22:24:27Z",
+    "additions": 4,
+    "deletions": 0,
+    "repository": {
+      "nameWithOwner": "cresta/config"
+    },
+    "state": "CLOSED",
+    "merged": false
+  },
+  {
+    "createdAt": "2026-02-05T18:38:27Z",
+    "additions": 187,
+    "deletions": 7,
+    "repository": {
+      "nameWithOwner": "cresta/go-servers"
+    },
+    "state": "OPEN",
+    "merged": false
+  }
+]

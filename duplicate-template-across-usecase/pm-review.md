@@ -57,6 +57,11 @@ After clicking "Understood & Continue", a use case selector appears:
 ### Step 4: Edit and save
 - User is taken to the template builder with the copied template
 - Title shows " Copy" suffix
+- The duplicated template has:
+  - Audience cleared (defaults to all agents)
+  - Use case set to the selected target
+  - **Outcome criteria that exist in the target use case remain configured**
+  - **Outcome criteria that don't exist in the target use case are reset to empty state**
 - User can edit and save as a new template
 
 ---
@@ -75,12 +80,26 @@ After clicking "Understood & Continue", a use case selector appears:
 
 ## What Does NOT Get Copied
 
-| Item | Copied? | Why |
-|------|---------|-----|
-| Audience (target agents) | ❌ No | Defaults to all agents; user must reconfigure |
-| QA task configuration | ❌ No | Task quotas and schedules are use-case specific |
-| Auto-QA triggers (Opera integration) | ❌ No | Linked blocks/moments don't exist in target use case |
-| Outcome metadata references | ❌ No | Metadata fields are use-case specific |
+| Item | Behavior | Why |
+|------|----------|-----|
+| Audience (target agents) | Defaults to all agents | User must reconfigure for target use case |
+| QA task configuration | Cleared | Task quotas and schedules are use-case specific |
+| Auto-QA triggers (Opera integration) | Cleared | Linked blocks/moments don't exist in target use case |
+| Outcome metadata references | **Smart reset** | Only outcomes unavailable in target use case are reset; outcomes that exist in both use cases are preserved |
+
+---
+
+## Outcome Criteria Handling (Smart Reset)
+
+When duplicating a template with outcome criteria:
+
+1. **Outcomes available in both use cases**: Configuration is preserved (no action needed)
+2. **Outcomes only in source use case**: Reset to "New Conversation Outcome" - user must reconfigure
+
+This approach:
+- Saves time when outcomes are shared across use cases
+- Clearly indicates which outcomes need attention
+- Preserves the overall template structure
 
 ---
 
@@ -98,13 +117,3 @@ After clicking "Understood & Continue", a use case selector appears:
 ## Similar Existing Feature
 
 This feature mirrors the existing **"Duplicate to another use case"** functionality for Opera Rules, which is already in production. The UI pattern and user experience will be consistent.
-
----
-
-## Open Questions
-
-1. **Outcome criteria handling:** When a template has outcomes linked to metadata fields, should we:
-   - Keep the outcome criteria but mark them as unconfigured (user re-selects metadata), or
-   - Remove outcome criteria entirely (user re-adds them)
-
-   **Recommendation:** Keep criteria structure, mark as unconfigured.
