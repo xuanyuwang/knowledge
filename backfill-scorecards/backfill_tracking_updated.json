@@ -1,0 +1,2606 @@
+{
+  "generated_at": "2026-02-07T20:51:35.572824+00:00",
+  "status_checked_at": "2026-02-08T15:00:01.206778Z",
+  "jobs": [
+    {
+      "customer": "ralphlauren",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/ralphlauren/profiles/us-east-1/jobs/38982b3a-f275-4d09-925c-f2e06f1905c6",
+      "temporal_workflow_id": "reindexconversations-ralphlauren-us-east-1-10e31833-1bb3-47fa-ba75-cc7be074c61e",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:39:40.683356937Z"
+    },
+    {
+      "customer": "lending-club",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/lending-club/profiles/us-east-1/jobs/0c973231-9cef-4cd8-a1d6-964fe2a3e3de",
+      "temporal_workflow_id": "reindexconversations-lending-club-us-east-1-392b488d-bfb1-4a73-86ed-0876d9bb0e03",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T19:24:42.213865003Z"
+    },
+    {
+      "customer": "aqua",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/aqua/profiles/us-east-1/jobs/c679f608-1b80-47df-b974-eccc4bc8048d",
+      "temporal_workflow_id": "reindexconversations-aqua-us-east-1-06d25399-a7e1-48fc-95d7-446fed1bdbd2",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T20:24:50.791863101Z"
+    },
+    {
+      "customer": "cresta-east",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/cresta-east/profiles/us-east-1/jobs/3547078e-68da-4f1c-8f91-ebffec2349e7",
+      "temporal_workflow_id": "reindexconversations-cresta-east-us-east-1-c82c66d0-6095-4248-8566-7fa9fe96afff",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.139085208Z"
+    },
+    {
+      "customer": "guitar-ctr-sbx",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/guitar-ctr-sbx/profiles/us-east-1/jobs/c5966a3f-b255-4460-9d89-98cb615846da",
+      "temporal_workflow_id": "reindexconversations-guitar-ctr-sbx-us-east-1-60773e02-2804-4f1f-be66-5607ae413b0d",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:26.682471856Z"
+    },
+    {
+      "customer": "airbnb-demo",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/airbnb-demo/profiles/us-east-1/jobs/7222e8fb-b3df-45a6-b046-ef272cac046d",
+      "temporal_workflow_id": "reindexconversations-airbnb-demo-us-east-1-a7ecbc54-3c51-466b-8cd4-f49ea8e9a5a1",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:25.204435065Z"
+    },
+    {
+      "customer": "alarm",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/alarm/profiles/us-east-1/jobs/263af492-af9a-4af7-a9f1-b9ca0e88a845",
+      "temporal_workflow_id": "reindexconversations-alarm-us-east-1-d5dae0c2-c0f6-4a1f-b9d0-c610d7efaaba",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:26.400725492Z"
+    },
+    {
+      "customer": "cresta-east",
+      "profile": "studio-shared-library",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/cresta-east/profiles/studio-shared-library/jobs/2351cd30-21c4-4139-8074-9deea8286947",
+      "temporal_workflow_id": "reindexconversations-cresta-east-studio-shared-library-8afd5e2b-d183-4bf4-8404-e5334b1e3708",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:25.511398026Z"
+    },
+    {
+      "customer": "opera-bootcamp",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/opera-bootcamp/profiles/us-east-1/jobs/b60a6f4a-75f2-4b86-a2c3-058af819540c",
+      "temporal_workflow_id": "reindexconversations-opera-bootcamp-us-east-1-bd1f81b9-5f8d-4b49-97ac-68da9ea05bf4",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.485901506Z"
+    },
+    {
+      "customer": "ust-sandbox",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/ust-sandbox/profiles/us-east-1/jobs/41b5f422-4192-490d-be46-419112002716",
+      "temporal_workflow_id": "reindexconversations-ust-sandbox-us-east-1-d4ae51f8-62a3-4197-a816-caead317982a",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:25.841745734Z"
+    },
+    {
+      "customer": "mason",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/mason/profiles/us-east-1/jobs/51447e60-b1f5-4dd2-8617-4035e8cfa760",
+      "temporal_workflow_id": "reindexconversations-mason-us-east-1-262570ca-3c4d-4ff2-a16d-9725fa2a8fc3",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T17:30:03.321443656Z"
+    },
+    {
+      "customer": "tailorcare",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/tailorcare/profiles/us-east-1/jobs/6afb6da8-27bf-4036-a707-8d9f73fef696",
+      "temporal_workflow_id": "reindexconversations-tailorcare-us-east-1-c2e4c99c-c401-47d0-bca8-8c5e014b7e4b",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:16:36.749721514Z"
+    },
+    {
+      "customer": "apfm",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/apfm/profiles/us-east-1/jobs/cd6f5dfd-de72-4662-a7dc-e92c57a90732",
+      "temporal_workflow_id": "reindexconversations-apfm-us-east-1-0b72e2a0-6182-47c3-a3a2-cbf15a8fd55c",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:26.526974219Z"
+    },
+    {
+      "customer": "rcg",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/rcg/profiles/us-east-1/jobs/edd0334f-c44a-4eb5-9cbf-ec62a5af271c",
+      "temporal_workflow_id": "reindexconversations-rcg-us-east-1-be36eaa4-3820-4b5e-8456-f504e21560e1",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T19:39:18.707337399Z"
+    },
+    {
+      "customer": "propel",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/propel/profiles/us-east-1/jobs/b56fc454-bdca-4736-86a8-f705d41c0da0",
+      "temporal_workflow_id": "reindexconversations-propel-us-east-1-a3ef094d-ef2f-43de-b275-e5c2ed668f5c",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-08T00:27:38.424921128Z"
+    },
+    {
+      "customer": "altice-sbx",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/altice-sbx/profiles/us-east-1/jobs/769379e3-0b51-4b35-aa01-d0825c187db1",
+      "temporal_workflow_id": "reindexconversations-altice-sbx-us-east-1-bc618e60-ad49-4be8-8cc1-ccfc02afc018",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:28.820076863Z"
+    },
+    {
+      "customer": "care-access",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/care-access/profiles/us-east-1/jobs/7ef8b848-603d-4f69-b44b-00780ee43b10",
+      "temporal_workflow_id": "reindexconversations-care-access-us-east-1-9248502e-10ac-4e1b-8e5c-a34484f63700",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:25:24.886573850Z"
+    },
+    {
+      "customer": "apex-svc",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/apex-svc/profiles/us-east-1/jobs/85843761-8378-4b15-9496-f3655137be3a",
+      "temporal_workflow_id": "reindexconversations-apex-svc-us-east-1-abb3b5e1-99cc-4e51-97ad-ecb0a6b292a0",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:26.740526330Z"
+    },
+    {
+      "customer": "advent-health",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/advent-health/profiles/us-east-1/jobs/06027aed-b9a2-4239-8942-924b29e25efc",
+      "temporal_workflow_id": "reindexconversations-advent-health-us-east-1-5467fffe-6b25-450a-b28c-eace1c9df8c1",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.833406689Z"
+    },
+    {
+      "customer": "greenix",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/greenix/profiles/us-east-1/jobs/80f2765d-3870-4c46-82d4-0aff7b6e317b",
+      "temporal_workflow_id": "reindexconversations-greenix-us-east-1-a66612ba-dc30-40d2-a5b3-a74ad11d4dfd",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T17:12:39.951040407Z"
+    },
+    {
+      "customer": "dsi-distributing",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/dsi-distributing/profiles/us-east-1/jobs/378ed34a-1313-4ee7-bdbf-9e72233a1023",
+      "temporal_workflow_id": "reindexconversations-dsi-distributing-us-east-1-00f1adf6-ef18-4ee6-9baa-c2c9b74cf366",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:37:16.171817196Z"
+    },
+    {
+      "customer": "bswift",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/bswift/profiles/us-east-1/jobs/6d57daa1-8eba-4eb2-be5c-221b97499faf",
+      "temporal_workflow_id": "reindexconversations-bswift-us-east-1-d38a6689-230c-412f-bc47-aabf24e86367",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:38:34.320923323Z"
+    },
+    {
+      "customer": "hollister",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/hollister/profiles/us-east-1/jobs/5ef7cb28-c869-4a70-9977-a745c83f6c52",
+      "temporal_workflow_id": "reindexconversations-hollister-us-east-1-82ea16c4-acba-41f6-bd3b-02dd2ea0025b",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:26.769234127Z"
+    },
+    {
+      "customer": "bounce-ai-sandbox",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/bounce-ai-sandbox/profiles/us-east-1/jobs/0bd7a73f-687a-40b9-bc21-ee2e56043a6b",
+      "temporal_workflow_id": "reindexconversations-bounce-ai-sandbox-us-east-1-1087fe59-6857-46a7-8f5c-9b15b122d5fa",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.997662470Z"
+    },
+    {
+      "customer": "cocacola",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/cocacola/profiles/us-east-1/jobs/a3de93bc-1785-4437-a01b-9d6a3b50faca",
+      "temporal_workflow_id": "reindexconversations-cocacola-us-east-1-8d786a16-f687-4676-9146-f54223312be9",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:26.746542733Z"
+    },
+    {
+      "customer": "comcast",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/comcast/profiles/us-east-1/jobs/7d05df6f-7efa-4d2a-8972-47355dc0ca3b",
+      "temporal_workflow_id": "reindexconversations-comcast-us-east-1-696a11c0-36d4-4429-9e53-ba2394f19718",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:26.229729443Z"
+    },
+    {
+      "customer": "valley-health",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/valley-health/profiles/us-east-1/jobs/314b8db7-9e59-4e5b-8f8d-e5d9542dccac",
+      "temporal_workflow_id": "reindexconversations-valley-health-us-east-1-1f80bcec-f972-4e6d-b58d-3f593b2f1dc3",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:26.623069992Z"
+    },
+    {
+      "customer": "riptide",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/riptide/profiles/us-east-1/jobs/0cb228a6-97fc-4c90-b462-d94cd30e3997",
+      "temporal_workflow_id": "reindexconversations-riptide-us-east-1-f067178e-8453-4c91-8d02-bf5387f03b32",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:11:57.263348319Z"
+    },
+    {
+      "customer": "ringcentral",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/ringcentral/profiles/us-east-1/jobs/cda7c6b3-228b-47f6-bc9c-1c338a1f440e",
+      "temporal_workflow_id": "reindexconversations-ringcentral-us-east-1-0178a98e-395e-4dd0-ba86-44a249dffe10",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:18:59.624030708Z"
+    },
+    {
+      "customer": "abcbs",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/abcbs/profiles/us-east-1/jobs/3cb3cd5c-383a-4b37-a6e3-3985f09ae1d8",
+      "temporal_workflow_id": "reindexconversations-abcbs-us-east-1-4435e463-029e-4375-929c-afb68cceca02",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T17:05:47.745522988Z"
+    },
+    {
+      "customer": "ust",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/ust/profiles/us-east-1/jobs/d36a83ed-bea9-4055-8ca3-ebff4aa72fc8",
+      "temporal_workflow_id": "reindexconversations-ust-us-east-1-c1a91ca9-f175-41c3-a7c3-eb54ccd6314c",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:35:05.389000132Z"
+    },
+    {
+      "customer": "comerica-dev",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/comerica-dev/profiles/us-east-1/jobs/58b9a99e-2c32-4355-9812-161865da21a1",
+      "temporal_workflow_id": "reindexconversations-comerica-dev-us-east-1-7926a554-d4ae-4b26-bdc6-519ae31d0d78",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.064858260Z"
+    },
+    {
+      "customer": "smud",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/smud/profiles/us-east-1/jobs/066fc054-524b-4179-99be-f49222e06946",
+      "temporal_workflow_id": "reindexconversations-smud-us-east-1-2835d141-2ad0-4f52-91e1-d9c43c16d31e",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:26.495248078Z"
+    },
+    {
+      "customer": "village-md",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/village-md/profiles/us-east-1/jobs/51328987-0777-44f5-bda1-fb2abcf9c0ee",
+      "temporal_workflow_id": "reindexconversations-village-md-us-east-1-d6e6fd09-8ad3-49ba-abeb-21d28d5a8da1",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.515874100Z"
+    },
+    {
+      "customer": "rentokil",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/rentokil/profiles/us-east-1/jobs/56b8ac35-033c-4252-b4f0-13df419ebb2e",
+      "temporal_workflow_id": "reindexconversations-rentokil-us-east-1-a6db4eec-6d56-4c7b-b6d9-76580dd2fa56",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-08T09:41:46.359955618Z"
+    },
+    {
+      "customer": "guitar-center",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/guitar-center/profiles/us-east-1/jobs/10c87979-bcf7-4038-a2d2-6314811b545e",
+      "temporal_workflow_id": "reindexconversations-guitar-center-us-east-1-ee161d12-502a-4920-afe4-6fc9fdf6777a",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T19:35:51.787749527Z"
+    },
+    {
+      "customer": "home-care-delivered",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/home-care-delivered/profiles/us-east-1/jobs/46e9bac4-8469-4ba2-9df2-d39f81820680",
+      "temporal_workflow_id": "reindexconversations-home-care-delivered-us-east-1-91bb38fb-c254-4099-896d-cd37bc918471",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T18:21:54.130206751Z"
+    },
+    {
+      "customer": "comerica-qa",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/comerica-qa/profiles/us-east-1/jobs/84361d9a-cad0-40e4-bbe7-d8cec637f9ca",
+      "temporal_workflow_id": "reindexconversations-comerica-qa-us-east-1-fbb7b666-3a13-4412-beb2-6e4c61dc91d4",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.872896095Z"
+    },
+    {
+      "customer": "acorns",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/acorns/profiles/us-east-1/jobs/f73ebd10-33be-4240-8921-826c96f0cc28",
+      "temporal_workflow_id": "reindexconversations-acorns-us-east-1-ff311942-2d7e-4a20-a46e-28783cc6d40c",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:20:14.309959109Z"
+    },
+    {
+      "customer": "cng",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/cng/profiles/us-east-1/jobs/2684d71e-a592-4bed-aa08-b2639d93e462",
+      "temporal_workflow_id": "reindexconversations-cng-us-east-1-7a05c8fd-5b0e-4eee-b8dd-686302a829f8",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:19:06.995969334Z"
+    },
+    {
+      "customer": "pure",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/pure/profiles/us-east-1/jobs/f579d7b9-2a5f-4fbd-8328-cb76f6bc5fae",
+      "temporal_workflow_id": "reindexconversations-pure-us-east-1-8919db46-287f-4659-8f70-7bf378013e5a",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:19:23.434625969Z"
+    },
+    {
+      "customer": "united-east-sbx",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/united-east-sbx/profiles/us-east-1/jobs/83e5a4fa-02cc-4081-9878-109935f2a997",
+      "temporal_workflow_id": "reindexconversations-united-east-sbx-us-east-1-179c34e3-99e3-43df-9c9b-ad92eeee5df0",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.300906180Z"
+    },
+    {
+      "customer": "marriott-sbx",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/marriott-sbx/profiles/us-east-1/jobs/468d51a0-6672-4228-b26d-ce83ca2fd7c7",
+      "temporal_workflow_id": "reindexconversations-marriott-sbx-us-east-1-e5422896-fcd7-4bb0-813b-79abd52de137",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:28.114458002Z"
+    },
+    {
+      "customer": "aqua-sbx",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/aqua-sbx/profiles/us-east-1/jobs/99bec73f-091a-4337-9094-e74b51180bd4",
+      "temporal_workflow_id": "reindexconversations-aqua-sbx-us-east-1-5c49c4e2-2986-44ff-a979-f15e6f4ab1c0",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.320338714Z"
+    },
+    {
+      "customer": "pack-rat",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/pack-rat/profiles/us-east-1/jobs/d3e4f051-928f-4fcb-8d50-16cd2cd93ade",
+      "temporal_workflow_id": "reindexconversations-pack-rat-us-east-1-68542bef-b6d6-46a3-a944-e2802b10074a",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:53:42.110820561Z"
+    },
+    {
+      "customer": "kiavi",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/kiavi/profiles/us-east-1/jobs/8f30a87a-6fa7-4db9-b730-fa9211fa4326",
+      "temporal_workflow_id": "reindexconversations-kiavi-us-east-1-f60a3bd7-38fe-47d0-80d1-1588204e6279",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:50.635115123Z"
+    },
+    {
+      "customer": "uniters",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/uniters/profiles/us-east-1/jobs/2ae240ab-33d4-41db-8331-2853850d1ae1",
+      "temporal_workflow_id": "reindexconversations-uniters-us-east-1-92629201-f6c8-4c1e-9fd1-01368ec38c5d",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:11:01.743508203Z"
+    },
+    {
+      "customer": "bounce-ai",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/bounce-ai/profiles/us-east-1/jobs/69b9f5c6-36e2-463c-95a3-dfea35ce884f",
+      "temporal_workflow_id": "reindexconversations-bounce-ai-us-east-1-2e971741-2cd7-4615-b57a-aad9b363639d",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:47:31.597235009Z"
+    },
+    {
+      "customer": "fubotv",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/fubotv/profiles/us-east-1/jobs/237e33e5-418a-47f6-a136-a925107044f0",
+      "temporal_workflow_id": "reindexconversations-fubotv-us-east-1-4a4d73c4-b796-49c5-a915-1a40d369e2e8",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:59:38.093470060Z"
+    },
+    {
+      "customer": "paylocity-east",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/paylocity-east/profiles/us-east-1/jobs/6c51e02e-dc04-4219-ac2b-3b7d117888a8",
+      "temporal_workflow_id": "reindexconversations-paylocity-east-us-east-1-57a90df1-0dcd-4063-b8e0-4a35efc337ae",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.679323503Z"
+    },
+    {
+      "customer": "devry-uni",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/devry-uni/profiles/us-east-1/jobs/737a127a-7456-4e08-934a-edbce3e3d44e",
+      "temporal_workflow_id": "reindexconversations-devry-uni-us-east-1-4f88ac3f-eac9-4e9b-8315-8c02d7e737e3",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.169302307Z"
+    },
+    {
+      "customer": "clearchoice",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/clearchoice/profiles/us-east-1/jobs/19060226-92bb-4891-801a-7bf2b4156cd2",
+      "temporal_workflow_id": "reindexconversations-clearchoice-us-east-1-7f2823df-b0af-41d9-bfb6-5d264ee9f621",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:24:49.102268184Z"
+    },
+    {
+      "customer": "charter",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/charter/profiles/us-east-1/jobs/b66b59bd-daa6-4756-b659-0bafdfe1958d",
+      "temporal_workflow_id": "reindexconversations-charter-us-east-1-78430b15-2ca7-40de-8421-e9a14fb4353b",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.422269820Z"
+    },
+    {
+      "customer": "wheels",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/wheels/profiles/us-east-1/jobs/07c005c0-c57c-4478-84ea-89a91f9d952e",
+      "temporal_workflow_id": "reindexconversations-wheels-us-east-1-5ab1932a-9609-4ea0-a3ab-db424b3786f2",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:35:19.611361782Z"
+    },
+    {
+      "customer": "altice",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/altice/profiles/us-east-1/jobs/3c7f727f-5747-4be5-80ae-638955c418fc",
+      "temporal_workflow_id": "reindexconversations-altice-us-east-1-f9fbeb2a-dab7-4f02-bc3f-9ae974c1b2dd",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:52:07.020429680Z"
+    },
+    {
+      "customer": "alaska-air",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/alaska-air/profiles/us-east-1/jobs/a92de2a6-eaf8-4dd7-a14b-b6088a1a09a7",
+      "temporal_workflow_id": "reindexconversations-alaska-air-us-east-1-aebdc44f-df4f-4f80-99de-46868db2a583",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-08T03:27:07.562174740Z"
+    },
+    {
+      "customer": "t-mobile",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/t-mobile/profiles/us-east-1/jobs/97a6af87-4ad8-499d-b338-6f4258fa61ca",
+      "temporal_workflow_id": "reindexconversations-t-mobile-us-east-1-6952e46f-b507-4b31-99d9-f7cdb6952043",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:27.780653361Z"
+    },
+    {
+      "customer": "collegeboard",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/collegeboard/profiles/us-east-1/jobs/73d2c220-124b-4544-9c7a-b633ac5e8013",
+      "temporal_workflow_id": "reindexconversations-collegeboard-us-east-1-d897a2fc-e413-463b-8e12-f43b36dac0eb",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:44:38.823391973Z"
+    },
+    {
+      "customer": "ecpi-uni",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/ecpi-uni/profiles/us-east-1/jobs/25d26271-0958-49b2-8ff9-c2eaa69bb83a",
+      "temporal_workflow_id": "reindexconversations-ecpi-uni-us-east-1-ce4a9828-6d5a-490d-9f37-6ff58f612e76",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T18:19:57.395261501Z"
+    },
+    {
+      "customer": "ana",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/ana/profiles/us-east-1/jobs/f6709ec7-5b02-4589-96b3-f5b19c08cbf3",
+      "temporal_workflow_id": "reindexconversations-ana-us-east-1-a7b29425-93b7-4c30-aa63-10cc75ca36a1",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:06:05.862641915Z"
+    },
+    {
+      "customer": "mm-ohio",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/mm-ohio/profiles/us-east-1/jobs/ecfd778f-1beb-42eb-a249-e4a8f7892ccf",
+      "temporal_workflow_id": "reindexconversations-mm-ohio-us-east-1-38ae707e-8a59-4944-96ac-af551d13def7",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T18:14:35.713226502Z"
+    },
+    {
+      "customer": "united-east",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/united-east/profiles/us-east-1/jobs/1fd48d0d-f1d1-454c-9364-a5f8fe888dd6",
+      "temporal_workflow_id": "reindexconversations-united-east-us-east-1-643a33eb-d2c4-4c11-b615-a2d32fc605e1",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_RUNNING",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "marriott",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/marriott/profiles/us-east-1/jobs/36760786-89e5-4c6e-a5d3-2e09d2113dc1",
+      "temporal_workflow_id": "reindexconversations-marriott-us-east-1-d4ef120c-8d0d-4d69-8e87-4f38aef211c6",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_RUNNING",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "hancock-whitney",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/hancock-whitney/profiles/us-east-1/jobs/cca85e88-5cd5-4a9b-b295-4b29d0fdb491",
+      "temporal_workflow_id": "reindexconversations-hancock-whitney-us-east-1-f2d88c1b-b8c3-4c85-b613-055fea88c678",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:28.159474260Z"
+    },
+    {
+      "customer": "abc-medical",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/abc-medical/profiles/us-east-1/jobs/ededc7ee-aa2f-451f-9d7a-27f0de381fe4",
+      "temporal_workflow_id": "reindexconversations-abc-medical-us-east-1-3a56a5ca-68d6-40be-a525-3c447eb71d11",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:28.132012479Z"
+    },
+    {
+      "customer": "comerica-east",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/comerica-east/profiles/us-east-1/jobs/2c96e351-1443-44d1-ba47-82f22601be9c",
+      "temporal_workflow_id": "reindexconversations-comerica-east-us-east-1-21e2d7e3-9a79-4d68-8f00-8c1a4193f532",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T17:31:53.363840780Z"
+    },
+    {
+      "customer": "urgently",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/urgently/profiles/us-east-1/jobs/8ad7b342-4a73-4ef4-ad78-2423c8ba76b0",
+      "temporal_workflow_id": "reindexconversations-urgently-us-east-1-649553df-98b9-493b-9c1c-81357fc54b18",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T17:15:24.309758872Z"
+    },
+    {
+      "customer": "affirm",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/affirm/profiles/us-east-1/jobs/0d6b4445-719a-4e1f-84be-8819628aadd7",
+      "temporal_workflow_id": "reindexconversations-affirm-us-east-1-7a4af6db-ae19-45cd-86f5-f469e8a24203",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:28.482830058Z"
+    },
+    {
+      "customer": "westernhealth",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/westernhealth/profiles/us-east-1/jobs/ccb42a2d-0a45-4a1c-bd85-dd5fb1213c82",
+      "temporal_workflow_id": "reindexconversations-westernhealth-us-east-1-fc1356f2-ca26-4db8-a186-dbc8382e538a",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:15:34.349125904Z"
+    },
+    {
+      "customer": "iqcu",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/iqcu/profiles/us-east-1/jobs/155a219d-7ba4-474a-8812-ab1be9c3bb49",
+      "temporal_workflow_id": "reindexconversations-iqcu-us-east-1-ddf7d4cc-b4e4-4af4-aaa4-b9ae6a1bf1ac",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:24:22.317964557Z"
+    },
+    {
+      "customer": "sunbit",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/sunbit/profiles/us-east-1/jobs/520e8659-cd31-456f-a408-45899b2eb8bf",
+      "temporal_workflow_id": "reindexconversations-sunbit-us-east-1-eb1c24c0-f696-40e4-b8f7-75fcd4da4115",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T21:39:35.803518123Z"
+    },
+    {
+      "customer": "canyon-ranch",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/canyon-ranch/profiles/us-east-1/jobs/06294856-abab-4983-8be1-346a71117136",
+      "temporal_workflow_id": "reindexconversations-canyon-ranch-us-east-1-32727408-aa70-46ad-aad5-5b80f845723d",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:28.639245338Z"
+    },
+    {
+      "customer": "vxi-sandbox",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/vxi-sandbox/profiles/us-east-1/jobs/3f5979cc-df94-4ff9-99ea-28e3e1e96dd2",
+      "temporal_workflow_id": "reindexconversations-vxi-sandbox-us-east-1-d4abb664-d664-46d2-979f-f415fdc8e7f4",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:22:19.646879167Z"
+    },
+    {
+      "customer": "wyndham",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/wyndham/profiles/us-east-1/jobs/536d9703-d072-454f-9dac-718f9f99bdd6",
+      "temporal_workflow_id": "reindexconversations-wyndham-us-east-1-36f014b0-fd57-4ac4-81df-954a7f6dba8d",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:29.548377217Z"
+    },
+    {
+      "customer": "exact-sciences",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/exact-sciences/profiles/us-east-1/jobs/64a0af12-0693-492f-a6ba-bb11dcb8898a",
+      "temporal_workflow_id": "reindexconversations-exact-sciences-us-east-1-970833a5-ad81-4add-99f2-909d23d851c2",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:39.691017050Z"
+    },
+    {
+      "customer": "spirit",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/spirit/profiles/us-east-1/jobs/20a09881-4ee5-4353-a0d3-a996ff64ef0c",
+      "temporal_workflow_id": "reindexconversations-spirit-us-east-1-cd8417bc-5369-439f-8bcc-903c19187bf1",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-08T09:19:51.283775971Z"
+    },
+    {
+      "customer": "alert360",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/alert360/profiles/us-east-1/jobs/86d5d9c6-f14d-4de1-a9ee-b2ee27507d50",
+      "temporal_workflow_id": "reindexconversations-alert360-us-east-1-5cc656ff-60d2-4eaa-8f81-3f5de7329df6",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:52:44.716815510Z"
+    },
+    {
+      "customer": "nclh",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/nclh/profiles/us-east-1/jobs/c12334d2-1fa2-46a4-802c-3ea0302b4cc3",
+      "temporal_workflow_id": "reindexconversations-nclh-us-east-1-d3798075-bdc8-4787-90a6-d0b7a69f6db0",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T19:07:28.667813477Z"
+    },
+    {
+      "customer": "tailorcare-sbx",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/tailorcare-sbx/profiles/us-east-1/jobs/6c1ccab4-c514-49b7-8407-36dd97d72448",
+      "temporal_workflow_id": "reindexconversations-tailorcare-sbx-us-east-1-7fa8605a-db6a-42c2-91f4-befe668da9e1",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:30.456568205Z"
+    },
+    {
+      "customer": "amba",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/amba/profiles/us-east-1/jobs/4cebe57f-4e33-49b7-b2c5-6f17a7c09abc",
+      "temporal_workflow_id": "reindexconversations-amba-us-east-1-3f2934a3-7805-462f-89aa-ad20397af576",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:44:08.746029974Z"
+    },
+    {
+      "customer": "nrg",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/nrg/profiles/us-east-1/jobs/f0e9777b-6a60-4346-ba7a-4431230d98b9",
+      "temporal_workflow_id": "reindexconversations-nrg-us-east-1-6fb8cc2c-f6b6-4d09-9307-6dd0aa090d94",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-08T00:14:22.553236629Z"
+    },
+    {
+      "customer": "first-help-fin",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/first-help-fin/profiles/us-east-1/jobs/c8f6e0e7-c2ee-45da-856e-952963e230ae",
+      "temporal_workflow_id": "reindexconversations-first-help-fin-us-east-1-2078fa4b-2998-426f-896b-d0f0544b2617",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:29.018969930Z"
+    },
+    {
+      "customer": "dow-jones",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/dow-jones/profiles/us-east-1/jobs/49c704d7-1afb-401a-8917-b537c503a7ab",
+      "temporal_workflow_id": "reindexconversations-dow-jones-us-east-1-ef59837f-32a2-4d0e-8eb4-7f6ff3943b3e",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:28.868143848Z"
+    },
+    {
+      "customer": "bobs-furniture",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/bobs-furniture/profiles/us-east-1/jobs/652dc6b2-b40e-4d2b-b3de-c1706cee52f7",
+      "temporal_workflow_id": "reindexconversations-bobs-furniture-us-east-1-9ea2fd82-2aeb-42c6-a929-53fe7819cf1c",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:29.177455372Z"
+    },
+    {
+      "customer": "mapfre",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/mapfre/profiles/us-east-1/jobs/cafca0be-8442-47c3-9fa9-7b4c3e6d69b3",
+      "temporal_workflow_id": "reindexconversations-mapfre-us-east-1-71d1e7a7-b6b7-41b9-9923-b8d838d1271a",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:14:29.343631917Z"
+    },
+    {
+      "customer": "aig",
+      "profile": "us-east-1",
+      "cluster": "us-east-1-prod",
+      "job_resource_name": "customers/aig/profiles/us-east-1/jobs/5753c35e-6572-4631-b3dd-6a4f6edc7292",
+      "temporal_workflow_id": "reindexconversations-aig-us-east-1-a4fa2299-26d6-4924-8399-a55f7653f374",
+      "status": "created",
+      "temporal_status": "WORKFLOW_EXECUTION_STATUS_COMPLETED",
+      "temporal_close_time": "2026-02-07T16:04:29.092460181Z"
+    },
+    {
+      "customer": "dandy",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/dandy/profiles/us-west-2/jobs/026476fc-fbc9-4773-a6dc-f498e13b1c01",
+      "temporal_workflow_id": "reindexconversations-dandy-us-west-2-15b61dd5-247b-4fb3-aaac-a5924a2ff301",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "rocket-loans",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/rocket-loans/profiles/us-west-2/jobs/de77faa4-a68e-44fb-aa39-f4dd857f655a",
+      "temporal_workflow_id": "reindexconversations-rocket-loans-us-west-2-3f7527bb-9e4b-4265-a1ba-dfbe7a62c196",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "aaa-life",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/aaa-life/profiles/us-west-2/jobs/895da131-218e-4f09-9680-f754ac5ff4e4",
+      "temporal_workflow_id": "reindexconversations-aaa-life-us-west-2-9f427b78-db3e-4fe1-ad91-dff62ef3e002",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "snapfinance",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/snapfinance/profiles/us-west-2/jobs/c90532e7-b2bb-4f4f-9b53-6bf4ca017108",
+      "temporal_workflow_id": "reindexconversations-snapfinance-us-west-2-a5f79bf0-6edb-463b-84a1-a3d3ae4180da",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "standard-chart",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/standard-chart/profiles/us-west-2/jobs/2e5a85e2-e995-40b6-b7bd-d6d6db595476",
+      "temporal_workflow_id": "reindexconversations-standard-chart-us-west-2-0c2df4f2-9744-40ee-99f5-13a5c07671f9",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "airbnb-sandbox",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/airbnb-sandbox/profiles/us-west-2/jobs/80308d15-32ac-43d3-ac4e-ad7be57d0c66",
+      "temporal_workflow_id": "reindexconversations-airbnb-sandbox-us-west-2-486da6f2-e575-4e9b-8f38-e1a0c886e465",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "republic",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/republic/profiles/us-west-2/jobs/588b03f4-2e86-4a0b-9e1a-2590f74fb763",
+      "temporal_workflow_id": "reindexconversations-republic-us-west-2-426de307-6fe6-4320-b5f6-51356237a262",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "ime",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/ime/profiles/us-west-2/jobs/cb55d423-5069-4ff2-9999-f56636799b45",
+      "temporal_workflow_id": "reindexconversations-ime-us-west-2-042a7b9b-5624-4a0a-bc66-ebb2f541b919",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "thumbtack",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/thumbtack/profiles/us-west-2/jobs/8ce8273e-c69d-42f4-a1ba-37faf824b4f4",
+      "temporal_workflow_id": "reindexconversations-thumbtack-us-west-2-30bba394-4ec0-4f84-b94a-8b087fefb14e",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "airbnb-sandbox",
+      "profile": "voice-ppe",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/airbnb-sandbox/profiles/voice-ppe/jobs/66b45b7f-8ccf-4111-889a-efb3580eb36a",
+      "temporal_workflow_id": "reindexconversations-airbnb-sandbox-voice-ppe-bd5dbaf0-50a5-4342-8df9-a8dae1910cb2",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "optum-sandbox",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/optum-sandbox/profiles/us-west-2/jobs/34dc5b59-ef31-4dfa-8f9e-67c846b3dc18",
+      "temporal_workflow_id": "reindexconversations-optum-sandbox-us-west-2-5edc4fff-4a58-4443-a4ea-9b47e7d3c982",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "choice-hotels",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/choice-hotels/profiles/us-west-2/jobs/a7a852b1-32f3-42fe-818e-647ac3355d45",
+      "temporal_workflow_id": "reindexconversations-choice-hotels-us-west-2-07314837-aad8-4dfa-b074-be2a31dc2647",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "ai-agent-marketing",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/cresta/profiles/ai-agent-marketing/jobs/57fb8396-3f7a-4df8-b218-32309b4d5fcf",
+      "temporal_workflow_id": "reindexconversations-cresta-ai-agent-marketing-a5d281ee-3368-455e-8d8b-29099b8ef3c3",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "americor",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/americor/profiles/us-west-2/jobs/e74495f3-7138-492f-83fb-23e81eb38950",
+      "temporal_workflow_id": "reindexconversations-americor-us-west-2-c23aa346-2716-447d-b021-9af1d156af7d",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "liberty-dental",
+      "profile": "voice",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/liberty-dental/profiles/voice/jobs/cae6fe15-b036-41f0-b49c-d471cf840eca",
+      "temporal_workflow_id": "reindexconversations-liberty-dental-voice-0b79626a-37ad-4563-a995-a65fb27eabbd",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "virtual-agent-sandbox",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/cresta/profiles/virtual-agent-sandbox/jobs/74579393-b1c4-42dd-ba09-b2b910a48802",
+      "temporal_workflow_id": "reindexconversations-cresta-virtual-agent-sandbox-d8a6b1e1-5da8-4b49-8c9b-c0c887996b4b",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "delta",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/delta/profiles/us-west-2/jobs/e0993ae8-f2f0-486b-9379-ba4de543f7c9",
+      "temporal_workflow_id": "reindexconversations-delta-us-west-2-0d4f8c66-51af-4904-bb72-02f277eca028",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "uber",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/uber/profiles/us-west-2/jobs/686a21eb-a1b0-4db7-881f-ed16dcfad993",
+      "temporal_workflow_id": "reindexconversations-uber-us-west-2-033ced45-8542-4132-bba7-59680b3e53ad",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "avaya",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/avaya/profiles/us-west-2/jobs/2583780d-cdb2-45fa-af5b-246f1af3016f",
+      "temporal_workflow_id": "reindexconversations-avaya-us-west-2-3d47883b-51aa-48c6-99df-9708443bea34",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "vivint",
+      "profile": "cx-voice",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/vivint/profiles/cx-voice/jobs/dfc86710-96c4-49e4-ad22-4850514da55c",
+      "temporal_workflow_id": "reindexconversations-vivint-cx-voice-cc9df7a2-8e96-4e88-bb22-e590fbb7f0c8",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/cresta/profiles/us-west-2/jobs/ee424a0e-579a-41aa-adc1-e45110fc48b7",
+      "temporal_workflow_id": "reindexconversations-cresta-us-west-2-9be10630-e9b7-42f6-9b2d-ff10c113b021",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "hilton",
+      "profile": "virtual-agent",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/hilton/profiles/virtual-agent/jobs/9a057f69-f321-42b9-913f-6d81d00674fd",
+      "temporal_workflow_id": "reindexconversations-hilton-virtual-agent-a504cf8d-96d5-418a-90b9-bac5afeb1fe1",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "enhancehealth",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/enhancehealth/profiles/us-west-2/jobs/fb614dfa-e8f5-428d-bd66-84c8a0c86437",
+      "temporal_workflow_id": "reindexconversations-enhancehealth-us-west-2-db3db06a-b4d4-4228-8fe5-ee0382cdf93f",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "bilt",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/bilt/profiles/us-west-2/jobs/8d873c53-021a-443b-8891-96d0d3c4910c",
+      "temporal_workflow_id": "reindexconversations-bilt-us-west-2-24958646-a32f-483c-9d8c-849be091305e",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cars-commerce",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/cars-commerce/profiles/us-west-2/jobs/e768b205-43c6-4790-82ca-680e47b02750",
+      "temporal_workflow_id": "reindexconversations-cars-commerce-us-west-2-6c4c467c-1756-4f03-aa24-6ba81479f150",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "verizon-sandbox",
+      "profile": "voice",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/verizon-sandbox/profiles/voice/jobs/1166af0c-9527-4c35-a02b-124ab996219c",
+      "temporal_workflow_id": "reindexconversations-verizon-sandbox-voice-d3f67439-b4ab-4ce0-aee6-435ca5456915",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "aegvision",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/aegvision/profiles/us-west-2/jobs/b075ee24-d226-4e26-adcd-d720985c5eef",
+      "temporal_workflow_id": "reindexconversations-aegvision-us-west-2-7c0a3dc7-2c48-4f94-9a4b-54cf70e12c03",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "customerx",
+      "profile": "main",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/customerx/profiles/main/jobs/daf983e4-b877-4007-acf0-477d18c7e32b",
+      "temporal_workflow_id": "reindexconversations-customerx-main-6733b9a1-a8c6-404c-be8d-d8bd5a8c4517",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "ascendion",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/ascendion/profiles/us-west-2/jobs/ca4b3455-f881-41ba-a8a5-53b957077b29",
+      "temporal_workflow_id": "reindexconversations-ascendion-us-west-2-ee95fbc2-8cab-4e84-9085-cdd694fe448c",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "tranzact",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/tranzact/profiles/us-west-2/jobs/a70250b0-db1d-49c6-8057-00a11836f28f",
+      "temporal_workflow_id": "reindexconversations-tranzact-us-west-2-1a49c69f-9ec5-4011-9225-9c5f23b27826",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "optum",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/optum/profiles/us-west-2/jobs/d2487c0f-7f1a-418e-b20d-813c4dd5bc52",
+      "temporal_workflow_id": "reindexconversations-optum-us-west-2-4cde12a5-fa69-408c-9300-7acb0b273d19",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cvs-sandbox",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/cvs-sandbox/profiles/us-west-2/jobs/5158388a-ce76-4833-93f1-0e5ec7bc6eba",
+      "temporal_workflow_id": "reindexconversations-cvs-sandbox-us-west-2-d94fbad9-5ba2-487b-a082-676a7b9d7741",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "farmers",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/farmers/profiles/us-west-2/jobs/48988940-b7a2-4659-b44f-ca89a5a6350a",
+      "temporal_workflow_id": "reindexconversations-farmers-us-west-2-fbd761e6-ff47-47ec-9b2a-64902d446b1f",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "wayfair",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/wayfair/profiles/us-west-2/jobs/80a71b2d-b3d6-4b30-b009-b5229e70cf1f",
+      "temporal_workflow_id": "reindexconversations-wayfair-us-west-2-d2bcf81f-a05c-4a8b-9213-88372ae60853",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "integrity-marketing",
+      "profile": "golden-years",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/integrity-marketing/profiles/golden-years/jobs/1ce09103-3b01-44a1-9925-eb7843bfd91b",
+      "temporal_workflow_id": "reindexconversations-integrity-marketing-golden-years-b76e2bbb-dbeb-4691-acca-228d448baa8a",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "bill-west",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/bill-west/profiles/us-west-2/jobs/a6841676-968a-4554-81a4-f9bd94338bd4",
+      "temporal_workflow_id": "reindexconversations-bill-west-us-west-2-19ea9d36-fe1c-4ac7-ba9b-67990aed0432",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "integrity-marketing",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/integrity-marketing/profiles/us-west-2/jobs/13d7d956-3b17-42b9-9df2-3d7b147736eb",
+      "temporal_workflow_id": "reindexconversations-integrity-marketing-us-west-2-508a8bcb-e7c6-42ea-b7a0-ccdb5101a4e9",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "frontdoor",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/frontdoor/profiles/us-west-2/jobs/599e26c5-6edd-4eb7-a493-0a8d273b49dd",
+      "temporal_workflow_id": "reindexconversations-frontdoor-us-west-2-5bb729c7-b111-41cc-be9b-fc8c846a49f3",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "integrity-marketing",
+      "profile": "connexion-point",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/integrity-marketing/profiles/connexion-point/jobs/2f90bef6-5012-43c3-b53f-f9480ed196a1",
+      "temporal_workflow_id": "reindexconversations-integrity-marketing-connexion-point-56db9aaf-f0bb-4a2b-bbdc-7db190649a85",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "scan-health",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/scan-health/profiles/us-west-2/jobs/c1ab2c12-a108-4065-b461-47780b5c1dcd",
+      "temporal_workflow_id": "reindexconversations-scan-health-us-west-2-2c7a80e0-798c-467b-9147-410f77e3aafa",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "salt-river-project",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/salt-river-project/profiles/us-west-2/jobs/daf08c1b-5be9-4970-907a-30087374b4dd",
+      "temporal_workflow_id": "reindexconversations-salt-river-project-us-west-2-cf808eb2-acd5-4c4f-af99-1d4a45423778",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "aventon",
+      "profile": "aventon",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/aventon/profiles/aventon/jobs/8a1d2578-723e-4d8f-a9fe-6263760e43ab",
+      "temporal_workflow_id": "reindexconversations-aventon-aventon-4a567861-c1c3-4911-9380-6e30d11027fc",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "oportun",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/oportun/profiles/us-west-2/jobs/59806338-6374-4dc5-b9af-3c02f41ff079",
+      "temporal_workflow_id": "reindexconversations-oportun-us-west-2-b8e37683-9647-433b-8e9b-c1e36d2fc5f7",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cardworks",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/cardworks/profiles/us-west-2/jobs/e9b72860-5758-4da0-a215-abac20873dd8",
+      "temporal_workflow_id": "reindexconversations-cardworks-us-west-2-50c8fbdc-f22a-4a3c-8007-49bcd1f1a8bb",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "everon",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/everon/profiles/us-west-2/jobs/aa633ad4-e636-4da9-afb5-4882d9aac5bb",
+      "temporal_workflow_id": "reindexconversations-everon-us-west-2-53b0e1d8-a816-4d63-b3ef-64029b2c2455",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "achieve",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/achieve/profiles/us-west-2/jobs/dbcb2869-03f9-47ca-ba08-dd17ea2f9b28",
+      "temporal_workflow_id": "reindexconversations-achieve-us-west-2-e1e018c5-446d-49a0-aa6c-1f4c7725a298",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox2",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/cox2/profiles/us-west-2/jobs/cacdec98-aba1-481d-b381-1b1d90913f35",
+      "temporal_workflow_id": "reindexconversations-cox2-us-west-2-93f2e94d-272d-43b7-b5c9-8f3e0293cac8",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "square-sandbox",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/square-sandbox/profiles/us-west-2/jobs/fdaac98e-96fa-4f9b-b052-229aa175f19d",
+      "temporal_workflow_id": "reindexconversations-square-sandbox-us-west-2-0a911f7b-a8de-4d97-871e-fb230bffcad6",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "guardian",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/guardian/profiles/us-west-2/jobs/40398a7d-d52e-46c7-ba80-b033115493a3",
+      "temporal_workflow_id": "reindexconversations-guardian-us-west-2-c628820b-226a-4a1a-b7c4-cb87a7ff04c2",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "capgemini",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/capgemini/profiles/us-west-2/jobs/80f61504-755b-464e-8f88-04463808c2ab",
+      "temporal_workflow_id": "reindexconversations-capgemini-us-west-2-3f649192-465a-4b31-8586-9ae1e6157b52",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "atento",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/atento/profiles/us-west-2/jobs/33e3bddf-778d-4972-b5ee-3390f84c568f",
+      "temporal_workflow_id": "reindexconversations-atento-us-west-2-9f4769fe-6b9f-4d72-8d21-637943a1cabe",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "xanterra",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/xanterra/profiles/us-west-2/jobs/83c9346c-9568-4bd9-a654-ab98bf37e843",
+      "temporal_workflow_id": "reindexconversations-xanterra-us-west-2-fb59955d-02cf-4da5-a55b-1fe865105717",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "snapfinance-cs",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/snapfinance-cs/profiles/us-west-2/jobs/4a033c28-83e0-46ee-b338-043f623819bc",
+      "temporal_workflow_id": "reindexconversations-snapfinance-cs-us-west-2-5654391a-d37e-4c31-95af-52b97f6c694b",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "orsini",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/orsini/profiles/us-west-2/jobs/27dcd7c8-38d6-47ca-aca9-7b0a0eba2e13",
+      "temporal_workflow_id": "reindexconversations-orsini-us-west-2-4e31d1bf-f8f3-4138-ba38-b129ddf6050c",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "square",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/square/profiles/us-west-2/jobs/71d59d54-4697-45e4-93f3-e3b6c0c07e78",
+      "temporal_workflow_id": "reindexconversations-square-us-west-2-f460fe89-cdd6-4d86-9616-09b224906014",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "lifemd",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/lifemd/profiles/us-west-2/jobs/04f4faad-99cc-4e0e-b4c0-188179d53dfd",
+      "temporal_workflow_id": "reindexconversations-lifemd-us-west-2-bf384b1c-1a64-4e79-95b3-fb99fd743d68",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "aspect",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/aspect/profiles/us-west-2/jobs/1931f6f2-ddf6-41ec-ab5a-d45398a1207e",
+      "temporal_workflow_id": "reindexconversations-aspect-us-west-2-02e0852f-f03b-47bc-bea4-f4946ba2e41b",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "airbnb",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/airbnb/profiles/us-west-2/jobs/fee63c4d-0e54-4c90-93dd-7f3aed8a342f",
+      "temporal_workflow_id": "reindexconversations-airbnb-us-west-2-2fe0fb64-6b9a-4d96-9f66-68a11f608284",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "apfm-us-west-2",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/apfm-us-west-2/profiles/us-west-2/jobs/99a7ce57-daea-48f1-a97e-c9b6a0391d49",
+      "temporal_workflow_id": "reindexconversations-apfm-us-west-2-us-west-2-64d9e888-cdf5-4b70-a6f7-0697f94aca8c",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/cox/profiles/us-west-2/jobs/6566a062-ed1d-4849-ae76-c060e30d5721",
+      "temporal_workflow_id": "reindexconversations-cox-us-west-2-82cb2fd6-c216-4eeb-a006-6918cd94178a",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "voice-special-hr",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/cox/profiles/voice-special-hr/jobs/c03511fd-6a56-4851-9317-fbe1629fb368",
+      "temporal_workflow_id": "reindexconversations-cox-voice-special-hr-2b2b43db-ca4e-4552-9f57-446e3e7f70ef",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "richemont",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/richemont/profiles/us-west-2/jobs/8f25996f-caba-4404-9c0c-296bdca7ff08",
+      "temporal_workflow_id": "reindexconversations-richemont-us-west-2-8ba8f2fa-b73c-4e2e-bdc4-f79fd3281025",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "charles-schwab",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/charles-schwab/profiles/us-west-2/jobs/bca291cc-95e1-4d0b-a013-128b66ab343d",
+      "temporal_workflow_id": "reindexconversations-charles-schwab-us-west-2-7904b725-91c2-44af-bdcd-0c919b2ece83",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "ebay",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/ebay/profiles/us-west-2/jobs/596675f6-833c-4218-abc0-d7519c565871",
+      "temporal_workflow_id": "reindexconversations-ebay-us-west-2-3b0f102c-161d-4a56-9e2b-d6d53ea24542",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "intuit-sbx",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/intuit-sbx/profiles/us-west-2/jobs/349676b4-c59f-4a41-bed7-3fa0fd14f85c",
+      "temporal_workflow_id": "reindexconversations-intuit-sbx-us-west-2-6c0ce904-f8e1-4068-b2d9-8ec7426fcfe6",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cvs",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/cvs/profiles/us-west-2/jobs/1ca2ce2f-9c62-4b69-9421-e73c90aefb73",
+      "temporal_workflow_id": "reindexconversations-cvs-us-west-2-7351911d-b05b-487e-966e-8d8f9309c858",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "aaa-life-sbx",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/aaa-life-sbx/profiles/us-west-2/jobs/fdc5b265-de8d-4007-856a-f7cfa6b052bc",
+      "temporal_workflow_id": "reindexconversations-aaa-life-sbx-us-west-2-4c490e01-bcb6-4504-acc0-a2bc9622b657",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "care-oregon",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/care-oregon/profiles/us-west-2/jobs/60fe8168-fd3e-43a0-b568-56bf067b25df",
+      "temporal_workflow_id": "reindexconversations-care-oregon-us-west-2-205f655c-ede6-49ed-852c-6769ae198b72",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "viking",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/viking/profiles/us-west-2/jobs/45211a75-3c1b-4a1e-b9c1-037f49d0544d",
+      "temporal_workflow_id": "reindexconversations-viking-us-west-2-5dcf91fc-d661-4eaf-893a-90ff91eb0d7e",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "united-sandbox",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/united-sandbox/profiles/us-west-2/jobs/148880ad-5a58-4fc8-a250-0892dcdc21e3",
+      "temporal_workflow_id": "reindexconversations-united-sandbox-us-west-2-ab3f8b19-ebb6-492a-b4b8-4cd1754909e2",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "accenture-sandbox",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/accenture-sandbox/profiles/us-west-2/jobs/9d26ed86-fa1d-41a0-9607-840971216c5e",
+      "temporal_workflow_id": "reindexconversations-accenture-sandbox-us-west-2-4a2ad614-4cbe-4efe-aeb1-17c391b10f22",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "the-zebra",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/the-zebra/profiles/us-west-2/jobs/2106f72b-a2b8-4a78-805e-7672877c60f9",
+      "temporal_workflow_id": "reindexconversations-the-zebra-us-west-2-e492d87a-f52c-4515-8999-f49af4aa9200",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "golden-cc",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/golden-cc/profiles/us-west-2/jobs/6e4fe08c-81de-4ca3-86c4-f570aafbf867",
+      "temporal_workflow_id": "reindexconversations-golden-cc-us-west-2-6d456406-cda3-479b-a8a7-cb0953271ff8",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "partner-demo",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/partner-demo/profiles/us-west-2/jobs/83fa2519-9bf3-4b8b-9ee7-36264dbfcad0",
+      "temporal_workflow_id": "reindexconversations-partner-demo-us-west-2-60214a8f-ac54-4f74-a8c6-5af99135603e",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "five9-sandbox",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/five9-sandbox/profiles/us-west-2/jobs/64a77394-99e3-4395-9dbf-ca359f7ec4da",
+      "temporal_workflow_id": "reindexconversations-five9-sandbox-us-west-2-054db0ac-5142-4b2f-9d12-ec0e6ab45e27",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "verizon",
+      "profile": "sales-voice",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/verizon/profiles/sales-voice/jobs/f7105228-1f7d-4307-bf23-2d164ea0dd6f",
+      "temporal_workflow_id": "reindexconversations-verizon-sales-voice-4a46872f-5c78-42fb-a352-ebec2c95d421",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "bmo",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/bmo/profiles/us-west-2/jobs/6bd32bd9-7d76-4605-aa64-e64e0d518fc2",
+      "temporal_workflow_id": "reindexconversations-bmo-us-west-2-0b621979-f103-46c9-af89-081d6a7a6f01",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "bill-sbx",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/bill-sbx/profiles/us-west-2/jobs/8d6eae9f-3552-49fb-89a7-51b44b4cdc5d",
+      "temporal_workflow_id": "reindexconversations-bill-sbx-us-west-2-eb2e3b66-b1c9-4362-8844-d68d3287aa33",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "interdent",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/interdent/profiles/us-west-2/jobs/a439590a-e9f4-4618-a670-cc968de19786",
+      "temporal_workflow_id": "reindexconversations-interdent-us-west-2-70585925-d9a1-477b-8d49-971866021d2c",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "selectquote",
+      "profile": "us-west-2",
+      "cluster": "us-west-2-prod",
+      "job_resource_name": "customers/selectquote/profiles/us-west-2/jobs/2c3e296e-1f51-4dbb-8a96-049d84295dbc",
+      "temporal_workflow_id": "reindexconversations-selectquote-us-west-2-5adc89ef-5628-4a14-88bc-64a6c923c2aa",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "sales",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/cox/profiles/sales/jobs/e64d3e65-7b6f-4234-b1e1-4af8fd0e6f8c",
+      "temporal_workflow_id": "reindexconversations-cox-sales-d6b9b1f3-117f-494f-b29f-26341f9c7d19",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "carmax",
+      "profile": "main",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/carmax/profiles/main/jobs/3b24c762-c4c7-43a8-8735-b9d614626f61",
+      "temporal_workflow_id": "reindexconversations-carmax-main-ebfcd7f6-3d56-4b62-8898-102712d3f5b4",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "verizon-beta",
+      "profile": "beta",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/verizon-beta/profiles/beta/jobs/0c987904-586f-4558-bfe6-a0792add7bd6",
+      "temporal_workflow_id": "reindexconversations-verizon-beta-beta-ee3258bf-725e-43fb-b2c4-83c39cb18fb0",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "business",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/cox/profiles/business/jobs/f9efdf61-e3ed-40aa-b012-8565b2d77cb4",
+      "temporal_workflow_id": "reindexconversations-cox-business-1e03d150-26b8-4922-a4f9-d92f524c1593",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "sleepnumber",
+      "profile": "main",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/sleepnumber/profiles/main/jobs/6b4f670f-d54f-4a58-b03d-09698810c246",
+      "temporal_workflow_id": "reindexconversations-sleepnumber-main-12800a62-1730-4ee6-840c-e197bf1eb825",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "sel-sales",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/cox/profiles/sel-sales/jobs/3235e36a-1b4a-4429-aef1-68c82d51c424",
+      "temporal_workflow_id": "reindexconversations-cox-sel-sales-eaded308-be25-4468-85ae-79b4c4394600",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "porsche",
+      "profile": "main",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/porsche/profiles/main/jobs/a1e85e71-0f4f-4d4d-9c5f-0ee9fbf7c071",
+      "temporal_workflow_id": "reindexconversations-porsche-main-6b84b937-23fc-45ab-bfde-bd129323b696",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "sel",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/cox/profiles/sel/jobs/c1025078-0dde-486d-8b3c-c11080d135b0",
+      "temporal_workflow_id": "reindexconversations-cox-sel-ce5f2169-8dc2-454c-afa4-ad26711912cd",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "retention",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/cox/profiles/retention/jobs/2a1b5cfd-df10-4a79-8220-62250ded27ff",
+      "temporal_workflow_id": "reindexconversations-cox-retention-35b2f9a9-ccd0-4d1d-a3a6-12205d9c53f6",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "porsche-beta",
+      "profile": "beta",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/porsche-beta/profiles/beta/jobs/71eafa49-435f-419b-9bd7-96c756a3b760",
+      "temporal_workflow_id": "reindexconversations-porsche-beta-beta-24b5136f-e6f0-4e01-9b29-949b8429427f",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "verizon",
+      "profile": "bgco",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/verizon/profiles/bgco/jobs/246022d6-ce78-4f61-81b5-796987027f44",
+      "temporal_workflow_id": "reindexconversations-verizon-bgco-5741a856-adbe-4d13-bb8c-4b205f98b9e2",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "verizon",
+      "profile": "wireless",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/verizon/profiles/wireless/jobs/e948dbd7-01e2-46b1-8d82-6f30ad225b72",
+      "temporal_workflow_id": "reindexconversations-verizon-wireless-47bc99fc-e166-4152-9329-bc75726e4ced",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "snapfinance-cs",
+      "profile": "care",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/snapfinance-cs/profiles/care/jobs/f0cc4249-e8fc-4b7e-867d-60b5e404c5ff",
+      "temporal_workflow_id": "reindexconversations-snapfinance-cs-care-4b640b82-1687-4e49-8a25-2d3948bb6a6a",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "verizon",
+      "profile": "small-business",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/verizon/profiles/small-business/jobs/68869076-7d20-4c78-9efe-48d21a1cdbb2",
+      "temporal_workflow_id": "reindexconversations-verizon-small-business-fc279a5a-57f8-4bcb-b805-7cbc05d58b2a",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "verizon",
+      "profile": "smb-fios",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/verizon/profiles/smb-fios/jobs/8345903a-b00f-495b-a5b3-a13d43339cf9",
+      "temporal_workflow_id": "reindexconversations-verizon-smb-fios-d9f859ff-1e2b-451f-9953-c23dc92fe921",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "verizon",
+      "profile": "main",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/verizon/profiles/main/jobs/1a3229e5-c06b-44a8-8ba3-1176e8d343a9",
+      "temporal_workflow_id": "reindexconversations-verizon-main-87d74172-a6be-4f0d-97d7-496bce07a48e",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "united-airlines",
+      "profile": "united-airlines-care-chat",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/united-airlines/profiles/united-airlines-care-chat/jobs/4010e0db-a962-4e66-9dab-00258d5251f9",
+      "temporal_workflow_id": "reindexconversations-united-airlines-united-airlines-care-chat-82cbfa85-e961-4171-8382-c01a9eb67c7e",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "chat-demo",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/cresta/profiles/chat-demo/jobs/f21a8dcc-0200-451f-b6b7-c88a9b3cf80c",
+      "temporal_workflow_id": "reindexconversations-cresta-chat-demo-825b2de0-4892-4088-a93f-87642ac42a55",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "chat-sandbox",
+      "profile": "chat-sandbox-2",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/chat-sandbox/profiles/chat-sandbox-2/jobs/04371f7c-cf63-44d0-9355-40813df0d14c",
+      "temporal_workflow_id": "reindexconversations-chat-sandbox-chat-sandbox-2-da974511-f394-4c33-8fec-de6983a733c7",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "chat-sandbox-retailing",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/cresta/profiles/chat-sandbox-retailing/jobs/0bc9bfeb-e858-4b9d-86eb-44fbe8c50ba2",
+      "temporal_workflow_id": "reindexconversations-cresta-chat-sandbox-retailing-63022875-91f1-4b56-8922-1e96407238db",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "verizon",
+      "profile": "fixed-wireless",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/verizon/profiles/fixed-wireless/jobs/5a7665f4-7bb4-4268-aa81-c6d492a0225b",
+      "temporal_workflow_id": "reindexconversations-verizon-fixed-wireless-80482bee-ad67-42de-a0d0-6380c557f19f",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "chat-sandbox-banking",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/cresta/profiles/chat-sandbox-banking/jobs/52b5ad8a-0b52-462d-9e32-12fdd4b67988",
+      "temporal_workflow_id": "reindexconversations-cresta-chat-sandbox-banking-39d952bb-488f-4ad0-a3c2-411611b25015",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "chat-sandbox",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/cresta/profiles/chat-sandbox/jobs/9b7fe779-61df-4acf-9b73-a09186f6fa7b",
+      "temporal_workflow_id": "reindexconversations-cresta-chat-sandbox-08820f4c-2164-42e6-9b11-a5aae5f27eaa",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "intuit",
+      "profile": "canada",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/intuit/profiles/canada/jobs/e38808e1-9f55-4a3b-96fb-18f6bd8cde76",
+      "temporal_workflow_id": "reindexconversations-intuit-canada-5937699e-c51d-4609-826e-c45e20e87053",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "insights-dev-chat",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/cresta/profiles/insights-dev-chat/jobs/f45e3458-91b4-47f7-9425-603ba8112719",
+      "temporal_workflow_id": "reindexconversations-cresta-insights-dev-chat-656ad5e1-0e66-40cf-a60c-00ecd700c900",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "intuit",
+      "profile": "qbo",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/intuit/profiles/qbo/jobs/f9d75860-dd88-40f4-ae15-efee691836e7",
+      "temporal_workflow_id": "reindexconversations-intuit-qbo-38b235ed-7661-4cc0-9cee-3a7f1e742c98",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "chat-studio-demo",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/cresta/profiles/chat-studio-demo/jobs/5908d6cc-5b3f-4521-b40a-dc182839515b",
+      "temporal_workflow_id": "reindexconversations-cresta-chat-studio-demo-2e6202e4-a0e1-4db3-9f9a-4001df419740",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "twilio",
+      "profile": "chat",
+      "cluster": "chat-prod",
+      "job_resource_name": "customers/twilio/profiles/chat/jobs/7a5c18df-a870-4c93-9e7a-0865c15623fb",
+      "temporal_workflow_id": "reindexconversations-twilio-chat-de8ea5ce-f124-46af-8df1-3557ab629d7a",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "vivint",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/vivint/profiles/voice/jobs/f11b02bc-ca0e-4892-8dbf-3473d7d8bdec",
+      "temporal_workflow_id": "reindexconversations-vivint-voice-8ee8ea7b-7c43-4a81-b703-9665b1d2a9e7",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "holidayinn",
+      "profile": "transfers-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/holidayinn/profiles/transfers-voice/jobs/b1154692-fa0b-42d6-92ab-0dca9c04f333",
+      "temporal_workflow_id": "reindexconversations-holidayinn-transfers-voice-13cfc0ad-ea71-4a46-93c9-975f116c339a",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "holidayinn",
+      "profile": "owners-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/holidayinn/profiles/owners-voice/jobs/f957e3c0-4d2b-40b9-a6f6-5e73e6a8d1da",
+      "temporal_workflow_id": "reindexconversations-holidayinn-owners-voice-f84d5369-2f84-46a4-9aec-2888cedefa96",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "porsche",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/porsche/profiles/voice/jobs/e0cf2282-255a-4f85-9347-4290bcd7da34",
+      "temporal_workflow_id": "reindexconversations-porsche-voice-3c890536-b4ec-4a10-8973-0b68a75c8af6",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "holidayinn",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/holidayinn/profiles/voice/jobs/ec4c1ee6-134a-415e-8fe2-79deaea75b46",
+      "temporal_workflow_id": "reindexconversations-holidayinn-voice-4066147c-b0cb-40d8-97d4-65a2523d6890",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "holidayinn",
+      "profile": "club-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/holidayinn/profiles/club-voice/jobs/e03bf778-cd18-45b2-a43d-046f9ee7eb44",
+      "temporal_workflow_id": "reindexconversations-holidayinn-club-voice-9daaa756-fc14-439e-b2c0-7ef3d3bea1e6",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "holidayinn",
+      "profile": "social-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/holidayinn/profiles/social-voice/jobs/b72c7f35-c1a4-4614-acd1-347cc1041d37",
+      "temporal_workflow_id": "reindexconversations-holidayinn-social-voice-ad1b206a-9d4a-49c2-9660-f1ecc85fe9d4",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta-sandbox-2",
+      "profile": "voice-sandbox-2",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cresta-sandbox-2/profiles/voice-sandbox-2/jobs/39985194-6952-478d-8016-54818b1d2785",
+      "temporal_workflow_id": "reindexconversations-cresta-sandbox-2-voice-sandbox-2-4a56828c-1c90-44b6-af2e-dc81526d2424",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cartier-sandbox",
+      "profile": "voice-sandbox",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cartier-sandbox/profiles/voice-sandbox/jobs/e22fbc0a-27b3-4fba-a879-470d290f77ea",
+      "temporal_workflow_id": "reindexconversations-cartier-sandbox-voice-sandbox-553e5ad3-700b-48c5-80f4-4a83cc11a004",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "hilton",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/hilton/profiles/voice/jobs/97892a3d-475e-4b15-813e-73a050e80102",
+      "temporal_workflow_id": "reindexconversations-hilton-voice-51547df0-26ef-4c1b-ad51-a8dd1016a78c",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "fieldservices",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/fieldservices/profiles/voice/jobs/b2a9d3e6-5bb7-4524-b9da-0865e8007f05",
+      "temporal_workflow_id": "reindexconversations-fieldservices-voice-00481d6d-638f-4ae2-b11d-49ab855f1c4d",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "usbank-sandbox",
+      "profile": "voice-sandbox",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/usbank-sandbox/profiles/voice-sandbox/jobs/6bc1daa3-577a-4e1c-93ec-4e575dbfeed5",
+      "temporal_workflow_id": "reindexconversations-usbank-sandbox-voice-sandbox-7edd6861-baa9-42cf-903b-3328768b0917",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "brinks",
+      "profile": "care-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/brinks/profiles/care-voice/jobs/498c51d1-bdf7-44bc-9dca-64d52a559534",
+      "temporal_workflow_id": "reindexconversations-brinks-care-voice-ec1b5872-c7dc-47d4-b94b-5460ed52175f",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "care-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cox/profiles/care-voice/jobs/ad7ae2c4-bc41-467d-8d6a-96eaa5374c63",
+      "temporal_workflow_id": "reindexconversations-cox-care-voice-0be8e3d5-f3d2-4be3-a616-abd4b005a275",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "business-outbound",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cox/profiles/business-outbound/jobs/05dc0834-32df-4068-9c4b-2d641da92eb4",
+      "temporal_workflow_id": "reindexconversations-cox-business-outbound-6c504551-6dfc-4234-af47-8af987428010",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "account-svc-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cox/profiles/account-svc-voice/jobs/7354804b-5bcd-461f-a921-68020ea2b539",
+      "temporal_workflow_id": "reindexconversations-cox-account-svc-voice-92058842-1335-4512-912a-aa5584fc49a3",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "retention-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cox/profiles/retention-voice/jobs/8c08a1bd-680f-4ec3-ad56-40c04d737d7a",
+      "temporal_workflow_id": "reindexconversations-cox-retention-voice-82a55b2a-65c8-4533-a044-d09129378cf7",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "business-retention",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cox/profiles/business-retention/jobs/f3c59242-523a-4e20-b84a-cd9307f30d1c",
+      "temporal_workflow_id": "reindexconversations-cox-business-retention-d311c984-e818-443e-b8d1-a30244f2bb6a",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "indeed-sandbox",
+      "profile": "voice-sandbox",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/indeed-sandbox/profiles/voice-sandbox/jobs/e3c96ab7-1aee-43bd-b510-cfe280ef84b1",
+      "temporal_workflow_id": "reindexconversations-indeed-sandbox-voice-sandbox-2b680aa7-5cb0-4106-bb68-6ec72d8fb987",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox-sandbox",
+      "profile": "voice-sandbox",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cox-sandbox/profiles/voice-sandbox/jobs/4a958b24-9568-4c57-8097-c52a56856bc5",
+      "temporal_workflow_id": "reindexconversations-cox-sandbox-voice-sandbox-8172286f-4a5d-4a58-bc7e-f7f4f82397f1",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "business-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cox/profiles/business-voice/jobs/fad27201-5cb9-4cdd-b46b-543fed5b2848",
+      "temporal_workflow_id": "reindexconversations-cox-business-voice-8a027492-544e-403a-a4d3-74739e50d392",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cox/profiles/voice/jobs/62be74ed-ef90-4777-9dfb-eab82b16879e",
+      "temporal_workflow_id": "reindexconversations-cox-voice-9c5ceec4-45e9-4960-a196-03277d2f4666",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox",
+      "profile": "tech-support-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cox/profiles/tech-support-voice/jobs/4425e494-c326-451b-b7c7-d0643de4e46d",
+      "temporal_workflow_id": "reindexconversations-cox-tech-support-voice-90c6e7eb-fd63-4518-b76e-baf982136eb3",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "usbank",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/usbank/profiles/voice/jobs/14f57405-9068-4529-ada8-1a429750cd49",
+      "temporal_workflow_id": "reindexconversations-usbank-voice-a67c5eb3-a437-46fa-be52-9f064ce71f88",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "aptive",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/aptive/profiles/voice/jobs/94c92031-c17c-4128-a5b1-7e9da53fa23b",
+      "temporal_workflow_id": "reindexconversations-aptive-voice-0f207881-2ce2-488a-a7e7-7effd8641cf6",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "indeed",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/indeed/profiles/voice/jobs/7f0f6f29-91cd-449a-91ce-4a1f8e9ad162",
+      "temporal_workflow_id": "reindexconversations-indeed-voice-e1738d34-8780-4a7d-9f03-ca8ae97b0999",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "sleepnumber",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/sleepnumber/profiles/voice/jobs/bbe88a33-e732-46ac-91c8-29e7ee15d788",
+      "temporal_workflow_id": "reindexconversations-sleepnumber-voice-aa600807-d09c-4e53-ac81-efcc54ecf53c",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "snapfinance-cs",
+      "profile": "care-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/snapfinance-cs/profiles/care-voice/jobs/8ce34791-d94c-4e0a-b548-1cf6debb7d7d",
+      "temporal_workflow_id": "reindexconversations-snapfinance-cs-care-voice-422ed80e-a5f7-4d02-b019-2e8f15c338f3",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "usbank-dev",
+      "profile": "voice-dev",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/usbank-dev/profiles/voice-dev/jobs/b28ec72f-686c-4c7d-b252-bdfa387c57da",
+      "temporal_workflow_id": "reindexconversations-usbank-dev-voice-dev-aab02bd5-19a4-4fb5-b91e-13ffc4533dd9",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "clearlink",
+      "profile": "medicare-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/clearlink/profiles/medicare-voice/jobs/5fe3e407-1418-45ce-90b5-d1eece92fe6c",
+      "temporal_workflow_id": "reindexconversations-clearlink-medicare-voice-50130d13-01c3-4602-b84d-e27dbc7da0cc",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "snapfinance-cs",
+      "profile": "loans-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/snapfinance-cs/profiles/loans-voice/jobs/dfc04704-aed6-409f-98b7-b1183fa811f3",
+      "temporal_workflow_id": "reindexconversations-snapfinance-cs-loans-voice-ef2937ef-faa2-4a65-96a6-5ad37d11da26",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "snapfinance-cs",
+      "profile": "bot",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/snapfinance-cs/profiles/bot/jobs/fa4f906c-2493-4bb7-afab-24ddee5d1a8f",
+      "temporal_workflow_id": "reindexconversations-snapfinance-cs-bot-13b928ab-fe5e-49e6-bca1-f657079c62d8",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "clearlink",
+      "profile": "home-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/clearlink/profiles/home-voice/jobs/78c4e1b3-8c4b-49c3-829f-a7718dec63d2",
+      "temporal_workflow_id": "reindexconversations-clearlink-home-voice-dcdbeb44-768a-4ee9-825a-9e81f27017da",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "snapfinance-cs",
+      "profile": "loans-coll-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/snapfinance-cs/profiles/loans-coll-voice/jobs/af207405-d8d5-4ef8-8807-ebd5beed5056",
+      "temporal_workflow_id": "reindexconversations-snapfinance-cs-loans-coll-voice-254d0538-3a8e-4603-be63-4c18c3abec3f",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cox-retention-voice-sbx",
+      "profile": "retention-voice-sandbox",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cox-retention-voice-sbx/profiles/retention-voice-sandbox/jobs/0df152aa-9cd1-4087-86fe-89e5c928abe9",
+      "temporal_workflow_id": "reindexconversations-cox-retention-voice-sbx-retention-voice-sandbox-3030f9e8-2b2d-472b-b359-5c22795f017d",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "snapfinance-cs",
+      "profile": "lto-coll-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/snapfinance-cs/profiles/lto-coll-voice/jobs/86be7976-89d3-41ce-a64d-366355f701db",
+      "temporal_workflow_id": "reindexconversations-snapfinance-cs-lto-coll-voice-14e63428-a166-4a04-b863-3ba26f13ecd5",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "mutualofomaha",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/mutualofomaha/profiles/voice/jobs/05b3c723-65c7-415f-8ec4-849f5e4d8eba",
+      "temporal_workflow_id": "reindexconversations-mutualofomaha-voice-958318e6-d7a8-4929-8bc9-1ccecde9f701",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "mutualofomaha",
+      "profile": "medsupp-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/mutualofomaha/profiles/medsupp-voice/jobs/a50dacf0-6be6-482b-889f-23485d8c6814",
+      "temporal_workflow_id": "reindexconversations-mutualofomaha-medsupp-voice-61b5594e-a5b6-4a2e-944f-963cae90cb4c",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "mutualofomaha-sandbox",
+      "profile": "voice-sbx",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/mutualofomaha-sandbox/profiles/voice-sbx/jobs/7116601b-5a6d-4036-8c42-86852fecec21",
+      "temporal_workflow_id": "reindexconversations-mutualofomaha-sandbox-voice-sbx-5dcbae08-fc13-4160-b4d1-5ba673b0ae90",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cartier",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cartier/profiles/voice/jobs/ec29d6b6-dd1d-4da6-a4c9-0c636a84ab64",
+      "temporal_workflow_id": "reindexconversations-cartier-voice-f52e6934-d9f2-431c-909a-d112d3d1cd18",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cresta/profiles/voice/jobs/e8ca4c5e-b94d-4e08-b27c-0fb4ddf3b221",
+      "temporal_workflow_id": "reindexconversations-cresta-voice-217327f8-9965-44f9-ba7c-8872ede63ea3",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "voice-sandbox",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cresta/profiles/voice-sandbox/jobs/8e0d4602-5162-46ca-b500-8c51d9fc8722",
+      "temporal_workflow_id": "reindexconversations-cresta-voice-sandbox-6d021147-3041-4577-86aa-38ddfff174b0",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "voice-demo",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cresta/profiles/voice-demo/jobs/410126c2-8d04-44b0-9f03-e9a459444088",
+      "temporal_workflow_id": "reindexconversations-cresta-voice-demo-4f73f27d-396d-46cc-a81b-f90f1e1821c3",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "integrity-marketing",
+      "profile": "unifiedhealth-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/integrity-marketing/profiles/unifiedhealth-voice/jobs/a7904e4d-255c-41d9-a529-e5a1685f0760",
+      "temporal_workflow_id": "reindexconversations-integrity-marketing-unifiedhealth-voice-0d37656f-2b53-45a1-af47-df85efe6c6dc",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "default",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cresta/profiles/default/jobs/3d85e76c-bd95-4801-97a0-ca026224518e",
+      "temporal_workflow_id": "reindexconversations-cresta-default-ea6116ca-effc-4fcf-9ccb-029d320bd752",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta",
+      "profile": "voice-prototype",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/cresta/profiles/voice-prototype/jobs/e7ce4b4b-1f1a-4064-816a-e32c5d5b5ad2",
+      "temporal_workflow_id": "reindexconversations-cresta-voice-prototype-3e97a98d-83ea-4e7f-89df-d9867d481fe5",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "snapfinance-sandbox",
+      "profile": "care-voice-sandbox",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/snapfinance-sandbox/profiles/care-voice-sandbox/jobs/ea27cde8-65a6-4c19-9780-c5f60c253854",
+      "temporal_workflow_id": "reindexconversations-snapfinance-sandbox-care-voice-sandbox-bdbfc2ec-18e3-490b-b52a-64662ed9896d",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "integrity-marketing",
+      "profile": "diversified-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/integrity-marketing/profiles/diversified-voice/jobs/e7b3a44a-23c6-4e2c-bc3c-ed22881fb717",
+      "temporal_workflow_id": "reindexconversations-integrity-marketing-diversified-voice-40cc35da-1861-4809-adbd-046dcf73a3bc",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "integrity-marketing",
+      "profile": "agentpipeline-voice",
+      "cluster": "voice-prod",
+      "job_resource_name": "customers/integrity-marketing/profiles/agentpipeline-voice/jobs/8d67ff42-2894-411d-a31e-e298cc043680",
+      "temporal_workflow_id": "reindexconversations-integrity-marketing-agentpipeline-voice-e8ca982e-7245-44b0-8ebd-c29352d66616",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta-au",
+      "profile": "ap-southeast-2-prod",
+      "cluster": "ap-southeast-2-prod",
+      "job_resource_name": "customers/cresta-au/profiles/ap-southeast-2-prod/jobs/a6bc2c06-3b9f-407b-a3b9-67c0521e208f",
+      "temporal_workflow_id": "reindexconversations-cresta-au-ap-southeast-2-prod-5558ed58-13e4-4ec1-9e97-5476c9bc7683",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "rakuten",
+      "profile": "ap-southeast-2",
+      "cluster": "ap-southeast-2-prod",
+      "job_resource_name": "customers/rakuten/profiles/ap-southeast-2/jobs/6c4338fb-d7a9-4d3d-9b1e-dbfaa6ffb8c8",
+      "temporal_workflow_id": "reindexconversations-rakuten-ap-southeast-2-83a79c29-6f52-4a53-9fbd-92cfb481ee99",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "suncorp",
+      "profile": "ap-southeast-2",
+      "cluster": "ap-southeast-2-prod",
+      "job_resource_name": "customers/suncorp/profiles/ap-southeast-2/jobs/9d5d2c20-90d1-42ab-a537-ceecb8d8eedd",
+      "temporal_workflow_id": "reindexconversations-suncorp-ap-southeast-2-e67ed915-5c37-48de-b246-699fab549e0d",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "woolworths",
+      "profile": "ap-southeast-2",
+      "cluster": "ap-southeast-2-prod",
+      "job_resource_name": "customers/woolworths/profiles/ap-southeast-2/jobs/358c8ebe-0fe8-44be-9204-2e7d0badc2e8",
+      "temporal_workflow_id": "reindexconversations-woolworths-ap-southeast-2-6736a23e-e1e3-4cfa-9e0b-70fdff134e2c",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta-ca",
+      "profile": "ca-central-1",
+      "cluster": "ca-central-1-prod",
+      "job_resource_name": "customers/cresta-ca/profiles/ca-central-1/jobs/a830cfbb-7e05-4a55-b871-6f13f103f6c3",
+      "temporal_workflow_id": "reindexconversations-cresta-ca-ca-central-1-5c45cf0f-91ee-4709-928f-0344cc2656a4",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "telus",
+      "profile": "ca-central-1",
+      "cluster": "ca-central-1-prod",
+      "job_resource_name": "customers/telus/profiles/ca-central-1/jobs/58d83268-81ec-4284-af96-e285c7df043b",
+      "temporal_workflow_id": "reindexconversations-telus-ca-central-1-a23cac9a-46e9-436c-b4d7-8c3bbb8ea0b2",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta-eu",
+      "profile": "eu-west-2",
+      "cluster": "eu-west-2-prod",
+      "job_resource_name": "customers/cresta-eu/profiles/eu-west-2/jobs/bde9662b-2fc4-4eb9-927a-cafa608a2062",
+      "temporal_workflow_id": "reindexconversations-cresta-eu-eu-west-2-03f59c1d-6d1e-4e30-bb9e-cbd7bb764889",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "mvf",
+      "profile": "eu-west-2",
+      "cluster": "eu-west-2-prod",
+      "job_resource_name": "customers/mvf/profiles/eu-west-2/jobs/5a92d192-863f-4c53-815f-ed1c2a51bd2c",
+      "temporal_workflow_id": "reindexconversations-mvf-eu-west-2-4b0f582a-63e2-4e9d-a761-820ced4e97e4",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "domestic-gen",
+      "profile": "eu-west-2",
+      "cluster": "eu-west-2-prod",
+      "job_resource_name": "customers/domestic-gen/profiles/eu-west-2/jobs/1c1ff0e9-7c88-4325-83ac-e5a0c570287b",
+      "temporal_workflow_id": "reindexconversations-domestic-gen-eu-west-2-b44316c3-5f6b-4f7c-b246-0903a1a99016",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "british-tel",
+      "profile": "eu-west-2",
+      "cluster": "eu-west-2-prod",
+      "job_resource_name": "customers/british-tel/profiles/eu-west-2/jobs/c8560f2b-62e8-41b4-9e30-ca547d7c09b5",
+      "temporal_workflow_id": "reindexconversations-british-tel-eu-west-2-741f3550-1af4-4aef-9248-0126bbb0f841",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "sky",
+      "profile": "eu-west-2",
+      "cluster": "eu-west-2-prod",
+      "job_resource_name": "customers/sky/profiles/eu-west-2/jobs/a6661800-7770-46f1-a6f8-82cbb21c33cf",
+      "temporal_workflow_id": "reindexconversations-sky-eu-west-2-e80a3ded-c586-4755-aa58-dce540a2449f",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "aig-europe",
+      "profile": "eu-west-2",
+      "cluster": "eu-west-2-prod",
+      "job_resource_name": "customers/aig-europe/profiles/eu-west-2/jobs/0f92d95a-744b-41ad-9f18-b9dd0f3396f1",
+      "temporal_workflow_id": "reindexconversations-aig-europe-eu-west-2-5cf027a3-79fd-4b6e-8e4b-c78b904c7acc",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "schwabdev",
+      "profile": "dev",
+      "cluster": "schwab-prod",
+      "job_resource_name": "customers/schwabdev/profiles/dev/jobs/4f71b3ed-5a78-4ff1-b6a4-296044917a32",
+      "temporal_workflow_id": "reindexconversations-schwabdev-dev-99a5b374-5b02-46c7-8ccb-5e10164c75ae",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "cresta-schwab",
+      "profile": "schwab-prod",
+      "cluster": "schwab-prod",
+      "job_resource_name": "customers/cresta-schwab/profiles/schwab-prod/jobs/ec206232-6306-467f-a342-1c082dee9702",
+      "temporal_workflow_id": "reindexconversations-cresta-schwab-schwab-prod-fd6f5b7d-5bfc-405b-9650-8c8976e64d60",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "schwab",
+      "profile": "prod",
+      "cluster": "schwab-prod",
+      "job_resource_name": "customers/schwab/profiles/prod/jobs/f9b73e9f-4ef7-4f84-a958-9bf7675fba88",
+      "temporal_workflow_id": "reindexconversations-schwab-prod-f5278b82-2b26-4eef-bd58-4dd36262c150",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "schwabpreview",
+      "profile": "preview",
+      "cluster": "schwab-prod",
+      "job_resource_name": "customers/schwabpreview/profiles/preview/jobs/66baf2b5-9e6b-4990-a56b-fc7c05e68b48",
+      "temporal_workflow_id": "reindexconversations-schwabpreview-preview-e45d445a-a773-49ce-aa96-2e7896df3a74",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    },
+    {
+      "customer": "schwabstaging",
+      "profile": "staging",
+      "cluster": "schwab-prod",
+      "job_resource_name": "customers/schwabstaging/profiles/staging/jobs/ec3c083b-b275-4a8b-a6ec-014f82777142",
+      "temporal_workflow_id": "reindexconversations-schwabstaging-staging-41c93c82-f077-4858-958f-8f7bee5913ff",
+      "status": "created",
+      "temporal_status": "unknown",
+      "temporal_close_time": null
+    }
+  ]
+}

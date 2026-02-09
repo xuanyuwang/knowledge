@@ -1,0 +1,324 @@
+{"level":"info","ts":1770497258.0369062,"caller":"task-runner/main.go:37","message":"[cron task-runner]  : start"}
+{"level":"info","ts":1770497258.036995,"caller":"envflag/envflag.go:302","message":"parsed flags:"}
+{"level":"info","ts":1770497258.038577,"caller":"envflag/envflag.go:69","message":"  ADD_REQUEST_RESPONSE_SIZES_TO_REQUEST_LOG_METADATA=true"}
+{"level":"info","ts":1770497258.0385954,"caller":"envflag/envflag.go:69","message":"  ADD_RESOURCE_NAMES_TO_REQUEST_LOG_METADATA=true"}
+{"level":"info","ts":1770497258.0386088,"caller":"envflag/envflag.go:69","message":"  ALLOW_CROSS_CLUSTER_DB_ACCESS=true"}
+{"level":"info","ts":1770497258.038614,"caller":"envflag/envflag.go:69","message":"  APPLY_CHANGES_IN_DB=false"}
+{"level":"info","ts":1770497258.038618,"caller":"envflag/envflag.go:69","message":"  AUTHZ_SERVICE_ADDRESS="}
+{"level":"info","ts":1770497258.0386224,"caller":"envflag/envflag.go:69","message":"  AUTHZ_VERIFY_CUSTOMER_ID=true"}
+{"level":"info","ts":1770497258.0386286,"caller":"envflag/envflag.go:69","message":"  AUTH_CUSTOMER_ROLES_TIMEOUT=1m0s"}
+{"level":"info","ts":1770497258.0386324,"caller":"envflag/envflag.go:69","message":"  AUTH_SERVICE_CUSTOMER_ROLES_PAGE_SIZE=100"}
+{"level":"info","ts":1770497258.0386362,"caller":"envflag/envflag.go:69","message":"  AUTO_ENABLE_TLS_FOR_GRPC=true"}
+{"level":"info","ts":1770497258.03864,"caller":"envflag/envflag.go:69","message":"  AWS_S3_ENDPOINT_URL_OVERRIDE="}
+{"level":"info","ts":1770497258.0386457,"caller":"envflag/envflag.go:69","message":"  AWS_SECRETS_MANAGER_ENDPOINT_URL_OVERRIDE="}
+{"level":"info","ts":1770497258.0386493,"caller":"envflag/envflag.go:69","message":"  BACKEND_CONFIG_ENV="}
+{"level":"info","ts":1770497258.038653,"caller":"envflag/envflag.go:69","message":"  CERTIFICATE_ROTATION_INTERVAL_DAYS=30"}
+{"level":"info","ts":1770497258.0386565,"caller":"envflag/envflag.go:69","message":"  CERTIFICATE_VALIDITY_DAYS=365"}
+{"level":"info","ts":1770497258.0386622,"caller":"envflag/envflag.go:69","message":"  CHECKPOINTS_AWS_BUCKET=cresta-models-pci-schwab-prod"}
+{"level":"info","ts":1770497258.0386658,"caller":"envflag/envflag.go:69","message":"  CLUSTER_NAME=schwab-prod"}
+{"level":"info","ts":1770497258.0386739,"caller":"envflag/envflag.go:69","message":"  CONDITION_BUILDER_RELEASE_VERSION=0"}
+{"level":"info","ts":1770497258.0386777,"caller":"envflag/envflag.go:69","message":"  CONFIG_CLIENT_PAGE_SIZE=50"}
+{"level":"info","ts":1770497258.0386834,"caller":"envflag/envflag.go:69","message":"  CONFIG_LOAD_INITIAL_FAIL_OPEN=false"}
+{"level":"info","ts":1770497258.0386872,"caller":"envflag/envflag.go:69","message":"  CONFIG_LOAD_INITIAL_TIMEOUT=30s"}
+{"level":"info","ts":1770497258.0386908,"caller":"envflag/envflag.go:69","message":"  CONFIG_LOAD_TIMEOUT=10s"}
+{"level":"info","ts":1770497258.0386944,"caller":"envflag/envflag.go:69","message":"  CONFIG_REFRESH_INTERVAL=5m0s"}
+{"level":"info","ts":1770497258.0387,"caller":"envflag/envflag.go:69","message":"  CONFIG_SERVICE_ADDR=dns:///configserver-lb.cresta-config.svc.cluster.local:8080"}
+{"level":"info","ts":1770497258.0387037,"caller":"envflag/envflag.go:69","message":"  CONFIG_SERVICE_ADDR_LOCAL_TEST=auth.chat-staging.internal.cresta.ai:443"}
+{"level":"info","ts":1770497258.0387073,"caller":"envflag/envflag.go:69","message":"  CONFIG_SERVICE_RETRY=3"}
+{"level":"info","ts":1770497258.0387108,"caller":"envflag/envflag.go:69","message":"  CRESTA_GROUNDCOVER_TENANT_UUID=58661bf1-f4e0-42b4-8a54-0ca419eb58cb"}
+{"level":"info","ts":1770497258.038716,"caller":"envflag/envflag.go:69","message":"  CRON_ERROR_CHANNEL=C08F40G7THN"}
+{"level":"info","ts":1770497258.0387197,"caller":"envflag/envflag.go:69","message":"  CRON_EXECUTION_INTERVAL_IN_HOURS=1"}
+{"level":"info","ts":1770497258.0387232,"caller":"envflag/envflag.go:69","message":"  CUSTOMER_ROLES_CONCURRENCY=10"}
+{"level":"info","ts":1770497258.0387273,"caller":"envflag/envflag.go:69","message":"  CUSTOM_ROLES_REFRESH_INTERVAL=10m0s"}
+{"level":"info","ts":1770497258.0387325,"caller":"envflag/envflag.go:69","message":"  CUSTOM_ROLE_VERIFIER_MODE="}
+{"level":"info","ts":1770497258.0387383,"caller":"envflag/envflag.go:69","message":"  DASHBOARD_CACHE_RETENTION_PERIOD=168h0m0s"}
+{"level":"info","ts":1770497258.0387418,"caller":"envflag/envflag.go:69","message":"  DATA_AWS_BUCKET=cresta-data-pci-schwab-prod"}
+{"level":"info","ts":1770497258.0387456,"caller":"envflag/envflag.go:69","message":"  DB_UUID_USE_V7=true"}
+{"level":"info","ts":1770497258.038751,"caller":"envflag/envflag.go:69","message":"  DD_APM_RECEIVER_ADDR=groundcover-sensor.groundcover.svc.cluster.local:8126"}
+{"level":"info","ts":1770497258.0387545,"caller":"envflag/envflag.go:69","message":"  DD_APM_RECEIVER_SOCKET=/var/run/datadog/apm.socket"}
+{"level":"info","ts":1770497258.038758,"caller":"envflag/envflag.go:69","message":"  DD_APM_USE_UDS=false"}
+{"level":"info","ts":1770497258.0387616,"caller":"envflag/envflag.go:69","message":"  DD_DOGSTATSD_SOCKET=/var/run/datadog/dsd.socket"}
+{"level":"info","ts":1770497258.038767,"caller":"envflag/envflag.go:69","message":"  DD_FILE_EXISTS_MAX_ATTEMPT=0"}
+{"level":"info","ts":1770497258.0387707,"caller":"envflag/envflag.go:69","message":"  DD_FILE_EXISTS_SLEEP=5s"}
+{"level":"info","ts":1770497258.0387743,"caller":"envflag/envflag.go:69","message":"  DD_SERVICE=cron-batch-reindex-conversations"}
+{"level":"info","ts":1770497258.0387778,"caller":"envflag/envflag.go:69","message":"  DEBUG_PORT=8100"}
+{"level":"info","ts":1770497258.0387833,"caller":"envflag/envflag.go:69","message":"  DEFAULT_DB_CONN_MAX_IDLE_TIME=5m30s"}
+{"level":"info","ts":1770497258.038787,"caller":"envflag/envflag.go:69","message":"  DEFAULT_DB_MAX_IDLE_CONNS=2"}
+{"level":"info","ts":1770497258.0387905,"caller":"envflag/envflag.go:69","message":"  DEFAULT_DB_MAX_LIFE_TIME=15m0s"}
+{"level":"info","ts":1770497258.038794,"caller":"envflag/envflag.go:69","message":"  DEFAULT_DB_MAX_OPEN_CONNS=0"}
+{"level":"info","ts":1770497258.0387993,"caller":"envflag/envflag.go:69","message":"  DEFAULT_GRPC_GATEWAY_TIMEOUT=1m0s"}
+{"level":"info","ts":1770497258.0388029,"caller":"envflag/envflag.go:69","message":"  DEFAULT_TASKS_IN_PARALLEL=10"}
+{"level":"info","ts":1770497258.0388064,"caller":"envflag/envflag.go:69","message":"  DISABLE_CLAIM_IN_OUTGOING_METADATA=false"}
+{"level":"info","ts":1770497258.038814,"caller":"envflag/envflag.go:69","message":"  DISALLOW_HEALTHZ_THROUGH_INGRESS=true"}
+{"level":"info","ts":1770497258.0388196,"caller":"envflag/envflag.go:69","message":"  DO_NOT_RUN_FOR_CUSTOMER_IDS="}
+{"level":"info","ts":1770497258.0388231,"caller":"envflag/envflag.go:69","message":"  DO_NOT_RUN_FOR_PROFILE_IDS="}
+{"level":"info","ts":1770497258.0388267,"caller":"envflag/envflag.go:69","message":"  ENABLED_SERVICES="}
+{"level":"info","ts":1770497258.03883,"caller":"envflag/envflag.go:69","message":"  ENABLE_AUTHN_LOGGING=false"}
+{"level":"info","ts":1770497258.0388355,"caller":"envflag/envflag.go:69","message":"  ENABLE_DB_GOODCONN=true"}
+{"level":"info","ts":1770497258.038839,"caller":"envflag/envflag.go:69","message":"  ENABLE_DD_METRICS=false"}
+{"level":"info","ts":1770497258.0388427,"caller":"envflag/envflag.go:69","message":"  ENABLE_DD_PROFILER=false"}
+{"level":"info","ts":1770497258.0388463,"caller":"envflag/envflag.go:69","message":"  ENABLE_DD_TRACER=true"}
+{"level":"info","ts":1770497258.0388513,"caller":"envflag/envflag.go:69","message":"  ENABLE_DRY_RUN_TOKEN_ISSUER_VERIFICATION=false"}
+{"level":"info","ts":1770497258.0388548,"caller":"envflag/envflag.go:69","message":"  ENABLE_GRPC_EVENT_STREAM_PROXY=false"}
+{"level":"info","ts":1770497258.0388587,"caller":"envflag/envflag.go:69","message":"  ENABLE_NEW_AUTH_ENTITY_PROVIDER=false"}
+{"level":"info","ts":1770497258.038862,"caller":"envflag/envflag.go:69","message":"  ENABLE_REGIONAL_AUTH_ISSUER=false"}
+{"level":"info","ts":1770497258.0388675,"caller":"envflag/envflag.go:69","message":"  ENABLE_TOKEN_ISSUER_VERIFICATION=false"}
+{"level":"info","ts":1770497258.0388713,"caller":"envflag/envflag.go:69","message":"  ENVELOPE_HEALTH_RPC_TIMEOUT=50ms"}
+{"level":"info","ts":1770497258.0388746,"caller":"envflag/envflag.go:69","message":"  ENVELOPE_PROXY_HEALTH_SERVICE=false"}
+{"level":"info","ts":1770497258.0388782,"caller":"envflag/envflag.go:69","message":"  EXTRA_WORK_GRACEFUL_SHUTDOWN_PRIORITY=0"}
+{"level":"info","ts":1770497258.0388837,"caller":"envflag/envflag.go:69","message":"  EXTRA_WORK_PROPAGATE_SYNCHRONOUS_DEADLINE=true"}
+{"level":"info","ts":1770497258.0388873,"caller":"envflag/envflag.go:69","message":"  EXTRA_WORK_USE_NEW_X_NET_TRACE=true"}
+{"level":"info","ts":1770497258.0388908,"caller":"envflag/envflag.go:69","message":"  FAIL_FOR_CUSTOMER_PROFILES="}
+{"level":"info","ts":1770497258.0388942,"caller":"envflag/envflag.go:69","message":"  FAKE_CONFIG_SERVICE_ADDR="}
+{"level":"info","ts":1770497258.0388994,"caller":"envflag/envflag.go:69","message":"  GRACEFUL_TIMEOUT_DURATION=30s"}
+{"level":"info","ts":1770497258.038903,"caller":"envflag/envflag.go:69","message":"  GRACEFUL_TIMEOUT_WAIT_DURATION=0s"}
+{"level":"info","ts":1770497258.0389066,"caller":"envflag/envflag.go:69","message":"  GRPC_CLIENT_KEEP_ALIVE_PERMIT_WITHOUT_STREAM=false"}
+{"level":"info","ts":1770497258.0389104,"caller":"envflag/envflag.go:69","message":"  GRPC_CLIENT_KEEP_ALIVE_TIME=15m0s"}
+{"level":"info","ts":1770497258.0389159,"caller":"envflag/envflag.go:69","message":"  GRPC_CLIENT_KEEP_ALIVE_TIMEOUT=5s"}
+{"level":"info","ts":1770497258.0389194,"caller":"envflag/envflag.go:69","message":"  GRPC_CLIENT_OPT_OUT_HEADLESS=false"}
+{"level":"info","ts":1770497258.038923,"caller":"envflag/envflag.go:69","message":"  GRPC_EVENT_STREAM_PING_INTERVAL=20s"}
+{"level":"info","ts":1770497258.0389264,"caller":"envflag/envflag.go:69","message":"  GRPC_GATEWAY_DISALLOW_UNKNOWN_REQ_FIELDS=false"}
+{"level":"info","ts":1770497258.0389316,"caller":"envflag/envflag.go:69","message":"  GRPC_GATEWAY_STRICT_MIME_TYPE=false"}
+{"level":"info","ts":1770497258.0389352,"caller":"envflag/envflag.go:69","message":"  GRPC_HTTP_GATEWAY_ALLOW_RESPONSE_COMPRESSION=true"}
+{"level":"info","ts":1770497258.038939,"caller":"envflag/envflag.go:69","message":"  GRPC_PORT=8080"}
+{"level":"info","ts":1770497258.0389426,"caller":"envflag/envflag.go:69","message":"  GRPC_SERVER_KEEP_ALIVE_PERMIT_WITHOUT_STREAM=true"}
+{"level":"info","ts":1770497258.0389533,"caller":"envflag/envflag.go:69","message":"  HASURA_GRAPHQL_JWT_SECRET=**** (length 0)"}
+{"level":"info","ts":1770497258.038957,"caller":"envflag/envflag.go:69","message":"  HASURA_GRAPHQL_JWT_SECRET_GLOBAL=**** (length 0)"}
+{"level":"info","ts":1770497258.0389612,"caller":"envflag/envflag.go:69","message":"  HOST="}
+{"level":"info","ts":1770497258.0389652,"caller":"envflag/envflag.go:69","message":"  HTTPSERVER_GRACEFUL_SHUTDOWN_DURATION=10s"}
+{"level":"info","ts":1770497258.038971,"caller":"envflag/envflag.go:69","message":"  HTTP_PORT=9090"}
+{"level":"info","ts":1770497258.0389745,"caller":"envflag/envflag.go:69","message":"  IGNORE_EXISTING_INCOMING_CLAIM=false"}
+{"level":"info","ts":1770497258.0389783,"caller":"envflag/envflag.go:69","message":"  INGRESS_ONLY_HEADER=x-from-ingress"}
+{"level":"info","ts":1770497258.0389817,"caller":"envflag/envflag.go:69","message":"  INTERNAL_TOKENS_MODE=DISALLOWED_VIA_INGRESS_DRY_RUN"}
+{"level":"info","ts":1770497258.038987,"caller":"envflag/envflag.go:69","message":"  JSON_RESPONSE_EMIT_UNPOPULATED=true"}
+{"level":"info","ts":1770497258.0389907,"caller":"envflag/envflag.go:69","message":"  JWKS_FETCH_INTERVAL=1h0m0s"}
+{"level":"info","ts":1770497258.0389946,"caller":"envflag/envflag.go:69","message":"  JWKS_INITIAL_FETCH_FAIL_OPEN=false"}
+{"level":"info","ts":1770497258.0389977,"caller":"envflag/envflag.go:69","message":"  JWKS_URL="}
+{"level":"info","ts":1770497258.0390031,"caller":"envflag/envflag.go:69","message":"  JWT_ALLOWED_AUDIENCE="}
+{"level":"info","ts":1770497258.0390067,"caller":"envflag/envflag.go:69","message":"  LOCAL_GRPC_ACCESS_TOKEN="}
+{"level":"info","ts":1770497258.0390103,"caller":"envflag/envflag.go:69","message":"  LOCAL_GRPC_ACCESS_TOKEN_MIN_TTL_SECONDS=5m0s"}
+{"level":"info","ts":1770497258.0390139,"caller":"envflag/envflag.go:69","message":"  LOCAL_GRPC_AUTH_ARGS="}
+{"level":"info","ts":1770497258.039019,"caller":"envflag/envflag.go:69","message":"  LOCAL_GRPC_REFRESH_TOKEN="}
+{"level":"info","ts":1770497258.0390227,"caller":"envflag/envflag.go:69","message":"  LOG_WRITER_TIMEOUT=10s"}
+{"level":"info","ts":1770497258.0390263,"caller":"envflag/envflag.go:69","message":"  LONG_LIVED_TOKEN_THRESHOLD_DURATION=1h0m0s"}
+{"level":"info","ts":1770497258.0390298,"caller":"envflag/envflag.go:69","message":"  MAX_CONNECTION_AGE=5m0s"}
+{"level":"info","ts":1770497258.0390353,"caller":"envflag/envflag.go:69","message":"  MAX_GRPC_BYTES=8388608"}
+{"level":"info","ts":1770497258.039039,"caller":"envflag/envflag.go:69","message":"  MAX_GRPC_CLIENT_BYTES=4194304"}
+{"level":"info","ts":1770497258.0390425,"caller":"envflag/envflag.go:69","message":"  MIGRATE_CUSTOM_ROLES_TO_PROTO_ROLES=false"}
+{"level":"info","ts":1770497258.039046,"caller":"envflag/envflag.go:69","message":"  MIGRATE_NOTIFICATIONS_FOR_CUSTOMER="}
+{"level":"info","ts":1770497258.0390515,"caller":"envflag/envflag.go:69","message":"  NON_DEFAULT_HEALTH_SERVICE=false"}
+{"level":"info","ts":1770497258.039055,"caller":"envflag/envflag.go:69","message":"  OPEN_API_DIR=gen/openapiv2"}
+{"level":"info","ts":1770497258.0390587,"caller":"envflag/envflag.go:69","message":"  OTEL_GRACEFUL_SHUTDOWN_PRIORITY=18446744073709551615"}
+{"level":"info","ts":1770497258.0390625,"caller":"envflag/envflag.go:69","message":"  OTEL_METRIC_EXPORT_INTERVAL=10s"}
+{"level":"info","ts":1770497258.039068,"caller":"envflag/envflag.go:69","message":"  OTEL_RUNTIME_STATS_INTERVAL=5s"}
+{"level":"info","ts":1770497258.0390713,"caller":"envflag/envflag.go:69","message":"  PARSE_RESOURCE_NAME_ONCE_IN_STREAM=true"}
+{"level":"info","ts":1770497258.039075,"caller":"envflag/envflag.go:69","message":"  PERSIST_OUT_OF_ORDER_ROLES=false"}
+{"level":"info","ts":1770497258.0390785,"caller":"envflag/envflag.go:69","message":"  PER_CLUSTER_CRESTA_CUSTOMER_ID=cresta"}
+{"level":"info","ts":1770497258.0390837,"caller":"envflag/envflag.go:69","message":"  PREFLIGHT_ALLOW_HEADERS=*,authorization"}
+{"level":"info","ts":1770497258.0390987,"caller":"envflag/envflag.go:69","message":"  PREFLIGHT_ALLOW_METHODS=GET,HEAD,POST,PUT,DELETE,PATCH"}
+{"level":"info","ts":1770497258.0391026,"caller":"envflag/envflag.go:69","message":"  PREFLIGHT_CACHE_CONTROL=public, max-age=86400"}
+{"level":"info","ts":1770497258.0391061,"caller":"envflag/envflag.go:69","message":"  PREFLIGHT_MAX_AGE=7200"}
+{"level":"info","ts":1770497258.0391114,"caller":"envflag/envflag.go:69","message":"  PREFLIGHT_VARY=origin"}
+{"level":"info","ts":1770497258.0391152,"caller":"envflag/envflag.go:69","message":"  PROFILE_PICTURE_DOMAIN=profile-pics-staging.cresta.com"}
+{"level":"info","ts":1770497258.0391188,"caller":"envflag/envflag.go:69","message":"  PROXY_ENDPOINT=127.0.0.1:8081"}
+{"level":"info","ts":1770497258.039126,"caller":"envflag/envflag.go:69","message":"  PROXY_ROUTABLES="}
+{"level":"info","ts":1770497258.0391316,"caller":"envflag/envflag.go:69","message":"  REGIONAL_AUTH_TOKEN_ISSUER=https://auth.schwab-prod.cresta.com/auth"}
+{"level":"info","ts":1770497258.0391352,"caller":"envflag/envflag.go:69","message":"  REINDEX_END_TIME=2026-02-01T00:00:00Z"}
+{"level":"info","ts":1770497258.0391388,"caller":"envflag/envflag.go:69","message":"  REINDEX_START_TIME=2026-01-01T00:00:00Z"}
+{"level":"info","ts":1770497258.0391424,"caller":"envflag/envflag.go:69","message":"  REMOTE_IP_HEADER=x-real-ip"}
+{"level":"info","ts":1770497258.0391479,"caller":"envflag/envflag.go:69","message":"  REQUEST_LOG_NATS_PUBLISH_ADDR="}
+{"level":"info","ts":1770497258.0391514,"caller":"envflag/envflag.go:69","message":"  REQUEST_LOG_NATS_SUBJECT=cresta.framework.request_log"}
+{"level":"info","ts":1770497258.039155,"caller":"envflag/envflag.go:69","message":"  REQUIRE_AUTH_TO_BE_ENABLED=false"}
+{"level":"info","ts":1770497258.0391586,"caller":"envflag/envflag.go:69","message":"  RESOURCE_ACL_USE_CACHE=false"}
+{"level":"info","ts":1770497258.0391638,"caller":"envflag/envflag.go:69","message":"  ROTATE_SP_ENCRYPTION_SECRET_NAME="}
+{"level":"info","ts":1770497258.0391674,"caller":"envflag/envflag.go:69","message":"  RUN_ONLY_FOR_CUSTOMER_IDS="}
+{"level":"info","ts":1770497258.0391707,"caller":"envflag/envflag.go:69","message":"  RUN_ONLY_FOR_PROFILE_IDS="}
+{"level":"info","ts":1770497258.0391743,"caller":"envflag/envflag.go:69","message":"  RUN_TASKS=batch-reindex-conversations"}
+{"level":"info","ts":1770497258.03918,"caller":"envflag/envflag.go:69","message":"  S3_CLIENT_BUFFER_PROVIDER_POOL_SIZE_KB=10240"}
+{"level":"info","ts":1770497258.0391839,"caller":"envflag/envflag.go:69","message":"  S3_MAX_RETRY_ATTEMPTS=5"}
+{"level":"info","ts":1770497258.0391874,"caller":"envflag/envflag.go:69","message":"  SAML_SP_ENCRYPTION_CONFIG_PATH=/etc/saml_sp_encryption_config/config.json"}
+{"level":"info","ts":1770497258.039191,"caller":"envflag/envflag.go:69","message":"  SECRETS_CACHE_MAX_MISS_CONCURRENCY=16"}
+{"level":"info","ts":1770497258.0391963,"caller":"envflag/envflag.go:69","message":"  SECRETS_CACHE_SIZE_MIB=2"}
+{"level":"info","ts":1770497258.0392,"caller":"envflag/envflag.go:69","message":"  SECRETS_CACHE_TTL=6h0m0s"}
+{"level":"info","ts":1770497258.0392036,"caller":"envflag/envflag.go:69","message":"  SEND_INITIAL_SSE_DATA=false"}
+{"level":"info","ts":1770497258.0392075,"caller":"envflag/envflag.go:69","message":"  SERVER_JWT_SECRET=**** (length 59)"}
+{"level":"info","ts":1770497258.0392127,"caller":"envflag/envflag.go:69","message":"  SERVER_JWT_SECRET_ROTATION_1=**** (length 0)"}
+{"level":"info","ts":1770497258.0392168,"caller":"envflag/envflag.go:69","message":"  SERVER_JWT_SECRET_ROTATION_2=**** (length 0)"}
+{"level":"info","ts":1770497258.0392203,"caller":"envflag/envflag.go:69","message":"  SERVER_JWT_SECRET_ROTATION_3=**** (length 0)"}
+{"level":"info","ts":1770497258.0392256,"caller":"envflag/envflag.go:69","message":"  SHARED_AUTH_DATABASE_REPLICA_URLS=**** (length 0)"}
+{"level":"info","ts":1770497258.0392294,"caller":"envflag/envflag.go:69","message":"  SHARED_AUTH_DATABASE_URL=**** (length 0)"}
+{"level":"info","ts":1770497258.039233,"caller":"envflag/envflag.go:69","message":"  SKIP_AUTH_FOR_LOCAL_DEV=false"}
+{"level":"info","ts":1770497258.0392413,"caller":"envflag/envflag.go:69","message":"  SLACK_APP_TOKEN=**** (length 0)"}
+{"level":"info","ts":1770497258.0392466,"caller":"envflag/envflag.go:69","message":"  SLACK_SKIP_VERIFICATION=false"}
+{"level":"info","ts":1770497258.0392504,"caller":"envflag/envflag.go:69","message":"  SLACK_TOKEN=**** (length 56)"}
+{"level":"info","ts":1770497258.039254,"caller":"envflag/envflag.go:69","message":"  TOKEN_ISSUED_AT_CHECK_OFFSET=5m0s"}
+{"level":"info","ts":1770497258.0392575,"caller":"envflag/envflag.go:69","message":"  TOKEN_ISSUED_AT_OFFSET=5s"}
+{"level":"info","ts":1770497258.039263,"caller":"envflag/envflag.go:69","message":"  TRACK_ROLE_FOR_AUTHORIZED_REQUEST=true"}
+{"level":"info","ts":1770497258.0392666,"caller":"envflag/envflag.go:69","message":"  USER_CACHE_TTL=10m0s"}
+{"level":"info","ts":1770497258.0392702,"caller":"envflag/envflag.go:69","message":"  USER_CLIENT_NOT_FOUND_CACHE_TIMEOUT=5m0s"}
+{"level":"info","ts":1770497258.0392737,"caller":"envflag/envflag.go:69","message":"  USE_TEST_SECRETS_FROM_ENV=false"}
+{"level":"info","ts":1770497258.0392787,"caller":"envflag/envflag.go:69","message":"  VERIFY_RESOURCE_FOR_NON_ANONYMOUS=true"}
+{"level":"info","ts":1770497258.0392828,"caller":"envflag/envflag.go:69","message":"  WEBSOCKET_PROXY_READ_BUFFER_SIZE=1024"}
+{"level":"info","ts":1770497258.0392864,"caller":"envflag/envflag.go:69","message":"  WEBSOCKET_PROXY_READ_TIMEOUT=25s"}
+{"level":"info","ts":1770497258.0392897,"caller":"envflag/envflag.go:69","message":"  WEBSOCKET_PROXY_WRITE_BUFFER_SIZE=1024"}
+{"level":"info","ts":1770497258.0393643,"caller":"common/run_tasks.go:18","message":"BuildInfo: go\tgo1.24.12"}
+{"level":"info","ts":1770497258.039374,"caller":"common/run_tasks.go:18","message":"BuildInfo: path\tgithub.com/cresta/go-servers/cron/task-runner"}
+{"level":"info","ts":1770497258.039381,"caller":"common/run_tasks.go:18","message":"BuildInfo: mod\tgithub.com/cresta/go-servers\tv0.0.0-20260122214945-1bb1d80e96a1\t"}
+{"level":"info","ts":1770497258.0393882,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/DataDog/appsec-internal-go\tv1.4.1\th1:xpAS/hBo429pVh7rngquAK2DezUaJjfsX7Wd8cw0aIk="}
+{"level":"info","ts":1770497258.0393932,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/DataDog/datadog-agent/pkg/obfuscate\tv0.50.2\th1:y08IzbpFM/HBaKfgayFZe1FpcbZn6bVPXoZ++93vxv8="}
+{"level":"info","ts":1770497258.039397,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/DataDog/datadog-agent/pkg/remoteconfig/state\tv0.50.2\th1:7jn5EOu84uph4sd+pB3vF8LnsdTjhh+1/NnCvfNpG4A="}
+{"level":"info","ts":1770497258.0394013,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/DataDog/datadog-go/v5\tv5.5.0\th1:G5KHeB8pWBNXT4Jtw0zAkhdxEAWSpWH00geHI6LDrKU="}
+{"level":"info","ts":1770497258.0394068,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/DataDog/go-libddwaf/v2\tv2.3.1\th1:bujaT5+KnLDFQqVA5ilvVvW+evUSHow9FrTHRgUwN4A="}
+{"level":"info","ts":1770497258.0394113,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/DataDog/go-sqllexer\tv0.0.10\th1:u07DuRfdlPPmOX/dclb1gcn/zaqWxUiURRRVenKILxc="}
+{"level":"info","ts":1770497258.039415,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/DataDog/go-tuf\tv1.0.2-0.5.2\th1:EeZr937eKAWPxJ26IykAdWA4A0jQXJgkhUjqEI/w7+I="}
+{"level":"info","ts":1770497258.039419,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/DataDog/gostackparse\tv0.7.0\th1:i7dLkXHvYzHV308hnkvVGDL3BR4FWl7IsXNPz/IGQh4="}
+{"level":"info","ts":1770497258.0394247,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/DataDog/sketches-go\tv1.4.4\th1:dF52vzXRFSPOj2IjXSWLvXq3jubL4CI69kwYjJ1w5Z8="}
+{"level":"info","ts":1770497258.039429,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/MicahParks/keyfunc\tv1.9.0\th1:lhKd5xrFHLNOWrDc4Tyb/Q1AJ4LCzQ48GVJyVIID3+o="}
+{"level":"info","ts":1770497258.0394325,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/allegro/bigcache/v3\tv3.0.2\th1:AKZCw+5eAaVyNTBmI2fgyPVJhHkdWder3O9IrprcQfI="}
+{"level":"info","ts":1770497258.0394363,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2\tv1.39.6\th1:2JrPCVgWJm7bm83BDwY5z8ietmeJUbh3O2ACnn+Xsqk="}
+{"level":"info","ts":1770497258.03944,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/aws/protocol/eventstream\tv1.7.3\th1:DHctwEM8P8iTXFxC/QK0MRjwEpWQeM9yzidCRjldUz0="}
+{"level":"info","ts":1770497258.0394454,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/config\tv1.27.7\th1:JSfb5nOQF01iOgxFI5OIKWwDiEXWTyTgg1Mm1mHi0A4="}
+{"level":"info","ts":1770497258.0394495,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/credentials\tv1.17.7\th1:WJd+ubWKoBeRh7A5iNMnxEOs982SyVKOJD+K8HIezu4="}
+{"level":"info","ts":1770497258.039453,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/feature/ec2/imds\tv1.15.3\th1:p+y7FvkK2dxS+FEwRIDHDe//ZX+jDhP8HHE50ppj4iI="}
+{"level":"info","ts":1770497258.0394566,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/feature/s3/manager\tv1.16.9\th1:vXY/Hq1XdxHBIYgBUmug/AbMyIe1AKulPYS2/VE1X70="}
+{"level":"info","ts":1770497258.039473,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/internal/configsources\tv1.4.13\th1:a+8/MLcWlIxo1lF9xaGt3J/u3yOZx+CdSveSNwjhD40="}
+{"level":"info","ts":1770497258.0394773,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/internal/endpoints/v2\tv2.7.13\th1:HBSI2kDkMdWz4ZM7FjwE7e/pWDEZ+nR95x8Ztet1ooY="}
+{"level":"info","ts":1770497258.0394814,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/internal/ini\tv1.8.0\th1:hT8rVHwugYE2lEfdFE0QWVo81lF7jMrYJVDWI+f+VxU="}
+{"level":"info","ts":1770497258.0394852,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/internal/v4a\tv1.3.3\th1:mDnFOE2sVkyphMWtTH+stv0eW3k0OTx94K63xpxHty4="}
+{"level":"info","ts":1770497258.0394907,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/service/internal/accept-encoding\tv1.11.1\th1:EyBZibRTVAs6ECHZOw5/wlylS9OcTzwyjeQMudmREjE="}
+{"level":"info","ts":1770497258.0394945,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/service/internal/checksum\tv1.3.5\th1:mbWNpfRUTT6bnacmvOTKXZjR/HycibdWzNpfbrbLDIs="}
+{"level":"info","ts":1770497258.039501,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/service/internal/presigned-url\tv1.11.5\th1:K/NXvIftOlX+oGgWGIa3jDyYLDNsdVhsjHmsBH2GLAQ="}
+{"level":"info","ts":1770497258.0395052,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/service/internal/s3shared\tv1.17.3\th1:4t+QEX7BsXz98W8W1lNvMAG+NX8qHz2CjLBxQKku40g="}
+{"level":"info","ts":1770497258.0395105,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/service/s3\tv1.51.4\th1:lW5xUzOPGAMY7HPuNF4FdyBwRc3UJ/e8KsapbesVeNU="}
+{"level":"info","ts":1770497258.0395145,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/service/secretsmanager\tv1.28.2\th1:WrqqLhD5St2cbXsvR0yuY43pdhXsUL0yjQepBJIpTvI="}
+{"level":"info","ts":1770497258.039518,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/service/sso\tv1.20.2\th1:XOPfar83RIRPEzfihnp+U6udOveKZJvPQ76SKWrLRHc="}
+{"level":"info","ts":1770497258.039522,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/service/ssooidc\tv1.23.2\th1:pi0Skl6mNl2w8qWZXcdOyg197Zsf4G97U7Sso9JXGZE="}
+{"level":"info","ts":1770497258.0395274,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/aws-sdk-go-v2/service/sts\tv1.28.4\th1:Ppup1nVNAOWbBOrcoOxaxPeEnSFB2RnnQdguhXpmeQk="}
+{"level":"info","ts":1770497258.0395312,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/aws/smithy-go\tv1.23.2\th1:Crv0eatJUQhaManss33hS5r40CG3ZFH+21XSkqMrIUM="}
+{"level":"info","ts":1770497258.039535,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/cenkalti/backoff/v4\tv4.3.0\th1:MyRJ/UdXutAwSAT+s3wNd7MfTIcy71VQueUuFK343L8="}
+{"level":"info","ts":1770497258.0395389,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/cespare/xxhash/v2\tv2.3.0\th1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs="}
+{"level":"info","ts":1770497258.0395446,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/chrusty/protoc-gen-jsonschema\tv0.0.0-20230224034803-ef0ff6913ad5\th1:hV69eBY+ifwq1uhkB2wvikwhON6Vsy1Vfsfd64tDgn0="}
+{"level":"info","ts":1770497258.0395482,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/cresta/cresta-proto\tv1.0.2702\th1:y5P9POxTq6OX4zbYsQosifGJ7YRfjsWOwb9VOpaDJVg="}
+{"level":"info","ts":1770497258.0395522,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/cresta/protoc-gen-resourcename\tv1.7.1\th1:wzwHVsp2qZZa7GKIizMqL+SrBIpS/Uo4w5LnrwNv4jU="}
+{"level":"info","ts":1770497258.0395558,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/cresta/shared-go\tv0.2.550\th1:ufbG1PePIO8VaSomaxYB6NABTapgMeP+5b9zagMRQmA="}
+{"level":"info","ts":1770497258.0395615,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/dustin/go-humanize\tv1.0.1\th1:GzkhY7T5VNhEkwH0PVJgjz+fX1rhBrR7pRT3mDkpeCY="}
+{"level":"info","ts":1770497258.039567,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/elastic/elastic-transport-go/v8\tv8.1.0\th1:NeqEz1ty4RQz+TVbUrpSU7pZ48XkzGWQj02k5koahIE="}
+{"level":"info","ts":1770497258.0395713,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/elastic/go-elasticsearch/v8\tv8.6.0\th1:xMaSe8jIh7NHzmNo9YBkewmaD2Pr+tX+zLkXxhieny4="}
+{"level":"info","ts":1770497258.039575,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/envoyproxy/protoc-gen-validate\tv1.1.0\th1:tntQDh69XqOCOZsDz0lVJQez/2L6Uu2PdjCQwWCJ3bM="}
+{"level":"info","ts":1770497258.0395808,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/felixge/httpsnoop\tv1.0.4\th1:NFTV2Zj1bL4mc9sqWACXbQFVBBg2W3GPvqp8/ESS2Wg="}
+{"level":"info","ts":1770497258.0395844,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/go-logr/logr\tv1.4.2\th1:6pFjapn8bFcIbiKo3XT4j/BhANplGihG6tvd+8rYgrY="}
+{"level":"info","ts":1770497258.0395882,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/go-logr/stdr\tv1.2.2\th1:hSWxHoqTgW2S2qGc0LTAI563KZ5YKYRhT3MFKZMbjag="}
+{"level":"info","ts":1770497258.0395918,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/gogo/googleapis\tv1.4.1\th1:1Yx4Myt7BxzvUr5ldGSbwYiZG6t9wGBZ+8/fX3Wvtq0="}
+{"level":"info","ts":1770497258.0395956,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/gogo/protobuf\tv1.3.2\th1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q="}
+{"level":"info","ts":1770497258.039603,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/gogo/status\tv1.1.1\th1:DuHXlSFHNKqTQ+/ACf5Vs6r4X/dH2EgIzR9Vr+H65kg="}
+{"level":"info","ts":1770497258.0396068,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/golang-jwt/jwt/v4\tv4.5.2\th1:YtQM7lnr8iZ+j5q71MGKkNw9Mn7AjHM68uc9g5fXeUI="}
+{"level":"info","ts":1770497258.0396101,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/golang/protobuf\tv1.5.4\th1:i7eJL8qZTpSEXOPTxNKhASYpMn+8e5Q6AdndVa1dWek="}
+{"level":"info","ts":1770497258.0396142,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/google/pprof\tv0.0.0-20241029153458-d1b30febd7db\th1:097atOisP2aRj7vFgYQBbFN4U4JNXUNYpxael3UzMyo="}
+{"level":"info","ts":1770497258.0396278,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/google/uuid\tv1.6.0\th1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0="}
+{"level":"info","ts":1770497258.0396316,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/gorilla/handlers\tv1.5.1\th1:9lRY6j8DEeeBT10CvO9hGW0gmky0BprnvDI5vfhUHH4="}
+{"level":"info","ts":1770497258.0396357,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/gorilla/mux\tv1.8.0\th1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI="}
+{"level":"info","ts":1770497258.039639,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/gorilla/websocket\tv1.5.0\th1:PPwGk2jz7EePpoHN/+ClbZu8SPxiqlu12wZP/3sWmnc="}
+{"level":"info","ts":1770497258.0396452,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/grpc-ecosystem/go-grpc-middleware\tv1.4.0\th1:UH//fgunKIs4JdUbpDl1VZCDaL56wXCB/5+wF6uHfaI="}
+{"level":"info","ts":1770497258.0396488,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/grpc-ecosystem/grpc-gateway/v2\tv2.22.0\th1:asbCHRVmodnJTuQ3qamDwqVOIjwqUPTYmYuemVOx+Ys="}
+{"level":"info","ts":1770497258.0396526,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/hashicorp/errwrap\tv1.1.0\th1:OxrOeh75EUXMY8TBjag2fzXGZ40LB6IKw45YeGUDY2I="}
+{"level":"info","ts":1770497258.0396564,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/hashicorp/go-multierror\tv1.1.1\th1:H5DkEtf6CXdFp0N0Em5UCwQpXMWke8IA0+lD48awMYo="}
+{"level":"info","ts":1770497258.0396621,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jackc/chunkreader/v2\tv2.0.1\th1:i+RDz65UE+mmpjTfyz0MoVTnzeYxroil2G82ki7MGG8="}
+{"level":"info","ts":1770497258.0396662,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jackc/pgconn\tv1.14.3\th1:bVoTr12EGANZz66nZPkMInAV/KHD2TxH9npjXXgiB3w="}
+{"level":"info","ts":1770497258.03967,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jackc/pgerrcode\tv0.0.0-20220416144525-469b46aa5efa\th1:s+4MhCQ6YrzisK6hFJUX53drDT4UsSW3DEhKn0ifuHw="}
+{"level":"info","ts":1770497258.0396736,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jackc/pgio\tv1.0.0\th1:g12B9UwVnzGhueNavwioyEEpAmqMe1E/BN9ES+8ovkE="}
+{"level":"info","ts":1770497258.039679,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jackc/pgpassfile\tv1.0.0\th1:/6Hmqy13Ss2zCq62VdNG8tM1wchn8zjSGOBJ6icpsIM="}
+{"level":"info","ts":1770497258.039683,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jackc/pgproto3/v2\tv2.3.3\th1:1HLSx5H+tXR9pW3in3zaztoEwQYRC9SQaYUHjTSUOag="}
+{"level":"info","ts":1770497258.0396867,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jackc/pgservicefile\tv0.0.0-20221227161230-091c0ba34f0a\th1:bbPeKD0xmW/Y25WS6cokEszi5g+S0QxI/d45PkRi7Nk="}
+{"level":"info","ts":1770497258.0396905,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jackc/pgtype\tv1.14.0\th1:y+xUdabmyMkJLyApYuPj38mW+aAIqCe5uuBB51rH3Vw="}
+{"level":"info","ts":1770497258.039696,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jackc/pgx/v4\tv4.18.2\th1:xVpYkNR5pk5bMCZGfClbO962UIqVABcAGt7ha1s/FeU="}
+{"level":"info","ts":1770497258.0396996,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jackc/pgx/v5\tv5.4.3\th1:cxFyXhxlvAifxnkKKdlxv8XqUf59tDlYjnV5YYfsJJY="}
+{"level":"info","ts":1770497258.0397031,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jinzhu/copier\tv0.4.0\th1:w3ciUoD19shMCRargcpm0cm91ytaBhDvuRpz1ODO/U8="}
+{"level":"info","ts":1770497258.0397067,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jinzhu/inflection\tv1.0.0\th1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E="}
+{"level":"info","ts":1770497258.039712,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/jinzhu/now\tv1.1.5\th1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ="}
+{"level":"info","ts":1770497258.0397155,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/klauspost/compress\tv1.18.0\th1:c/Cqfb0r+Yi+JtIEq73FWXVkRonBlf0CRNYc8Zttxdo="}
+{"level":"info","ts":1770497258.0397196,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/lib/pq\tv1.10.9\th1:YXG7RB+JIjhP29X+OtkiDnYaXQwpS4JEWq7dtCCRUEw="}
+{"level":"info","ts":1770497258.0397232,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/nats-io/nats.go\tv1.34.0\th1:fnxnPCNiwIG5w08rlMcEKTUw4AV/nKyGCOJE8TdhSPk="}
+{"level":"info","ts":1770497258.0397286,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/nats-io/nkeys\tv0.4.7\th1:RwNJbbIdYCoClSDNY7QVKZlyb/wfT6ugvFCiKy6vDvI="}
+{"level":"info","ts":1770497258.0397325,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/nats-io/nuid\tv1.0.1\th1:5iA8DT8V7q8WK2EScv2padNa/rTESc1KdnPw4TC2paw="}
+{"level":"info","ts":1770497258.039736,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/outcaste-io/ristretto\tv0.2.3\th1:AK4zt/fJ76kjlYObOeNwh4T3asEuaCmp26pOvUOL9w0="}
+{"level":"info","ts":1770497258.0397396,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/philhofer/fwd\tv1.1.2\th1:bnDivRJ1EWPjUIRXV5KfORO897HTbpFAQddBdE8t7Gw="}
+{"level":"info","ts":1770497258.0397432,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/pkg/errors\tv0.9.1\th1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4="}
+{"level":"info","ts":1770497258.039749,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/richardartoul/molecule\tv1.0.1-0.20221107223329-32cfee06a052\th1:Qp27Idfgi6ACvFQat5+VJvlYToylpM/hcyLBI3WaKPA="}
+{"level":"info","ts":1770497258.0397525,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/secure-systems-lab/go-securesystemslib\tv0.8.0\th1:mr5An6X45Kb2nddcFlbmfHkLguCE9laoZCUzEEpIZXA="}
+{"level":"info","ts":1770497258.0397563,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/slack-go/slack\tv0.10.2\th1:KMN/h2sgUninHXvQI8PrR/PHBUuWp2NPvz2Kr66tki4="}
+{"level":"info","ts":1770497258.0397599,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/spaolacci/murmur3\tv1.1.0\th1:7c1g84S4BPRrfL5Xrdp6fOJ206sU9y293DDHaoy0bLI="}
+{"level":"info","ts":1770497258.03977,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgithub.com/tinylib/msgp\tv1.1.9\th1:SHf3yoO2sGA0veCJeCBYLHuttAVFHGm2RHgNodW7wQU="}
+{"level":"info","ts":1770497258.0397737,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.opentelemetry.io/auto/sdk\tv1.1.0\th1:cH53jehLUN6UFLY71z+NDOiNJqDdPRaXzTel0sJySYA="}
+{"level":"info","ts":1770497258.0397773,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.opentelemetry.io/contrib/instrumentation/runtime\tv0.53.0\th1:nOlJEAJyrcy8hexK65M+dsCHIx7CVVbybcFDNkcTcAc="}
+{"level":"info","ts":1770497258.0397809,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.opentelemetry.io/otel\tv1.35.0\th1:xKWKPxrxB6OtMCbmMY021CqC45J+3Onta9MqjhnusiQ="}
+{"level":"info","ts":1770497258.0397863,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc\tv1.28.0\th1:U2guen0GhqH8o/G2un8f/aG/y++OuW6MyCo6hT9prXk="}
+{"level":"info","ts":1770497258.0397902,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp\tv1.28.0\th1:aLmmtjRke7LPDQ3lvpFz+kNEH43faFhzW7v8BFIEydg="}
+{"level":"info","ts":1770497258.0397942,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.opentelemetry.io/otel/metric\tv1.35.0\th1:0znxYu2SNyuMSQT4Y9WDWej0VpcsxkuklLa4/siN90M="}
+{"level":"info","ts":1770497258.039798,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.opentelemetry.io/otel/sdk\tv1.35.0\th1:iPctf8iprVySXSKJffSS79eOjl9pvxV9ZqOWT0QejKY="}
+{"level":"info","ts":1770497258.0398035,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.opentelemetry.io/otel/sdk/metric\tv1.35.0\th1:1RriWBmCKgkeHEhM7a2uMjMUfP7MsOF5JpUCaEqEI9o="}
+{"level":"info","ts":1770497258.0398073,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.opentelemetry.io/otel/trace\tv1.35.0\th1:dPpEfJu1sDIqruz7BHFG3c7528f6ddfSWfFDVt/xgMs="}
+{"level":"info","ts":1770497258.0398107,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.opentelemetry.io/proto/otlp\tv1.3.1\th1:TrMUixzpM0yuc/znrFTP9MMRh8trP93mkCiDVeXrui0="}
+{"level":"info","ts":1770497258.0398145,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.uber.org/atomic\tv1.11.0\th1:ZvwS0R+56ePWxUNi+Atn9dWONBPp/AUETXlHW0DxSjE="}
+{"level":"info","ts":1770497258.0398197,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.uber.org/dig\tv1.17.0\th1:5Chju+tUvcC+N7N6EV08BJz41UZuO3BmHcN4A287ZLI="}
+{"level":"info","ts":1770497258.0398233,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.uber.org/multierr\tv1.11.0\th1:blXXJkSxSSfBVBlC76pxqeO+LN3aDfLQo+309xJstO0="}
+{"level":"info","ts":1770497258.0398269,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgo.uber.org/zap\tv1.27.0\th1:aJMhYGrd5QSmlpLMr2MftRKl7t8J8PTZPA732ud/XR8="}
+{"level":"info","ts":1770497258.039831,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgolang.org/x/crypto\tv0.46.0\th1:cKRW/pmt1pKAfetfu+RCEvjvZkA9RimPbh7bhFjGVBU="}
+{"level":"info","ts":1770497258.0398366,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgolang.org/x/net\tv0.48.0\th1:zyQRTTrjc33Lhh0fBgT/H3oZq9WuvRR5gPC70xpDiQU="}
+{"level":"info","ts":1770497258.0398402,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgolang.org/x/sync\tv0.19.0\th1:vV+1eWNmZ5geRlYjzm2adRgW2/mcpevXNg50YZtPCE4="}
+{"level":"info","ts":1770497258.0398438,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgolang.org/x/sys\tv0.39.0\th1:CvCKL8MeisomCi6qNZ+wbb0DN9E5AATixKsvNtMoMFk="}
+{"level":"info","ts":1770497258.0398474,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgolang.org/x/text\tv0.32.0\th1:ZD01bjUt1FQ9WJ0ClOL5vxgxOI/sVCNgX1YtKwcY0mU="}
+{"level":"info","ts":1770497258.0398529,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgolang.org/x/time\tv0.8.0\th1:9i3RxcPv3PZnitoVGMPDKZSq1xW1gK1Xy3ArNOGZfEg="}
+{"level":"info","ts":1770497258.0398564,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgolang.org/x/xerrors\tv0.0.0-20231012003039-104605ab7028\th1:+cNy6SZtPcJQH3LJVLOSmiC7MMxXNOb3PU/VUEz+EhU="}
+{"level":"info","ts":1770497258.0398602,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgonum.org/v1/gonum\tv0.12.0\th1:xKuo6hzt+gMav00meVPUlXwSdoEJP46BR+wdxQEFK2o="}
+{"level":"info","ts":1770497258.0398638,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgoogle.golang.org/genproto/googleapis/api\tv0.0.0-20241209162323-e6fa225c2576\th1:CkkIfIt50+lT6NHAVoRYEyAvQGFM7xEwXUUywFvEb3Q="}
+{"level":"info","ts":1770497258.039869,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgoogle.golang.org/genproto/googleapis/rpc\tv0.0.0-20241223144023-3abc09e42ca8\th1:TqExAhdPaB60Ux47Cn0oLV07rGnxZzIsaRhQaqS666A="}
+{"level":"info","ts":1770497258.0398731,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgoogle.golang.org/grpc\tv1.67.3\th1:OgPcDAFKHnH8X3O4WcO4XUc8GRDeKsKReqbQtiCj7N8="}
+{"level":"info","ts":1770497258.0398765,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgoogle.golang.org/protobuf\tv1.36.11\th1:fV6ZwhNocDyBLK0dj+fg8ektcVegBBuEolpbTQyBNVE="}
+{"level":"info","ts":1770497258.0398803,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgopkg.in/DataDog/dd-trace-go.v1\tv1.61.0\th1:XKO91GwTjpIRhd56Xif/BZ2YgHkQufVTOvtkbRYSPi8="}
+{"level":"info","ts":1770497258.0398839,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgorm.io/driver/postgres\tv1.5.6\th1:ydr9xEd5YAM0vxVDY0X139dyzNz10spDiDlC7+ibLeU="}
+{"level":"info","ts":1770497258.0398893,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgorm.io/gorm\tv1.25.7-0.20240204074919-46816ad31dde\th1:9DShaph9qhkIYw7QF91I/ynrr4cOO2PZra2PFD7Mfeg="}
+{"level":"info","ts":1770497258.0398932,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tgorm.io/plugin/dbresolver\tv1.4.0\th1:MnT3JFDFpZ1lJ6MoGW5jOAHHuItL/jfBCwqmdVWMC+A="}
+{"level":"info","ts":1770497258.0398972,"caller":"common/run_tasks.go:18","message":"BuildInfo: dep\tsigs.k8s.io/yaml\tv1.4.0\th1:Mk1wCc2gy/F0THH0TAp1QYyJNzRm2KCLy3o5ASXVI5E="}
+{"level":"info","ts":1770497258.039901,"caller":"common/run_tasks.go:18","message":"BuildInfo: build\t-buildmode=exe"}
+{"level":"info","ts":1770497258.0399106,"caller":"common/run_tasks.go:18","message":"BuildInfo: build\t-compiler=gc"}
+{"level":"info","ts":1770497258.0399141,"caller":"common/run_tasks.go:18","message":"BuildInfo: build\t-tags=timetzdata"}
+{"level":"info","ts":1770497258.0399177,"caller":"common/run_tasks.go:18","message":"BuildInfo: build\t-trimpath=true"}
+{"level":"info","ts":1770497258.0399215,"caller":"common/run_tasks.go:18","message":"BuildInfo: build\tCGO_ENABLED=0"}
+{"level":"info","ts":1770497258.0399268,"caller":"common/run_tasks.go:18","message":"BuildInfo: build\tGOARCH=amd64"}
+{"level":"info","ts":1770497258.0399303,"caller":"common/run_tasks.go:18","message":"BuildInfo: build\tGOOS=linux"}
+{"level":"info","ts":1770497258.0399342,"caller":"common/run_tasks.go:18","message":"BuildInfo: build\tGOAMD64=v1"}
+{"level":"info","ts":1770497258.0399377,"caller":"common/run_tasks.go:18","message":"BuildInfo: build\tvcs=git"}
+{"level":"info","ts":1770497258.0399432,"caller":"common/run_tasks.go:18","message":"BuildInfo: build\tvcs.revision=1bb1d80e96a1e94b58f83c97cbb62c44604d8272"}
+{"level":"info","ts":1770497258.0399473,"caller":"common/run_tasks.go:18","message":"BuildInfo: build\tvcs.time=2026-01-22T21:49:45Z"}
+{"level":"info","ts":1770497258.0399508,"caller":"common/run_tasks.go:18","message":"BuildInfo: build\tvcs.modified=false"}
+{"level":"info","ts":1770497258.0399547,"caller":"common/run_tasks.go:18","message":"BuildInfo: "}
+{"level":"info","ts":1770497258.040831,"caller":"otel/module.go:57","message":"OpenTelemetry is enabled"}
+{"level":"info","ts":1770497258.0522482,"caller":"datadog/tracer.go:133","message":"Datadog Tracer v1.61.0 INFO: DATADOG TRACER CONFIGURATION {\"date\":\"2026-02-07T20:47:38Z\",\"os_name\":\"Alpine Linux\",\"os_version\":\"unknown\",\"version\":\"v1.61.0\",\"lang\":\"Go\",\"lang_version\":\"go1.24.12\",\"env\":\"schwab-prod\",\"service\":\"cron-batch-reindex-conversations\",\"agent_url\":\"http://groundcover-sensor.groundcover.svc.cluster.local:8126/v0.4/traces\",\"agent_error\":\"\",\"debug\":false,\"analytics_enabled\":false,\"sample_rate\":\"NaN\",\"sample_rate_limit\":\"disabled\",\"sampling_rules\":null,\"sampling_rules_error\":\"\",\"service_mappings\":null,\"tags\":{\"runtime-id\":\"dca0e1f1-7f25-4235-a16c-0fe6716d6dd1\"},\"runtime_metrics_enabled\":true,\"health_metrics_enabled\":true,\"profiler_code_hotspots_enabled\":true,\"profiler_endpoints_enabled\":true,\"dd_version\":\"3\",\"architecture\":\"amd64\",\"global_service\":\"cron-batch-reindex-conversations\",\"lambda_mode\":\"false\",\"appsec\":false,\"agent_features\":{\"DropP0s\":false,\"Stats\":false,\"DataStreams\":false,\"StatsdPort\":0},\"integrations\":{\"AWS SDK\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"AWS SDK v2\":{\"instrumented\":false,\"available\":true,\"available_version\":\"v1.39.6\"},\"BuntDB\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Cassandra\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Consul\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Elasticsearch v3\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Elasticsearch v5\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Elasticsearch v6\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"FastHTTP\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Fiber\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Gin\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Goji\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Google API\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Gorilla Mux\":{\"instrumented\":true,\"available\":true,\"available_version\":\"v1.8.0\"},\"Gorm\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Gorm (gopkg)\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Gorm v1\":{\"instrumented\":true,\"available\":false,\"available_version\":\"\"},\"GraphQL\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"HTTP\":{\"instrumented\":true,\"available\":false,\"available_version\":\"\"},\"HTTP Router\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"HTTP Treemux\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"IBM sarama\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Kafka (confluent)\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Kafka (confluent) v2\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Kafka v0\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Kubernetes\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"LevelDB\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Logrus\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Memcache\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"MongoDB\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"MongoDB (mgo)\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Negroni\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Pub/Sub\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Redigo\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Redigo (dep)\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Redis\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Redis v7\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Redis v8\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Redis v9\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"SQL\":{\"instrumented\":true,\"available\":false,\"available_version\":\"\"},\"SQLx\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Shopify sarama\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Twirp\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"Vault\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"chi\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"chi v5\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"echo\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"echo v4\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"gRPC\":{\"instrumented\":true,\"available\":true,\"available_version\":\"v1.67.3\"},\"gRPC v12\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"go-pg v10\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"go-restful\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"go-restful v3\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"gqlgen\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"},\"miekg/dns\":{\"instrumented\":false,\"available\":false,\"available_version\":\"\"}},\"partial_flush_enabled\":false,\"partial_flush_min_spans\":1000,\"orchestrion\":{\"enabled\":false},\"feature_flags\":[]}\n"}
+{"level":"info","ts":1770497258.052494,"caller":"datadog/tracer.go:39","message":"DataDog tracing enabled"}
+{"level":"info","ts":1770497258.207004,"caller":"slack/module.go:38","message":"slack auth test complete","auth_result":{"url":"https://crestalabs.slack.com/","team":"Cresta","user":"cresta_job_failure_no","team_id":"T5PRG3B44","user_id":"U05F298TGA0","enterprise_id":"E088J08P79C","bot_id":"B05EWTTBDC5"}}
+{"level":"info","ts":1770497258.222416,"caller":"config/module.go:158","message":"config client: loaded 5 customer configs"}
+{"level":"info","ts":1770497258.2239149,"caller":"registry/customer_profile_registry.go:234","message":"dbregistry: Adding connection for (schwabpreview/preview) from config"}
+{"level":"info","ts":1770497258.337146,"caller":"registry/customer_profile_registry.go:234","message":"dbregistry: Adding connection for (schwabstaging/staging) from config"}
+{"level":"info","ts":1770497258.3498838,"caller":"registry/customer_profile_registry.go:234","message":"dbregistry: Adding connection for (cresta-schwab/schwab-prod) from config"}
+{"level":"info","ts":1770497258.3771155,"caller":"registry/customer_profile_registry.go:234","message":"dbregistry: Adding connection for (schwab/prod) from config"}
+{"level":"info","ts":1770497258.4052982,"caller":"registry/customer_profile_registry.go:234","message":"dbregistry: Adding connection for (schwabdev/dev) from config"}
+{"level":"info","ts":1770497258.432989,"caller":"config/client.go:58","message":"dbregistry: Adding connection for cresta-schwab from config"}
+{"level":"info","ts":1770497258.4463437,"caller":"config/client.go:58","message":"dbregistry: Adding connection for schwab from config"}
+{"level":"info","ts":1770497258.4710643,"caller":"config/client.go:58","message":"dbregistry: Adding connection for schwabdev from config"}
+{"level":"info","ts":1770497258.4855692,"caller":"config/client.go:58","message":"dbregistry: Adding connection for schwabpreview from config"}
+{"level":"info","ts":1770497258.501535,"caller":"config/client.go:58","message":"dbregistry: Adding connection for schwabstaging from config"}
+{"level":"info","ts":1770497258.534502,"caller":"shared/task_queue.go:147","message":"[cron task-runner] starting 5 tasks: batch-reindex-conversations/schwabpreview/preview, batch-reindex-conversations/schwabstaging/staging, batch-reindex-conversations/cresta-schwab/schwab-prod, batch-reindex-conversations/schwab/prod, batch-reindex-conversations/schwabdev/dev"}
+{"level":"info","ts":1770497258.593495,"caller":"batch-reindex-conversations/task.go:73","message":"Created reindex conversations job: name=customers/schwabdev/profiles/dev/jobs/4f71b3ed-5a78-4ff1-b6a4-296044917a32, execution_id=temporal_id:{namespace:\"ingestion\"  workflow_id:\"reindexconversations-schwabdev-dev-99a5b374-5b02-46c7-8ccb-5e10164c75ae\"  run_id:\"2a74c164-8caa-4df1-8264-36752d31f43c\"}, cluster=schwab-prod","profile_id":"dev","task_scope":"batch-reindex-conversations","cluster":"schwab-prod","task_index":5,"total_tasks":5,"customer_id":"schwabdev"}
+{"level":"info","ts":1770497258.5957463,"caller":"batch-reindex-conversations/task.go:73","message":"Created reindex conversations job: name=customers/cresta-schwab/profiles/schwab-prod/jobs/ec206232-6306-467f-a342-1c082dee9702, execution_id=temporal_id:{namespace:\"ingestion\"  workflow_id:\"reindexconversations-cresta-schwab-schwab-prod-fd6f5b7d-5bfc-405b-9650-8c8976e64d60\"  run_id:\"ca5fd991-d5da-4348-8365-69e98f94638b\"}, cluster=schwab-prod","total_tasks":5,"customer_id":"cresta-schwab","profile_id":"schwab-prod","task_scope":"batch-reindex-conversations","cluster":"schwab-prod","task_index":3}
+{"level":"info","ts":1770497258.5992239,"caller":"batch-reindex-conversations/task.go:73","message":"Created reindex conversations job: name=customers/schwab/profiles/prod/jobs/f9b73e9f-4ef7-4f84-a958-9bf7675fba88, execution_id=temporal_id:{namespace:\"ingestion\"  workflow_id:\"reindexconversations-schwab-prod-f5278b82-2b26-4eef-bd58-4dd36262c150\"  run_id:\"7b8d4c35-8c30-4825-80e9-dfabcfe98d79\"}, cluster=schwab-prod","customer_id":"schwab","profile_id":"prod","task_scope":"batch-reindex-conversations","cluster":"schwab-prod","task_index":4,"total_tasks":5}
+{"level":"info","ts":1770497258.6033847,"caller":"batch-reindex-conversations/task.go:73","message":"Created reindex conversations job: name=customers/schwabpreview/profiles/preview/jobs/66baf2b5-9e6b-4990-a56b-fc7c05e68b48, execution_id=temporal_id:{namespace:\"ingestion\"  workflow_id:\"reindexconversations-schwabpreview-preview-e45d445a-a773-49ce-aa96-2e7896df3a74\"  run_id:\"c1c3b6e5-28a7-41ce-8036-9ad9300f83ca\"}, cluster=schwab-prod","total_tasks":5,"customer_id":"schwabpreview","profile_id":"preview","task_scope":"batch-reindex-conversations","cluster":"schwab-prod","task_index":1}
+{"level":"info","ts":1770497258.604992,"caller":"batch-reindex-conversations/task.go:73","message":"Created reindex conversations job: name=customers/schwabstaging/profiles/staging/jobs/ec3c083b-b275-4a8b-a6ec-014f82777142, execution_id=temporal_id:{namespace:\"ingestion\"  workflow_id:\"reindexconversations-schwabstaging-staging-41c93c82-f077-4858-958f-8f7bee5913ff\"  run_id:\"2ca895ec-08df-47c2-a939-0ada47dd6748\"}, cluster=schwab-prod","task_scope":"batch-reindex-conversations","cluster":"schwab-prod","task_index":2,"total_tasks":5,"customer_id":"schwabstaging","profile_id":"staging"}
+{"level":"info","ts":1770497258.605028,"caller":"shared/task_queue.go:136","message":"[cron task-runner] completed all 5 tasks"}
+{"level":"info","ts":1770497258.605077,"caller":"app/graceful_shutdown_registry.go:32","message":"produced 1 wait groups to prioritize graceful shutdown tasks"}
+{"level":"info","ts":1770497258.6051073,"caller":"server/context.go:112","message":"register cleanup channel: Shutdown OpenTelemetry"}
+{"level":"info","ts":1770497258.6051242,"caller":"server/context.go:164","message":"waiting for graceful shutdown of: Shutdown OpenTelemetry"}
+{"level":"info","ts":1770497258.6051388,"caller":"app/graceful_shutdown_registry.go:46","message":"waiting for graceful shutdown task: Shutdown OpenTelemetry, priority: 18446744073709551615 ..."}
+{"level":"info","ts":1770497258.6074634,"caller":"app/graceful_shutdown_registry.go:48","message":"graceful shutdown task finished: Shutdown OpenTelemetry, priority: 18446744073709551615 ..."}
+{"level":"info","ts":1770497258.6074839,"caller":"server/context.go:172","message":"graceful shutdown finished: Shutdown OpenTelemetry"}
+{"level":"info","ts":1770497258.6074984,"caller":"task-runner/main.go:47","message":"[cron task-runner] : succeeded after 570.593448ms"}
+Graceful shutdown completed: err = <nil>

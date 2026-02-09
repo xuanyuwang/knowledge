@@ -1,0 +1,20 @@
+{
+  "clusters": [
+    {
+      "name": "us-east-1-prod",
+      "customers": [ ]
+    },
+    {
+      "name": "us-west-2-prod",
+      "customers": [ ]
+    },
+    {
+      "name": "chat-prod",
+      "customers": [ ]
+    },
+    {
+      "name": "voice-prod",
+      "customers": [ ]
+    }
+  ]
+}
