@@ -38,6 +38,7 @@ Personal knowledge management repository organized **by project**. Each folder a
 | `duplicate-template-across-usecase/` | Template duplication investigation |
 | `virtual-group-filter/` | Virtual group filter |
 | `2025-annual-review/` | 2025 annual review |
+| `agent-stats-active-days-fix/` | Agent Leaderboard Active Days N/A bug fix (FULL OUTER JOIN) |
 
 ## Workflow: Updating a Project
 
