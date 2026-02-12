@@ -62,7 +62,7 @@
     },
     "6": {
       "date": "2026-01-06",
-      "status": "failed",
+      "status": "completed",
       "job_name": "batch-reindex-seq-jan06-1770739168",
       "workflow_ids": [
         "reindexconversations-cvs-us-west-2-c099d1a5-0e9a-461b-acd9-7946bf0e171d",
@@ -70,11 +70,11 @@
       ],
       "started_at": "2026-02-10T15:59:28Z",
       "completed_at": null,
-      "error": "Timeout after 3600s"
+      "error": null
     },
     "7": {
       "date": "2026-01-07",
-      "status": "failed",
+      "status": "completed",
       "job_name": "batch-reindex-seq-jan07-1770744176",
       "workflow_ids": [
         "reindexconversations-oportun-us-west-2-a417b87b-789d-4ac0-a04d-99e8a51d1a90",
@@ -83,7 +83,7 @@
       ],
       "started_at": "2026-02-10T17:22:56Z",
       "completed_at": null,
-      "error": "Timeout after 3600s"
+      "error": null
     },
     "8": {
       "date": "2026-01-08",
@@ -99,210 +99,277 @@
     },
     "9": {
       "date": "2026-01-09",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T19:12:53Z",
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan09-1770811762",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-70d8224e-b4e7-4863-a61b-f3b6653c107b",
+        "reindexconversations-oportun-us-west-2-24030527-789b-45d6-bd55-26ae2af0483a"
+      ],
+      "started_at": "2026-02-11T12:09:22Z",
       "completed_at": null,
-      "error": "Failed to create job template: E0210 14:13:09.572700   67592 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nE0210 14:13:18.608929   67592 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nE0210 14:13:26.665066   67592 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nE0210 14:13:35.750119   67592 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nUnable to connect to the server: dial tcp 10.8.188.43:443: connect: network is unreachable\n"
+      "error": null
     },
     "10": {
       "date": "2026-01-10",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T19:13:35Z",
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan10-1770815530",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-5c5ae5a1-9ff5-4c55-9a27-83fff97513ae",
+        "reindexconversations-oportun-us-west-2-a45c2fca-7c76-4e59-8f5d-1b44eeca9213"
+      ],
+      "started_at": "2026-02-11T13:12:10Z",
       "completed_at": null,
-      "error": "Failed to create job template: E0210 14:13:44.249420   67646 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nE0210 14:13:59.354306   67646 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nE0210 14:14:07.387249   67646 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nE0210 14:14:15.411206   67646 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nUnable to connect to the server: dial tcp 10.8.188.43:443: connect: network is unreachable\n"
+      "error": null
     },
     "11": {
       "date": "2026-01-11",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T19:14:15Z",
-      "completed_at": null,
-      "error": "Failed to create job template: E0210 14:14:24.146710   67703 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nE0210 14:14:40.623699   67703 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nE0210 14:14:51.661820   67703 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nE0210 14:14:59.710114   67703 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nUnable to connect to the server: dial tcp 10.8.188.43:443: connect: network is unreachable\n"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan11-1770820568",
+      "workflow_ids": [
+        "reindexconversations-oportun-us-west-2-35776a6e-0fdc-4911-aca2-cd01120614ee",
+        "reindexconversations-cvs-us-west-2-e913a4ed-1159-418a-9275-fd5c9804daed"
+      ],
+      "started_at": "2026-02-11T14:36:08Z",
+      "completed_at": "2026-02-11T15:56:13Z",
+      "error": null
     },
     "12": {
       "date": "2026-01-12",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T19:14:59Z",
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan12-1770825373",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-4c074621-5357-4de4-b195-0e4038266d32",
+        "reindexconversations-oportun-us-west-2-4a0afc77-7849-4ea4-9016-92eb1f24a6ba"
+      ],
+      "started_at": "2026-02-11T15:56:13Z",
       "completed_at": null,
-      "error": "Failed to create job template: E0210 14:15:08.326708   67760 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nE0210 14:15:16.369804   67760 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nE0210 14:15:24.401158   67760 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nE0210 14:31:01.807190   67760 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: network is unreachable\"\nUnable to connect to the server: dial tcp 10.8.188.43:443: connect: network is unreachable\n"
+      "error": null
     },
     "13": {
       "date": "2026-01-13",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T19:31:01Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan13-1770829693",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-c06d56a3-3316-4678-bac6-9e05b9136b01",
+        "reindexconversations-oportun-us-west-2-2901b8a3-ade8-45b9-add5-bb4b5f484e65"
+      ],
+      "started_at": "2026-02-11T17:08:13Z",
+      "completed_at": "2026-02-11T17:55:49Z",
+      "error": null
     },
     "14": {
       "date": "2026-01-14",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T19:35:54Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan14-1770832549",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-738b7aa6-b2d3-4c34-8a3b-a9c671b63805",
+        "reindexconversations-oportun-us-west-2-2a6c842f-9b32-4f3f-ac4b-38083923772b"
+      ],
+      "started_at": "2026-02-11T17:55:49Z",
+      "completed_at": "2026-02-11T18:42:30Z",
+      "error": null
     },
     "15": {
       "date": "2026-01-15",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T19:40:47Z",
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan15-1770835350",
+      "workflow_ids": [
+        "reindexconversations-oportun-us-west-2-620f8951-9902-4db7-bda5-c99323377054",
+        "reindexconversations-cvs-us-west-2-a6ad16fa-f08a-4024-a6e3-db803567e79f"
+      ],
+      "started_at": "2026-02-11T18:42:30Z",
       "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "error": null
     },
     "16": {
       "date": "2026-01-16",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T19:41:47Z",
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan16-1770840246",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-f5221c1d-6ad4-492a-8b07-4bfc5b8eeedc",
+        "reindexconversations-oportun-us-west-2-59232d67-3442-46c7-a5a7-92884af946b2"
+      ],
+      "started_at": "2026-02-11T20:04:06Z",
       "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "error": null
     },
     "17": {
       "date": "2026-01-17",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T19:55:19Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan17-1770854046",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-bbff1707-ebc4-4302-bd8d-45474c1e2166",
+        "reindexconversations-oportun-us-west-2-ac340686-fd5c-4619-aec7-2b9065d384cf",
+        "reindexconversations-cvs-us-west-2-f2d167f7-7801-4622-a15f-3c730b8bd986"
+      ],
+      "started_at": "2026-02-11T23:54:06Z",
+      "completed_at": "2026-02-12T00:24:16Z",
+      "error": null
     },
     "18": {
       "date": "2026-01-18",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T19:56:19Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan18-1770855856",
+      "workflow_ids": [
+        "reindexconversations-oportun-us-west-2-461c5aa6-1515-4760-b833-75c42cac303a",
+        "reindexconversations-cvs-us-west-2-e00dd450-3ffb-4e5a-926e-4931a92707a1"
+      ],
+      "started_at": "2026-02-12T00:24:16Z",
+      "completed_at": "2026-02-12T00:43:00Z",
+      "error": null
     },
     "19": {
       "date": "2026-01-19",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T19:58:58Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan19-1770856980",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-19f82ac2-f316-45a7-8380-5c71e731a151",
+        "reindexconversations-oportun-us-west-2-9b698b1b-f495-4c66-9637-f136117f52e5"
+      ],
+      "started_at": "2026-02-12T00:43:00Z",
+      "completed_at": "2026-02-12T01:23:35Z",
+      "error": null
     },
     "20": {
       "date": "2026-01-20",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T20:05:54Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan20-1770859415",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-eacd8764-49a4-4b94-95b7-97d0e1c0be2c",
+        "reindexconversations-oportun-us-west-2-09a16c58-6b1e-4deb-b970-f30f08c4053a"
+      ],
+      "started_at": "2026-02-12T01:23:35Z",
+      "completed_at": "2026-02-12T01:58:30Z",
+      "error": null
     },
     "21": {
       "date": "2026-01-21",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T20:07:13Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan21-1770861510",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-6e5b2aa9-5615-4f26-bb15-ed184ec119bf",
+        "reindexconversations-oportun-us-west-2-550c43c4-ad4b-4e09-b62c-824b3f39f7b1"
+      ],
+      "started_at": "2026-02-12T01:58:30Z",
+      "completed_at": "2026-02-12T02:09:06Z",
+      "error": null
     },
     "22": {
       "date": "2026-01-22",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T20:08:18Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan22-1770862146",
+      "workflow_ids": [
+        "reindexconversations-oportun-us-west-2-f0cd0dad-9315-4d21-8a5a-4d654fd60dba",
+        "reindexconversations-cvs-us-west-2-6487bd42-268b-4201-b077-e4c507ea0726"
+      ],
+      "started_at": "2026-02-12T02:09:06Z",
+      "completed_at": "2026-02-12T03:04:34Z",
+      "error": null
     },
     "23": {
       "date": "2026-01-23",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T20:10:38Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan23-1770865474",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-fa28c2bd-7576-439d-8c0a-84eba6bcb91d",
+        "reindexconversations-oportun-us-west-2-5caf262f-ba7d-4188-8020-55b3bfcb3854"
+      ],
+      "started_at": "2026-02-12T03:04:34Z",
+      "completed_at": "2026-02-12T03:43:24Z",
+      "error": null
     },
     "24": {
       "date": "2026-01-24",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T20:43:56Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan24-1770867804",
+      "workflow_ids": [
+        "reindexconversations-oportun-us-west-2-03ac1532-33ef-4d0c-94d2-d3dfc918cd3f",
+        "reindexconversations-cvs-us-west-2-7dfafaf3-73f8-410e-89d6-9f0f39865d8b"
+      ],
+      "started_at": "2026-02-12T03:43:24Z",
+      "completed_at": "2026-02-12T04:11:10Z",
+      "error": null
     },
     "25": {
       "date": "2026-01-25",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T20:46:33Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan25-1770869470",
+      "workflow_ids": [
+        "reindexconversations-oportun-us-west-2-6698fbb7-de30-4e48-ab87-3d060a7390f7",
+        "reindexconversations-cvs-us-west-2-78057b6d-3e3e-4c7c-884a-b494bf23be8b"
+      ],
+      "started_at": "2026-02-12T04:11:10Z",
+      "completed_at": "2026-02-12T04:36:18Z",
+      "error": null
     },
     "26": {
       "date": "2026-01-26",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T20:49:26Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan26-1770870978",
+      "workflow_ids": [
+        "reindexconversations-oportun-us-west-2-badf61df-8df9-4cbe-adb8-574e01d1f12b",
+        "reindexconversations-cvs-us-west-2-89f8c4b5-8c17-4202-b50c-f91562cb6a36"
+      ],
+      "started_at": "2026-02-12T04:36:18Z",
+      "completed_at": "2026-02-12T05:11:56Z",
+      "error": null
     },
     "27": {
       "date": "2026-01-27",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T20:50:38Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan27-1770873116",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-c4a7a0c6-81a8-44ab-8191-c4f5ff2c4572",
+        "reindexconversations-oportun-us-west-2-85af80a0-5e76-4165-8576-c5c184f86e97"
+      ],
+      "started_at": "2026-02-12T05:11:56Z",
+      "completed_at": "2026-02-12T05:28:49Z",
+      "error": null
     },
     "28": {
       "date": "2026-01-28",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T21:08:00Z",
-      "completed_at": null,
-      "error": "Failed to create job template: Command timed out after 60s"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan28-1770874129",
+      "workflow_ids": [
+        "reindexconversations-cvs-us-west-2-ff24ca09-18a0-441d-bace-c51829e84d16",
+        "reindexconversations-oportun-us-west-2-207fe98b-21b6-4b9e-8922-f613980bf04f"
+      ],
+      "started_at": "2026-02-12T05:28:49Z",
+      "completed_at": "2026-02-12T06:03:37Z",
+      "error": null
     },
     "29": {
       "date": "2026-01-29",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T21:24:22Z",
-      "completed_at": null,
-      "error": "Failed to create job template: E0210 16:41:34.576976   69996 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp 10.8.188.43:443: connect: operation timed out\"\nE0210 16:41:35.156200   69996 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\"\nE0210 16:41:35.157276   69996 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\"\nE0210 16:41:35.158257   69996 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\"\nUnable to connect to the server: dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\n"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan29-1770876217",
+      "workflow_ids": [
+        "reindexconversations-oportun-us-west-2-6c166731-3381-44a1-9757-c23e10f372f7",
+        "reindexconversations-cvs-us-west-2-f6a71eb4-e0ec-4439-bd13-bba2413c30cc"
+      ],
+      "started_at": "2026-02-12T06:03:37Z",
+      "completed_at": "2026-02-12T07:23:36Z",
+      "error": null
     },
     "30": {
       "date": "2026-01-30",
-      "status": "failed",
-      "job_name": null,
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan30-1770881016",
       "workflow_ids": [],
-      "started_at": "2026-02-10T21:41:35Z",
-      "completed_at": null,
-      "error": "Failed to create job template: E0210 16:41:35.783032   70042 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\"\nE0210 16:41:35.784370   70042 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\"\nE0210 16:41:35.785405   70042 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\"\nE0210 16:41:35.786303   70042 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\"\nUnable to connect to the server: dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\n"
+      "started_at": "2026-02-12T07:23:36Z",
+      "completed_at": "2026-02-12T07:39:13Z",
+      "error": null
     },
     "31": {
       "date": "2026-01-31",
-      "status": "failed",
-      "job_name": null,
-      "workflow_ids": [],
-      "started_at": "2026-02-10T21:41:35Z",
-      "completed_at": null,
-      "error": "Failed to create job template: E0210 16:41:36.400998   70045 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\"\nE0210 16:41:36.402670   70045 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\"\nE0210 16:41:36.403780   70045 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\"\nE0210 16:41:36.404837   70045 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com/api?timeout=32s\\\": dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\"\nUnable to connect to the server: dial tcp: lookup 2D1AD69FE6F506776F369B5107EADB64.sk1.us-west-2.eks.amazonaws.com: no such host\n"
+      "status": "completed",
+      "job_name": "batch-reindex-seq-jan31-1770881953",
+      "workflow_ids": [
+        "reindexconversations-oportun-us-west-2-7b72c680-576a-4a88-8842-96aec7039b75",
+        "reindexconversations-cvs-us-west-2-7f1f4a6a-a45c-4fcc-b37d-660ecf173b07"
+      ],
+      "started_at": "2026-02-12T07:39:13Z",
+      "completed_at": "2026-02-12T08:05:01Z",
+      "error": null
     }
   }
 }

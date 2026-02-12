@@ -1,296 +1,155 @@
-# Backfill Scorecards Investigation
+# Backfill Scorecards
 
 **Created:** 2026-02-07
-**Updated:** 2026-02-07
+**Updated:** 2026-02-10
+**Status:** Completed
+**Linear:** [CONVI-6209](https://linear.app/cresta/issue/CONVI-6209)
 
-## Goal
+## Overview
 
-Backfill scorecards for all customers for January 2026.
+Backfilled scorecards for all customers across all 8 production clusters for January 2026.
+
+## Result Summary
+
+| Phase | Scope | Result |
+|-------|-------|--------|
+| Initial backfill | 260 jobs across 8 clusters | 256/260 completed |
+| Retry | marriott, united-east | Completed on simple retry |
+| Sequential single-day | cvs, oportun (31 days each) | All 31 days completed |
+
+**Final: All customers backfilled for January 2026.**
+
+## Approach
+
+### Phase 1: Bulk Backfill (2026-02-07)
+
+Created one k8s job per cluster from `cron-batch-reindex-conversations` cronjob template. Each job processes all customers in the cluster for the full month (Jan 1 - Feb 1).
+
+```bash
+./createjob.sh <cluster>  # for each of 8 clusters
+```
+
+| Cluster | Jobs |
+|---------|------|
+| us-east-1-prod | 86 |
+| us-west-2-prod | 80 |
+| voice-prod | 49 |
+| chat-prod | 28 |
+| eu-west-2-prod | 6 |
+| schwab-prod | 5 |
+| ap-southeast-2-prod | 4 |
+| ca-central-1-prod | 2 |
+| **Total** | **260** |
+
+**Result:** 256/260 completed. 4 large customers failed.
+
+### Phase 2: Retry Failed Customers (2026-02-08)
+
+4 customers failed due to high conversation volume:
+
+| Customer | Cluster | Failure | Conversations |
+|----------|---------|---------|---------------|
+| marriott | us-east-1-prod | Heartbeat timeout | 1.3M |
+| united-east | us-east-1-prod | Heartbeat timeout | 578K |
+| cvs | us-west-2-prod | DB deadlock (40P01) | 4.2M |
+| oportun | us-west-2-prod | DB deadlock (40P01) | 2.6M |
+
+- **marriott, united-east:** Completed on simple retry.
+- **cvs, oportun:** Continued failing. Tried splitting into 10-day windows — still failed with heartbeat timeout.
+
+### Phase 3: Sequential Single-Day Backfill (2026-02-09 - 2026-02-10)
+
+For cvs and oportun, the full month and even 10-day windows were too large. Running all 31 days in parallel caused DB stress, resulting in external cancellation.
+
+**Solution:** Process one day at a time, sequentially, waiting for completion before starting the next.
+
+Built `rerun_sequential.py` with:
+- JSON-based progress tracking (`sequential_tracking.json`) for resume after interruption
+- Automatic port-forward management
+- Temporal workflow discovery and polling
+- `--status` and `--reset DAY` commands
+
+**Result:** All 31 days completed for both cvs and oportun.
 
 ## Scripts
 
-### `backfill_all.py` - Create jobs for all customers
+| Script | Purpose |
+|--------|---------|
+| `createjob.sh` | Create backfill job for all customers in a cluster |
+| `rerun_failed.sh` | Retry specific failed customers |
+| `rerun_single_day.sh` | Run one day for cvs/oportun |
+| `rerun_all_days.sh` | Run all 31 days in parallel (caused DB stress) |
+| `rerun_sequential.py` | Run days sequentially with tracking and resume |
+| `check_status.py` | Check workflow status via Temporal CLI |
 
-Creates k8s jobs from the cron-batch-reindex-conversations cronjob for all customers across clusters, then collects temporal workflow IDs from logs.
-
-```bash
-# Edit config.json with your clusters and customers first
-
-# Dry run (shows what would be done)
-python3 backfill_all.py --config config.json --dry-run
-
-# Run for all customers (waits for logs)
-python3 backfill_all.py --config config.json
-
-# Run for specific cluster/customer
-python3 backfill_all.py --config config.json --cluster us-east-1-prod --customer sunbit
-
-# Skip log collection (faster, but no workflow IDs)
-python3 backfill_all.py --config config.json --skip-logs
-
-# Custom time range
-python3 backfill_all.py --config config.json \
-    --start-time "2026-01-01T00:00:00Z" \
-    --end-time "2026-02-01T00:00:00Z"
-```
-
-Output: `backfill_tracking.json` with job info including temporal workflow IDs.
-
-### `check_status.py` - Check job status via Temporal
-
-Reads tracking file and queries Temporal for workflow status.
+### Key Usage
 
 ```bash
-# Prerequisites: port-forward to Temporal
-kubectl --context=us-east-1-prod_dev -n temporal port-forward svc/temporal-frontend-headless 7233:7233
-
-# Check all jobs
-python3 check_status.py --tracking backfill_tracking.json
-
-# Check specific cluster
-python3 check_status.py --tracking backfill_tracking.json --cluster us-east-1-prod
-
-# Save updated status
-python3 check_status.py --tracking backfill_tracking.json --output backfill_tracking_updated.json
+# Sequential run with resume support
+python3 rerun_sequential.py              # Run (skips completed days)
+python3 rerun_sequential.py --status     # Show progress
+python3 rerun_sequential.py --reset 15   # Reset a day to re-run
 ```
 
-### `config.json` - Customer configuration
+## Job Tracking
 
-```json
-{
-  "clusters": [
-    {
-      "name": "us-east-1-prod",
-      "customers": [
-        {"id": "sunbit", "profile": "default"},
-        {"id": "customer2", "profile": "default"}
-      ]
-    }
-  ]
-}
-```
+### Temporal CLI
 
-## Job Tracking Options
-
-### Option 1: InternalJobService (gRPC API)
-
-The `InternalJobService` in `cresta/nonpublic/job/internal_job_service.proto` provides APIs to query job status:
-
-- `GetJob` - Get a specific job by name
-- `ListJobs` - List jobs with filters
-
-**Job resource name format:** `customers/{customer_id}/profiles/{profile_id}/jobs/{job_id}`
-
-**Job types relevant:**
-- `JOB_TYPE_REINDEX_CONVERSATIONS = 13`
-- `JOB_TYPE_BACKFILL_SCORECARDS = 1`
-
-**Job states:**
-- `PENDING` - Waiting to start
-- `RUNNING` - Currently executing
-- `SUCCEEDED` - Completed successfully
-- `FAILED` - Failed with error
-- `PARTIALLY_SUCCEEDED` - Completed with issues
-- `CANCELLED` / `CANCELLING` - Cancelled
-- `TIMED_OUT` - Did not complete in time
-
-**Usage with grpcurl:**
 ```bash
-# Get token
-CLUSTER="us-east-1-prod"
-CUSTOMER="sunbit"
-TOKEN=$(cresta-cli cresta-token $CLUSTER $CUSTOMER --json | jq -r .accessToken)
-
-# Get job by name
-grpcurl -H "Authorization: Bearer $TOKEN" \
-  -d '{"name": "customers/sunbit/profiles/default/jobs/JOB_ID"}' \
-  grpc-cresta-api.${CLUSTER}.internal.cresta.ai:443 \
-  cresta.nonpublic.job.InternalJobService/GetJob
-
-# List jobs
-grpcurl -H "Authorization: Bearer $TOKEN" \
-  -d '{"parent": "customers/sunbit/profiles/default", "filters": {"job_type": [{"job_type": 13}]}}' \
-  grpc-cresta-api.${CLUSTER}.internal.cresta.ai:443 \
-  cresta.nonpublic.job.InternalJobService/ListJobs
-```
-
-### Option 2: Temporal CLI
-
-The `temporal` CLI can query workflow status directly from Temporal.
-
-**Installation:**
-```bash
-brew install temporal
-```
-
-**Temporal UI URLs (VPN required):**
-- us-west-2-prod: https://temporal.us-west-2-prod.internal.cresta.ai/
-- us-east-1-prod: https://temporal.us-east-1-prod.internal.cresta.ai/
-- chat-prod: https://temporal.chat-prod.internal.cresta.ai/
-- voice-prod: https://temporal.voice-prod.internal.cresta.ai/
-
-**Port-forward to access Temporal:**
-```bash
+# Port-forward to Temporal
 kubectl --context=${CLUSTER}_dev -n temporal port-forward svc/temporal-frontend-headless 7233:7233
-```
 
-**Query workflows:**
-```bash
-# List workflows by ID prefix
-temporal workflow list --address localhost:7233 --namespace ingestion \
-  --query 'WorkflowId STARTS_WITH "reindexconversations"'
+# List workflows
+temporal workflow list --namespace ingestion --address localhost:7233 \
+  --query 'WorkflowId STARTS_WITH "reindexconversations-cvs"'
 
-# List running workflows only
-temporal workflow list --address localhost:7233 --namespace ingestion \
-  --query 'WorkflowId STARTS_WITH "reindexconversations" AND ExecutionStatus = "Running"'
-
-# List completed workflows
-temporal workflow list --address localhost:7233 --namespace ingestion \
-  --query 'ExecutionStatus = "Completed" AND StartTime > "2026-01-01T00:00:00Z"'
-
-# Describe a specific workflow
-temporal workflow describe --address localhost:7233 --namespace ingestion \
-  --workflow-id "reindexconversations-sunbit-us-east-1-xxxxx"
-
-# Show workflow history/events
-temporal workflow show --address localhost:7233 --namespace ingestion \
+# Describe a workflow
+temporal workflow describe --namespace ingestion --address localhost:7233 \
   --workflow-id "WORKFLOW_ID"
-
-# Output as JSON for scripting
-temporal workflow list --address localhost:7233 --namespace ingestion \
-  -q 'WorkflowId STARTS_WITH "reindexconversations"' \
-  -o json
 ```
 
-### Temporal Query Syntax
+### InternalJobService (gRPC)
 
-**Operators:** `=`, `!=`, `>`, `>=`, `<`, `<=`, `AND`, `OR`, `()`, `BETWEEN ... AND`, `IN`, `STARTS_WITH`
+See `cresta-proto/cresta/nonpublic/job/internal_job_service.proto` for `GetJob` and `ListJobs` APIs.
 
-**Default Search Attributes:**
-- `WorkflowId` - Workflow identifier
-- `WorkflowType` - Type/name of the workflow
-- `ExecutionStatus` - Running, Completed, Failed, Terminated, Canceled, TimedOut
-- `StartTime` - When workflow started (ISO 8601 format)
-- `CloseTime` - When workflow completed
-- `ExecutionTime` - Scheduled execution time
+## Tracking Files
 
-**Example Queries:**
-```sql
--- By workflow ID
-WorkflowId = 'my-workflow-id'
-WorkflowId IN ('id1', 'id2', 'id3')
-WorkflowId STARTS_WITH 'reindexconversations-sunbit'
-
--- By status
-ExecutionStatus = 'Running'
-ExecutionStatus != 'Completed'
-
--- Compound
-WorkflowId STARTS_WITH 'reindex' AND ExecutionStatus = 'Running'
-ExecutionStatus = 'Failed' OR ExecutionStatus = 'TimedOut'
-
--- Time-based
-StartTime > '2026-01-01T00:00:00Z'
-StartTime BETWEEN '2026-01-01T00:00:00Z' AND '2026-01-31T23:59:59Z'
-```
-
-**Note:** Search attribute names are case sensitive.
-
-**Namespaces:**
-- `ingestion` - For both reindex conversations AND backfill scorecards workflows
-  - Task queue `reindex_conversations` - reindex workflows
-  - Task queue `backfill_scorecards` - backfill scorecards workflows
-
-## Creating Jobs
-
-The `createjob.sh` script creates a k8s job from the `cron-batch-reindex-conversations` cronjob template.
-
-**Script:** `backfill-scorecards/createjob.sh`
-
-**Environment variables:**
-- `REINDEX_START_TIME` - Start of time range (ISO 8601)
-- `REINDEX_END_TIME` - End of time range (ISO 8601)
-- `RUN_ONLY_FOR_CUSTOMER_IDS` - Comma-separated customer IDs
-
-**Example:**
-```bash
-CLUSTER=us-east-1-prod_dev
-CUSTOMER=sunbit
-
-kubectl create job --from=cronjob/cron-batch-reindex-conversations \
-  batch-reindex-conversations-${CUSTOMER}-$(date +%s) \
-  -n cresta-cron \
-  --context=${CLUSTER} \
-  --dry-run=client -o yaml > /tmp/reindex-job.yaml
-
-kubectl set env --local -f /tmp/reindex-job.yaml \
-  REINDEX_START_TIME="2026-01-01T00:00:00Z" \
-  REINDEX_END_TIME="2026-02-01T00:00:00Z" \
-  RUN_ONLY_FOR_CUSTOMER_IDS="${CUSTOMER}" \
-  -o yaml > /tmp/reindex-job-with-env.yaml
-
-kubectl apply -f /tmp/reindex-job-with-env.yaml --context=${CLUSTER}
-```
-
-## Log Message Format
-
-From task logs:
-```
-Created reindex conversations job: name=%s, execution_id=%s, cluster=%s
-```
-
-- `name` = Job resource name (for InternalJobService)
-- `execution_id` = Temporal workflow ID
-
-## Workflow ID Format
-
-**Reindex Conversations:**
-```
-reindexconversations-{customerID}-{profileID}-{uuid}
-```
-Example: `reindexconversations-sunbit-us-east-1-a60ef966-adf1-4949-bb94-5eb5cd0f65d6`
-
-**Backfill Scorecards:**
-```
-backfillscorecards-{customerID}-{profileID}-{uuid}
-```
-Example: `backfillscorecards-sunbit-us-east-1-b71ef123-cde2-5050-cc95-6fc6de0f76e7`
-
-**Query examples:**
-```bash
-# All reindex workflows for a customer
-temporal workflow list --namespace ingestion \
-  --query 'WorkflowId STARTS_WITH "reindexconversations-sunbit"'
-
-# All backfill scorecards workflows for a customer
-temporal workflow list --namespace ingestion \
-  --query 'WorkflowId STARTS_WITH "backfillscorecards-sunbit"'
-
-# All running workflows for a customer
-temporal workflow list --namespace ingestion \
-  --query 'WorkflowId STARTS_WITH "reindexconversations-sunbit" AND ExecutionStatus = "Running"'
-```
+| File | Contents |
+|------|----------|
+| `backfill_tracking.json` | 260 workflow IDs from initial bulk backfill |
+| `sequential_tracking.json` | Day-by-day progress for cvs/oportun |
 
 ## Clusters
 
-| Cluster | Temporal UI |
-|---------|-------------|
-| us-east-1-prod | temporal.us-east-1-prod.internal.cresta.ai |
-| us-west-2-prod | temporal.us-west-2-prod.internal.cresta.ai |
-| chat-prod | temporal.chat-prod.internal.cresta.ai |
-| voice-prod | temporal.voice-prod.internal.cresta.ai |
+| Cluster | Temporal Namespace |
+|---------|-------------------|
+| us-east-1-prod | ingestion |
+| us-west-2-prod | ingestion |
+| chat-prod | ingestion |
+| voice-prod | ingestion |
+| ap-southeast-2-prod | ingestion |
+| ca-central-1-prod | ingestion |
+| eu-west-2-prod | ingestion |
+| schwab-prod | ingestion |
+
+## Lessons Learned
+
+1. **Large customers need smaller time windows.** CVS (4.2M conversations/month) and oportun (2.6M) can't process a full month in one workflow — heartbeat timeout or DB deadlock.
+2. **Don't run all days in parallel.** 60 concurrent reindex workflows caused enough DB stress that operations canceled them.
+3. **Sequential with tracking is the right approach.** One day at a time with JSON-based progress tracking allows safe resume after VPN drops, timeouts, or interruptions.
+4. **Temporal namespace is `ingestion`**, not `cresta` or `jobmanagement`.
+
+## Log History
+
+| Date | Summary |
+|------|---------|
+| 2026-02-07 | Initial backfill: 260 jobs across 8 clusters |
+| 2026-02-08 | Status check: 256/260 done, 4 failed, retried |
+| 2026-02-09 | Split approaches for cvs/oportun, started sequential |
+| 2026-02-10 | Sequential run completed: all 31 days done |
 
 ## References
 
-- Temporal README: `go-servers/temporal/README.md`
-- Job proto: `cresta-proto/cresta/v1/job/job.proto`
-- InternalJobService proto: `cresta-proto/cresta/nonpublic/job/internal_job_service.proto`
-- Reindex conversations proto: `cresta-proto/cresta/nonpublic/temporal/ingestion/reindex_conversations.proto`
-
-## TODO
-
-- [x] Determine which namespace backfill scorecards workflows use (confirmed: `ingestion`)
-- [x] Create tracking scripts for all customers/clusters (`backfill_all.py`, `check_status.py`)
-- [x] Document createjob.sh usage
-- [x] Test temporal CLI with port-forward once VPN/network is working
-- [ ] Populate config.json with actual customer list per cluster
+- `go-servers/cron/task-runner/tasks/batch-reindex-conversations/README.md`
+- `cresta-proto/cresta/nonpublic/job/internal_job_service.proto`
+- `cresta-proto/cresta/nonpublic/temporal/ingestion/reindex_conversations.proto`
