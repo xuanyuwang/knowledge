@@ -21,6 +21,7 @@ Personal knowledge management repository organized **by project**. Each folder a
 ### Special Folders (not projects)
 - `.git/`, `.claude/`, `.cursor/` - System folders
 - `templates/` - Templates for new projects and logs
+- `weekly-summary/` - Weekly progress/problem/plan summaries
 
 ### Current Projects
 
@@ -39,6 +40,7 @@ Personal knowledge management repository organized **by project**. Each folder a
 | `virtual-group-filter/` | Virtual group filter |
 | `2025-annual-review/` | 2025 annual review |
 | `agent-stats-active-days-fix/` | Agent Leaderboard Active Days N/A bug fix (FULL OUTER JOIN) |
+| `convi-6260-team-leaderboard/` | Hilton team leaderboard not breaking out sub-teams (missing child group expansion) |
 
 ## Workflow: Updating a Project
 
