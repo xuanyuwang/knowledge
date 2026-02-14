@@ -1,7 +1,7 @@
 # User Filter Consolidation — Detailed Implementation Plan
 
 **Created**: 2026-02-09
-**Updated**: 2026-02-09
+**Updated**: 2026-02-13
 
 ---
 
@@ -109,6 +109,7 @@ Add test cases:
 - B-GS-2: Group types handled separately (TEAM vs DYNAMIC)
 - B-GS-3: Direct membership controls group→user expansion (add two-direction test)
 - B-GS-4: Unparseable group names silently skipped
+- B-GH-4: Child teams must appear in GroupsToAggregate — **this will document the current bug in `ParseUserFilterForAnalytics`** (known Divergence 10: `FetchGroups` does not expand child groups). Test asserts the current (broken) behavior where only the parent group appears in `GroupsToAggregate`.
 - B-DU-1/B-DU-2: Deactivated users excluded/included (complex scenarios: deactivated + ACL + groups)
 - B-GM-1: Both direct and indirect memberships tracked in output maps
 - B-GM-3: Only TEAM groups in mappings
@@ -276,6 +277,8 @@ Implement:
 Move/adapt from `common_user_filter.go`:
 - `buildUserGroupMappings()` — split into two maps (direct + all), remove hasAgentAsGroupByKey coupling
 
+**Critical fix**: Child group expansion (Divergence 10 / B-GH-4). The current `buildUserGroupMappings` uses `FetchGroups` which only returns explicitly-requested groups — child teams are not discovered. The unified implementation must expand child groups from parent group memberships (matching the old path's `ListGroups` behavior). Without this, team leaderboards for parent teams only show one row. See CONVI-6260.
+
 **Size**: ~200-300 lines
 
 #### PR 3.4: Retarget behavioral tests to new implementation
@@ -285,7 +288,7 @@ Move/adapt from `common_user_filter.go`:
 Create a new test suite that:
 - Uses the same test scenarios from Phase 1
 - Targets `Parser.Parse()` instead of `ParseUserFilterForAnalytics`
-- All tests should pass (including B-SF-3 UNION test that previously failed)
+- All tests should pass (including B-SF-3 UNION test that previously failed, and B-GH-4 child group expansion test that previously documented the bug)
 
 **Size**: ~500-800 lines (comprehensive test suite)
 

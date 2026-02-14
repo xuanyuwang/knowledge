@@ -1,7 +1,7 @@
 # User Filter Behavioral Standard
 
 **Created**: 2026-02-09
-**Updated**: 2026-02-09
+**Updated**: 2026-02-13
 **Purpose**: Define the expected behaviors of user filtering across all Insights and Coaching APIs. This is implementation-agnostic — it describes *what* the user filter should do, not *how*.
 
 **Context**: User filter logic is currently spread across three places:
@@ -579,11 +579,25 @@ After extracting child teams, the full group list is deduplicated by group Name.
 
 > **Implementation evidence**: `ListGroups` return statement — `fnutils.DedupeBy(groupResults, func(g *userpb.Group) string { return g.GetName() })`.
 
-### B-GH-4: Cross-Profile Group Safety
+### B-GH-4: Child Teams Must Appear in GroupsToAggregate
+
+When a parent team is selected as a group filter for a **team leaderboard** (group-by-group), the child teams of that parent must appear in `GroupsToAggregate` (or `FinalGroups` in the proposed output). Otherwise, the leaderboard shows a single row for the parent team instead of breaking out sub-teams.
+
+The old path (`ListUsersMappedToGroups`) achieves this via `ListGroups` which sets `IncludeGroupMemberships: true` and iterates the parent group's members to discover child groups (see B-GH-1). The child groups are appended to the group list, so `filterTeamGroupNames` includes both parent and children. When iterating user memberships, the `slices.Contains(filterTeamGroupNames, groupName)` check passes for child groups, allowing them into `groupsToAggregate`.
+
+**Note**: The current `ParseUserFilterForAnalytics` does NOT expand child groups. Its `buildUserGroupMappings` uses `FetchGroups` which returns only the explicitly-requested group IDs — child groups are not discovered. This is a known bug (see [Divergence 10](#divergence-10-child-group-expansion-in-groupstoaggregate)). The unified implementation must match the old path's behavior.
+
+> **Bug evidence**: CONVI-6260 — Hilton's team leaderboard showed only parent team as a single row instead of sub-teams.
+> **Implementation evidence (old path)**: `ListGroups` at lines 745-758 — child group expansion. `ListUsersMappedToGroups` at line 865 — `slices.Contains(filterTeamGroupNames, groupName)` passes for children.
+> **Implementation evidence (new path, buggy)**: `buildUserGroupMappings` at line 395 — `FetchGroups` returns only requested groups, no children. Line 433 — `slices.Contains(groupNames, groupName)` fails for child groups.
+
+### B-GH-5: Cross-Profile Group Safety
 
 Groups are always fetched scoped to a specific customer profile, even when no groups are selected. This prevents groups from one profile leaking into another.
 
 > **Implementation evidence**: `ListUsersMappedToGroups` comment at lines 793-798 — "we noticed a group in holidayinn-transfers-voice owning other holidayinn profiles' agents."
+
+**Note**: This was previously numbered B-GH-4 before B-GH-4 (child teams in GroupsToAggregate) was added.
 
 ---
 
@@ -859,6 +873,15 @@ These are cases where the two existing implementations (`Parse` and `ParseUserFi
 
 > **Decision**: Remove `hasAgentAsGroupByKey` from the user filter. See [Section 19](#19-proposal-remove-hasagentasgroupbykey-from-user-filter).
 
+### Divergence 10: Child Group Expansion in GroupsToAggregate
+
+| | ParseUserFilterForAnalytics / buildUserGroupMappings | ListUsersMappedToGroups (old pattern) |
+|-|------------------------------------------------------|--------------------------------------|
+| **Behavior** | `FetchGroups` returns only the explicitly-requested group IDs. **No child group expansion.** Sub-teams are missing from `groupsToAggregate`. | `ListGroups` sets `IncludeGroupMemberships: true`, iterates parent group's members to discover child groups. Sub-teams are included in `filterTeamGroupNames` and pass the `slices.Contains` check. |
+| **Impact** | Team leaderboard for a parent team shows only one row (the parent) instead of rows for each sub-team. **Active production bug** (CONVI-6260). |
+| **Code evidence** | `buildUserGroupMappings` line 395: `FetchGroups(ctx, customerID, profileID, filter, ...)` — filter contains only parent group IDs. Line 433: `slices.Contains(groupNames, groupName)` fails for child group names not in the list. | `ListGroups` lines 745-758: iterates `g.GetMembers()`, appends child groups. Line 865: `slices.Contains(filterTeamGroupNames, groupName)` passes for children. |
+| **Decision** | **Expand child groups.** The unified implementation must match the old path's behavior: discover child teams from parent group memberships and include them in the group list used for the `slices.Contains` gate. See B-GH-4. |
+
 ---
 
 ## 19. Proposal: Remove `hasAgentAsGroupByKey` from User Filter
@@ -1104,7 +1127,8 @@ These behaviors were discovered from implementation and caller code review only:
 | B-GS-4: Unparseable group names silently skipped during expansion | `filterUsersByGroups` line 323 |
 | B-GM-5: AllGroups unfiltered; callers use FinalGroups for subset | `ListUsersMappedToGroups` line 863 |
 | B-GM-6: No membership data in group output (moot with LiteGroup) | Caller code in `retrieve_agent_stats.go` |
-| B-GH-1–4: Group hierarchy and child team expansion | `ListGroups` lines 745-758 |
+| B-GH-1–3: Group hierarchy and child team expansion | `ListGroups` lines 745-758 |
+| B-GH-4: Child teams must appear in GroupsToAggregate (bug in `ParseUserFilterForAnalytics`) | CONVI-6260: `buildUserGroupMappings` line 395, `FetchGroups` missing child expansion |
 | B-CC-1: Results discarded when not grouping by Agent/Group | `retrieve_agent_stats.go` lines 83-88 |
 | B-CC-2: Missing user-to-groups map entries cause stats to be dropped | Caller response construction code |
 | B-CC-4: Coaching callers only use user IDs | Coaching action files |
