@@ -1,7 +1,7 @@
 # CONVI-6260: Team Leaderboard Not Breaking Out Sub-Teams
 
 **Created:** 2026-02-13
-**Updated:** 2026-02-13
+**Updated:** 2026-02-17
 
 ## Overview
 
@@ -20,3 +20,4 @@ Hilton reports that when filtering Performance & Assistance Insights by a parent
 | Date | Summary |
 |------|---------|
 | 2026-02-13 | Investigation, root cause identified, fix implemented, PR #25733 created |
+| 2026-02-17 | PR review check: comment data not accessible; added pr-25733-review.md for manual verification |
