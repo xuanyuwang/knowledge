@@ -3,17 +3,36 @@
 **Created:** 2026-02-17  
 **Updated:** 2026-02-19
 
-## Quintile definition (score bands, 0–100 scale)
+## Quintile definition — TRUE PERCENTILE-BASED (revised)
 
-| Quintile | Rank | Score range (inclusive) | Note |
-|----------|------|--------------------------|------|
-| 1 (top)  | 1    | 80 and above             | Best performers |
-| 2        | 2    | 60 – 79                  | |
-| 3        | 3    | 40 – 59                  | |
-| 4        | 4    | 20 – 39                  | |
-| 5 (bottom) | 5  | 19 and below             | Lowest performers |
+~~Previous approach (score bands): Fixed ranges 80+→Q1, 60–79→Q2, etc. **DEPRECATED** — see below.~~
 
-**Backend note:** The API stores `score` as **0–1** (see proto: "number between 0 and 1"). When computing quintile in BE, use the same bands on a 0–1 scale: 0.8, 0.6, 0.4, 0.2 (e.g. score >= 0.8 → quintile 1; 0.6 <= score < 0.8 → 2; etc.).
+### Why score bands don't work
+
+QA scores are **absolute** (weighted average of normalized criterion scores, 0–1). They are NOT percentiles. This means:
+- If all agents score 85%+, they'd ALL be Q1 under score bands — no differentiation
+- Score distributions are often skewed (many agents cluster in 70–90% range)
+- The feature becomes useless for customers with consistently high-scoring agents
+
+### New approach: percentile-based quintile (true quintile)
+
+Rank all agents by score (descending), divide into 5 approximately equal groups:
+- **Q1** = top 20% of agents (highest scores)
+- **Q2** = next 20%
+- **Q3** = middle 20%
+- **Q4** = next 20%
+- **Q5** = bottom 20% of agents (lowest scores)
+
+**Algorithm:** For N agents sorted descending by score, distribute evenly: each quintile gets `floor(N/5)` agents, with the first `N % 5` quintiles getting one extra. This ensures consecutive quintile filling (no gaps) and approximately equal group sizes.
+
+**Grouping:** Quintile is computed **within each peer group** (same time range, criterion, team, group). If the response has scores grouped by (AGENT, TIME_RANGE), agents are ranked within each time range independently.
+
+**Edge cases:**
+- N < 5 agents: first N quintiles get 1 agent each, remaining quintiles are empty (e.g., 2 agents → Q1 and Q2)
+- N = 0: nothing to do
+- Ties: agents with the same score may end up in different quintiles at boundaries (acceptable — same as any ranking system)
+
+**Precedent:** The existing agent tier system already uses rank-based partitioning (`PartitionUsingVolumeAndMetric` with cutoffs `[0.25, 0.75]`), so percentile-based grouping is a proven pattern in this codebase.
 
 ---
 
@@ -28,85 +47,62 @@
   - `QuintileRank quintile_rank = 7 [(google.api.field_behavior) = OUTPUT_ONLY];`
 - Regenerate Go (and any other languages) for the analytics package.
 
-**Enum values:**
-| Value | Number | Score range |
-|-------|--------|-------------|
+**Enum values** (unchanged — enum represents rank, not score band):
+| Value | Number | Meaning |
+|-------|--------|---------|
 | QUINTILE_RANK_UNSPECIFIED | 0 | Not computed |
-| QUINTILE_RANK_1 | 1 | 80+ (best) |
-| QUINTILE_RANK_2 | 2 | 60–79 |
-| QUINTILE_RANK_3 | 3 | 40–59 |
-| QUINTILE_RANK_4 | 4 | 20–39 |
-| QUINTILE_RANK_5 | 5 | 0–19 (lowest) |
+| QUINTILE_RANK_1 | 1 | Top 20% (best) |
+| QUINTILE_RANK_2 | 2 | 60th–80th percentile |
+| QUINTILE_RANK_3 | 3 | 40th–60th percentile |
+| QUINTILE_RANK_4 | 4 | 20th–40th percentile |
+| QUINTILE_RANK_5 | 5 | Bottom 20% (lowest) |
 
-### 1.2 Backend: quintile from score (go-servers)
+### 1.2 Backend: percentile-based quintile assignment (go-servers) — REVISED
 
-**Logic:** Pure function: given a score (float32, 0–1), return `QuintileRank` enum value.
+~~Previous: `ScoreToQuintileRank(score)` using fixed score bands. **Removed.**~~
 
-- **File (new or in existing util):** e.g. `insights-server/internal/analyticsimpl/quintile.go` or next to `retrieve_qa_score_stats.go`.
+**New logic:** Rank all per-agent scores within each peer group, divide into 5 equal groups.
 
-**Function signature and logic:**
+**File:** `insights-server/internal/analyticsimpl/retrieve_qa_score_stats.go`
+
+**Rewritten `setQuintileRankForPerAgentScores`:**
+1. Collect all per-agent scores (where `GroupedBy.User != nil`)
+2. Group by non-agent dimensions (time range, criterion, team, group) to form peer groups
+3. Within each peer group: sort descending by score, distribute into quintiles evenly
+4. Distribution: each quintile gets `floor(N/5)` agents; first `N % 5` quintiles get one extra
 
 ```go
-// ScoreToQuintileRank maps a QA score (0-1) to QuintileRank enum per product bands:
-// QUINTILE_RANK_1: 80+ (0.8+), QUINTILE_RANK_2: 60-79 (0.6-0.8),
-// QUINTILE_RANK_3: 40-59 (0.4-0.6), QUINTILE_RANK_4: 20-39 (0.2-0.4),
-// QUINTILE_RANK_5: 0-19 (<0.2).
-func ScoreToQuintileRank(score float32) analyticspb.QuintileRank {
-    switch {
-    case score >= 0.8:  return analyticspb.QuintileRank_QUINTILE_RANK_1
-    case score >= 0.6:  return analyticspb.QuintileRank_QUINTILE_RANK_2
-    case score >= 0.4:  return analyticspb.QuintileRank_QUINTILE_RANK_3
-    case score >= 0.2:  return analyticspb.QuintileRank_QUINTILE_RANK_4
-    default:            return analyticspb.QuintileRank_QUINTILE_RANK_5
-    }
+func setQuintileRankForPerAgentScores(response *analyticspb.RetrieveQAScoreStatsResponse) {
+    // 1. Collect per-agent scores, grouped by non-agent dimensions
+    // 2. Within each group, sort descending by score
+    // 3. Assign quintile = position-based rank (top 20% = Q1, etc.)
 }
 ```
 
-- Handle NaN/negative by treating as bottom band (QUINTILE_RANK_5) if desired, or document that callers only pass valid 0–1 scores.
-- Add unit tests for boundaries: 0, 0.19, 0.2, 0.39, 0.4, 0.59, 0.6, 0.79, 0.8, 1.0.
+**`ScoreToQuintileRank` removed** — no longer needed since quintile is computed from rank, not from individual score value.
 
-### 1.3 Populate quintile_rank when returning per-agent scores
+### 1.3 Call sites (unchanged)
 
-**Where:** Any code path that builds a `RetrieveQAScoreStatsResponse` with **per-agent** scores (group by AGENT). Each `QAScore` in the response has `GroupedBy` and `Score`; after the score is final, set `GroupedBy.QuintileRank = ScoreToQuintileRank(score.Score)`.
+- **retrieve_qa_score_stats.go:** `setQuintileRankForPerAgentScores(result)` in the `QA_ATTRIBUTE_TYPE_AGENT` path
+- **retrieve_qa_score_stats_clickhouse.go:** `setQuintileRankForPerAgentScores(resp)` in `convertCHResponseToQaScoreStatsResponse`
 
-**Files to touch:**
+### 1.4 Tests (go-servers) — REVISED
 
-1. **`insights-server/internal/analyticsimpl/retrieve_qa_score_stats.go`**
-   - After building per-user (per-agent) scores and before returning:
-     - When appending to the response scores (e.g. in the path that returns `perUserResp` or equivalent), for each score that has `GroupedBy.User` set, set `GroupedBy.QuintileRank = ScoreToQuintileRank(score.Score)`.
-   - Likely locations (to be confirmed by grep):
-     - Where `perUserResp` is built and returned (e.g. after `retrieveQAScoreStatsPerUser...`).
-     - In `appendGroupMemberships` if it copies scores (then set quintile on each score’s GroupedBy).
-     - In `convertRowsPerUserToPerGroupQAScoreStatsResponse` we are converting to per-group; per-agent response is the one we need to tag. So the main place is: **before** any aggregation that drops per-agent granularity, iterate over `perUserResp.QaScoreResult.Scores` and set `score.GroupedBy.QuintileRank = ScoreToQuintileRank(score.Score)`.
-   - Ensure we only set quintile when `GroupedBy.User != nil` (per-agent row).
+- **Remove `TestScoreToQuintileRank`** (function removed)
+- **New: `TestSetQuintileRankPercentileBased`:** 10 agents with different scores → verify top 2 are Q1, next 2 Q2, etc.
+- **New: `TestSetQuintileRankSmallGroup`:** 3 agents → Q1, Q2, Q3 (no gaps)
+- **New: `TestSetQuintileRankGroupedByDimension`:** Scores grouped by (agent, criterion) → quintiles computed within each criterion independently
+- **Keep: `TestSetQuintileRankNilSafety`** and **`TestAggregateTopAgentsResponse_NoQuintileRankLeakage`**
+- **Update ClickHouse tests:** `TestConvertCHResponseSetsQuintileRank` to verify percentile-based assignment
 
-2. **`insights-server/internal/analyticsimpl/retrieve_qa_score_stats_clickhouse.go`**
-   - If the ClickHouse path also returns per-agent scores (scores with `GroupedBy.User`), after building each score set `GroupedBy.QuintileRank = ScoreToQuintileRank(score.Score)`.
-   - Search for where `QAScore` or `QAScoreGroupBy` is filled and add the same assignment.
+### 1.5 BE checklist (revised)
 
-**Edge cases:**
-
-- **NA / no score:** If an agent has no score or a special “NA” sentinel, either leave `quintile_rank` unset (0) or set to 0 and let FE treat 0 as “N/A”. Prefer 0 = not set for clarity.
-- **Grouped by time/criterion:** When the same agent appears in multiple rows (e.g. per time range or per criterion), each row has its own score; compute quintile per row from that row’s score. No cross-row aggregation.
-
-**Concrete insertion points:**
-- **retrieve_qa_score_stats.go:** Add `func setQuintileRankForPerAgentScores(response *analyticspb.RetrieveQAScoreStatsResponse)` that sets `score.GroupedBy.QuintileRank = ScoreToQuintileRank(score.Score)` for each score with `GroupedBy.User != nil`. In `retrieveQAScoreStatsInternal`, in the block `if postgres.HasEnumValue(groupByFlag, analyticspb.QAAttributeType_QA_ATTRIBUTE_TYPE_AGENT)`, call `setQuintileRankForPerAgentScores(result)` then `return appendGroupMemberships(result, ...)`.
-- **retrieve_qa_score_stats_clickhouse.go:** In `convertCHResponseToQaScoreStatsResponse`, inside the loop over `rows`, after computing `groupedBy` and `scoreVal`, if `groupedBy.User != nil` set `groupedBy.QuintileRank = ScoreToQuintileRank(scoreVal)` before appending the score to `scores`.
-
-### 1.4 Tests (go-servers)
-
-- **Unit tests for `ScoreToQuintileRank`:** All boundaries above; and one or two negative/NaN if we define behavior.
-- **Integration / table-driven test:** In `retrieve_qa_score_stats_test.go` (or equivalent), add a case that requests per-agent stats and asserts that returned scores have `quintile_rank` set and that it matches the band for the score (e.g. score 0.85 → quintile 1, 0.5 → 3).
-
-### 1.5 BE checklist (summary)
-
-| Step | Task | Owner |
+| Step | Task | Status |
 |------|------|--------|
-| 1.1 | Add `QuintileRank` enum + `quintile_rank` field to `QAScoreGroupBy` in cresta-proto; regenerate | BE |
-| 1.2 | Implement `ScoreToQuintileRank(score float32) analyticspb.QuintileRank` + unit tests | BE |
-| 1.3 | In retrieve_qa_score_stats.go, set `GroupedBy.QuintileRank` for every per-agent score before return | BE |
-| 1.4 | Same for retrieve_qa_score_stats_clickhouse.go if it returns per-agent scores | BE |
-| 1.5 | Add test(s) that per-agent response has correct quintile_rank for given scores | BE |
+| 1.1 | Proto: `QuintileRank` enum + `quintile_rank` field | ✅ Merged (#7874) |
+| 1.2 | Remove `ScoreToQuintileRank`; rewrite `setQuintileRankForPerAgentScores` as percentile-based | Pending |
+| 1.3 | Call sites in Postgres + ClickHouse paths | ✅ Already wired |
+| 1.4 | Update tests for percentile-based logic | Pending |
 
 ---
 
