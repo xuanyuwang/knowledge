@@ -110,36 +110,134 @@ func ScoreToQuintileRank(score float32) analyticspb.QuintileRank {
 
 ---
 
-## Phase 2: Frontend (director) – Agent Leaderboard ✅
+## Phase 2: Frontend (director)
 
-**Scope:** Agent Leaderboard only (first pass). Performance page + Coaching Hub deferred.
+Full requirements in `requirements.md`. Detailed investigation in `fe-investigation.md`.
 
-### 2.1 Internal type (`apiTypes.ts`) ✅
-- Added `QuintileRank` import from `@cresta/web-client`
-- Added `quintileRank?: QuintileRank` to `QAScoreGroupBy` interface
+### 2.0 Type layer ✅
+- `apiTypes.ts`: Added `QuintileRank` import + `quintileRank?: QuintileRank` to `QAScoreGroupBy`
+- `transformersQAI.ts`: Mapped `quintileRank: groupedBy?.quintileRank`
+- `LeaderboardRow` in `types.ts`: Added `quintileRank?: QuintileRank`
+- `useVisibleColumnsForLeaderboards.tsx`: Added `'quintileRank'` to `alwaysVisible`
 
-### 2.2 Transformer (`transformersQAI.ts`) ✅
-- Mapped `quintileRank: groupedBy?.quintileRank` in `transformQAScoreGroupBy`
+### 2.1 Shared QuintileRankIcon component (not started)
+- New component: gold/silver/bronze icon for Q1/Q2/Q3; no icon for Q4/Q5
+- Optional tooltip prop (for Coaching Hub: "Xth quintile based on last 7 days")
+- Location: `components/insights/shared/QuintileRankIcon.tsx` or `components/qa/shared/QuintileRankIcon.tsx`
 
-### 2.3 Leaderboard row type (`types.ts`) ✅
-- Added `quintileRank?: QuintileRank` to `LeaderboardRow` (propagates to `AgentLeaderboardRow` / `TeamLeaderboardRow`)
+### 2.2 Agent Leaderboard (partially done — needs corrections)
 
-### 2.4 Row assignment (`AgentLeaderboard.tsx`) ✅
-- `row.quintileRank = groupResult.groupedBy?.quintileRank` in the QA score loop
+**Column:**
+- ✅ Row assignment: `row.quintileRank = groupResult.groupedBy?.quintileRank`
+- ⚠️ **Position wrong**: Currently after Performance group → move to **after Live Assist group** (before Outcome Metrics)
+- ⚠️ **Display wrong**: Currently "Q1"–"Q5" → change to plain number **1–5**
 
-### 2.5 Always-visible column (`useVisibleColumnsForLeaderboards.tsx`) ✅
-- Added `'quintileRank'` to `alwaysVisible` array
+**Icon on name:**
+- Not started. Add `QuintileRankIcon` inline in the Name column cell and in the tooltip.
 
-### 2.6 Column definition (`AgentLeaderboard.tsx`) ✅
-- Standalone column after the Performance column group
-- Header: "Quintile" (`t('columns.quintile-rank', 'Quintile')`)
-- Display: `Q1`–`Q5` (plain text) via `QuintileRankNumber[value]`; `–` for unspecified/missing
-- Fixed width: 80px
+### 2.3 Agent Leaderboard per metric (not started)
+- Add `quintileRank?: QuintileRank` to `LeaderboardByMetricTableData` in `types.ts`
+- Thread `quintileRank` from QA score data into rows via `useLeaderboardByMetricData`
+- Add `QuintileRankIcon` inline in the Name column cell (`AgentLeaderboardByMetric.tsx`)
 
-### Phase 2 follow-up (not yet started)
-- **Performance page:** Add quintile column to `LeaderboardByScorecardTemplateItem` and `LeaderboardPerCriterion` agent tables
-- **Coaching Hub:** Add quintile icon/badge to agent lists
-- **Colored badges:** Replace plain text Q1–Q5 with colored badges (5-step palette)
+### 2.4 Performance → Leaderboard by criteria — 2nd table (not started)
+
+**Component:** `LeaderboardByScorecardTemplateItem.tsx`
+
+- Add `quintileRank?: QuintileRank` to `LeaderboardByScorecardTemplateItemRow` (in local `types.ts`)
+- Extract `quintileRank` from `groupedBy` in `createAllRows()` (`useLeaderboardByScorecardTemplateData.tsx`)
+- Add "Quintile Rank" column inside sticky group, after "Average Performance" (~120px). Update `stickyHeadersWidth`.
+- Add `QuintileRankIcon` inline in the Name column cell + tooltip
+
+### 2.5 Performance → Leaderboard per criteria — 3rd table (not started)
+
+**Component:** `LeaderboardPerCriterion.tsx` + `useLeaderboardPerCriterionColumns.tsx`
+
+- Add `quintileRank?: QuintileRank` to `LeaderboardPerCriterionRow`
+- Extract `quintileRank` from `groupedBy` when building rows (~lines 177–204)
+- Add "Quintile Rank" column as last `static: true` column (after Average). Uses `GridTable` (not `DirectorTable`).
+- Add `QuintileRankIcon` inline in the Name column cell + tooltip
+
+### 2.6 Coaching Hub → Recent Coaching Activities (not started)
+
+**Component:** `RecentCoachingActivities.tsx` → `AgentDetailsCell.tsx`
+
+- Thread agent-level quintile into `AgentCoachingOverviewWithCriteriaInfo` or pass separately. The component already fetches QA stats into `qaStatsMap` — can extract per-agent quintile from there.
+- Add `QuintileRankIcon` in `AgentDetailsCell.tsx` next to agent name
+- Tooltip: "Xth quintile based on last 7 days"
+- **Note:** Tooltip implies quintile is always based on last 7 days regardless of date filter — verify with product.
+
+### 2.7 Coaching Plan page
+- TBD per requirements
+
+### 2.8 Feature flag (not started — can be done in parallel with other FE work)
+
+Guard all quintile UI behind a feature flag. When off, no quintile column or icon appears anywhere.
+
+**Step 1: Add flag in config repo** (`~/repos/config`)
+
+**File:** `src/CustomerConfig.ts` — add to the `featureFlags` object (alphabetically sorted):
+
+```typescript
+/**
+ * Enables quintile rank column and icons on agent names in Performance, Leaderboard, and Coaching Hub pages.
+ * @see Director, Insights
+ */
+readonly enableQuintileRank?: boolean;
+```
+
+Then regenerate schemas:
+```bash
+yarn gen:all
+```
+
+Or use the helper script:
+```bash
+yarn add-director-flag "enableQuintileRank" "Enables quintile rank column and icons on agent names in Performance, Leaderboard, and Coaching Hub pages." "Director, Insights"
+```
+
+**Files changed in config repo:**
+1. `src/CustomerConfig.ts` — add flag definition (manual)
+2. `json-schema/CustomerPublicConfigYaml.json` — auto-generated
+3. `json-schema/V3FrontendConfig.json` — auto-generated
+4. `json-schema/V3FrontendConfigYaml.json` — auto-generated
+5. `json-schema/HermesCustomerConfigYaml.json` — auto-generated
+6. `json-schema/WalterCustomerConfigYaml.json` — auto-generated
+
+**Step 2: Regenerate types in director**
+
+After the config PR lands and the JSON schema is published to CDN:
+```bash
+cd packages/director-app && yarn generate:feature-flags-types
+```
+
+This updates `packages/director-app/src/types/frontendFeatureFlags.ts` with the new `enableQuintileRank` in the `SchemaFeatureFlag` union type.
+
+**Alternative (for immediate development):** Add to `localFeatureFlags.ts` as a `LocalFeatureFlag` first, then migrate to schema-based after config PR lands.
+
+**Step 3: Use the flag in director**
+
+In each component that renders quintile UI, read the flag and gate rendering:
+
+```typescript
+const enableQuintileRank = useFeatureFlag('enableQuintileRank');
+
+// Gate column visibility
+if (enableQuintileRank && visibleColumns.has('quintileRank')) {
+  // ... add quintile column
+}
+
+// Gate icon rendering
+{enableQuintileRank && <QuintileRankIcon quintileRank={row.quintileRank} />}
+```
+
+**Components to gate:**
+- `AgentLeaderboard.tsx` — column + icon on name
+- `AgentLeaderboardByMetric.tsx` — icon on name
+- `LeaderboardByScorecardTemplateItem.tsx` — column + icon on name
+- `LeaderboardPerCriterion.tsx` / `useLeaderboardPerCriterionColumns.tsx` — column + icon on name
+- `AgentDetailsCell.tsx` (Coaching Hub) — icon on name
+- `useVisibleColumnsForLeaderboards.tsx` — conditionally add `'quintileRank'` to `alwaysVisible`
 
 ---
 
