@@ -55,28 +55,15 @@ Validates existing PRs and in-progress work against `requirements.md`.
 | **ClickHouse path** | ⚠️ **MISSING** | `retrieve_qa_score_stats_clickhouse.go` builds per-agent scores (`GroupedBy.User` set at line 719 for `QA_ATTRIBUTE_TYPE_AGENT`) but never sets `QuintileRank`. See issue #1 below. |
 | Unrelated change | ℹ️ Minor | `voice-integration/script/translator-tts-sim/cmd/sim.go` — `outBase` → `absOutBase` rename. From an earlier lint-fix commit on the branch (`9fa75e6`). Harmless but unrelated to quintiles. |
 
-### Issue #1: ClickHouse path missing quintile rank (medium severity)
+### Issue #1: ClickHouse path missing quintile rank — FIXED ✅
 
-**File:** `insights-server/internal/analyticsimpl/retrieve_qa_score_stats_clickhouse.go`
+**Fixed in commit `fb4e533`** (pushed to `feature/agent-quintiles`).
 
-In `convertCHResponseToQaScoreStatsResponse` (line 677–700), per-agent scores are assembled:
-```go
-scores = append(scores, &analyticspb.QAScore{
-    GroupedBy: convertQaGroupByForQaScoreStatsRow(row, customerID, groupByAttributes, usernameToUserMap),
-    Score:     safeDivideFloat(row.weightedPercentageSum, row.weightSum),
-    ...
-})
-```
+**What was wrong:** `convertCHResponseToQaScoreStatsResponse` built per-agent scores but never called `setQuintileRankForPerAgentScores`.
 
-`convertQaGroupByForQaScoreStatsRow` sets `GroupedBy.User` when the attribute is `QA_ATTRIBUTE_TYPE_AGENT` (line 718–719) but does NOT set `QuintileRank`.
-
-**Impact:** Customers using the ClickHouse analytics path will get `QUINTILE_RANK_UNSPECIFIED` for all agents. FE will show "–" in the quintile column for these customers.
-
-**Fix options:**
-1. **Preferred:** After the loop that builds `scores` in `convertCHResponseToQaScoreStatsResponse`, call `setQuintileRankForPerAgentScores(response)` (same function already written for the Postgres path).
-2. Alternatively, set `QuintileRank` inline in `convertQaGroupByForQaScoreStatsRow` when the attribute is AGENT — but this requires passing the score value into that function.
-
-**Recommendation:** Add `setQuintileRankForPerAgentScores(resp)` call in the ClickHouse path before returning. Add a test for the ClickHouse path if integration tests exist.
+**Fix:** Added `setQuintileRankForPerAgentScores(resp)` call before returning in `convertCHResponseToQaScoreStatsResponse`. Added 2 tests:
+- `TestConvertCHResponseSetsQuintileRank`: 5 agents across all quintile bands
+- `TestConvertCHResponseNoQuintileForNonAgentRows`: criterion-only rows stay UNSPECIFIED
 
 ---
 
@@ -149,13 +136,13 @@ Feature flag `enableQuintileRank` needs to be added to `config/src/CustomerConfi
 | PR/Work | Verdict | Action Items |
 |---------|---------|-------------|
 | cresta-proto #7874 | ✅ Good to go | Already merged |
-| go-servers #25795 | ⚠️ Missing ClickHouse path | Add `setQuintileRankForPerAgentScores` call in ClickHouse path before merging |
+| go-servers #25795 | ✅ Fixed (commit `fb4e533`) | ClickHouse path now calls `setQuintileRankForPerAgentScores` + 2 new tests |
 | director (WIP) | ⚠️ Multiple issues | Fix column position, cell display; add feature flag guard; then implement remaining pages |
 | config | ❌ Not started | Add `enableQuintileRank` flag |
 
 ### Priority order for fixes
 
-1. **go-servers #25795**: Add ClickHouse path support (blocks correct FE behavior for some customers)
+1. ~~**go-servers #25795**: Add ClickHouse path support~~ — **DONE** (commit `fb4e533`)
 2. **config**: Add feature flag (can be done in parallel, blocks FE gating)
 3. **director**: Fix column position + display format + add flag guard (quick corrections)
 4. **director**: Implement remaining pages (Performance, Coaching Hub, icons)

@@ -68,7 +68,7 @@ See **`implementation-plan.md`** for the concrete BE-first plan. Summary:
 
 ## Status
 
-Active – BE done (go-servers PR #25795, needs ClickHouse path fix). FE Phase 2 in progress: type layer done, Agent Leaderboard column partially done (needs position + display + flag guard corrections). Remaining: Performance page columns, gold/silver/bronze icons, Coaching Hub, feature flag in config. See `pr-validation.md`.
+Active – BE done (go-servers PR #25795, ClickHouse path fixed). FE Phase 2 in progress: type layer done, Agent Leaderboard column partially done (needs position + display + flag guard corrections). Remaining: Performance page columns, gold/silver/bronze icons, Coaching Hub, feature flag in config. See `pr-validation.md`.
 
 ## Log History
 
