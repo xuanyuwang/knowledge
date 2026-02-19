@@ -41,6 +41,9 @@ Personal knowledge management repository organized **by project**. Each folder a
 | `2025-annual-review/` | 2025 annual review |
 | `agent-stats-active-days-fix/` | Agent Leaderboard Active Days N/A bug fix (FULL OUTER JOIN) |
 | `convi-6260-team-leaderboard/` | Hilton team leaderboard not breaking out sub-teams (missing child group expansion) |
+| `agent-quintiles-support/` | Quintiles for agents: RetrieveQAScoreStats BE + Performance/Leaderboard/Coaching Hub FE |
+| `convi-6247-agent-only-filter/` | Agent-only manager inclusion filter: add request field to analytics APIs + FE pass listAgentOnly in Performance, Leaderboard, Agent Assist |
+| `convi-6242-cron-label-conversations/` | cron-label-conversations stale data fix + 2026 backfill for Alaska Air |
 
 ## Workflow: Updating a Project
 
