@@ -68,7 +68,7 @@ See **`implementation-plan.md`** for the concrete BE-first plan. Summary:
 
 ## Status
 
-Active – BE done (go-servers PR #25795). FE Phase 2 in progress: type layer done, Agent Leaderboard column partially done (needs position + display corrections). Remaining: Performance page columns, gold/silver/bronze icons on agent names across all tables, Coaching Hub icon with tooltip.
+Active – BE done (go-servers PR #25795, needs ClickHouse path fix). FE Phase 2 in progress: type layer done, Agent Leaderboard column partially done (needs position + display + flag guard corrections). Remaining: Performance page columns, gold/silver/bronze icons, Coaching Hub, feature flag in config. See `pr-validation.md`.
 
 ## Log History
 
@@ -76,7 +76,7 @@ Active – BE done (go-servers PR #25795). FE Phase 2 in progress: type layer do
 |-----------|---------|
 | 2026-02-17 | Project created; investigation and plan documented. Quintiles defined as score bands: Q1 80+, Q2 60–79, Q3 40–59, Q4 20–39, Q5 0–19. Concrete BE implementation plan added (implementation-plan.md). |
 | 2026-02-18 | Proto PR merged (cresta-proto #7874, v2.0.534). BE implemented: `ScoreToQuintileRank`, `setQuintileRankForPerAgentScores`, 14 tests. go-servers PR: [#25795](https://github.com/cresta/go-servers/pull/25795). Agent tier logic documented (`agent-tier-logic.md`). |
-| 2026-02-19 | FE Phase 2: Type layer done. Agent Leaderboard column partially done (needs position + display fix). Requirements doc created; deep FE investigation across Performance, Leaderboard, Coaching Hub. Gap analysis: column position wrong, display format wrong, icons not started, Performance/Coaching Hub tables not started. Updated implementation plan with full FE scope. |
+| 2026-02-19 | Requirements doc created. Deep FE investigation + feature flag investigation. PR validation: proto #7874 ✅, go-servers #25795 ⚠️ (missing ClickHouse path), director WIP ⚠️ (column position/display/flag wrong, pages missing). Full implementation plan updated. |
 
 ## Related
 
