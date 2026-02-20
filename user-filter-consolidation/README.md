@@ -180,6 +180,7 @@ All `retrieve_*_stats.go` files.
 
 | Date | Summary |
 |------|---------|
+| 2026-02-19 | Fixed B-SF-3 (Divergence 5): `ParseUserFilterForAnalytics` now uses UNION for combined user+group selections. Branch: `xwang/fix-bsf3-union-semantics`. |
 | 2026-02-09 | Re-evaluated project against current codebase. Migration is ~41% complete (12/29 APIs). Original unification plan not started; team took incremental migration approach instead. Recommend completing migration first, then reconsidering unification. |
 
 ## Related Documents

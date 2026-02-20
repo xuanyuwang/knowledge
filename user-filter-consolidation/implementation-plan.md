@@ -93,7 +93,7 @@ Add test cases for behaviors not currently covered:
 Add test cases:
 - B-SF-1: Empty selection = all accessible users (both ACL states)
 - B-SF-2: Selection restricts results (both users and groups)
-- B-SF-3: Combined user + group selections use UNION — **this will FAIL for ParseUserFilterForAnalytics** (known Divergence 5: it uses INTERSECTION). Document the failure as expected.
+- B-SF-3: Combined user + group selections use UNION — ~~**this will FAIL for ParseUserFilterForAnalytics** (known Divergence 5: it uses INTERSECTION). Document the failure as expected.~~ **Fixed (2026-02-19)** on branch `xwang/fix-bsf3-union-semantics`. Tests now pass.
 - B-SF-4: Non-existent entries silently dropped
 - B-SF-5: Invalid resource names return error
 - B-SF-6: Selection filtering works in all ACL states
@@ -257,7 +257,7 @@ Implement:
 - Internal: `applySelections()` — UNION of selected users + expanded group members, intersect with base population
 - Internal: `expandGroupsToUsers()` — expand TEAM and DYNAMIC groups separately
 - Internal: `filterUsersByGroups()` — match users to groups, respect DirectMembershipsOnly
-- UNION semantics (not INTERSECTION — this is the Divergence 5 fix)
+- UNION semantics (not INTERSECTION — ~~this is the Divergence 5 fix~~ **already fixed (2026-02-19)** in `ParseUserFilterForAnalytics` on branch `xwang/fix-bsf3-union-semantics`)
 
 Move/adapt from `common_user_filter.go`:
 - `filterUsersByGroups()`
@@ -288,7 +288,7 @@ Move/adapt from `common_user_filter.go`:
 Create a new test suite that:
 - Uses the same test scenarios from Phase 1
 - Targets `Parser.Parse()` instead of `ParseUserFilterForAnalytics`
-- All tests should pass (including B-SF-3 UNION test that previously failed, and B-GH-4 child group expansion test that previously documented the bug)
+- All tests should pass (B-SF-3 UNION test already passes after fix on `xwang/fix-bsf3-union-semantics`, and B-GH-4 child group expansion test that previously documented the bug)
 
 **Size**: ~500-800 lines (comprehensive test suite)
 
