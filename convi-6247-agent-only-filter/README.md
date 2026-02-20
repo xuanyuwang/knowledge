@@ -1,7 +1,7 @@
 # CONVI-6247: Agent-Only Manager Inclusion Filter in Performance
 
 **Created:** 2025-02-17  
-**Updated:** 2026-02-19 (Phase 2+3 combined into single PR)
+**Updated:** 2026-02-20 (i18n added for Agents Only filter)
 
 ## Overview
 
@@ -44,7 +44,7 @@ Structured phases and task list: **[implementation-plan.md](implementation-plan.
 
 ## Status
 
-Active — Phase 2+3 complete (types + Performance filter), PR [director #16777](https://github.com/cresta/director/pull/16777). Next: Phase 4–5 (Leaderboard filter + API pass-through).
+Active — Phase 2+3+i18n complete (types + Performance filter + i18n), PR [director #16777](https://github.com/cresta/director/pull/16777). Next: Phase 4–5 (Leaderboard filter + API pass-through).
 
 ## Log History
 
@@ -53,3 +53,4 @@ Active — Phase 2+3 complete (types + Performance filter), PR [director #16777]
 | 2025-02-17 | Project created; scope: page-wide filter + request field + FE pass-through. Investigation in page-wide-filter-investigation.md; implementation plan in implementation-plan.md (phases, tasks, file ref). |
 | 2026-02-18 | Phase 2 complete: added `FilterKey.LIST_AGENT_ONLY`, `listAgentOnly` to CommonInsightsFiltersState, LocalStorage types, and Leaderboard filter state. PR: [director #16777](https://github.com/cresta/director/pull/16777). |
 | 2026-02-19 | Phase 3 complete: Performance page "Agents only" BooleanFilter + useListAgentOnlyLevelSelect hook. Combined Phase 2+3 into single PR #16777. |
+| 2026-02-20 | Added i18n: en-US locale keys, converted Performance menu options to `getFilterSelectionMenuOptions()` with `getI18n()`, BooleanFilter labels via `useTranslation`. |
