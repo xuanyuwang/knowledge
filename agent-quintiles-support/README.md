@@ -65,7 +65,7 @@ See **`implementation-plan.md`** for the concrete BE-first plan. Summary:
 
 ## Status
 
-Active – BE revised to true percentile-based quintiles (go-servers PR #25795, both Postgres + ClickHouse paths). FE Phase 2 in progress: type layer done, Agent Leaderboard column partially done (needs position + display + flag guard corrections). Remaining: Performance page columns, gold/silver/bronze icons, Coaching Hub, feature flag in config. See `pr-validation.md`.
+Active – BE done (go-servers PR #25795, review comments addressed). Config feature flag merged ([config #140396](https://github.com/cresta/config/pull/140396)). FE PR 1 (Agent Leaderboard) committed on director `feature/agent-quintiles` — quintile column fixed (position, display, flag guard) + `QuintileRankIcon` component + icons on agent names. Remaining FE work: Performance page columns, Leaderboard per-metric icons, Coaching Hub icons, director PR creation.
 
 ## Log History
 
@@ -74,6 +74,7 @@ Active – BE revised to true percentile-based quintiles (go-servers PR #25795, 
 | 2026-02-17 | Project created; investigation and plan documented. Quintiles defined as score bands: Q1 80+, Q2 60–79, Q3 40–59, Q4 20–39, Q5 0–19. Concrete BE implementation plan added (implementation-plan.md). |
 | 2026-02-18 | Proto PR merged (cresta-proto #7874, v2.0.534). BE implemented: `ScoreToQuintileRank`, `setQuintileRankForPerAgentScores`, 14 tests. go-servers PR: [#25795](https://github.com/cresta/go-servers/pull/25795). Agent tier logic documented (`agent-tier-logic.md`). |
 | 2026-02-19 | Requirements doc created. Deep FE investigation + feature flag investigation. PR validation: proto #7874 ✅, go-servers #25795 ⚠️ (missing ClickHouse path → fixed). **Quintile revised: score bands → true percentile-based.** Removed `ScoreToQuintileRank`; rewrote `setQuintileRankForPerAgentScores` as flat percentile ranking. 7 unit tests + 2 CH tests + 1 leakage test pass. |
+| 2026-02-20 | Simplified BE: removed peer-group logic (flat ranking). Config flag PR merged ([#140396](https://github.com/cresta/config/pull/140396)). **FE PR 1**: Agent Leaderboard — quintile column (position, display, flag), `QuintileRankIcon` component, icons on names. **BE fix**: quintile rank leak into AGENT_TIER responses, `sort.SliceStable`, defense-in-depth clear in `createTieredScoreObject`. |
 
 ## Related
 
