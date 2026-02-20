@@ -93,7 +93,7 @@ Add test cases for behaviors not currently covered:
 Add test cases:
 - B-SF-1: Empty selection = all accessible users (both ACL states)
 - B-SF-2: Selection restricts results (both users and groups)
-- B-SF-3: Combined user + group selections use UNION — ~~**this will FAIL for ParseUserFilterForAnalytics** (known Divergence 5: it uses INTERSECTION). Document the failure as expected.~~ **Fixed (2026-02-19)** on branch `xwang/fix-bsf3-union-semantics`. Tests now pass.
+- B-SF-3: Combined user + group selections use UNION — **Fixed and merged (2026-02-20)** via [PR #25829](https://github.com/cresta/go-servers/pull/25829).
 - B-SF-4: Non-existent entries silently dropped
 - B-SF-5: Invalid resource names return error
 - B-SF-6: Selection filtering works in all ACL states

@@ -410,7 +410,7 @@ Example:
 > **Test evidence**: `UserAndGroupFiltersTogether`, `TestParserWithSelections/all_selections`
 > **Implementation evidence (old pattern)**: `MoveFiltersToUserFilter` case b1 at line 586 — `DedupUsers(append(...))`.
 
-**Fixed (2026-02-19)**: `ParseUserFilterForAnalytics` now correctly uses UNION. The fix is on branch `xwang/fix-bsf3-union-semantics` — two changes in `common_user_filter.go`: (1) skip pre-filtering groundTruthUsers by groups when reqUsers is also present, (2) expand groups and UNION with users for ACL-disabled/root-access cases. Three new tests: `B_SF_3_CombinedUserAndGroupSelectionsUseUnion`, `B_SF_3_DisjointUserAndGroupSelectionsUseUnion`, `B_SF_3_CombinedUserAndGroupUnionWithRootAccess`.
+**Fixed and merged (2026-02-20)**: `ParseUserFilterForAnalytics` now correctly uses UNION. [PR #25829](https://github.com/cresta/go-servers/pull/25829), Linear: CONVI-6284.
 
 ### B-SF-4: Non-Existent Entries Silently Dropped
 
@@ -836,7 +836,7 @@ These are cases where the two existing implementations (`Parse` and `ParseUserFi
 | **Behavior** | **INTERSECTION** — selected users ∩ group members | **UNION** — selected users ∪ group members |
 | **Example** | Users=[A,B], Group=[team2: B,C,D] → [B] | Users=[A,B], Group=[team2: B,C,D] → [A,B,C,D] |
 | **Code evidence** | `filterUsersByGroups` intersects base population with group members | `MoveFiltersToUserFilter` case b1: `DedupUsers(append(...))` |
-| **Decision** | **UNION** — the canonical behavior is UNION (see B-SF-3). ~~`ParseUserFilterForAnalytics` will be updated to match.~~ **Fixed (2026-02-19)** on branch `xwang/fix-bsf3-union-semantics`. |
+| **Decision** | **UNION** — the canonical behavior is UNION (see B-SF-3). **Fixed and merged (2026-02-20)** via [PR #25829](https://github.com/cresta/go-servers/pull/25829). |
 
 ### Divergence 6: Sorting Key
 
