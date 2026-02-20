@@ -1,23 +1,44 @@
 # Backfill Scorecards
 
 **Created:** 2026-02-07
-**Updated:** 2026-02-10
-**Status:** Completed
+**Updated:** 2026-02-20
 **Linear:** [CONVI-6209](https://linear.app/cresta/issue/CONVI-6209)
 
 ## Overview
 
-Backfilled scorecards for all customers across all 8 production clusters for January 2026.
+Scorecard backfill tooling and tracking. Organized by backfill run.
 
-## Result Summary
+## Completed: Mutual of Omaha (2026-02-19)
+
+**Status:** Completed
+**Reason:** [PR #25653](https://github.com/cresta/go-servers/pull/25653) (CONVI-6227) — filter out appeal request scorecards during reindex. Needed to delete old ClickHouse data (which included appeal scorecards) and re-backfill with the new code.
+
+| Parameter | Value |
+|-----------|-------|
+| Cluster | voice-prod |
+| Customer IDs | `mutualofomaha,mutualofomaha-sandbox` |
+| Date range | 2026-01-01 to 2026-02-20 |
+| Approach | Delete ClickHouse data, then 5 parallel 10-day backfill jobs |
+
+**Pre-delete → Post-backfill:**
+
+| Table | Before | After | Removed (appeal scorecards) |
+|-------|--------|-------|-----------------------------|
+| `scorecard` | 330,294 | 298,791 | 31,503 |
+| `score` | 2,881,300 | 2,609,114 | 272,186 |
+
+## Completed: Jan 2026 All Clusters (2026-02-07 - 2026-02-10)
+
+**Status:** Completed
+
+Backfilled scorecards for all customers across all 8 production clusters for January 2026.
+Artifacts in `jan-2026-all-clusters/`.
 
 | Phase | Scope | Result |
 |-------|-------|--------|
 | Initial backfill | 260 jobs across 8 clusters | 256/260 completed |
 | Retry | marriott, united-east | Completed on simple retry |
 | Sequential single-day | cvs, oportun (31 days each) | All 31 days completed |
-
-**Final: All customers backfilled for January 2026.**
 
 ## Approach
 
@@ -75,20 +96,22 @@ Built `rerun_sequential.py` with:
 
 | Script | Purpose |
 |--------|---------|
-| `createjob.sh` | Create backfill job for all customers in a cluster |
-| `rerun_failed.sh` | Retry specific failed customers |
-| `rerun_single_day.sh` | Run one day for cvs/oportun |
-| `rerun_all_days.sh` | Run all 31 days in parallel (caused DB stress) |
-| `rerun_sequential.py` | Run days sequentially with tracking and resume |
-| `check_status.py` | Check workflow status via Temporal CLI |
+| `backfill.sh` | General-purpose backfill (accepts cluster, customers, date range) |
 
-### Key Usage
+Previous run scripts are in `jan-2026-all-clusters/`.
+
+### Usage
 
 ```bash
-# Sequential run with resume support
-python3 rerun_sequential.py              # Run (skips completed days)
-python3 rerun_sequential.py --status     # Show progress
-python3 rerun_sequential.py --reset 15   # Reset a day to re-run
+# Backfill specific customers
+./backfill.sh <cluster> <customers> <start_date> <end_date>
+./backfill.sh voice-prod "mutualofomaha,mutualofomaha-sandbox" 2026-01-01 2026-02-20
+
+# Backfill all customers in a cluster
+./backfill.sh us-east-1-prod all 2026-01-01 2026-02-01
+
+# Dry run (preview without applying)
+./backfill.sh voice-prod "mutualofomaha,mutualofomaha-sandbox" 2026-01-01 2026-02-20 --dry-run
 ```
 
 ## Job Tracking
@@ -112,12 +135,20 @@ temporal workflow describe --namespace ingestion --address localhost:7233 \
 
 See `cresta-proto/cresta/nonpublic/job/internal_job_service.proto` for `GetJob` and `ListJobs` APIs.
 
-## Tracking Files
+## Directory Structure
 
-| File | Contents |
-|------|----------|
-| `backfill_tracking.json` | 260 workflow IDs from initial bulk backfill |
-| `sequential_tracking.json` | Day-by-day progress for cvs/oportun |
+```
+backfill-scorecards/
+├── backfill.sh                          # General-purpose backfill script
+├── README.md
+├── log/                                 # Daily progress logs
+├── jan-2026-all-clusters/               # Previous run: all customers, Jan 2026
+│   ├── createjob.sh, rerun_*.sh/py      # Run-specific scripts
+│   ├── backfill_tracking*.json           # Workflow tracking
+│   ├── sequential_tracking.json          # Day-by-day tracking for cvs/oportun
+│   └── logs-*.txt                        # Job output logs
+└── mutualofomaha-jan-feb-2026/           # Current run: Mutual of Omaha
+```
 
 ## Clusters
 
@@ -138,6 +169,48 @@ See `cresta-proto/cresta/nonpublic/job/internal_job_service.proto` for `GetJob` 
 2. **Don't run all days in parallel.** 60 concurrent reindex workflows caused enough DB stress that operations canceled them.
 3. **Sequential with tracking is the right approach.** One day at a time with JSON-based progress tracking allows safe resume after VPN drops, timeouts, or interruptions.
 4. **Temporal namespace is `ingestion`**, not `cresta` or `jobmanagement`.
+5. **Reindex only INSERTs — it does not DELETE old ClickHouse data.** If the reindex code changes what it writes (e.g., filtering out appeal scorecards), old stale rows remain. Must delete from ClickHouse before re-backfilling.
+6. **Delete from local tables with `ON CLUSTER`, not distributed tables.** ClickHouse `ALTER TABLE ... DELETE` must target local tables (e.g., `scorecard`) with `ON CLUSTER 'conversations'`, not distributed tables (`scorecard_d`).
+
+## ClickHouse Operations
+
+### Connection
+
+```bash
+# Direct connection (requires VPN)
+/opt/homebrew/bin/clickhouse client \
+  -h clickhouse-conversations.<cluster>.internal.cresta.ai \
+  --port 9440 -u admin --password '<password>' --secure
+
+# Get password
+kubectl --context=<cluster>_dev -n clickhouse \
+  get secrets clickhouse-cluster --template '{{.data.admin_password}}' | base64 -d
+```
+
+### Delete + Backfill Pattern
+
+Each customer has its own database (e.g., `mutualofomaha_voice`). Tables: `scorecard`, `score`, `scorecard_score`.
+
+```sql
+-- 1. Count before delete
+SELECT count() FROM mutualofomaha_voice.scorecard
+WHERE scorecard_time >= '2026-01-01' AND scorecard_time < '2026-02-20';
+
+-- 2. Delete from local tables (NOT _d distributed tables)
+ALTER TABLE mutualofomaha_voice.scorecard ON CLUSTER 'conversations'
+DELETE WHERE scorecard_time >= '2026-01-01' AND scorecard_time < '2026-02-20'
+SETTINGS replication_wait_for_inactive_replica_timeout = 0;
+
+ALTER TABLE mutualofomaha_voice.score ON CLUSTER 'conversations'
+DELETE WHERE scorecard_time >= '2026-01-01' AND scorecard_time < '2026-02-20'
+SETTINGS replication_wait_for_inactive_replica_timeout = 0;
+
+-- 3. Check mutations completed
+SELECT * FROM system.mutations WHERE database = 'mutualofomaha_voice' AND is_done = 0;
+
+-- 4. Run backfill
+-- ./backfill.sh voice-prod "mutualofomaha,mutualofomaha-sandbox" 2026-01-01 2026-02-20
+```
 
 ## Log History
 
@@ -147,6 +220,7 @@ See `cresta-proto/cresta/nonpublic/job/internal_job_service.proto` for `GetJob` 
 | 2026-02-08 | Status check: 256/260 done, 4 failed, retried |
 | 2026-02-09 | Split approaches for cvs/oportun, started sequential |
 | 2026-02-10 | Sequential run completed: all 31 days done |
+| 2026-02-19 | Reorganized project; Mutual of Omaha backfill completed (delete + 5 parallel jobs) |
 
 ## References
 
