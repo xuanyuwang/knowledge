@@ -1,12 +1,55 @@
 # Backfill Scorecards
 
 **Created:** 2026-02-07
-**Updated:** 2026-02-20
+**Updated:** 2026-02-20 (appeal cleanup rollout tooling)
 **Linear:** [CONVI-6209](https://linear.app/cresta/issue/CONVI-6209)
 
 ## Overview
 
 Scorecard backfill tooling and tracking. Organized by backfill run.
+
+## In Progress: Appeal Scorecard Cleanup — All Customers (2026-02-20)
+
+**Status:** Tooling ready, execution pending
+**Reason:** [PR #25653](https://github.com/cresta/go-servers/pull/25653) (CONVI-6227) filters out appeal request scorecards during reindex, but reindex only INSERTs — old appeal data lingers in ClickHouse. All customers need cleanup: delete old data + re-backfill.
+
+**Approach:** Per-cluster, per-customer processing with `cluster_cleanup.py`:
+1. Discover all databases with scorecard data on the cluster
+2. For each customer (in batches of 10): delete ClickHouse data → wait for mutations → run backfill
+3. Track progress in `tracking/<cluster>.json` (resumable)
+4. Large customers (cvs, oportun) use 1-day sequential splits
+
+**Execution order:**
+
+| # | Cluster | Est. Customers | Notes |
+|---|---------|----------------|-------|
+| 1 | voice-prod | ~49 | Skip mutualofomaha (done) |
+| 2 | us-east-1-prod | ~86 | |
+| 3 | us-west-2-prod | ~80 | cvs + oportun need 1-day splits |
+| 4 | chat-prod | ~28 | |
+| 5 | eu-west-2-prod | ~6 | |
+| 6 | schwab-prod | ~5 | |
+| 7 | ap-southeast-2-prod | ~4 | |
+| 8 | ca-central-1-prod | ~2 | |
+
+**Quick start:**
+```bash
+# Get ClickHouse password
+kubectl --context=<cluster>_dev -n clickhouse \
+  get secrets clickhouse-cluster --template '{{.data.admin_password}}' | base64 -d
+
+# Discover databases (read-only)
+./list_ch_databases.sh clickhouse-conversations.<cluster>.internal.cresta.ai '<password>'
+
+# Run cleanup (delete + backfill per customer)
+python3 cluster_cleanup.py <cluster> clickhouse-conversations.<cluster>.internal.cresta.ai '<password>'
+
+# Check progress
+python3 cluster_cleanup.py <cluster> --status
+
+# Reset a failed customer
+python3 cluster_cleanup.py <cluster> --reset <customer>
+```
 
 ## Completed: Mutual of Omaha (2026-02-19)
 
@@ -97,6 +140,8 @@ Built `rerun_sequential.py` with:
 | Script | Purpose |
 |--------|---------|
 | `backfill.sh` | General-purpose backfill (accepts cluster, customers, date range) |
+| `list_ch_databases.sh` | Discover all ClickHouse databases with scorecard data on a cluster |
+| `cluster_cleanup.py` | Orchestrate appeal cleanup per cluster: discover → delete → backfill with tracking |
 
 Previous run scripts are in `jan-2026-all-clusters/`.
 
@@ -140,14 +185,20 @@ See `cresta-proto/cresta/nonpublic/job/internal_job_service.proto` for `GetJob` 
 ```
 backfill-scorecards/
 ├── backfill.sh                          # General-purpose backfill script
+├── list_ch_databases.sh                 # ClickHouse database discovery
+├── cluster_cleanup.py                   # Appeal cleanup orchestration
 ├── README.md
 ├── log/                                 # Daily progress logs
+├── tracking/                            # Per-cluster JSON tracking files
+│   ├── voice-prod.json
+│   ├── us-east-1-prod.json
+│   └── ...
 ├── jan-2026-all-clusters/               # Previous run: all customers, Jan 2026
 │   ├── createjob.sh, rerun_*.sh/py      # Run-specific scripts
 │   ├── backfill_tracking*.json           # Workflow tracking
 │   ├── sequential_tracking.json          # Day-by-day tracking for cvs/oportun
 │   └── logs-*.txt                        # Job output logs
-└── mutualofomaha-jan-feb-2026/           # Current run: Mutual of Omaha
+└── mutualofomaha-jan-feb-2026/           # Previous run: Mutual of Omaha
 ```
 
 ## Clusters
@@ -221,6 +272,7 @@ SELECT * FROM system.mutations WHERE database = 'mutualofomaha_voice' AND is_don
 | 2026-02-09 | Split approaches for cvs/oportun, started sequential |
 | 2026-02-10 | Sequential run completed: all 31 days done |
 | 2026-02-19 | Reorganized project; Mutual of Omaha backfill completed (delete + 5 parallel jobs) |
+| 2026-02-20 | Created appeal cleanup rollout tooling (list_ch_databases.sh, cluster_cleanup.py) |
 
 ## References
 
