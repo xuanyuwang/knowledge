@@ -1,7 +1,7 @@
 # Agent Quintiles Support
 
 **Created:** 2026-02-17
-**Updated:** 2026-02-19
+**Updated:** 2026-02-20
 
 ## Overview
 
@@ -28,9 +28,9 @@ Medium-sized project across BE (go-servers) and FE (director). Use worktrees whe
   - Cutoffs for 3 tiers: `[0.25, 0.75]` (i.e. `bottomAgentPercentage` and `bottomAgentPercentage + AvgAgentPercentage` from outcome_stats – 0.25, 0.5).
   - Code: `utils.PartitionUsingVolumeAndMetric(scoreSlice, scoreMetric, conversationVolumeMetric, []float32{0.25, 0.75})` → 3 partitions, then `createTieredScoreObject(partition, groupedBy, agentTiers[i])`.
 - **Proto**: `cresta-proto/cresta/v1/analytics/qa_stats.proto` – `QAScoreGroupBy` has `AgentTier agent_tier = 6`. `outcome_stats.proto` defines `enum AgentTier { TOP_AGENTS=1, AVERAGE_AGENTS=2, BOTTOM_AGENTS=3 }`.
-- **Quintile approach (BE)** – **TRUE PERCENTILE-BASED (revised):** ~~Previous approach used fixed score bands (80+→Q1, etc.). DEPRECATED.~~ QA scores are absolute weighted averages (0–1), NOT percentiles. Fixed bands fail when agents cluster in the same score range (e.g., all agents scoring 0.8+ would all be Q1). **New approach:** Rank all agents by score within each peer group (same time range, criterion, team, group), divide into 5 approximately equal groups: Q1 = top 20%, Q2 = next 20%, ..., Q5 = bottom 20%. Algorithm: `floor(N/5)` agents per quintile, first `N%5` quintiles get one extra.
+- **Quintile approach (BE)** – **TRUE PERCENTILE-BASED:** QA scores are absolute weighted averages (0–1), NOT percentiles. Fixed score bands (80+→Q1, etc.) fail when agents cluster in the same range. **Approach:** Rank all per-agent scores together (flat, no sub-grouping), sort descending, divide into 5 approximately equal groups: Q1 = top 20%, ..., Q5 = bottom 20%. Algorithm: `floor(N/5)` per quintile, first `N%5` get one extra. Only applied when grouped by `QA_ATTRIBUTE_TYPE_AGENT`.
   - Added `QuintileRank quintile_rank = 7` (OUTPUT_ONLY) to `QAScoreGroupBy` in proto.
-  - `setQuintileRankForPerAgentScores(response)` groups per-agent scores by non-agent dimensions, sorts descending, and distributes into quintiles evenly.
+  - `setQuintileRankForPerAgentScores(response)` collects all per-agent scores, sorts descending, distributes into quintiles.
 
 ### 2. Frontend: Detailed requirements and investigation
 
@@ -58,8 +58,8 @@ See **`requirements.md`** for product requirements and **`fe-investigation.md`**
 
 See **`implementation-plan.md`** for the concrete BE-first plan. Summary:
 
-- **Quintile definition:** TRUE PERCENTILE-BASED. Rank agents within peer group, divide into 5 equal groups. Q1 = top 20% (best), Q5 = bottom 20%.
-- **Phase 1 (BE):** Proto add `quintile_rank`; implement percentile-based `setQuintileRankForPerAgentScores` (groups by peer dimensions, sorts descending, distributes into quintiles); both Postgres and ClickHouse paths; 10+ tests.
+- **Quintile definition:** TRUE PERCENTILE-BASED. Rank all agents together, divide into 5 equal groups. Q1 = top 20% (best), Q5 = bottom 20%.
+- **Phase 1 (BE):** Proto add `quintile_rank`; percentile-based `setQuintileRankForPerAgentScores` (flat ranking, sort descending, distribute into quintiles); both Postgres and ClickHouse paths; 10 tests. ✅ Done.
 - **Phase 2 (FE):** Quintile Rank column on Performance + Leaderboard agent tables; gold/silver/bronze icons on agent names across Performance, Leaderboard, and Coaching Hub. Feature flag `enableQuintileRank` in config repo gates all UI. See `fe-investigation.md` for detailed plan.
 - **Worktrees:** Use separate worktrees for go-servers and director when making changes.
 
@@ -73,7 +73,7 @@ Active – BE revised to true percentile-based quintiles (go-servers PR #25795, 
 |-----------|---------|
 | 2026-02-17 | Project created; investigation and plan documented. Quintiles defined as score bands: Q1 80+, Q2 60–79, Q3 40–59, Q4 20–39, Q5 0–19. Concrete BE implementation plan added (implementation-plan.md). |
 | 2026-02-18 | Proto PR merged (cresta-proto #7874, v2.0.534). BE implemented: `ScoreToQuintileRank`, `setQuintileRankForPerAgentScores`, 14 tests. go-servers PR: [#25795](https://github.com/cresta/go-servers/pull/25795). Agent tier logic documented (`agent-tier-logic.md`). |
-| 2026-02-19 | Requirements doc created. Deep FE investigation + feature flag investigation. PR validation: proto #7874 ✅, go-servers #25795 ⚠️ (missing ClickHouse path → fixed). **Quintile definition revised: score bands → true percentile-based.** Removed `ScoreToQuintileRank`; rewrote `setQuintileRankForPerAgentScores` to rank agents within peer groups. 8 new unit tests + 2 CH tests pass. |
+| 2026-02-19 | Requirements doc created. Deep FE investigation + feature flag investigation. PR validation: proto #7874 ✅, go-servers #25795 ⚠️ (missing ClickHouse path → fixed). **Quintile revised: score bands → true percentile-based.** Removed `ScoreToQuintileRank`; rewrote `setQuintileRankForPerAgentScores` as flat percentile ranking. 7 unit tests + 2 CH tests + 1 leakage test pass. |
 
 ## Related
 

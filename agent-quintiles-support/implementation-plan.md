@@ -1,7 +1,7 @@
 # Agent Quintiles – Concrete Implementation Plan
 
 **Created:** 2026-02-17  
-**Updated:** 2026-02-19
+**Updated:** 2026-02-20
 
 ## Quintile definition — TRUE PERCENTILE-BASED (revised)
 
@@ -25,7 +25,7 @@ Rank all agents by score (descending), divide into 5 approximately equal groups:
 
 **Algorithm:** For N agents sorted descending by score, distribute evenly: each quintile gets `floor(N/5)` agents, with the first `N % 5` quintiles getting one extra. This ensures consecutive quintile filling (no gaps) and approximately equal group sizes.
 
-**Grouping:** Quintile is computed **within each peer group** (same time range, criterion, team, group). If the response has scores grouped by (AGENT, TIME_RANGE), agents are ranked within each time range independently.
+**Scope:** Quintile is only applied when the response is grouped by agents (`QA_ATTRIBUTE_TYPE_AGENT`). All per-agent scores in the response are ranked together as one flat group.
 
 **Edge cases:**
 - N < 5 agents: first N quintiles get 1 agent each, remaining quintiles are empty (e.g., 2 agents → Q1 and Q2)
@@ -57,52 +57,43 @@ Rank all agents by score (descending), divide into 5 approximately equal groups:
 | QUINTILE_RANK_4 | 4 | 20th–40th percentile |
 | QUINTILE_RANK_5 | 5 | Bottom 20% (lowest) |
 
-### 1.2 Backend: percentile-based quintile assignment (go-servers) — REVISED
-
-~~Previous: `ScoreToQuintileRank(score)` using fixed score bands. **Removed.**~~
-
-**New logic:** Rank all per-agent scores within each peer group, divide into 5 equal groups.
+### 1.2 Backend: percentile-based quintile assignment (go-servers) ✅
 
 **File:** `insights-server/internal/analyticsimpl/retrieve_qa_score_stats.go`
 
-**Rewritten `setQuintileRankForPerAgentScores`:**
+**`setQuintileRankForPerAgentScores`:**
 1. Collect all per-agent scores (where `GroupedBy.User != nil`)
-2. Group by non-agent dimensions (time range, criterion, team, group) to form peer groups
-3. Within each peer group: sort descending by score, distribute into quintiles evenly
-4. Distribution: each quintile gets `floor(N/5)` agents; first `N % 5` quintiles get one extra
+2. Sort descending by score
+3. Distribute into quintiles evenly: each gets `floor(N/5)` agents; first `N % 5` get one extra
 
-```go
-func setQuintileRankForPerAgentScores(response *analyticspb.RetrieveQAScoreStatsResponse) {
-    // 1. Collect per-agent scores, grouped by non-agent dimensions
-    // 2. Within each group, sort descending by score
-    // 3. Assign quintile = position-based rank (top 20% = Q1, etc.)
-}
-```
-
-**`ScoreToQuintileRank` removed** — no longer needed since quintile is computed from rank, not from individual score value.
+`ScoreToQuintileRank` (fixed score bands) removed — quintile is computed from rank position, not individual score value.
 
 ### 1.3 Call sites (unchanged)
 
 - **retrieve_qa_score_stats.go:** `setQuintileRankForPerAgentScores(result)` in the `QA_ATTRIBUTE_TYPE_AGENT` path
 - **retrieve_qa_score_stats_clickhouse.go:** `setQuintileRankForPerAgentScores(resp)` in `convertCHResponseToQaScoreStatsResponse`
 
-### 1.4 Tests (go-servers) — REVISED
+### 1.4 Tests (go-servers) ✅
 
-- **Remove `TestScoreToQuintileRank`** (function removed)
-- **New: `TestSetQuintileRankPercentileBased`:** 10 agents with different scores → verify top 2 are Q1, next 2 Q2, etc.
-- **New: `TestSetQuintileRankSmallGroup`:** 3 agents → Q1, Q2, Q3 (no gaps)
-- **New: `TestSetQuintileRankGroupedByDimension`:** Scores grouped by (agent, criterion) → quintiles computed within each criterion independently
-- **Keep: `TestSetQuintileRankNilSafety`** and **`TestAggregateTopAgentsResponse_NoQuintileRankLeakage`**
-- **Update ClickHouse tests:** `TestConvertCHResponseSetsQuintileRank` to verify percentile-based assignment
+- `PercentileBased_10Agents`: 10 agents → top 2 Q1, next 2 Q2, etc.
+- `SmallGroup_3Agents`: 3 agents → Q1, Q2, Q3 (no gaps)
+- `UnevenDistribution_7Agents`: 7 agents → Q1/Q2 get 2, Q3–Q5 get 1
+- `NonAgentRowsUntouched`: criterion-only rows stay UNSPECIFIED
+- `AllAgentsSameScore`: tied agents still get distributed Q1–Q5
+- `SingleAgent`: 1 agent → Q1
+- `NilSafety`: nil/empty inputs don't panic
+- `TestConvertCHResponseSetsQuintileRank`: ClickHouse path percentile-based
+- `TestConvertCHResponseNoQuintileForNonAgentRows`: criterion rows stay UNSPECIFIED
+- `TestAggregateTopAgentsResponse_NoQuintileRankLeakage`: tier path doesn't leak quintile
 
-### 1.5 BE checklist (revised)
+### 1.5 BE checklist
 
 | Step | Task | Status |
 |------|------|--------|
 | 1.1 | Proto: `QuintileRank` enum + `quintile_rank` field | ✅ Merged (#7874) |
-| 1.2 | Remove `ScoreToQuintileRank`; rewrite `setQuintileRankForPerAgentScores` as percentile-based | Pending |
+| 1.2 | Percentile-based `setQuintileRankForPerAgentScores` | ✅ Done |
 | 1.3 | Call sites in Postgres + ClickHouse paths | ✅ Already wired |
-| 1.4 | Update tests for percentile-based logic | Pending |
+| 1.4 | Tests for percentile-based logic | ✅ Done (10 tests) |
 
 ---
 
