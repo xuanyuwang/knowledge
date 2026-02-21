@@ -1,0 +1,308 @@
+{
+  "cluster": "voice-prod",
+  "ch_host": "clickhouse-conversations.voice-prod.internal.cresta.ai",
+  "created_at": "2026-02-21T13:59:45Z",
+  "date_range": [
+    "2026-01-01",
+    "2026-02-21"
+  ],
+  "customers": {
+    "aptive": {
+      "status": "completed",
+      "databases": [
+        "aptive_voice"
+      ],
+      "before_counts": {
+        "scorecard": 449063,
+        "score": 2822415
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T13:59:52Z",
+      "completed_at": "2026-02-21T14:00:26Z",
+      "error": null
+    },
+    "brinks": {
+      "status": "completed",
+      "databases": [
+        "brinks_care_voice"
+      ],
+      "before_counts": {
+        "scorecard": 1279000,
+        "score": 8695066
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:00:26Z",
+      "completed_at": "2026-02-21T14:01:22Z",
+      "error": null
+    },
+    "cartier": {
+      "status": "completed",
+      "databases": [
+        "cartier_voice"
+      ],
+      "before_counts": {
+        "scorecard": 42836,
+        "score": 159042
+      },
+      "after_counts": {
+        "scorecard": 332,
+        "score": 1264
+      },
+      "started_at": "2026-02-21T14:01:22Z",
+      "completed_at": "2026-02-21T14:01:56Z",
+      "error": null
+    },
+    "clearlink": {
+      "status": "completed",
+      "databases": [
+        "clearlink_home_voice"
+      ],
+      "before_counts": {
+        "scorecard": 119748,
+        "score": 527164
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:01:56Z",
+      "completed_at": "2026-02-21T14:02:29Z",
+      "error": null
+    },
+    "cox": {
+      "status": "completed",
+      "databases": [
+        "cox_care_voice",
+        "cox_account_svc_voice",
+        "cox_retention_voice",
+        "cox_business_retention",
+        "cox_business_voice",
+        "cox_voice",
+        "cox_tech_support_voice"
+      ],
+      "before_counts": {
+        "scorecard": 3962666,
+        "score": 32938637
+      },
+      "after_counts": {
+        "scorecard": 132,
+        "score": 4715289
+      },
+      "started_at": "2026-02-21T14:02:29Z",
+      "completed_at": "2026-02-21T14:03:32Z",
+      "error": null
+    },
+    "cresta": {
+      "status": "completed",
+      "databases": [
+        "cresta_voice",
+        "cresta_voice_sandbox"
+      ],
+      "before_counts": {
+        "scorecard": 1321,
+        "score": 2276
+      },
+      "after_counts": {
+        "scorecard": 56,
+        "score": 148
+      },
+      "started_at": "2026-02-21T14:03:32Z",
+      "completed_at": "2026-02-21T14:04:10Z",
+      "error": null
+    },
+    "cresta-sandbox-2": {
+      "status": "completed",
+      "databases": [
+        "cresta_sandbox_2_voice_sandbox_2"
+      ],
+      "before_counts": {
+        "scorecard": 560758,
+        "score": 3855312
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:04:10Z",
+      "completed_at": "2026-02-21T14:04:44Z",
+      "error": null
+    },
+    "hilton": {
+      "status": "completed",
+      "databases": [
+        "hilton_voice"
+      ],
+      "before_counts": {
+        "scorecard": 4164625,
+        "score": 57344697
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:04:44Z",
+      "completed_at": "2026-02-21T14:07:46Z",
+      "error": null
+    },
+    "holidayinn": {
+      "status": "completed",
+      "databases": [
+        "holidayinn_transfers_voice",
+        "holidayinn_owners_voice",
+        "holidayinn_voice",
+        "holidayinn_club_voice"
+      ],
+      "before_counts": {
+        "scorecard": 2562897,
+        "score": 17960430
+      },
+      "after_counts": {
+        "scorecard": 5533,
+        "score": 38560
+      },
+      "started_at": "2026-02-21T14:07:46Z",
+      "completed_at": "2026-02-21T14:09:25Z",
+      "error": null
+    },
+    "indeed": {
+      "status": "completed",
+      "databases": [
+        "indeed_voice"
+      ],
+      "before_counts": {
+        "scorecard": 124931,
+        "score": 1080957
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:09:25Z",
+      "completed_at": "2026-02-21T14:09:58Z",
+      "error": null
+    },
+    "integrity-marketing": {
+      "status": "completed",
+      "databases": [
+        "integrity_marketing_unifiedhealth_voice",
+        "integrity_marketing_diversified_voice"
+      ],
+      "before_counts": {
+        "scorecard": 238690,
+        "score": 3218990
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:09:58Z",
+      "completed_at": "2026-02-21T14:10:36Z",
+      "error": null
+    },
+    "mutualofomaha": {
+      "status": "completed",
+      "databases": [
+        "mutualofomaha_voice"
+      ],
+      "before_counts": {
+        "scorecard": 307096,
+        "score": 2652199
+      },
+      "after_counts": null,
+      "started_at": null,
+      "completed_at": "previously completed",
+      "error": null
+    },
+    "porsche": {
+      "status": "completed",
+      "databases": [
+        "porsche_voice"
+      ],
+      "before_counts": {
+        "scorecard": 28203,
+        "score": 262574
+      },
+      "after_counts": {
+        "scorecard": 69,
+        "score": 1772
+      },
+      "started_at": "2026-02-21T14:10:36Z",
+      "completed_at": "2026-02-21T14:11:10Z",
+      "error": null
+    },
+    "snapfinance-cs": {
+      "status": "completed",
+      "databases": [
+        "snapfinance_cs_bot"
+      ],
+      "before_counts": {
+        "scorecard": 157,
+        "score": 2831
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:11:10Z",
+      "completed_at": "2026-02-21T14:11:33Z",
+      "error": null
+    },
+    "usbank": {
+      "status": "completed",
+      "databases": [
+        "usbank_voice"
+      ],
+      "before_counts": {
+        "scorecard": 679951,
+        "score": 4575817
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:11:33Z",
+      "completed_at": "2026-02-21T14:12:30Z",
+      "error": null
+    },
+    "vivint": {
+      "status": "completed",
+      "databases": [
+        "vivint_voice"
+      ],
+      "before_counts": {
+        "scorecard": 4681785,
+        "score": 50272772
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:12:30Z",
+      "completed_at": "2026-02-21T14:14:24Z",
+      "error": null
+    },
+    "gardner-white": {
+      "status": "completed",
+      "databases": [
+        "gardner_white_voice"
+      ],
+      "before_counts": {
+        "scorecard": 583,
+        "score": 5215
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:21:33Z",
+      "completed_at": "2026-02-21T14:23:35Z",
+      "error": null
+    }
+  }
+}

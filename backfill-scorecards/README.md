@@ -1,54 +1,44 @@
 # Backfill Scorecards
 
 **Created:** 2026-02-07
-**Updated:** 2026-02-20 (appeal cleanup rollout tooling)
+**Updated:** 2026-02-21 (appeal cleanup executed across all clusters)
 **Linear:** [CONVI-6209](https://linear.app/cresta/issue/CONVI-6209)
 
 ## Overview
 
 Scorecard backfill tooling and tracking. Organized by backfill run.
 
-## In Progress: Appeal Scorecard Cleanup — All Customers (2026-02-20)
+## Completed: Appeal Scorecard Cleanup — All Customers (2026-02-21)
 
-**Status:** Tooling ready, execution pending
+**Status:** Completed (94/95 customers across 8 clusters; oportun deferred)
 **Reason:** [PR #25653](https://github.com/cresta/go-servers/pull/25653) (CONVI-6227) filters out appeal request scorecards during reindex, but reindex only INSERTs — old appeal data lingers in ClickHouse. All customers need cleanup: delete old data + re-backfill.
 
-**Approach:** Per-cluster, per-customer processing with `cluster_cleanup.py`:
-1. Discover all databases with scorecard data on the cluster
-2. For each customer (in batches of 10): delete ClickHouse data → wait for mutations → run backfill
-3. Track progress in `tracking/<cluster>.json` (resumable)
-4. Large customers (cvs, oportun) use 1-day sequential splits
+**Results:**
 
-**Execution order:**
+| Cluster | Customers | Completed | Scorecards Removed | Scores Removed | Notes |
+|---------|-----------|-----------|-------------------|----------------|-------|
+| voice-prod | 17 | 17/17 | ~18.9M | ~178.9M | |
+| us-east-1-prod | 44 | 44/44 | ~22.1M | ~154.8M | |
+| us-west-2-prod | 30 | 29/30 | ~11.5M | ~64.6M | oportun deferred |
+| chat-prod | 3 | 3/3 | ~2.0M | ~18.0M | |
+| schwab-prod | 1 | 1/1 | ~267K | ~1.2M | |
+| eu-west-2-prod | 0 | - | 0 | 0 | No data in range |
+| ap-southeast-2-prod | 0 | - | 0 | 0 | No data in range |
+| ca-central-1-prod | 0 | - | 0 | 0 | No data in range |
+| **Total** | **95** | **94/95** | **~54.8M** | **~417.5M** | |
 
-| # | Cluster | Est. Customers | Notes |
-|---|---------|----------------|-------|
-| 1 | voice-prod | ~49 | Skip mutualofomaha (done) |
-| 2 | us-east-1-prod | ~86 | |
-| 3 | us-west-2-prod | ~80 | cvs + oportun need 1-day splits |
-| 4 | chat-prod | ~28 | |
-| 5 | eu-west-2-prod | ~6 | |
-| 6 | schwab-prod | ~5 | |
-| 7 | ap-southeast-2-prod | ~4 | |
-| 8 | ca-central-1-prod | ~2 | |
+**Remaining:** oportun on us-west-2-prod (15.6M scorecards, 232.9M scores) needs chunked deletion strategy.
 
-**Quick start:**
+**Quick start (for retries/resets):**
 ```bash
-# Get ClickHouse password
-kubectl --context=<cluster>_dev -n clickhouse \
-  get secrets clickhouse-cluster --template '{{.data.admin_password}}' | base64 -d
-
-# Discover databases (read-only)
-./list_ch_databases.sh clickhouse-conversations.<cluster>.internal.cresta.ai '<password>'
-
-# Run cleanup (delete + backfill per customer)
-python3 cluster_cleanup.py <cluster> clickhouse-conversations.<cluster>.internal.cresta.ai '<password>'
-
 # Check progress
 python3 cluster_cleanup.py <cluster> --status
 
 # Reset a failed customer
 python3 cluster_cleanup.py <cluster> --reset <customer>
+
+# Run cleanup (delete + backfill per customer)
+python3 cluster_cleanup.py <cluster> clickhouse-conversations.<cluster>.internal.cresta.ai '<password>'
 ```
 
 ## Completed: Mutual of Omaha (2026-02-19)
@@ -222,6 +212,9 @@ backfill-scorecards/
 4. **Temporal namespace is `ingestion`**, not `cresta` or `jobmanagement`.
 5. **Reindex only INSERTs — it does not DELETE old ClickHouse data.** If the reindex code changes what it writes (e.g., filtering out appeal scorecards), old stale rows remain. Must delete from ClickHouse before re-backfilling.
 6. **Delete from local tables with `ON CLUSTER`, not distributed tables.** ClickHouse `ALTER TABLE ... DELETE` must target local tables (e.g., `scorecard`) with `ON CLUSTER 'conversations'`, not distributed tables (`scorecard_d`).
+7. **ON CLUSTER mutations can block the entire cluster.** A large DELETE (e.g., oportun 232M rows) creates mutations on all 9 nodes. If one mutation takes too long, it blocks all subsequent mutations on those nodes. Use `KILL MUTATION ON CLUSTER` to unblock.
+8. **ClickHouse mutations only affect existing parts.** New inserts (from backfill) create new parts that are not affected by pending delete mutations. Safe to proceed with backfill while mutations are still completing.
+9. **Database names use SanitizeDatabaseName(customer_id + "_" + profile_id).** Replace non-alphanumeric chars (except `_`) with `_`. Cannot reverse from database name to customer ID. Use `backfill_tracking.json` as authoritative mapping.
 
 ## ClickHouse Operations
 
@@ -273,6 +266,7 @@ SELECT * FROM system.mutations WHERE database = 'mutualofomaha_voice' AND is_don
 | 2026-02-10 | Sequential run completed: all 31 days done |
 | 2026-02-19 | Reorganized project; Mutual of Omaha backfill completed (delete + 5 parallel jobs) |
 | 2026-02-20 | Created appeal cleanup rollout tooling (list_ch_databases.sh, cluster_cleanup.py) |
+| 2026-02-21 | Executed appeal cleanup across all 8 clusters: 94/95 completed, oportun deferred |
 
 ## References
 

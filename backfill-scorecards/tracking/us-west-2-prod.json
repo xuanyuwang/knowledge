@@ -1,0 +1,518 @@
+{
+  "cluster": "us-west-2-prod",
+  "ch_host": "clickhouse-conversations.us-west-2-prod.internal.cresta.ai",
+  "created_at": "2026-02-21T15:13:43Z",
+  "date_range": [
+    "2026-01-01",
+    "2026-02-21"
+  ],
+  "customers": {
+    "aaa-life": {
+      "status": "completed",
+      "databases": [
+        "aaa_life_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 192527,
+        "score": 1444532
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:13:50Z",
+      "completed_at": "2026-02-21T15:14:25Z",
+      "error": null
+    },
+    "accenture-sandbox": {
+      "status": "completed",
+      "databases": [
+        "accenture_sandbox_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 14115,
+        "score": 100936
+      },
+      "after_counts": {
+        "scorecard": 82,
+        "score": 656
+      },
+      "started_at": "2026-02-21T15:14:25Z",
+      "completed_at": "2026-02-21T15:15:03Z",
+      "error": null
+    },
+    "achieve": {
+      "status": "completed",
+      "databases": [
+        "achieve_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 301588,
+        "score": 1778233
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:15:03Z",
+      "completed_at": "2026-02-21T15:15:31Z",
+      "error": null
+    },
+    "aegvision": {
+      "status": "completed",
+      "databases": [
+        "aegvision_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 3332,
+        "score": 6664
+      },
+      "after_counts": {
+        "scorecard": 53,
+        "score": 226
+      },
+      "started_at": "2026-02-21T15:15:31Z",
+      "completed_at": "2026-02-21T15:16:07Z",
+      "error": null
+    },
+    "airbnb": {
+      "status": "completed",
+      "databases": [
+        "airbnb_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 2552854,
+        "score": 11766188
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:16:07Z",
+      "completed_at": "2026-02-21T15:16:52Z",
+      "error": null
+    },
+    "ascendion": {
+      "status": "completed",
+      "databases": [
+        "ascendion_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 1997,
+        "score": 15344
+      },
+      "after_counts": {
+        "scorecard": 29,
+        "score": 184
+      },
+      "started_at": "2026-02-21T15:16:52Z",
+      "completed_at": "2026-02-21T15:17:25Z",
+      "error": null
+    },
+    "bill-west": {
+      "status": "completed",
+      "databases": [
+        "bill_west_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 2316,
+        "score": 13804
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:17:25Z",
+      "completed_at": "2026-02-21T15:17:59Z",
+      "error": null
+    },
+    "bilt": {
+      "status": "completed",
+      "databases": [
+        "bilt_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 1,
+        "score": 1
+      },
+      "after_counts": {
+        "scorecard": 2,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:18:00Z",
+      "completed_at": "2026-02-21T15:18:26Z",
+      "error": null
+    },
+    "capgemini": {
+      "status": "completed",
+      "databases": [
+        "capgemini_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 6708,
+        "score": 53664
+      },
+      "after_counts": {
+        "scorecard": 152,
+        "score": 1216
+      },
+      "started_at": "2026-02-21T15:18:26Z",
+      "completed_at": "2026-02-21T15:19:04Z",
+      "error": null
+    },
+    "care-oregon": {
+      "status": "completed",
+      "databases": [
+        "care_oregon_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 73660,
+        "score": 471826
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:19:04Z",
+      "completed_at": "2026-02-21T15:19:39Z",
+      "error": null
+    },
+    "cars-commerce": {
+      "status": "completed",
+      "databases": [
+        "cars_commerce_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 1074,
+        "score": 5698
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 715
+      },
+      "started_at": "2026-02-21T15:19:39Z",
+      "completed_at": "2026-02-21T15:20:51Z",
+      "error": null
+    },
+    "cox2": {
+      "status": "completed",
+      "databases": [
+        "cox2_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 622160,
+        "score": 2812201
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:20:51Z",
+      "completed_at": "2026-02-21T15:21:27Z",
+      "error": null
+    },
+    "cresta": {
+      "status": "completed",
+      "databases": [
+        "cresta_virtual_agent_sandbox"
+      ],
+      "before_counts": {
+        "scorecard": 2,
+        "score": 6
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:21:27Z",
+      "completed_at": "2026-02-21T15:21:59Z",
+      "error": null
+    },
+    "cvs": {
+      "status": "completed",
+      "databases": [
+        "cvs_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 4829710,
+        "score": 36794884
+      },
+      "after_counts": {
+        "scorecard": 239038,
+        "score": 1758357
+      },
+      "started_at": "2026-02-21T15:21:59Z",
+      "completed_at": "2026-02-21T15:38:53Z",
+      "error": null
+    },
+    "cvs-sandbox": {
+      "status": "completed",
+      "databases": [
+        "cvs_sandbox_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 4,
+        "score": 20
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T17:11:37Z",
+      "completed_at": "2026-02-21T19:02:20Z",
+      "error": null
+    },
+    "five9-sandbox": {
+      "status": "completed",
+      "databases": [
+        "five9_sandbox_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 27002,
+        "score": 157249
+      },
+      "after_counts": {
+        "scorecard": 24951,
+        "score": 140152
+      },
+      "started_at": "2026-02-21T15:49:37Z",
+      "completed_at": "2026-02-21T15:53:22Z",
+      "error": null
+    },
+    "frontdoor": {
+      "status": "completed",
+      "databases": [
+        "frontdoor_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 975291,
+        "score": 6350369
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 6350369
+      },
+      "started_at": "2026-02-21T15:53:22Z",
+      "completed_at": "2026-02-21T15:55:51Z",
+      "error": null
+    },
+    "integrity-marketing": {
+      "status": "completed",
+      "databases": [
+        "integrity_marketing_golden_years"
+      ],
+      "before_counts": {
+        "scorecard": 494,
+        "score": 6676
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:55:51Z",
+      "completed_at": "2026-02-21T15:58:46Z",
+      "error": null
+    },
+    "oportun": {
+      "status": "deferred",
+      "databases": [
+        "oportun_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 15661007,
+        "score": 232928602
+      },
+      "after_counts": null,
+      "started_at": "2026-02-21T15:58:46Z",
+      "completed_at": "2026-02-21T16:10:01Z",
+      "error": "Deferred: needs chunked deletes (15.6M scorecards, 232M scores)"
+    },
+    "orsini": {
+      "status": "completed",
+      "databases": [
+        "orsini_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 24676,
+        "score": 61695
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T17:14:16Z",
+      "completed_at": "2026-02-21T19:02:20Z",
+      "error": null
+    },
+    "richemont": {
+      "status": "completed",
+      "databases": [
+        "richemont_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 14217,
+        "score": 107727
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T17:15:40Z",
+      "completed_at": "2026-02-21T19:02:20Z",
+      "error": null
+    },
+    "salt-river-project": {
+      "status": "completed",
+      "databases": [
+        "salt_river_project_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 168,
+        "score": 171
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T17:17:59Z",
+      "completed_at": "2026-02-21T19:02:20Z",
+      "error": null
+    },
+    "scan-health": {
+      "status": "completed",
+      "databases": [
+        "scan_health_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 808262,
+        "score": 3216538
+      },
+      "after_counts": {
+        "scorecard": 700039,
+        "score": 0
+      },
+      "started_at": "2026-02-21T16:42:52Z",
+      "completed_at": "2026-02-21T16:45:11Z",
+      "error": null
+    },
+    "snapfinance": {
+      "status": "completed",
+      "databases": [
+        "snapfinance_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 1942693,
+        "score": 5124655
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 5411414
+      },
+      "started_at": "2026-02-21T16:45:11Z",
+      "completed_at": "2026-02-21T16:47:44Z",
+      "error": null
+    },
+    "square": {
+      "status": "completed",
+      "databases": [
+        "square_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 38197,
+        "score": 181931
+      },
+      "after_counts": {
+        "scorecard": 38355,
+        "score": 182443
+      },
+      "started_at": "2026-02-21T16:47:44Z",
+      "completed_at": "2026-02-21T16:53:34Z",
+      "error": null
+    },
+    "the-zebra": {
+      "status": "completed",
+      "databases": [
+        "the_zebra_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 437,
+        "score": 2622
+      },
+      "after_counts": {
+        "scorecard": 468,
+        "score": 2370
+      },
+      "started_at": "2026-02-21T16:53:34Z",
+      "completed_at": "2026-02-21T16:56:13Z",
+      "error": null
+    },
+    "viking": {
+      "status": "completed",
+      "databases": [
+        "viking_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 648833,
+        "score": 3548014
+      },
+      "after_counts": {
+        "scorecard": 648564,
+        "score": 3529399
+      },
+      "started_at": "2026-02-21T16:56:13Z",
+      "completed_at": "2026-02-21T16:56:43Z",
+      "error": null
+    },
+    "vivint": {
+      "status": "completed",
+      "databases": [
+        "vivint_cx_voice"
+      ],
+      "before_counts": {
+        "scorecard": 544922,
+        "score": 6837941
+      },
+      "after_counts": {
+        "scorecard": 544373,
+        "score": 0
+      },
+      "started_at": "2026-02-21T16:56:43Z",
+      "completed_at": "2026-02-21T16:57:33Z",
+      "error": null
+    },
+    "xanterra": {
+      "status": "completed",
+      "databases": [
+        "xanterra_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 85814,
+        "score": 1138085
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T16:57:33Z",
+      "completed_at": "2026-02-21T17:00:03Z",
+      "error": null
+    },
+    "cba-japan": {
+      "status": "completed",
+      "databases": [
+        "cba_japan_us_west_2"
+      ],
+      "before_counts": {
+        "scorecard": 3579,
+        "score": 28632
+      },
+      "after_counts": {
+        "scorecard": 59,
+        "score": 472
+      },
+      "started_at": "2026-02-21T17:06:05Z",
+      "completed_at": "2026-02-21T17:11:37Z",
+      "error": null
+    }
+  }
+}

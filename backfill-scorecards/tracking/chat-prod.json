@@ -1,0 +1,67 @@
+{
+  "cluster": "chat-prod",
+  "ch_host": "clickhouse-conversations.chat-prod.internal.cresta.ai",
+  "created_at": "2026-02-21T19:04:00Z",
+  "date_range": [
+    "2026-01-01",
+    "2026-02-21"
+  ],
+  "customers": {
+    "intuit": {
+      "status": "completed",
+      "databases": [
+        "intuit_canada",
+        "intuit_qbo"
+      ],
+      "before_counts": {
+        "scorecard": 1000611,
+        "score": 8061130
+      },
+      "after_counts": {
+        "scorecard": 453,
+        "score": 3322
+      },
+      "started_at": "2026-02-21T19:04:07Z",
+      "completed_at": "2026-02-21T19:04:44Z",
+      "error": null
+    },
+    "sleepnumber": {
+      "status": "completed",
+      "databases": [
+        "sleepnumber_main"
+      ],
+      "before_counts": {
+        "scorecard": 32935,
+        "score": 160722
+      },
+      "after_counts": {
+        "scorecard": 304,
+        "score": 2270
+      },
+      "started_at": "2026-02-21T19:04:44Z",
+      "completed_at": "2026-02-21T19:05:16Z",
+      "error": null
+    },
+    "verizon": {
+      "status": "completed",
+      "databases": [
+        "verizon_wireless",
+        "verizon_small_business",
+        "verizon_smb_fios",
+        "verizon_main",
+        "verizon_fixed_wireless"
+      ],
+      "before_counts": {
+        "scorecard": 1012294,
+        "score": 9833030
+      },
+      "after_counts": {
+        "scorecard": 911,
+        "score": 3662
+      },
+      "started_at": "2026-02-21T19:05:16Z",
+      "completed_at": "2026-02-21T19:06:03Z",
+      "error": null
+    }
+  }
+}

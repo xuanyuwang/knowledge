@@ -1,0 +1,759 @@
+{
+  "cluster": "us-east-1-prod",
+  "ch_host": "clickhouse-conversations.us-east-1-prod.internal.cresta.ai",
+  "created_at": "2026-02-21T14:29:47Z",
+  "date_range": [
+    "2026-01-01",
+    "2026-02-21"
+  ],
+  "customers": {
+    "abcbs": {
+      "status": "completed",
+      "databases": [
+        "abcbs_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 52763,
+        "score": 52985
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:29:54Z",
+      "completed_at": "2026-02-21T14:30:15Z",
+      "error": null
+    },
+    "alaska-air": {
+      "status": "completed",
+      "databases": [
+        "alaska_air_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 862323,
+        "score": 3161945
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:30:15Z",
+      "completed_at": "2026-02-21T14:30:47Z",
+      "error": null
+    },
+    "alert360": {
+      "status": "completed",
+      "databases": [
+        "alert360_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 2211,
+        "score": 2211
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:30:47Z",
+      "completed_at": "2026-02-21T14:31:08Z",
+      "error": null
+    },
+    "altice": {
+      "status": "completed",
+      "databases": [
+        "altice_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 47663,
+        "score": 230364
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:31:08Z",
+      "completed_at": "2026-02-21T14:31:40Z",
+      "error": null
+    },
+    "amba": {
+      "status": "completed",
+      "databases": [
+        "amba_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 20150,
+        "score": 120964
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:31:40Z",
+      "completed_at": "2026-02-21T14:32:12Z",
+      "error": null
+    },
+    "ana": {
+      "status": "completed",
+      "databases": [
+        "ana_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 1457,
+        "score": 1457
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:32:12Z",
+      "completed_at": "2026-02-21T14:33:37Z",
+      "error": null
+    },
+    "aqua": {
+      "status": "completed",
+      "databases": [
+        "aqua_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 576722,
+        "score": 2125581
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:33:37Z",
+      "completed_at": "2026-02-21T14:34:10Z",
+      "error": null
+    },
+    "bounce-ai": {
+      "status": "completed",
+      "databases": [
+        "bounce_ai_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 67061,
+        "score": 598274
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:34:10Z",
+      "completed_at": "2026-02-21T14:35:21Z",
+      "error": null
+    },
+    "bswift": {
+      "status": "completed",
+      "databases": [
+        "bswift_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 36467,
+        "score": 182489
+      },
+      "after_counts": {
+        "scorecard": 62,
+        "score": 390
+      },
+      "started_at": "2026-02-21T14:35:21Z",
+      "completed_at": "2026-02-21T14:36:50Z",
+      "error": null
+    },
+    "care-access": {
+      "status": "completed",
+      "databases": [
+        "care_access_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 24970,
+        "score": 138791
+      },
+      "after_counts": {
+        "scorecard": 102,
+        "score": 564
+      },
+      "started_at": "2026-02-21T14:36:50Z",
+      "completed_at": "2026-02-21T14:37:18Z",
+      "error": null
+    },
+    "cng": {
+      "status": "completed",
+      "databases": [
+        "cng_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 33262,
+        "score": 134727
+      },
+      "after_counts": {
+        "scorecard": 181,
+        "score": 896
+      },
+      "started_at": "2026-02-21T14:37:18Z",
+      "completed_at": "2026-02-21T14:37:50Z",
+      "error": null
+    },
+    "collegeboard": {
+      "status": "completed",
+      "databases": [
+        "collegeboard_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 33606,
+        "score": 447948
+      },
+      "after_counts": {
+        "scorecard": 27,
+        "score": 266
+      },
+      "started_at": "2026-02-21T14:37:50Z",
+      "completed_at": "2026-02-21T14:38:22Z",
+      "error": null
+    },
+    "comerica-east": {
+      "status": "completed",
+      "databases": [
+        "comerica_east_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 158810,
+        "score": 774839
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:38:22Z",
+      "completed_at": "2026-02-21T14:38:54Z",
+      "error": null
+    },
+    "dsi-distributing": {
+      "status": "completed",
+      "databases": [
+        "dsi_distributing_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 59718,
+        "score": 65751
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:38:54Z",
+      "completed_at": "2026-02-21T14:39:26Z",
+      "error": null
+    },
+    "ecpi-uni": {
+      "status": "completed",
+      "databases": [
+        "ecpi_uni_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 209674,
+        "score": 2115164
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:39:26Z",
+      "completed_at": "2026-02-21T14:39:58Z",
+      "error": null
+    },
+    "fubotv": {
+      "status": "completed",
+      "databases": [
+        "fubotv_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 91204,
+        "score": 620464
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:39:58Z",
+      "completed_at": "2026-02-21T14:40:40Z",
+      "error": null
+    },
+    "greenix": {
+      "status": "completed",
+      "databases": [
+        "greenix_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 100294,
+        "score": 719278
+      },
+      "after_counts": {
+        "scorecard": 98809,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:40:40Z",
+      "completed_at": "2026-02-21T14:42:24Z",
+      "error": null
+    },
+    "guitar-center": {
+      "status": "completed",
+      "databases": [
+        "guitar_center_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 446443,
+        "score": 3930224
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:42:24Z",
+      "completed_at": "2026-02-21T14:43:06Z",
+      "error": null
+    },
+    "home-care-delivered": {
+      "status": "completed",
+      "databases": [
+        "home_care_delivered_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 167440,
+        "score": 4227796
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:43:06Z",
+      "completed_at": "2026-02-21T14:43:38Z",
+      "error": null
+    },
+    "iqcu": {
+      "status": "completed",
+      "databases": [
+        "iqcu_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 22424,
+        "score": 130538
+      },
+      "after_counts": {
+        "scorecard": 52,
+        "score": 651
+      },
+      "started_at": "2026-02-21T14:43:38Z",
+      "completed_at": "2026-02-21T14:44:10Z",
+      "error": null
+    },
+    "lending-club": {
+      "status": "completed",
+      "databases": [
+        "lending_club_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 288338,
+        "score": 2973831
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:44:10Z",
+      "completed_at": "2026-02-21T14:44:43Z",
+      "error": null
+    },
+    "mapfre": {
+      "status": "completed",
+      "databases": [
+        "mapfre_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 9276,
+        "score": 18552
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 52
+      },
+      "started_at": "2026-02-21T14:44:43Z",
+      "completed_at": "2026-02-21T14:45:15Z",
+      "error": null
+    },
+    "marriott": {
+      "status": "completed",
+      "databases": [
+        "marriott_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 1404235,
+        "score": 18193944
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:45:15Z",
+      "completed_at": "2026-02-21T14:46:09Z",
+      "error": null
+    },
+    "mason": {
+      "status": "completed",
+      "databases": [
+        "mason_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 118120,
+        "score": 180338
+      },
+      "after_counts": {
+        "scorecard": 120233,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:46:09Z",
+      "completed_at": "2026-02-21T14:47:18Z",
+      "error": null
+    },
+    "mm-ohio": {
+      "status": "completed",
+      "databases": [
+        "mm_ohio_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 43033,
+        "score": 43033
+      },
+      "after_counts": {
+        "scorecard": 43163,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:47:18Z",
+      "completed_at": "2026-02-21T14:48:03Z",
+      "error": null
+    },
+    "nclh": {
+      "status": "completed",
+      "databases": [
+        "nclh_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 309062,
+        "score": 1623869
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:48:03Z",
+      "completed_at": "2026-02-21T14:48:49Z",
+      "error": null
+    },
+    "nrg": {
+      "status": "completed",
+      "databases": [
+        "nrg_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 641632,
+        "score": 9517101
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:48:49Z",
+      "completed_at": "2026-02-21T14:49:35Z",
+      "error": null
+    },
+    "pack-rat": {
+      "status": "completed",
+      "databases": [
+        "pack_rat_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 99427,
+        "score": 935810
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:49:35Z",
+      "completed_at": "2026-02-21T14:50:07Z",
+      "error": null
+    },
+    "propel": {
+      "status": "completed",
+      "databases": [
+        "propel_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 985080,
+        "score": 6242334
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 6242334
+      },
+      "started_at": "2026-02-21T14:50:07Z",
+      "completed_at": "2026-02-21T14:50:51Z",
+      "error": null
+    },
+    "pure": {
+      "status": "completed",
+      "databases": [
+        "pure_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 29281,
+        "score": 71134
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:50:51Z",
+      "completed_at": "2026-02-21T14:52:24Z",
+      "error": null
+    },
+    "ralphlauren": {
+      "status": "completed",
+      "databases": [
+        "ralphlauren_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 25819,
+        "score": 266805
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:52:24Z",
+      "completed_at": "2026-02-21T14:52:56Z",
+      "error": null
+    },
+    "rcg": {
+      "status": "completed",
+      "databases": [
+        "rcg_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 482337,
+        "score": 1793365
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:52:56Z",
+      "completed_at": "2026-02-21T14:53:28Z",
+      "error": null
+    },
+    "rentokil": {
+      "status": "completed",
+      "databases": [
+        "rentokil_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 1715833,
+        "score": 29349483
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:53:28Z",
+      "completed_at": "2026-02-21T14:54:34Z",
+      "error": null
+    },
+    "riptide": {
+      "status": "completed",
+      "databases": [
+        "riptide_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 15566,
+        "score": 124528
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 124528
+      },
+      "started_at": "2026-02-21T14:54:34Z",
+      "completed_at": "2026-02-21T14:55:17Z",
+      "error": null
+    },
+    "spirit": {
+      "status": "completed",
+      "databases": [
+        "spirit_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 1538150,
+        "score": 4678595
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:55:17Z",
+      "completed_at": "2026-02-21T14:56:05Z",
+      "error": null
+    },
+    "sunbit": {
+      "status": "completed",
+      "databases": [
+        "sunbit_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 808791,
+        "score": 3963078
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:56:05Z",
+      "completed_at": "2026-02-21T14:56:37Z",
+      "error": null
+    },
+    "tailorcare": {
+      "status": "completed",
+      "databases": [
+        "tailorcare_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 29690,
+        "score": 72683
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T14:56:37Z",
+      "completed_at": "2026-02-21T14:59:15Z",
+      "error": null
+    },
+    "united-east": {
+      "status": "completed",
+      "databases": [
+        "united_east_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 10728387,
+        "score": 61048331
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 26
+      },
+      "started_at": "2026-02-21T14:59:15Z",
+      "completed_at": "2026-02-21T15:01:59Z",
+      "error": null
+    },
+    "urgently": {
+      "status": "completed",
+      "databases": [
+        "urgently_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 15530,
+        "score": 125368
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 125781
+      },
+      "started_at": "2026-02-21T15:01:59Z",
+      "completed_at": "2026-02-21T15:02:42Z",
+      "error": null
+    },
+    "ust": {
+      "status": "completed",
+      "databases": [
+        "ust_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 17007,
+        "score": 40347
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:02:42Z",
+      "completed_at": "2026-02-21T15:04:29Z",
+      "error": null
+    },
+    "vxi-sandbox": {
+      "status": "completed",
+      "databases": [
+        "vxi_sandbox_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 17016,
+        "score": 136128
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:04:29Z",
+      "completed_at": "2026-02-21T15:06:07Z",
+      "error": null
+    },
+    "westernhealth": {
+      "status": "completed",
+      "databases": [
+        "westernhealth_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 7920,
+        "score": 84783
+      },
+      "after_counts": {
+        "scorecard": 79,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:06:07Z",
+      "completed_at": "2026-02-21T15:06:51Z",
+      "error": null
+    },
+    "wheels": {
+      "status": "completed",
+      "databases": [
+        "wheels_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 107,
+        "score": 372
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 321
+      },
+      "started_at": "2026-02-21T15:06:51Z",
+      "completed_at": "2026-02-21T15:07:37Z",
+      "error": null
+    },
+    "chime": {
+      "status": "completed",
+      "databases": [
+        "chime_us_east_1"
+      ],
+      "before_counts": {
+        "scorecard": 1426,
+        "score": 7640
+      },
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T15:09:43Z",
+      "completed_at": "2026-02-21T15:10:57Z",
+      "error": null
+    }
+  }
+}

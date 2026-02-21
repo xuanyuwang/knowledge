@@ -36,6 +36,7 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).parent
 TRACKING_DIR = SCRIPT_DIR / "tracking"
 BACKFILL_SCRIPT = SCRIPT_DIR / "backfill.sh"
+BACKFILL_TRACKING = SCRIPT_DIR / "jan-2026-all-clusters" / "backfill_tracking.json"
 
 CH_CLIENT = "/opt/homebrew/bin/clickhouse"
 CH_PORT = 9440
@@ -147,110 +148,127 @@ def init_tracking(cluster: str, ch_host: str, customers: dict[str, dict]) -> dic
 
 # ---- Discovery ----
 
-def discover_databases(ch_host: str, ch_password: str) -> dict[str, dict]:
+def sanitize_database_name(name: str) -> str:
+    """Replicate go-servers SanitizeDatabaseName: replace non-alphanumeric (except _) with _."""
+    import re
+    return re.sub(r"[^a-zA-Z0-9_]", "_", name)
+
+
+def load_customer_profiles(cluster: str) -> dict[str, list[str]]:
+    """
+    Load customer -> [profiles] mapping for a cluster from the previous backfill tracking.
+
+    Source: jan-2026-all-clusters/backfill_tracking.json
+    """
+    if not BACKFILL_TRACKING.exists():
+        raise FileNotFoundError(
+            f"Backfill tracking not found: {BACKFILL_TRACKING}\n"
+            "This file contains the authoritative customer/profile mapping per cluster."
+        )
+
+    with open(BACKFILL_TRACKING) as f:
+        data = json.load(f)
+
+    from collections import defaultdict
+    customers: dict[str, list[str]] = defaultdict(list)
+    for job in data["jobs"]:
+        if job["cluster"] == cluster:
+            customers[job["customer"]].append(job["profile"])
+
+    return dict(customers)
+
+
+def discover_databases(ch_host: str, ch_password: str, cluster: str) -> dict[str, dict]:
     """
     Discover all databases with scorecard data, grouped by customer ID.
 
+    Uses the customer/profile mapping from backfill_tracking.json to build
+    database names via SanitizeDatabaseName(customer + "_" + profile), then
+    checks which databases actually have data in the date range.
+
     Returns: {customer_id: {"databases": [...], "counts": {"scorecard": N, "score": N}}}
     """
-    print("Discovering databases with scorecard data...")
+    print("Loading customer/profile mapping from backfill tracking...")
+    customer_profiles = load_customer_profiles(cluster)
+    print(f"  {len(customer_profiles)} customers with {sum(len(p) for p in customer_profiles.values())} profiles")
 
-    # Get all databases with a scorecard table
+    # Build expected database names and check which exist
+    print("\nDiscovering databases with scorecard data...")
     db_exclusion = ", ".join(f"'{db}'" for db in SYSTEM_DBS)
-    result = ch_query(ch_host, ch_password,
+    existing_dbs_raw = ch_query(ch_host, ch_password,
         "SELECT DISTINCT database FROM system.tables "
         "WHERE name = 'scorecard' AND database NOT IN "
         f"({db_exclusion}) ORDER BY database"
     )
-    if not result:
-        return {}
+    existing_dbs = set(db.strip() for db in existing_dbs_raw.split("\n") if db.strip()) if existing_dbs_raw else set()
+    print(f"  {len(existing_dbs)} databases with scorecard tables on cluster")
 
-    databases = [db.strip() for db in result.split("\n") if db.strip()]
-    print(f"  Found {len(databases)} databases with scorecard tables")
-
-    # Count rows in each database
+    # Map customer -> databases with data
     customers: dict[str, dict] = {}
-    for db in databases:
-        try:
-            sc_count = int(ch_query(ch_host, ch_password,
-                f"SELECT count() FROM {db}.scorecard "
-                f"WHERE scorecard_time >= '{DATE_START}' AND scorecard_time < '{DATE_END}'"
-            ) or "0")
-        except (RuntimeError, ValueError):
-            sc_count = 0
 
-        try:
-            score_count = int(ch_query(ch_host, ch_password,
-                f"SELECT count() FROM {db}.score "
-                f"WHERE scorecard_time >= '{DATE_START}' AND scorecard_time < '{DATE_END}'"
-            ) or "0")
-        except (RuntimeError, ValueError):
-            score_count = 0
+    for customer_id, profiles in sorted(customer_profiles.items()):
+        for profile in profiles:
+            db = sanitize_database_name(f"{customer_id}_{profile}")
+            if db not in existing_dbs:
+                continue
 
-        if sc_count == 0 and score_count == 0:
-            continue
+            try:
+                sc_count = int(ch_query(ch_host, ch_password,
+                    f"SELECT count() FROM {db}.scorecard "
+                    f"WHERE scorecard_time >= '{DATE_START}' AND scorecard_time < '{DATE_END}'"
+                ) or "0")
+            except (RuntimeError, ValueError):
+                sc_count = 0
 
-        # Extract customer ID from database name: <customer>_<usecase>_... -> <customer>
-        # Convention: database = customerid_usecase or customerid_usecase_environment
-        # The customer ID is everything before the first recognized suffix
-        customer_id = extract_customer_id(db)
+            try:
+                score_count = int(ch_query(ch_host, ch_password,
+                    f"SELECT count() FROM {db}.score "
+                    f"WHERE scorecard_time >= '{DATE_START}' AND scorecard_time < '{DATE_END}'"
+                ) or "0")
+            except (RuntimeError, ValueError):
+                score_count = 0
 
-        if customer_id not in customers:
-            customers[customer_id] = {
-                "databases": [],
-                "counts": {"scorecard": 0, "score": 0},
-            }
-        customers[customer_id]["databases"].append(db)
-        customers[customer_id]["counts"]["scorecard"] += sc_count
-        customers[customer_id]["counts"]["score"] += score_count
+            if sc_count == 0 and score_count == 0:
+                continue
 
-        print(f"  {db}: scorecard={sc_count}, score={score_count} (customer={customer_id})")
+            if customer_id not in customers:
+                customers[customer_id] = {
+                    "databases": [],
+                    "counts": {"scorecard": 0, "score": 0},
+                }
+            customers[customer_id]["databases"].append(db)
+            customers[customer_id]["counts"]["scorecard"] += sc_count
+            customers[customer_id]["counts"]["score"] += score_count
+
+            print(f"  {db}: scorecard={sc_count}, score={score_count} (customer={customer_id})")
+
+    # Check for databases on ClickHouse not covered by the tracking file
+    mapped_dbs = set()
+    for info in customers.values():
+        mapped_dbs.update(info["databases"])
+    unmapped = existing_dbs - mapped_dbs
+    # Filter unmapped to only those with data
+    if unmapped:
+        unmapped_with_data = []
+        for db in sorted(unmapped):
+            try:
+                sc = int(ch_query(ch_host, ch_password,
+                    f"SELECT count() FROM {db}.scorecard "
+                    f"WHERE scorecard_time >= '{DATE_START}' AND scorecard_time < '{DATE_END}'"
+                ) or "0")
+            except (RuntimeError, ValueError):
+                sc = 0
+            if sc > 0:
+                unmapped_with_data.append(db)
+        if unmapped_with_data:
+            print(f"\n  WARNING: {len(unmapped_with_data)} database(s) with data not in tracking file:")
+            for db in unmapped_with_data:
+                print(f"    {db}")
+            print("  These may be new customers added after the Jan 2026 backfill.")
+            print("  To include them, add their customer/profile to the tracking file or handle manually.")
 
     print(f"\n  {len(customers)} customers with data")
     return customers
-
-
-def extract_customer_id(database_name: str) -> str:
-    """
-    Extract customer ID from ClickHouse database name.
-
-    Database naming convention: <customerid>_<usecase>[_<env>]
-    Examples:
-        mutualofomaha_voice -> mutualofomaha
-        mutualofomaha_medsupp_voice -> mutualofomaha
-        mutualofomaha_sandbox_voice_sbx -> mutualofomaha-sandbox
-        hilton_chat -> hilton
-        cvs_voice -> cvs
-
-    The customer ID for backfill.sh's RUN_ONLY_FOR_CUSTOMER_IDS is typically
-    the part before _voice, _chat, _messaging, etc.
-
-    For sandbox databases (*_sandbox_* or *_sbx), the customer ID includes "-sandbox".
-    """
-    parts = database_name.split("_")
-
-    # Known usecase/environment suffixes to strip
-    suffixes = {"voice", "chat", "messaging", "email", "sbx"}
-
-    # Check if this is a sandbox database
-    is_sandbox = "sandbox" in parts or "sbx" in parts
-
-    # Find the customer ID by removing known suffixes from the end
-    # Work backwards, stripping known suffixes
-    customer_parts = []
-    for part in parts:
-        if part in suffixes:
-            continue
-        if part == "sandbox":
-            continue
-        customer_parts.append(part)
-
-    customer_id = customer_parts[0] if customer_parts else parts[0]
-
-    if is_sandbox:
-        customer_id = f"{customer_id}-sandbox"
-
-    return customer_id
 
 
 # ---- ClickHouse Delete ----
@@ -700,7 +718,7 @@ def cmd_run(cluster: str, ch_host: str, ch_password: str):
 
     if tracking is None:
         # Discover databases and initialize tracking
-        customers = discover_databases(ch_host, ch_password)
+        customers = discover_databases(ch_host, ch_password, cluster)
         if not customers:
             print("No customers with scorecard data found.")
             return
