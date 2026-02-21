@@ -10,7 +10,7 @@ Scorecard backfill tooling and tracking. Organized by backfill run.
 
 ## Completed: Appeal Scorecard Cleanup — All Customers (2026-02-21)
 
-**Status:** Completed (94/95 customers across 8 clusters; oportun deferred)
+**Status:** Completed (95/95 customers across 8 clusters)
 **Reason:** [PR #25653](https://github.com/cresta/go-servers/pull/25653) (CONVI-6227) filters out appeal request scorecards during reindex, but reindex only INSERTs — old appeal data lingers in ClickHouse. All customers need cleanup: delete old data + re-backfill.
 
 **Results:**
@@ -19,15 +19,13 @@ Scorecard backfill tooling and tracking. Organized by backfill run.
 |---------|-----------|-----------|-------------------|----------------|-------|
 | voice-prod | 17 | 17/17 | ~18.9M | ~178.9M | |
 | us-east-1-prod | 44 | 44/44 | ~22.1M | ~154.8M | |
-| us-west-2-prod | 30 | 29/30 | ~11.5M | ~64.6M | oportun deferred |
+| us-west-2-prod | 30 | 30/30 | ~27.2M | ~297.6M | oportun used chunked 1-day deletes |
 | chat-prod | 3 | 3/3 | ~2.0M | ~18.0M | |
 | schwab-prod | 1 | 1/1 | ~267K | ~1.2M | |
 | eu-west-2-prod | 0 | - | 0 | 0 | No data in range |
 | ap-southeast-2-prod | 0 | - | 0 | 0 | No data in range |
 | ca-central-1-prod | 0 | - | 0 | 0 | No data in range |
-| **Total** | **95** | **94/95** | **~54.8M** | **~417.5M** | |
-
-**Remaining:** oportun on us-west-2-prod (15.6M scorecards, 232.9M scores) needs chunked deletion strategy.
+| **Total** | **95** | **95/95** | **~70.5M** | **~650.5M** | |
 
 **Quick start (for retries/resets):**
 ```bash

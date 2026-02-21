@@ -314,7 +314,7 @@
       "error": null
     },
     "oportun": {
-      "status": "deferred",
+      "status": "completed",
       "databases": [
         "oportun_us_west_2"
       ],
@@ -322,10 +322,13 @@
         "scorecard": 15661007,
         "score": 232928602
       },
-      "after_counts": null,
-      "started_at": "2026-02-21T15:58:46Z",
-      "completed_at": "2026-02-21T16:10:01Z",
-      "error": "Deferred: needs chunked deletes (15.6M scorecards, 232M scores)"
+      "after_counts": {
+        "scorecard": 0,
+        "score": 0
+      },
+      "started_at": "2026-02-21T19:16:00Z",
+      "completed_at": "2026-02-21T19:54:09Z",
+      "error": null
     },
     "orsini": {
       "status": "completed",
