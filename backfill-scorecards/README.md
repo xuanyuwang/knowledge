@@ -236,6 +236,63 @@ backfill-scorecards/
 10. **Reindex workflows for large customers can run for hours.** hilton 5-day window: ~2h. united-east 5-day: up to 6h. marriott/spirit 10-day: ~3h. Set script timeouts accordingly (8h+), or use fire-and-forget with later verification.
 11. **Windowed backfill sizes depend on conversation volume, not scorecard count.** The bottleneck is reading conversations from Postgres, not writing to ClickHouse. Customers with >50K scorecards/day typically need 5-day or smaller windows; <30K scorecards/day can use 10-day windows.
 
+## Problems & Strategy Evolution
+
+### Problem 1: Full-range backfill fails for large customers
+
+**Symptom:** Temporal workflow heartbeat timeout for customers with high conversation volume (oportun, cvs, hilton, united-east, marriott, spirit).
+
+**Root cause:** The reindex workflow reads all conversations from Postgres for the given date range. For large customers (millions of conversations over 51 days), the activity takes too long between heartbeat signals, and Temporal kills it.
+
+**Strategy changes:**
+1. Full 51-day range → **10-day parallel windows** → still failed for cvs/oportun (DB deadlock from concurrent workflows)
+2. 10-day parallel → **1-day sequential** for cvs/oportun → worked (Jan 2026 backfill)
+3. For appeal cleanup, tried **5-day and 10-day sequential windows** based on per-customer volume analysis:
+   - \>80K scorecards/day → 5-day windows (hilton, united-east)
+   - <30K scorecards/day → 10-day windows (marriott, spirit)
+4. Window sizes were correct (workflows completed at attempt=1), but **script timeout was too short** (1h) — workflows took 2-6h per window. Fixed by increasing to 8h.
+
+### Problem 2: Oportun too large for single ClickHouse DELETE
+
+**Symptom:** `ALTER TABLE ... DELETE ON CLUSTER` for oportun (15.6M scorecards + 232.9M scores) blocked the entire cluster's mutation queue, exceeding the 600s mutation timeout.
+
+**Strategy changes:**
+1. Single full-range delete → **chunked 1-day deletes** (51 iterations), each deleting one day's data then waiting for mutations to clear
+2. Added a **full-range sweep** after daily deletes to catch any stragglers
+3. Then ran **1-day sequential backfill** (51 jobs) to re-insert clean data
+
+### Problem 3: ON CLUSTER mutations blocking unrelated customers
+
+**Symptom:** Small databases (cvs-sandbox: 4 scorecards) were stuck for 10+ minutes. The `wait_for_mutations` check saw pending mutations and blocked, but the mutations belonged to other operations (reindex `UPDATE _row_exists=0` from unrelated tables).
+
+**Strategy changes:**
+1. Realized `system.mutations` shows ALL mutations for a database, not just ours
+2. **Killed stuck mutations** with `KILL MUTATION ON CLUSTER 'conversations'`
+3. Issued **fresh ON CLUSTER deletes** and proceeded to backfill immediately — safe because ClickHouse mutations only affect parts that existed at mutation creation time; new inserts from backfill are unaffected
+
+### Problem 4: Direct DELETE only affects local shard
+
+**Symptom:** Attempted to bypass ON CLUSTER issues by deleting directly (without `ON CLUSTER`). Counts on distributed tables didn't go to zero — only 1 of 3 shards was cleaned.
+
+**Root cause:** Tables are `ReplicatedReplacingMergeTree` with data sharded across 3 shards × 3 replicas. A direct delete hits only the local shard.
+
+**Resolution:** Must always use `ON CLUSTER 'conversations'` for deletes. Accepted the mutation replication overhead and used `SETTINGS replication_wait_for_inactive_replica_timeout = 0` to avoid blocking on slow replicas.
+
+### Problem 5: Unmapped customer databases
+
+**Symptom:** `cluster_cleanup.py` didn't know about some customers because they were added after the Jan 2026 `backfill_tracking.json` was created.
+
+**Resolution:** Queried ClickHouse directly (`SELECT DISTINCT customer_id, profile_id FROM <db>.scorecard`) to discover the mapping, then added them to the tracking JSON. Affected: gardner-white (voice-prod), chime (us-east-1-prod), cba-japan (us-west-2-prod).
+
+### Key Principle
+
+**Start conservative, scale up.** The pattern that consistently worked:
+1. Try full range → fails for large customers
+2. Try moderate windows (5-10 day) → works for most, but need long timeout
+3. Fall back to 1-day sequential for the very largest (oportun, cvs)
+
+The bottleneck is always **Postgres read time** (conversation volume), not ClickHouse write time. Window size should be chosen based on conversation count, not scorecard count.
+
 ## ClickHouse Operations
 
 ### Connection
