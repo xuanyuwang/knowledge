@@ -1,19 +1,19 @@
 # Backfill Scorecards
 
 **Created:** 2026-02-07
-**Updated:** 2026-02-22 (backfill verification and windowed re-runs for large customers)
+**Updated:** 2026-02-23 (all backfills complete — appeal cleanup fully done)
 **Linear:** [CONVI-6209](https://linear.app/cresta/issue/CONVI-6209)
 
 ## Overview
 
 Scorecard backfill tooling and tracking. Organized by backfill run.
 
-## In Progress: Appeal Scorecard Cleanup — All Customers (2026-02-21 – ongoing)
+## Completed: Appeal Scorecard Cleanup — All Customers (2026-02-21 – 2026-02-23)
 
-**Status:** Deletion complete (95/95). Backfill 89/95 complete, 6 in progress.
+**Status:** Completed. 95/95 customers deleted + backfilled across all 8 clusters.
 **Reason:** [PR #25653](https://github.com/cresta/go-servers/pull/25653) (CONVI-6227) filters out appeal request scorecards during reindex, but reindex only INSERTs — old appeal data lingers in ClickHouse. All customers need cleanup: delete old data + re-backfill.
 
-### Deletion Results (complete)
+### Deletion Results
 
 | Cluster | Customers | Completed | Scorecards Removed | Scores Removed | Notes |
 |---------|-----------|-----------|-------------------|----------------|-------|
@@ -27,37 +27,29 @@ Scorecard backfill tooling and tracking. Organized by backfill run.
 | ca-central-1-prod | 0 | - | 0 | 0 | No data in range |
 | **Total** | **95** | **95/95** | **~70.5M** | **~650.5M** | |
 
-### Backfill Status (as of 2026-02-22)
+### Backfill Results
 
-| Cluster | Backfill Complete | In Progress | Notes |
-|---------|-------------------|-------------|-------|
-| us-west-2-prod | 30/30 | - | oportun: 51-day sequential backfill |
-| us-east-1-prod | 41/44 | united-east, marriott, spirit | Windowed sequential re-runs |
-| voice-prod | 14/17 | hilton, vivint, holidayinn-transfers | hilton: windowed; others: full-range running |
-| chat-prod | 3/3 | - | |
-| schwab-prod | 1/1 | - | |
-| **Total** | **89/95** | **6** | |
+| Cluster | Backfill Complete | Notes |
+|---------|-------------------|-------|
+| us-west-2-prod | 30/30 | oportun: 51-day sequential backfill |
+| us-east-1-prod | 44/44 | united-east, marriott, spirit: windowed parallel backfill |
+| voice-prod | 17/17 | hilton: windowed parallel; vivint, holidayinn-transfers: full-range |
+| chat-prod | 3/3 | |
+| schwab-prod | 1/1 | |
+| **Total** | **95/95** | |
 
-Large customers that failed full-range backfill (heartbeat timeout) are being re-run with windowed sequential backfills:
+### Windowed Backfill for Large Customers
 
-| Customer | Cluster | Window Size | Progress | Est. per Window |
-|----------|---------|-------------|----------|-----------------|
-| hilton | voice-prod | 5-day | 2/11 windows | ~2h |
-| united-east | us-east-1-prod | 5-day | 1/11 windows | 1–6h |
-| marriott | us-east-1-prod | 10-day | 1/6 windows | ~3h |
-| spirit | us-east-1-prod | 10-day | 1/6 windows | ~3h |
+4 customers failed full-range backfill (heartbeat timeout). Re-run with windowed backfills, initially sequential then switched to fully parallel on the weekend:
 
-**Quick start (for retries/resets):**
-```bash
-# Check progress
-python3 cluster_cleanup.py <cluster> --status
+| Customer | Cluster | Window Size | Windows | Strategy | Duration |
+|----------|---------|-------------|---------|----------|----------|
+| spirit | us-east-1-prod | 10-day | 5 | Sequential → parallel | ~14h total |
+| hilton | voice-prod | 5-day | 9 | Sequential → parallel | ~18h total |
+| marriott | us-east-1-prod | 10-day | 5 | Sequential → parallel | ~20h total |
+| united-east | us-east-1-prod | 5-day | 10 | Sequential → parallel | ~24h total |
 
-# Reset a failed customer
-python3 cluster_cleanup.py <cluster> --reset <customer>
-
-# Run cleanup (delete + backfill per customer)
-python3 cluster_cleanup.py <cluster> clickhouse-conversations.<cluster>.internal.cresta.ai '<password>'
-```
+All completed by 2026-02-23 with zero failures. Heartbeat details showed ~400-460K conversations per 5-day window for united-east, ~640K for marriott 10-day windows.
 
 ## Completed: Mutual of Omaha (2026-02-19)
 
@@ -235,6 +227,7 @@ backfill-scorecards/
 9. **Database names use SanitizeDatabaseName(customer_id + "_" + profile_id).** Replace non-alphanumeric chars (except `_`) with `_`. Cannot reverse from database name to customer ID. Use `backfill_tracking.json` as authoritative mapping.
 10. **Reindex workflows for large customers can run for hours.** hilton 5-day window: ~2h. united-east 5-day: up to 6h. marriott/spirit 10-day: ~3h. Set script timeouts accordingly (8h+), or use fire-and-forget with later verification.
 11. **Windowed backfill sizes depend on conversation volume, not scorecard count.** The bottleneck is reading conversations from Postgres, not writing to ClickHouse. Customers with >50K scorecards/day typically need 5-day or smaller windows; <30K scorecards/day can use 10-day windows.
+12. **Parallel windows are safe on weekends.** Running all windows for a customer in parallel doesn't cause issues when traffic is low. Sequential is safer on weekdays; switch to parallel on weekends to save time. Use `temporal workflow describe` heartbeat details to monitor per-workflow progress (ReindexedConversations / TotalConversationCount).
 
 ## Problems & Strategy Evolution
 
@@ -344,7 +337,8 @@ SELECT * FROM system.mutations WHERE database = 'mutualofomaha_voice' AND is_don
 | 2026-02-19 | Reorganized project; Mutual of Omaha backfill completed (delete + 5 parallel jobs) |
 | 2026-02-20 | Created appeal cleanup rollout tooling (list_ch_databases.sh, cluster_cleanup.py) |
 | 2026-02-21 | Executed appeal cleanup across all 8 clusters: 95/95 deleted, oportun chunked 1-day deletes + sequential backfill |
-| 2026-02-22 | Backfill verification: 89/95 complete. 4 large customers (hilton, united-east, marriott, spirit) re-running with windowed sequential backfills |
+| 2026-02-22 | Backfill verification: 89/95 complete. 4 large customers re-running with windowed backfills, switched to parallel |
+| 2026-02-23 | All backfills complete (95/95). Appeal scorecard cleanup fully done |
 
 ## References
 
