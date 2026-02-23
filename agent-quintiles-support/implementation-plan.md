@@ -1,7 +1,7 @@
 # Agent Quintiles – Concrete Implementation Plan
 
 **Created:** 2026-02-17  
-**Updated:** 2026-02-20
+**Updated:** 2026-02-23
 
 ## Quintile definition — TRUE PERCENTILE-BASED (revised)
 
@@ -28,11 +28,24 @@ Rank all agents by score (descending), divide into 5 approximately equal groups:
 **Scope:** Quintile is only applied when the response is grouped by agents (`QA_ATTRIBUTE_TYPE_AGENT`). All per-agent scores in the response are ranked together as one flat group.
 
 **Edge cases:**
-- N < 5 agents: first N quintiles get 1 agent each, remaining quintiles are empty (e.g., 2 agents → Q1 and Q2)
+- N < 5 agents: first N quintiles get 1 agent each, remaining quintiles are empty.
+  - Example: 3 agents with scores [90, 70, 50] → Q1=90, Q2=70, Q3=50, Q4=empty, Q5=empty.
+  - Example: 1 agent with score [85] → Q1=85, Q2–Q5=empty.
 - N = 0: nothing to do
-- Ties: agents with the same score may end up in different quintiles at boundaries (acceptable — same as any ranking system)
+- Ties: agents with the same score at a quintile boundary are moved to the higher (better) quintile. This means the higher quintile grows and the lower quintile shrinks (possibly to 0 members). Implemented via `AssignRankGroups` in `shared/utils/rank.go`.
+  - Example: 10 agents, scores [90, 80, 80, 70, 60, 50, 40, 30, 20, 10]. Naive split puts boundary between index 1 and 2, but both have score 80. Tie adjustment moves all 80s into Q1. Result: Q1=[90,80,80], Q2=[70], Q3=[60,50], Q4=[40,30], Q5=[20,10].
+  - Example: 5 agents, all score 75. Every boundary is a tie, so all cascade into Q1. Result: Q1=[75,75,75,75,75], Q2–Q5=empty.
+  - Example: 10 agents, scores [90, 90, 80, 80, 70, 70, 60, 60, 50, 50]. Tied pairs fall entirely within groups — no tie spans a boundary. Result: Q1=[90,90], Q2=[80,80], Q3=[70,70], Q4=[60,60], Q5=[50,50] (same as no-tie case).
 
-**Precedent:** The existing agent tier system already uses rank-based partitioning (`PartitionUsingVolumeAndMetric` with cutoffs `[0.25, 0.75]`), so percentile-based grouping is a proven pattern in this codebase.
+**Why not reuse `PartitionUsingVolumeAndMetric`?**
+
+The existing utility (used by agent tiers) doesn't fit quintile requirements:
+1. **Volume-weighted cutoffs**: Splits by cumulative conversation/scorecard volume at percentage cutoffs (bottom 25% of volume, not bottom 25% of agents). Quintiles need equal-count partitioning — each group gets ~N/5 agents regardless of how many conversations each agent has.
+2. **Guarantees non-empty partitions**: Uses `ensureNonEmptySliceIndices` to force every partition to have ≥1 element. Quintiles should allow empty groups when N < 5.
+3. **No tie awareness**: Doesn't detect ties at boundaries. `AssignRankGroups` detects when elements on both sides of a boundary share the same value and moves the boundary so the entire tie block stays in the higher-ranked group.
+4. **Returns slices vs. index map**: Returns `[][]T` (mutates and reslices the input). `AssignRankGroups` returns `map[int]int` (index → group), which works better for stamping a rank onto existing proto objects.
+
+**Floating-point tie detection:** Uses exact `==` equality. Floating-point rounding may cause near-identical values to be treated as distinct. In practice this is not an issue because QA scores come from the same ClickHouse computation pipeline and tied agents have identical float32 representations.
 
 ---
 
@@ -63,8 +76,11 @@ Rank all agents by score (descending), divide into 5 approximately equal groups:
 
 **`setQuintileRankForPerAgentScores`:**
 1. Collect all per-agent scores (where `GroupedBy.User != nil`)
-2. Sort descending by score
-3. Distribute into quintiles evenly: each gets `floor(N/5)` agents; first `N % 5` get one extra
+2. Sort descending by score (stable sort for deterministic ordering)
+3. Call `utils.AssignRankGroups(n, 5, valueFn)` — distributes into 5 quintiles with tie-aware boundaries
+4. Map group number (0–4) → `QuintileRank` enum (Q1–Q5)
+
+**`AssignRankGroups`** (generic utility in `shared/utils/rank.go`): distributes N pre-sorted elements into K groups. Base sizes are `floor(N/K)` with first `N%K` groups getting one extra. Tie adjustment: when elements on both sides of a boundary share the same value, the boundary moves forward so the entire tie block stays in the higher-ranked group. Groups can become empty if ties cascade.
 
 `ScoreToQuintileRank` (fixed score bands) removed — quintile is computed from rank position, not individual score value.
 
@@ -79,7 +95,7 @@ Rank all agents by score (descending), divide into 5 approximately equal groups:
 - `SmallGroup_3Agents`: 3 agents → Q1, Q2, Q3 (no gaps)
 - `UnevenDistribution_7Agents`: 7 agents → Q1/Q2 get 2, Q3–Q5 get 1
 - `NonAgentRowsUntouched`: criterion-only rows stay UNSPECIFIED
-- `AllAgentsSameScore`: tied agents still get distributed Q1–Q5
+- `AllAgentsSameScore`: tied agents all go to Q1 (tie-aware)
 - `SingleAgent`: 1 agent → Q1
 - `NilSafety`: nil/empty inputs don't panic
 - `TestConvertCHResponseSetsQuintileRank`: ClickHouse path percentile-based

@@ -1,7 +1,7 @@
 # Agent Quintiles Support
 
 **Created:** 2026-02-17
-**Updated:** 2026-02-20
+**Updated:** 2026-02-23
 
 ## Overview
 
@@ -75,6 +75,7 @@ Active – BE done (go-servers PR #25795, review comments addressed). Config fea
 | 2026-02-18 | Proto PR merged (cresta-proto #7874, v2.0.534). BE implemented: `ScoreToQuintileRank`, `setQuintileRankForPerAgentScores`, 14 tests. go-servers PR: [#25795](https://github.com/cresta/go-servers/pull/25795). Agent tier logic documented (`agent-tier-logic.md`). |
 | 2026-02-19 | Requirements doc created. Deep FE investigation + feature flag investigation. PR validation: proto #7874 ✅, go-servers #25795 ⚠️ (missing ClickHouse path → fixed). **Quintile revised: score bands → true percentile-based.** Removed `ScoreToQuintileRank`; rewrote `setQuintileRankForPerAgentScores` as flat percentile ranking. 7 unit tests + 2 CH tests + 1 leakage test pass. |
 | 2026-02-20 | Simplified BE: removed peer-group logic (flat ranking). Config flag PR merged ([#140396](https://github.com/cresta/config/pull/140396)). **FE PR 1**: Agent Leaderboard — quintile column (position, display, flag), `QuintileRankIcon` component, icons on names. **BE fix**: quintile rank leak into AGENT_TIER responses, `sort.SliceStable`, defense-in-depth clear in `createTieredScoreObject`. |
+| 2026-02-23 | Extracted `AssignRankGroups` generic utility to `shared/utils/rank.go`. Refactored `setQuintileRankForPerAgentScores` to use it. Added tie-aware boundary handling (tied scores stay in higher group). 20 utility tests + 2 new integration tests. |
 
 ## Related
 
