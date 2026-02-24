@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "verify_sync_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/cresta/go-servers/tools/verify_sync",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//shared/scoring",
+        "@com_github_clickhouse_clickhouse_go_v2//:clickhouse-go",
+        "@com_github_lib_pq//:pq",
+    ],
+)
+
+go_binary(
+    name = "verify_sync",
+    embed = [":verify_sync_lib"],
+    visibility = ["//visibility:public"],
+)

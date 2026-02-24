@@ -1,0 +1,21 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "test_async_order_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/cresta/go-servers/tools/test_async_order",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_clickhouse_clickhouse_go_v2//:clickhouse-go",
+        "@com_github_cresta_cresta_proto//cresta/v1/coaching",
+        "@org_golang_google_grpc//:go_default_library",
+        "@org_golang_google_grpc//credentials",
+        "@org_golang_google_grpc//metadata",
+    ],
+)
+
+go_binary(
+    name = "test_async_order",
+    embed = [":test_async_order_lib"],
+    visibility = ["//visibility:public"],
+)
