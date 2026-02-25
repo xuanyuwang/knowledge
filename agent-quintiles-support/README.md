@@ -1,7 +1,7 @@
 # Agent Quintiles Support
 
 **Created:** 2026-02-17
-**Updated:** 2026-02-23
+**Updated:** 2026-02-24
 
 ## Overview
 
@@ -63,9 +63,33 @@ See **`implementation-plan.md`** for the concrete BE-first plan. Summary:
 - **Phase 2 (FE):** Quintile Rank column on Performance + Leaderboard agent tables; gold/silver/bronze icons on agent names across Performance, Leaderboard, and Coaching Hub. Feature flag `enableQuintileRank` in config repo gates all UI. See `fe-investigation.md` for detailed plan.
 - **Worktrees:** Use separate worktrees for go-servers and director when making changes.
 
+## All PRs
+
+### Backend & Infrastructure
+
+| PR | Repo | Scope | Status |
+|----|------|-------|--------|
+| [cresta-proto #7874](https://github.com/cresta/cresta-proto/pull/7874) | cresta-proto | `quintile_rank` field in `QAScoreGroupBy` proto | Merged |
+| [cresta-proto #7910](https://github.com/cresta/cresta-proto/pull/7910) | cresta-proto | `QuintileRank`/`QuintileRankNumber` in web-client export whitelist | Merged |
+| [go-servers #25795](https://github.com/cresta/go-servers/pull/25795) | go-servers | `setQuintileRankForPerAgentScores` + `AssignRankGroups` utility | In review |
+| [config #140396](https://github.com/cresta/config/pull/140396) | config | `enableQuintileRank` feature flag | Merged |
+
+### Frontend (director, stacked on Foundation)
+
+| PR | Scope | Status |
+|----|-------|--------|
+| [Foundation #16883](https://github.com/cresta/director/pull/16883) | `QuintileRankIcon`, types, column visibility, i18n | Merged |
+| [Move Icon #16911](https://github.com/cresta/director/pull/16911) | Move `QuintileRankIcon` to `director-components` | Merged |
+| [Leaderboard #16884](https://github.com/cresta/director/pull/16884) | Agent Leaderboard (quintile column + icons) + Agent Leaderboard by Metric (icons) | Merged |
+| [Performance #16886](https://github.com/cresta/director/pull/16886) | Leaderboard by criteria + Leaderboard per criteria (quintile column + icons) | In review |
+| [Coaching Hub #16887](https://github.com/cresta/director/pull/16887) | Recent Coaching Activities (trophy icons + i18n ordinal tooltip) | In review |
+| [Coaching Plan #16905](https://github.com/cresta/director/pull/16905) | Coaching Plan header quintile rank badge | In review |
+
+Demo branch `feature/agent-quintiles` ([PR #16849](https://github.com/cresta/director/pull/16849)) has all changes combined for stakeholder testing.
+
 ## Status
 
-Active – BE done (go-servers PR #25795, review comments addressed). Config feature flag merged ([config #140396](https://github.com/cresta/config/pull/140396)). FE PR 1 (Agent Leaderboard) committed on director `feature/agent-quintiles` — quintile column fixed (position, display, flag guard) + `QuintileRankIcon` component + icons on agent names. Remaining FE work: Performance page columns, Leaderboard per-metric icons, Coaching Hub icons, director PR creation.
+Active – BE in review. FE: Foundation, Move Icon, Leaderboard merged. Performance, Coaching Hub, Coaching Plan in review (comments addressed). Remaining: final approvals and merge.
 
 ## Log History
 
@@ -75,7 +99,8 @@ Active – BE done (go-servers PR #25795, review comments addressed). Config fea
 | 2026-02-18 | Proto PR merged (cresta-proto #7874, v2.0.534). BE implemented: `ScoreToQuintileRank`, `setQuintileRankForPerAgentScores`, 14 tests. go-servers PR: [#25795](https://github.com/cresta/go-servers/pull/25795). Agent tier logic documented (`agent-tier-logic.md`). |
 | 2026-02-19 | Requirements doc created. Deep FE investigation + feature flag investigation. PR validation: proto #7874 ✅, go-servers #25795 ⚠️ (missing ClickHouse path → fixed). **Quintile revised: score bands → true percentile-based.** Removed `ScoreToQuintileRank`; rewrote `setQuintileRankForPerAgentScores` as flat percentile ranking. 7 unit tests + 2 CH tests + 1 leakage test pass. |
 | 2026-02-20 | Simplified BE: removed peer-group logic (flat ranking). Config flag PR merged ([#140396](https://github.com/cresta/config/pull/140396)). **FE PR 1**: Agent Leaderboard — quintile column (position, display, flag), `QuintileRankIcon` component, icons on names. **BE fix**: quintile rank leak into AGENT_TIER responses, `sort.SliceStable`, defense-in-depth clear in `createTieredScoreObject`. |
-| 2026-02-23 | Extracted `AssignRankGroups` generic utility to `shared/utils/rank.go`. Refactored `setQuintileRankForPerAgentScores` to use it. Added tie-aware boundary handling (tied scores stay in higher group). 20 utility tests + 2 new integration tests. |
+| 2026-02-23 | BE: Extracted `AssignRankGroups` utility with tie-aware boundaries. FE: all 4 PRs created — Foundation [#16883](https://github.com/cresta/director/pull/16883), Leaderboard [#16884](https://github.com/cresta/director/pull/16884), Performance [#16886](https://github.com/cresta/director/pull/16886), Coaching Hub [#16887](https://github.com/cresta/director/pull/16887). Demo branch pushed with mock data. |
+| 2026-02-24 | FE: Foundation, Move Icon (#16911), Leaderboard merged. Coaching Plan PR #16905 created. Addressed all review comments on Performance (#16886) and Coaching Hub (#16887): i18n ordinal, useTranslation, gate quintile to Agent tab, loading gate, avoid mutation, sticky width fix, cell centering, guard undefined username. |
 
 ## Related
 
