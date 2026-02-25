@@ -3,14 +3,15 @@
 **Created**: 2026-02-24
 **Updated**: 2026-02-24
 **Linear**: https://linear.app/cresta/issue/CONVI-6298
+**Status**: In progress — switching to scorecard-centric workflow approach
 
 ## Overview
 
 Process scorecards (`SCORECARD_TEMPLATE_TYPE_PROCESS`) are not reindexed by the existing `batch-reindex-conversations` cron job because that flow is conversation-centric: it queries `app.chats` and calls `BatchIndexConversations`, which reads scorecards by `conversation_id` and effectively skips process scorecards.
 
-This project extends the existing `JOB_TYPE_REINDEX_CONVERSATIONS` to also support process scorecard reindexing, controlled by a new `reindex_scorecard_types` proto field.
+This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX_SCORECARDS`) that writes scorecard data directly to ClickHouse, starting with process scorecards.
 
-## Architecture
+## Architecture (current direction)
 
 ```
                     REINDEX_MODE env var
@@ -19,69 +20,75 @@ This project extends the existing `JOB_TYPE_REINDEX_CONVERSATIONS` to also suppo
               |           |           |
          conversation   process      all
               |           |           |
-              +-----+-----+----------+
-                    |
-          CreateJob(JOB_TYPE_REINDEX_CONVERSATIONS)
-          with ReindexConversationsPayload {
-            reindex_scorecard_types: [CONVERSATION|PROCESS|both]
-          }
-                    |
-            ReindexConversations Workflow
-                    |
-        +-----------+-----------+
-        |  (if CONVERSATION)   |  (if PROCESS)
-        |                      |
-  ReindexConversations    ReindexProcessScorecards
-  Activity (existing)     Activity (new)
-        |                      |
-  BatchIndexConversations     Query PG
-  (ES + CH)             (director.scorecards
-                         + template_revisions
-                         + historic_scores)
-                               |
-                          Write CH
-                     (WriteScores + WriteScorecards
-                      isProcessScorecard=true)
+   JOB_TYPE_REINDEX_   JOB_TYPE_REINDEX_
+   CONVERSATIONS       SCORECARDS
+   (existing, unchanged)    (new)
+              |                |
+   BatchIndexConversations   ReindexScorecards Workflow
+   (ES + CH)                      |
+                            Branch on scorecard_types
+                                  |
+                          (PROCESS for now)
+                                  |
+                           Query PG
+                      (director.scorecards
+                       + template_revisions
+                       + historic_scores)
+                                  |
+                            Write CH
+                       (WriteScores + WriteScorecards
+                        isProcessScorecard=true)
 ```
 
-## Changes
+## Approach History
+
+### Approach 1: Separate `JOB_TYPE_REINDEX_PROCESS_SCORECARDS` (abandoned)
+- Dedicated job type + workflow + handler for process scorecards only
+- Rejected: too narrow, doesn't generalize
+
+### Approach 2: Extend `JOB_TYPE_REINDEX_CONVERSATIONS` (abandoned)
+- Add `reindex_scorecard_types` field to `ReindexConversationsPayload`
+- Branch existing workflow to run conversation and/or process scorecard activities
+- Rejected: `reindexconversations` is conversation-centric; process scorecards are not about conversations
+
+### Approach 3: New `JOB_TYPE_REINDEX_SCORECARDS` (current) ← TODO
+- New scorecard-centric workflow with `repeated ScorecardTemplateType` in payload
+- Clean separation: conversations workflow stays conversation-centric
+- Extensible: could later add direct conversation scorecard → CH path
+
+## Changes Needed (Approach 3)
 
 | # | Repo | File | Type | Description |
 |---|------|------|------|-------------|
-| 1 | cresta-proto | `cresta/v1/job/job_payload.proto` | Modify | Add `repeated ScorecardTemplateType reindex_scorecard_types = 13` to `ReindexConversationsPayload` |
-| 2 | go-servers | `temporal/ingestion/reindexconversations/const.go` | Modify | Add `REINDEX_PROCESS_SCORECARDS_BATCH_SIZE` env flag |
-| 3 | go-servers | `temporal/ingestion/reindexconversations/activity.go` | Modify | Add `ClickHouseClient` to `Activities` struct |
-| 4 | go-servers | `temporal/ingestion/reindexconversations/process_scorecard_activity.go` | **New** | `ReindexProcessScorecardsActivity` method |
-| 5 | go-servers | `temporal/ingestion/reindexconversations/workflow.go` | Modify | Branch on `reindex_scorecard_types` |
-| 6 | go-servers | `temporal/registration/registration.go` | Modify | Inject `ClickHouseClient` into registration |
-| 7 | go-servers | `cron/task-runner/tasks/batch-reindex-conversations/task.go` | Modify | Single code path with `reindex_scorecard_types` |
+| 1 | cresta-proto | `job.proto` | Modify | Add `JOB_TYPE_REINDEX_SCORECARDS` enum value |
+| 2 | cresta-proto | `job_payload.proto` | Modify | Add `ReindexScorecardsPayload` message + oneof field |
+| 3 | cresta-proto | `reindex_scorecards.proto` | **New** | Workflow input proto |
+| 4 | go-servers | `temporal/ingestion/reindexscorecards/` | **New** | Package: const, workflow, activity |
+| 5 | go-servers | `jobhandler/reindex_scorecards_handler.go` | **New** | Job handler |
+| 6 | go-servers | `jobhandler/registry.go` | Modify | Register handler |
+| 7 | go-servers | `temporal/registration/registration.go` | Modify | Register workflow + activity |
+| 8 | go-servers | `batch-reindex-conversations/task.go` | Modify | Create new job type for process/all mode |
 
-### Reverted (old approach)
-- Deleted `JOB_TYPE_REINDEX_PROCESS_SCORECARDS` (reserved 61)
-- Deleted `ReindexProcessScorecardsPayload` (reserved field 59)
-- Deleted `reindex_process_scorecards.proto`
-- Deleted `temporal/ingestion/reindexprocessscorecards/` package
-- Deleted `reindex_process_scorecards_handler.go`
-- Removed old registry + registration entries
+### Revert (Approach 2 code on branch)
+- Remove `reindex_scorecard_types` field from `ReindexConversationsPayload`
+- Revert all changes to `reindexconversations/` package (workflow.go, activity.go, const.go)
+- Delete `reindexconversations/process_scorecard_activity.go`
+- Revert registration.go changes
 
 ## Key Design Decisions
 
-1. **Reuse `ScorecardTemplateType` enum** as a repeated field instead of a custom scope enum — more extensible if new scorecard types are added
-2. **Empty list = conversation only** for backward compatibility (existing jobs keep working)
-3. **Sequential execution** (conversation activity first, then process) — simpler, avoids resource contention
-4. **Default REINDEX_MODE=conversation** preserves existing cron behavior
-5. **Batch size 50** for process scorecards (conservative PG query load)
-6. **ClickHouseClient injected** into Activities struct (same pattern as `retention` activities)
+1. **Reuse `ScorecardTemplateType` enum** as a repeated field — extensible if new scorecard types are added
+2. **Batch size 50** for process scorecards (conservative PG query load)
+3. **ClickHouseClient injected** into activity struct (same pattern as `retention` activities)
+4. **`REINDEX_MODE` env var** on cron: `conversation` (default, existing behavior), `process`, `all`
 
-## Testing
+## PRs
 
-1. **Default behavior**: With `REINDEX_MODE=conversation` (default), workflow only runs conversation activity — zero behavior change
-2. **Process only**: Set `REINDEX_MODE=process`, verify workflow skips conversation activity and runs process scorecard activity
-3. **Both**: Set `REINDEX_MODE=all`, verify both activities run sequentially
-4. **Staging**: Run with known time range, compare PG vs CH using `batch_verify.py` from `convi-5565` project
+- cresta-proto PR #7919 — needs update to Approach 3
+- go-servers PR #25916 — needs update to Approach 3
 
 ## Log History
 
 | Date | Summary |
 |------|---------|
-| 2026-02-24 | Initial implementation (old approach: separate job type), then switched to extending existing `JOB_TYPE_REINDEX_CONVERSATIONS` with `reindex_scorecard_types` field |
+| 2026-02-24 | Explored 3 approaches: separate job type → extend reindexconversations → new scorecard-centric workflow. Settled on Approach 3. PRs currently have Approach 2 code; need to update next session. |
