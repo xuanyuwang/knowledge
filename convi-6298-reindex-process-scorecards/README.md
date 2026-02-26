@@ -1,9 +1,9 @@
 # CONVI-6298: Reindex Process Scorecards into ClickHouse
 
 **Created**: 2026-02-24
-**Updated**: 2026-02-24
+**Updated**: 2026-02-26
 **Linear**: https://linear.app/cresta/issue/CONVI-6298
-**Status**: In progress — switching to scorecard-centric workflow approach
+**Status**: Implementation complete — needs build verification and PR updates
 
 ## Overview
 
@@ -11,7 +11,7 @@ Process scorecards (`SCORECARD_TEMPLATE_TYPE_PROCESS`) are not reindexed by the 
 
 This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX_SCORECARDS`) that writes scorecard data directly to ClickHouse, starting with process scorecards.
 
-## Architecture (current direction)
+## Architecture
 
 ```
                     REINDEX_MODE env var
@@ -28,7 +28,7 @@ This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX
    (ES + CH)                      |
                             Branch on scorecard_types
                                   |
-                          (PROCESS for now)
+                          (PROCESS by default)
                                   |
                            Query PG
                       (director.scorecards
@@ -51,44 +51,60 @@ This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX
 - Branch existing workflow to run conversation and/or process scorecard activities
 - Rejected: `reindexconversations` is conversation-centric; process scorecards are not about conversations
 
-### Approach 3: New `JOB_TYPE_REINDEX_SCORECARDS` (current) ← TODO
+### Approach 3: New `JOB_TYPE_REINDEX_SCORECARDS` (implemented)
 - New scorecard-centric workflow with `repeated ScorecardTemplateType` in payload
 - Clean separation: conversations workflow stays conversation-centric
 - Extensible: could later add direct conversation scorecard → CH path
 
-## Changes Needed (Approach 3)
+## Implementation
 
-| # | Repo | File | Type | Description |
-|---|------|------|------|-------------|
-| 1 | cresta-proto | `job.proto` | Modify | Add `JOB_TYPE_REINDEX_SCORECARDS` enum value |
-| 2 | cresta-proto | `job_payload.proto` | Modify | Add `ReindexScorecardsPayload` message + oneof field |
-| 3 | cresta-proto | `reindex_scorecards.proto` | **New** | Workflow input proto |
-| 4 | go-servers | `temporal/ingestion/reindexscorecards/` | **New** | Package: const, workflow, activity |
-| 5 | go-servers | `jobhandler/reindex_scorecards_handler.go` | **New** | Job handler |
-| 6 | go-servers | `jobhandler/registry.go` | Modify | Register handler |
-| 7 | go-servers | `temporal/registration/registration.go` | Modify | Register workflow + activity |
-| 8 | go-servers | `batch-reindex-conversations/task.go` | Modify | Create new job type for process/all mode |
+### Proto Changes (cresta-proto)
 
-### Revert (Approach 2 code on branch)
-- Remove `reindex_scorecard_types` field from `ReindexConversationsPayload`
-- Revert all changes to `reindexconversations/` package (workflow.go, activity.go, const.go)
-- Delete `reindexconversations/process_scorecard_activity.go`
-- Revert registration.go changes
+| File | Change |
+|------|--------|
+| `cresta/v1/job/job.proto` | Added `JOB_TYPE_REINDEX_SCORECARDS = 61` |
+| `cresta/v1/job/job_payload.proto` | Added `ReindexScorecardsPayload` message + oneof field 59 |
+| `cresta/nonpublic/temporal/ingestion/reindex_scorecards.proto` | New workflow input proto |
+
+### Go-servers Changes
+
+| File | Type | Description |
+|------|------|-------------|
+| `temporal/ingestion/reindexscorecards/const.go` | New | Task queue name + env flags |
+| `temporal/ingestion/reindexscorecards/workflow.go` | New | Temporal workflow (same pattern as reindexconversations) |
+| `temporal/ingestion/reindexscorecards/activity.go` | New | `ReindexScorecardsActivity` — PG→CH reindex logic |
+| `temporal/ingestion/reindexscorecards/BUILD.bazel` | New | Bazel build file |
+| `jobhandler/reindex_scorecards_handler.go` | New | Job handler for `JOB_TYPE_REINDEX_SCORECARDS` |
+| `jobhandler/registry.go` | Modified | Added handler entry |
+| `jobhandler/BUILD.bazel` | Modified | Added handler source + dep |
+| `temporal/registration/registration.go` | Modified | Added registration function + task queue |
+| `temporal/registration/BUILD.bazel` | Modified | Added dep |
+| `batch-reindex-conversations/task.go` | Modified | Added `REINDEX_MODE` env var + process scorecard dispatch |
 
 ## Key Design Decisions
 
 1. **Reuse `ScorecardTemplateType` enum** as a repeated field — extensible if new scorecard types are added
-2. **Batch size 50** for process scorecards (conservative PG query load)
-3. **ClickHouseClient injected** into activity struct (same pattern as `retention` activities)
-4. **`REINDEX_MODE` env var** on cron: `conversation` (default, existing behavior), `process`, `all`
+2. **Default to PROCESS only** when `scorecard_types` is empty — this is the gap being filled
+3. **Batch size 50** for process scorecards (conservative PG query load)
+4. **ClickHouseClient injected** into activity struct (same pattern as `retention` activities)
+5. **`REINDEX_MODE` env var** on cron: `conversation` (default, existing behavior), `process`, `all`
+6. **Sequential batch processing** — conservative; process scorecards are lower volume
 
 ## PRs
 
-- cresta-proto PR #7919 — needs update to Approach 3
-- go-servers PR #25916 — needs update to Approach 3
+- cresta-proto PR #7919
+- go-servers PR #25916
+
+## Remaining Work
+
+- [ ] Commit and push both repos
+- [ ] Update PR titles and descriptions
+- [ ] Bazel build verification
+- [ ] Staging test with known time range
 
 ## Log History
 
 | Date | Summary |
 |------|---------|
-| 2026-02-24 | Explored 3 approaches: separate job type → extend reindexconversations → new scorecard-centric workflow. Settled on Approach 3. PRs currently have Approach 2 code; need to update next session. |
+| 2026-02-24 | Explored 3 approaches: separate job type → extend reindexconversations → new scorecard-centric workflow. Settled on Approach 3. |
+| 2026-02-26 | Reverted Approach 2, implemented Approach 3: proto changes + full go-servers implementation (new package, handler, registry, registration, cron task). |

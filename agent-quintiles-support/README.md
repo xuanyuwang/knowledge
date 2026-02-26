@@ -1,7 +1,7 @@
 # Agent Quintiles Support
 
 **Created:** 2026-02-17
-**Updated:** 2026-02-24
+**Updated:** 2026-02-25
 
 ## Overview
 
@@ -81,15 +81,15 @@ See **`implementation-plan.md`** for the concrete BE-first plan. Summary:
 | [Foundation #16883](https://github.com/cresta/director/pull/16883) | `QuintileRankIcon`, types, column visibility, i18n | Merged |
 | [Move Icon #16911](https://github.com/cresta/director/pull/16911) | Move `QuintileRankIcon` to `director-components` | Merged |
 | [Leaderboard #16884](https://github.com/cresta/director/pull/16884) | Agent Leaderboard (quintile column + icons) + Agent Leaderboard by Metric (icons) | Merged |
-| [Performance #16886](https://github.com/cresta/director/pull/16886) | Leaderboard by criteria + Leaderboard per criteria (quintile column + icons) | In review |
+| [Performance #16886](https://github.com/cresta/director/pull/16886) | Leaderboard by criteria + Leaderboard per criteria (quintile column + icons) | Merged |
 | [Coaching Hub #16887](https://github.com/cresta/director/pull/16887) | Recent Coaching Activities (trophy icons + i18n ordinal tooltip) | In review |
-| [Coaching Plan #16905](https://github.com/cresta/director/pull/16905) | Coaching Plan header quintile rank badge | In review |
+| [Coaching Plan #16905](https://github.com/cresta/director/pull/16905) | Coaching Plan header quintile rank badge (`QuintileRankBadge` self-contained component) | Merged |
 
 Demo branch `feature/agent-quintiles` ([PR #16849](https://github.com/cresta/director/pull/16849)) has all changes combined for stakeholder testing.
 
 ## Status
 
-Active – BE in review. FE: Foundation, Move Icon, Leaderboard merged. Performance, Coaching Hub, Coaching Plan in review (comments addressed). Remaining: final approvals and merge.
+Near complete – BE in review. FE: Foundation, Move Icon, Leaderboard, Performance, Coaching Plan all merged. Coaching Hub (#16887) in review (rebased on main). Remaining: Coaching Hub approval + merge, BE approval + merge.
 
 ## Log History
 
@@ -101,6 +101,7 @@ Active – BE in review. FE: Foundation, Move Icon, Leaderboard merged. Performa
 | 2026-02-20 | Simplified BE: removed peer-group logic (flat ranking). Config flag PR merged ([#140396](https://github.com/cresta/config/pull/140396)). **FE PR 1**: Agent Leaderboard — quintile column (position, display, flag), `QuintileRankIcon` component, icons on names. **BE fix**: quintile rank leak into AGENT_TIER responses, `sort.SliceStable`, defense-in-depth clear in `createTieredScoreObject`. |
 | 2026-02-23 | BE: Extracted `AssignRankGroups` utility with tie-aware boundaries. FE: all 4 PRs created — Foundation [#16883](https://github.com/cresta/director/pull/16883), Leaderboard [#16884](https://github.com/cresta/director/pull/16884), Performance [#16886](https://github.com/cresta/director/pull/16886), Coaching Hub [#16887](https://github.com/cresta/director/pull/16887). Demo branch pushed with mock data. |
 | 2026-02-24 | FE: Foundation, Move Icon (#16911), Leaderboard merged. Coaching Plan PR #16905 created. Addressed all review comments on Performance (#16886) and Coaching Hub (#16887): i18n ordinal, useTranslation, gate quintile to Agent tab, loading gate, avoid mutation, sticky width fix, cell centering, guard undefined username. |
+| 2026-02-25 | Coaching Plan #16905 merged (after extracting `QuintileRankBadge` as self-contained component per review). Performance #16886 merged. Coaching Hub #16887 rebased on latest main. Demo branch reset to main + coaching hub. |
 
 ## Related
 

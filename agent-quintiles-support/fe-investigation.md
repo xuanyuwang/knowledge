@@ -1,7 +1,7 @@
 # FE Investigation: Quintile Rank in Director
 
 **Created:** 2026-02-18
-**Updated:** 2026-02-19
+**Updated:** 2026-02-23
 
 ## Overview
 
@@ -13,8 +13,9 @@ The BE now returns `quintile_rank` (enum `QuintileRank`, values 0–5) on `QASco
 
 ## Current State
 
-- `@cresta/web-client@2.0.534` includes `QuintileRank` enum and `quintileRank` field on `QAScoreGroupBy` (verified).
-- **Partial implementation done** in `director-quintiles`: type layer + Agent Leaderboard column (but needs corrections per requirements).
+- `@cresta/web-client@2.0.561` includes `QuintileRank` enum and `QuintileRankNumber` in top-level exports (added via cresta-proto PR #7910 export whitelist).
+- **Agent Leaderboard implemented** in `director-quintiles`: type layer + quintile column + trophy icons on both Agent Leaderboard and Agent Leaderboard by Metric tables. Working with mock data on demo branch.
+- **Remaining**: Performance page, Coaching Hub.
 
 ## Data Flow
 
@@ -49,24 +50,23 @@ The BE now returns `quintile_rank` (enum `QuintileRank`, values 0–5) on `QASco
 
 ## Gap Analysis: Current Implementation vs Requirements
 
-### Done (in director-quintiles)
-- [x] `apiTypes.ts`: `quintileRank?: QuintileRank` on `QAScoreGroupBy`
+### Done (in director-quintiles demo branch)
+- [x] `apiTypes.ts`: `quintileRank?: QuintileRank` on `QAScoreGroupBy`, import from `@cresta/web-client` (top-level)
 - [x] `transformersQAI.ts`: passthrough `quintileRank: groupedBy?.quintileRank`
-- [x] `types.ts`: `quintileRank?: QuintileRank` on `LeaderboardRow`
-- [x] `useVisibleColumnsForLeaderboards.tsx`: `'quintileRank'` in `alwaysVisible`
-- [x] `AgentLeaderboard.tsx`: `row.quintileRank` assignment + column definition
-
-### Needs correction
-- [ ] **Agent Leaderboard column position**: Currently after Performance group → should be after Live Assist group
-- [ ] **Column cell display**: Currently shows "Q1"–"Q5" → should show plain number 1–5
+- [x] `types.ts`: `quintileRank?: QuintileRank` on `LeaderboardRow` and `LeaderboardByMetricTableData`
+- [x] `useVisibleColumnsForLeaderboards.tsx`: conditionally add `'quintileRank'` (removed `displayAsAgent !== false` guard)
+- [x] `AgentLeaderboard.tsx`: quintile column after Live Assist, plain number 1–5, trophy icons before agent names
+- [x] `AgentLeaderboardByMetric.tsx`: trophy icons before agent names via `agentToQuintileRank` prop
+- [x] `AgentLeaderboardPage.tsx`: builds `agentToQuintileRank` map, passes to both tables
+- [x] `QuintileRankIcon.tsx`: `IconTrophy` with gold/silver/bronze CSS for Q1/Q2/Q3
+- [x] `@cresta/web-client` bumped to 2.0.561, all imports use top-level (no eslint-disable)
+- [x] Removed duplicate `enableQuintileRank` from `localFeatureFlags.ts`
+- [x] i18n: "Quintile Rank" column header
 
 ### Not yet implemented
-- [ ] **Shared `QuintileRankIcon` component**: Gold/silver/bronze icon for Q1/Q2/Q3; no icon for Q4/Q5
-- [ ] **Agent Leaderboard name column**: Add icon next to name
-- [ ] **Agent Leaderboard per metric name column**: Add icon next to name (row type `LeaderboardByMetricTableData` needs `quintileRank`)
-- [ ] **Performance → Leaderboard by criteria (2nd table)**: Add quintile column + icon on name (row type `LeaderboardByScorecardTemplateItemRow` needs `quintileRank`)
-- [ ] **Performance → Leaderboard per criteria (3rd table)**: Add quintile column + icon on name (row type `LeaderboardPerCriterionRow` needs `quintileRank`)
-- [ ] **Coaching Hub → Recent Coaching Activities**: Add icon on agent name with tooltip (row type `AgentCoachingOverviewWithCriteriaInfo` needs agent-level quintile)
+- [ ] **Performance → Leaderboard by criteria (2nd table)**: Add quintile column (sticky, after "Average Performance") + icon on name
+- [ ] **Performance → Leaderboard per criteria (3rd table)**: Add quintile column (last static) + icon on name
+- [ ] **Coaching Hub → Recent Coaching Activities**: Add icon on agent name with tooltip "Xth quintile based on last 7 days"
 
 ---
 

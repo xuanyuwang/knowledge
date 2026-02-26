@@ -1,7 +1,7 @@
 # Agent Quintiles – Concrete Implementation Plan
 
 **Created:** 2026-02-17  
-**Updated:** 2026-02-23
+**Updated:** 2026-02-23 (FE PR strategy added)
 
 ## Quintile definition — TRUE PERCENTILE-BASED (revised)
 
@@ -118,30 +118,27 @@ The existing utility (used by agent tiers) doesn't fit quintile requirements:
 Full requirements in `requirements.md`. Detailed investigation in `fe-investigation.md`.
 
 ### 2.0 Type layer ✅
-- `apiTypes.ts`: Added `QuintileRank` import + `quintileRank?: QuintileRank` to `QAScoreGroupBy`
+- `apiTypes.ts`: `QuintileRank` import from `@cresta/web-client` (top-level, no eslint-disable)
 - `transformersQAI.ts`: Mapped `quintileRank: groupedBy?.quintileRank`
-- `LeaderboardRow` in `types.ts`: Added `quintileRank?: QuintileRank`
-- `useVisibleColumnsForLeaderboards.tsx`: Added `'quintileRank'` to `alwaysVisible`
+- `LeaderboardRow` + `LeaderboardByMetricTableData` in `types.ts`: Added `quintileRank?: QuintileRank`
+- `useVisibleColumnsForLeaderboards.tsx`: Conditionally add `'quintileRank'` (removed `displayAsAgent !== false` guard)
+- `@cresta/web-client` bumped to 2.0.561 (QuintileRank/QuintileRankNumber in top-level exports via cresta-proto PR #7910)
+- Removed duplicate `enableQuintileRank` from `localFeatureFlags.ts`
 
-### 2.1 Shared QuintileRankIcon component (not started)
-- New component: gold/silver/bronze icon for Q1/Q2/Q3; no icon for Q4/Q5
-- Optional tooltip prop (for Coaching Hub: "Xth quintile based on last 7 days")
-- Location: `components/insights/shared/QuintileRankIcon.tsx` or `components/qa/shared/QuintileRankIcon.tsx`
+### 2.1 Shared QuintileRankIcon component ✅
+- `features/insights/leaderboard/QuintileRankIcon.tsx` + `QuintileRankIcon.module.css`
+- `IconTrophy` from `@tabler/icons-react`, size 12, `flex-shrink: 0`
+- Gold (`--content-warning`) for Q1, Silver (`--content-secondary`) for Q2, Bronze (`--extended-content-orange`) for Q3
+- Returns `null` for Q4/Q5/unspecified
 
-### 2.2 Agent Leaderboard (partially done — needs corrections)
+### 2.2 Agent Leaderboard ✅
+- Column after Live Assist, plain number 1–5, header "Quintile Rank", 80px fixed width
+- Trophy icons before agent names in both manager and agent views
+- `AgentLeaderboardPage.tsx`: builds `agentToQuintileRank` map from QA score data
 
-**Column:**
-- ✅ Row assignment: `row.quintileRank = groupResult.groupedBy?.quintileRank`
-- ⚠️ **Position wrong**: Currently after Performance group → move to **after Live Assist group** (before Outcome Metrics)
-- ⚠️ **Display wrong**: Currently "Q1"–"Q5" → change to plain number **1–5**
-
-**Icon on name:**
-- Not started. Add `QuintileRankIcon` inline in the Name column cell and in the tooltip.
-
-### 2.3 Agent Leaderboard per metric (not started)
-- Add `quintileRank?: QuintileRank` to `LeaderboardByMetricTableData` in `types.ts`
-- Thread `quintileRank` from QA score data into rows via `useLeaderboardByMetricData`
-- Add `QuintileRankIcon` inline in the Name column cell (`AgentLeaderboardByMetric.tsx`)
+### 2.3 Agent Leaderboard per metric ✅
+- Trophy icons before agent names via `agentToQuintileRank` prop from page
+- Reads directly from map in cell renderer (avoids stale mutation issues)
 
 ### 2.4 Performance → Leaderboard by criteria — 2nd table (not started)
 
