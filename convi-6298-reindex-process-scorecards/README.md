@@ -1,9 +1,9 @@
 # CONVI-6298: Reindex Process Scorecards into ClickHouse
 
 **Created**: 2026-02-24
-**Updated**: 2026-02-26
+**Updated**: 2026-02-27
 **Linear**: https://linear.app/cresta/issue/CONVI-6298
-**Status**: Implementation complete — needs build verification and PR updates
+**Status**: PRs ready — proto merged, go-servers awaiting review
 
 ## Overview
 
@@ -14,7 +14,7 @@ This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX
 ## Architecture
 
 ```
-                    REINDEX_MODE env var
+                    REINDEX_MODE env var (default: all)
                           |
               +-----------+-----------+
               |           |           |
@@ -26,14 +26,17 @@ This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX
               |                |
    BatchIndexConversations   ReindexScorecards Workflow
    (ES + CH)                      |
-                            Branch on scorecard_types
+                           Branch on scorecard_types
                                   |
                           (PROCESS by default)
                                   |
                            Query PG
                       (director.scorecards
-                       + template_revisions
-                       + historic_scores)
+                       + director.scores
+                       + template_revisions)
+                                  |
+                      GenerateHistoricScorecardScores
+                      (pure computation, no DB write)
                                   |
                             Write CH
                        (WriteScores + WriteScorecards
@@ -58,7 +61,7 @@ This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX
 
 ## Implementation
 
-### Proto Changes (cresta-proto)
+### Proto Changes (cresta-proto) — PR #7919 (merged)
 
 | File | Change |
 |------|--------|
@@ -66,13 +69,13 @@ This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX
 | `cresta/v1/job/job_payload.proto` | Added `ReindexScorecardsPayload` message + oneof field 59 |
 | `cresta/nonpublic/temporal/ingestion/reindex_scorecards.proto` | New workflow input proto |
 
-### Go-servers Changes
+### Go-servers Changes — PR #25916 (open)
 
 | File | Type | Description |
 |------|------|-------------|
 | `temporal/ingestion/reindexscorecards/const.go` | New | Task queue name + env flags |
 | `temporal/ingestion/reindexscorecards/workflow.go` | New | Temporal workflow (same pattern as reindexconversations) |
-| `temporal/ingestion/reindexscorecards/activity.go` | New | `ReindexScorecardsActivity` — PG→CH reindex logic |
+| `temporal/ingestion/reindexscorecards/activity.go` | New | `ReindexScorecardsActivity` — reconstructs scores from director data, writes to CH |
 | `temporal/ingestion/reindexscorecards/BUILD.bazel` | New | Bazel build file |
 | `jobhandler/reindex_scorecards_handler.go` | New | Job handler for `JOB_TYPE_REINDEX_SCORECARDS` |
 | `jobhandler/registry.go` | Modified | Added handler entry |
@@ -83,28 +86,32 @@ This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX
 
 ## Key Design Decisions
 
-1. **Reuse `ScorecardTemplateType` enum** as a repeated field — extensible if new scorecard types are added
-2. **Default to PROCESS only** when `scorecard_types` is empty — this is the gap being filled
-3. **Batch size 50** for process scorecards (conservative PG query load)
-4. **ClickHouseClient injected** into activity struct (same pattern as `retention` activities)
-5. **`REINDEX_MODE` env var** on cron: `conversation` (default, existing behavior), `process`, `all`
-6. **Sequential batch processing** — conservative; process scorecards are lower volume
+1. **Reconstruct from director data**: Scores are built from `director.scores` + `scorecard_template_revisions` using `GenerateHistoricScorecardScores()`, avoiding a read from the `historic.scorecard_scores` table. The historic table is a denormalized projection of director data and can be rebuilt deterministically.
+2. **No heartbeat resume**: Heartbeat is used for progress visibility and liveness detection only. On retry, the activity reprocesses from scratch — writes are idempotent (CH `ReplacingMergeTree` deduplicates). OFFSET-based pagination can't reliably resume when underlying data changes.
+3. **Reuse `ScorecardTemplateType` enum** as a repeated field — extensible if new scorecard types are added
+4. **Default to PROCESS only** when `scorecard_types` is empty — this is the gap being filled
+5. **Default `REINDEX_MODE=all`** on cron — runs both conversation and process scorecard reindex jobs
+6. **Batch size 50** for process scorecards (conservative PG query load)
+7. **ClickHouseClient injected** into activity struct (same pattern as `retention` activities)
 
 ## PRs
 
-- cresta-proto PR #7919
-- go-servers PR #25916
+- cresta-proto PR #7919 — **merged**
+- go-servers PR #25916 — **open**, awaiting review
 
 ## Remaining Work
 
-- [ ] Commit and push both repos
-- [ ] Update PR titles and descriptions
-- [ ] Bazel build verification
+- [x] Proto changes (cresta-proto PR merged)
+- [x] Go-servers implementation
+- [x] Bazel build verification (all packages compile)
+- [ ] Code review approval
 - [ ] Staging test with known time range
+- [ ] Verify CH data matches PG using `batch_verify.py`
 
 ## Log History
 
 | Date | Summary |
 |------|---------|
 | 2026-02-24 | Explored 3 approaches: separate job type → extend reindexconversations → new scorecard-centric workflow. Settled on Approach 3. |
-| 2026-02-26 | Reverted Approach 2, implemented Approach 3: proto changes + full go-servers implementation (new package, handler, registry, registration, cron task). |
+| 2026-02-26 | Reverted Approach 2, implemented Approach 3: proto changes + full go-servers implementation. Fixed CI failures, addressed CodeRabbit review comments. |
+| 2026-02-27 | Refactored activity to reconstruct scores from director data (skip historic schema). Removed heartbeat resume (OFFSET pagination unreliable), kept heartbeat for progress visibility. Rebased onto main with updated cresta-proto dep. All packages build. |
