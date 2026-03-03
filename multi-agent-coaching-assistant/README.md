@@ -2,7 +2,7 @@
 
 **Created:** 2026-03-02
 **Updated:** 2026-03-02
-**Status:** Vibe-Coded App Created & Tested
+**Status:** Vibe-Coded App — `POST /api/create-session` added (LLM-powered)
 
 ## Overview
 
@@ -74,6 +74,7 @@ Deployed as a standalone Flask app in `chat-ai` following the vibe-code pattern 
 | Method | Path | Description |
 |--------|------|-------------|
 | `POST` | `/api/identify` | Identify agents needing coaching, ranked by priority |
+| `POST` | `/api/create-session` | Generate AI meeting notes and create a coaching session via gRPC |
 | `GET` | `/api/users` | List agents for selection |
 | `GET` | `/health` | Health check |
 
@@ -101,4 +102,4 @@ app/coaching-ai-summary/build_and_push.sh
 
 | Date | Summary |
 |------|---------|
-| 2026-03-02 | Project created; explored codebase; implemented prototype in python-ai-services (15/15 tests); ran staging validation; created vibe-coded Flask app in chat-ai; tested against voice-staging |
+| 2026-03-02 | Project created; explored codebase; implemented prototype in python-ai-services (15/15 tests); ran staging validation; created vibe-coded Flask app in chat-ai; tested against voice-staging; added `POST /api/create-session` with OpenAI structured output + gRPC `CreateCoachingSession` |
