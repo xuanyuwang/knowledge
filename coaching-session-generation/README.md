@@ -1,7 +1,7 @@
 # Coaching Session Generation
 
 **Created:** 2026-03-02
-**Updated:** 2026-03-02
+**Updated:** 2026-03-03
 **Status:** Endpoint implemented in `coaching-ai-summary` app
 
 ## Overview
@@ -77,3 +77,4 @@ Request (analysis_text, agent, focus_criteria)
 | Date | Summary |
 |------|---------|
 | 2026-03-02 | Implemented endpoint: OpenAI structured output + gRPC CreateCoachingSession; deployed to voice-staging |
+| 2026-03-03 | Added 4 session presets to UI: critical (2 criteria), high, medium, critical multi-criteria |
