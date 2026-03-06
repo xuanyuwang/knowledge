@@ -1,8 +1,8 @@
 # Multi-Agent Coaching Assistant
 
 **Created:** 2026-03-02
-**Updated:** 2026-03-02
-**Status:** Vibe-Coded App — `POST /api/create-session` added (LLM-powered)
+**Updated:** 2026-03-06
+**Status:** Hackathon demo ready — mock data for 8 agents, all 5 action types, deployed to voice-staging (revision 23)
 
 ## Overview
 
@@ -74,9 +74,28 @@ Deployed as a standalone Flask app in `chat-ai` following the vibe-code pattern 
 | Method | Path | Description |
 |--------|------|-------------|
 | `POST` | `/api/identify` | Identify agents needing coaching, ranked by priority |
+| `POST` | `/api/recommend` | Generate AI recommendations from identify results |
+| `POST` | `/api/recommend-direct` | Combined identify + recommend in one call |
 | `POST` | `/api/create-session` | Generate AI meeting notes and create a coaching session via gRPC |
 | `GET` | `/api/users` | List agents for selection |
 | `GET` | `/health` | Health check |
+
+### Mock Data (Hackathon Demo)
+
+When agent names contain `2026hackathon-`, the app returns pre-canned responses without gRPC/LLM calls. See `mock_data.py`.
+
+| Mock ID | Display Name | Priority |
+|---------|-------------|----------|
+| 2026hackathon-1 | Alice Johnson | critical |
+| 2026hackathon-2 | Bob Martinez | critical |
+| 2026hackathon-3 | Carol Chen | critical |
+| 2026hackathon-4 | Dave Thompson | high |
+| 2026hackathon-5 | Eve Williams | high |
+| 2026hackathon-6 | Frank Garcia | medium |
+| 2026hackathon-7 | Grace Kim | medium |
+| 2026hackathon-8 | Hank Patel | low |
+
+Demo environment: customer `cresta-sandbox-2`, profile `voice-sandbox-2`.
 
 ### Local Development
 
@@ -103,3 +122,6 @@ app/coaching-ai-summary/build_and_push.sh
 | Date | Summary |
 |------|---------|
 | 2026-03-02 | Project created; explored codebase; implemented prototype in python-ai-services (15/15 tests); ran staging validation; created vibe-coded Flask app in chat-ai; tested against voice-staging; added `POST /api/create-session` with OpenAI structured output + gRPC `CreateCoachingSession` |
+| 2026-03-03 | Scoring engine, criterion display name resolution, CORS support, context switcher |
+| 2026-03-04 | Criterion display name fix, `/api/recommend-direct` endpoint, mock data for hackathon demo |
+| 2026-03-05 | Mock data fixes: focus_criteria derivation, full resource name support, all 5 action types, demo env targeting |
