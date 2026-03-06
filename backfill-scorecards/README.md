@@ -1,12 +1,51 @@
 # Backfill Scorecards
 
 **Created:** 2026-02-07
-**Updated:** 2026-02-23 (all backfills complete — appeal cleanup fully done)
+**Updated:** 2026-03-06 (process scorecard backfill for Spirit + Oportun)
 **Linear:** [CONVI-6209](https://linear.app/cresta/issue/CONVI-6209)
 
 ## Overview
 
 Scorecard backfill tooling and tracking. Organized by backfill run.
+
+## Completed: Process Scorecard Backfill — Spirit + Oportun (2026-03-05 – 2026-03-06)
+
+**Status:** Completed. Both customers backfilled from PG to CH.
+**Reason:** Process scorecards (template type=2) have no reindex workflow — they are written to CH only at creation time via async goroutine. Any missing data requires manual backfill. See [CONVI-6298](https://linear.app/cresta/issue/CONVI-6298) for the new Temporal workflow to automate this.
+
+### Approach
+
+Two approaches used, depending on DB performance:
+
+| Approach | Data Source | Used For | Why |
+|----------|------------|----------|-----|
+| Pre-computed | `historic.scorecard_scores` | Spirit | Fast: indexed by scorecard_id on Spirit's DB |
+| On-the-fly | `director.scores` + template revision JSON | Oportun | `historic.scorecard_scores` had no usable index on Oportun; computed using validated Python scoring logic |
+
+The Python scoring logic (`validate_scoring.py`) reimplements Go's `ComputeCriterionPercentageScore` and was validated against Spirit's `historic.scorecard_scores`:
+- 1,784 scores compared, **0 unexplained mismatches** (all 183 differences were N/A or exclude_from_qa edge cases)
+
+### Results
+
+| Customer | Cluster | Scorecards | Scores | Notes |
+|----------|---------|-----------|--------|-------|
+| Spirit | us-east-1-prod | 2,120 | 30,464 | 327 scorecards with no historic rows |
+| Oportun | us-west-2-prod | 43,953 | 501,456 | 21,906 scorecards with no director.scores rows |
+
+### Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `backfill_process_scorecards.py` | Main backfill: PG → CH for process scorecards. Computes scores on-the-fly from `director.scores` + template revision |
+| `validate_scoring.py` | Validates Python scoring logic against `historic.scorecard_scores` |
+| `run_oportun.sh` | Wrapper for Oportun (sets PG/CH connection vars) |
+
+### Lessons Learned (Process Scorecards)
+
+14. **`historic.scorecard_scores` is not indexed by scorecard_id on all DBs.** On Oportun, querying by `scorecard_id = ANY(...)` hangs. Solution: compute from `director.scores` + template revision instead.
+15. **Python scoring logic matches Go with 100% accuracy** on analytics-relevant fields. The only differences are in N/A and exclude_from_qa edge cases where the values don't affect QA score computation.
+16. **CH `FINAL` with large IN clauses blows memory.** 43K UUIDs in an `IN` clause exceeded CH max query size (1MB); batching to 5K with `FINAL` hit 10GB memory limit. Solution: filter by `customer_id`/`profile_id`/`conversation_id=''` for full verification.
+17. **~50% of Oportun process scorecards have no `director.scores` rows.** These are likely empty/unscored scorecards. Scorecard rows are still inserted into CH (matching Go behavior) but with no score rows.
 
 ## Completed: Appeal Scorecard Cleanup — All Customers (2026-02-21 – 2026-02-23)
 
@@ -184,7 +223,10 @@ See `cresta-proto/cresta/nonpublic/job/internal_job_service.proto` for `GetJob` 
 
 ```
 backfill-scorecards/
-├── backfill.sh                          # General-purpose backfill script
+├── backfill.sh                          # General-purpose backfill script (conversation scorecards)
+├── backfill_process_scorecards.py       # Process scorecard backfill: PG → CH
+├── validate_scoring.py                  # Validate Python scoring vs historic.scorecard_scores
+├── run_oportun.sh                       # Oportun backfill wrapper
 ├── list_ch_databases.sh                 # ClickHouse database discovery
 ├── cluster_cleanup.py                   # Appeal cleanup orchestration
 ├── README.md
@@ -340,6 +382,8 @@ SELECT * FROM system.mutations WHERE database = 'mutualofomaha_voice' AND is_don
 | 2026-02-21 | Executed appeal cleanup across all 8 clusters: 95/95 deleted, oportun chunked 1-day deletes + sequential backfill |
 | 2026-02-22 | Backfill verification: 89/95 complete. 4 large customers re-running with windowed backfills, switched to parallel |
 | 2026-02-23 | All backfills complete (95/95). Appeal scorecard cleanup fully done |
+| 2026-03-05 | Process scorecard backfill: Spirit (2,120 scorecards + 30,464 scores). Created backfill_process_scorecards.py |
+| 2026-03-06 | Process scorecard backfill: Oportun (43,953 scorecards + 501,456 scores). Validated Python scoring logic, switched to on-the-fly computation |
 
 ## References
 
