@@ -1,7 +1,7 @@
 # Backfill Scorecards
 
 **Created:** 2026-02-07
-**Updated:** 2026-03-06 (process scorecard backfill for Spirit + Oportun)
+**Updated:** 2026-03-10 (PR #25916 review addressed, rebased onto main)
 **Linear:** [CONVI-6209](https://linear.app/cresta/issue/CONVI-6209)
 
 ## Overview
@@ -384,6 +384,7 @@ SELECT * FROM system.mutations WHERE database = 'mutualofomaha_voice' AND is_don
 | 2026-02-23 | All backfills complete (95/95). Appeal scorecard cleanup fully done |
 | 2026-03-05 | Process scorecard backfill: Spirit (2,120 scorecards + 30,464 scores). Created backfill_process_scorecards.py |
 | 2026-03-06 | Process scorecard backfill: Oportun (43,953 scorecards + 501,456 scores). Validated Python scoring logic, switched to on-the-fly computation |
+| 2026-03-10 | PR #25916 review: addressed all comments, rebased onto main (cresta-proto v2.0.646), fixed RetryJob test for new proto validation |
 
 ## References
 
