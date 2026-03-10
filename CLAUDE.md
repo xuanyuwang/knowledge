@@ -46,6 +46,7 @@ Personal knowledge management repository organized **by project**. Each folder a
 | `agent-quintiles-support/` | Quintiles for agents: RetrieveQAScoreStats BE + Performance/Leaderboard/Coaching Hub FE |
 | `convi-6247-agent-only-filter/` | Agent-only manager inclusion filter: add request field to analytics APIs + FE pass listAgentOnly in Performance, Leaderboard, Agent Assist |
 | `convi-6242-cron-label-conversations/` | cron-label-conversations stale data fix + 2026 backfill for Alaska Air |
+| `large-user-id-clickhouse/` | ClickHouse ext tables for large user ID lists (extracted from insights-user-filter) |
 
 ## Workflow: Updating a Project
 

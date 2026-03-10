@@ -1,7 +1,7 @@
 # CONVI-6247: Agent-Only Manager Inclusion Filter in Performance
 
 **Created:** 2025-02-17  
-**Updated:** 2026-02-20 (i18n added for Agents Only filter)
+**Updated:** 2026-03-10 (rebased on main, conflicts resolved)
 
 ## Overview
 
@@ -54,3 +54,4 @@ Active — Phase 2+3+i18n complete (types + Performance filter + i18n), PR [dire
 | 2026-02-18 | Phase 2 complete: added `FilterKey.LIST_AGENT_ONLY`, `listAgentOnly` to CommonInsightsFiltersState, LocalStorage types, and Leaderboard filter state. PR: [director #16777](https://github.com/cresta/director/pull/16777). |
 | 2026-02-19 | Phase 3 complete: Performance page "Agents only" BooleanFilter + useListAgentOnlyLevelSelect hook. Combined Phase 2+3 into single PR #16777. |
 | 2026-02-20 | Added i18n: en-US locale keys, converted Performance menu options to `getFilterSelectionMenuOptions()` with `getI18n()`, BooleanFilter labels via `useTranslation`. |
+| 2026-03-10 | Rebased PR #16777 on main: resolved conflicts with `scoreResource` (leaderboard) and `tCommon` (performance i18n) additions from main. All review comments addressed. |
