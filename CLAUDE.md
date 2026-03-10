@@ -20,7 +20,9 @@ Personal knowledge management repository organized **by project**. Each folder a
 
 ### Special Folders (not projects)
 - `.git/`, `.claude/`, `.cursor/` - System folders
+- `train-for-staff/` - Centralized Senior → Staff progress tracking (rubrics, projects, resume snippets)
 - `templates/` - Templates for new projects and logs
+- `blog/` - Longer-form writeups (staff-level perspective, retrospectives)
 - `weekly-summary/` - Weekly progress/problem/plan summaries
 
 ### Current Projects

@@ -1,0 +1,3 @@
+- be the canonical owner of a business domain. For example, the coaching service
+- be a cross-team service provider
+- work together with PM to validate features from technology perspective
