@@ -105,6 +105,7 @@ Near complete – BE in review. FE: Foundation, Move Icon, Leaderboard, Performa
 | 2026-02-25 | Coaching Plan #16905 merged (after extracting `QuintileRankBadge` as self-contained component per review). Performance #16886 merged. Coaching Hub #16887 rebased on latest main. Demo branch reset to main + coaching hub. |
 | 2026-02-27 | Per-criterion quintile investigation — no changes needed, existing FE already handles it. Trophy Icon PR #17028: addressed all review comments (dismissed conflicting CodeRabbit suggestion, added `focusable="false"` a11y fix). |
 | 2026-03-09 | Outcome quintile investigation — how outcomes (AHT, Conversion, CSAT) participate in QA score & quintile. `excludeFromQAScores` flag gates inclusion; `percentage_value` not always normalized (AHT = raw seconds). See `outcome-quintile-investigation.md`. |
+| 2026-03-10 | Comprehensive per-page quintile reference — all 5 surfaces (Leaderboard, Performance x2, Coaching Hub, Coaching Plan) with exact request parameters, outcome handling, and cross-page consistency analysis. See `coaching-quintile-consistency-investigation.md`. |
 
 ## Related
 
