@@ -85,6 +85,7 @@ See **`implementation-plan.md`** for the concrete BE-first plan. Summary:
 | [Coaching Hub #16887](https://github.com/cresta/director/pull/16887) | Recent Coaching Activities (trophy icons + i18n ordinal tooltip) | In review |
 | [Coaching Plan #16905](https://github.com/cresta/director/pull/16905) | Coaching Plan header quintile rank badge (`QuintileRankBadge` self-contained component) | Merged |
 | [Trophy Icon #17028](https://github.com/cresta/director/pull/17028) | Self-contained `QuintileRankIcon` with inline gradient defs, `IconTrophyFilled`, a11y | In review |
+| [Align Coaching Plan #17263](https://github.com/cresta/director/pull/17263) | Align Coaching Plan quintile request with Coaching Hub defaults (CONVI-6389) | In review |
 
 Demo branch `feature/agent-quintiles` ([PR #16849](https://github.com/cresta/director/pull/16849)) has all changes combined for stakeholder testing.
 
@@ -105,7 +106,8 @@ Near complete – BE in review. FE: Foundation, Move Icon, Leaderboard, Performa
 | 2026-02-25 | Coaching Plan #16905 merged (after extracting `QuintileRankBadge` as self-contained component per review). Performance #16886 merged. Coaching Hub #16887 rebased on latest main. Demo branch reset to main + coaching hub. |
 | 2026-02-27 | Per-criterion quintile investigation — no changes needed, existing FE already handles it. Trophy Icon PR #17028: addressed all review comments (dismissed conflicting CodeRabbit suggestion, added `focusable="false"` a11y fix). |
 | 2026-03-09 | Outcome quintile investigation — how outcomes (AHT, Conversion, CSAT) participate in QA score & quintile. `excludeFromQAScores` flag gates inclusion; `percentage_value` not always normalized (AHT = raw seconds). See `outcome-quintile-investigation.md`. |
-| 2026-03-10 | Comprehensive per-page quintile reference — all 5 surfaces (Leaderboard, Performance x2, Coaching Hub, Coaching Plan) with exact request parameters, outcome handling, and cross-page consistency analysis. See `coaching-quintile-consistency-investigation.md`. |
+| 2026-03-10 | Comprehensive per-page quintile reference — all 5 surfaces with exact request parameters, outcome handling, and cross-page consistency analysis. See `quintile-rank-behaviour-reference.md`. |
+| 2026-03-11 | CONVI-6389: Aligned Coaching Plan quintile request with Coaching Hub defaults. PR [#17263](https://github.com/cresta/director/pull/17263). Updated `quintile-rank-behaviour-reference.md` with post-alignment behaviour. |
 
 ## Related
 
