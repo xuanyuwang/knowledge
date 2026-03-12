@@ -113,3 +113,65 @@ This project demonstrates multiple Staff dimensions simultaneously:
 | Execution via leverage | Pattern is reusable for any reference data; 17 callers adopt with 3-line change |
 | Influence without authority | Design review shared with team; decision rationale documented for alignment |
 | Operational excellence | Feature flag, staged rollout, testing matrix, backout plan |
+
+---
+
+## Project 3: Scorecard PG↔ClickHouse Sync Fix (CONVI-5565)
+
+**Investigation doc:** [`convi-5565-scorecard-ch-pg-sync/investigation.md`](../convi-5565-scorecard-ch-pg-sync/investigation.md)
+**Notion design doc:** [Scorecard Async Database Updates](https://www.notion.so/cresta/Scorecard-Async-Database-Updates-2974a587b06180f595c3c14492a96104)
+**Full project docs:** [`convi-5565-scorecard-ch-pg-sync/`](../convi-5565-scorecard-ch-pg-sync/)
+
+### Why this is a Staff-level project
+
+This project demonstrates a key Staff pattern: **investigating a systemic problem, aligning with leadership on the approach, pushing back with evidence when the proposed fix fails, and delivering a proven solution with a reusable pattern.**
+
+#### The narrative arc
+
+1. **Investigated and framed the problem** — Scorecard data was inconsistent between PostgreSQL (source of truth) and ClickHouse (analytics). Async work from UpdateScorecard and SubmitScorecard APIs could finish out of order, causing ClickHouse to keep stale data. Multiple customers affected (Spirit, SnapFinance). Wrote a detailed investigation doc on Notion and called for a design review.
+
+2. **CTO proposed timestamp-based fix → caused a P2** — During review, CTO proposed using PostgreSQL's `updated_at` for ClickHouse versioning. Implemented it (PR #23999), but it caused a new P2 incident because the root cause wasn't timestamps — it was that async work read stale data from closures. Fix was reverted (PR #24095).
+
+3. **Pushed back with evidence, not opinion** — Instead of just saying "the timestamp approach is wrong," built custom load testing tools (`test_async_order`) and verification tools (`verify_sync`) to demonstrate:
+   - The real root cause: async work captured stale closure data instead of re-reading from DB
+   - A second, independent bug discovered during testing: GORM `Save()` overwrites unrelated columns (CONVI-6076)
+   - Quantified failure rates at different timing thresholds (10ms → 80% pass, 100ms → 100% pass)
+
+4. **Designed and shipped a multi-layered fix** — Three targeted fixes, each addressing a distinct root cause:
+   - **Fix 2 (PR #24103):** Atomic transactions — move historic writes inside transaction, async work re-reads fresh data from DB after commit
+   - **Fix 3:** GORM `Omit` — prevent `UpdateScorecard` from overwriting `submitted_at`/`submitter_user_id`
+   - **Feature flag** (`COACHING_SERVICE_ENABLE_SYNC_HISTORIC_SCORECARD_WRITE`) for safe staged rollout
+
+5. **Verified in production at scale** — Production verification on Spirit across 9,155 submitted scorecards over 39 days: **0 score mismatches, 0 submitter mismatches** for all scorecards present in both PG and CH.
+
+### Generalizable pattern: PG→ClickHouse sync
+
+The core solution — **atomic transaction + async re-read from DB + feature-flagged rollout** — is a reusable pattern for any resource that needs cross-database consistency between PostgreSQL and ClickHouse:
+
+| Pattern element | What it solves | Reusable for |
+|----------------|---------------|-------------|
+| Move writes inside transaction | Prevents async work from reading uncommitted data | Any PG→CH sync with async updates |
+| Async work re-reads from DB | Eliminates stale closure data | Any async pipeline that reads state |
+| GORM `Omit` for partial updates | Prevents unrelated column overwrites in concurrent APIs | Any GORM model with concurrent writers |
+| Feature flag + staged rollout | Safe production rollout with instant rollback | Any behavioral change to data sync |
+
+### Staff artifacts produced
+
+| Artifact | Location |
+|----------|----------|
+| Problem investigation + root cause analysis | `investigation.md` |
+| Architecture doc shared for design review | [Notion: Scorecard Async Database Updates](https://www.notion.so/cresta/Scorecard-Async-Database-Updates-2974a587b06180f595c3c14492a96104) |
+| Load testing tool (quantified failure rates) | `tools/test_async_order/main.go` |
+| Verification tool (PG vs CH comparison) | `tools/verify_sync/main.go` |
+| Production verification results (9,155 scorecards) | `README.md` → Production Verification |
+
+### Mapping to Staff gaps (from `senior-to-staff.md`)
+
+| Gap | How this project addresses it |
+|-----|-------------------------------|
+| Scope & ownership | Owned end-to-end across multiple systems (PG, ClickHouse, coaching APIs) and multiple customer escalations (Spirit, SnapFinance) |
+| Problem framing & strategy | Wrote investigation doc, called for design review, reframed from "data mismatch" to "async work reads stale data" — a systemic pattern, not a one-off bug |
+| Architecture & correctness | Multi-layered fix targeting distinct root causes; pattern generalizable to other PG→CH sync resources |
+| Execution via leverage | Custom tools (load tester, verifier) reusable for future sync validation; atomic-transaction pattern applicable beyond scorecards |
+| Influence without authority | Presented investigation to CTO, accepted the proposed approach, then pushed back with quantified evidence when it caused a P2 — influence through proof, not hierarchy |
+| Operational excellence | Feature-flagged rollout, load testing with timing analysis, production verification across 9,155 scorecards over 39 days |
