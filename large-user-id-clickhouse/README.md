@@ -1,7 +1,7 @@
 # Large User ID Lists in ClickHouse Queries
 
 **Created:** 2026-03-09
-**Updated:** 2026-03-09
+**Updated:** 2026-03-11
 
 ## Overview
 
@@ -24,7 +24,7 @@ This work was extracted from the `insights-user-filter` project, which handled t
 ### Current State
 
 - **`ShouldQueryAllUsers` flag**: Already implemented. Handles the "all users" case (root access + empty filter) by skipping the WHERE clause entirely.
-- **`ext` external tables**: Investigated and confirmed feasible. **Not yet implemented.** This is the next step to handle all remaining large-subset cases.
+- **`ext` external tables**: Implemented and merged (PR #26178). Behind feature flag `ENABLE_EXT_TABLE_FOR_USER_FILTER` (default: off). Ready for staging validation.
 
 ## Documents
 
@@ -34,12 +34,16 @@ This work was extracted from the `insights-user-filter` project, which handled t
 | `ext-tables-feasibility.md` | Deep investigation of ClickHouse `ext` package feasibility in go-servers |
 | `problem-and-shouldqueryallusers-fix.md` | Original bug analysis + the `ShouldQueryAllUsers` fix (already shipped) |
 | `implementation-plan.md` | Step-by-step plan for implementing `ext` tables |
+| `design-review.md` | Engineering design review doc (local copy of Notion doc) |
+| `testing-plan.md` | Staging/production testing plan for ext table rollout |
 
 ## Log History
 
 | Date | Summary |
 |------|---------|
 | 2026-03-09 | Extracted project from `insights-user-filter`. Reorganized docs. Created implementation plan. |
+| 2026-03-10 | Created design review doc on Notion. Addressed CodeRabbit review comments (column rename, defensive fixes). |
+| 2026-03-11 | PR #26178 merged. Fixed CI lint errors. Created testing plan for staging rollout. |
 
 ## Related Projects
 
