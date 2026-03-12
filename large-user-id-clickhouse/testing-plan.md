@@ -71,16 +71,17 @@ Run each test case via the Insights UI (Performance, Leaderboard, Coaching Hub, 
 
 | # | Test Case | What It Exercises | How to Verify |
 |---|-----------|-------------------|---------------|
-| 1 | **No user filter** (root user, no filter applied) | `ShouldQueryAllUsers=true` path — ext table should NOT be created | Results match production. No ext table in query logs. |
+| 1 | **No user filter** (root user, no filter applied) | `ShouldQueryAllUsers=true` path — ext table IS created with all FinalUsers (PR #26250 change). Previously this skipped user filtering entirely. | Results should NOT include unknown/orphaned users. May differ from production (flag off) which returns unfiltered data. |
 | 2 | **Single agent selected** | Small ext table (1 row) | Agent stats match production exactly |
 | 3 | **Group filter (small team, ~10 agents)** | Group expansion -> ext table with ~10 IDs | Group stats match production |
 | 4 | **Group filter (large team, 500+ agents)** | The main use case — large ext table | Stats match production. Query succeeds (would have failed with IN clause if > max_query_size) |
 | 5 | **Exclude deactivated users** | Resolves to all active users (potentially thousands) | Stats match production |
 | 6 | **Scorecard stats** | Tests the `strings.ReplaceAll` column rename path — ext table column is `user_id` to avoid collision | Scorecard page loads correctly, numbers match |
 | 7 | **Live assist stats** | Same column rename concern (`manager_user_id`) | Live assist page loads, numbers match |
-| 8 | **QA Score / QA Conversations** | Tests `parseCommonConditionsForQAAttribute` path with `tableSpecificColumnName` | QA pages load, scores match |
+| 8 | **QA Score / QA Conversations** | Tests `parseCommonConditionsForQAAttribute` path with `tableSpecificColumnName` | QA pages load, no unknown users in results |
 | 9 | **Manager view (limited access)** | ACL resolves managed agents -> ext table | Manager sees correct agent subset |
 | 10 | **Agent + Group filter combined** | Both filters set — tests `FinalUsers` union behavior | Results match production (known edge case: top-level totals may include unbucketed users — pre-existing) |
+| 11 | **Smart Compose stats** | Only API that merges ClickHouse + Postgres results. Both paths now receive FinalUsers. | Page loads correctly, merged results are consistent |
 
 #### Customers to Test With
 
@@ -114,14 +115,16 @@ Pick customers with varying user counts to cover different scales:
 
 | Edge Case | Risk | What to Check |
 |-----------|------|---------------|
-| Empty user filter with flag on | Low — `buildUsersExtTable` returns nil for empty input | No ext table created, query runs without user filter |
+| `ShouldQueryAllUsers=true` + ext table on | **Behavioral change** — previously no user WHERE clause, now filters by FinalUsers via ext table | Results may exclude orphaned/unknown user data that was previously included. This is intentional — the old behavior was a side effect of the query size optimization. |
+| Smart Compose (ClickHouse + Postgres merge) | Low — Postgres already received FinalUsers in `ShouldQueryAllUsers=false` cases | Both data sources now filter by same user set. Verify merged results are consistent. |
 | ClickHouse version mismatch | Very Low — ext tables are a long-standing CH feature | Query doesn't error on staging CH version |
 | Concurrent ext tables on same connection | Low — each query gets its own context | No cross-query contamination |
 | Scorecard `strings.ReplaceAll` on `user_id` | Low — `user_id` is not a substring of any other column name in the query | Scorecard queries execute correctly |
 
 ## Success Criteria
 
-1. All 10 staging test cases pass with identical results to production
+1. All 11 staging test cases pass — results should not include unknown/orphaned users
 2. No new errors in insights-server logs after enabling the flag
 3. Query latency does not regress for any API (and improves for large user counts)
-4. The flag can be safely removed after 2 weeks of stable production
+4. Test case 1 (no user filter) may show **fewer results** than production (flag off) — this is expected because orphaned user data is now filtered out
+5. The flag can be safely removed after 2 weeks of stable production

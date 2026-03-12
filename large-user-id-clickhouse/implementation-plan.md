@@ -2,7 +2,7 @@
 
 **Created:** 2026-03-09
 **Updated:** 2026-03-09
-**Status:** Implementation complete. Pending tests, review, and rollout.
+**Status:** Merged (PR #26178 + #26250). Staging flag enabled. Pending validation and production rollout.
 
 ## Goal
 
@@ -387,6 +387,14 @@ Most changes are mechanical (Phase 3-4). The core logic is in Phase 1-2.
 **Decision:** Always use ext tables when the flag is enabled. The worst-case overhead at small user counts (~3ms) is negligible in the context of full analytics query latency (typically 100ms-2s). A threshold-based approach would add code complexity for minimal gain.
 
 ---
+
+## Key Behavioral Note (PR #26250)
+
+When the ext table flag is on, `ApplyUserFilterFromResult` always passes `FinalUsers` — even when `ShouldQueryAllUsers=true`. This means:
+- **`ShouldQueryAllUsers` is effectively superseded** by ext tables when the flag is on
+- All queries filter precisely by the resolved user set from `ParseUserFilterForAnalytics`
+- Results may exclude orphaned/unknown user data that was previously included when no user WHERE clause was applied — this is intentional
+- For Smart Compose stats (the only API merging ClickHouse + Postgres), both paths receive the same user list — Postgres already handled large user lists in `ShouldQueryAllUsers=false` cases
 
 ## Open Questions
 
