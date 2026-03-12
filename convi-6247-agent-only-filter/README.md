@@ -1,7 +1,7 @@
 # CONVI-6247: Agent-Only Manager Inclusion Filter in Performance
 
 **Created:** 2025-02-17  
-**Updated:** 2026-03-10 (rebased on main, conflicts resolved)
+**Updated:** 2026-03-12 (PR #16777 merged — Performance filter + feature flag)
 
 ## Overview
 
@@ -44,7 +44,7 @@ Structured phases and task list: **[implementation-plan.md](implementation-plan.
 
 ## Status
 
-Active — Phase 2+3+i18n complete (types + Performance filter + i18n), PR [director #16777](https://github.com/cresta/director/pull/16777). Next: Phase 4–5 (Leaderboard filter + API pass-through).
+**PR #16777 merged** — Phase 2+3+i18n+feature flag (types + Performance filter + API pass-through + i18n + `enableAgentOnlyFilter` flag). Phase 4 (Leaderboard filter) in PR [#17314](https://github.com/cresta/director/pull/17314). Next: Phase 5 (Leaderboard API wiring).
 
 ## Log History
 
@@ -55,3 +55,4 @@ Active — Phase 2+3+i18n complete (types + Performance filter + i18n), PR [dire
 | 2026-02-19 | Phase 3 complete: Performance page "Agents only" BooleanFilter + useListAgentOnlyLevelSelect hook. Combined Phase 2+3 into single PR #16777. |
 | 2026-02-20 | Added i18n: en-US locale keys, converted Performance menu options to `getFilterSelectionMenuOptions()` with `getI18n()`, BooleanFilter labels via `useTranslation`. |
 | 2026-03-10 | Rebased PR #16777 on main: resolved conflicts with `scoreResource` (leaderboard) and `tCommon` (performance i18n) additions from main. All review comments addressed. |
+| 2026-03-12 | Rebased again (feature flag conflict in `localFeatureFlags.ts`). All CI green. **PR #16777 merged.** Phase 4: Leaderboard filter — PR [#17314](https://github.com/cresta/director/pull/17314). |
