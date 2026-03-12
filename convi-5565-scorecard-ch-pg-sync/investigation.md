@@ -313,15 +313,17 @@ The current solution is designed with the following principle:
 
 1. **PostgreSQL is always correct** - The GORM Omit fix ensures UpdateScorecard doesn't overwrite `submitted_at`
 2. **ClickHouse eventually converges** - When API calls are spaced >= 100ms apart, ClickHouse gets the correct data
-3. **Race condition only occurs under extreme concurrency** - Real-world usage rarely has Update and Submit called within 10ms of each other
+3. **Race condition occurs in real-world usage at low rates** - Production data from Spirit (2026-03) shows ~0.87% of scorecards affected when users click Save then Submit quickly in the Closed Conversations UI
 
 ### Real-World Impact Assessment
 
 | Scenario | Likelihood | Impact |
 |----------|------------|--------|
-| Normal user interaction | Low | N/A - users don't click that fast |
+| Normal user interaction (Closed Conversations UI) | Low (~0.87%) | CH submit_time missing; PG always correct |
 | Automated systems | Medium | May need 100ms delay between calls |
 | Load/stress tests | High | Expected ~10-20% failure rate |
+
+**Production verification (Spirit, 2026-03):** 26/2,996 (0.87%) of submitted scorecards had `scorecard_submit_time = 0` in CH. 92% were submitted from the Closed Conversations UI (`submission_source=CLOSED_CONVERSATIONS`). The auto-scoring code path (`TriggerConversationAutoScoring`) does not use UpdateScorecard/SubmitScorecard APIs — it writes directly to PG and CH synchronously.
 
 ### Known Limitations
 
