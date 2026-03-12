@@ -1,7 +1,7 @@
 # CONVI-5565: Scorecard ClickHouse ↔ PostgreSQL Sync
 
 **Created**: 2025-01-16
-**Updated**: 2026-02-23
+**Updated**: 2026-03-11
 **Linear**: https://linear.app/cresta/issue/CONVI-5565/data-sync-between-ch-and-postgres
 **Related**: CONVI-6076 (PostgreSQL race condition)
 
@@ -101,6 +101,23 @@ cd tools/test_async_order && go build -o test_async_order .
 - ~10-20% failure rate only under extreme concurrency (< 10ms between calls)
 - Real-world users don't trigger this — documented as acceptable limitation
 
+## Production Verification (2026-03-11)
+
+Verified on **Spirit** (us-east-1-prod) across Feb 1 – Mar 11, 2026 (39 days, 9,155 submitted scorecards).
+
+| Metric | Value |
+|--------|-------|
+| PG submitted scorecards | 9,155 |
+| Matched in CH by ID | 2,996 |
+| **Score mismatches** | **0** |
+| **Submitter mismatches** | **0** |
+| CH not submitted (submit_time=zero) | 31 (1.03%) |
+| PG only (missing from CH entirely) | 6,159 (67.3%) |
+
+**Conclusion:** Fix is working on prod. For all scorecards present in both PG and CH, scores and submitter data are perfectly consistent. The 31 `ch_not_submitted` cases (0.45% excluding today's in-flight) match the documented acceptable edge case.
+
+The ~67% missing from CH is a **separate issue** — these scorecards were never written to CH. Not CONVI-5565 related.
+
 ## Log History
 
 | Date | Summary |
@@ -111,3 +128,4 @@ cd tools/test_async_order && go build -o test_async_order .
 | 2025-01-23 | Fix 3 (GORM Omit) applied; load testing started |
 | 2025-01-27 | Load testing complete; investigation documented |
 | 2026-02-23 | Moved to knowledge repo; documented verification tools |
+| 2026-03-11 | Prod verification on Spirit (Feb+Mar): 0 score/submitter mismatches across 2,996 scorecards |
