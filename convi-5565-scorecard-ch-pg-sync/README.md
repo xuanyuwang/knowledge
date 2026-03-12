@@ -157,3 +157,4 @@ All "submit time mismatches" were microsecond zero-padding differences (e.g., `1
 | 2025-01-27 | Load testing complete; investigation documented |
 | 2026-02-23 | Moved to knowledge repo; documented verification tools |
 | 2026-03-11 | Prod verification on Spirit (Feb+Mar): 0 score/submitter mismatches across 2,996 scorecards |
+| 2026-03-12 | Removed feature flag and legacy code: [PR #26256](https://github.com/cresta/go-servers/pull/26256) (-740 lines) |
