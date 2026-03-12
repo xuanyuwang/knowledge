@@ -1,12 +1,17 @@
 # Testing Plan: ext Table for Large User ID Lists
 
 **Created:** 2026-03-11
-**PR:** #26178 (merged as `994d9c74f4`)
+**Updated:** 2026-03-12
+**PR #1:** #26178 (merged — ext table infrastructure + threading through all callers)
+**PR #2:** TBD (fix — always use FinalUsers via ext table when flag is on)
 **Feature Flag:** `ENABLE_EXT_TABLE_FOR_USER_FILTER` (default: `false`)
 
 ## What Changed
 
-When the flag is enabled, all ClickHouse analytics queries replace:
+When the flag is enabled, two things happen:
+
+### 1. Ext table replaces IN clause for user filtering
+All ClickHouse analytics queries replace:
 ```sql
 WHERE agent_user_id IN ('id1', 'id2', ..., 'idN')
 ```
@@ -15,6 +20,14 @@ with:
 WHERE agent_user_id IN (SELECT user_id FROM agent_filter)
 ```
 where `agent_filter` is a ClickHouse external data table sent via the binary protocol.
+
+### 2. All queries filter by resolved users (no more unfiltered queries)
+Previously, when `ShouldQueryAllUsers=true` (root access + empty filters), the user WHERE clause was skipped entirely to avoid query size limits. This meant ClickHouse returned rows for ALL users in the table, including unknown/orphaned user IDs.
+
+With the flag on, `ApplyUserFilterFromResult` now always passes `FinalUsers` from `ParseUserFilterForAnalytics` via the ext table. This ensures:
+- Queries are filtered precisely to the resolved user set
+- No more "unknown user" results from unfiltered CH queries
+- The `ShouldQueryAllUsers` optimization is superseded by ext tables (ext tables have no query size limit)
 
 ## Affected APIs
 

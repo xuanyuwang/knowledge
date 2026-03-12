@@ -44,6 +44,7 @@ This work was extracted from the `insights-user-filter` project, which handled t
 | 2026-03-09 | Extracted project from `insights-user-filter`. Reorganized docs. Created implementation plan. |
 | 2026-03-10 | Created design review doc on Notion. Addressed CodeRabbit review comments (column rename, defensive fixes). |
 | 2026-03-11 | PR #26178 merged. Fixed CI lint errors. Created testing plan for staging rollout. |
+| 2026-03-12 | Enabled flag on staging. Found behavior gap: ext table not used when ShouldQueryAllUsers=true. Fixed ApplyUserFilterFromResult to always pass FinalUsers when flag is on. |
 
 ## Related Projects
 
