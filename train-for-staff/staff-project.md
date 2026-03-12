@@ -1,4 +1,6 @@
-# Staff Project: User Filter Consolidation (Low-cost, High-leverage)
+# Staff Projects
+
+## Project 1: User Filter Consolidation (Low-cost, High-leverage)
 
 ## Why this is the “lowest cost” Staff project in this repo
 
@@ -65,3 +67,49 @@ One canonical, well-tested, well-observed user-filter implementation with explic
 - 30 days: lock semantics + tests + canonical API contract; migrate 1–2 high-traffic endpoints safely
 - 60 days: migrate the majority of call sites; publish dashboards + rollout playbook
 - 90 days: deprecate legacy paths; write post-launch evaluation and finalize standards
+
+---
+
+## Project 2: ClickHouse External Tables for Reference Data Filtering
+
+**Design review:** [`large-user-id-clickhouse/design-review.md`](../large-user-id-clickhouse/design-review.md)
+**Full project docs:** [`large-user-id-clickhouse/`](../large-user-id-clickhouse/)
+
+### Why this is a Staff-level project
+
+This project demonstrates multiple Staff dimensions simultaneously:
+
+1. **Problem framing & strategy** — Identified that the immediate bug (user ID list exceeding ClickHouse max query size) was a symptom of a systemic gap: no general-purpose mechanism for passing reference data into ClickHouse queries. Reframed from "fix the user filter" to "build a reusable pattern for any external data."
+
+2. **Options analysis & principled decision-making** — Evaluated 10 candidate solutions across complexity, generalizability, performance, and blast radius. Wrote a structured comparison ([`solutions-comparison.md`](../large-user-id-clickhouse/solutions-comparison.md)) and chose `ext` external tables with clear rationale, not just the first thing that worked.
+
+3. **Architecture for leverage** — Designed the solution as two generic helper functions (`buildExtTable`, `attachExtTablesToContext`) that work for any data type, not just user IDs. Future use cases (scorecard IDs, conversation IDs) can reuse the same pattern with zero new infrastructure.
+
+4. **Execution via minimal blast radius** — Zero changes to the shared ClickHouse query layer. Feature-flagged rollout with instant rollback. All 17 caller files follow a 3-line adoption pattern. No schema changes, no infra coordination.
+
+5. **Rollout discipline** — Staged rollout plan (flag disabled → staging validation → production → flag cleanup), explicit testing matrix, and backout plan documented before any production change.
+
+6. **Clear communication** — Produced a design review doc that frames the problem for a broad audience, includes benchmarks (ext tables 3.3x faster at 10K users), and makes the decision transparent.
+
+### Staff artifacts produced
+
+| Artifact | Location |
+|----------|----------|
+| Problem statement + systemic framing | `design-review.md` → Goal & Background |
+| Options analysis (10 solutions) | `solutions-comparison.md` |
+| Tradeoff-based decision record | `design-review.md` → "Why ext tables over alternatives" |
+| Performance benchmarks | `design-review.md` → Performance section |
+| Rollout plan + backout plan | `design-review.md` → Release Plans |
+| Testing plan (staging + prod) | `testing-plan.md` |
+| Implementation plan | `implementation-plan.md` |
+
+### Mapping to Staff gaps (from `senior-to-staff.md`)
+
+| Gap | How this project addresses it |
+|-----|-------------------------------|
+| Scope & ownership | Owned end-to-end: from bug discovery → systemic reframing → design → implementation → rollout plan |
+| Problem framing & strategy | Reframed a point fix into a general-purpose mechanism; produced structured options + decision |
+| Architecture & correctness | Designed for evolution (generic helpers, not user-ID-specific); dual path is temporary by design |
+| Execution via leverage | Pattern is reusable for any reference data; 17 callers adopt with 3-line change |
+| Influence without authority | Design review shared with team; decision rationale documented for alignment |
+| Operational excellence | Feature flag, staged rollout, testing matrix, backout plan |
