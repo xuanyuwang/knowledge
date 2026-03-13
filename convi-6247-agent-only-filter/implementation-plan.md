@@ -71,8 +71,8 @@ Structured implementation plan for the agent-only / “Include managers” page-
 | # | Task | File(s) | Notes |
 |---|------|---------|--------|
 | 3.1 | Initial state and persistence | `director-app/src/components/insights/hooks/performance-filters/usePerformanceFilters.tsx` | In `getInitialFiltersState` add `listAgentOnly: true`. In `filterStateToLocalState` and `localStateToFilterState` add `listAgentOnly`. |
-| 3.2 | Register filter component | Same file | In the `components` map add `[FilterKey.LIST_AGENT_ONLY]: (options) => <BooleanFilter value={filters.listAgentOnly} onChange={updateFilters('listAgentOnly')} label="Agents only" ... />` (see “Exclude deactivated users” for props). Include in dependency array. |
-| 3.3 | Filter selection menu and accessors | `director-app/src/components/insights/hooks/performance-filters/utils.ts` | Add to `FILTER_SELECTION_MENU_OPTIONS` (label e.g. “Agents only”), `FILTERS_SELECTION_STATE_ACCESSORS` (`[FilterKey.LIST_AGENT_ONLY]: 'listAgentOnly'`), and `FILTERS_SELECTION_HOOKS` (use a minimal two-option hook or a simple boolean hook if available). Optionally add to `FEATURED_FILTERS` if it should be visible by default. |
+| 3.2 | ~~Register filter component~~ | Same file | **Removed.** The filter should only appear inside the “+Filters” dropdown (via the level select hook), NOT as a separate BooleanFilter chip in the filter bar. The `OrderedFilterBar` skips filter keys that have no component entry (returns null). |
+| 3.3 | Filter selection menu and accessors | `director-app/src/components/insights/hooks/performance-filters/utils.ts` | Add to `FILTER_SELECTION_MENU_OPTIONS` (label e.g. “Agents only”), `FILTERS_SELECTION_STATE_ACCESSORS` (`[FilterKey.LIST_AGENT_ONLY]: 'listAgentOnly'`), and `FILTERS_SELECTION_HOOKS` (`useListAgentOnlyLevelSelect`). Do NOT add to `FEATURED_FILTERS` — filter lives only inside “+Filters” dropdown. |
 
 **Deliverable:** Performance page shows the new filter; toggling updates and persists `listAgentOnly`.
 
@@ -85,8 +85,8 @@ Structured implementation plan for the agent-only / “Include managers” page-
 | # | Task | File(s) | Notes |
 |---|------|---------|--------|
 | 4.1 | Initial state and persistence | `director-app/src/components/insights/leaderboards/hooks/useLeaderboardsFilters.tsx` | In `INITIAL_LEADERBOARDS_FILTERS_STATE`, `localStateToFilterState`, and `filterStateToLocalState` add `listAgentOnly: true`. |
-| 4.2 | Register filter component; disable on Manager | Same file | Add `[FilterKey.LIST_AGENT_ONLY]: ...` to `components` (same BooleanFilter pattern as Performance). When `activeTab === LeaderboardTabs.MANAGERS`, pass `isDisabled: true` for this filter (e.g. via a props map or conditional, similar to `scorecardFilterProps` for SCORECARD_STATUS). |
-| 4.3 | Filter menu and accessors | Same file | Add to `getFilterMenuOptions()` and to `FILTER_STATE_ACCESSORS`; add hook to `FILTERS_SELECTION_HOOKS` if using level-select in the menu. |
+| 4.2 | ~~Register filter component; disable on Manager~~ | Same file | **Removed.** Same as Performance: filter lives only in "+Filters" dropdown via level select hook, not as a BooleanFilter chip. On Manager tab, hide via `hiddenFilters`. |
+| 4.3 | Filter menu and accessors | Same file | Add to `getFilterMenuOptions()` and to `FILTER_STATE_ACCESSORS`; add hook to `FILTERS_SELECTION_HOOKS` (`useListAgentOnlyLevelSelect`). |
 
 **Deliverable:** Leaderboard shows the filter on Agent/Team tabs; on Manager tab it is disabled. Value persists.
 
