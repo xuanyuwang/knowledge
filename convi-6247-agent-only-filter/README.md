@@ -1,7 +1,7 @@
 # CONVI-6247: Agent-Only Manager Inclusion Filter in Performance
 
 **Created:** 2025-02-17  
-**Updated:** 2026-03-12 (Phase 4+5 Leaderboard filter + API wiring in PR #17314)
+**Updated:** 2026-03-13 (i18n consolidation for agents-only filter)
 
 ## Overview
 
@@ -56,3 +56,4 @@ Structured phases and task list: **[implementation-plan.md](implementation-plan.
 | 2026-02-20 | Added i18n: en-US locale keys, converted Performance menu options to `getFilterSelectionMenuOptions()` with `getI18n()`, BooleanFilter labels via `useTranslation`. |
 | 2026-03-10 | Rebased PR #16777 on main: resolved conflicts with `scoreResource` (leaderboard) and `tCommon` (performance i18n) additions from main. All review comments addressed. |
 | 2026-03-12 | **PR #16777 merged.** Phase 4 (Leaderboard filter) + Phase 5.1–5.3 (API wiring: replaced hardcoded `filterToAgentsOnly: true` with `filtersState.listAgentOnly` on Agent/Team tabs) in PR [#17314](https://github.com/cresta/director/pull/17314). Phase 6 (Agent Assist) deferred — separate filter state type, 11+ call sites. |
+| 2026-03-13 | Consolidated agents-only i18n keys into `common.agents-only-filter` shared key. Removed 4 duplicate keys from `director-app-insights.json`. Aligned Performance Yes/No to use `boolean-filter.yes/no` common keys. |
