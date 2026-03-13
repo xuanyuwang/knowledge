@@ -62,11 +62,26 @@ One canonical, well-tested, well-observed user-filter implementation with explic
 - Small refactor templates for common call sites
 - Office hours / async Q&A doc for adopters
 
+## Key insights (from blog writeup)
+
+- **Behavioral standard was the highest-leverage artifact** — turned every PR review from a debate about "correct behavior" into a check against the spec. Also served as onboarding material.
+- **Treated migration as a product** — dashboard tracking 29 APIs total, which implementation each used, divergence status, migration progress (12/29 → 29/29).
+- **Incremental migration beat clean rewrite** — each endpoint migrated one at a time, verified against behavioral standard. Lower risk, delivered value sooner.
+- **Feature interactions are the real risk** — `ShouldQueryAllUsers` + `exclude_deactivated` + external tables interacted in ways unit tests couldn't catch. Shadow mode (run both paths, compare) was the most reliable validation.
+
 ## 30/60/90 day plan (pragmatic)
 
 - 30 days: lock semantics + tests + canonical API contract; migrate 1–2 high-traffic endpoints safely
 - 60 days: migrate the majority of call sites; publish dashboards + rollout playbook
 - 90 days: deprecate legacy paths; write post-launch evaluation and finalize standards
+
+### Staff artifacts produced
+
+| Artifact | Location |
+|----------|----------|
+| Behavioral standard (implementation-agnostic spec) | `user-filter-consolidation/user-filter-behavioral-standard.md` |
+| Migration tracking (29 APIs) | `user-filter-consolidation/README.md` |
+| Blog writeup (staff perspective) | [`blog/2026-02-28-staff-perspective-user-filter-consolidation.md`](../blog/2026-02-28-staff-perspective-user-filter-consolidation.md) |
 
 ---
 
@@ -102,6 +117,14 @@ This project demonstrates multiple Staff dimensions simultaneously:
 | Rollout plan + backout plan | `design-review.md` → Release Plans |
 | Testing plan (staging + prod) | `testing-plan.md` |
 | Implementation plan | `implementation-plan.md` |
+| Blog writeup (staff perspective) | [`blog/2026-03-13-ext-tables-clickhouse-reference-data.md`](../blog/2026-03-13-ext-tables-clickhouse-reference-data.md) |
+
+### Key insights (from blog writeup)
+
+- **Solved for the class, not the instance** — reframed "user IDs exceed 1MB" into "reference data from app DB needs to reach analytics DB without embedding in SQL text." External tables solve any reference data need (user IDs, group IDs, conversation IDs).
+- **"Always ext" beat threshold branching** — traded ~17ms overhead for <50 users for dramatically simpler code (one path, no threshold tuning). Production p50 has 200+ users, so tradeoff is overwhelmingly positive.
+- **Shadow mode was highest-leverage testing** — ran both code paths on 10,000+ staging queries, compared results, found 0 mismatches. Caught the `ShouldQueryAllUsers` interaction bug before any customer was affected.
+- **4-phase rollout** — dev/staging → shadow mode → production canary (one customer, one week) → global rollout.
 
 ### Mapping to Staff gaps (from `senior-to-staff.md`)
 
@@ -164,6 +187,15 @@ The core solution — **atomic transaction + async re-read from DB + feature-fla
 | Load testing tool (quantified failure rates) | `tools/test_async_order/main.go` |
 | Verification tool (PG vs CH comparison) | `tools/verify_sync/main.go` |
 | Production verification results (9,155 scorecards) | `README.md` → Production Verification |
+| Blog writeup (staff perspective) | [`blog/2026-03-13-debugging-dual-database-sync.md`](../blog/2026-03-13-debugging-dual-database-sync.md) |
+
+### Key insights (from blog writeup)
+
+- **Investigation beats intuition** — first fix failed because it was based on "the timestamp is wrong" rather than tracing exact data flow ("closure captures stale state"). Precise read/write sequence tracing led to the correct fix.
+- **Multiple bugs produce identical symptoms** — async ordering bug and PG lost-update bug both caused "missing submission data." Stopping after one fix would have left intermittent failures. High-concurrency load testing separated the two.
+- **`time.Now()` as version column is a design smell** — write order determines truth, not data order. A late-writing goroutine with stale data "wins."
+- **Verify assumptions against actual code** — "92% from automated scoring" was wrong because the enum value meant something different, and the automated code path doesn't even use the affected APIs.
+- **Quantify the acceptable residual** — after fixes, 0.87% of records had stale analytics data from rapid UI interactions. Documented as bounded and acceptable rather than leaving "sometimes wrong" as the state.
 
 ### Mapping to Staff gaps (from `senior-to-staff.md`)
 
