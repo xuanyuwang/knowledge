@@ -23,3 +23,4 @@ Plan
 - **Agent-only filter:** Merge FE PR #17356 first, then BE PR #26301. Phase 5.4-5.5: Audit remaining ~30 `useInsightsRequestParams` call sites on Performance page. Phase 6 (Agent Assist) deferred.
 - **Backfill scorecards:** Get PR #25916 approved and merged. Run Temporal workflow for remaining clusters beyond Spirit and Oportun.
 - **Agent quintiles:** Get PR #17263 reviewed and merged.
+
