@@ -108,15 +108,15 @@ Structured implementation plan for the agent-only / “Include managers” page-
 
 ---
 
-## Phase 6: Agent Assist (optional / TBD)
+## Phase 6: Agent Assist ✅
 
 | # | Task | Notes |
 |---|------|--------|
-| 6.1 | Audit Agent Assist for analytics/insights calls | Search for `useInsightsRequestParams`, `useGetQAStats`, or similar in Agent Assist or assistance-insights code. |
-| 6.2 | Add filter state and UI if Agent Assist has its own filter bar | If it uses a shared filter store or a different one, add `listAgentOnly` and a control there too. |
-| 6.3 | Pass filter value in Agent Assist API calls | Where results are agent-related, pass `filterToAgentsOnly` from the relevant filter state. |
+| 6.1 | Audit Agent Assist for analytics/insights calls | ✅ Done — 24 `useInsightsRequestParams` calls across 11 files + 5 in `useGetHintStatsByHintType`. Backward compat via `?? true` default in PR #17356. |
+| 6.2 | Add filter state and UI | ✅ Done — `listAgentOnly` added to `AssistanceFiltersState`, `useAssistanceFilters` hook (initial state, localStorage, accessors, level select hook, menu option, feature flag guard, hiddenFilters, modifiedFiltersState). PR [#17394](https://github.com/cresta/director/pull/17394). |
+| 6.3 | Pass filter value in Agent Assist API calls | ✅ Done — `AssistanceInsightsContainer` passes `filterToAgentsOnly: listAgentOnly` via memoized options to all 7 `useInsightsRequestParams` calls + `useGetAllAssistanceStats`. Sub-components covered by `?? true` default. |
 
-**Deliverable:** Agent Assist behavior documented; implemented if in scope.
+**Deliverable:** Agent Assist filter UI implemented behind `enableAgentOnlyFilter` feature flag.
 
 ---
 

@@ -1,7 +1,7 @@
 # CONVI-6247: Agent-Only Manager Inclusion Filter in Performance
 
 **Created:** 2025-02-17  
-**Updated:** 2026-03-13 (FE default + BE handler wiring PRs)
+**Updated:** 2026-03-16 (Phase 6: Agent Assist filter UI)
 
 ## Overview
 
@@ -44,7 +44,7 @@ Structured phases and task list: **[implementation-plan.md](implementation-plan.
 
 ## Status
 
-**PR #16777 merged** — Phase 2+3+i18n+feature flag (types + Performance filter + API pass-through + i18n + `enableAgentOnlyFilter` flag). **PR #17314 merged** — Phase 4+5.1–5.3 (Leaderboard filter + API wiring + i18n consolidation). Phase 1.2 (BE handler wiring): FE PR [#17356](https://github.com/cresta/director/pull/17356) + BE PR [#26301](https://github.com/cresta/go-servers/pull/26301) (blocked by FE). Next: Phase 5.4-5.5 (remaining FE pass-through), Phase 6 (Agent Assist).
+**PR #16777 merged** — Phase 2+3+i18n+feature flag (types + Performance filter + API pass-through + i18n + `enableAgentOnlyFilter` flag). **PR #17314 merged** — Phase 4+5.1–5.3 (Leaderboard filter + API wiring + i18n consolidation). **PR #17356 merged** — FE backward compat (Performance/Leaderboard default `true` when flag off + Agent Assist `?? true` in `useInsightsRequestParams`). **PR [#17394](https://github.com/cresta/director/pull/17394)** — Phase 6 (Agent Assist filter UI). BE PR [#26301](https://github.com/cresta/go-servers/pull/26301) blocked until FE deployed (next week). Next: merge PRs, deploy, enable feature flag.
 
 ## Log History
 
@@ -57,3 +57,4 @@ Structured phases and task list: **[implementation-plan.md](implementation-plan.
 | 2026-03-10 | Rebased PR #16777 on main: resolved conflicts with `scoreResource` (leaderboard) and `tCommon` (performance i18n) additions from main. All review comments addressed. |
 | 2026-03-12 | **PR #16777 merged.** Phase 4 (Leaderboard filter) + Phase 5.1–5.3 (API wiring: replaced hardcoded `filterToAgentsOnly: true` with `filtersState.listAgentOnly` on Agent/Team tabs) in PR [#17314](https://github.com/cresta/director/pull/17314). Phase 6 (Agent Assist) deferred — separate filter state type, 11+ call sites. |
 | 2026-03-13 | PR #17314 merged. i18n consolidation, review fixes, filter bar chip removal. Phase 1.2: BE handler wiring — 11 Go handlers updated to read `req.GetFilterToAgentsOnly()`. FE default fix (`listAgentOnly: true` when flag off). PRs: FE [#17356](https://github.com/cresta/director/pull/17356), BE [#26301](https://github.com/cresta/go-servers/pull/26301) (blocked by FE). |
+| 2026-03-16 | PR #17356 merged. Resolved merge conflicts, reverted stale i18n changes, added Agent Assist backward compat (`?? true` in `useInsightsRequestParams`). Replied to BE PR CodeRabbit review (13 internal callers verified safe). Phase 6 implemented: Agent Assist filter UI in PR [#17394](https://github.com/cresta/director/pull/17394). |
