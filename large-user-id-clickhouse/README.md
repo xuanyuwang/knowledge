@@ -1,7 +1,7 @@
 # Large User ID Lists in ClickHouse Queries
 
 **Created:** 2026-03-09
-**Updated:** 2026-03-11
+**Updated:** 2026-03-16
 
 ## Overview
 
@@ -24,7 +24,7 @@ This work was extracted from the `insights-user-filter` project, which handled t
 ### Current State
 
 - **`ShouldQueryAllUsers` flag**: Already implemented. Handles the "all users" case (root access + empty filter) by skipping the WHERE clause entirely.
-- **`ext` external tables**: Implemented and merged (PR #26178). Behind feature flag `ENABLE_EXT_TABLE_FOR_USER_FILTER` (default: off). Ready for staging validation.
+- **`ext` external tables**: Implemented and merged (PR #26178 + #26250). Feature flag `ENABLE_EXT_TABLE_FOR_USER_FILTER` enabled globally via app-level helmrelease (flux-deployments #264076). Awaiting releaser propagation to all prod stages.
 
 ## Documents
 
@@ -45,6 +45,7 @@ This work was extracted from the `insights-user-filter` project, which handled t
 | 2026-03-10 | Created design review doc on Notion. Addressed CodeRabbit review comments (column rename, defensive fixes). |
 | 2026-03-11 | PR #26178 merged. Fixed CI lint errors. Created testing plan for staging rollout. |
 | 2026-03-12 | Enabled flag on staging. Found behavior gap: ext table not used when ShouldQueryAllUsers=true. Fixed ApplyUserFilterFromResult to always pass FinalUsers when flag is on. |
+| 2026-03-16 | First prod rollout: voice-prod (#264060, merged). Global rollout: moved flag to app-level 00-head (#264076), removed all per-cluster patches. |
 
 ## Related Projects
 
