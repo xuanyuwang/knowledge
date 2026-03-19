@@ -1,7 +1,7 @@
 # CONVI-6247: Agent-Only Manager Inclusion Filter in Performance
 
 **Created:** 2025-02-17  
-**Updated:** 2026-03-18 (PR #17394 review + lint fix)
+**Updated:** 2026-03-19 (all PRs merged, ready for staging test)
 
 ## Overview
 
@@ -44,7 +44,7 @@ Structured phases and task list: **[implementation-plan.md](implementation-plan.
 
 ## Status
 
-**PR #16777 merged** — Phase 2+3+i18n+feature flag (types + Performance filter + API pass-through + i18n + `enableAgentOnlyFilter` flag). **PR #17314 merged** — Phase 4+5.1–5.3 (Leaderboard filter + API wiring + i18n consolidation). **PR #17356 merged** — FE backward compat (Performance/Leaderboard default `true` when flag off + Agent Assist `?? true` in `useInsightsRequestParams`). **PR [#17394](https://github.com/cresta/director/pull/17394)** — Phase 6 (Agent Assist filter UI). BE PR [#26301](https://github.com/cresta/go-servers/pull/26301) blocked until FE deployed. Staging verified: `filterToAgentsOnly` present on all requests. Prod missing `filter_to_agents_only` on `RetrieveQAScoreStats` — expected, fix (PR #17356) not yet deployed to prod. Next: prod deployment, merge BE PR, enable feature flag.
+**All PRs merged.** FE: [#16777](https://github.com/cresta/director/pull/16777) (types + Performance filter), [#17314](https://github.com/cresta/director/pull/17314) (Leaderboard filter + API wiring), [#17356](https://github.com/cresta/director/pull/17356) (backward compat defaults — deployed to prod), [#17394](https://github.com/cresta/director/pull/17394) (Agent Assist filter UI). BE: [#26301](https://github.com/cresta/go-servers/pull/26301) (handler wiring). Ready to test on staging with `enableAgentOnlyFilter` flag. Next: staging E2E test → prod deployment of #17394 → enable flag for customers.
 
 ## Log History
 
@@ -59,3 +59,4 @@ Structured phases and task list: **[implementation-plan.md](implementation-plan.
 | 2026-03-13 | PR #17314 merged. i18n consolidation, review fixes, filter bar chip removal. Phase 1.2: BE handler wiring — 11 Go handlers updated to read `req.GetFilterToAgentsOnly()`. FE default fix (`listAgentOnly: true` when flag off). PRs: FE [#17356](https://github.com/cresta/director/pull/17356), BE [#26301](https://github.com/cresta/go-servers/pull/26301) (blocked by FE). |
 | 2026-03-16 | PR #17356 merged. Resolved merge conflicts, reverted stale i18n changes, added Agent Assist backward compat (`?? true` in `useInsightsRequestParams`). Replied to BE PR CodeRabbit review (13 internal callers verified safe). Phase 6 implemented: Agent Assist filter UI in PR [#17394](https://github.com/cresta/director/pull/17394). |
 | 2026-03-18 | Investigated missing `filter_to_agents_only` on `RetrieveQAScoreStats` on prod — root cause: PR #16777 sets `listAgentOnly: undefined` when flag off, fix in PR #17356 confirmed on staging. Reviewed PR #17394 against all earlier PR feedback (7 issues checked, all clean). Fixed import ordering lint failure, pushed. |
+| 2026-03-19 | PR #17394 merged (review fix: simplified `hiddenFilters` to consts). BE PR #26301 merged. FE #17356 deployed to prod. All PRs merged — ready for staging E2E test with `enableAgentOnlyFilter` flag. |
