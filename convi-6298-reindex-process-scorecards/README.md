@@ -1,9 +1,9 @@
 # CONVI-6298: Reindex Process Scorecards into ClickHouse
 
 **Created**: 2026-02-24
-**Updated**: 2026-02-27
+**Updated**: 2026-03-20
 **Linear**: https://linear.app/cresta/issue/CONVI-6298
-**Status**: PRs ready — proto merged, go-servers awaiting review
+**Status**: Complete — staging verified (write + cleanup paths), ready for prod rollout
 
 ## Overview
 
@@ -97,16 +97,19 @@ This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX
 ## PRs
 
 - cresta-proto PR #7919 — **merged**
-- go-servers PR #25916 — **open**, awaiting review
+- go-servers PR #25916 — **merged**
 
 ## Remaining Work
 
 - [x] Proto changes (cresta-proto PR merged)
 - [x] Go-servers implementation
 - [x] Bazel build verification (all packages compile)
-- [ ] Code review approval
-- [ ] Staging test with known time range
-- [ ] Verify CH data matches PG using `batch_verify.py`
+- [x] Code review approval
+- [x] Staging test with known time range (walter-dev on voice-staging)
+- [x] Fix Bug 1: `deleteFromCH` uses distributed tables instead of local tables with ON CLUSTER (PR #26417)
+- [x] Fix Bug 2: Cron hardcodes `CleanUpBeforeWrite: true` — make configurable via `REINDEX_SCORECARDS_CLEAN_UP_BEFORE_WRITE` env var (PR #26417)
+- [x] Re-test with cleanup enabled after bug fixes — verified on staging 2026-03-20
+- [ ] Prod rollout
 
 ## Log History
 
@@ -115,3 +118,5 @@ This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX
 | 2026-02-24 | Explored 3 approaches: separate job type → extend reindexconversations → new scorecard-centric workflow. Settled on Approach 3. |
 | 2026-02-26 | Reverted Approach 2, implemented Approach 3: proto changes + full go-servers implementation. Fixed CI failures, addressed CodeRabbit review comments. |
 | 2026-02-27 | Refactored activity to reconstruct scores from director data (skip historic schema). Removed heartbeat resume (OFFSET pagination unreliable), kept heartbeat for progress visibility. Rebased onto main with updated cresta-proto dep. All packages build. |
+| 2026-03-19 | PR merged. Staging test on walter-dev: write path works (196 scorecards + 721 scores). Found 2 bugs: deleteFromCH targets distributed tables (score_d) instead of local (score), cron hardcodes CleanUpBeforeWrite=true. Workaround: call CreateJob gRPC directly with clean_up_before_write=false. |
+| 2026-03-20 | Bug fix PR #26417 merged. Re-tested on staging: both write path and cleanup path (clean_up_before_write=true via cron env var) verified. All validations pass (196 scorecards, 721 scores). Ready for prod rollout. |
