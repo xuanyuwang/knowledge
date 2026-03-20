@@ -72,6 +72,10 @@ See **`implementation-plan.md`** for the concrete BE-first plan. Summary:
 | [cresta-proto #7874](https://github.com/cresta/cresta-proto/pull/7874) | cresta-proto | `quintile_rank` field in `QAScoreGroupBy` proto | Merged |
 | [cresta-proto #7910](https://github.com/cresta/cresta-proto/pull/7910) | cresta-proto | `QuintileRank`/`QuintileRankNumber` in web-client export whitelist | Merged |
 | [go-servers #25795](https://github.com/cresta/go-servers/pull/25795) | go-servers | `setQuintileRankForPerAgentScores` + `AssignRankGroups` utility | In review |
+| [go-servers #26332](https://github.com/cresta/go-servers/pull/26332) | go-servers | CONVI-6219: UserOutcomeStats directionality fix (draft) | Closed (superseded by #26430 + combined PR) |
+| [go-servers #26430](https://github.com/cresta/go-servers/pull/26430) | go-servers | CONVI-6219: Shared directionality helpers (`shared/scoring/directionality.go`) | In review |
+| go-servers TBD | go-servers | CONVI-6219: Wire directionality into QAScoreStats + UserOutcomeStats (combined) | Planned (depends on #26430) |
+| go-servers TBD | go-servers | CONVI-6219: Coaching service refactor to use shared helpers | Planned (depends on #26430) |
 | [config #140396](https://github.com/cresta/config/pull/140396) | config | `enableQuintileRank` feature flag | Merged |
 
 ### Frontend (director, stacked on Foundation)
@@ -108,6 +112,8 @@ Near complete – BE in review. FE: Foundation, Move Icon, Leaderboard, Performa
 | 2026-03-09 | Outcome quintile investigation — how outcomes (AHT, Conversion, CSAT) participate in QA score & quintile. `excludeFromQAScores` flag gates inclusion; `percentage_value` not always normalized (AHT = raw seconds). See `outcome-quintile-investigation.md`. |
 | 2026-03-10 | Comprehensive per-page quintile reference — all 5 surfaces with exact request parameters, outcome handling, and cross-page consistency analysis. See `quintile-rank-behaviour-reference.md`. |
 | 2026-03-11 | CONVI-6389: Aligned Coaching Plan quintile with Coaching Hub defaults. PR [#17263](https://github.com/cresta/director/pull/17263) — rebased, cleaned, extracted `useQuintileRankQAStats` hook per review. Reference doc reorganized + synced to Coda. CI green. |
+| 2026-03-17 | CONVI-6219: Fixed directionality for TIME/CHURN outcome types in user outcome stats top agents partitioning. PR [#26332](https://github.com/cresta/go-servers/pull/26332) (draft). QA score quintile/tier directionality investigated — needs criterion→moment→outcome type lookup. See `convi-6219-investigation.md` and `convi-6219-qa-score-investigation.md`. |
+| 2026-03-20 | CONVI-6219: Created shared directionality package `shared/scoring/directionality.go` — PR [#26430](https://github.com/cresta/go-servers/pull/26430). 5 exported helpers (`IsLowerBetterOutcomeType`, `IsLowerBetterOutcomeTypeEnum`, `ExtractCriterionOutcomeMomentResourceNames`, `GetOutcomeTypesFromMomentTemplates`, `BuildLowerIsBetterCriterionSet`) + 17 tests. Revised PR strategy: close draft #26332 (superseded); merge QA score + outcome stats fix into one PR; coaching refactor as separate PR. See `convi-6219-qa-score-impl-plan.md`. |
 
 ## Related
 
