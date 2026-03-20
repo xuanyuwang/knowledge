@@ -26,7 +26,8 @@ Create a weekly summary document for the current week.
    - Collect progress summaries from each day's log, including weekend work
 
 3. **Create weekly summary file**:
-   - Path: `/Users/xuanyu.wang/repos/knowledge/weekly-summary/YYYY-Www.md` (e.g., `2026-W12.md`)
+   - Path: `/Users/xuanyu.wang/repos/knowledge/weekly-summary/weekly-summary-YYYY-MM-DD-to-DD.md`
+   - Example: `weekly-summary-2026-03-16-to-22.md` (for week March 16-22)
    - Use this template:
      ```markdown
      # Weekly Summary - Week of YYYY-MM-DD
@@ -70,7 +71,7 @@ Create a weekly summary document for the current week.
 
 5. **Commit the weekly summary**:
    - Stage: `git add weekly-summary/`
-   - Commit with message: `weekly summary YYYY-Www`
+   - Commit with message: `weekly summary YYYY-MM-DD to DD` (e.g., `weekly summary 2026-03-16 to 22`)
    - Add co-author line: `Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>`
    - Push: `git push`
 
@@ -78,7 +79,7 @@ Create a weekly summary document for the current week.
 
 Show the weekly summary content and confirm:
 ```
-Created weekly summary for Week YYYY-Www (YYYY-MM-DD to YYYY-MM-DD)
+Created weekly summary for YYYY-MM-DD to DD
 
 [Show summary content]
 
