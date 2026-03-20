@@ -34,40 +34,52 @@ Create a weekly summary document for the current week.
 
      **Created:** YYYY-MM-DD
 
-     ## Overview
-
-     [Brief 2-3 sentence overview of the week's work]
-
-     ## Projects Worked On
+     ## Progresses
 
      ### Project Name 1
      - [Key accomplishment 1]
      - [Key accomplishment 2]
+     - [Current status]
 
      ### Project Name 2
      - [Key accomplishment 1]
      - [Key accomplishment 2]
+     - [Current status]
 
-     ## Key Learnings
+     ## Problems
 
-     - [Learning 1]
-     - [Learning 2]
+     ### Technical Issues
+     - [Issue 1 and resolution status]
+     - [Issue 2 and resolution status]
 
-     ## Next Week
+     ### Blockers
+     - [Blocker 1 and mitigation plan]
+     - [Blocker 2 and mitigation plan]
 
-     - [Priority 1]
-     - [Priority 2]
+     ### Learnings from Failures
+     - [What went wrong and why]
+     - [What was learned]
 
-     ## Notes
+     ## Plan
 
-     [Any additional context or observations]
+     ### Next Week Priorities
+     1. [High priority item 1]
+     2. [High priority item 2]
+     3. [High priority item 3]
+
+     ### Follow-ups Required
+     - [Follow-up action 1]
+     - [Follow-up action 2]
+
+     ### Pending Reviews/Decisions
+     - [Pending item 1]
+     - [Pending item 2]
      ```
 
 4. **Populate the summary**:
-   - Group activities by project
-   - Highlight key accomplishments (not every commit)
-   - Extract learnings or insights from the work
-   - Suggest next week's priorities based on current state
+   - **Progresses**: Group activities by project, highlight key accomplishments (not every commit), note current status
+   - **Problems**: Document technical issues, blockers, and learnings from failures encountered this week
+   - **Plan**: List next week's priorities, required follow-ups, and pending reviews/decisions
 
 5. **Commit the weekly summary**:
    - Stage: `git add weekly-summary/`
@@ -88,8 +100,8 @@ Created weekly summary for YYYY-MM-DD to DD
 
 ## Important Notes
 
-- Focus on significant progress, not every detail
-- Extract patterns and learnings across projects
+- **Progresses**: Focus on significant accomplishments, not every detail. Only include projects with actual work this week.
+- **Problems**: Be honest about issues encountered. Include what went wrong, root causes, and resolutions (or current mitigation plans).
+- **Plan**: Prioritize realistically. Distinguish between high-priority work, follow-ups, and items awaiting decisions.
 - Keep it concise - aim for 1-2 pages max
-- Only include projects with actual work this week
 - If no work was done this week, create a minimal summary noting that
