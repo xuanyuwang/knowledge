@@ -1,7 +1,7 @@
 # CONVI-6247: Agent-Only Manager Inclusion Filter in Performance
 
-**Created:** 2025-02-17  
-**Updated:** 2026-03-19 (all PRs merged, ready for staging test)
+**Created:** 2025-02-17
+**Updated:** 2026-03-23 (default value behavior updated to match "Exclude deactivated users")
 
 ## Overview
 
@@ -19,6 +19,15 @@ Add a new **page-wide filter** control, similar to **Scorecard Status**, on:
 - **Agent Assist** (where relevant)
 
 The filter state is used when calling analytics APIs: pass the new request field according to the selected option (and tab context where applicable).
+
+### Filter Behavior
+
+**Pattern:** Same as "Exclude deactivated users"
+- **Default value:** `false` (include both agents and managers)
+- **When toggled to `true`:** Filter appears on filter bar; APIs receive `filter_to_agents_only: true` (agents only)
+- **When toggled back to `false` (default):** Filter disappears from filter bar; APIs receive `filter_to_agents_only: false` (include managers)
+
+This makes the filter opt-in: users see agent + manager data by default, and the filter chip only appears when explicitly excluding managers.
 
 ## Scope
 
@@ -60,3 +69,4 @@ Structured phases and task list: **[implementation-plan.md](implementation-plan.
 | 2026-03-16 | PR #17356 merged. Resolved merge conflicts, reverted stale i18n changes, added Agent Assist backward compat (`?? true` in `useInsightsRequestParams`). Replied to BE PR CodeRabbit review (13 internal callers verified safe). Phase 6 implemented: Agent Assist filter UI in PR [#17394](https://github.com/cresta/director/pull/17394). |
 | 2026-03-18 | Investigated missing `filter_to_agents_only` on `RetrieveQAScoreStats` on prod — root cause: PR #16777 sets `listAgentOnly: undefined` when flag off, fix in PR #17356 confirmed on staging. Reviewed PR #17394 against all earlier PR feedback (7 issues checked, all clean). Fixed import ordering lint failure, pushed. |
 | 2026-03-19 | PR #17394 merged (review fix: simplified `hiddenFilters` to consts). BE PR #26301 merged. FE #17356 deployed to prod. All PRs merged — ready for staging E2E test with `enableAgentOnlyFilter` flag. |
+| 2026-03-23 | Updated filter default value behavior to match "Exclude deactivated users" pattern: default `false`, only appears on filter bar when toggled to `true`, disappears when toggled back to `false`. Previous implementation had default `true` (from Phase 3.1/4.1). |

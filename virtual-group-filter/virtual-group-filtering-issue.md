@@ -1,5 +1,22 @@
 # Virtual Group Filtering Issue in Analytics APIs
 
+## Design Principle: Virtual Groups as User Collections
+
+**Fundamental Rule**: A virtual group is just a shortcut to a group of individual users.
+
+The behavior of processing virtual groups should be **identical** to processing a collection of individual users after mapping those virtual groups into individual users.
+
+**Implications**:
+- Virtual group filtering → Expand to user list → Process as if individual users were specified
+- Virtual group aggregation → Aggregate user stats under the virtual group name (NOT under their TEAM groups)
+- Any code path that works for individual user lists should also work for virtual groups
+
+**Current Problem**: The code violates this principle by:
+1. Correctly expanding virtual groups to users for filtering
+2. But then aggregating those users under their TEAM groups instead of the requested virtual group
+
+---
+
 ## Summary
 
 When filtering by a virtual group (DYNAMIC_GROUP type) in analytics APIs and **grouping by GROUP**, no data is returned for the virtual group. However:
