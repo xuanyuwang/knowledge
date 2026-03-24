@@ -36,6 +36,7 @@ This work was extracted from the `insights-user-filter` project, which handled t
 | `implementation-plan.md` | Step-by-step plan for implementing `ext` tables |
 | `design-review.md` | Engineering design review doc (local copy of Notion doc) |
 | `testing-plan.md` | Staging/production testing plan for ext table rollout |
+| `convi-6476-live-assist-broken.md` | CONVI-6476: ext table nil arg regression breaking live assist stats |
 
 ## Log History
 
@@ -47,6 +48,7 @@ This work was extracted from the `insights-user-filter` project, which handled t
 | 2026-03-12 | Enabled flag on staging. Found behavior gap: ext table not used when ShouldQueryAllUsers=true. Fixed ApplyUserFilterFromResult to always pass FinalUsers when flag is on. |
 | 2026-03-16 | First prod rollout: voice-prod (#264060, merged). Global rollout: moved flag to app-level 00-head (#264076), removed all per-cluster patches. |
 | 2026-03-17 | Releaser didn't propagate overnight. Manually added flag to all 3 stage files (#264149). |
+| 2026-03-24 | CONVI-6476: ext table nil arg regression in liveAssistStatsClickHouseQuery breaks Leaderboard live assist metrics. Fix: guard arg duplication with nil check. |
 
 ## Related Projects
 
