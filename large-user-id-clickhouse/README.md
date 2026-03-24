@@ -1,7 +1,7 @@
 # Large User ID Lists in ClickHouse Queries
 
 **Created:** 2026-03-09
-**Updated:** 2026-03-16
+**Updated:** 2026-03-24
 
 ## Overview
 
@@ -48,7 +48,7 @@ This work was extracted from the `insights-user-filter` project, which handled t
 | 2026-03-12 | Enabled flag on staging. Found behavior gap: ext table not used when ShouldQueryAllUsers=true. Fixed ApplyUserFilterFromResult to always pass FinalUsers when flag is on. |
 | 2026-03-16 | First prod rollout: voice-prod (#264060, merged). Global rollout: moved flag to app-level 00-head (#264076), removed all per-cluster patches. |
 | 2026-03-17 | Releaser didn't propagate overnight. Manually added flag to all 3 stage files (#264149). |
-| 2026-03-24 | CONVI-6476: ext table nil arg regression in liveAssistStatsClickHouseQuery breaks Leaderboard live assist metrics. Fix: guard arg duplication with nil check. |
+| 2026-03-24 | CONVI-6476: ext table nil arg regression in liveAssistStatsClickHouseQuery breaks Leaderboard live assist metrics. Fix: guard arg duplication with nil check. PR #26519 merged. |
 
 ## Related Projects
 
