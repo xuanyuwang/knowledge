@@ -73,9 +73,9 @@ See **`implementation-plan.md`** for the concrete BE-first plan. Summary:
 | [cresta-proto #7910](https://github.com/cresta/cresta-proto/pull/7910) | cresta-proto | `QuintileRank`/`QuintileRankNumber` in web-client export whitelist | Merged |
 | [go-servers #25795](https://github.com/cresta/go-servers/pull/25795) | go-servers | `setQuintileRankForPerAgentScores` + `AssignRankGroups` utility | In review |
 | [go-servers #26332](https://github.com/cresta/go-servers/pull/26332) | go-servers | CONVI-6219: UserOutcomeStats directionality fix (draft) | Closed (superseded by #26430 + combined PR) |
-| [go-servers #26430](https://github.com/cresta/go-servers/pull/26430) | go-servers | CONVI-6219: Shared directionality helpers (`shared/scoring/directionality.go`) | In review |
-| go-servers TBD | go-servers | CONVI-6219: Wire directionality into QAScoreStats + UserOutcomeStats (combined) | Planned (depends on #26430) |
-| go-servers TBD | go-servers | CONVI-6219: Coaching service refactor to use shared helpers | Planned (depends on #26430) |
+| [go-servers #26430](https://github.com/cresta/go-servers/pull/26430) | go-servers | CONVI-6219: Shared directionality helpers (`shared/scoring/directionality.go`) | Merged |
+| [go-servers #26517](https://github.com/cresta/go-servers/pull/26517) | go-servers | CONVI-6219: Wire directionality into QAScoreStats + UserOutcomeStats (combined) | In review |
+| [go-servers #26518](https://github.com/cresta/go-servers/pull/26518) | go-servers | CONVI-6219: Coaching service refactor to use shared helpers | In review |
 | [config #140396](https://github.com/cresta/config/pull/140396) | config | `enableQuintileRank` feature flag | Merged |
 
 ### Frontend (director, stacked on Foundation)
@@ -95,7 +95,7 @@ Demo branch `feature/agent-quintiles` ([PR #16849](https://github.com/cresta/dir
 
 ## Status
 
-Near complete – BE in review. FE: Foundation, Move Icon, Leaderboard, Performance, Coaching Plan all merged. Coaching Hub (#16887) in review. Trophy Icon (#17028) in review — self-contained icon with inline gradient defs, all review comments addressed. Remaining: Coaching Hub + Trophy Icon + BE approval + merge.
+Near complete. **FE:** Foundation, Move Icon, Leaderboard, Performance, Coaching Plan all merged. Coaching Hub (#16887), Trophy Icon (#17028), Align Coaching Plan (#17263) in review. **BE:** Quintile PR (#25795) in review. Directionality foundation (#26430) merged. Directionality wiring (#26517) and coaching refactor (#26518) in review — CI green. Draft #26332 closed (superseded). **Remaining:** FE Coaching Hub + Trophy Icon + Align Coaching Plan + BE approval + merge.
 
 ## Log History
 
@@ -114,6 +114,7 @@ Near complete – BE in review. FE: Foundation, Move Icon, Leaderboard, Performa
 | 2026-03-11 | CONVI-6389: Aligned Coaching Plan quintile with Coaching Hub defaults. PR [#17263](https://github.com/cresta/director/pull/17263) — rebased, cleaned, extracted `useQuintileRankQAStats` hook per review. Reference doc reorganized + synced to Coda. CI green. |
 | 2026-03-17 | CONVI-6219: Fixed directionality for TIME/CHURN outcome types in user outcome stats top agents partitioning. PR [#26332](https://github.com/cresta/go-servers/pull/26332) (draft). QA score quintile/tier directionality investigated — needs criterion→moment→outcome type lookup. See `convi-6219-investigation.md` and `convi-6219-qa-score-investigation.md`. |
 | 2026-03-20 | CONVI-6219: Created shared directionality package `shared/scoring/directionality.go` — PR [#26430](https://github.com/cresta/go-servers/pull/26430). 5 exported helpers (`IsLowerBetterOutcomeType`, `IsLowerBetterOutcomeTypeEnum`, `ExtractCriterionOutcomeMomentResourceNames`, `GetOutcomeTypesFromMomentTemplates`, `BuildLowerIsBetterCriterionSet`) + 17 tests. Revised PR strategy: close draft #26332 (superseded); merge QA score + outcome stats fix into one PR; coaching refactor as separate PR. See `convi-6219-qa-score-impl-plan.md`. |
+| 2026-03-24 | CONVI-6219: Wired directionality into both APIs. PR [#26517](https://github.com/cresta/go-servers/pull/26517) — QAScoreStats tier+quintile + UserOutcomeStats tier (4 files, +181/-31). PR [#26518](https://github.com/cresta/go-servers/pull/26518) — coaching refactor to shared helpers (1 file, +3/-85, pure refactor). |
 
 ## Related
 
