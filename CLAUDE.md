@@ -47,6 +47,8 @@ Personal knowledge management repository organized **by project**. Each folder a
 | `convi-6247-agent-only-filter/` | Agent-only manager inclusion filter: add request field to analytics APIs + FE pass listAgentOnly in Performance, Leaderboard, Agent Assist |
 | `convi-6242-cron-label-conversations/` | cron-label-conversations stale data fix + 2026 backfill for Alaska Air |
 | `large-user-id-clickhouse/` | ClickHouse ext tables for large user ID lists (extracted from insights-user-filter) |
+| `team-enable/` | Claude Code plugin for team: shared skill in marketplace, feature flag cleanup |
+| `scorecard-template/` | Scorecard template structure deep dive: data model, scoring algorithm, analytics pipeline |
 
 ## Workflow: Updating a Project
 
