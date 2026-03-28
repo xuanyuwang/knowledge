@@ -109,7 +109,9 @@ This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX
 - [x] Fix Bug 1: `deleteFromCH` uses distributed tables instead of local tables with ON CLUSTER (PR #26417)
 - [x] Fix Bug 2: Cron hardcodes `CleanUpBeforeWrite: true` — make configurable via `REINDEX_SCORECARDS_CLEAN_UP_BEFORE_WRITE` env var (PR #26417)
 - [x] Re-test with cleanup enabled after bug fixes — verified on staging 2026-03-20
-- [ ] Prod rollout
+- [x] Prod rollout (sandbox verified 2026-03-24)
+- [ ] Backfill Phase 1: 2026 data for all customers on all clusters
+- [ ] Backfill Phase 2: Pre-2026 data for all customers
 
 ## Log History
 
@@ -121,3 +123,4 @@ This project creates a new scorecard-centric reindex workflow (`JOB_TYPE_REINDEX
 | 2026-03-19 | PR merged. Staging test on walter-dev: write path works (196 scorecards + 721 scores). Found 2 bugs: deleteFromCH targets distributed tables (score_d) instead of local (score), cron hardcodes CleanUpBeforeWrite=true. Workaround: call CreateJob gRPC directly with clean_up_before_write=false. |
 | 2026-03-20 | Bug fix PR #26417 merged. Re-tested on staging: both write path and cleanup path (clean_up_before_write=true via cron env var) verified. All validations pass (196 scorecards, 721 scores). Ready for prod rollout. |
 | 2026-03-24 | Selected cresta-sandbox-2 (voice-prod) as prod test customer. Baseline: 30 process scorecards + 358 scores in PG, only 14 scorecards + 0 scores in CH. Created prod test plan. |
+| 2026-03-28 | Created backfill plan for all customers. Phase 1: 2026 data, Phase 2: pre-2026. Script: `backfill-all-customers.sh`. |
