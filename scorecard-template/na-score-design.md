@@ -81,38 +81,64 @@ Invalid: `showNA: false` + `NAScore: <number>` → BE rejects (N/A not enabled, 
 3. **Simple data model**: One new `float64` field. No new structs.
 4. **Backward compatible**: `NAScore: nil` → all existing behavior unchanged.
 
-### Scoring Code Changes (2 spots)
+### Scoring Code Changes
 
-#### Spot 1: `ComputeScores()` — scorecard_calculator.go:50-52
+#### Design Principle: Separate Mutations from Calculations
 
-Currently clears NumericValue for N/A scores. With NAScore, inject the score instead:
+The scoring pipeline has two distinct layers:
+
+1. **Post-processing layer** — `ComputeScores()` (scorecard_calculator.go) enriches raw grader input with metadata: `Chapter`, `AiScored`, `AiValue`, `NumericValue` (cleared for N/A), `AutoFailed`. These mutations are **persisted to DB** via `UpdateScorecardAndScoresInDB()`. This is post-processing of scorecard user input, not pure calculation.
+
+2. **Calculation layer** — `ComputeCriterionPercentageScore()` (scorecard_scores_dao.go) computes derived percentage values. These feed into `updateSummaryValues()` for chapter/overall aggregation and are written to the ClickHouse sync model, but do NOT modify the original PG score rows.
+
+**We must NOT modify `NotApplicable` or `NumericValue` for NAScore in the post-processing layer** — doing so would overwrite the grader's original N/A selection in PG, losing the audit trail. If the template's NAScore config is later changed/removed, historical scores would be corrupted.
+
+Instead, NAScore is handled in the **calculation layer** (`ComputeCriterionPercentageScore`) which computes derived values without modifying stored score rows.
+
+#### No Change: `ComputeScores()` — scorecard_calculator.go:50-52
+
+The existing N/A pre-processing stays as-is:
 
 ```go
-for _, newScore := range scores {
-    if newScore.NotApplicable.Bool {
-        naScore := criterion.GetNAScore()  // NEW method
-        if naScore != nil {
-            // Scored N/A: inject NAScore as the numeric value
-            newScore.NumericValue = sql.NullFloat64{Float64: *naScore, Valid: true}
-            newScore.NotApplicable = sql.NullBool{Bool: false, Valid: true}  // treat as scored
-        } else {
-            // Legacy N/A: clear as before
-            newScore.NumericValue = sql.NullFloat64{}
-        }
-    }
+if newScore.NotApplicable.Bool {
+    newScore.NumericValue = sql.NullFloat64{}  // unchanged — clears value, persisted to DB
 }
 ```
 
-After this transform, the rest of the pipeline sees a regular scored criterion. No further changes needed.
+DB rows for N/A scores continue to have `not_applicable = true`, `numeric_value = NULL`.
 
-#### Spot 2: `ComputeCriterionPercentageScore()` — scorecard_scores_dao.go:562-595
+#### Change: `ComputeCriterionPercentageScore()` — scorecard_scores_dao.go:562-596
 
-Actually, **no change needed here** if Spot 1 correctly transforms the score. By the time `ComputeCriterionPercentageScore` runs:
-- `NotApplicable` is `false` (was flipped in Spot 1)
-- `NumericValue` is valid (was set to NAScore in Spot 1)
-- The existing code processes it normally
+Currently, N/A causes an early return at lines 582-584:
 
-So effectively **only 1 code change spot** in the scoring pipeline.
+```go
+// BEFORE
+if scoreNotApplicable || len(scoreValidNumericValueList) == 0 {
+    return nil, nil  // criterion skipped entirely
+}
+```
+
+With NAScore, check if the criterion has a configured NAScore before skipping:
+
+```go
+// AFTER
+if scoreNotApplicable || len(scoreValidNumericValueList) == 0 {
+    if scoreNotApplicable {
+        naScore := criterion.GetNAScore()
+        if naScore != nil {
+            // Scored N/A: return the configured percentage directly
+            weight := float64(criterion.GetWeight())
+            return []*CriterionPercentageScore{{
+                PercentageScore: &sql.NullFloat64{Float64: *naScore, Valid: true},
+                Weight:          weight,
+            }}, nil
+        }
+    }
+    return nil, nil  // legacy N/A or no valid values — skip as before
+}
+```
+
+This is the **only scoring code change**. The rest of the pipeline (`computeScore`, `computeMultiSelectScore`, `computePerMessageScore`, `mapToPercentageScore`, `updateSummaryValues`, chapter aggregation) is untouched.
 
 #### New Interface Method
 
@@ -125,14 +151,25 @@ Implementation checks `settings.NAScore`.
 
 ### Percentage Calculation for NAScore
 
-NAScore is a **direct percentage value** (0.0 – 1.0), not a raw value that goes through value-score mapping. This avoids needing to integrate with `GetValueScores()` / `MapScoreValue()`.
+NAScore is a **direct percentage value** (0.0 – 1.0), returned directly as `PercentageScore` from `ComputeCriterionPercentageScore`. It does NOT go through value-score mapping (`GetValueScores()` / `MapScoreValue()` / `mapToPercentageScore()`).
 
 Example:
 - Admin sets NAScore = 0 → N/A contributes 0% to the weighted average
 - Admin sets NAScore = 0.5 → N/A contributes 50%
 - Admin sets NAScore = 1.0 → N/A contributes 100%
 
-The injected `NumericValue` in Spot 1 would be set to `NAScore * maxScore` so that the existing `scoreValue / maxScore` normalization produces the correct percentage. Alternatively, NAScore could bypass `MapScoreValue` entirely — this is a detail to decide during implementation.
+### What Gets Stored in DB vs What Gets Calculated
+
+| Field | PG (score row) | CH (scorecard_score / score) | Source |
+|-------|---------------|------------------------------|--------|
+| `not_applicable` | `true` (grader's choice, preserved) | `true` (synced from PG) | Grader input |
+| `numeric_value` | `NULL` (unchanged from today) | `0` (default) | Post-processing clears it |
+| `percentage_value` | N/A (not in PG scores table) | `<NAScore>` or `0`/`-1` (legacy) | Calculation layer → CH sync |
+| `float_weight` | N/A (not in PG scores table) | `<criterion weight>` or `0` (legacy) | Calculation layer → CH sync |
+
+**Key insight**: `percentage_value` and `float_weight` are NOT stored in PG score rows — they're computed by `ComputeCriterionPercentageScore()` and written directly to the CH sync model (scorecard_scores_dao.go:463-469). This means the calculation layer's output flows to CH without touching PG, which is exactly why it's safe to handle NAScore there.
+
+To distinguish scored vs legacy N/A in analytics: `WHERE not_applicable = true AND percentage_value > 0`.
 
 ### FE Changes
 
@@ -179,21 +216,29 @@ No changes. Grader selects N/A → submits `not_applicable: true` as today. BE h
 - Reject `showNA: false` + `NAScore != nil` (N/A not enabled but score set)
 - NAScore must be >= 0 (negative scores don't make sense)
 
-#### Scoring — scorecard_calculator.go
-- In `ComputeScores()`, before the main loop: when `NotApplicable` and `GetNAScore() != nil`, inject the score and flip `NotApplicable` to false (Spot 1 above)
+#### Scoring — scorecard_scores_dao.go
+- In `ComputeCriterionPercentageScore()`, before the N/A early return: check `GetNAScore()`, if non-nil return the configured percentage directly
+- `ComputeScores()` (scorecard_calculator.go) is **NOT modified** — N/A pre-processing stays as-is, DB rows preserve grader's N/A selection
 
 #### Auto-QA
 - No changes to the auto-QA mapper. It still produces `NOT_APPLICABLE` outcome.
-- The scoring pipeline (Spot 1) handles the NAScore resolution when computing scores.
+- The calculation layer (`ComputeCriterionPercentageScore`) handles the NAScore resolution.
 
 #### Analytics / ClickHouse
-- No query changes. Score rows will have valid `percentage_value` and `float_weight` for scored N/A criteria.
+- **No schema changes needed.** Both `scorecard_score` and `score` tables already have the necessary columns:
+  - `not_applicable Bool` — synced from PG `score.NotApplicable.Bool` (scorecard_scores_dao.go:456)
+  - `percentage_value Float64` — written from `ComputeCriterionPercentageScore()` output (scorecard_scores_dao.go:466)
+  - `float_weight Float64` — written from percentage score weight (scorecard_scores_dao.go:468)
+- **Today (legacy N/A)**: `not_applicable = true`, `percentage_value = 0`/`-1` (sentinel), `float_weight = 0`
+- **With scored N/A**: `not_applicable = true`, `percentage_value = <NAScore>`, `float_weight = <weight>`
+- No query changes needed. Queries using `percentage_value` will naturally pick up scored N/A values. Queries filtering `not_applicable = true` still identify all N/A scores.
+- To distinguish scored vs legacy N/A in analytics: `not_applicable = true AND percentage_value > 0`
 
 ### What Stays Unchanged
 
 | Component | Changed? |
 |-----------|----------|
-| `ComputeCriterionPercentageScore()` | ❌ No |
+| `ComputeScores()` pre-processing | ❌ No — DB rows preserve grader's N/A selection |
 | `computeScore()` / `computeMultiSelectScore()` / `computePerMessageScore()` | ❌ No |
 | `mapToPercentageScore()` / `MapScoreValue()` | ❌ No |
 | `updateSummaryValues()` | ❌ No |
@@ -202,7 +247,7 @@ No changes. Grader selects N/A → submits `not_applicable: true` as today. BE h
 | `RetrieveQAScoreStats` | ❌ No |
 | Auto-QA mapper | ❌ No |
 | FE grader UI | ❌ No |
-| `ComputeScores()` pre-processing | ✅ Yes — 1 spot (NAScore injection) |
+| `ComputeCriterionPercentageScore()` | ✅ Yes — NAScore check before N/A early return |
 | Template settings struct | ✅ Yes — 1 new field |
 | Criterion interface | ✅ Yes — 1 new method |
 | Template builder UI | ✅ Yes — NAScore input |
