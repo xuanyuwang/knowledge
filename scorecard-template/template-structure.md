@@ -5,6 +5,7 @@
 ## 1. What Is a Scorecard Template?
 
 A reusable blueprint that defines evaluation criteria for assessing agent performance. Templates are:
+
 - **Multi-versioned** with revision tracking
 - **Customer + profile scoped**
 - **Use-case associated** (one template can serve multiple use cases)
@@ -15,22 +16,24 @@ A reusable blueprint that defines evaluation criteria for assessing agent perfor
 
 Key fields (from `apiserver/sql-schema/gen/model/scorecard_templates.go`):
 
-| Field | Type | Description |
-|-------|------|-------------|
-| Customer | string | Customer ID |
-| Profile | string | Profile ID |
-| ResourceID | string | Template ID |
-| Revision | string | Template revision |
-| Title | string | Display name |
-| Template | JSONB | **The actual template structure** |
-| UsecaseIds | []string | Associated use case IDs |
-| Type | int | 1=Conversation, 2=Process |
-| Status | int | 1=Active, 2=Inactive, 3=Archived |
-| Audience | JSONB | Who can access (users/teams/groups) |
-| Permissions | JSONB | Role-based permissions |
-| QaTaskConfig | JSONB | QA task configuration |
-| QaScoreConfig | JSONB | QA scoring configuration |
-| AutoqaTriggers | []string | Auto-QA trigger resource names |
+
+| Field          | Type     | Description                         |
+| -------------- | -------- | ----------------------------------- |
+| Customer       | string   | Customer ID                         |
+| Profile        | string   | Profile ID                          |
+| ResourceID     | string   | Template ID                         |
+| Revision       | string   | Template revision                   |
+| Title          | string   | Display name                        |
+| Template       | JSONB    | **The actual template structure**   |
+| UsecaseIds     | []string | Associated use case IDs             |
+| Type           | int      | 1=Conversation, 2=Process           |
+| Status         | int      | 1=Active, 2=Inactive, 3=Archived    |
+| Audience       | JSONB    | Who can access (users/teams/groups) |
+| Permissions    | JSONB    | Role-based permissions              |
+| QaTaskConfig   | JSONB    | QA task configuration               |
+| QaScoreConfig  | JSONB    | QA scoring configuration            |
+| AutoqaTriggers | []string | Auto-QA trigger resource names      |
+
 
 ### Proto Definition
 
@@ -68,6 +71,7 @@ The `Template` JSONB field is parsed via `ParseScorecardTemplateStructure()` in 
 Two versions exist. **Most templates in production are V2.**
 
 ### V1 — Flat List (legacy)
+
 ```go
 type ScorecardTemplateStructureV1 struct {
     Criteria                  []ScorecardTemplateCriterion
@@ -76,6 +80,7 @@ type ScorecardTemplateStructureV1 struct {
 ```
 
 ### V2 — Hierarchical with Chapters (current, used by most templates)
+
 ```go
 type ScorecardTemplateStructureV2 struct {
     Version                   int
@@ -85,6 +90,7 @@ type ScorecardTemplateStructureV2 struct {
 ```
 
 ### Hierarchy:
+
 ```
 Template
 ├── Chapter (section)
@@ -98,7 +104,108 @@ Template
 
 Chapters can nest arbitrarily. A `ScorecardTemplateStructureNode` is either a **Chapter** or a **Criterion**.
 
+### Full Visual Template Structure (V2)
+
+This shows where every struct lives in the JSONB template field:
+
+```
+ScorecardTemplateStructureV2
+│
+├── version: 2
+├── shouldDisplayCommentField: bool
+│
+└── items[]: (Chapter | Criterion)
+    │
+    ├── ── Chapter ──────────────────────────────────────────────
+    │   ├── identifier: string
+    │   ├── displayName: string
+    │   └── items[]: (Chapter | Criterion)  ← recursive
+    │
+    └── ── Criterion (scorable) ─────────────────────────────────
+        │
+        ├── ── BaseCriterion ────────────────────────────────────
+        │   ├── type: "numeric-radios" | "labeled-radios" | "dropdown-numeric-values"
+        │   ├── identifier: string
+        │   ├── displayName: string
+        │   ├── weight: int                     ← relative importance in scoring
+        │   ├── shortName: *string
+        │   ├── helpText: *string
+        │   ├── required: *bool
+        │   ├── notRemovable: *bool
+        │   ├── perMessage: *bool               ← per-message scoring
+        │   ├── shouldDisplayCommentField: *bool
+        │   │
+        │   └── branches[]: Branch              ← conditional sub-criteria
+        │       ├── identifier: string
+        │       ├── condition: CriterionCondition
+        │       │   ├── numericValues: []float32
+        │       │   └── notApplicable: *bool
+        │       └── children[]: Criterion       ← child criteria
+        │
+        ├── ── CriterionWithValueSettings ───────────────────────
+        │   ├── showNA: *bool                   ← allow N/A selection
+        │   ├── autoFail: *AutoFailConfig
+        │   │   ├── comparator: "equal" | "less_than" | "greater_than"
+        │   │   └── value: *int
+        │   ├── excludeFromQAScores: *bool      ← "Evaluate scores" toggle (inverted)
+        │   ├── excludeOutcomeInsights: *bool
+        │   └── enableMultiSelect: *bool        ← dropdown only
+        │
+        ├── ── Type-Specific Settings ───────────────────────────
+        │   │
+        │   ├── (numeric-radios)
+        │   │   ├── range: { min: int, max: int }
+        │   │   └── scores[]: CriterionScoreOption
+        │   │
+        │   ├── (labeled-radios)
+        │   │   ├── options[]: LabeledCriterionSettingOption
+        │   │   │   ├── label: string           ← display text (unique)
+        │   │   │   └── value: int              ← internal index (wiring key)
+        │   │   └── scores[]: CriterionScoreOption
+        │   │       ├── value: float64          ← matches option.value (wiring key)
+        │   │       └── score: float64          ← the actual score
+        │   │
+        │   └── (dropdown-numeric-values)
+        │       ├── options[]: LabeledCriterionSettingOption  (same as labeled-radios)
+        │       ├── scores[]: CriterionScoreOption            (same as labeled-radios)
+        │       └── enableMultiSelect: *bool
+        │
+        └── ── AutoQAConfig ─────────────────────────────────────
+            ├── triggers[]: AutoQATrigger
+            │   ├── type: "policy" | "sdx_moment" | "moment" | "behavior" | "metadata"
+            │   └── resourceName: string
+            │
+            ├── ── Behavior Done/Not Done Mode ──────────────────
+            │   ├── detected: *int              ← option value when DETECTED
+            │   └── notDetected: *int           ← option value when NOT_DETECTED
+            │
+            └── ── # of Occurrences Mode ────────────────────────
+                └── options[]: AutoQAOptions
+                    ├── triggerValue: *string    ← "detected", "not detected" (metadata)
+                    ├── numericFrom: *float32    ← bin range start
+                    ├── numericTo: *float32      ← bin range end
+                    ├── numericValue: *float32   ← exact match
+                    └── value: float32           ← criterion option value to assign
+```
+
+### Option Wiring Diagram
+
+All three systems use `value` as the wiring key:
+
+```
+options[]                    scores[]                  auto_qa
+┌───────┬───────┐           ┌───────┬───────┐        ┌──────────────┬───────┐
+│ label │ value │──────────▶│ value │ score │        │ detected     │ value │──┐
+├───────┼───────┤   wired   ├───────┼───────┤        │ notDetected  │ value │──┤
+│ "Yes" │   1   │   by      │   1   │  10   │        └──────────────┴───────┘  │
+│ "No"  │   0   │  value    │   0   │   0   │                                  │
+└───────┴───────┘           └───────┴───────┘        wires to option value ◀────┘
+```
+
+Example: `detected: 1` means "when AI detects behavior → assign option value 1 → grader sees 'Yes' → score lookup finds 10".
+
 ### Chapter
+
 ```go
 type ScorecardTemplateChapter struct {
     Identifier  string
@@ -113,14 +220,16 @@ type ScorecardTemplateChapter struct {
 
 From `shared/scoring/scorecard_templates.go` lines 79-88:
 
-| Type | Scorable? | Description |
-|------|-----------|-------------|
-| `numeric-radios` | ✅ | Numeric scale (default 1-5) |
-| `labeled-radios` | ✅ | Custom labeled options with numeric values |
-| `dropdown-numeric-values` | ✅ | Dropdown with numeric values |
-| `sentence` | ❌ | Free text field (not relevant to scoring) |
-| `date` | ❌ | Date picker (not relevant to scoring) |
-| `user` | ❌ | User picker (not relevant to scoring) |
+
+| Type                      | Scorable? | Description                                |
+| ------------------------- | --------- | ------------------------------------------ |
+| `numeric-radios`          | ✅         | Numeric scale (default 1-5)                |
+| `labeled-radios`          | ✅         | Custom labeled options with numeric values |
+| `dropdown-numeric-values` | ✅         | Dropdown with numeric values               |
+| `sentence`                | ❌         | Free text field (not relevant to scoring)  |
+| `date`                    | ❌         | Date picker (not relevant to scoring)      |
+| `user`                    | ❌         | User picker (not relevant to scoring)      |
+
 
 **Focus on the three scorable types** — `sentence`, `date`, and `user` are non-scorable metadata fields that don't participate in QA score calculations.
 
@@ -144,15 +253,17 @@ type BaseCriterion struct {
 
 ### Important Settings (on scorable criteria)
 
-| Setting | Description |
-|---------|-------------|
-| `Weight` | Integer, relative importance in scoring |
-| `ExcludeFromQAScores` | Hide from QA score calculations |
-| `ShowNA` | Allow "Not Applicable" selection |
-| `AutoFail` | Auto-fail config with comparator + threshold |
-| `EnableMultiSelect` | Allow multiple selections (dropdown only) |
-| `PerMessage` | Score per message instead of per conversation |
-| `ValueScores` | Custom value→score mapping |
+
+| Setting               | Description                                   |
+| --------------------- | --------------------------------------------- |
+| `Weight`              | Integer, relative importance in scoring       |
+| `ExcludeFromQAScores` | Hide from QA score calculations               |
+| `ShowNA`              | Allow "Not Applicable" selection              |
+| `AutoFail`            | Auto-fail config with comparator + threshold  |
+| `EnableMultiSelect`   | Allow multiple selections (dropdown only)     |
+| `PerMessage`          | Score per message instead of per conversation |
+| `ValueScores`         | Custom value→score mapping                    |
+
 
 ### Value-Score Mapping
 
@@ -190,30 +301,59 @@ type Branch struct {
 
 ## 4. Auto-QA (Automated Scoring)
 
+Auto-QA allows AI to automatically score criteria based on detected behaviors. The `AutoQAConfig` sits on each criterion and wires AI outcomes to criterion option values.
+
+### AutoQAConfig Struct
+
 ```go
 type AutoQAConfig struct {
-    Triggers    *[]AutoQATrigger
-    Options     *[]AutoQAOptions
-    Detected    *int    // Score when trigger detected
-    NotDetected *int    // Score when trigger not detected
+    Triggers    *[]AutoQATrigger  // What behavior(s) to detect
+    Options     *[]AutoQAOptions  // # of Occurrences mode: maps count ranges to options
+    Detected    *int              // Behavior DND mode: option value when DETECTED
+    NotDetected *int              // Behavior DND mode: option value when NOT_DETECTED
 }
 ```
 
+### Two Scoring Modes
+
+**Mode 1: Behavior Done/Not Done** — Simple binary mapping using `Detected` and `NotDetected` fields:
+
+```
+AI outcome DETECTED     → assign criterion option value = AutoQAConfig.Detected     → "Yes" (score 10)
+AI outcome NOT_DETECTED → assign criterion option value = AutoQAConfig.NotDetected  → "No"  (score 0)
+AI outcome NOT_APPLICABLE → Score.NotApplicable = true → criterion skipped (NO option mapping)
+```
+
+**Mode 2: # of Occurrences** — Maps evidence counts or metadata values to options via `AutoQAOptions[]`:
+
+```
+AutoQAOptions:
+  { triggerValue: "detected",     value: 1 }  → "Yes"
+  { triggerValue: "not detected", value: 0 }  → "No"
+  { numericFrom: 3, numericTo: 5, value: 2 }  → "Moderate" (3-5 occurrences)
+```
+
 ### Trigger Types
-| Type | Description |
-|------|-------------|
-| `policy` | Policy violation detection |
-| `sdx_moment` | Structured behavior moment |
-| `moment` | Keyword/moment annotation |
-| `behavior` | Behavior pattern |
-| `metadata` | Conversation metadata/outcome |
+
+| Type         | Description                   |
+| ------------ | ----------------------------- |
+| `policy`     | Policy violation detection    |
+| `sdx_moment` | Structured behavior moment    |
+| `moment`     | Keyword/moment annotation     |
+| `behavior`   | Behavior pattern              |
+| `metadata`   | Conversation metadata/outcome |
 
 Only `numeric-radios`, `labeled-radios`, and `dropdown-numeric-values` support Auto-QA.
 
-### Outcome Values
-- `DETECTED` (priority 3) — trigger met
-- `NOT_DETECTED` (priority 2) — checked but not found
-- `NOT_APPLICABLE` (priority 1) — doesn't apply
+### Outcome Values and Mapping (`autoqa_mapper.go`)
+
+| Outcome | Priority | Behavior DND Mode | # of Occurrences Mode |
+|---------|----------|-------------------|-----------------------|
+| `DETECTED` | 3 | `NumericValue = config.Detected` | Match via `AutoQAOptions` |
+| `NOT_DETECTED` | 2 | `NumericValue = config.NotDetected` | Match via `AutoQAOptions` (count=0) |
+| `NOT_APPLICABLE` | 1 | `NotApplicable = true` (always, no option mapping) | `NotApplicable = true` |
+
+**Current limitation**: NOT_APPLICABLE always sets `Score.NotApplicable = true` unconditionally (`autoqa_mapper.go:81-82`). There is no way to map it to a criterion option value. This is being addressed in the NAScore feature (see `na-score-design.md`).
 
 ---
 
@@ -253,6 +393,7 @@ Example: Value scores `[1→10, 2→20, 3→50]`, score=2 → `20/50 = 0.4 (40%)
 3. Weight distributed: `weight / numSelections`
 
 Example: Values `{1→10, 2→20, 3→20}`, sum=50, selections=[1,2]:
+
 - Score 1: `(2×10)/50 = 0.4`, weight=`5/2=2.5`
 - Score 2: `(2×20)/50 = 0.8`, weight=`5/2=2.5`
 
@@ -287,6 +428,7 @@ BigChapter = (80+33+100+60)/4 = 68.25%  ← all descendants, not just direct chi
 ### Not Applicable Handling
 
 When `NotApplicable=true`:
+
 - NumericValue is nullified
 - Criterion is **skipped** entirely — no impact on chapter or overall scores
 
@@ -301,14 +443,16 @@ File: `insights-server/internal/analyticsimpl/retrieve_qa_score_stats.go`
 Two calculation paths:
 
 #### Path A: Direct ClickHouse (RespectTemplateQaScoreConfig=false)
+
 Simple weighted average from ClickHouse score rows.
 
 #### Path B: Template-Aware (RespectTemplateQaScoreConfig=true)
+
 1. **Load templates** via `qa.ListCurrentScorecardTemplateIDs()`
 2. **Group by QA score config** — templates with config get individual queries
 3. **Extract scoreable criteria** via `getScoreableCriteria()`:
-   - Parse template JSON → `ScorecardTemplateStructure`
-   - Filter out `IsExcludeFromQAScores()` criteria
+  - Parse template JSON → `ScorecardTemplateStructure`
+  - Filter out `IsExcludeFromQAScores()` criteria
 4. **Apply conversation duration filters** from template's `QaScoreConfig`
 5. **Build ClickHouse query**
 
@@ -338,6 +482,7 @@ Write to director.scorecards + director.scores
 ### Score Row in ClickHouse
 
 From `BuildScoreRows()` in `shared/clickhouse/conversations/conversation.go`:
+
 - `FloatWeight` — from `scorecardScore.FloatWeight`
 - `PercentageValue` — percentage score (0.0-1.0)
 - `NumericValue` — raw criterion value
@@ -364,6 +509,7 @@ const (
 ## 8. Permissions & Audience
 
 ### Audience (who gets evaluated)
+
 ```json
 {
   "users": ["customers/{customer}/users/{user_id}"],
@@ -373,6 +519,7 @@ const (
 ```
 
 ### Permissions (who can do what)
+
 ```json
 {
   "template_editors": [...],
@@ -391,3 +538,4 @@ const (
 - Calibration scorecard flow
 - Consistency score calculation details
 - Template builder UI ↔ backend mapping
+

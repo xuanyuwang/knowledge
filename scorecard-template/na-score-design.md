@@ -1,336 +1,401 @@
 # Design: Giving N/A a Score
 
 **Created:** 2026-03-26
-**Updated:** 2026-03-27
+**Updated:** 2026-04-01
 **Status:** Draft
 
 ## Problem
 
 Today, when a grader selects N/A for a criterion, it is completely excluded from scoring (no score, no weight in aggregation). Some customers want N/A to carry a configurable score value instead.
 
----
-
-## Approach A: `scoreableNA` as Separate Option (Rejected)
-
-Add a new field `scoreableNA` to `CriterionWithValueSettings` that is mutually exclusive with `showNA`. N/A becomes a regular scored option — grader submits `numeric_value`, not `not_applicable: true`.
-
-**Rejected because:**
-- **Value collision problem**: Need to pick a numeric value for the N/A option that doesn't collide with existing `options[].value`. No clean way to guarantee uniqueness since values are user-configurable.
-- **Identity problem**: Need to mark the option as "special" (it's N/A, not a real option) while making it look "normal" to the scoring pipeline. Putting it in the `scores` array means no calc changes, but then it's indistinguishable from real options. Putting it outside means calc changes are needed anyway.
-- **FE complexity**: Grader UI needs to know whether to submit `numeric_value` or `not_applicable: true` depending on which mode is active.
-
-<details>
-<summary>Full details of rejected approach</summary>
-
-### Template Settings Change
-
-```go
-type ScoreableNAOption struct {
-    Value int     `json:"value"`
-    Score float64 `json:"score"`
-}
-```
-
-### Three Modes
-
-| State | Settings | Grader Submits | Scoring |
-|-------|----------|----------------|---------|
-| No N/A | `showNA: false`, no `scoreableNA` | — | Normal |
-| Legacy N/A | `showNA: true`, no `scoreableNA` | `not_applicable: true` | Skip |
-| Scored N/A | `showNA: false`, `scoreableNA: {value, score}` | `numeric_value: <value>` | Normal (zero calc changes) |
-
-Pros: zero scoring code changes.
-Cons: value collision, FE dual-mode submission, mutual exclusivity enforcement.
-
-</details>
+Additionally, AutoQA currently maps NOT_APPLICABLE outcomes to `Score.NotApplicable = true` unconditionally (autoqa_mapper.go:81-82). There is no way to associate NOT_APPLICABLE with a specific criterion option in the Opera Integration → Behaviour section. Only DETECTED and NOT_DETECTED can be mapped to criterion options.
 
 ---
 
-## Approach B: `NAScore` Field Alongside `showNA` (Current)
+## Background: Option Wiring Architecture
 
-Add a single new field `NAScore` next to `showNA`. The two fields work together:
+Understanding how options, scores, and AutoQA are wired together is critical to the design.
 
-### Template Settings Change
+### Option → Score Mapping
 
-```go
-type CriterionWithValueSettings struct {
-    ShowNA                 *bool                   `json:"showNA"`
-    NAScore                *float64                `json:"naScore,omitempty"`  // NEW
-    AutoFail               *AutoFailConfig         `json:"autoFail,omitempty"`
-    ExcludeOutcomeInsights *bool                   `json:"excludeOutcomeInsights"`
-    ExcludeFromQAScores    *bool                   `json:"excludeFromQAScores"`
-    Scores                 *[]CriterionScoreOption `json:"scores"`
-    EnableMultiSelect      *bool                   `json:"enableMultiSelect"`
-}
+```
+LabeledCriterionSettingOption          CriterionScoreOption
+(scorecard_templates.go:318-322)       (scorecard_templates.go:325-328)
+┌───────────┬────────────┐            ┌──────────────┬──────────────┐
+│ Label     │ Value      │ ──wired──▶ │ Value        │ Score        │
+│ string    │ int        │    by      │ float64      │ float64      │
+├───────────┼────────────┤  value     ├──────────────┼──────────────┤
+│ "Yes"     │   1        │            │   1          │  10          │
+│ "No"      │   0        │            │   0          │   0          │
+└───────────┴────────────┘            └──────────────┴──────────────┘
 ```
 
-### Three Combinations
+- `LabeledCriterionSettingOption.Value` (`int`) is an internally generated index (auto-assigned by FE)
+- `CriterionScoreOption.Value` (`float64`) matches the option value — this is the wiring key
+- Note: types differ (`int` vs `float64`) but represent the same logical integer; verified by `GetCriterionLabelForValue()` (line 206-215) which matches `option.Value == value`
 
-| `showNA` | `NAScore` | Meaning | Grader Submits | Scoring |
-|----------|-----------|---------|----------------|---------|
-| `false`/nil | nil | No N/A option | — | Normal |
-| `true` | nil | Legacy N/A | `not_applicable: true` | **Skip** — excluded from scoring |
-| `true` | `<number>` | Scored N/A | `not_applicable: true` | **Scored** — NAScore used as percentage, weight included |
+### AutoQA → Option Mapping
 
-Invalid: `showNA: false` + `NAScore: <number>` → BE rejects (N/A not enabled, score meaningless).
+```
+AutoQAConfig (scorecard_templates.go:224-229)
+┌──────────────┬──────────┐
+│ Detected     │ *int = 1 │ ──▶ maps to option value=1 ("Yes") via nilOrFloat32()
+│ NotDetected  │ *int = 0 │ ──▶ maps to option value=0 ("No") via nilOrFloat32()
+└──────────────┴──────────┘
+```
 
-### Why This Is Better
+- `AutoQAConfig.Detected` / `NotDetected` (`*int`, json: `"detected"` / `"not_detected"`) store criterion option values
+- In `autoqa_mapper.go:69-79`, `nilOrFloat32()` converts `*int` → `*float32`, set as `Score.NumericValue`
+- NOT_APPLICABLE (line 81-82) currently has NO option mapping — always sets `Score.NotApplicable = true`
+- For # of Occurrences mode: `AutoQAOptions.Value` (`float32`, json: `"value"`) is used instead
 
-1. **No value collision**: Grader still submits `not_applicable: true`. No need to pick a fake numeric value.
-2. **No FE grader change**: Grader UI behaves exactly the same — selects N/A, submits `not_applicable: true`. BE resolves whether to skip or score.
-3. **Simple data model**: One new `float64` field. No new structs.
-4. **Backward compatible**: `NAScore: nil` → all existing behavior unchanged.
+### Wiring Key Type Summary
 
-### Scoring Code Changes
+| Component | Field | Go Type | JSON | Role |
+|-----------|-------|---------|------|------|
+| `LabeledCriterionSettingOption` | `Value` | `int` | `"value"` | Option identifier |
+| `CriterionScoreOption` | `Value` | `float64` | `"value"` | Score lookup key |
+| `AutoQAConfig` | `Detected`/`NotDetected` | `*int` | `"detected"`/`"not_detected"` | AutoQA → option mapping |
+| `AutoQAOptions` | `Value` | `float32` | `"value"` | # of Occurrences option value |
+| `Score.NumericValue` | — | `*float32` | — | Runtime score value |
 
-#### Design Principle: Separate Mutations from Calculations
+Types are inconsistent (`int`, `*int`, `float64`, `float32`) but represent the same logical integer. Conversions happen at runtime via `nilOrFloat32()` (autoqa_mapper.go:144-150).
 
-The scoring pipeline has two distinct layers:
+### Key Insight
 
-1. **Post-processing layer** — `ComputeScores()` (scorecard_calculator.go) enriches raw grader input with metadata: `Chapter`, `AiScored`, `AiValue`, `NumericValue` (cleared for N/A), `AutoFailed`. These mutations are **persisted to DB** via `UpdateScorecardAndScoresInDB()`. This is post-processing of scorecard user input, not pure calculation.
+All three systems (options, scores, AutoQA) use the same logical integer as the wiring key, despite different Go types. Adding a new scoreable option means adding entries to all three with a consistent value.
 
-2. **Calculation layer** — `ComputeCriterionPercentageScore()` (scorecard_scores_dao.go) computes derived percentage values. These feed into `updateSummaryValues()` for chapter/overall aggregation and are written to the ClickHouse sync model, but do NOT modify the original PG score rows.
+---
 
-**We must NOT modify `NotApplicable` or `NumericValue` for NAScore in the post-processing layer** — doing so would overwrite the grader's original N/A selection in PG, losing the audit trail. If the template's NAScore config is later changed/removed, historical scores would be corrupted.
+## Current Approach: N/A as Option with `isNA` Flag (D+C)
 
-Instead, NAScore is handled in the **calculation layer** (`ComputeCriterionPercentageScore`) which computes derived values without modifying stored score rows.
+**Rationale (2026-04-01):**
 
-#### No Change: `ComputeScores()` — scorecard_calculator.go:50-52
+1. AutoQA outcome types must wire to options via `value` → N/A must be a real option in the options/scores arrays
+2. Labels are i18n-dependent → cannot reliably identify the N/A option by label string → need `isNA` flag
+3. N/A as a real option means **zero BE scoring pipeline changes** — scoring sees a normal option
 
-The existing N/A pre-processing stays as-is:
+### Template Data Model
+
+```
+Template Settings (JSONB)
+├── showNA: true                              ← controls N/A button in grader UI
+├── options: [
+│   { label: "Yes", value: 0 },
+│   { label: "No",  value: 1 },
+│   { label: "N/A", value: 2, isNA: true }   ← NEW: isNA flag identifies N/A option
+│ ]
+├── scores: [
+│   { value: 0, score: 10 },
+│   { value: 1, score: 0 },
+│   { value: 2, score: 5 }                   ← N/A score, normal entry
+│ ]
+
+AutoQAConfig
+├── detected: 0
+├── not_detected: 1
+├── not_applicable: 2                         ← NEW: maps NOT_APPLICABLE to N/A option
+```
+
+- `showNA` stays `true` — controls whether the grader sees the N/A button
+- The `isNA` option is a regular option with a score — scoring pipeline treats it normally
+- `AutoQAConfig.NotApplicable` wires NOT_APPLICABLE outcome to the N/A option value
+
+### Grader Submission (Manual Grading)
+
+**Current grader flow** (`CriterionInputDisplay.tsx → utils.ts:getPartialScoreForNumericValue()`):
+
+- N/A button uses sentinel `INPUT_N_A_VALUE = '__director_n/a_value__'`
+- When sentinel detected + `showNA`: submits `{ notApplicable: true, numericValue: null }`
+- Normal option: submits `{ notApplicable: false, numericValue: <value> }`
+
+**New grader flow** (when `isNA` option exists):
+
+- N/A button still uses the same sentinel `INPUT_N_A_VALUE`
+- When sentinel detected + `isNA` option exists: submits `{ notApplicable: true, numericValue: <isNA_option_value> }`
+- When sentinel detected + no `isNA` option (legacy): submits `{ notApplicable: true, numericValue: null }` (unchanged)
+
+Submitting **both** `notApplicable: true` AND `numericValue` ensures:
+
+- Analytics can distinguish scored N/A from legacy N/A via `not_applicable = true AND numeric_value IS NOT NULL`
+- The `not_applicable` flag is preserved for audit trail and analytics filtering
+
+### AutoQA Submission
+
+**Current**: `autoqa_mapper.go:81-82` always sets `NotApplicable = true` for NOT_APPLICABLE outcome.
+
+**New**: When `AutoQAConfig.NotApplicable` is configured:
+
+```go
+case autoqapb.AutoScoreOutcome_NOT_APPLICABLE:
+    if autoQaConfig.NotApplicable != nil {
+        mappedScore.NotApplicable = true   // preserve N/A flag for analytics
+        mappedScore.NumericValue = nilOrFloat32(autoQaConfig.NotApplicable)
+    } else {
+        mappedScore.NotApplicable = true   // legacy behavior
+    }
+```
+
+Both manual and AutoQA paths produce: `not_applicable: true, numeric_value: <value>`.
+
+### BE Scoring Pipeline Changes
+
+Two changes needed to handle `not_applicable: true` + `numeric_value: <value>`:
+
+**Change 1: `ComputeScores()` — scorecard_calculator.go:50-52**
+
+Current code unconditionally clears `NumericValue` for N/A:
 
 ```go
 if newScore.NotApplicable.Bool {
-    newScore.NumericValue = sql.NullFloat64{}  // unchanged — clears value, persisted to DB
+    newScore.NumericValue = sql.NullFloat64{}  // always clears
 }
 ```
 
-DB rows for N/A scores continue to have `not_applicable = true`, `numeric_value = NULL`.
-
-#### Change: `ComputeCriterionPercentageScore()` — scorecard_scores_dao.go:562-596
-
-Currently, N/A causes an early return at lines 582-584:
+New code — don't clear when `NumericValue` is already set (scored N/A):
 
 ```go
-// BEFORE
+if newScore.NotApplicable.Bool && !newScore.NumericValue.Valid {
+    newScore.NumericValue = sql.NullFloat64{}  // only clear for legacy N/A
+}
+```
+
+**Change 2: `ComputeCriterionPercentageScore()` — scorecard_scores_dao.go:582-584**
+
+Current code skips when any score is N/A:
+
+```go
 if scoreNotApplicable || len(scoreValidNumericValueList) == 0 {
-    return nil, nil  // criterion skipped entirely
+    return nil, nil
 }
 ```
 
-With NAScore, check if the criterion has a configured NAScore before skipping:
+New code — only skip when N/A AND no valid numeric values:
 
 ```go
-// AFTER
-if scoreNotApplicable || len(scoreValidNumericValueList) == 0 {
-    if scoreNotApplicable {
-        naScore := criterion.GetNAScore()
-        if naScore != nil {
-            // Scored N/A: return the configured percentage directly
-            weight := float64(criterion.GetWeight())
-            return []*CriterionPercentageScore{{
-                PercentageScore: &sql.NullFloat64{Float64: *naScore, Valid: true},
-                Weight:          weight,
-            }}, nil
-        }
-    }
-    return nil, nil  // legacy N/A or no valid values — skip as before
+if scoreNotApplicable && len(scoreValidNumericValueList) == 0 {
+    return nil, nil  // legacy N/A (no numeric value) — skip as before
 }
+// scored N/A: has numeric value, proceed to normal scoring
 ```
 
-This is the **only scoring code change**. The rest of the pipeline (`computeScore`, `computeMultiSelectScore`, `computePerMessageScore`, `mapToPercentageScore`, `updateSummaryValues`, chapter aggregation) is untouched.
+**Why `||` → `&&` is safe**: Legacy N/A always has `NumericValue = NULL` (empty list), so `scoreNotApplicable = true && len(...) == 0` still returns nil. Scored N/A has valid `NumericValue`, so it falls through to normal percentage calculation.
 
-#### New Interface Method
+### What Gets Stored in DB
 
-```go
-// On ScorecardTemplateCriterion interface
-GetNAScore() *float64
+
+| Case          | `not_applicable` | `numeric_value` | `percentage_value` (CH) | `float_weight` (CH) |
+| ------------- | ---------------- | --------------- | ----------------------- | ------------------- |
+| Normal option | `false`          | `<value>`       | `<computed>`            | `<weight>`          |
+| Legacy N/A    | `true`           | `NULL`          | `-1` (sentinel)         | `0`                 |
+| Scored N/A    | `true`           | `<isNA value>`  | `<computed>`            | `<weight>`          |
+
+
+Analytics can distinguish: `WHERE not_applicable = true AND numeric_value IS NOT NULL` → scored N/A.
+
+### Analytics Compatibility (Verified)
+
+The analytics service (`insights-server/internal/analyticsimpl/`) handles scored N/A correctly with **zero changes**:
+
+**Row filtering** (`common_clickhouse.go:622-637`):
+
+- `includeNaScored = false` → `not_applicable <> true` excludes ALL N/A rows (legacy + scored). Correct.
+- `includeNaScored = true` → no N/A filter, rows included.
+
+**Aggregation** (`retrieve_qa_score_stats_clickhouse.go:151-152`):
+
+```sql
+SUM(percentage_value * float_weight) FILTER (WHERE percentage_value >= 0)
+SUM(float_weight) FILTER (WHERE percentage_value >= 0)
 ```
 
-Implementation checks `settings.NAScore`.
+- Legacy N/A: `percentage_value = -1` → excluded from SUM (even when `includeNaScored = true`)
+- Scored N/A: `percentage_value >= 0` → **included in SUM** when `includeNaScored = true`
 
-### Percentage Calculation for NAScore
+**Individual scores** (`retrieve_qa_conversations_clickhouse.go`): Returns both `not_applicable` and `numeric_value` — consumers can distinguish all three cases.
 
-NAScore is a **direct percentage value** (0.0 – 1.0), returned directly as `PercentageScore` from `ComputeCriterionPercentageScore`. It does NOT go through value-score mapping (`GetValueScores()` / `MapScoreValue()` / `mapToPercentageScore()`).
+### Three Modes
 
-Example:
-- Admin sets NAScore = 0 → N/A contributes 0% to the weighted average
-- Admin sets NAScore = 0.5 → N/A contributes 50%
-- Admin sets NAScore = 1.0 → N/A contributes 100%
 
-### What Gets Stored in DB vs What Gets Calculated
+| `showNA` | `isNA` option          | AutoQA `NotApplicable` | Manual Grading                      | AutoQA Grading                                 |
+| -------- | ---------------------- | ---------------------- | ----------------------------------- | ---------------------------------------------- |
+| `true`   | none                   | nil                    | N/A → `{na: true, nv: null}` → skip | NOT_APPLICABLE → `{na: true, nv: null}` → skip |
+| `true`   | `{value: 2, score: 5}` | nil                    | N/A → `{na: true, nv: 2}` → scored  | NOT_APPLICABLE → `{na: true, nv: null}` → skip |
+| `true`   | `{value: 2, score: 5}` | `2`                    | N/A → `{na: true, nv: 2}` → scored  | NOT_APPLICABLE → `{na: true, nv: 2}` → scored  |
 
-| Field | PG (score row) | CH (scorecard_score / score) | Source |
-|-------|---------------|------------------------------|--------|
-| `not_applicable` | `true` (grader's choice, preserved) | `true` (synced from PG) | Grader input |
-| `numeric_value` | `NULL` (unchanged from today) | `0` (default) | Post-processing clears it |
-| `percentage_value` | N/A (not in PG scores table) | `<NAScore>` or `0`/`-1` (legacy) | Calculation layer → CH sync |
-| `float_weight` | N/A (not in PG scores table) | `<criterion weight>` or `0` (legacy) | Calculation layer → CH sync |
 
-**Key insight**: `percentage_value` and `float_weight` are NOT stored in PG score rows — they're computed by `ComputeCriterionPercentageScore()` and written directly to the CH sync model (scorecard_scores_dao.go:463-469). This means the calculation layer's output flows to CH without touching PG, which is exactly why it's safe to handle NAScore there.
+### UI Specification
 
-To distinguish scored vs legacy N/A in analytics: `WHERE not_applicable = true AND percentage_value > 0`.
+When "Allow N/A" is **unchecked** → everything unchanged.
 
-### FE Changes
+When "Allow N/A" is **checked**, four areas are affected:
 
-#### Current State
+#### Area 1: Preview Section (Grader N/A Button)
 
-- "Allow N/A" toggle is **only available for `labeled-radios` and `dropdown-numeric-values`** criterion types (not `numeric-radios`)
-- Toggling ON only adds: an N/A **button** (labeled-radios) or N/A **dropdown option** (dropdown-numeric-values) in the grader preview
-- There is **no config UI** for N/A value or score — only the N/A preview appears during config
+**Location**: `CriterionInputDisplay.tsx` — `addNAOption()` / `getPartialScoreForNumericValue()`
 
-#### Template Builder — New Behavior
+**Change**: When `isNA` option exists, N/A button submits `{ notApplicable: true, numericValue: <isNA_value> }` instead of `{ notApplicable: true, numericValue: null }`. Visual appearance unchanged.
 
-When "Allow N/A" is toggled ON, the options config table should include an **N/A row** at the bottom, similar to other options but with special behavior:
+#### Area 2: Criterion Scoring Details — N/A Row
 
-1. **Label input**: disabled, fixed to "N/A" (not editable by admin)
-2. **Score input**: editable number field, displays "no score" placeholder by default
-3. When admin enters a score → set `NAScore: <value>` in settings
-4. When admin clears the score → set `NAScore: nil` (reverts to legacy skip behavior)
-5. When admin toggles OFF "Allow N/A" → remove the N/A row, clear both `showNA` and `NAScore`
+**Location**: `CriteriaLabeledOptions.tsx`
 
-The N/A row should look like other option rows (consistent UI) except for the disabled label.
+When "Allow N/A" is checked, a new row appears at the bottom of the options table:
 
-#### Opera Integration Section
+```
+┌─────────────────────────────────────────────────┐
+│  Value (label)                    │  Score       │
+├───────────────────────────────────┼──────────────┤
+│  [Yes              ]              │  [10 ] [🗑]  │
+│  [No               ]              │  [0  ] [🗑]  │
+│  [N/A          ] (disabled)       │  [no score]  │  ← NEW
+├───────────────────────────────────┴──────────────┤
+│                    ☑ Allow N/A      [+ Add Option]│
+└─────────────────────────────────────────────────┘
+```
 
-The N/A score config must also be **synced to the Opera Integration section** of the criterion config panel. If N/A has an associated Auto-QA trigger (policy/moment), the configured NAScore should be reflected there when the NOT_APPLICABLE outcome maps to a score.
+- **Label**: disabled TextInput, fixed to "N/A"
+- **Score**: NumberInput, placeholder "no score", editable integer
+- **No delete button** (controlled by "Allow N/A" toggle)
 
-#### FE Template Parsing
+On score enter → create `isNA` option + score entry in options/scores arrays.
+On score clear → remove `isNA` option/score entries (reverts to legacy N/A).
+On "Allow N/A" uncheck → remove `isNA` option/score, clear `showNA`.
 
-FE parses the template JSON from API response to:
-- Display the N/A config row with current NAScore value (or "no score" if nil)
-- On save, serialize `showNA` and `NAScore` back into the settings JSON sent to BE
+#### Area 3: Opera Integration → Behavior — NOT_APPLICABLE Association
 
-#### Grader UI
+**Location**: `TemplateBuilderAutoQA.tsx:379-437`
 
-No changes. Grader selects N/A → submits `not_applicable: true` as today. BE handles the rest.
+New third row (when "Behavior Done/Not Done" is selected):
 
-### BE Changes
+- "If behavior is done" → Select dropdown (maps to `auto_qa.detected`)
+- "If behavior is not done" → Select dropdown (maps to `auto_qa.not_detected`)
+- "If the behavior is not applicable" → Select dropdown (maps to `auto_qa.not_applicable`) ← NEW
 
-#### Template Settings
-- Add `NAScore *float64` to `CriterionWithValueSettings`
-- Add `GetNAScore() *float64` to `ScorecardTemplateCriterion` interface
-- Implement on all criterion types (returns `settings.NAScore`)
+Same `behaviorScoreSelectionOptions` (all criterion options including N/A).
+
+#### Area 4: Opera Integration → # of Occurrences — N/A Entry
+
+**Location**: `NumericBinsAndValuesConfigurator.tsx`
+
+When "Allow N/A" is checked, auto-add a read-only N/A card at the bottom:
+
+```
+┌──────────────────────────────────────────────┐
+│  [N/A  ] (disabled)   [<score>] (disabled)   │
+│  (no value range — N/A is a special outcome) │
+└──────────────────────────────────────────────┘
+```
+
+- Label/Score: auto-filled from the `isNA` option's config, disabled
+- No value range, no delete button
+- Read-only reflection of Area 2
+
+### BE Changes Summary
+
+#### Template Structs
+
+- Add `IsNA *bool` to `LabeledCriterionSettingOption` (`json:"isNA,omitempty"`)
+- Add `NotApplicable *int` to `AutoQAConfig` (`json:"not_applicable,omitempty"`)
+
+#### Scoring — 2 changes
+
+1. `ComputeScores()` (scorecard_calculator.go:50-52): `&&` guard — don't clear `NumericValue` when already set
+2. `ComputeCriterionPercentageScore()` (scorecard_scores_dao.go:582-584): `||` → `&&` — only skip when N/A AND no numeric values
+
+#### AutoQA Mapper — 1 change
+
+- `autoqa_mapper.go:81-82`: When `config.NotApplicable` set, map to `NumericValue` (keep `NotApplicable = true`)
 
 #### Validation
-- Reject `showNA: false` + `NAScore != nil` (N/A not enabled but score set)
-- NAScore must be >= 0 (negative scores don't make sense)
 
-#### Scoring — scorecard_scores_dao.go
-- In `ComputeCriterionPercentageScore()`, before the N/A early return: check `GetNAScore()`, if non-nil return the configured percentage directly
-- `ComputeScores()` (scorecard_calculator.go) is **NOT modified** — N/A pre-processing stays as-is, DB rows preserve grader's N/A selection
+- `isNA` option must have a score entry in scores array
+- At most one `isNA` option per criterion
 
-#### Auto-QA
-- No changes to the auto-QA mapper. It still produces `NOT_APPLICABLE` outcome.
-- The calculation layer (`ComputeCriterionPercentageScore`) handles the NAScore resolution.
+#### No changes needed
 
-#### Analytics / ClickHouse
-- **No schema changes needed.** Both `scorecard_score` and `score` tables already have the necessary columns:
-  - `not_applicable Bool` — synced from PG `score.NotApplicable.Bool` (scorecard_scores_dao.go:456)
-  - `percentage_value Float64` — written from `ComputeCriterionPercentageScore()` output (scorecard_scores_dao.go:466)
-  - `float_weight Float64` — written from percentage score weight (scorecard_scores_dao.go:468)
-- **Today (legacy N/A)**: `not_applicable = true`, `percentage_value = 0`/`-1` (sentinel), `float_weight = 0`
-- **With scored N/A**: `not_applicable = true`, `percentage_value = <NAScore>`, `float_weight = <weight>`
-- No query changes needed. Queries using `percentage_value` will naturally pick up scored N/A values. Queries filtering `not_applicable = true` still identify all N/A scores.
-- To distinguish scored vs legacy N/A in analytics: `not_applicable = true AND percentage_value > 0`
+- `ComputeScores()` pre-processing logic (just add `&&` guard)
+- `computeScore()` / `computeMultiSelectScore()` / `computePerMessageScore()`
+- `mapToPercentageScore()` / `MapScoreValue()` / `updateSummaryValues()`
+- Chapter/overall aggregation
+- ClickHouse schema
+- Analytics service queries
 
-### What Stays Unchanged
+### FE Changes Summary
 
-| Component | Changed? |
-|-----------|----------|
-| `ComputeScores()` pre-processing | ❌ No — DB rows preserve grader's N/A selection |
-| `computeScore()` / `computeMultiSelectScore()` / `computePerMessageScore()` | ❌ No |
-| `mapToPercentageScore()` / `MapScoreValue()` | ❌ No |
-| `updateSummaryValues()` | ❌ No |
-| Chapter/overall aggregation | ❌ No |
-| ClickHouse queries | ❌ No |
-| `RetrieveQAScoreStats` | ❌ No |
-| Auto-QA mapper | ❌ No |
-| FE grader UI | ❌ No |
-| `ComputeCriterionPercentageScore()` | ✅ Yes — NAScore check before N/A early return |
-| Template settings struct | ✅ Yes — 1 new field |
-| Criterion interface | ✅ Yes — 1 new method |
-| Template builder UI | ✅ Yes — NAScore input |
-| Validation | ✅ Yes — showNA/NAScore consistency |
+`**scoring.ts**` (director-api types):
 
----
+- Add `isNA?: boolean` to `LabeledCriterionSettingOption` type (or wherever option type is defined)
+- Add `not_applicable?: number | null` to `ScorecardTemplateAutoQA`
 
-## Approach C: N/A as an Explicit Option with `isNA` Flag (Alternative)
+`**CriteriaLabeledOptions.tsx**` (Area 2):
 
-Instead of a separate field, let the admin add an option entry with a reserved `isNA` flag:
+- When `showNA` checked, render N/A row with disabled label + score input
+- On score change: create/update option with `isNA: true` + matching score entry
+- Gate behind `enableNAScore` feature flag
 
-### Template Settings Change
+`**CriteriaRangeOptions.tsx**`:
 
-```go
-type LabeledCriterionSettingOption struct {
-    Label string `json:"label"`
-    Value int    `json:"value"`
-    IsNA  *bool  `json:"isNA,omitempty"`  // NEW
-}
-```
+- No change (numeric-radios has no options array — N/A stays as legacy skip)
 
-### How It Works
+`**utils.ts**` — `getPartialScoreForNumericValue()` (Area 1):
 
-- Admin toggles "Allow N/A" → adds an option with `isNA: true`, label fixed to "N/A", value and score configurable
-- Grader selects "N/A" → submits `numeric_value: <value>`, `not_applicable: false` (it's just an option)
-- Scoring pipeline sees a normal option → zero calc changes
-- To revert to legacy skip N/A: remove the `isNA` option, set `showNA: true`
+- When `isNA` option found: submit `{ notApplicable: true, numericValue: <isNA_value> }`
 
-### Example
+`**TemplateBuilderAutoQA.tsx**` (Area 3):
 
-```json
-{
-  "settings": {
-    "showNA": false,
-    "options": [
-      { "label": "Yes", "value": 1 },
-      { "label": "No", "value": 0 },
-      { "label": "N/A", "value": -1, "isNA": true }
-    ],
-    "scores": [
-      { "value": 1, "score": 10 },
-      { "value": 0, "score": 0 },
-      { "value": -1, "score": 5 }
-    ]
-  }
-}
-```
+- Add NOT_APPLICABLE dropdown row
 
-### Pros
-- Zero scoring code changes — N/A is just another option
-- Reuses existing options/scores infrastructure
-- Per-criterion granularity
-- No value collision if admin picks a value not used by other options (FE can auto-assign)
+`**NumericBinsAndValuesConfigurator.tsx**` + `**NumericOutcomeRangeConfiguration.tsx**` (Area 4):
 
-### Cons
-- **Only works for LabeledRadios and Dropdown** — NumericRadios uses `range`, not `options[]`, so this approach doesn't apply
-- Mixes N/A into the regular options list — could be confusing in the template builder
-- `showNA` and `isNA` option coexistence needs careful handling (mutually exclusive, like Approach A)
-- FE grader change needed: submit `numeric_value` instead of `not_applicable: true` when the N/A option is selected
+- Read-only N/A card
+
+`**useSaveScorecardTemplate.ts**`:
+
+- No special transform needed — `isNA` option is a regular option, passes through normally
+
+### Remaining Concerns
+
+**1. NumericRadios**: Only has `range`, not `options[]`. Cannot create `isNA` option. N/A stays as legacy skip for numeric-radios.
+
+**2. Backward compatibility**: Legacy templates have `showNA: true` with no `isNA` option. They continue to work as before — grader submits `{ notApplicable: true, numericValue: null }` → `ComputeScores` clears value → `ComputeCriterionPercentageScore` skips.
+
+**3. Design principle**: `ComputeScores()` is post-processing that persists to DB. The `&& !newScore.NumericValue.Valid` guard preserves the grader's `NumericValue` for scored N/A while still clearing it for legacy N/A. This is safe because graders only submit `NumericValue` for scored N/A when the `isNA` option exists.
 
 ---
 
-## Approach Comparison
+## Historical Reference: Previous Approaches
 
-| | A: scoreableNA | B: NAScore | C: isNA option flag |
-|---|---|---|---|
-| New fields | New struct + field | 1 float64 field | 1 bool on existing struct |
-| Value collision risk | ⚠️ Yes | ✅ None | ⚠️ Mild (FE can auto-assign) |
-| Scoring code changes | 0 | 1 spot | 0 |
-| FE grader changes | ⚠️ Yes — dual-mode submission | ✅ None | ⚠️ Yes — submit value not N/A |
-| FE builder changes | Yes | Yes | Yes |
-| Auto-QA changes | ⚠️ Yes | ✅ None | ⚠️ Yes — mapper submits value |
-| Works for NumericRadios | ✅ Yes | ✅ Yes | ❌ No (range, not options) |
-| Semantic clarity | Clear (two modes) | Slightly coupled | Natural (N/A is just an option) |
-| **Recommendation** | Rejected | **✅ Preferred** | Viable for labeled/dropdown |
+Approach A: scoreableNA (Rejected)
+
+Separate `scoreableNA` struct mutually exclusive with `showNA`. Rejected: value collision, dual-mode FE submission, identity problem.
+
+
+
+Approach B: Pure naScore field
+
+Single `NAScore *float64` on settings as direct percentage (0.0-1.0). Used by `ComputeCriterionPercentageScore()` only. Simple but no AutoQA wiring capability — `NOT_APPLICABLE` always skips. Superseded because we need AutoQA NOT_APPLICABLE → option association.
+
+Key design principle: **separate mutations from calculations**. `ComputeScores()` (post-processing, persists to DB) should not be modified for N/A scoring. `ComputeCriterionPercentageScore()` (calculation layer, feeds CH) handles scoring.
+
+
+
+Hybrid B+D: naScore field + N/A option
+
+Combined Approach B (BE uses naScore for manual grading) with Approach D (FE creates N/A option for AutoQA wiring). FE dual-stores in both naScore and option/score arrays. Superseded by D+C which is simpler: single source of truth in the option/score arrays, no dual-store sync.
+
+
 
 ---
 
 ## Open Questions
 
-1. **NAScore semantics**: Is it a direct percentage (0.0–1.0), a raw value (like option values), or a mapped score (like `CriterionScoreOption.Score`)? Direct percentage is simplest — avoids all mapping logic.
-2. **Migration**: Purely opt-in for new/edited templates. No migration of existing templates needed.
-3. **N/A branch conditions**: When NAScore is set, `not_applicable: true` is still submitted by the grader, then flipped to `false` in scoring. Branch conditions checking `not_applicable` should fire **before** the scoring transform. Need to verify branch evaluation order.
-4. **Auto-fail + scored N/A**: If NAScore produces a value that triggers auto-fail (e.g., NAScore=0 and auto-fail is "equal to 0"), should auto-fail fire? Probably yes — the admin configured both, and the score is real.
-5. **Multi-select + NAScore**: N/A is typically exclusive. When grader selects N/A, no other options are selected. This should work naturally.
-6. **PerMessage + NAScore**: Each message can independently be N/A with a score. Should work — Spot 1 transform runs per-score.
+All resolved.
+
+1. ~~**NAScore semantics**~~: Resolved — N/A score is the `CriterionScoreOption.Score` value of the `isNA` option. Normalized to percentage by the normal scoring pipeline.
+2. ~~**Migration**~~: Resolved — purely opt-in for new/edited templates. No migration needed.
+3. ~~**N/A branch conditions**~~: Resolved — `validateChildrenRecursively()` (`scorecard_scores_dao.go:672-693`) checks both `numericMatch` (line 687) and `naMatch` (line 689), OR'd together (line 693). Scored N/A has `NotApplicable = true` AND valid `NumericValue`, so it can match both an N/A branch condition and a numeric-value branch condition simultaneously. This is correct behavior — the branch children become valid either way.
+4. ~~**Auto-fail + scored N/A**~~: Resolved — admin configured both the N/A score and auto-fail threshold. If scored N/A triggers the threshold, auto-fail should fire. Expected behavior.
+5. ~~**Multi-select + scored N/A**~~: Resolved — N/A button is exclusive in the grader UI by existing behavior. No change needed.
+6. ~~**PerMessage + scored N/A**~~: Resolved — scoring runs per-score independently. Works naturally.
+
