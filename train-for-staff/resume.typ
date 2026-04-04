@@ -1,16 +1,13 @@
-// Typst resume — update linkedin-url / handles if your public profile differs.
-// Social icons: Font Awesome 7 desktop fonts (Free + Brands .otf from fontawesome.com/download).
+// Typst resume
 #import "@preview/acorn-resume:0.1.0": *
 #import "@preview/fontawesome:0.6.0": fa-icon
 
 #let name = "Xuanyu Wang"
 #let email = "wang.xuanyu@icloud.com"
 #let linkedin-url = "https://www.linkedin.com/in/xuanyu-wang"
-#let website-url = "https://www.xuanyuwang.com"
-
+#let website-url = "https://www.xuanyuwang.com/blog"
 #let linkedin-handle = "xuanyu-wang"
 
-// Inner content only — #header wraps each entry with link(url)[…].
 #let fa-contact-label(icon-name, handle) = [
   #box(baseline: 0.2em, fa-icon(icon-name, size: 0.95em))
   #h(0.22em)
@@ -19,17 +16,10 @@
 
 #show: resume.with(
   author: name,
-  margin: (
-    x: 1.5cm,
-    y: 1.5cm,
-  ),
-  // Arial ships on macOS; avoids missing Calibri substitution warnings.
+  margin: (x: 1.5cm, y: 1.5cm),
   font: "Arial",
   font-size: 11pt,
-  link-style: (
-    underline: false,
-    color: black,
-  ),
+  link-style: (underline: false, color: black),
 )
 
 #header(
@@ -41,6 +31,16 @@
   ),
 )
 
+== Summary
+#pad(
+  top: 0.15em,
+  [
+    Senior Software Engineer with 7+ years of experience across backend systems, data platforms, and frontend applications. \
+    Specialized in distributed data systems, data consistency, and high-scale analytics infrastructure. \
+    Strong track record of diagnosing complex production issues, driving architectural fixes, and improving system reliability across teams.
+  ],
+)
+
 == Experience
 #exp(
   role: "Software Engineer",
@@ -48,11 +48,36 @@
   organization: "Cresta — Conversation Intelligence (Coaching, QM, Analytics)",
   location: "Toronto, Canada",
   details: [
-    - Consolidated user-filter semantics across 30+ analytics APIs and three implementations; authored a behavioral standard, surfaced five silent divergences (including union-vs-intersection), and completed migration to a canonical path (12/29 → 29/29) with feature flags and shadow-mode validation (10,000+ queries, 0 mismatches).
-    - Introduced ClickHouse external tables for passing reference data into analytics queries without embedding huge `IN` lists; compared 10 approaches, benchmarked performance (e.g. ~4.8× improvement at large user lists vs embedding), and rolled out across 19+ call sites with phased deployment.
-    - Investigated PostgreSQL↔ClickHouse scorecard inconsistencies (async races, ORM full-struct overwrites); after a reverted timestamp-based fix, used custom load tests to show true failure modes and shipped a multi-layer fix (atomic transactions, async re-read from DB, partial updates) with production verification on large submitted-scorecard samples.
-    - Led backend delivery for Group Calibration: Director task CRUD, consistency scoring, `RetrieveGroupCalibrationStats`, notifications, and multi-select criteria—supporting QM workflows end-to-end.
-    - Shipped Agent-on-Call features (conversation assign/unassign, manager whisper types, live-assist action annotations) and ongoing coaching/analytics fixes impacting major enterprise customers.
+    - Standardized user-filter semantics across 30+ analytics APIs and three independent implementations; identified five silent logic divergences (including union vs. intersection), and led full migration to a canonical path (12/29 → 29/29) using feature flags and shadow-mode validation (10,000+ queries, 0 mismatches).
+    - Designed and rolled out ClickHouse external table strategy for large-scale filtering, eliminating massive `IN` clause expansion; evaluated 10 approaches, benchmarked performance (~4.8× improvement at scale), and deployed across 19+ production call sites.
+    - Diagnosed and resolved cross-system data inconsistencies between PostgreSQL and ClickHouse caused by async execution races and ORM full-struct overwrites; designed and shipped a multi-layer solution (atomic transactions, async re-read after commit, partial updates) validated via load testing and production verification.
+    - Owned backend architecture and delivery for Group Calibration, including task CRUD, consistency scoring, analytics APIs, and notification workflows, enabling end-to-end QM calibration processes.
+    - Delivered multiple high-impact backend features for enterprise customers, including Agent-on-Call (assignment flows, manager whisper, live assist annotations) and critical fixes across coaching and analytics systems.
+  ],
+)
+
+#exp(
+  role: "Software Engineer (Data)",
+  date: "2021 — 2023",
+  organization: "Boosted.ai — AI-driven investment platform",
+  location: "Toronto, Canada",
+  details: [
+    - Designed and maintained ETL pipelines ingesting global financial market data across multiple exchanges, enabling daily analytics and model-driven investment workflows.
+    - Built a high-performance data access service (FastAPI + PostgreSQL + Solr) with multiple semantic layers, providing a unified and flexible interface for internal teams to query large-scale financial datasets.
+    - Developed backend microservices (gRPC) for user data management and investment signal generation, supporting scalable personalization workflows.
+    - Identified bottlenecks in data orchestration workflows; prototyped and advocated adoption of Prefect-based orchestration, improving pipeline reliability and operational visibility.
+    - Reduced local development setup time from days to minutes by standardizing Docker-based environments across teams, improving onboarding efficiency and developer productivity.
+  ],
+)
+
+#exp(
+  role: "Software Developer (Frontend), Scrum Master",
+  date: "2018 — 2021",
+  organization: "IBM — Cognos Analytics",
+  location: "Ottawa, Canada",
+  details: [
+    - Developed and shipped frontend features in a large-scale analytics platform (React, TypeScript)
+    - Improved Crosstab rendering performance by simplifying DOM structure (>50% reduction), significantly improving responsiveness for large datasets.
   ],
 )
 
@@ -60,35 +85,8 @@
 #pad(
   top: 0.15em,
   [
-    *Languages:* Go, Python, TypeScript, SQL \
-    *Data & infra:* PostgreSQL, ClickHouse, Redis, gRPC, Protobuf, Docker, Kubernetes, AWS \
-    *Product surface:* REST/gRPC APIs, React (director app), feature-flagged rollouts \
+    *Backend:* Go, Python \
+    *Data Systems:* PostgreSQL, ClickHouse \
+    *Frontend:* React \
   ],
 )
-
-== Selected impact
-#project(
-  name: "User filter consolidation",
-  technologies: ("Go", "ClickHouse", "PostgreSQL"),
-  details: [
-    - Single semantic standard for Insights APIs; incremental migration and operational safety (shadow mode, dashboards).
-  ],
-)
-
-#project(
-  name: "ClickHouse external tables",
-  technologies: ("Go", "ClickHouse"),
-  details: [
-    - Reusable helpers (`buildExtTable`, context attachment) for reference-data filtering beyond user IDs.
-  ],
-)
-
-#project(
-  name: "Scorecard PG↔CH sync",
-  technologies: ("Go", "PostgreSQL", "ClickHouse"),
-  details: [
-    - Alignment pattern for async PG→CH pipelines: transactions, re-read after commit, targeted GORM updates, verification tooling.
-  ],
-)
-
-// Add == Education and #edu(...) when you want degrees listed on this version.
