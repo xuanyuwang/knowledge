@@ -356,7 +356,14 @@ When "Allow N/A" is checked, auto-add a read-only N/A card at the bottom:
 
 ### Remaining Concerns
 
-**1. NumericRadios**: Only has `range`, not `options[]`. Cannot create `isNA` option. N/A stays as legacy skip for numeric-radios.
+**1. NumericRadios scored N/A (future work)**: NumericRadios has `range` {min, max} instead of `options[]`, so the D+C `isNA` option approach doesn't apply directly. The grader UI does show an N/A button (`showNA: true`), but N/A stays as legacy skip for now.
+
+Three approaches explored for future support:
+- **Approach A: `NAScore` on `CriterionWithValueSettings`** — Add a direct percentage field (0.0–1.0). `ComputeCriterionPercentageScore` checks: if N/A + `NAScore` set → return it. Simple but introduces a second scoring code path separate from D+C.
+- **Approach B: Synthesize options array** — FE creates `options: [{label: "N/A", value: <max+1>, isNA: true}]` + `scores: [{value: <max+1>, score: <configured>}]` even for NumericRadios. `NumericRadiosCriterionSettings` already embeds `CriterionWithValueSettings` which has `Scores *[]CriterionScoreOption`. `MapScoreValue()` (`scorecard_scores_dao.go:775`) would find the value in scores → return the configured score → `percentage = score / maxScore`. Zero additional BE scoring changes. Piggybacks entirely on D+C.
+- **Approach C: Skip** — Current state. NumericRadios N/A stays as legacy skip.
+
+Approach B is preferred if we pursue this — it reuses the D+C pipeline with no BE changes. The only concern is that the synthetic option value must be outside the range to avoid collisions with real grader selections.
 
 **2. Backward compatibility**: Legacy templates have `showNA: true` with no `isNA` option. They continue to work as before — grader submits `{ notApplicable: true, numericValue: null }` → `ComputeScores` clears value → `ComputeCriterionPercentageScore` skips.
 

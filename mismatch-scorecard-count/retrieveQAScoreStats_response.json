@@ -1,0 +1,243 @@
+{
+    "qaScoreResult": {
+        "scores": [
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-02T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 1,
+                "weightSum": 1,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 1
+            },
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-03T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 1,
+                "weightSum": 2,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 2
+            },
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-04T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 1,
+                "weightSum": 1,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 1
+            },
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-05T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 1,
+                "weightSum": 1,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 1
+            },
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-11T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 1,
+                "weightSum": 1,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 1
+            },
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-13T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 1,
+                "weightSum": 1,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 1
+            },
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-18T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 1,
+                "weightSum": 1,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 1
+            },
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-20T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 1,
+                "weightSum": 2,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 2
+            },
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-23T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 1,
+                "weightSum": 1,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 1
+            },
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-26T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 1,
+                "weightSum": 2,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 2
+            },
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-27T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 1,
+                "weightSum": 1,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 1
+            },
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-30T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 0.75,
+                "weightSum": 4,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 4
+            },
+            {
+                "groupedBy": {
+                    "timeRange": {
+                        "startTimestamp": "2026-03-31T04:00:00Z",
+                        "endTimestamp": null
+                    },
+                    "team": null,
+                    "group": null,
+                    "user": null,
+                    "criterionId": "",
+                    "agentTier": "AGENT_TIER_UNSPECIFIED",
+                    "quintileRank": "QUINTILE_RANK_UNSPECIFIED"
+                },
+                "score": 1,
+                "weightSum": 7,
+                "totalConversationCount": 1,
+                "totalScorecardCount": 7
+            }
+        ],
+        "averageQaScore": 0.96,
+        "totalConversationCount": 13,
+        "totalScorecardCount": 25
+    }
+}
