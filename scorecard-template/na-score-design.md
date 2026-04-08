@@ -369,6 +369,8 @@ Approach B is preferred if we pursue this — it reuses the D+C pipeline with no
 
 **3. Design principle**: `ComputeScores()` is post-processing that persists to DB. The `&& !newScore.NumericValue.Valid` guard preserves the grader's `NumericValue` for scored N/A while still clearing it for legacy N/A. This is safe because graders only submit `NumericValue` for scored N/A when the `isNA` option exists.
 
+**4. Pre-existing bug: stale AutoQA dropdown values on criterion recreate**. When a criterion is deleted and a new one is created at the same form array index, `auto_qa.detected`, `auto_qa.not_detected`, and `auto_qa.not_applicable` retain stale values from the deleted criterion. Root cause: `handleAddCriterion()` in `TemplateBuilderFormConfigurationStep.tsx` (line 279) creates a `newAutoQA` object with defaults but never spreads it into the new criterion passed to `form.setValue()` (line 319). The new criterion only contains `...DEFAULT_CRITERION` + `identifier` + `itemType`, with no `auto_qa` key — so react-hook-form fields at that path keep their previously registered values. This affects all three AutoQA wiring fields equally and predates the scored N/A feature.
+
 ---
 
 ## Historical Reference: Previous Approaches
