@@ -33,3 +33,10 @@ Thumbs.db
 *.log
 .cache/
 .tmp
+
+# Build caches and worktrees
+.bazel-*/
+.gocache-*/
+.golangci-lint-cache/
+cresta-proto-convi-6247-agent-only-filter/
+go-servers-convi-6247-agent-only-filter/

@@ -371,6 +371,8 @@ Approach B is preferred if we pursue this — it reuses the D+C pipeline with no
 
 **4. Pre-existing bug: stale AutoQA dropdown values on criterion recreate**. When a criterion is deleted and a new one is created at the same form array index, `auto_qa.detected`, `auto_qa.not_detected`, and `auto_qa.not_applicable` retain stale values from the deleted criterion. Root cause: `handleAddCriterion()` in `TemplateBuilderFormConfigurationStep.tsx` (line 279) creates a `newAutoQA` object with defaults but never spreads it into the new criterion passed to `form.setValue()` (line 319). The new criterion only contains `...DEFAULT_CRITERION` + `identifier` + `itemType`, with no `auto_qa` key — so react-hook-form fields at that path keep their previously registered values. This affects all three AutoQA wiring fields equally and predates the scored N/A feature.
 
+**5. N/A option shows default value in AutoQA dropdowns on criterion recreate**. When a criterion with "Allow N/A" checked is deleted and recreated, the isNA option appears in all AutoQA dropdowns (detected, not_detected, not_applicable) displaying `N/A (2)` where `2` is the auto-assigned option value (next after 0 and 1). This is cosmetic — the `2` is the internal wiring value, not a score. It happens because `defaultCriterion.settings.options` is cloned into the new criterion (including the isNA option), and `behaviorScoreSelectionOptions` shows `${label} (${score ?? value})` — with no score configured, it falls through to the value. This is a pre-existing display pattern affecting all options (e.g., a new empty option also shows its value), not specific to N/A.
+
 ---
 
 ## Historical Reference: Previous Approaches
