@@ -252,7 +252,31 @@
 
 ---
 
-## 9. Regression Checks
+## 9. Scoring Payload (notApplicable flag)
+
+### 9.1 Scored N/A sends notApplicable=false
+
+1. Create a template with "Allow N/A" and N/A score = 5
+2. Score a conversation, select "N/A" for that criterion
+3. **Verify payload:** `notApplicable: false`, `numericValue: 2` (the N/A option's value)
+4. **Verify backend:** Score is saved as a regular scored option, participates in aggregation
+
+### 9.2 Unscored N/A sends notApplicable=true (legacy)
+
+1. Create a template with "Allow N/A" but no score for N/A
+2. Score a conversation, select "N/A"
+3. **Verify payload:** `notApplicable: true`, `numericValue: null`
+4. **Verify backend:** Score is excluded from aggregation (legacy behavior preserved)
+
+### 9.3 NumericRadios N/A (no options array)
+
+1. Create a NumericRadios criterion with "Allow N/A"
+2. Select N/A
+3. **Verify payload:** `notApplicable: true`, `numericValue: null` (NumericRadios has no options/scores)
+
+---
+
+## 10. Regression Checks
 
 - [ ] Create a template without N/A — works identically to before
 - [ ] Edit an existing template without touching N/A — no changes to saved JSON
