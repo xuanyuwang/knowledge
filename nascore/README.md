@@ -1,7 +1,7 @@
 # N/A Score Support (enableNAScore Feature)
 
 **Created:** 2026-04-12
-**Updated:** 2026-04-12
+**Updated:** 2026-04-25
 
 ## Overview
 
@@ -91,6 +91,7 @@ All detailed analysis documents are in `/director/.tmp`:
 | Date | Summary |
 |------|---------|
 | 2026-04-12 | Project created. Fixed N/A label display bug and score auto-population bug. Updated validation to support null scores for N/A options. Created comprehensive test scenarios. Identified DEFAULT_CRITERION issue (deferred). |
+| 2026-04-25 | Full lifecycle analysis of options/scores/auto_qa. Identified 8 pain points. Proposed CriterionOptionsManager refactoring. See `options-scores-lifecycle.md`. |
 
 ## Related
 

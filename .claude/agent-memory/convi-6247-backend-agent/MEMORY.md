@@ -1,0 +1,1 @@
+- [ParseUserFilterForAnalytics architecture](parse-user-filter-architecture.md) — ground truth, ACL, ShouldQueryAllUsers flow in common_user_filter.go
