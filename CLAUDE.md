@@ -50,6 +50,7 @@ Personal knowledge management repository organized **by project**. Each folder a
 | `team-enable/` | Claude Code plugin for team: shared skill in marketplace, feature flag cleanup |
 | `scorecard-template/` | Scorecard template structure deep dive: data model, scoring algorithm, analytics pipeline |
 | `nascore/` | N/A score support (enableNAScore feature): allow null scores for N/A options in scorecard templates |
+| `convi-6672-achieve-behavior-na/` | Achieve behavior metrics showing N/A in Performance Insights despite valid scores (excludeFromQAScores suspected) |
 
 ## Workflow: Updating a Project
 
