@@ -47,15 +47,16 @@ The following relationships are **intended** but not uniformly enforced at every
 
 ### Target invariants (after refactor)
 
-After the proposed refactor (section 9), the canonical form state should enforce:
+After the proposed refactor (section 9). Note: the decoupled load transform (`option.value ← score.score`) is preserved for edit-time performance.
 
-| Invariant | Enforcement |
-|-----------|-------------|
-| `option.value` = sequential index (identity key), never the actual score | `fromApiToForm()` at load boundary |
-| `options[i].value === scores[i].value === i` | All mutations via option-state module |
-| `scores[i].score` = actual score | All mutations via option-state module |
-| `options.length === scores.length` | All mutations via option-state module |
-| `auto_qa.detected/not_detected/not_applicable` and `branch.condition.numeric_values` reference option indices | All mutations via option-state module |
+| Invariant | Stage | Enforcement |
+|-----------|-------|-------------|
+| `option.value` = sequential index (identity key) | API/DB, after save | Save transform (`reindexOptionsAndScores`) |
+| `option.value` = score (from `score.score`) | Form state after decoupled load | Load transform (intentional, for performance) |
+| `scores[i].score` = actual score | All stages | Authoritative source, never overwritten |
+| `options.length === scores.length` | All stages | All mutations via option-state module |
+| `auto_qa.detected/not_detected/not_applicable` reference option indices | All stages | All mutations via option-state module |
+| `branch.condition.numeric_values` reference option indices | All stages | All mutations via option-state module |
 
 ---
 
@@ -329,8 +330,9 @@ The most confusing aspect: `option.value` means different things at different st
 ### 8.1 Dual migration paths
 `transformApiCriterionTemplateSettingsToForm()` (load-time) and `CriteriaLabeledOptions.useOnMount()` (mount-time) both do legacy migration. The mount-time one is a fallback for edge cases the load-time one misses, but this makes the flow hard to reason about.
 
-### 8.2 Decoupling semantics change option.value meaning
-After load, `option.value` holds the score value (not the index), but `scores[i].value` still holds the original index. This means `option.value !== scores[i].value` in the form, which is confusing and error-prone.
+### 8.2 ~~Decoupling semantics change option.value meaning~~ — INTENTIONAL DESIGN
+
+**Not a pain point.** The decoupled load transform (`option.value ← score.score`) exists for keystroke performance: it keeps the correct score value directly on each option so that editing labels/scores in the template builder does NOT require recalculating option→score mappings on every keystroke, which would degrade FE performance significantly. The fact that `option.value !== scores[i].value` in form state is the deliberate design, not an accidental inconsistency. Any refactor must preserve this decoupled edit-time representation.
 
 ### 8.3 Renormalization scattered across handlers
 Every handler that modifies options (add, remove, N/A score change, N/A score blur, allow N/A uncheck) independently renormalizes values to 0,1,2... and keeps scores in sync. This is the same logic copy-pasted with slight variations.
@@ -347,8 +349,9 @@ Multiple places check `options.some(checkIsNAOption)` vs `showNA` vs `isNAIndex 
 ### 8.7 Load transform doesn't remap not_applicable
 In the legacy migration path of `transformApiCriterionTemplateSettingsToForm()` (line 731-741), `detected` and `not_detected` are remapped via `valueToIndexMap`, but `not_applicable` is NOT. This is a latent bug — if a legacy template has `not_applicable` set, it won't be correctly remapped.
 
-### 8.8 Save-time index renormalization depends on form state
-`transformDropdownNumericInputOptionsToApi()` re-indexes options to 0,1,2... But it takes `scores[i]?.score ?? option.value` as fallback. Since `option.value` in the form is the score (from decoupling), this works by accident — if the form shape changes, this could break.
+### 8.8 ~~Save-time fallback uses option.value as score~~ — WORKS BY DESIGN
+
+**Not a pain point.** `transformDropdownNumericInputOptionsToApi()` uses `scores[i]?.score ?? option.value` as fallback. This works **because** the decoupled load (8.2) put the score into `option.value`. The fallback is safe: `scores[i]` will always exist for decoupled criteria (the scores array is preserved through form state), so the fallback path is only reached for edge cases where scores are somehow missing. If the decoupled design is ever removed, this fallback must be revisited.
 
 ---
 
@@ -358,17 +361,27 @@ In the legacy migration path of `transformApiCriterionTemplateSettingsToForm()` 
 > The two analyses agree on the core problem and converge on the same architecture.
 > Differences are reconciled below — this section represents the merged plan.
 
-### 9.1 Canonical form invariant
+### 9.1 Canonical form invariant (preserving decoupled mode)
 
-**`option.value` is never treated as the actual score in canonical form state.**
+The decoupled load transform (`option.value ← score.score`) is an intentional performance optimization — it avoids recalculating option→score mappings on every keystroke. **The refactor must preserve this.**
 
+**Persisted/API canonical form:**
 - `option.value` = sequential index (identity key, 0-based)
-- `scores[i].value` = same index (matches `option.value`)
+- `scores[i].value` = same index
 - `scores[i].score` = actual score
+
+**Edit-time form state (after decoupled load):**
+- `option.value` = the score (from `score.score`) — this IS the intended representation for edit-time performance
+- `scores[i].value` = original index (unchanged from API)
+- `scores[i].score` = actual score (unchanged from API)
+
+**Invariants that hold at ALL stages:**
+- `scores[i].score` = actual score (authoritative source of truth)
 - `auto_qa.detected`, `not_detected`, `not_applicable` = option indices
 - `branch.condition.numeric_values` = option indices
+- `options.length === scores.length`
 
-This eliminates the current confusion where `option.value` means "score" after load but "index" after save.
+The refactor centralizes mutation logic (renormalization, remapping) without changing the value semantics at each stage. The save transform re-indexes `option.value` back to sequential indices, restoring the API canonical form.
 
 ### 9.2 Two-level module split
 
@@ -415,11 +428,12 @@ function hasNA(state: OptionsState): boolean;
 function hasScoredNA(state: OptionsState): boolean;
 function getNAScore(state: OptionsState): number | null;
 
-// Load boundary transform
+// Load boundary transform (preserves decoupled mode: option.value ← score.score)
 function fromApiToForm(criterion: ScorecardCriterionTemplate): OptionsState;
 
 // Save-time helpers (shared canonicalization, NOT a single serializer —
 // type-specific save rules in extractCriterionSettingsForApi remain)
+// reindexOptionsAndScores restores option.value to sequential indices (undoing decoupled mode)
 function reindexOptionsAndScores(state: OptionsState): { options, scores };
 function canonicalizeAutoQA(state: OptionsState): { detected, not_detected, not_applicable };
 ```
@@ -457,9 +471,9 @@ DEFAULT_CRITERION = {
 };
 ```
 
-### 9.5 Save-time fallback risk
+### 9.5 Save-time fallback — safe under current design
 
-**Must fix during refactor:** `transformDropdownNumericInputOptionsToApi` uses `scores[i]?.score ?? option.value` as fallback. Currently this works because the decoupled load put the score into `option.value`. In canonical form (`option.value = index`), this fallback would return the index instead of the score, silently corrupting data. When adopting canonical form state, the save path must be updated to never fall back to `option.value`.
+`transformDropdownNumericInputOptionsToApi` uses `scores[i]?.score ?? option.value` as fallback. This works correctly because: (a) the decoupled load puts the score into `option.value`, so the fallback returns the score; (b) `scores[i]` will always exist for decoupled criteria, so the fallback path is rarely reached. Since the refactor preserves the decoupled mode (section 9.1), this fallback remains safe. If a future change removes the decoupled load, this fallback must be revisited.
 
 ### 9.6 Benefits
 
@@ -502,7 +516,7 @@ This document was cross-validated against `codex-refactor-design.md` (an indepen
 |-------|----------|-----------|------------|
 | Module structure | Single `CriterionOptionsManager` | Two-level: `director-api` helpers + builder module | **Adopted Codex's split** — fixes dependency direction |
 | `DEFAULT_CRITERION` fix | Mentioned as pain point | Explicit proposal to add scores | **Adopted Codex's explicit fix** |
-| Canonical invariant | Documented confusion, no crisp target | "option.value is never the score" | **Adopted Codex's statement** as section 9.1 |
+| Canonical invariant | Documented confusion, no crisp target | "option.value is never the score" | **Revised** — Codex's statement conflicts with the decoupled mode (intentional performance optimization). Section 9.1 now distinguishes persisted canonical form (option.value = index) from edit-time form state (option.value = score, by design). |
 | `not_applicable` remap bug | Identified as latent bug | Not mentioned | **Kept** — added as pre-refactor fix (9.9) |
 | Save fallback risk | Identified `scores[i]?.score ?? option.value` issue | "Update save path as needed" | **Kept detailed analysis** — added as 9.5 |
 | Value semantics table | Full stage-by-stage table (section 6) | Not present | **Kept** — critical implementation reference |
