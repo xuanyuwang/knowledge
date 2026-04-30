@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "EnterWorktree",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"continue\": false, \"stopReason\": \"Worktrees disabled for this repo — work directly in project folders\"}'"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(/opt/homebrew/bin/clickhouse client *)",
+      "Bash(kubectl get *)",
+      "Bash(kubectl logs *)",
+      "Bash(kubectl describe *)",
+      "Bash(kubectl config *)",
+      "Bash(grpcurl *)",
+      "mcp__glean_default__search",
+      "mcp__coda__coda_get_page_content",
+      "mcp__coda__coda_peek_page",
+      "mcp__coda__coda_list_pages",
+      "mcp__coda__coda_resolve_link"
+    ]
+  }
+}
