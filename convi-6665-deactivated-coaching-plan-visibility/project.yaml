@@ -2,8 +2,8 @@ title: CONVI-6665 - Deactivated Coaching Plan Visibility
 status: active
 primary_source_repo: director
 primary_repo_path: /Users/xuanyu.wang/repos/director
-active_worktree_path: /Users/xuanyu.wang/repos/director
-branch: xuanyu/enable-na-score-v2
+active_worktree_path: /Users/xuanyu.wang/repos/director-convi-6665
+branch: xwang/convi-6665-deactivated-coaching
 related_ticket_ids:
   - CONVI-6665
 related_prs: []
@@ -16,4 +16,4 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs: []
-notes: Investigation spans `director` and `go-servers`. No dedicated ticket worktree exists yet; this project records the initial cross-repo analysis from the shared `/Users/xuanyu.wang/repos` workspace root.
+notes: Investigation spans `director` and `go-servers`. A dedicated director worktree was created on 2026-05-07 at `/Users/xuanyu.wang/repos/director-convi-6665` for implementation work.

@@ -82,10 +82,18 @@ Validate the intended scope with product/QA:
 - If only explicitly searched users need support, implement the FE change first and test the Coaching Hub tabs.
 - If mixed filters must remain exact, add a BE-safe design before coding so group expansion does not accidentally include extra deactivated users.
 
+## Source Context
+
+- **Primary repo:** `director`
+- **Repo path:** `/Users/xuanyu.wang/repos/director`
+- **Active worktree:** `/Users/xuanyu.wang/repos/director-convi-6665`
+- **Branch:** `xwang/convi-6665-deactivated-coaching`
+
 ## Log History
 
 | Date | Summary |
 |------|---------|
+| 2026-05-07 | Created dedicated `director` worktree `director-convi-6665` on branch `xwang/convi-6665-deactivated-coaching` for implementation |
 | 2026-05-07 | Initial cross-repo investigation completed and implementation plan narrowed |
 
 ## Related Artifacts

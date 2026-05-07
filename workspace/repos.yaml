@@ -152,3 +152,9 @@ named_worktrees:
     path: /Users/xuanyu.wang/repos/go-servers-scorecard-auto-heal
     branch: codex/scorecard-auto-heal
     purpose: Dedicated worktree for scorecard auto-heal work.
+
+  - name: director-convi-6665
+    source_repo: director
+    path: /Users/xuanyu.wang/repos/director-convi-6665
+    branch: xwang/convi-6665-deactivated-coaching
+    purpose: Dedicated worktree for CONVI-6665 deactivated coaching visibility changes.
