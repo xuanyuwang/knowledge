@@ -1,97 +1,35 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This repository uses a shared workflow spec.
 
-## Repository Purpose
+Read `workflow/ai-operating-model.md` before doing substantial work in this repo.
 
-Personal knowledge management repository organized **by project**. Each folder at the root level is a project containing:
-- Main documents (README.md, investigation docs, etc.)
-- A `log/` subfolder with daily progress files
+## Claude-specific adapter
 
-## Structure
+- Respect `.claude/settings.json`. Worktrees are intentionally disabled for the `knowledge` repo itself.
+- Use `workspace/repos.yaml` to resolve the target source repo or named worktree instead of guessing from prose.
+- Use `<project>/project.yaml` as the primary machine-readable handoff surface.
+- If an existing project lacks `project.yaml`, add it from `templates/project.yaml` before substantial work.
+- Put rich Claude session context in `sessions/YYYY-MM-DD/claude-<topic>.md`.
+- Keep daily logs concise; keep session notes detailed.
 
-```
-<project-name>/
-  README.md           # Project overview, latest state, key findings
-  log/
-    YYYY-MM-DD.md    # Daily progress logs for this project
-  <other files>      # Investigation docs, scripts, data files
-```
+## Allowed write targets
 
-### Special Folders (not projects)
-- `.git/`, `.claude/`, `.cursor/` - System folders
-- `train-for-staff/` - Centralized Senior → Staff progress tracking (rubrics, projects, resume snippets)
-- `templates/` - Templates for new projects and logs
-- `blog/` - Longer-form writeups (staff-level perspective, retrospectives)
-- `weekly-summary/` - Weekly progress/problem/plan summaries
+Claude may update only:
 
-### Current Projects
+- project `README.md`
+- `project.yaml`
+- `log/`
+- `sessions/`
+- `decisions/`
+- `deliverables/`
+- `templates/`
+- `workflow/`
+- `workspace/`
 
-| Project | Description |
-|---------|-------------|
-| `general-learnings/` | Miscellaneous engineering learnings |
-| `dev-environment-tips/` | macOS, PostgreSQL, tooling setup tips |
-| `historic-scorecard-missing/` | Scorecard sync investigation |
-| `insights-user-filter/` | User filter consolidation for Insights APIs |
-| `user-filter-consolidation/` | User filter refactoring project |
-| `backfill-scorecards/` | Scorecard backfill scripts |
-| `qa-score-popover-fix/` | QA score popover bug fix |
-| `productivity-with-ai/` | AI productivity learnings |
-| `convi-6192-conversation-source-config/` | Conversation source config |
-| `duplicate-template-across-usecase/` | Template duplication investigation |
-| `virtual-group-filter/` | Virtual group filter |
-| `2025-annual-review/` | 2025 annual review |
-| `agent-stats-active-days-fix/` | Agent Leaderboard Active Days N/A bug fix (FULL OUTER JOIN) |
-| `convi-6260-team-leaderboard/` | Hilton team leaderboard not breaking out sub-teams (missing child group expansion) |
-| `agent-quintiles-support/` | Quintiles for agents: RetrieveQAScoreStats BE + Performance/Leaderboard/Coaching Hub FE |
-| `convi-6247-agent-only-filter/` | Agent-only manager inclusion filter: add request field to analytics APIs + FE pass listAgentOnly in Performance, Leaderboard, Agent Assist |
-| `convi-6242-cron-label-conversations/` | cron-label-conversations stale data fix + 2026 backfill for Alaska Air |
-| `large-user-id-clickhouse/` | ClickHouse ext tables for large user ID lists (extracted from insights-user-filter) |
-| `team-enable/` | Claude Code plugin for team: shared skill in marketplace, feature flag cleanup |
-| `scorecard-template/` | Scorecard template structure deep dive: data model, scoring algorithm, analytics pipeline |
-| `nascore/` | N/A score support (enableNAScore feature): allow null scores for N/A options in scorecard templates |
-| `convi-6672-achieve-behavior-na/` | Achieve behavior metrics showing N/A in Performance Insights despite valid scores (excludeFromQAScores suspected) |
+Do not invent new top-level structures without first updating `workflow/ai-operating-model.md`.
 
-## Workflow: Updating a Project
+## Separation of concerns
 
-**IMPORTANT: When updating main documents of a project, always update the daily log.**
-
-1. Check if `log/YYYY-MM-DD.md` exists for today
-2. If NOT exists, create it first with this template:
-   ```markdown
-   # Project Log - YYYY-MM-DD
-
-   ## Progress
-
-   - [Summary of what was done today]
-
-   ## Details
-
-   [Detailed notes if needed]
-   ```
-3. Update the main documents
-4. Update the daily log with what changed
-5. Update the `README.md` log history table if significant
-
-## Creating a New Project
-
-1. Create folder: `mkdir <project-name> && mkdir <project-name>/log`
-2. Create `README.md` with:
-   - **Created/Updated** timestamps
-   - **Overview** section
-   - **Log History** table
-3. Create first log entry in `log/YYYY-MM-DD.md`
-
-## Documentation Standards
-
-- Always mark creation time and update time in documents
-- Log history tables in README.md should list significant dates and summaries
-- Daily logs capture what was done, not exhaustive details (those go in main docs)
-
-## Related Codebases
-
-This repo references code investigations in these Cresta repositories (available as additional working directories):
-- `go-servers` - Main backend services
-- `director` - Director service
-- `cresta-proto` - Protocol buffer definitions
-- `config` - Configuration management
+- Product code belongs in the target repo or repo worktree.
+- This repo exists for investigations, designs, decisions, reviews, execution records, and synthesis.

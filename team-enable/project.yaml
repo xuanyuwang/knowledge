@@ -1,0 +1,19 @@
+title: Team Enable - Claude Code Plugin and Feature Flag Cleanup
+status: active
+primary_source_repo: claude-code-marketplace
+primary_repo_path: /Users/xuanyu.wang/repos/claude-code-marketplace
+active_worktree_path: /Users/xuanyu.wang/repos/claude-code-marketplace
+branch: main
+related_ticket_ids: []
+related_prs:
+  - https://github.com/cresta/claude-code-marketplace/pull/34
+current_objective: Keep the team-level AI enablement work and reusable plugin learnings in a durable, reusable form.
+last_validated: 2026-05-06
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs: []
+notes: The initial plugin work landed via PR #34; the tracked source repo currently sits on `main`.

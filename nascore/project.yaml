@@ -1,0 +1,21 @@
+title: N/A Score Support
+status: active
+primary_source_repo: director
+primary_repo_path: /Users/xuanyu.wang/repos/director
+active_worktree_path: /Users/xuanyu.wang/repos/director
+branch: xuanyu/enable-na-score-v2
+related_ticket_ids:
+  - enableNAScore
+related_prs: []
+current_objective: Validate N/A score behavior end to end and resolve any remaining template-builder edge cases before merge.
+last_validated: 2026-05-06
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - options-scores-lifecycle.md
+    - research/QA_TEST_SCENARIOS.md
+notes: Active repo context was validated against the current `director` checkout on 2026-05-06.
