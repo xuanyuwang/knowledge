@@ -147,6 +147,30 @@ These callers:
 ### ParseUserFilterForAnalytics - 12+ callers in insights-server
 All `retrieve_*_stats.go` files.
 
+## Future Consideration: Mixed Active-State Semantics
+
+The CONVI-6665 coaching investigation surfaced a useful future requirement that does not fit cleanly into the current coarse-grained `State` / `ExcludeDeactivatedUsers` model:
+
+- Default behavior should continue to exclude deactivated users
+- Explicitly searched and selected users may need to bypass state filtering
+- Team and group expansion may still need to remain active-only
+
+Short-term product decision:
+
+- Support only the explicit searched-user case for coaching
+- Do not broaden team/group expansion semantics yet
+
+Potential future shared-filter strategy:
+
+- For explicitly selected users, ignore user state when requested by the caller
+- For users reached through selected teams or groups, continue applying active-only filtering
+
+This is a shared user-filter design concern, not just a coaching concern, because today's `State` flag applies uniformly to all selection sources. If this requirement becomes common, the shared filter API may need to distinguish:
+
+- direct user selection semantics
+- group expansion semantics
+- default population semantics
+
 ## Files to Modify
 
 ### shared/user-filter/
@@ -180,6 +204,7 @@ All `retrieve_*_stats.go` files.
 
 | Date | Summary |
 |------|---------|
+| 2026-05-07 | Noted future mixed active-state requirement from CONVI-6665: explicitly selected users may need inactive bypass while teams/groups remain active-only. |
 | 2026-02-20 | B-SF-3 fix merged to main ([PR #25829](https://github.com/cresta/go-servers/pull/25829)). Linear: CONVI-6284. |
 | 2026-02-19 | Fixed B-SF-3 (Divergence 5): `ParseUserFilterForAnalytics` now uses UNION for combined user+group selections. Branch: `xwang/fix-bsf3-union-semantics`. |
 | 2026-02-09 | Re-evaluated project against current codebase. Migration is ~41% complete (12/29 APIs). Original unification plan not started; team took incremental migration approach instead. Recommend completing migration first, then reconsidering unification. |

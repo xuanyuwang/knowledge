@@ -258,6 +258,41 @@ var (
 )
 ```
 
+---
+
+### 13. State Semantics by Selection Source
+
+Current shared-filter controls are coarse-grained:
+
+- `State`
+- `ExcludeDeactivatedUsers`
+- `IncludeInactiveUsers` (caller-side inversion in some APIs)
+
+These express one state policy for the whole parse. They do not distinguish between:
+
+- explicitly selected users
+- users reached via team/group expansion
+- base population users
+
+That becomes a limitation for product requirements like:
+
+- hide deactivated users by default
+- allow a specifically searched and selected deactivated user
+- keep team/group expansion active-only
+
+This pattern appeared in the CONVI-6665 coaching investigation. The immediate product decision there is intentionally narrow:
+
+- only support explicitly searched users for now
+- do not introduce broader mixed semantics yet
+
+If this evolves into a shared requirement, the consolidated API may need separate controls for each selection source, for example:
+
+- `SelectedUserStatePolicy`: `active_only` | `ignore_state`
+- `ExpandedGroupMemberStatePolicy`: `active_only` | `all`
+- `BasePopulationStatePolicy`: `active_only` | `all`
+
+The important design point is that state filtering may need to become source-aware rather than global.
+
 The `request.count` / `error.count` / `duration_ms` triplet covers core monitoring — error rate and latency percentiles are derivable from these. More granular metrics (base population size, early return rate) can be added later if needed.
 
 Keep metrics permanently. Set up alerts for:
