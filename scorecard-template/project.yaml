@@ -1,0 +1,23 @@
+title: Scorecard Template System Knowledge
+status: active
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers
+branch: codex/move-sleep-out-of-api
+related_ticket_ids: []
+related_prs: []
+current_objective: Distill the scattered scorecard-template investigations into a canonical reference document that captures the foundation of the coaching system.
+last_validated: 2026-05-07
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - deliverables/scorecard-template-system-reference.md
+    - template-structure.md
+    - criterion-options.md
+    - fe-template-builder.md
+    - na-score-design.md
+notes: The knowledge spans multiple projects; this folder is the canonical project home for the distilled system reference.

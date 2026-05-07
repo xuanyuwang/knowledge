@@ -1,11 +1,51 @@
-# Scorecard Template Structure
+# Scorecard Template System Knowledge
 
 **Created:** 2026-03-26
-**Updated:** 2026-03-26
+**Updated:** 2026-05-07
 
 ## Overview
 
-Deep dive into the scorecard template data model, scoring algorithm, and how templates flow through the system — from creation in Director UI → storage in Postgres → score calculation → analytics aggregation in ClickHouse.
+This folder is the project home for understanding scorecard templates as a system.
+
+It covers more than the template JSON schema. The topic includes:
+
+- template authoring in Director
+- option, score, and AutoQA wiring
+- score computation semantics
+- Postgres storage and revisioning
+- ClickHouse projection and analytics consumption
+- operational edge cases such as process scorecards, N/A behavior, and template duplication
+
+## Start Here
+
+If you only read one document, read:
+
+- `deliverables/scorecard-template-system-reference.md`
+
+That document is the distilled foundation for teammates and AI tools.
+
+## Distilled Deliverables
+
+- `deliverables/scorecard-template-system-reference.md` - Canonical system reference and mental model
+
+## Working Notes and Deep Dives
+
+- `template-structure.md` - Template schema, hierarchy, scoring flow, and storage model
+- `criterion-options.md` - Option, score, and criterion-setting semantics
+- `fe-template-builder.md` - Builder UI and save-transform behavior
+- `na-score-design.md` - N/A modeling and system implications
+
+## Cross-Project Supporting Artifacts
+
+The complete understanding of scorecard templates is spread across multiple project folders. The most relevant supporting docs are:
+
+- `nascore/README.md`
+- `nascore/options-scores-lifecycle.md`
+- `convi-6709-reversed-scorecard/README.md`
+- `convi-6709-reversed-scorecard/exact-flow.md`
+- `backfill-scorecards/README.md`
+- `pg-ch-scorecard-sync-investigation/scorecard-specific-constraints.md`
+- `duplicate-template-across-usecase/investigation.md`
 
 ## Key Source Locations
 
@@ -20,18 +60,16 @@ Deep dive into the scorecard template data model, scoring algorithm, and how tem
 | ClickHouse score indexing | `go-servers/shared/clickhouse/conversations/conversation.go` |
 | Proto definition | `cresta-proto/cresta/v1/coaching/scorecard_template.proto` |
 
-## Internal Docs
+## Project Structure
 
-| Doc | URL |
-|-----|-----|
-| Scorecard Async Database Updates | [Notion](https://www.notion.so/2974a587b06180f595c3c14492a96104) |
-| Duplicate Template Investigation | [Notion](https://www.notion.so/2fb4a587b0618033a7fcf6230f964cbd) |
-| Cresta QA User Guide | [Coda](https://coda.io/d/_dB67ghP7yCZ/_suEaeJ6F) |
-| Quintile Rank Behaviour Ref | [Coda](https://coda.io/d/_daskGrvEvmm/_sunGeWL3) |
-| Data Platform Export Design | [GDrive](https://docs.google.com/document/d/12Q7Qui8SgtIy1NOOrHB4oHlA5FLO3iinPiqXoj2mJys) |
+- `project.yaml` - machine-readable project state
+- `deliverables/` - polished canonical documents
+- `log/` - daily progress log
+- `sessions/` - richer session-level notes
 
 ## Log History
 
 | Date | Summary |
 |------|---------|
+| 2026-05-07 | Created canonical scorecard-template system reference and reorganized this folder around distilled deliverables |
 | 2026-03-26 | Initial exploration: template structure, scoring algorithm, analytics pipeline |
