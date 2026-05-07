@@ -1,19 +1,25 @@
 version: 1
 last_validated: 2026-05-06
 root_repos_dir: /Users/xuanyu.wang/repos
+permissions_policy:
+  summary: Keep repos and worktrees under /Users/xuanyu.wang/repos so AI tools can reuse a shared filesystem boundary when supported.
+  preferred_workspace_root: /Users/xuanyu.wang/repos
+  knowledge_checkout_policy: Use the main knowledge checkout directly; do not create a repo-specific worktree for knowledge.
+  command_approval_policy: Prefer persistent allowlists or command-prefix approvals for recurring commands when the tool supports them.
+  note: Some tools still issue an initial trust prompt for a brand-new worktree path because trust is path-based.
 
 repos:
   - name: knowledge
     path: /Users/xuanyu.wang/repos/knowledge
     default_branch: main
-    worktree_convention: Codex or Claude may operate in ephemeral tool worktrees for `knowledge`, but normal project work in this repo should stay project-folder-first and avoid creating ad hoc sub-repos.
+    worktree_convention: Do not create a repo-specific worktree for `knowledge`; work directly in the main checkout.
     purpose: Central console for logs, investigations, decisions, and staff-level synthesis.
     related_repos: []
 
   - name: go-servers
     path: /Users/xuanyu.wang/repos/go-servers
     default_branch: main
-    worktree_convention: Prefer one dedicated worktree per active backend project, usually named by ticket or topic under `/Users/xuanyu.wang/repos/` or a tool-managed worktree directory.
+    worktree_convention: Prefer one dedicated worktree per active backend project, created under `/Users/xuanyu.wang/repos` and named by ticket or topic.
     purpose: Main backend services and analytics implementation.
     related_repos:
       - cresta-proto
@@ -24,7 +30,7 @@ repos:
   - name: director
     path: /Users/xuanyu.wang/repos/director
     default_branch: main
-    worktree_convention: Use the main repo when a single focused branch is active; create a dedicated worktree when parallel frontend efforts would conflict.
+    worktree_convention: Use the main repo when a single focused branch is active; when a dedicated worktree is needed, create it under `/Users/xuanyu.wang/repos`.
     purpose: Frontend application and related UI logic.
     related_repos:
       - go-servers
@@ -34,7 +40,7 @@ repos:
   - name: cresta-proto
     path: /Users/xuanyu.wang/repos/cresta-proto
     default_branch: main
-    worktree_convention: Usually branch directly in the repo; create a dedicated worktree when schema work must stay isolated from service changes.
+    worktree_convention: Usually branch directly in the repo; when a dedicated worktree is needed, create it under `/Users/xuanyu.wang/repos`.
     purpose: Shared protocol buffer definitions and contracts.
     related_repos:
       - go-servers
@@ -43,7 +49,7 @@ repos:
   - name: config
     path: /Users/xuanyu.wang/repos/config
     default_branch: master
-    worktree_convention: Usually branch directly in the repo; worktrees are optional and mainly useful for parallel feature-flag or config-stream work.
+    worktree_convention: Usually branch directly in the repo; when a dedicated worktree is needed, create it under `/Users/xuanyu.wang/repos`.
     purpose: Configuration management, feature flags, and environment config.
     related_repos:
       - go-servers
@@ -52,7 +58,7 @@ repos:
   - name: clickhouse-schema
     path: /Users/xuanyu.wang/repos/clickhouse-schema
     default_branch: main
-    worktree_convention: Branch directly unless parallel schema efforts require isolation.
+    worktree_convention: Branch directly unless parallel schema efforts require isolation; any new worktree should be created under `/Users/xuanyu.wang/repos`.
     purpose: ClickHouse schema definitions and migrations.
     related_repos:
       - go-servers
@@ -60,7 +66,7 @@ repos:
   - name: historic-analytics
     path: /Users/xuanyu.wang/repos/historic-analytics
     default_branch: main
-    worktree_convention: Use a dedicated worktree when running larger investigations or backfills.
+    worktree_convention: Use a dedicated worktree under `/Users/xuanyu.wang/repos` when running larger investigations or backfills.
     purpose: Historical analytics and related tooling.
     related_repos:
       - go-servers
@@ -69,7 +75,7 @@ repos:
   - name: python-ai-services
     path: /Users/xuanyu.wang/repos/python-ai-services
     default_branch: main
-    worktree_convention: Prefer isolated worktrees for experiments or service-specific fixes.
+    worktree_convention: Prefer isolated worktrees under `/Users/xuanyu.wang/repos` for experiments or service-specific fixes.
     purpose: Python AI services and experiments.
     related_repos:
       - go-servers
@@ -77,7 +83,7 @@ repos:
   - name: claude-code-marketplace
     path: /Users/xuanyu.wang/repos/claude-code-marketplace
     default_branch: main
-    worktree_convention: Branch directly for plugin work unless parallel plugin efforts overlap.
+    worktree_convention: Branch directly for plugin work unless parallel plugin efforts overlap; any new worktree should be created under `/Users/xuanyu.wang/repos`.
     purpose: Claude Code marketplace plugins and shared skills.
     related_repos:
       - knowledge
@@ -85,14 +91,14 @@ repos:
   - name: chat-ai
     path: /Users/xuanyu.wang/repos/chat-ai
     default_branch: master
-    worktree_convention: Create a dedicated worktree when testing longer-running feature branches.
+    worktree_convention: Create a dedicated worktree under `/Users/xuanyu.wang/repos` when testing longer-running feature branches.
     purpose: Chat AI application work.
     related_repos: []
 
   - name: flux-deployments
     path: /Users/xuanyu.wang/repos/flux-deployments
     default_branch: master
-    worktree_convention: Prefer direct branching unless multiple deployment streams need separation.
+    worktree_convention: Prefer direct branching unless multiple deployment streams need separation; any new worktree should be created under `/Users/xuanyu.wang/repos`.
     purpose: Deployment configuration and environment rollout state.
     related_repos:
       - config
@@ -100,28 +106,28 @@ repos:
   - name: tenant-admin
     path: /Users/xuanyu.wang/repos/tenant-admin
     default_branch: main
-    worktree_convention: Use dedicated worktrees for parallel admin-surface changes.
+    worktree_convention: Use dedicated worktrees under `/Users/xuanyu.wang/repos` for parallel admin-surface changes.
     purpose: Tenant administration interfaces and tooling.
     related_repos: []
 
   - name: family-finance
     path: /Users/xuanyu.wang/repos/family-finance
     default_branch: main
-    worktree_convention: Branch directly for small changes; use worktrees for concurrent streams.
+    worktree_convention: Branch directly for small changes; create any concurrent worktree under `/Users/xuanyu.wang/repos`.
     purpose: Personal finance application work.
     related_repos: []
 
   - name: qijia-growth-chart
     path: /Users/xuanyu.wang/repos/qijia-growth-chart
     default_branch: main
-    worktree_convention: Branch directly unless multiple chart iterations are active at the same time.
+    worktree_convention: Branch directly unless multiple chart iterations are active at the same time; any new worktree should be created under `/Users/xuanyu.wang/repos`.
     purpose: Personal growth chart tooling.
     related_repos: []
 
   - name: xuanyu-scripts
     path: /Users/xuanyu.wang/repos/xuanyu-scripts
     default_branch: main
-    worktree_convention: Branch directly for utility scripts.
+    worktree_convention: Branch directly for utility scripts; if a worktree is needed, create it under `/Users/xuanyu.wang/repos`.
     purpose: Personal scripts and utilities.
     related_repos:
       - knowledge
@@ -129,7 +135,7 @@ repos:
   - name: xuanyuwang.github.io
     path: /Users/xuanyu.wang/repos/xuanyuwang.github.io
     default_branch: main
-    worktree_convention: Branch directly unless publishing work overlaps with larger redesign work.
+    worktree_convention: Branch directly unless publishing work overlaps with larger redesign work; any new worktree should be created under `/Users/xuanyu.wang/repos`.
     purpose: Personal site and published writing.
     related_repos:
       - knowledge

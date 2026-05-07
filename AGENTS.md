@@ -6,7 +6,9 @@ Read `workflow/ai-operating-model.md` before making substantial changes.
 
 ## Tool-specific adapter
 
+- Do not create a repo-specific worktree for `knowledge`. Work directly in the main repo checkout.
 - Use `workspace/repos.yaml` to resolve the source repo and any named worktree.
+- When creating a new worktree for any other repo, place it under `/Users/xuanyu.wang/repos`.
 - Prefer existing `<project>/project.yaml` as the machine-readable handoff surface.
 - If an existing project folder lacks `project.yaml`, add it from `templates/project.yaml` before doing substantial work.
 - Record rich session context in `sessions/YYYY-MM-DD/<tool>-<topic>.md`.

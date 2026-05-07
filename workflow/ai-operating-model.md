@@ -65,6 +65,31 @@ These files are the official interfaces between tools and humans:
 - Each session note must identify exactly one source repo and one branch/worktree context.
 - Durable claims should be traceable to a source artifact such as a commit, PR, ticket, query result, or design note.
 
+## Worktree rules
+
+- Do not create a repo-specific worktree for `knowledge`. Work directly in the main `knowledge` checkout.
+- For other repos, create new worktrees under `/Users/xuanyu.wang/repos`.
+- Prefer stable, human-recognizable worktree folder names that match the ticket or topic.
+- Record the exact worktree path in `project.yaml` and in session notes.
+
+## Permissions policy
+
+Many AI tools bind trust and permissions to the opened folder path, not to the underlying Git repository identity. A new worktree often looks like a new project and can trigger fresh permission prompts.
+
+Use these defaults to reduce repeated permission requests:
+
+- Keep source repos and new worktrees under `/Users/xuanyu.wang/repos`.
+- When a tool supports choosing a workspace root, prefer `/Users/xuanyu.wang/repos` as the root for code work so repo checkouts and worktrees share one parent boundary.
+- Keep `knowledge` separate: work directly in the main `knowledge` checkout rather than creating a `knowledge` worktree.
+- Prefer persistent command allowlists or prefix-based approvals for recurring commands when the tool supports them.
+- Keep repo-specific behavior in checked-in files such as `AGENTS.md` or `CLAUDE.md`; keep global trust or permission rules in the tool's user-level config when available.
+
+Expected outcome:
+
+- New worktrees under `/Users/xuanyu.wang/repos` are more likely to inherit the same broad filesystem boundary.
+- Repeated command prompts should be reduced by persistent allow rules.
+- A first trust prompt may still happen for some tools when a brand-new folder is opened; this is a tool limitation, not a workflow violation.
+
 ## File roles
 
 ### `project.yaml`
@@ -115,13 +140,14 @@ Polished artifacts intended for consumption beyond the immediate session, such a
 Use the following flow by default:
 
 1. Resolve the source repo via `workspace/repos.yaml`.
-2. Open or create the project folder.
-3. Read `project.yaml` and `README.md`.
-4. Create or update a session note in `sessions/YYYY-MM-DD/`.
-5. Do the work in the source repo or worktree if code changes are required.
-6. Update `log/YYYY-MM-DD.md` with the meaningful movement.
-7. Update `README.md` if project state changed.
-8. Promote durable decisions or polished artifacts as needed.
+2. Use the main checkout for `knowledge`; if another repo needs a worktree, create it under `/Users/xuanyu.wang/repos`.
+3. Open or create the project folder.
+4. Read `project.yaml` and `README.md`.
+5. Create or update a session note in `sessions/YYYY-MM-DD/`.
+6. Do the work in the source repo or worktree if code changes are required.
+7. Update `log/YYYY-MM-DD.md` with the meaningful movement.
+8. Update `README.md` if project state changed.
+9. Promote durable decisions or polished artifacts as needed.
 
 ## Artifact promotion rules
 
