@@ -1,8 +1,8 @@
 # Multi-Agent Coaching Assistant
 
 **Created:** 2026-03-02
-**Updated:** 2026-03-06
-**Status:** Hackathon demo ready — mock data for 8 agents, all 5 action types, deployed to voice-staging (revision 23)
+**Updated:** 2026-05-07
+**Status:** Hackathon demo plus an uncommitted `python-ai-services` team-coaching prototype and handoff package
 
 ## Overview
 
@@ -65,6 +65,18 @@ See [service-understanding.md](./service-understanding.md) for detailed analysis
 | `python-ai-services` | `cresta-assistant/services/team_coaching_*.py` | Prototype scoring logic + unit tests (reference) |
 | `chat-ai` | `app/coaching-ai-summary/` | Vibe-coded Flask app (hackathon deliverable) |
 
+## Current Uncommitted State (2026-05-07)
+
+The active `python-ai-services` branch `coaching/hackthon` currently has uncommitted team-coaching prototype work in `cresta-assistant/`:
+
+- rule-based prototype modules: `services/team_coaching_models.py`, `team_coaching_data_fetcher.py`, `team_coaching_identifier.py`, `team_coaching_scorer.py`, `team_coaching_cache.py`
+- local validation entrypoints: `team_coaching_server.py`, `run_staging.sh`, `test_team_coaching_staging.py`
+- tests: `tests/test_team_coaching_data_fetcher.py`, `tests/test_team_coaching_identifier.py`, `tests/test_team_coaching_scorer.py`
+- handoff artifact: `coaching-assistant-handover.md`
+- tracked repo tweak: `.gitignore` adds `.cache/`
+
+This work is documented here for handoff, but it is not committed and was not revalidated during the 2026-05-07 wrap-up pass.
+
 ## Vibe-Coded App: `coaching-ai-summary`
 
 Deployed as a standalone Flask app in `chat-ai` following the vibe-code pattern (same as `coaching-plan-summary` PR #8990).
@@ -125,3 +137,4 @@ app/coaching-ai-summary/build_and_push.sh
 | 2026-03-03 | Scoring engine, criterion display name resolution, CORS support, context switcher |
 | 2026-03-04 | Criterion display name fix, `/api/recommend-direct` endpoint, mock data for hackathon demo |
 | 2026-03-05 | Mock data fixes: focus_criteria derivation, full resource name support, all 5 action types, demo env targeting |
+| 2026-05-07 | Wrapped up the still-uncommitted `python-ai-services` prototype state: added project metadata, recorded the dirty branch contents, and linked the handoff/testing assets for follow-up |

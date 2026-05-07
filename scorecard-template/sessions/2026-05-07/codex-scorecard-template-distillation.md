@@ -34,6 +34,7 @@
 - Identified the major cross-project threads that materially shape the scorecard-template mental model.
 - Wrote a canonical distilled reference under `deliverables/`.
 - Added `project.yaml` and updated the project README to separate distilled knowledge from working notes.
+- Audited day-end repo state and noted that the main `go-servers` checkout still has an untracked `angry-colden-4800fd/` directory.
 
 ## Findings
 
@@ -41,6 +42,7 @@
 - The most important invariant is the logical wiring between options, scores, and AutoQA mappings.
 - Several past bugs came from representation mismatches between builder form state, persisted template semantics, and read-only rendering.
 - Process scorecards and projection repair behavior are part of the template system’s real operational boundary.
+- The main `go-servers` checkout is not clean: it also contains an untracked `angry-colden-4800fd/` directory with a repo-like file tree. I did not modify or remove it during wrap-up.
 
 ## Decisions Made
 
@@ -52,6 +54,7 @@
 - Add a precise source map deliverable with code paths and table names.
 - Add a debugging/failure-modes deliverable for scorecard-template incidents.
 - Backfill additional `project.yaml` files for nearby scorecard-related projects if they are reopened often.
+- Decide whether to keep, move, or delete `angry-colden-4800fd/` before using the main `go-servers` checkout for future code work.
 
 ## Links
 

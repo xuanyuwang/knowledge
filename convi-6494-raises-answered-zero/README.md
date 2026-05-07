@@ -1,8 +1,8 @@
 # CONVI-6494: Leaderboard "Raises Answered %" always 0%
 
 **Created:** 2026-03-24
-**Updated:** 2026-03-24
-**Status:** Fix verified on CH, implementation pending
+**Updated:** 2026-05-07
+**Status:** Root cause still verified; current uncommitted worktree change only updates the SQL fixture, not the committed production implementation
 **Ticket:** https://linear.app/cresta/issue/CONVI-6494
 
 ## Overview
@@ -35,8 +35,17 @@ Verified on Brinks care-voice March 2026:
 - Before fix: raised_hand_answered_count = 0
 - After fix: raised_hand_answered_count = 2193 (~90% of 2442 raised hands)
 
+## Current Uncommitted State (2026-05-07)
+
+The active worktree `/Users/xuanyu.wang/repos/go-servers-convi-6494` has one uncommitted change:
+
+- `insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveLiveAssistStats_ExtTable_WithUsecaseFilter_request.sql`
+
+That diff rewrites the fixture from one `raised_hands_and_whispers` CTE into separate `agent_raised_hands_and_whispers` and `manager_raised_hands_and_whispers` CTEs. No corresponding committed production-query change was part of this wrap-up pass, so the branch should be treated as partially staged work.
+
 ## Log History
 
 | Date | Summary |
 |------|---------|
 | 2026-03-24 | Discovered while verifying CONVI-6476. Root cause identified, fix verified on CH. |
+| 2026-05-07 | Wrapped up the reopened worktree state: recorded that the only dirty change is the SQL fixture update, and that production implementation still needs to be carried through intentionally |

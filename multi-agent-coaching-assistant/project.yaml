@@ -1,0 +1,21 @@
+title: Multi-Agent Coaching Assistant
+status: active
+primary_source_repo: python-ai-services
+primary_repo_path: /Users/xuanyu.wang/repos/python-ai-services
+active_worktree_path: /Users/xuanyu.wang/repos/python-ai-services
+branch: coaching/hackthon
+related_ticket_ids: []
+related_prs: []
+current_objective: Preserve and hand off the uncommitted team-coaching prototype and validation assets in `cresta-assistant/`.
+last_validated: 2026-05-07
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - service-understanding.md
+    - endpoint-redesign.md
+    - task-recommendation-exploration.md
+notes: Legacy project folder refreshed on 2026-05-07 so current AI sessions can track the prototype state against the active `python-ai-services` branch.

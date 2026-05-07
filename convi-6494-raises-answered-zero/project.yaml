@@ -8,7 +8,7 @@ related_ticket_ids:
   - CONVI-6494
 related_prs: []
 current_objective: Carry the verified ClickHouse fix from investigation into implementation and merge it cleanly.
-last_validated: 2026-05-06
+last_validated: 2026-05-07
 artifacts:
   readme: README.md
   log_dir: log/
@@ -16,4 +16,4 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs: []
-notes: Active worktree and branch were validated from the local `go-servers` worktree registry on 2026-05-06.
+notes: Active worktree and branch were validated from the local `go-servers` worktree registry on 2026-05-07.
