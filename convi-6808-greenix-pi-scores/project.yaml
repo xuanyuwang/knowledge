@@ -1,0 +1,19 @@
+title: "CONVI-6808: Greenix PI Scores Dropped / Metadata Criteria N/A"
+status: active
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+active_worktree_path: null
+branch: null
+related_ticket_ids:
+  - CONVI-6808
+related_prs: []
+current_objective: Investigate why Greenix PI scores dropped across all batches and metadata-driven criteria show N/A starting ~May 7-8, 2026.
+last_validated: 2026-05-09
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs: []
+notes: Initially suspected same root cause as CONVI-6753 (float_weight=0), but CH data shows this is a different issue.

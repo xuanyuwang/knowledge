@@ -158,3 +158,9 @@ named_worktrees:
     path: /Users/xuanyu.wang/repos/director-convi-6665
     branch: xwang/convi-6665-deactivated-coaching
     purpose: Dedicated worktree for CONVI-6665 deactivated coaching visibility changes.
+
+  - name: go-servers-convi-6753
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-6753
+    branch: convi-6753-fix-weight-zero-float
+    purpose: Fix weight=0 criteria showing N/A in Performance Insights (CONVI-6753).
