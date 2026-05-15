@@ -164,3 +164,9 @@ named_worktrees:
     path: /Users/xuanyu.wang/repos/go-servers-convi-6753
     branch: convi-6753-fix-weight-zero-float
     purpose: Fix weight=0 criteria showing N/A in Performance Insights (CONVI-6753).
+
+  - name: go-servers-convi-6842
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-6842
+    branch: convi-6842-holiday-inn-voice-and-transfer-performance-insights-shows
+    purpose: Investigate and fix the Holiday Inn PI vs Closed Conversations volume mismatch in CONVI-6842.

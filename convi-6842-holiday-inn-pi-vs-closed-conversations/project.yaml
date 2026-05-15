@@ -1,0 +1,19 @@
+title: "CONVI-6842: Holiday Inn PI vs Closed Conversations mismatch"
+status: active
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-6842
+branch: convi-6842-holiday-inn-voice-and-transfer-performance-insights-shows
+related_ticket_ids:
+  - CONVI-6842
+related_prs: []
+current_objective: Reconcile why Performance Insights can report more conversations than Closed Conversations for the same Holiday Inn date/profile/template filters, and carry the fix in the dedicated go-servers worktree.
+last_validated: 2026-05-14
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs: []
+notes: Primary repo is go-servers because the mismatch is most likely in analytics/conversation-set construction. Director is the secondary surface because PI and Closed Conversations are driven by different APIs and request builders.
