@@ -1,0 +1,20 @@
+title: "CONVI-6841: Lending Club process scorecard failed to update on creation"
+status: active
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers
+branch: convi-6841-update-scorecard-write-db-read
+related_ticket_ids:
+  - CONVI-6841
+related_prs:
+  - https://github.com/cresta/go-servers/pull/27934
+current_objective: Land the narrow UpdateScorecard read-after-create fix and document the replication-lag root cause for the Lending Club process scorecard failure.
+last_validated: 2026-05-19
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs: []
+notes: The issue was initially reported as a coaching submission failure, but investigation narrowed it to a new process scorecard create -> immediate UpdateScorecard race caused by read-after-write inconsistency on replicated Postgres reads.
