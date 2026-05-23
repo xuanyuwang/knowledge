@@ -207,3 +207,108 @@ The core solution — **atomic transaction + async re-read from DB + feature-fla
 | Execution via leverage | Custom tools (load tester, verifier) reusable for future sync validation; atomic-transaction pattern applicable beyond scorecards |
 | Influence without authority | Presented investigation to CTO, accepted the proposed approach, then pushed back with quantified evidence when it caused a P2 — influence through proof, not hierarchy |
 | Operational excellence | Feature-flagged rollout, load testing with timing analysis, production verification across 9,155 scorecards over 39 days |
+
+---
+
+## Project 4: Scorecard/Template Domain Stewardship
+
+**Working reference project:** [`scorecard-template/README.md`](../scorecard-template/README.md)  
+**Domain skeleton:** [`scorecard-template/deliverables/scorecard-template-domain-skeleton.md`](../scorecard-template/deliverables/scorecard-template-domain-skeleton.md)
+
+### Why this is a Staff-level growth project
+
+This project is about moving from “engineer who handles scorecard/template tickets” to “technical partner for the coaching scorecard/template domain.”
+
+The scorecard/template area is difficult not only because of code complexity, but because core business rules are scattered across tickets, people, UI behavior, proto definitions, database models, and historical decisions. Bugs and feature work repeatedly revisit the same concepts under different names and representations.
+
+That makes this a strong Staff track: the leverage is not a single implementation, but a clearer domain model, a reusable reference, and small improvements that reduce ambiguity for the whole team.
+
+### Personal growth framing
+
+The growth goal is:
+
+- become a domain-minded technical partner for coaching, not only an executor of scorecard/template tickets
+- understand the business rules and historical tradeoffs deeply enough to translate between product intent and technical implementation
+- recognize recurring patterns across scattered bugs and features, then turn them into durable artifacts and small systemic improvements
+
+This is the shift from local execution to domain stewardship.
+
+### Staff-level framing
+
+#### Problem
+
+Scorecard/template work has two layers:
+
+- the local issue: a bug, feature, or migration task
+- the repeated domain pattern: the same business rules, lifecycle transitions, and sharp edges that keep reappearing
+
+Today the repeated layer is fragmented. That fragmentation causes:
+
+- repeated investigation for similar work
+- inconsistent mental models across engineering, product, and design
+- hidden correctness risk when business rules are implicit in code or tribal knowledge
+- fewer opportunities to identify small, high-leverage domain improvements
+
+#### North-star outcome
+
+Create a living working reference for scorecard/template in coaching service, and use it to identify incremental improvements that make the domain easier to reason about, safer to change, and easier for others to work in.
+
+### What “moving from senior → staff” looks like on this project
+
+- Build a domain map that others can use without replaying prior investigations.
+- Make business rules explicit and attach them to lifecycle stages instead of leaving them scattered in tickets and code.
+- Turn repeated ticket pain into reusable artifacts: glossary, rule catalog, concept map, investigation log, and improvement proposals.
+- Propose small paradigm shifts that fit team constraints, such as explicit invariants, shared validation points, or clearer lifecycle modeling.
+- Improve the quality of cross-functional discussion by translating between product behavior and implementation details.
+
+### Concrete work items (staff-level deliverables)
+
+1. **Create the domain skeleton**
+- Define the first-pass core concepts: scorecard, template, criterion, option, score, assignment, version, evaluation context
+- Capture the relationship map and main lifecycle
+- Mark unknowns explicitly instead of blocking on completeness
+
+2. **Build the working reference**
+- Create a durable reference covering glossary, lifecycle, rule buckets, surrounding systems, and known sharp edges
+- Keep it live by updating it from real ticket investigations
+
+3. **Capture repeated patterns**
+- For each ticket, record the local issue, lifecycle stage, rule discovered, and whether the pain points to a doc gap, model gap, API gap, test gap, or ownership gap
+
+4. **Propose small systemic improvements**
+- Use recurring patterns to suggest low-cost improvements such as invariant tests, shared validation, better naming, clearer state transitions, or improved observability
+
+5. **Socialize the model**
+- Use the working reference to align engineering, PM, and design on the actual business rules embodied by scorecard/template behavior
+
+### Success metrics (fill in as we go)
+
+- Understanding: I can explain the domain’s main concepts, relationships, and lifecycle clearly without redoing prior investigation
+- Reuse: future scorecard/template work starts from the reference instead of from scratch
+- Pattern recognition: repeated bugs/features are grouped into recognizable categories
+- Leverage: at least one or two small domain-level improvements are adopted because the repeated pattern is now visible
+- Influence: product/engineering discussions get more concrete because the rules and tradeoffs are articulated clearly
+
+### Staff artifacts produced
+
+| Artifact | Location |
+|----------|----------|
+| Working-reference project home | `scorecard-template/README.md` |
+| Domain skeleton | `scorecard-template/deliverables/scorecard-template-domain-skeleton.md` |
+| Working-reference project brief | `scorecard-template/deliverables/scorecard-template-working-reference-project.md` |
+| Canonical system reference | `scorecard-template/deliverables/scorecard-template-system-reference.md` |
+
+### Key insight
+
+- The leverage in this domain is not “know more facts.” It is “organize repeated domain knowledge so ticket work produces a better model of the system over time.”
+
+### Mapping to Staff gaps (from `senior-to-staff.md`)
+
+| Gap | How this project addresses it |
+|-----|-------------------------------|
+| Scope & ownership | Moves from local ticket delivery to owning the health and clarity of a business-rule-heavy problem space |
+| Problem framing & strategy | Reframes scattered bugs/features as symptoms of fragmented domain knowledge and proposes a low-cost strategy: living reference + incremental improvements |
+| Architecture & correctness | Makes lifecycle, invariants, and business rules explicit so correctness can be reasoned about across code and product behavior |
+| Execution via leverage | Produces artifacts that help future ticket work, teammate onboarding, and AI-assisted investigation |
+| Influence without authority | Improves cross-functional alignment by giving PM, design, and engineering a shared domain map and rule vocabulary |
+| Operational excellence | Surfaces risky sharp edges and recurring failure modes before they show up again as production issues |

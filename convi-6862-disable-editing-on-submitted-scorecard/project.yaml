@@ -1,0 +1,21 @@
+title: CONVI-6862 - Disable Editing on Submitted Scorecard
+status: active
+primary_source_repo: director
+primary_repo_path: /Users/xuanyu.wang/repos/director
+active_worktree_path: /Users/xuanyu.wang/repos/director
+branch: main
+related_ticket_ids:
+  - CONVI-6862
+related_prs: []
+current_objective: Align design with narrowed scope, reset BE implementation, and shift proto planning from role-based override to audience-style permitted users.
+last_validated: 2026-05-22
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - deliverables/plan.md
+    - deliverables/eng-design-doc.md
+notes: Investigation spans `director`, `go-servers`, and `cresta-proto`. The discarded BE branch explored role-based `submitted_scorecard_editors`; the active design now prefers audience-style permitted users and includes `ResetScorecard` in the lock scope.
