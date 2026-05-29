@@ -1,7 +1,13 @@
 # Decision Record - Pivot to Permitted Users and Audience-Style Modeling
 
 **Date:** 2026-05-22  
-**Status:** Accepted
+**Status:** Superseded
+
+## Superseded Note
+
+This decision captured an intermediate design direction.
+
+The merged backend and current frontend implementation now use `submitted_scorecard_editors` / `submittedScorecardEditors` as a `UserTeamGroup`-style field with `users + teams + groups`. Keep this record for history, but do not treat it as the active contract.
 
 ## Context
 

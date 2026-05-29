@@ -2,13 +2,14 @@ title: CONVI-6862 - Disable Editing on Submitted Scorecard
 status: active
 primary_source_repo: director
 primary_repo_path: /Users/xuanyu.wang/repos/director
-active_worktree_path: /Users/xuanyu.wang/repos/director
-branch: main
+active_worktree_path: /Users/xuanyu.wang/repos/director-convi-6862
+branch: xwang/convi-6862-submitted-scorecard-editors-v2
 related_ticket_ids:
   - CONVI-6862
-related_prs: []
-current_objective: Align design with narrowed scope, reset BE implementation, and shift proto planning from role-based override to audience-style permitted users.
-last_validated: 2026-05-22
+related_prs:
+  - director#19100
+current_objective: Keep the knowledge docs aligned with the merged backend contract and the current frontend behavior, and provide a detailed local FE validation checklist.
+last_validated: 2026-05-29
 artifacts:
   readme: README.md
   log_dir: log/
@@ -17,5 +18,7 @@ artifacts:
   deliverables_dir: deliverables/
   key_docs:
     - deliverables/plan.md
+    - deliverables/fe-plan.md
     - deliverables/eng-design-doc.md
-notes: Investigation spans `director`, `go-servers`, and `cresta-proto`. The discarded BE branch explored role-based `submitted_scorecard_editors`; the active design now prefers audience-style permitted users and includes `ResetScorecard` in the lock scope.
+    - deliverables/local-test-plan.md
+notes: Backend is merged with `submitted_scorecard_editors` / `submittedScorecardEditors` as a `users + teams + groups` contract. Frontend now exposes the control in `TemplateBuilderAdvanced`, round-trips users/teams/groups, does not depend on `permissions.scorecardGraders`, and uses `All users` as the empty-state text.
