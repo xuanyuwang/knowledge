@@ -1,0 +1,24 @@
+title: CONVI-6968 - Schwab Leaderboard Launch Support
+status: active
+primary_source_repo: director
+primary_repo_path: /Users/xuanyu.wang/repos/director
+active_worktree_path: /Users/xuanyu.wang/repos/director
+branch: main
+related_ticket_ids:
+  - CONVI-6968
+related_prs: []
+current_objective: Document the current data sources, filter coverage, and implementation constraints for adding template-grouped scorecard counts to the Agent and Manager leaderboard tabs.
+last_validated: 2026-06-02
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - log/2026-06-01.md
+    - log/2026-06-02.md
+    - deliverables/api-decision-table.md
+    - deliverables/agent-tab-api-analysis.md
+    - deliverables/manager-tab-api-analysis.md
+notes: Initial investigation confirms the Agent tab likely needs a tradeoff between filter parity and template-level grouping, while the Manager tab cannot reuse the existing scorecard stats response for template grouping because that API has no template dimension.
