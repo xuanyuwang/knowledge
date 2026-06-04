@@ -76,7 +76,7 @@ This is more explicit than making the table own the drawer because the drawer ne
 | Tab | Table aggregate API | Drawer API | FE grouping key | Notes |
 |-----|---------------------|------------|-----------------|-------|
 | Agent | Separate `RetrieveQAScoreStats` query with `scorecardStatuses = [MANUALLY_SUBMITTED]` | `RetrieveQAConversations` with `scorecardStatuses = [MANUALLY_SUBMITTED]` | `criteriaInfo[].scorecardTemplateId` or template resource derived from scorecard details | Fetch only for the selected agent when the drawer opens. Use the leaderboard filters plus `usersTeamsGroups.userNames = [agent.resourceName]`. Include `filterToAgentsOnly` once backend support is available. Resolve section titles from the page's existing current-template list. |
-| Manager | `RetrieveScorecardStats` | MVP: `ListScorecards`; future: `RetrieveQAConversations` once scorecard creator filtering is available | MVP: `scorecard.templateName`; future: template ID/name from QA conversation rows | Fetch only for the selected manager when the drawer opens. For MVP, use `creatorUserNames = [manager.resourceName]`, `startSubmitTime`, and `endSubmitTime` to align with current `Scorecards completed` semantics as closely as current APIs allow. Hide the choice behind a normalized data-provider hook. |
+| Manager | `RetrieveScorecardStats` | MVP: `ListScorecards`; future: `RetrieveQAConversations` once scorecard submitter filtering and submit-time filtering are available | MVP: `scorecard.templateName`; future: template ID/name from QA conversation rows | Fetch only for the selected manager when the drawer opens. For MVP, use `submitterUserNames = [manager.resourceName]`, `startSubmitTime`, and `endSubmitTime` to align with current `Scorecards completed` semantics as closely as current APIs allow. Hide the choice behind a normalized data-provider hook. |
 
 Existing hooks to reuse:
 
@@ -108,7 +108,7 @@ Recommended files:
 | `ScorecardTemplateBreakdownDrawer.tsx` | Shared drawer UI for Agent and Manager modes. |
 | `useScorecardTemplateBreakdownDrawerProps.ts` | Small parent-owned state hook, following Coaching Hub / Coaching Report patterns. |
 | `useAgentScorecardTemplateBreakdown.ts` | Agent drawer request and grouping from submitted-only `RetrieveQAConversations`. |
-| `useManagerScorecardTemplateBreakdown.ts` | Manager drawer normalized data provider. MVP uses `ListScorecards`; future implementation should switch to `RetrieveQAConversations` after creator filtering exists. |
+| `useManagerScorecardTemplateBreakdown.ts` | Manager drawer normalized data provider. MVP uses `ListScorecards`; future implementation should switch to `RetrieveQAConversations` after submitter filtering and submit-time filtering exist. |
 | `ScorecardTemplateBreakdownDrawer.module.css` | Drawer/header/list styling. |
 
 Recommended UI structure:
@@ -150,9 +150,9 @@ Template section header should display:
 2. Change the existing `numOfScorecardsCompleted` cell in `coachingColumnGroup` to a clickable cell for positive counts.
 3. Render the shared drawer from `ManagerLeaderboardPage.tsx` with selected manager and current `filtersState`.
 4. Drawer uses `useManagerScorecardTemplateBreakdown` as a normalized data-provider hook.
-5. MVP provider fetches `ListScorecards` with `creatorUserNames = [manager.resourceName]`, `startSubmitTime`, `endSubmitTime`, and `scorecardView = FULL`.
+5. MVP provider fetches `ListScorecards` with `submitterUserNames = [manager.resourceName]`, `startSubmitTime`, `endSubmitTime`, and `scorecardView = FULL`.
 6. Group returned scorecards by `scorecard.templateName` and display template title/count sections.
-7. Future provider should switch to `RetrieveQAConversations` after scorecard creator filtering exists, without changing the drawer UI contract.
+7. Future provider should switch to `RetrieveQAConversations` after scorecard submitter filtering and submit-time filtering exist, without changing the drawer UI contract.
 
 ## Test Plan
 
@@ -184,6 +184,6 @@ Template section header should display:
 |-------|------|
 | Agent all-template fetch size | Fetching all QA conversations for one agent is on-demand, but high-volume agents may still produce large result sets. Consider page size limits or lazy section loading if needed. |
 | Historical/deactivated Agent templates | The normal title path should use the current-template list already loaded through `ListCurrentScorecardTemplates`. If `RetrieveQAConversations` returns scorecards for templates absent from that list, display the template ID/resource name as fallback, or add a targeted metadata lookup if product requires exact historical titles. |
-| Manager parity | MVP `ListScorecards` with `creatorUserNames` is the closest row-level extension of `RetrieveScorecardStats`, but the API surfaces are not identical. Validate with sample customer data. |
-| Manager future migration | `RetrieveQAConversations` should replace the MVP provider once creator filtering is added. Keep the drawer UI on a normalized provider contract to avoid rewrite. |
+| Manager parity | MVP `ListScorecards` with `submitterUserNames` is the closest row-level extension of the updated `RetrieveScorecardStats`, but the API surfaces are not identical. Validate with sample customer data. |
+| Manager future migration | `RetrieveQAConversations` should replace the MVP provider once submitter filtering and submit-time filtering are added. Keep the drawer UI on a normalized provider contract to avoid rewrite. |
 | Filter parity | Manager filters disable template/status/duration/deactivated filters in the current UI, so the drawer should not invent those filters. Agent drawer should mirror current Agent filters as closely as `RetrieveQAConversations` supports. |

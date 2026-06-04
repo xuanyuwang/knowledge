@@ -121,7 +121,7 @@ The Manager drawer now uses only:
 Request behavior:
 
 - Fetch only when the drawer is open and a selected manager exists.
-- Use `creatorUserNames = [manager.resourceName]`.
+- Use `submitterUserNames = [manager.resourceName]`.
 - Use `startSubmitTime = filtersState.submitDateRange.startDate.toISOString()`.
 - Use `endSubmitTime = filtersState.submitDateRange.endDate.toISOString()`.
 - Use `scorecardView = FULL`.
@@ -219,7 +219,7 @@ The review should focus on these areas:
 
 - Whether the Agent submitted-only aggregate query should be skipped under any loading condition beyond the existing template-pending state.
 - Whether the Agent drawer should cap page fetching or add pagination if selected agents have very high scorecard volume.
-- Whether Manager `ListScorecards.creatorUserNames + submit-time range` reconciles with `RetrieveScorecardStats` on customer sample data.
+- Whether Manager `ListScorecards.submitterUserNames + submit-time range` reconciles with the updated submitter-attributed `RetrieveScorecardStats` on customer sample data.
 - Whether drawer scorecard rows without conversation metadata need a richer fallback than raw scorecard ID.
 
 ## Remaining Follow-Ups

@@ -8,7 +8,7 @@ related_ticket_ids:
   - CONVI-6968
 related_prs: []
 current_objective: Document the current data sources, filter coverage, and implementation constraints for adding template-grouped scorecard counts to the Agent and Manager leaderboard tabs.
-last_validated: 2026-06-02
+last_validated: 2026-06-03
 artifacts:
   readme: README.md
   log_dir: log/
@@ -18,7 +18,9 @@ artifacts:
   key_docs:
     - log/2026-06-01.md
     - log/2026-06-02.md
+    - log/2026-06-03.md
     - deliverables/api-decision-table.md
     - deliverables/agent-tab-api-analysis.md
     - deliverables/manager-tab-api-analysis.md
-notes: Initial investigation confirms the Agent tab likely needs a tradeoff between filter parity and template-level grouping, while the Manager tab cannot reuse the existing scorecard stats response for template grouping because that API has no template dimension.
+    - deliverables/fe-ui-investigation.md
+notes: Current decisions: add an Agent column titled "Number of submitted scorecards" backed by a separate submitted-only RetrieveQAScoreStats query; use submitted-only RetrieveQAConversations for the Agent drawer; keep Manager Scorecards completed on RetrieveScorecardStats, whose current backend semantics are submitter-attributed via submitter_user_id and scorecard_submit_time; use ListScorecards with submitterUserNames for the Manager drawer MVP behind a normalized data-provider abstraction; do not replace this with RetrieveQAConversations or RetrieveQAScoreStats until they support equivalent submitter attribution and submit-time behavior.

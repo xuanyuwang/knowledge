@@ -4,8 +4,8 @@
 
 For the Agent leaderboard tab, the feature needs two different kinds of data:
 
-1. Aggregate: get the number of scorecards for each agent all at once.
-2. Drill-down: after clicking `# of scorecards`, fetch the scorecards for one agent and group them by template for the side drawer.
+1. Aggregate: get the number of submitted scorecards for each agent all at once.
+2. Drill-down: after clicking `Number of submitted scorecards`, fetch the submitted scorecards for one agent and group them by template for the side drawer.
 
 The key design question is whether one API can do both jobs well, or whether the table and the drawer should use different APIs.
 
@@ -30,12 +30,19 @@ The current Agent tab QA score path is built from the QA filter state. From the 
 
 Any API chosen for the Agent tab should be judged against this filter surface, not just against raw ability to return scorecards.
 
+Important status decision:
+
+- The default Leaderboard filter has `scorecardStatus: []`.
+- For `RetrieveQAScoreStats`, an empty `scorecardStatuses` request means no scorecard status predicate is applied.
+- Therefore the existing Performance score query includes all matching statuses, not only submitted scorecards.
+- The new Agent column must use a separate submitted-only query with `scorecardStatuses = [MANUALLY_SUBMITTED]`.
+
 ## API Comparison
 
 | API | Main purpose | Filter support on Agent tab | Can get aggregate counts for all agents at once? | Can get scorecard details for one agent grouped by template? | Main strengths | Main weaknesses |
 |-----|--------------|-----------------------------|--------------------------------------------------|--------------------------------------------------------------|----------------|-----------------|
-| `RetrieveQAScoreStats` | Aggregated QA score and QA scorecard metrics | Best parity with current Agent QA path. Supports the QA filter family plus `scoreResource`, `conversationTimeRangeField`, and `filterToAgentsOnly`. | Yes, directly via group-by agent. | No, not directly. It has no template group-by dimension. | Best semantic match to the current Agent tab performance data. Efficient for the main table. | Cannot return `agent x template` in one call. Template is only a filter, not a group-by dimension. |
-| `RetrieveQAConversations` | Detailed QA score rows / scorecard-level drill-down data | Almost the same QA filter family as `RetrieveQAScoreStats`, but currently missing `filterToAgentsOnly`. | Yes, technically, by fetching all pages and aggregating on FE. | Yes, by filtering to one agent and grouping rows by `scorecardTemplateId` on FE. | Best current API for template drill-down. QA-scoped, not a generic scorecard list. | Heavy for the main table because it is paginated detail data. Not full parity until `filterToAgentsOnly` is supported. |
+| `RetrieveQAScoreStats` | Aggregated QA score and QA scorecard metrics | Best parity with current Agent QA path. Supports the QA filter family plus `scoreResource`, `conversationTimeRangeField`, and `filterToAgentsOnly`. | Yes, directly via group-by agent, but use a separate submitted-only request. | No, not directly. It has no template group-by dimension. | Best semantic match to the current Agent tab performance data. Efficient for the submitted-count table column. | Cannot return `agent x template` in one call. Existing all-status score query cannot be reused for the submitted-only column. |
+| `RetrieveQAConversations` | Detailed QA score rows / scorecard-level drill-down data | Almost the same QA filter family as `RetrieveQAScoreStats`, with `filterToAgentsOnly` support expected/needed for parity. | Yes, technically, by fetching all pages and aggregating on FE. | Yes, by filtering to one agent, hardcoding submitted status, and grouping rows by `scorecardTemplateId` on FE. | Best current API for template drill-down. QA-scoped, not a generic scorecard list. | Heavy for the main table because it is paginated detail data. |
 | `RetrieveScorecardStats` | Aggregated completed scorecard stats in generic Insights APIs | Partial parity only. Good for generic attribute filters, but not a full match for the Agent tab QA score filter surface. | Yes, directly via group-by agent. | No, not directly. No template breakdown in response. | Efficient aggregate API. | Not the current Agent QA source of truth. Missing QA-specific semantics and template drill-down. |
 | `ListScorecards` | Raw scorecard listing API | Lowest parity. Good scorecard-list filters, but not a full match for Agent-tab QA filters like duration buckets, criterion filters, score ranges, include N/A, voicemail, score resource, or `listAgentOnly`. | Yes, technically, by fetching all pages and aggregating on FE. | Yes, directly from raw scorecard rows grouped by template on FE. | Most explicit raw scorecard data source. | Semantically farthest from the current Agent leaderboard QA path. Highest parity risk. |
 
@@ -46,6 +53,7 @@ Any API chosen for the Agent tab should be judged against this filter surface, n
 #### What it is best at
 
 - Aggregate QA metrics by agent.
+- Aggregate submitted scorecard counts by agent when the request explicitly sets `scorecardStatuses = [MANUALLY_SUBMITTED]`.
 - Staying consistent with the current Agent tab's performance data path.
 - Respecting the current QA filter semantics.
 
@@ -58,6 +66,8 @@ Any API chosen for the Agent tab should be judged against this filter surface, n
 #### Practical consequence
 
 It is a strong choice for job 1, but not enough for job 2 unless FE fans out one request per template and merges the results. That fan-out design is possible, but it is not ideal.
+
+For this feature, do not reuse the existing Agent Performance score request for the new column. That request follows the visible filters and defaults to empty `scorecardStatuses`, which means all statuses. The new column title is `Number of submitted scorecards`, so it needs a separate query with the submitted status hardcoded.
 
 ### `RetrieveQAConversations`
 
@@ -138,12 +148,12 @@ Technically possible, but the filter and semantics gap is too large for the Agen
 
 | Job | Recommended API | Why |
 |-----|-----------------|-----|
-| Main leaderboard table: aggregate `# of scorecards` for all agents | `RetrieveQAScoreStats` | Best alignment with the current Agent tab QA score semantics and filters. Efficient aggregate API. |
-| Side drawer: scorecards for one agent grouped by template | `RetrieveQAConversations` | Best available detailed QA API for on-demand drill-down by template. |
+| Main leaderboard table: aggregate `Number of submitted scorecards` for all agents | Separate `RetrieveQAScoreStats` query with `scorecardStatuses = [MANUALLY_SUBMITTED]` | Best alignment with the current Agent tab QA score semantics and filters while making submitted-only semantics explicit. Efficient aggregate API. |
+| Side drawer: submitted scorecards for one agent grouped by template | `RetrieveQAConversations` with `scorecardStatuses = [MANUALLY_SUBMITTED]` | Best available detailed QA API for on-demand drill-down by template. The drawer should align with the submitted-only column. |
 
 ### Why this split is the best current design
 
-- The table only needs aggregate counts, so it should use the aggregate API.
+- The table only needs aggregate submitted counts, so it should use the aggregate API with a hardcoded submitted-status filter.
 - The drawer only opens for one agent at a time, so it is acceptable to fetch detail data on demand.
 - This preserves consistency with the current Agent leaderboard behavior on the main table.
 - It avoids fetching all detailed scorecard rows for all agents upfront.
@@ -162,8 +172,8 @@ Even with that improvement, `RetrieveQAScoreStats` is still the better fit for t
 
 For the Agent tab:
 
-- Best API for job 1: `RetrieveQAScoreStats`
-- Best API for job 2: `RetrieveQAConversations`
+- Best API for job 1: a separate submitted-only `RetrieveQAScoreStats` query
+- Best API for job 2: submitted-only `RetrieveQAConversations`
 - Best overall design: two APIs, one for the table and one for the drawer
 
 If the team insists on a single API, `RetrieveQAConversations` is the only realistic candidate, but it is a weaker design than the split approach.
