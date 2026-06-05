@@ -57,6 +57,7 @@ The domain skeleton is the starting framework. The concept map turns that framew
 
 The complete understanding of scorecard templates is spread across multiple project folders. The most relevant supporting docs are:
 
+- `template-schema-version-updater/README.md`
 - `nascore/README.md`
 - `nascore/options-scores-lifecycle.md`
 - `convi-6709-reversed-scorecard/README.md`

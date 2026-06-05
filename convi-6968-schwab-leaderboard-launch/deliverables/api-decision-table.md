@@ -100,3 +100,19 @@ The MVP implementation can use `ListScorecards`. The abstraction should not leak
 | Reviewer audience | Not applied in the traced `RetrieveQAConversations` ClickHouse implementation, despite the proto field existing. Other QA/manual-QA stats paths do use reviewer audience against `submitter_user_id`. |
 | Time basis | Default time range maps to `scorecard_time` on score/scorecard tables, not `scorecard_submit_time`. Conversation-ended time uses a conversation join. |
 | Manager parity implication | Cannot produce the same row set as current Manager `Scorecards completed`, which is submit-time-filtered and submitter-attributed. |
+
+## ClickHouse `scorecard_time` Source
+
+`scorecard_time` is not the scorecard submission timestamp.
+
+For conversation scorecards, ClickHouse `scorecard_time` is populated from Postgres `chats.started_at`. The score row builder sets both `conversation_start_time` and `scorecard_time` from `conversation.StartedAt`; the scorecard row builder copies that same score-row conversation start time into the scorecard-level row.
+
+For process scorecards, ClickHouse `scorecard_time` is populated from Postgres `scorecards.process_interaction_at` when present and non-zero. If that field is absent or zero, the builder falls back to the ClickHouse default time sentinel.
+
+Separate ClickHouse fields hold other scorecard timestamps:
+
+- `scorecard_submit_time` comes from Postgres `scorecards.submitted_at`.
+- `scorecard_create_time` comes from Postgres `scorecards.created_at`.
+- `scorecard_last_update_time` comes from Postgres `scorecards.updated_at`.
+
+Implication for this project: APIs whose default time filter maps to `scorecard_time` are filtering by conversation start time for conversation scorecards, not by scorecard submission time. The current Manager `Scorecards completed` metric avoids that by using `RetrieveScorecardStats`, which rewrites the scorecard table time filter to `scorecard_submit_time`.

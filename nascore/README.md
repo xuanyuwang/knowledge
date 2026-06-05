@@ -24,6 +24,12 @@ Additional work completed:
 - **Comprehensive test scenarios** - Created QA test document covering 10 main scenarios, 4 edge cases, 3 regression tests, 2 performance tests
 - **Code reviews** - Analyzed TemplateBuilderFormConfigurationStep.tsx, DEFAULT_CRITERION behavior, and AutoQA sync mechanisms
 
+Recent follow-up issue docs:
+
+- [CONVI-6955: required comments dropdown duplicates/remaps N/A incorrectly](./convi-6955-required-comments-remapping.md)
+- [CONVI-6962: scored N/A branch conditions do not activate](./convi-6962-scored-na-branching.md)
+- [CONVI-6960: scored N/A survives after enableNAScore is disabled](./convi-6960-na-flag-fallback.md)
+
 **Critical issue identified (deferred):** DEFAULT_CRITERION provides options but NO scores array, which is incompatible with decoupled scoring after removing legacy migration. User noted this has always been the case with no bug reports, so investigating further before making changes.
 
 ## Key Findings

@@ -28,12 +28,18 @@ Open questions:
 
 Working definition:
 
-- the reusable blueprint that defines what can be evaluated and how evaluation semantics work
+- the reusable blueprint that defines
+  - evaluation rules
+    - what can be evaluated
+    - how they're evaluated
+  - permissions of scorecards
 
 Known characteristics:
 
 - stored authoritatively in Postgres
 - versioned by revision
+  - a scorecard is always associated with a specific revision
+  - even though "what and how to evaluate" are applied to a specific revision, latest permission are applied to all revisions.
 - used by builder UI, scoring logic, and analytics projection flows
 
 Open questions:
