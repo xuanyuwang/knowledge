@@ -83,8 +83,7 @@ The fix is intentionally built from small helper functions because the same N/A 
 
 | Helper | Purpose |
 | --- | --- |
-| `isOptionBackedNumericCriterion(...)` | Narrows a criterion to labeled radios or dropdown numeric values. These are the only numeric criterion types that can contain a real template option marked `isNA`. |
-| `getScoredNAOption(...)` | Finds the real scored-N/A option in `settings.options`. This is different from legacy N/A, which is represented by `INPUT_N_A_VALUE`. |
+| `getScoredNAOption(...)` | Finds the real scored-N/A option in `settings.options`. It first narrows to labeled radios and dropdown numeric values, which are the only criterion types that can contain a real option marked `isNA`. This is different from legacy N/A, which is represented by `INPUT_N_A_VALUE`. |
 | `isEffectiveLegacyNASelection(...)` | Treats a stored scored-N/A numeric value as legacy N/A when `enableNAScore` is off. This is the key fallback guard for old scorecards created while scored N/A was enabled. |
 
 This avoids three separate `getScoredNAOption` implementations across:
@@ -196,4 +195,4 @@ Local validation after helper deduplication:
 
 Latest local commit:
 
-- `b630cbee50 Deduplicate scored N/A helpers`
+- `477010c976 Document scored N/A helper purposes`
