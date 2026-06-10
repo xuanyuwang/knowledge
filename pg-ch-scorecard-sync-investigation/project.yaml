@@ -1,0 +1,23 @@
+title: "PostgreSQL to ClickHouse scorecard sync investigation skill"
+status: active
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers
+branch: main
+related_ticket_ids: []
+related_prs: []
+current_objective: Create a reusable investigation skill and repair playbook for repeated PostgreSQL to ClickHouse scorecard sync issues.
+last_validated: 2026-06-08
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - sync-theory.md
+    - scorecard-specific-constraints.md
+    - case-mapping.md
+    - solution-space.md
+    - deliverables/pg-ch-data-sync-investigator/SKILL.md
+notes: This project now tracks both the reusable sync-failure taxonomy and a Codex skill for repeatable incident investigation.

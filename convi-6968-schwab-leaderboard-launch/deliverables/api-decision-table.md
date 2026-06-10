@@ -1,20 +1,34 @@
 # API Decision Table
 
+## 2026-06-08 Backend Update
+
+The earlier Manager-tab recommendation to keep using `ListScorecards` or `RetrieveScorecardStats` was based on missing submitter support in the QA APIs. That backend gap is now closed.
+
+Current Manager target:
+
+- Main table aggregate: `RetrieveQAScoreStats` with scorecard submitter selections in `QAAttribute.scorecard_reviewer_audience`; use `QA_ATTRIBUTE_TYPE_SCORECARD_SUBMITTER` when grouping by manager/submitter.
+- Drawer details: `RetrieveQAConversations` with scorecard submitter selections in `QAAttribute.scorecard_reviewer_audience`; group returned scorecard rows by template on FE.
+- Agent filters remain in `QAAttribute.users/groups` and apply to `agent_user_id`.
+- Submitter filters live in `QAAttribute.scorecard_reviewer_audience` and apply to `submitter_user_id`.
+- The old submit-time parity requirement is no longer blocking this migration. The accepted target is QA API time-range semantics, not exact preservation of `RetrieveScorecardStats` submit-time semantics.
+
+The historical comparison below is still useful for understanding why backend changes were needed, but statements that say `RetrieveQAConversations` or `RetrieveQAScoreStats` are only future targets for Manager submitter attribution are superseded by the merged proto/go backend work.
+
 ## Leaderboard Scorecard Data Options
 
 | API | Primary entity / grain | Filter parity with current leaderboard usage | Template grouping support | Best fit for Agent tab | Best fit for Manager tab | Notes |
 |------|-------------------------|---------------------------------------------|---------------------------|------------------------|--------------------------|-------|
-| `RetrieveQAScoreStats` | Aggregated QA score / scorecard stats | High for current QA filters. Uses `QAAttribute`, time range, `scoreResource`, `conversationTimeRangeField`, and `filterToAgentsOnly`. | No direct template dimension | Yes, for the Agent submitted-scorecard aggregate column, but use a separate query with `scorecardStatuses = [MANUALLY_SUBMITTED]` | No | Best semantic match for the Agent leaderboard QA aggregate path. Do not reuse the existing Performance score query for the new column because the default empty `scorecardStatuses` request includes all matching statuses. |
-| `RetrieveQAConversations` | Detailed QA-scored conversation / scorecard rows | Medium-high for Agent QA drill-down. With `filterToAgentsOnly` support added, it can match the Agent tab more closely. For Manager parity, it needs future support for filtering by scorecard submitter and scorecard submit time. | Yes, indirectly. FE can group returned scorecards by `scorecardTemplateId`. | Yes, for on-demand Agent drawer template grouping with `scorecardStatuses = [MANUALLY_SUBMITTED]` | Future target for Manager drawer after submitter filtering and submit-time filtering are added | Closest way to derive scorecard detail rows from QA data without a new backend aggregate API. It reads from ClickHouse, which is more consistent with the other Insights APIs and should be faster than the MVP `ListScorecards` path. |
+| `RetrieveQAScoreStats` | Aggregated QA score / scorecard stats | High for current QA filters. Uses `QAAttribute`, time range, `scoreResource`, `conversationTimeRangeField`, and `filterToAgentsOnly`. Now also supports submitter filtering through `scorecard_reviewer_audience`. | No direct template dimension | Yes, for the Agent submitted-scorecard aggregate column, but use a separate query with `scorecardStatuses = [MANUALLY_SUBMITTED]` | Yes, for Manager aggregate with `QA_ATTRIBUTE_TYPE_SCORECARD_SUBMITTER` | Best semantic match for leaderboard QA aggregate paths. Do not reuse the existing Performance score query for the new Agent column because the default empty `scorecardStatuses` request includes all matching statuses. |
+| `RetrieveQAConversations` | Detailed QA-scored conversation / scorecard rows | High for QA drill-down. It supports agent filters through `users/groups` and submitter filters through `scorecard_reviewer_audience`. | Yes, indirectly. FE can group returned scorecards by `scorecardTemplateId`. | Yes, for on-demand Agent drawer template grouping with `scorecardStatuses = [MANUALLY_SUBMITTED]` | Yes, for Manager drawer after backend submitter filtering support | Closest way to derive scorecard detail rows from QA data without a new backend aggregate API. It reads from ClickHouse, aligns with the other Insights APIs, and should be faster than the older `ListScorecards` path. |
 | `RetrieveScorecardStats` | Aggregated completed scorecard stats | High for the current Manager tab because this is what the page already uses | No direct template dimension | No | Yes, for consistency with existing Manager leaderboard behavior | Current Manager `Scorecards completed` metric source. Request is grouped by agent and FE reads `averageScorecardCompletedPerUser`. |
-| `ListScorecards` | Raw scorecard list | Low-medium for leaderboard parity. Strong scorecard filters, but not a full match for leaderboard QA-style filters. | Yes, directly from scorecard/template data | Possible, but inconsistent with existing Agent QA path | MVP source for Manager drawer details | Use `submitterUserNames` to align with current `RetrieveScorecardStats` as closely as possible for MVP. Wrap this behind a drawer data abstraction so the implementation can switch to `RetrieveQAConversations` when submitter filtering and submit-time filtering are available. |
+| `ListScorecards` | Raw scorecard list | Low-medium for leaderboard parity. Strong scorecard filters, but not a full match for leaderboard QA-style filters. | Yes, directly from scorecard/template data | Possible, but inconsistent with existing Agent QA path | Historical MVP fallback for Manager drawer details | Backend submitter filtering is now available in `RetrieveQAConversations`, so this is no longer the preferred Manager drawer target unless FE needs a temporary fallback. |
 
 ## Consistency Recommendation
 
 | Tab | Most consistent API with current page behavior | Why | Main limitation |
 |-----|-----------------------------------------------|-----|-----------------|
 | Agent | `RetrieveQAScoreStats` with explicit submitted status for the new column | The Agent leaderboard already treats QA score metrics as the source of truth for performance-related data, but the new column is specifically "submitted scorecards". | No template grouping in the response, and the existing score query cannot be reused because empty `scorecardStatuses` means no status filter. |
-| Manager | `RetrieveScorecardStats` | The Manager leaderboard already defines `Scorecards completed` with this API. | No template grouping in the response. |
+| Manager | `RetrieveQAScoreStats` | Backend now supports submitter filtering and submitter grouping through `scorecard_reviewer_audience` plus `QA_ATTRIBUTE_TYPE_SCORECARD_SUBMITTER`. | No template grouping in the aggregate response; use `RetrieveQAConversations` for the drawer. |
 
 ## Why `RetrieveQAScoreStats` Cannot Do Agent x Template
 
@@ -43,10 +57,10 @@ That is workable for a small, known template set, but it is not true `agent x te
 | Preserve current Agent tab QA metric semantics as closely as possible | `RetrieveQAScoreStats` | Need backend support or a second API to add template grouping. |
 | Show Agent "Number of submitted scorecards" in the table | Separate `RetrieveQAScoreStats` query with `scorecardStatuses = [MANUALLY_SUBMITTED]` | Required because the default/empty scorecard status filter includes all statuses. |
 | Ship Agent tab template grouping from FE with current APIs | `RetrieveQAConversations` with `scorecardStatuses = [MANUALLY_SUBMITTED]` | Reasonable for the on-demand drawer once `filterToAgentsOnly` is supported. |
-| Preserve current Manager tab `Scorecards completed` semantics | `RetrieveScorecardStats` | Cannot group by template. |
-| Show manager-reviewed scorecards by template | Not supported cleanly by the traced current APIs | `RetrieveQAConversations` exposes scorecard/template rows, but the traced implementation does not apply `scorecardReviewerAudience`; current Manager aggregate is submitter-attributed completed scorecards. |
-| Show manager-completed scorecards by template, matching current aggregate as closely as possible for MVP | `ListScorecards` with `submitterUserNames`, `startSubmitTime`, and `endSubmitTime` | Current `RetrieveScorecardStats` counts submitted scorecards attributed to `submitter_user_id`, not `creator_user_id`. Still needs sample-data validation. |
-| Future Manager drawer implementation | `RetrieveQAConversations` after adding scorecard submitter filtering and submit-time filtering | Better long-term source because it reads from ClickHouse, aligns with other Insights APIs, and should be faster than listing scorecards from the scorecard service path. |
+| Preserve old Manager tab `Scorecards completed` submit-time semantics | `RetrieveScorecardStats` | Cannot group by template; old submit-time parity is no longer required for the QA API migration. |
+| Show manager-reviewed scorecards by template | Product definition needed | The implemented backend semantics for this migration use `scorecard_reviewer_audience` as scorecard submitter filtering, not a distinct reviewer metric. |
+| Show manager-completed scorecards by template after backend migration | `RetrieveQAConversations` with manager selection in `scorecard_reviewer_audience` | Current target accepts QA API time-range semantics and groups returned row details by template on FE. |
+| Manager drawer implementation after backend migration | `RetrieveQAConversations` with scorecard submitter filtering in `scorecard_reviewer_audience` | Better long-term source because it reads from ClickHouse, aligns with other Insights APIs, and should be faster than listing scorecards from the scorecard service path. |
 | Show manager-created scorecards by template | `ListScorecards` with `creatorUserNames` | Becomes a new metric definition rather than a direct extension of current Manager tab scorecard stats. |
 
 ## Recommended Two-API Pattern For Agent Tab
@@ -68,11 +82,11 @@ That is workable for a small, known template set, but it is not true `agent x te
 
 | Drill-down meaning | Recommended API | Why | Caveat |
 |--------------------|-----------------|-----|--------|
-| Reviewed by manager | Not supported cleanly by `RetrieveQAConversations` today | The proto has `scorecardReviewerAudience`, but the traced `RetrieveQAConversations` ClickHouse path does not read it. | Would need backend support or a different API path if product wants reviewer semantics. |
-| Completed/submitted by manager, matching current aggregate as closely as possible for MVP | `ListScorecards` with `submitterUserNames`, `startSubmitTime`, and `endSubmitTime` | Current aggregate counts distinct scorecards with submit time in range, attributed to `submitter_user_id`. | Needs sample-data validation because the aggregate and list APIs have different filter surfaces and different storage systems. |
-| Completed/submitted by manager, future target | `RetrieveQAConversations` after adding submitter filtering and submit-time filtering | Would read from ClickHouse like the other Insights APIs and should be faster. | Requires backend support for filtering scorecards by submitter and submit time before FE can switch. |
+| Reviewed by manager | Product definition needed | The backend field name is `scorecardReviewerAudience`, but this migration implements it as a scorecard submitter audience. | Use a different API path or explicit backend semantics if product needs reviewer identity rather than submitter identity. |
+| Completed/submitted by manager after backend migration | `RetrieveQAConversations` with the selected manager in `scorecard_reviewer_audience` | Reads from ClickHouse like the other Insights APIs and should be faster than `ListScorecards`. | Uses QA API time-range semantics, not the old submit-time rewrite. |
+| Completed/submitted by manager with old submit-time semantics | `ListScorecards` with `submitterUserNames`, `startSubmitTime`, and `endSubmitTime` | Historical fallback that mirrors old submit-time filtering more closely. | Not the current target; filter parity with QA leaderboard filters is weaker. |
 | Created by manager | `ListScorecards` with `creatorUserNames` | The API explicitly supports `creatorUserNames` and scorecard/template filtering. | This is a different metric definition relative to the current Manager `Scorecards completed` column. |
-| Exact extension of current Manager aggregate | MVP: `ListScorecards` with `submitterUserNames`; future: `RetrieveQAConversations` with submitter filter and submit-time support | Current aggregate comes from `RetrieveScorecardStats`; row-level equivalent is inferred from the backend query. | Needs validation on sample data or backend clarification. |
+| Exact extension of old Manager aggregate | `ListScorecards` with `submitterUserNames` and submit-time filters | Historical fallback if exact old submit-time behavior is required. | Not the current target because the project decision accepts QA API time-range semantics. |
 
 ### Manager data-provider abstraction decision
 
@@ -84,7 +98,7 @@ Build the Manager drawer data fetching behind a small abstraction that returns a
 - scorecard rows per template
 - loading/error state
 
-The MVP implementation can use `ListScorecards`. The abstraction should not leak `ListScorecards`-specific fields into the drawer UI. When `RetrieveQAConversations` supports filtering by scorecard submitter and submit time, only the data provider should change; the table cell, drawer shell, grouping UI, and tests for the normalized contract should remain stable.
+The preferred implementation can use `RetrieveQAConversations`. The abstraction should not leak API-specific fields into the drawer UI, so a temporary `ListScorecards` fallback or future API adjustment remains localized to the data provider.
 
 ## `RetrieveQAConversations` Scorecard Criteria
 

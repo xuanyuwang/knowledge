@@ -1,0 +1,22 @@
+title: Train for Staff
+status: active
+primary_source_repo: knowledge
+primary_repo_path: /Users/xuanyu.wang/repos/knowledge
+active_worktree_path: /Users/xuanyu.wang/repos/knowledge
+branch: main
+related_ticket_ids: []
+related_prs: []
+current_objective: Convert project work into staff-level narratives, blog candidates, and resume-ready impact bullets.
+last_validated: 2026-06-05
+artifacts:
+  readme: staff-project.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - senior-to-staff.md
+    - staff-project.md
+    - resume-snippets.md
+    - deliverables/blog-and-resume-candidates.md
+notes: Legacy growth folder reopened under the shared project workflow; `staff-project.md` is the current human-facing project home.

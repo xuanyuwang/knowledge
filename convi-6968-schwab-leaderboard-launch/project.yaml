@@ -1,14 +1,19 @@
 title: CONVI-6968 - Schwab Leaderboard Launch Support
-status: active
+status: backend_merged
 primary_source_repo: director
 primary_repo_path: /Users/xuanyu.wang/repos/director
 active_worktree_path: /Users/xuanyu.wang/repos/director
 branch: main
 related_ticket_ids:
   - CONVI-6968
-related_prs: []
-current_objective: Document the current data sources, filter coverage, and implementation constraints for adding template-grouped scorecard counts to the Agent and Manager leaderboard tabs.
-last_validated: 2026-06-03
+related_prs:
+  - https://github.com/cresta/cresta-proto/pull/8803
+  - https://github.com/cresta/go-servers/pull/28525
+  - https://github.com/cresta/go-servers/pull/28526
+  - https://github.com/cresta/go-servers/pull/28530
+  - https://github.com/cresta/go-servers/pull/28527
+current_objective: Document the final backend API semantics for Manager submitter-attributed scorecard data and the remaining frontend migration path.
+last_validated: 2026-06-08
 artifacts:
   readme: README.md
   log_dir: log/
@@ -19,8 +24,9 @@ artifacts:
     - log/2026-06-01.md
     - log/2026-06-02.md
     - log/2026-06-03.md
+    - log/2026-06-08.md
     - deliverables/api-decision-table.md
     - deliverables/agent-tab-api-analysis.md
     - deliverables/manager-tab-api-analysis.md
     - deliverables/fe-ui-investigation.md
-notes: Current decisions: add an Agent column titled "Number of submitted scorecards" backed by a separate submitted-only RetrieveQAScoreStats query; use submitted-only RetrieveQAConversations for the Agent drawer; keep Manager Scorecards completed on RetrieveScorecardStats, whose current backend semantics are submitter-attributed via submitter_user_id and scorecard_submit_time; use ListScorecards with submitterUserNames for the Manager drawer MVP behind a normalized data-provider abstraction; do not replace this with RetrieveQAConversations or RetrieveQAScoreStats until they support equivalent submitter attribution and submit-time behavior.
+notes: Backend support is merged for Manager submitter-attributed QA API migration. QAAttribute.users/groups remain agent filters on agent_user_id. QAAttribute.scorecard_reviewer_audience is the submitter filter on submitter_user_id. RetrieveQAScoreStats supports QA_ATTRIBUTE_TYPE_SCORECARD_SUBMITTER. RetrieveQAConversations supports submitter audience filtering. Manager FE can migrate aggregate and drawer flows to the QA APIs; old RetrieveScorecardStats submit-time parity is no longer required by the latest project decision.

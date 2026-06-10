@@ -1,17 +1,17 @@
 # CONVI-6968 - Schwab Leaderboard Launch Support
 
 **Created:** 2026-06-01  
-**Updated:** 2026-06-03
+**Updated:** 2026-06-08
 
 ## Overview
 
-This project tracks the investigation and implementation planning for the Schwab leaderboard launch work on the Insights Leaderboard page.
+This project tracks the investigation, backend API changes, and frontend integration planning for the Schwab leaderboard launch work on the Insights Leaderboard page.
 
-The current focus is the data path and frontend implementation shape for the Agent and Manager tabs, specifically around scorecard counts grouped by scorecard template and the feasibility of reusing existing leaderboard APIs.
+The current focus is the data path and frontend implementation shape for the Agent and Manager tabs, specifically around scorecard counts grouped by scorecard template and the migration of Manager scorecard data to QA APIs with submitter filtering.
 
 ## Current Objective
 
-Document the current data sources, filter coverage, and implementation constraints for adding template-grouped scorecard counts to the Agent and Manager leaderboard tabs.
+Document the final backend API semantics for Manager submitter-attributed scorecard data and the remaining frontend migration path.
 
 ## Current Scope
 
@@ -26,7 +26,6 @@ Out of scope:
 
 - Team leaderboard changes
 - Final UI design
-- Final backend API design
 
 ## Key Findings
 
@@ -36,16 +35,19 @@ Out of scope:
 - The Manager leaderboard `Scorecards completed` column uses `RetrieveScorecardStats`, grouped by `ATTRIBUTE_TYPE_AGENT`, and the UI reads `averageScorecardCompletedPerUser`.
 - As of the latest backend change, `RetrieveScorecardStats` now treats completed scorecards as distinct submitted scorecards attributed to `submitter_user_id`; its ClickHouse query rewrites `scorecard_time` to `scorecard_submit_time` and `agent_user_id` to `submitter_user_id`.
 - The current manager scorecard stats response has no template dimension, so it cannot be directly reused for grouped-by-template reporting.
-- For MVP, `ListScorecards` is the clearest raw API for Manager drawer scorecard rows grouped by template because it supports `submitterUserNames`, `templateName`, and submit-time filters.
-- `RetrieveQAConversations` should not replace `ListScorecards` for the Manager drawer yet: it can return scorecard/template rows, but the traced ClickHouse path does not filter by `submitter_user_id`, does not apply `scorecardReviewerAudience`, and does not use `scorecard_submit_time` as its default time basis.
-- `RetrieveQAScoreStats` should not replace `RetrieveScorecardStats` for the Manager aggregate yet: it can count submitted scorecards, but its user grouping is still `agent_user_id`, not `submitter_user_id`.
-- The Manager drawer data fetching should be wrapped in a normalized provider abstraction so it can later switch to `RetrieveQAConversations` if that API gains submitter filtering and submit-time range support.
+- The backend QA API gap for Manager submitter attribution has been closed. Proto added `QA_ATTRIBUTE_TYPE_SCORECARD_SUBMITTER = 10`, and go-servers now supports dual agent and submitter user axes on `RetrieveQAScoreStats` and `RetrieveQAConversations`.
+- `QAAttribute.users/groups` remain agent filters and apply to `agent_user_id`; `QAAttribute.scorecard_reviewer_audience` is the submitter filter and applies to `submitter_user_id`.
+- `QA_ATTRIBUTE_TYPE_AGENT` groups by `agent_user_id`; `QA_ATTRIBUTE_TYPE_SCORECARD_SUBMITTER` groups by `submitter_user_id`; `QA_ATTRIBUTE_TYPE_GROUP` remains agent-group aggregation.
+- Manager aggregate can now migrate to `RetrieveQAScoreStats` with manager selection in `scorecard_reviewer_audience` and submitter grouping when needed.
+- Manager drawer can now migrate to `RetrieveQAConversations` with manager selection in `scorecard_reviewer_audience` and FE grouping by scorecard template.
+- The older submit-time parity requirement is no longer blocking the Manager QA API migration because the project decision is to accept the QA API time-range semantics instead of preserving the old `RetrieveScorecardStats` submit-time behavior.
 - FE should add a new clickable Agent column titled `Number of submitted scorecards`, and make the existing Manager `Scorecards completed` cell clickable instead of adding a duplicate Manager column.
 - A new shared leaderboard drawer is recommended. Use parent-owned state from the Agent/Manager page components, `FullDrawer`, and Mantine `Accordion`; reuse normalized data hooks rather than reusing the Performance conversation examples drawer directly.
+- FE integration cost remains medium: about 1-2 focused FE days after generated client types land.
 
 ## Status
 
-Active
+Backend merged; FE integration pending/active
 
 ## Source Context
 
@@ -53,6 +55,14 @@ Active
 - **Repo path:** `/Users/xuanyu.wang/repos/director`
 - **Active worktree:** `/Users/xuanyu.wang/repos/director`
 - **Branch:** `main`
+
+Related merged PRs:
+
+- `cresta/cresta-proto#8803`: added `QA_ATTRIBUTE_TYPE_SCORECARD_SUBMITTER = 10`
+- `cresta/go-servers#28525`: migrated `RetrieveQAConversations` user filtering
+- `cresta/go-servers#28526`: added QA submitter ClickHouse filters
+- `cresta/go-servers#28530`: added `RetrieveQAConversations` submitter audience support
+- `cresta/go-servers#28527`: added `RetrieveQAScoreStats` submitter support
 
 Related investigation context:
 
@@ -68,11 +78,13 @@ Related investigation context:
 | 2026-06-02 | Added FE UI investigation for table-column insertion points, drawer opening patterns, and implementation workload. |
 | 2026-06-02 | Updated decisions: Agent column is submitted-only with a separate query; Manager drawer uses `ListScorecards` for MVP behind a future-proof data-provider abstraction. |
 | 2026-06-03 | Updated Manager API decision after `RetrieveScorecardStats` moved from creator attribution to submitter attribution. |
+| 2026-06-08 | Recorded merged proto/go backend support for dual agent and submitter filter axes and updated Manager QA API migration guidance. |
 
 ## Related Artifacts
 
 - `project.yaml`
 - `log/2026-06-01.md`
+- `log/2026-06-08.md`
 - `deliverables/api-decision-table.md`
 - `deliverables/agent-tab-api-analysis.md`
 - `deliverables/manager-tab-api-analysis.md`

@@ -12,3 +12,16 @@ Use these as polished, outcome-focused bullets (with metrics filled in when avai
 
 ### Scorecard PG↔ClickHouse Data Consistency
 - Investigated and resolved a multi-customer data inconsistency between PostgreSQL and ClickHouse caused by two independent race conditions in scorecard APIs (async closure capturing stale data + ORM full-struct saves causing lost updates). After the initially proposed timestamp-based fix caused a P2 incident, built custom load testing tools to quantify failure rates at different timing thresholds (10ms→80%, 100ms→100% pass) and prove the actual root cause. Designed a multi-layered fix (atomic transactions, async re-read from DB, GORM partial updates) with feature-flagged rollout. Production verification: 0 score/submitter mismatches across ~3,000 submitted records over 39 days, with 0.87% acceptable residual documented and root-caused to rapid UI interactions.
+
+## Candidate bullets to refine
+
+These need final metrics, PR links, or adoption evidence before they should be treated as final resume bullets.
+
+### Scorecard/Template Domain Stewardship
+- Built a living scorecard/template domain reference spanning Director, coaching service, Postgres, ClickHouse, and proto boundaries. Converted repeated scorecard/template ticket investigations into reusable artifacts: lifecycle docs, concept map, business-rules catalog, ticket-pattern log, and system reference. Used the reference to identify small systemic improvements, including explicit template schema versioning and sequential updater support for evolving template JSON.
+
+### Schwab Leaderboard Metric Semantics and API Strategy
+- Led cross-layer API strategy for adding submitted-scorecard leaderboard metrics and template drill-downs. Compared `RetrieveQAScoreStats`, `RetrieveQAConversations`, `RetrieveScorecardStats`, and `ListScorecards` across entity grain, filter parity, template support, attribution axis, and time basis; identified agent-vs-submitter gaps in existing QA APIs; and proposed an MVP data-provider abstraction plus a backend path with explicit submitter filtering and scorecard-submitter grouping.
+
+### Submitted Scorecard Permission Drift
+- Designed a fail-and-freeze UX contract for submitted scorecards when edit permissions change during an active session. Rejected preflight write checks in favor of authoritative write-failure handling: rollback to persisted state, freeze further edits, show an inline warning, stop autosave, and preserve existing toast behavior for unrelated failures.

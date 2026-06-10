@@ -1,0 +1,3 @@
+display_name: PG to CH Data Sync Investigator
+short_description: Investigate and repair Cresta Postgres to ClickHouse sync mismatches.
+default_prompt: Investigate this PostgreSQL to ClickHouse data-sync issue, classify the mismatch, and recommend or run the safest targeted repair.

@@ -1,11 +1,11 @@
 # PostgreSQL ↔ ClickHouse Scorecard Sync Investigation
 
 **Created:** 2026-04-20
-**Status:** Draft
+**Status:** Active
 
 ## Goal
 
-Create a structured investigation for scorecard sync issues between PostgreSQL (system of record) and ClickHouse (analytics store), starting from general distributed data-sync theory and narrowing toward the concrete scorecard failure modes we have seen in production.
+Create a structured investigation and reusable Codex skill for scorecard sync issues between PostgreSQL (system of record) and ClickHouse (analytics store), starting from general distributed data-sync theory and narrowing toward concrete production failure modes and repair workflows.
 
 ## Why This Project Exists
 
@@ -18,7 +18,13 @@ Several prior efforts touched parts of the same problem from different angles:
 
 Those projects are useful source material, but they start from concrete incidents, fixes, or recovery workflows. This project starts one layer higher: what does it take, in theory, to keep two databases in sync when one is transactional and one is analytical?
 
-The point is to build a reusable mental model first, then use it to explain the real incidents more cleanly.
+The point is to build a reusable mental model first, then encode it as an operational skill that can handle repeated sync tickets without rediscovering the same query ladder.
+
+## Current Artifacts
+
+- `deliverables/pg-ch-data-sync-investigator/SKILL.md` - reusable Codex skill for PG to CH sync incidents
+- `sessions/2026-06-08/codex-pack-rat-scorecard-sync.md` - Pack Rat live incident investigation and repair notes
+- `log/2026-06-08.md` - concise daily movement
 
 ## Working Approach
 
@@ -76,6 +82,17 @@ The starting assumption for this project:
   - **Repair:** restore convergence safely and cheaply
 
 That separation matters because previous work spans all three, but not always explicitly.
+
+## Latest Case: Pack Rat Scorecard Submit Sync
+
+On 2026-06-08, investigated Pack Rat platform conversation id `12112918`, internal conversation id `019e7e88-d362-72a5-be86-51c5ddd865bb`.
+
+Key result:
+
+- Conversation and message rows were synced between PG and CH.
+- One scorecard, `019e7e99-e3ce-7f3e-9b03-4e4bccc61532`, had stale CH submit metadata.
+- Targeted `JOB_TYPE_REINDEX_SCORECARDS` repaired `scorecard_d.scorecard_submit_time` and propagated the submit time to emitted `score_d` rows.
+- Raw PG `director.scores` had six additional chapter aggregate rows not emitted by the CH reindex builder; the production builder validates chapter scores but intentionally skips emitting them as `score_d` rows.
 
 ## Expected Outputs
 

@@ -1,8 +1,16 @@
 # Migrate QA APIs To Agent And Submitter Filter Axes
 
+## Implementation Status
+- Status as of 2026-06-08: backend contract and go-servers implementation are merged.
+- Proto PR: `cresta/cresta-proto#8803`.
+- Go PR stack:
+  - Part 1 of 4: `cresta/go-servers#28525`, migrated `RetrieveQAConversations` user filtering.
+  - Part 2 of 4: `cresta/go-servers#28526`, added shared ClickHouse submitter filters.
+  - Part 3 of 4: `cresta/go-servers#28530`, added `RetrieveQAConversations` submitter audience support.
+  - Part 4 of 4: `cresta/go-servers#28527`, added `RetrieveQAScoreStats` submitter grouping/filter support.
+- Worktrees for the proto and go-servers work were cleaned after the PRs merged. The FE worktree was left in place because it still had local/ahead changes.
+
 ## Summary
-- Do the work in fresh worktrees, not the current branches.
-- Split the work into commit-sized milestones, with one commit per milestone.
 - Do not add a request-level user attribution switch.
 - Keep `QAAttribute.users/groups` as agent filters.
 - Use existing `QAAttribute.scorecard_reviewer_audience` as submitter filters.
@@ -39,32 +47,42 @@
 - When grouping by `QA_ATTRIBUTE_TYPE_SCORECARD_SUBMITTER`, resolve submitter users for response metadata and zero-count row construction, but only add a submitter SQL filter when `scorecard_reviewer_audience` is explicitly present or ACL semantics require one.
 
 ## Backend Worktree And Commit Milestones
-- Proto worktree:
+- Proto worktree: complete in `cresta/cresta-proto#8803`.
   - Update the existing proto PR to remove the request-level attribution switch.
   - Keep only `QA_ATTRIBUTE_TYPE_SCORECARD_SUBMITTER`.
   - Do not regenerate proto artifacts.
   - Commit: proto-only cleanup.
 
-- Go milestone 1:
+- Go milestone 1: complete in `cresta/go-servers#28525`.
   - Migrate `RetrieveQAConversations` agent filter path from `MoveGroupFilterToUserFilterForQA` to `ParseUserFilterForAnalytics`.
   - Commit separately.
 
-- Go milestone 2:
+- Go milestone 2: split across `cresta/go-servers#28526` and `cresta/go-servers#28530`.
   - Add submitter audience resolution for `RetrieveQAScoreStats` and `RetrieveQAConversations`.
   - Convert `UserAudience` string names to user/group proto messages before calling `ParseUserFilterForAnalytics`.
   - Add ClickHouse submitter filter support using `submitter_user_id`.
   - Add separate external tables for agent and submitter filters to avoid collisions.
   - Commit separately.
 
-- Go milestone 3:
+- Go milestone 3: complete in `cresta/go-servers#28527`.
   - Add `QA_ATTRIBUTE_TYPE_SCORECARD_SUBMITTER` group-by support in `RetrieveQAScoreStats`.
   - Construct submitter grouped rows using resolved submitter users.
   - Reject unsupported or ambiguous combinations, especially `QA_ATTRIBUTE_TYPE_GROUP` plus `QA_ATTRIBUTE_TYPE_SCORECARD_SUBMITTER` if behavior is not explicitly supported.
   - Commit separately.
 
-- Go milestone 4:
+- Go milestone 4: complete in the relevant API PRs.
   - Add/update tests for dual filtering, submitter group-by, empty resolved audiences, nil submitter audience, and default backward-compatible agent behavior.
   - Commit separately.
+
+## Review Fixes Captured In The Merged Stack
+- `RetrieveQAConversations` migration now uses `ParseUserFilterForAnalytics` for the agent filter path.
+- Submitter audience resolution is shared and named around scorecard reviewer audience semantics instead of a request-level attribution switch.
+- Common ClickHouse parsing can add submitter filters on `submitter_user_id` without colliding with agent user filter external tables.
+- Conversation query output does not expose an unnecessary submitter column.
+- External-table construction checks resolution errors before using parsed user-filter results.
+- Common ClickHouse group-by handling emits `NULL AS <groupByKey>` when a query shape does not need a physical column, instead of selecting a non-existent column.
+- Invalid score stats group-by combinations are rejected when both group keys would map to `QAScoreGroupBy.user`, including `AGENT + SCORECARD_SUBMITTER`.
+- `submitterUserID` is part of the shared `clickhouseKeyTimeRow` path so grouping keys are handled consistently.
 
 ## Frontend Cost Estimate
 - Medium cost, about 1-2 focused FE days after generated client types land.
@@ -88,6 +106,11 @@
   - Empty resolved submitter audience returns empty.
   - ClickHouse SQL/golden tests verify `agent_user_id` and `submitter_user_id` filters can appear in the same query.
 - Existing default calls without `scorecard_reviewer_audience` remain backward compatible.
+
+Representative validation used during the stack:
+
+- `bazel test //insights-server/internal/analyticsimpl:retrieve_qa_score_stats_test`
+- `go test ./insights-server/internal/analyticsimpl -run 'TestRetrieveQAConversations|TestParseUserFilter'`
 
 ## Assumptions
 - Manager FE will put manager/submitter selections into `scorecard_reviewer_audience`.

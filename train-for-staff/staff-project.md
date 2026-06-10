@@ -312,3 +312,79 @@ Create a living working reference for scorecard/template in coaching service, an
 | Execution via leverage | Produces artifacts that help future ticket work, teammate onboarding, and AI-assisted investigation |
 | Influence without authority | Improves cross-functional alignment by giving PM, design, and engineering a shared domain map and rule vocabulary |
 | Operational excellence | Surfaces risky sharp edges and recurring failure modes before they show up again as production issues |
+
+---
+
+## Project 5: Schwab Leaderboard Metric Semantics and API Strategy
+
+**Project docs:** [`convi-6968-schwab-leaderboard-launch/`](../convi-6968-schwab-leaderboard-launch/)
+**API decision table:** [`convi-6968-schwab-leaderboard-launch/deliverables/api-decision-table.md`](../convi-6968-schwab-leaderboard-launch/deliverables/api-decision-table.md)
+**Backend plan:** [`convi-6968-schwab-leaderboard-launch/deliverables/BE plan.md`](../convi-6968-schwab-leaderboard-launch/deliverables/BE%20plan.md)
+
+### Why this is a Staff-level project
+
+The visible feature request was a leaderboard update: add submitted-scorecard counts and a template breakdown drawer. The staff-level work was recognizing that the hard part was not UI wiring. The hard part was metric semantics.
+
+Several existing APIs looked close enough to reuse, but they answered different questions:
+
+- agent-scoped filters apply to `agent_user_id`
+- manager completed-scorecard metrics are submitter-attributed
+- `scorecard_time` is conversation/process interaction time, not submission time
+- `scorecardReviewerAudience` exists in proto but is not applied in the traced `RetrieveQAConversations` ClickHouse path
+- template grouping exists in detail rows but not in the aggregate APIs that power the leaderboard
+
+The project value was separating current behavior, MVP behavior, and desired future semantics before locking the frontend into an accidental API contract.
+
+### Staff-level framing
+
+#### Problem
+
+Leaderboard metric work crosses product language, frontend UX, backend API shape, ClickHouse data modeling, and access-filter semantics. Without an explicit semantic contract, "scorecards completed by manager" can silently mean created by, submitted by, reviewed by, or associated with agents under that manager.
+
+#### North-star outcome
+
+Leaderboard scorecard metrics should have explicit attribution and time-basis semantics, and the UI should consume normalized data providers so implementation details can change without changing the user-facing contract.
+
+### Concrete staff moves
+
+1. **Built an API decision table**
+- Compared `RetrieveQAScoreStats`, `RetrieveQAConversations`, `RetrieveScorecardStats`, and `ListScorecards` by entity grain, filter parity, template support, attribution axis, and time basis.
+
+2. **Split MVP from target architecture**
+- Recommended `ListScorecards` as the MVP manager drawer source because it can filter by submitter and template today.
+- Recommended a normalized drawer data-provider abstraction so the UI can later switch to `RetrieveQAConversations`.
+
+3. **Defined the backend semantic direction**
+- Kept `QAAttribute.users/groups` as agent filters.
+- Used `scorecard_reviewer_audience` as submitter filters.
+- Proposed `QA_ATTRIBUTE_TYPE_SCORECARD_SUBMITTER` for explicit submitter grouping.
+- Planned migration of `RetrieveQAConversations` to the canonical analytics user-filter parser.
+
+4. **Protected metric correctness**
+- Traced `scorecard_time` to conversation start/process interaction time and separated it from `scorecard_submit_time`.
+- Avoided reusing APIs whose default time basis or attribution axis would produce a plausible but incorrect metric.
+
+### Staff artifacts produced
+
+| Artifact | Location |
+|----------|----------|
+| Project home | `convi-6968-schwab-leaderboard-launch/README.md` |
+| API decision table | `convi-6968-schwab-leaderboard-launch/deliverables/api-decision-table.md` |
+| Backend migration plan | `convi-6968-schwab-leaderboard-launch/deliverables/BE plan.md` |
+| FE implementation analysis | `convi-6968-schwab-leaderboard-launch/deliverables/fe-engineering-work.md` |
+| Blog candidate | `train-for-staff/deliverables/blog-and-resume-candidates.md` |
+
+### Key insight
+
+- Metric features need semantic contracts before endpoint reuse. The cheapest wrong implementation is often the one that compiles against an existing API but changes the subject, time basis, or attribution axis of the metric.
+
+### Mapping to Staff gaps (from `senior-to-staff.md`)
+
+| Gap | How this project addresses it |
+|-----|-------------------------------|
+| Scope & ownership | Connects product metric language, FE behavior, backend APIs, ClickHouse fields, and future migration path |
+| Problem framing & strategy | Reframes a UI request into a semantic API strategy problem |
+| Architecture & correctness | Defines explicit agent vs submitter filter axes and protects submit-time semantics |
+| Execution via leverage | Uses a provider abstraction so the drawer UI can survive backend migration |
+| Influence without authority | Gives PM/FE/BE a decision table that makes tradeoffs inspectable |
+| Operational excellence | Avoids plausible-but-wrong metrics by tracing field provenance and API filter behavior |
