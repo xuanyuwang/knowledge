@@ -4,6 +4,8 @@
 **Ticket**: CONVI-6869 - Piloting auto-heal cron job  
 **Scope**: Safely enable the enhanced `scorecard-sync-monitor` cron on staging and production.
 
+Related investigation: `stale-scorecard-consistency-investigation.md` covers the stale existing-row gap, the `argMax(..., update_time)` rationale, and Slack startup rollout findings.
+
 ## Goal
 
 Roll out scorecard auto-heal in phases so detection, metrics, alerting, and backfill dispatch can be validated independently. The monitor should never jump directly from a suspended/manual cron to unrestricted production backfills.
