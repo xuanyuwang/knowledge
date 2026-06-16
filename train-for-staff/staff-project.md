@@ -297,6 +297,8 @@ Create a living working reference for scorecard/template in coaching service, an
 | Domain skeleton | `scorecard-template/deliverables/scorecard-template-domain-skeleton.md` |
 | Working-reference project brief | `scorecard-template/deliverables/scorecard-template-working-reference-project.md` |
 | Canonical system reference | `scorecard-template/deliverables/scorecard-template-system-reference.md` |
+| Blog writeup | [`blog/2026-06-15-from-scorecard-apis-to-business-workflows.md`](../blog/2026-06-15-from-scorecard-apis-to-business-workflows.md) |
+| Blog draft | `train-for-staff/deliverables/from-scorecard-apis-to-business-workflows.md` |
 
 ### Key insight
 

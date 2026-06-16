@@ -84,6 +84,30 @@ Resume angle:
 
 - Risk management, UX correctness, permission semantics, rollback behavior, avoiding extra write traffic.
 
+### 4. From Scorecard APIs to Business Workflows
+
+Draft:
+
+- `train-for-staff/deliverables/from-scorecard-apis-to-business-workflows.md`
+
+Published:
+
+- `blog/2026-06-15-from-scorecard-apis-to-business-workflows.md`
+
+Source projects:
+
+- `scorecard-template/README.md`
+- `scorecard-template/deliverables/scorecard-template-domain-skeleton.md`
+- `scorecard-template/deliverables/workflow-map.md`
+
+Core argument:
+
+Generic artifact APIs work while a product has one dominant workflow. Once calibration, group calibration, appeal, analytics, and repair workflows emerged, names like `updateScorecard`, `submitScorecard`, and `createScorecard` hid too much business meaning. The useful shift was separating domain artifacts from behavioral frames, then designing workflow-specific commands over small artifact primitives.
+
+Resume angle:
+
+- Domain modeling, API semantics, business workflow design, moving from code-level abstraction to product-level architecture.
+
 ## Resume candidates to polish next
 
 These are not final bullets yet. They are high-signal raw material to refine once metrics, PRs, and adoption outcomes are known.

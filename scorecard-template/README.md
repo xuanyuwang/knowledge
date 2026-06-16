@@ -1,7 +1,7 @@
 # Scorecard & Template Working Reference
 
 **Created:** 2026-03-26
-**Updated:** 2026-05-17
+**Updated:** 2026-06-16
 
 ## Overview
 
@@ -17,8 +17,24 @@ It covers more than the template JSON schema. The topic includes:
 - Postgres storage and revisioning
 - ClickHouse projection and analytics consumption
 - operational edge cases such as process scorecards, N/A behavior, and template duplication
-- the relationship between template, scorecard, and surrounding coaching concepts
+- the relationship between template, scorecard, lifecycle, workflow, and surrounding coaching concepts
 - recurring business rules, historical constraints, and system sharp edges
+
+## Organizing Model
+
+The working reference separates the domain into two categories:
+
+- **Domain Artifacts**: the things that exist as product and system objects.
+  - **Template**: reusable definition/configuration.
+  - **Scorecard**: concrete runtime record created from template semantics.
+- **Behavioral Frames**: the lenses used to interpret those artifacts.
+  - **Lifecycle**: how an artifact changes over time.
+  - **Workflow**: why and how an artifact is used in a business process.
+
+The short rule is:
+
+- artifacts = what exists
+- frames = how to reason about what exists
 
 ## Start Here
 
@@ -28,12 +44,13 @@ If you are starting fresh, read these in order:
 - `deliverables/scorecard-template-concept-map.md`
 - `deliverables/template-lifecycle.md`
 - `deliverables/scorecard-lifecycle.md`
+- `deliverables/workflow-map.md`
 - `deliverables/business-rules-catalog.md`
 - `deliverables/ticket-pattern-log.md`
 - `deliverables/scorecard-template-working-reference-project.md`
 - `deliverables/scorecard-template-system-reference.md`
 
-The domain skeleton is the starting framework. The concept map turns that framework into a first concrete model. The template lifecycle and scorecard lifecycle describe the two main moving artifacts in the domain. The business-rules catalog organizes the repeated rules, and the ticket-pattern log captures recurring patterns from real work. The project brief explains how this reference should grow. The system reference is the deeper distilled foundation.
+The domain skeleton is the starting framework. The concept map turns that framework into a first concrete model. The template lifecycle and scorecard lifecycle describe how the two main artifacts move over time. The workflow map describes how the same artifacts take on different roles in evaluation, calibration, appeal, analytics, and repair flows. The business-rules catalog organizes the repeated rules, and the ticket-pattern log captures recurring patterns from real work. The project brief explains how this reference should grow. The system reference is the deeper distilled foundation.
 
 ## Distilled Deliverables
 
@@ -41,6 +58,7 @@ The domain skeleton is the starting framework. The concept map turns that framew
 - `deliverables/scorecard-template-concept-map.md` - First populated map of the main concepts and relationships
 - `deliverables/template-lifecycle.md` - Lifecycle of the reusable template definition from authoring to historical interpretation
 - `deliverables/scorecard-lifecycle.md` - Runtime lifecycle from instantiation through analytics projection and repair
+- `deliverables/workflow-map.md` - Workflow roles for scorecards and templates across evaluation, calibration, appeal, analytics, and repair
 - `deliverables/business-rules-catalog.md` - First organized catalog of repeated rules by lifecycle stage
 - `deliverables/ticket-pattern-log.md` - Seeded log of recurring patterns surfaced by ticket work
 - `deliverables/scorecard-template-working-reference-project.md` - Project brief, scope, and working method
@@ -105,6 +123,8 @@ The point is to turn repeated ticket pain into a better domain model over time.
 
 | Date | Summary |
 |------|---------|
+| 2026-06-15 | Published `blog/2026-06-15-from-scorecard-apis-to-business-workflows.md`; supporting blog draft lives under `train-for-staff/deliverables/` |
+| 2026-06-11 | Introduced domain artifacts and behavioral frames as the organizing model, and added a workflow map for evaluation, calibration, appeal, analytics, and repair |
 | 2026-05-17 | Added template lifecycle, business-rules catalog, and ticket-pattern log to complete the first working-reference stack |
 | 2026-05-17 | Added a scorecard lifecycle document covering instantiation, scoring, persistence, projection, and repair |
 | 2026-05-17 | Added a first-pass scorecard/template concept map to bridge the skeleton and the system reference |

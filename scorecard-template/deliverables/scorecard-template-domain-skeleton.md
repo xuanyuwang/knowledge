@@ -10,13 +10,48 @@ This is not the full reference. It is the starting scaffold.
 
 When new details appear in ticket work, place them into one of these sections instead of collecting isolated notes. Unknowns are part of the structure and should be recorded explicitly.
 
-## 1. Core Concepts
+## 1. Organizing Model
 
-### Scorecard
+The scorecard/template domain has two kinds of concepts.
+
+### Domain Artifacts
+
+Domain artifacts are the things that exist as product and system objects.
+
+- **Template**: the reusable definition/configuration.
+- **Scorecard**: the concrete runtime record created from template semantics.
+
+These are the nouns of the domain. They have identity, storage, ownership, and system representations.
+
+### Behavioral Frames
+
+Behavioral frames are the lenses used to interpret the artifacts.
+
+- **Lifecycle**: how an artifact changes over time.
+- **Workflow**: why and how an artifact is used in a business process.
+
+These are not separate persisted objects by default. They explain which rules apply to the artifacts in a given situation.
+
+The short version:
+
+- artifacts = what exists
+- frames = how to reason about what exists
+
+## 2. Core Concepts
+
+### Domain Artifacts
+
+#### Scorecard
 
 Working definition:
 
-- the runtime evaluation artifact used to assess a conversation, agent behavior, or coaching outcome
+A scorecard is the runtime evaluation artifact created from template semantics in a concrete workflow.
+
+Its exact role depends on the workflow:
+
+- Performance evaluation: records the evaluation outcome for a conversation, agent behavior, process, or coaching outcome.
+- Calibration: may act as the benchmark answer set or as a participant response being compared against the benchmark.
+- Appeal: may act as the original evaluated record, the requested correction, or the resolved final decision for an appeal round.
 
 Open questions:
 
@@ -24,28 +59,63 @@ Open questions:
 - Which fields are copied from the template versus referenced indirectly?
 - Which parts of scorecard state are mutable after creation or submission?
 
-### Template
+#### Template
 
 Working definition:
 
-- the reusable blueprint that defines
-  - evaluation rules
-    - what can be evaluated
-    - how they're evaluated
-  - permissions of scorecards
+A template is the reusable definition that describes what can be evaluated, how it should be evaluated, and the operational rules for where the resulting scorecards can be used.
 
 Known characteristics:
 
 - stored authoritatively in Postgres
 - versioned by revision
   - a scorecard is always associated with a specific revision
-  - even though "what and how to evaluate" are applied to a specific revision, latest permission are applied to all revisions.
+  - scoring semantics should be interpreted against the effective revision
+  - some operational metadata, such as permissions, may follow latest-template behavior rather than historical revision behavior
 - used by builder UI, scoring logic, and analytics projection flows
 
 Open questions:
 
 - Which template changes are safe for future scorecards but must not affect historical scorecards?
 - Which template metadata is operational versus scoring-related?
+
+### Behavioral Frames
+
+#### Lifecycle
+
+Working definition:
+
+- the ordered state and transition model for an artifact over time
+
+Why it matters:
+
+- lifecycle makes mutability, revisioning, submission, persistence, projection, and historical interpretation easier to place
+- rules become easier to reason about when attached to transitions instead of floating as isolated exceptions
+
+Open questions:
+
+- Which transitions are customer-visible?
+- Which transitions create immutable historical meaning?
+- Which lifecycle changes affect only future artifacts versus existing artifacts?
+
+#### Workflow
+
+Working definition:
+
+- the business process in which an artifact is used, giving that artifact its immediate role, actor model, and rule set
+
+Why it matters:
+
+- workflow explains why the same scorecard-shaped artifact can behave differently in evaluation, calibration, appeal, analytics, or repair contexts
+- workflow is the right home for details such as who initiates, who responds, who can edit, who can view, and what decision is being made
+
+Open questions:
+
+- Which workflows are first-class product concepts versus implementation reuse of the same artifact?
+- Which workflows share the same lifecycle and which introduce distinct transitions?
+- Which workflow-specific permissions override or refine template-level permissions?
+
+## 3. Supporting Concepts
 
 ### Criterion
 
@@ -105,11 +175,16 @@ Working definition:
 
 - the surrounding business and system context in which a template or scorecard is used, such as coaching workflow, QA flow, AutoQA, process scorecards, or analytics consumption
 
+Relationship to workflow:
+
+- evaluation context is the concrete runtime setting
+- workflow is the business process pattern that gives that setting meaning
+
 Open questions:
 
 - Which contexts share the same core semantics and which introduce special cases?
 
-## 2. Relationship Map
+## 4. Relationship Map
 
 Use this section to record the most important dependencies, not every edge in the system.
 
@@ -142,9 +217,13 @@ Use this section to record the most important dependencies, not every edge in th
 
 - The same core concepts appear in multiple product contexts, but not always with identical semantics.
 
-## 3. Main Lifecycle
+### Artifact -> Workflow
 
-This section is the first place to attach business rules. Rules become easier to reason about when tied to a transition.
+- A template or scorecard can participate in multiple workflows.
+- Workflow determines the artifact role, actor model, permission details, and meaningful state transitions.
+- A workflow should not silently redefine the artifact's base semantics; it should name the additional role-specific rules.
+
+## 5. Main Lifecycle
 
 ### Template lifecycle
 
@@ -175,7 +254,41 @@ Questions to resolve:
 - Which transitions are customer-visible?
 - What happens when template definitions change after scorecards already exist?
 
-## 4. Rule Buckets
+## 6. Workflow Map
+
+This section names the main workflows that should receive their own rule details as the domain reference grows.
+
+### Performance evaluation workflow
+
+- Primary scorecard role: evaluation result
+- Primary template role: evaluation definition
+- Main concerns: grading, scoring, submission, permissions, analytics relevance
+
+### Calibration workflow
+
+- Primary scorecard roles: benchmark answer set and participant response
+- Primary template role: shared scoring definition used for comparison
+- Main concerns: initiator ownership, participant access, comparison semantics, calibration result interpretation
+
+### Appeal workflow
+
+- Primary scorecard roles: original evaluated record, requested correction, resolved final decision
+- Primary template role: historical definition used to interpret the appealed scorecard
+- Main concerns: immutability of original state, editable appeal request state, final decision state, visibility and auditability
+
+### Analytics and reporting workflow
+
+- Primary scorecard role: historical record projected into reporting shape
+- Primary template role: semantic reference for interpretation and grouping
+- Main concerns: revision correctness, ClickHouse projection correctness, historical display, aggregation
+
+### Repair and backfill workflow
+
+- Primary scorecard role: authoritative record to reconstruct or correct downstream state
+- Primary template role: semantic reference needed for recomputation
+- Main concerns: source-of-truth boundaries, old revision semantics, projection repair, semantic validation
+
+## 7. Rule Buckets
 
 This is where rules should be placed as they are discovered.
 
@@ -223,6 +336,7 @@ Examples to capture:
 
 - admin-only versus grader-visible semantics
 - runtime authorization versus builder-time configuration
+- workflow-specific actor permissions, such as calibration initiator, calibration participant, appeal requester, and appeal resolver
 
 ### Historical consistency rules
 
@@ -238,7 +352,7 @@ Examples to capture:
 - legacy builder behavior that still affects saved templates
 - assumptions that old data may violate
 
-## 5. Known Sharp Edges
+## 8. Known Sharp Edges
 
 These are already visible enough to deserve a slot in the skeleton.
 
@@ -246,8 +360,9 @@ These are already visible enough to deserve a slot in the skeleton.
 - `option.value` may mean identity in one stage and score in another stage.
 - Template semantics are coupled to scoring, AutoQA, storage, and analytics, so local-looking changes can have system-wide effects.
 - Historical correctness likely depends on revision-aware interpretation rather than “latest template wins.”
+- The same scorecard-shaped artifact may have different roles in different workflows, so workflow must be named before applying detailed permissions or mutability rules.
 
-## 6. Surrounding Systems
+## 9. Surrounding Systems
 
 Add only the systems that materially change meaning or flow.
 

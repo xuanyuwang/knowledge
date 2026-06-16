@@ -7,7 +7,7 @@ branch: main
 related_ticket_ids: []
 related_prs: []
 current_objective: Convert project work into staff-level narratives, blog candidates, and resume-ready impact bullets.
-last_validated: 2026-06-05
+last_validated: 2026-06-16
 artifacts:
   readme: staff-project.md
   log_dir: log/
@@ -19,4 +19,5 @@ artifacts:
     - staff-project.md
     - resume-snippets.md
     - deliverables/blog-and-resume-candidates.md
+    - deliverables/from-scorecard-apis-to-business-workflows.md
 notes: Legacy growth folder reopened under the shared project workflow; `staff-project.md` is the current human-facing project home.

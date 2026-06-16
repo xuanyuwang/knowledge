@@ -16,7 +16,12 @@ This is intentionally not exhaustive. Its purpose is to make the domain discussa
 
 ## 1. The Core Distinction
 
-The most important distinction in this domain is:
+The working reference now separates the domain into:
+
+- **Domain Artifacts**: template and scorecard
+- **Behavioral Frames**: lifecycle and workflow
+
+The most important artifact distinction is:
 
 - **Template** = the reusable definition of what can be evaluated and how it should be interpreted
 - **Scorecard** = the runtime evaluation artifact produced when that definition is used in a real grading or coaching context
@@ -26,6 +31,13 @@ If this distinction gets blurred, almost every downstream discussion becomes har
 - product conversations mix authoring rules with scoring behavior
 - debugging mixes persisted configuration with runtime results
 - historical questions become confusing because template evolution and scorecard history are different things
+
+The behavioral frames prevent a second kind of confusion:
+
+- **Lifecycle** explains how an artifact changes over time.
+- **Workflow** explains why the artifact exists in a business process and which role-specific rules apply.
+
+Workflow is especially useful when the same scorecard-shaped artifact acts as an evaluation result, calibration benchmark, calibration response, appeal request, appeal decision, analytics input, or repair source.
 
 ## 2. Core Concepts
 

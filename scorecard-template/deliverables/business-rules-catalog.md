@@ -13,6 +13,16 @@ Each rule is intentionally short and placed where it is most useful for investig
 - by lifecycle stage
 - then by rule bucket
 
+When a rule only applies in a specific business process, also name the workflow:
+
+- performance evaluation
+- calibration
+- appeal
+- analytics/reporting
+- repair/backfill
+
+This prevents workflow-specific permissions, mutability rules, and actor responsibilities from being treated as globally true scorecard or template rules.
+
 ## Stage 1: Template Creation and Authoring
 
 ### Creation rules

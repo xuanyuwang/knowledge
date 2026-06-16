@@ -7,7 +7,7 @@ branch: codex/move-sleep-out-of-api
 related_ticket_ids: []
 related_prs: []
 current_objective: Build a living working reference for scorecard and template in coaching service, starting from a domain skeleton and growing it through real ticket work.
-last_validated: 2026-05-17
+last_validated: 2026-06-11
 artifacts:
   readme: README.md
   log_dir: log/
@@ -19,6 +19,7 @@ artifacts:
     - deliverables/scorecard-template-concept-map.md
     - deliverables/template-lifecycle.md
     - deliverables/scorecard-lifecycle.md
+    - deliverables/workflow-map.md
     - deliverables/business-rules-catalog.md
     - deliverables/ticket-pattern-log.md
     - deliverables/scorecard-template-working-reference-project.md
