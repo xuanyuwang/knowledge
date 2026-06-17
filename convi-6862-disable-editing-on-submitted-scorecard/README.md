@@ -1,17 +1,17 @@
 # CONVI-6862 - Disable Editing on Submitted Scorecard
 
 **Created:** 2026-05-19  
-**Updated:** 2026-05-29
+**Updated:** 2026-06-17
 
 ## Overview
 
-This project captures the merged backend contract, the current frontend implementation, and the local validation plan for CONVI-6862.
+This project captures the merged backend contract, the current frontend implementation, the scorecard-permission evaluation API, and the local validation plan for CONVI-6862.
 
 The active requirement set still comes from the 2026-05-22 product clarification on scope, but the implementation contract has now converged on `submitted_scorecard_editors` / `submittedScorecardEditors` with a `users + teams + groups` shape.
 
 ## Current Objective
 
-Keep the knowledge docs aligned with the merged backend behavior and the current frontend behavior, and provide a concrete local FE validation checklist.
+Keep the knowledge docs aligned with the merged backend behavior and the current frontend behavior, and update PR `director#19100` to use scorecard permission evaluation for proactive submitted-scorecard locking.
 
 ## Current Scope
 
@@ -39,6 +39,10 @@ Submit remains a first-submit action for unsubmitted scorecards.
 - Frontend now hydrates and saves users, teams, and groups for `submittedScorecardEditors`.
 - Frontend does not filter the submitted-editor selector by `permissions.scorecardGraders`, and changing `Who can use this scorecard` does not clear submitted editors.
 - The submitted-editor empty state in FE is `All users`.
+- `director#19805` added the frontend client wrapper and reusable hook for `EvaluateScorecardsPermissions`.
+- Runtime FE should query `SCORECARD_PERMISSION_MODIFY_SUBMITTED_LOCKED_SCORECARD` when loading submitted scorecards and lock denied scorecards before any update attempt.
+- Reactive `UpdateScorecard` 403 fail-and-freeze handling remains as a fallback for stale permissions or permission changes after load.
+- The submitted-lock inline warning copy is `You do not have permission to edit this scorecard`.
 - The older audience-style permitted-user pivot is now historical context only and should not be treated as the active contract.
 
 ## Status
@@ -65,6 +69,7 @@ Investigation and implementation touch:
 | 2026-05-22 | Refreshed scope from the Linear thread, pivoted proto planning to audience-style permitted users, and prepared the backend branch reset. |
 | 2026-05-26 | Verified the landed proto shape is still role-based and documented that current template audience resolution is runtime-based with existing `teams` handling gaps. |
 | 2026-05-29 | Documented the merged backend contract, corrected the FE behavior docs, and added a detailed local FE test plan. |
+| 2026-06-17 | Documented merged `EvaluateScorecardsPermissions` FE client work and updated the active runtime plan to proactive lock on load with reactive fallback. |
 
 ## Related Artifacts
 
@@ -72,6 +77,7 @@ Investigation and implementation touch:
 - `log/2026-05-19.md`
 - `log/2026-05-22.md`
 - `log/2026-05-29.md`
+- `log/2026-06-17.md`
 - `sessions/2026-05-19/codex-requirements-and-design.md`
 - `decisions/2026-05-19-separate-post-submit-permission.md`
 - `decisions/2026-05-22-permitted-users-audience-pivot.md`

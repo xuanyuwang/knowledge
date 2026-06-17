@@ -8,8 +8,9 @@ related_ticket_ids:
   - CONVI-6862
 related_prs:
   - director#19100
-current_objective: Keep the knowledge docs aligned with the merged backend contract and the current frontend behavior, and provide a detailed local FE validation checklist.
-last_validated: 2026-05-29
+  - director#19805
+current_objective: Update the submitted-scorecard runtime UI to query `EvaluateScorecardsPermissions` on load, lock denied submitted scorecards before update attempts, and keep reactive 403 fail-and-freeze as fallback.
+last_validated: 2026-06-17
 artifacts:
   readme: README.md
   log_dir: log/
@@ -21,4 +22,5 @@ artifacts:
     - deliverables/fe-plan.md
     - deliverables/eng-design-doc.md
     - deliverables/local-test-plan.md
-notes: Backend is merged with `submitted_scorecard_editors` / `submittedScorecardEditors` as a `users + teams + groups` contract. Frontend now exposes the control in `TemplateBuilderAdvanced`, round-trips users/teams/groups, does not depend on `permissions.scorecardGraders`, and uses `All users` as the empty-state text.
+    - deliverables/submitted-scorecard-edit-permission-fail-freeze-plan.md
+notes: Backend is merged with `submitted_scorecard_editors` / `submittedScorecardEditors` as a `users + teams + groups` contract. Frontend exposes the control in `TemplateBuilderAdvanced`, round-trips users/teams/groups, does not depend on `permissions.scorecardGraders`, and uses `All users` as the empty-state text. `director#19805` merged the `EvaluateScorecardsPermissions` client wrapper and hook; PR `director#19100` should now use that hook to proactively lock denied submitted scorecards on load.
