@@ -1,0 +1,17 @@
+title: ALOs in Coaching
+status: design_review
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers
+branch: main
+related_ticket_ids:
+  - CONVI-7071
+related_links:
+  - https://linear.app/cresta/issue/CONVI-7071/alos-in-coaching
+current_objective: Review the engineering design for adding agent-level outcomes to Coaching.
+last_validated: 2026-06-17
+artifacts:
+  readme: README.md
+  key_docs:
+    - engineering-design-review-guide.md
+notes: Initial project created from the ALOs in Coaching design discussion and general engineering design review checklist.

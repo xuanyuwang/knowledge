@@ -1,148 +1,160 @@
 # Design Plan
 
 Created: Jun 5, 2026
+Updated: Jun 16, 2026
+
+## First Step
+
+The first implementation step should focus only on the submitted-scorecard edit lock scenario from [CONVI-6862 - Disable Editing on Submitted Scorecard](../convi-6862-disable-editing-on-submitted-scorecard/).
+
+The goal is not to solve every scorecard permission scenario yet. The goal is to centralize the existing CONVI-6862 permission decision behind a small evaluator interface that can later be used by `EvaluateScorecardsPermissions` with a batch-friendly v1 permission enum.
+
+The API should use one `ScorecardPermission` enum instead of separate capability and visibility concepts. The enum can include broader scorecard permissions now, while the first implementation can centralize the submitted-scorecard edit-lock behavior first.
+
+## CONVI-6862 Scope
+
+### In Scope
+
+- Normal/original scorecards.
+- Normal Closed Conversations scorecards.
+- Normal process scorecards.
+- Submitted-scorecard edit lock for:
+  - criteria value edits,
+  - criterion comments,
+  - general notes edits,
+  - reset scorecard.
+- Template-level post-submit exceptions through `submitted_scorecard_editors` / `submittedScorecardEditors`.
+- Submitted-editor membership shape:
+  - users,
+  - teams,
+  - groups.
+
+### Out Of Scope
+
+- First submit of an unsubmitted scorecard.
+- Appeal request scorecards.
+- Appeal resolve scorecards.
+- Group calibration answer key scorecards.
+- Group calibration response scorecards.
+- Full publish permission semantics.
+- Full scorecard read visibility semantics.
+- Notification visibility.
+- Score/comment field visibility.
+- Analytics eligibility.
+- Template-only permission evaluation.
+- Full non-CONVI-6862 permission implementations in `EvaluateScorecardsPermissions`.
 
 ## Design Principles
 
-- Make the policy layer a pure domain evaluator after inputs are hydrated.
-- Keep hydration separate from evaluation: callers can pass already-loaded requester/template/scorecard state, while the RPC can hydrate for clients.
-- Return structured allow/deny results with reasons. Avoid forcing clients to reverse-engineer denial causes from gRPC errors.
-- Preserve current behavior first, then tighten semantics in later phases.
-- Batch by default; permission checks will be called from list views and notifications.
-- Treat template-only evaluation as out of scope for the first API. Scorecard state is required for publish, submit, and visibility answers.
-- Keep analytics eligibility out of scope. Analytics inclusion rules should remain in analytics-specific code unless a separate project takes them on.
+- Preserve current CONVI-6862 behavior. Centralization must not silently change who can edit submitted scorecards.
+- Use existing service structs as evaluator inputs. Do not introduce normalized requester/template/scorecard structs in this first slice.
+- Keep a small evaluator interface for the permission component and its tests, but do not add artificial dependency-injection layers around simple local helpers.
+- Keep the permission result minimal: permission allowed or denied.
+- Keep implementation small. The first slice should live near existing scorecard domain helpers; no separate `hydrate.go` or `reason.go`.
+- Reuse existing helper logic where possible instead of reimplementing permission semantics from scratch.
 
-## Domain Model
+## Naming
 
-### Requester Context
+Avoid using `Policy` in new type/package names. In Cresta, "Policy" is already strongly associated with Opera Policy, so names like `ScorecardPolicyEvaluator` and `scorecardpolicy` are likely to create confusion.
 
-Internal evaluator input:
+Phase 1 implemented names:
+
+| Concept | Implemented name | Notes |
+|---|---|---|
+| Go package | `apiserver/internal/coaching/scorecards` | Reuses the existing scorecards domain package instead of creating a parallel permission package. |
+| Interface | `ScorecardPermissionEvaluator` | Clear contract for evaluator tests and future direct call sites. |
+| Default implementation | `DefaultScorecardPermissionEvaluator` | Conventional concrete implementation name. |
+| Proto decision message | `ScorecardPermissionDecision` | Matches the public API and avoids `PolicyDecision`. |
+| Proto result message | `ScorecardPermissionResult` | One scorecard's evaluated permissions. |
+
+Other reasonable names considered:
+
+| Name | Assessment |
+|---|---|
+| `scorecardaccess` / `ScorecardAccessEvaluator` | Good for read/write access, but less precise once the API includes specific permissions like grade, appeal, and publish. |
+| `scorecardauthorization` / `ScorecardAuthorizationEvaluator` | Accurate but heavier, and can sound like platform auth rather than scorecard-domain permission rules. |
+| `scorecardpermissioncheck` / `ScorecardPermissionChecker` | Clear for a boolean check, but weaker for a batch evaluator that returns multiple permission decisions. |
+| `scorecardcapability` / `ScorecardCapabilityEvaluator` | Too narrow now that capability and visibility concepts are represented by one `ScorecardPermission` enum. |
+
+This document should use "permission evaluator" or "permission layer" for the new component. It can still use "template policies" when referring to existing template configuration as an input factor.
+
+## Permission Semantics
+
+The first permission evaluator answers one question:
+
+> Can this requester modify this scorecard through a submitted-lock-protected operation?
+
+The current behavior should be preserved:
+
+| Condition | Result |
+|---|---|
+| Scorecard is not in submitted-editor scope | Fall back to existing edit permission. |
+| Scorecard is unsubmitted | Fall back to existing edit permission. |
+| Scorecard is submitted normal/original | Apply submitted-editor permission if configured. |
+| Submitted editors are unset, empty, or whitespace-only | Fall back to existing edit permission. |
+| Submitted editors are configured and requester is in resolved users/teams/groups | Allow. |
+| Submitted editors are configured and requester is not in resolved users/teams/groups | Deny. |
+| Scorecard is appeal or calibration type | Fall back to existing behavior; not part of this first slice. |
+
+Current backend behavior intentionally allows an explicitly configured submitted-editor allowlist to deny users who would otherwise pass role-based edit checks. This should remain true.
+
+## Evaluator Interface
+
+The evaluator lives in `apiserver/internal/coaching/scorecards`. Phase 1 keeps the interface with the evaluator so tests and future call sites can depend on the contract, but the existing coaching service remains behind a thin compatibility adapter. That adapter constructs the default evaluator from existing `ServiceImpl` dependencies and converts the result back to the existing boolean shape.
+
+No separate `EditPermissionChecker` or template-permission converter type is needed. The default evaluator directly reuses `scorecards.HasScorecardEditPermission` for fallback behavior, and DB-to-service template permission conversion is centralized in `shared/scoring`.
 
 ```go
-type ScorecardPolicyRequester struct {
-    UserName string
-    UserID string
-    Roles []authpb.AuthProto_Role
-    IsServer bool
-    IsSuperAdmin bool
-    IsAgentOnly bool
-    IsAPIKey bool
-    ManagedUserIDs set.Set[string]
-    ManagedGroupIDs set.Set[string]
-    Memberships UserMembershipSnapshot
+type ScorecardPermissionEvaluator interface {
+    Evaluate(
+        ctx context.Context,
+        requester *userpb.User,
+        scorecard *dbmodel.Scorecards,
+        template *dbmodel.ScorecardTemplates,
+        permissions []coachingpb.ScorecardPermission,
+    ) (*coachingpb.ScorecardPermissionResult, error)
 }
+
+type DefaultScorecardPermissionEvaluator struct {
+    userFilterParser      userfilter.UserFilterParser
+    authUserServiceClient userpb.UserServiceClient
+    configServiceClient   config.Client
+    resourceACLHelper     auth.ResourceACLHelper
+    logger                logger.Logger
+}
+
+func (e *DefaultScorecardPermissionEvaluator) Evaluate(
+    ctx context.Context,
+    requester *userpb.User,
+    scorecard *dbmodel.Scorecards,
+    template *dbmodel.ScorecardTemplates,
+    permissions []coachingpb.ScorecardPermission,
+) (*coachingpb.ScorecardPermissionResult, error)
 ```
 
-Notes:
-
-- `ManagedUserIDs` and `ManagedGroupIDs` should come from Resource ACL when enabled.
-- `Memberships` is needed for `submitted_scorecard_editors`, template audience, and task audience checks.
-- SUPER_ADMIN / server bypass should be explicit policy, not scattered helper behavior.
-
-### Template Policy
-
-Normalize DB/service template fields into:
-
-```go
-type ScorecardTemplatePolicy struct {
-    TemplateName string
-    TemplateType coachingpb.ScorecardTemplateType
-    TemplateStatus coachingpb.ScorecardTemplateStatus
-    Audience *coachingpb.Audience
-    Permissions *coachingpb.ScorecardTemplate_Permissions
-    QATaskConfig *qapb.QATaskConfig
-    Structure scoring.ScorecardTemplateStructure
-}
-```
-
-### Scorecard State
-
-Normalize DB/PB scorecard fields into:
-
-```go
-type ScorecardPolicyState struct {
-    ScorecardName string
-    AgentUserName string
-    CreatorUserName string
-    SubmitterUserName string
-    PublisherUserName string
-    ScorecardType coachingpb.ScorecardType
-    Submitted bool
-    Published bool
-    Acknowledged bool
-    AIScored bool
-    ManuallyScored bool
-    Calibrated bool
-    ReferenceScorecardID string
-    TaskNames []string
-    SubmissionSource coachingpb.ScorecardSubmissionSource
-    UsecaseName string
-}
-```
-
-## Policy Outputs
-
-Use stable enum keys, not ad-hoc booleans, so clients can request only what they need and future capabilities do not require a new top-level shape.
-
-```protobuf
-enum ScorecardCapability {
-  SCORECARD_CAPABILITY_UNSPECIFIED = 0;
-  SCORECARD_CAPABILITY_GRADE = 1;
-  SCORECARD_CAPABILITY_SUBMIT = 2;
-  SCORECARD_CAPABILITY_CREATE_APPEAL = 3;
-  SCORECARD_CAPABILITY_RESOLVE_APPEAL = 4;
-  SCORECARD_CAPABILITY_PUBLISH = 5;
-  SCORECARD_CAPABILITY_ACKNOWLEDGE = 6;
-}
-
-enum ScorecardVisibility {
-  SCORECARD_VISIBILITY_UNSPECIFIED = 0;
-  SCORECARD_VISIBILITY_READ_SCORECARD = 1;
-  SCORECARD_VISIBILITY_READ_SCORES = 2;
-  SCORECARD_VISIBILITY_READ_SCORE_COMMENTS = 3;
-  SCORECARD_VISIBILITY_RECEIVE_SUBMIT_NOTIFICATION = 4;
-  SCORECARD_VISIBILITY_RECEIVE_PUBLISH_NOTIFICATION = 5;
-}
-
-message ScorecardPolicyDecision {
-  bool allowed = 1;
-  repeated ScorecardPolicyReason reasons = 2;
-}
-
-message ScorecardPolicyReason {
-  ScorecardPolicyReasonCode code = 1;
-  string message = 2;
-}
-```
-
-Suggested reason codes:
-
-```protobuf
-enum ScorecardPolicyReasonCode {
-  SCORECARD_POLICY_REASON_CODE_UNSPECIFIED = 0;
-  SCORECARD_POLICY_REASON_CODE_ALLOWED_BY_SERVER_OR_SUPER_ADMIN = 1;
-  SCORECARD_POLICY_REASON_CODE_ALLOWED_BY_ROLE = 2;
-  SCORECARD_POLICY_REASON_CODE_ALLOWED_BY_SUBMITTED_EDITOR = 3;
-  SCORECARD_POLICY_REASON_CODE_ALLOWED_BY_SCORECARD_AGENT = 4;
-  SCORECARD_POLICY_REASON_CODE_ALLOWED_BY_UNMODIFIED_AUTO_SCORE = 5;
-  SCORECARD_POLICY_REASON_CODE_DENIED_ROLE_NOT_ALLOWED = 100;
-  SCORECARD_POLICY_REASON_CODE_DENIED_NOT_SCORECARD_AGENT = 101;
-  SCORECARD_POLICY_REASON_CODE_DENIED_NOT_SUBMITTED = 102;
-  SCORECARD_POLICY_REASON_CODE_DENIED_ALREADY_PUBLISHED = 103;
-  SCORECARD_POLICY_REASON_CODE_DENIED_NOT_PUBLISHED = 104;
-  SCORECARD_POLICY_REASON_CODE_DENIED_NOT_ORIGINAL_SCORECARD = 105;
-  SCORECARD_POLICY_REASON_CODE_DENIED_NOT_CONVERSATION_TEMPLATE = 106;
-  SCORECARD_POLICY_REASON_CODE_DENIED_NOT_CREATOR = 107;
-  SCORECARD_POLICY_REASON_CODE_DENIED_NOT_TASK_AUDIENCE = 108;
-}
-```
+The first implementation fully supports `SCORECARD_PERMISSION_MODIFY_SUBMITTED_LOCKED_SCORECARD`. Unsupported permission values currently return stable denied decisions in the result.
 
 ## RPC Design
 
-### Request
+The first public API should keep the general RPC shape while prioritizing the CONVI-6862 permission implementation.
 
 ```protobuf
-message BatchEvaluateScorecardPermissionsRequest {
+rpc EvaluateScorecardsPermissions(EvaluateScorecardsPermissionsRequest)
+    returns (EvaluateScorecardsPermissionsResponse);
+
+enum ScorecardPermission {
+  SCORECARD_PERMISSION_UNSPECIFIED = 0;
+  SCORECARD_PERMISSION_VIEW = 1;
+  SCORECARD_PERMISSION_EDIT = 2;
+  SCORECARD_PERMISSION_GRADE = 3;
+  SCORECARD_PERMISSION_APPEAL = 4;
+  SCORECARD_PERMISSION_PUBLISH = 5;
+
+  // Can modify a submitted-lock-protected scorecard through update/reset style operations.
+  SCORECARD_PERMISSION_MODIFY_SUBMITTED_LOCKED_SCORECARD = 6;
+}
+
+message EvaluateScorecardsPermissionsRequest {
   string parent = 1 [
     (google.api.resource_reference).type = "cresta.v1.customer.Profile",
     (google.api.field_behavior) = REQUIRED
@@ -153,217 +165,148 @@ message BatchEvaluateScorecardPermissionsRequest {
     (google.api.field_behavior) = REQUIRED
   ];
 
-  repeated ScorecardCapability capabilities = 3;
-  repeated ScorecardVisibility visibilities = 4;
-
-  // Optional. Defaults to the authenticated user. Server callers can evaluate
-  // on behalf of a user without minting a separate user token.
-  string requester_user_name = 5 [
-    (google.api.resource_reference).type = "cresta.v1.user.User",
-    (google.api.field_behavior) = OPTIONAL
+  repeated ScorecardPermission permissions = 3 [
+    (google.api.field_behavior) = REQUIRED
   ];
 
-  // Optional knobs for compatibility with existing rollout behavior.
-  ScorecardPermissionEvaluationOptions options = 6;
+  string requester_user_name = 4 [
+    (google.api.resource_reference).type = "cresta.v1.user.User",
+    (google.api.field_behavior) = REQUIRED
+  ];
 }
 
-message ScorecardPermissionEvaluationOptions {
-  // If unset, the server reads the current feature flag value.
-  optional bool enable_scorecard_publish = 1;
-
-  // Include detailed reason messages. Codes should always be returned.
-  bool include_reason_messages = 2;
-}
-```
-
-### Response
-
-```protobuf
-message BatchEvaluateScorecardPermissionsResponse {
+message EvaluateScorecardsPermissionsResponse {
   repeated ScorecardPermissionResult results = 1;
 }
 
 message ScorecardPermissionResult {
   string scorecard_name = 1;
-  map<int32, ScorecardPolicyDecision> capabilities = 2;
-  map<int32, ScorecardPolicyDecision> visibilities = 3;
+  repeated ScorecardPermissionDecision permissions = 2;
+}
+
+message ScorecardPermissionDecision {
+  ScorecardPermission permission = 1;
+  bool allowed = 2;
 }
 ```
 
-Proto map keys are `int32` because protobuf does not allow enum keys in maps. Generated clients can wrap this into typed helpers.
+There is no separate visibility output. Read and visibility-related decisions should be represented as `ScorecardPermission` enum values when they move into the permission layer.
 
-### Auth Annotation
+## Implementation Shape
 
-The RPC itself should allow the superset of roles that can currently call scorecard read/list/action APIs. Domain results decide actual capability.
-
-Initial service annotation should include:
-
-- AGENT
-- MANAGER
-- MANAGER_2ND
-- ADMIN
-- SUPER_ADMIN
-- QA_ADMIN
-- QA_SPECIALIST
-- PROCESS_SPECIALIST
-
-For `requester_user_name` impersonation, require server/super-admin/API-key or a dedicated internal permission.
-
-## Evaluation Semantics
-
-### Grade
-
-Equivalent to current normal-scorecard edit/update capability:
-
-- Server/super-admin allowed.
-- Normal scorecard uses `scorecard_graders` if configured; otherwise default normal-scorecard edit roles.
-- Submitted normal scorecard uses `submitted_scorecard_editors` when configured, otherwise falls back to normal edit roles.
-- Group calibration response requires creator and task audience.
-- Appeal request/resolve should not return `GRADE`; they should use appeal-specific capabilities.
-
-### Submit
-
-Preserve current behavior initially:
-
-- Reuse edit permission by scorecard type.
-- Group calibration response requires creator.
-- Appeal resolve submit is allowed only if requester can resolve appeal.
-
-Future tightening:
-
-- Split submit from grade in template policy if product needs "can draft but cannot submit".
-
-### Appeal
-
-Split into two capabilities:
-
-- `CREATE_APPEAL`: current appeal request creation. Uses `scorecard_appealers` if configured, otherwise current default appeal-request roles.
-- `RESOLVE_APPEAL`: current appeal resolve creation/submission. Uses default resolve roles until template gets a dedicated field.
-
-The API can expose both while UI can collapse them into one "appeal" affordance when needed.
-
-### Publish
-
-Allowed only when:
-
-- Requester has a role in `scorecard_publisher_roles`.
-- Scorecard is submitted.
-- Scorecard is not already published.
-- Scorecard is original/normal.
-- Template type is conversation.
-
-If `scorecard_publisher_roles` is empty:
-
-- `PUBLISH` is denied because explicit publish is not required/supported for that template.
-- Submit may auto-publish when `enableScorecardPublish` is enabled.
-
-### Read Scorecard
-
-Initial compatibility rules:
-
-- Server/super-admin allowed.
-- Non-agent-only QA/manager/admin roles are allowed by existing endpoint authorization and list filters.
-- Agent-only requester must be the scorecard agent.
-- With `enableScorecardPublish = true`, agent-only read requires published or unmodified auto-scored.
-- With `enableScorecardPublish = false`, agent-only read requires submitted or unmodified auto-scored.
-
-Open design issue:
-
-- Decide whether `scorecard_viewers` should become a true read policy for all roles. Today it is primarily notification-oriented.
-
-### Read Comments
-
-Return a separate visibility decision per score comment in later versions. V1 can return an aggregate:
-
-- Allowed when every returned score comment is visible to requester.
-- Partially allowed should be represented by field-level scrubbing in the caller until the response supports per-score decisions.
-
-### Analytics Eligibility
-
-Out of scope. The scorecard permission policy will not expose analytics eligibility decisions in the first API.
-
-## Internal Package Shape
-
-Suggested first implementation location:
+Phase 1 implementation location:
 
 ```text
-go-servers/apiserver/internal/coaching/scorecardpolicy/
+go-servers/apiserver/internal/coaching/scorecards/
 ```
 
 Files:
 
-- `types.go`: normalized requester/template/scorecard inputs and result types.
-- `evaluator.go`: pure capability and visibility decisions.
-- `hydrate.go`: DB/user/ACL/template loading helpers for RPC/service integration.
-- `reasons.go`: stable reason code mapping.
-- `evaluator_test.go`: table-driven policy matrix tests.
+- `permission_evaluator.go`: `ScorecardPermissionEvaluator`, `DefaultScorecardPermissionEvaluator`, submitted-editor scope helpers, submitted-editor user-filter conversion, and `DecisionAllowed`.
+- `permission_evaluator_test.go`: table-driven permission tests for CONVI-6862 behavior.
+- `edit_permission.go`: moved `HasScorecardEditPermission` and `DefaultEditPermissionRoles`.
+- `submitted_scorecard_permissions.go`: compatibility adapter in the coaching package that calls the new evaluator for existing call sites.
+- `shared/scoring/scorecard_template_permissions.go`: shared `ConvertNullStringToServiceScorecardTemplatePermissions`.
 
-The existing service handlers can use the internal evaluator before the RPC is exposed.
+The evaluator moved the existing submitted-scorecard editor logic:
 
-## Migration Plan
+- submitted-scorecard scope check,
+- configured submitted-editor detection,
+- user/team/group conversion to user-filter conditions,
+- membership expansion through the shared user-filter parser,
+- fallback to `HasScorecardEditPermission` when submitted-editor permission does not apply.
 
-### Phase 1: Internal Evaluator
+The fallback edit-permission helper moved into the `scorecards` package because it is scorecard-domain behavior, not a generic coaching service utility. The template permissions converter moved into `shared/scoring` because it is reused by both scoring/transformer code and the scorecard permission evaluator.
 
-- Add `scorecardpolicy` package with table-driven tests that encode current behavior.
-- Port existing helpers into evaluator semantics without changing public behavior:
-  - `HasScorecardEditPermission`
-  - `HasScorecardViewPermission`
-  - `hasScorecardPublishPermission`
-  - `templateRequiresPublish`
-  - submitted-scorecard editor checks
-  - agent visibility checks
+Phase 1 also updates both dependency systems to the proto version that contains the new permission messages:
 
-### Phase 2: Replace Local Checks
+- `go.mod` / `go.sum`: `github.com/cresta/cresta-proto/v2 v2.3.18`
+- `deps.bzl`: `com_github_cresta_cresta_proto_v2` pinned to `v2.3.18`
 
-Replace call sites incrementally:
+## Call Sites
 
-- `UpdateScorecard`: use `GRADE`.
-- `SubmitScorecard`: use `SUBMIT`.
-- `CreateScorecard` appeal paths: use `CREATE_APPEAL` / `RESOLVE_APPEAL`.
-- `PublishScorecard`: use `PUBLISH`.
-- `GetScorecard` / `ListScorecards`: use `READ_SCORECARD` where practical, keeping SQL filtering for list performance.
-- Notification recipients: use notification visibility decisions.
+### `UpdateScorecard`
 
-### Phase 3: Batch RPC
+Existing update flows still call the coaching helper. In phase 1 that helper is now a thin adapter around `ScorecardPermissionEvaluator.Evaluate(..., [SCORECARD_PERMISSION_MODIFY_SUBMITTED_LOCKED_SCORECARD])` before applying submitted-lock-protected changes.
 
-- Add proto in `cresta/v1/coaching/coaching_service.proto`.
-- Implement batch hydration and evaluator calls.
-- Add API tests covering mixed scorecard states and requester roles.
-- Keep response stable and additive.
+This covers:
 
-### Phase 4: Product Semantics Cleanup
+- criteria value edits,
+- criterion comments,
+- general notes edits.
 
-Resolve whether to add explicit template policy fields for:
+### `ResetScorecard`
 
-- Submitters, separate from graders.
-- Appeal resolvers, separate from default QA/admin roles.
-- True scorecard readers, separate from notification recipients.
+Existing reset flows still call the coaching helper. In phase 1 that helper delegates to `ScorecardPermissionEvaluator.Evaluate(..., [SCORECARD_PERMISSION_MODIFY_SUBMITTED_LOCKED_SCORECARD])` before reset work starts.
+
+Reset is explicitly part of the CONVI-6862 submitted-lock scope.
+
+### `SubmitScorecard`
+
+Do not change first-submit behavior in this first step.
+
+Submit remains governed by existing submit/edit permission behavior.
 
 ## Testing Matrix
 
-Minimum evaluator test cases:
+Minimum evaluator tests:
 
 | Case | Expected |
 |---|---|
-| Normal draft, default template, manager | grade+submit allowed. |
-| Normal draft, `scorecard_graders=[QA_ADMIN]`, manager | grade+submit denied. |
-| Submitted normal, no submitted editors, QA specialist | grade allowed by fallback. |
-| Submitted normal, submitted editors configured without requester | grade denied. |
-| Submitted normal, submitted editors include requester via group | grade allowed. |
-| Appeal request, `scorecard_appealers=[INSIGHTS_VIEWER]`, insights viewer | create appeal allowed. |
-| Appeal resolve, manager | resolve denied. |
-| Group calibration response, non-creator | grade/submit denied. |
-| Publish before submit | publish denied not submitted. |
-| Publish already published | publish denied already published. |
-| Publish process template | publish denied not conversation template. |
-| Agent read own published scorecard | read allowed. |
-| Agent read own unpublished manual scorecard with publish flag on | read denied/not found compatible. |
-| Agent read own unmodified auto scorecard | read allowed. |
+| Unsubmitted normal scorecard, requester passes existing edit permission | Allowed by fallback. |
+| Submitted normal scorecard, submitted editors unset | Uses existing edit permission fallback. |
+| Submitted normal scorecard, submitted editors empty | Uses existing edit permission fallback. |
+| Submitted normal scorecard, submitted editors whitespace-only | Uses existing edit permission fallback. |
+| Submitted normal scorecard, direct requester user configured | Allowed. |
+| Submitted normal scorecard, requester included through configured team | Allowed. |
+| Submitted normal scorecard, requester included through configured group | Allowed. |
+| Submitted normal scorecard, editors configured but requester not included | Denied even if requester has normal edit role. |
+| Missing/invalid submitted-editor resource name | Returns error consistent with current parser behavior. |
+| Appeal request scorecard | Falls back to existing behavior; submitted-editor permission not applied. |
+| Appeal resolve scorecard | Falls back to existing behavior; submitted-editor permission not applied. |
+| Group calibration answer key scorecard | Falls back to existing behavior; submitted-editor permission not applied. |
+| Group calibration response scorecard | Falls back to existing behavior; submitted-editor permission not applied. |
 
-## Open Questions
+The phase-1 implementation keeps existing service behavior covered through the compatibility adapter and focused evaluator tests. Handler tests with a fake evaluator become useful when the RPC or service wiring starts depending on the evaluator interface directly.
 
-- Should `scorecard_viewers` become canonical scorecard read permission, or remain notification/audience policy?
-- Do we need separate `can_submit` template config, or is submit intentionally tied to grade/edit?
-- Do appeal request and appeal resolve need separate template config?
-- How should policy represent partial score/comment visibility without forcing score payload hydration?
-- Should API callers be able to evaluate permissions for another user, and which auth method should gate that?
+## Migration Plan
+
+### Phase 1: Extract CONVI-6862 Permission Logic
+
+- Add `scorecards.ScorecardPermissionEvaluator`.
+- Add `scorecards.DefaultScorecardPermissionEvaluator`.
+- Move the submitted-scorecard editor helper logic into `apiserver/internal/coaching/scorecards`.
+- Move `HasScorecardEditPermission` and `DefaultEditPermissionRoles` into `apiserver/internal/coaching/scorecards`.
+- Move `convertNullStringToServiceScorecardTemplatePermissions` into `shared/scoring` as `ConvertNullStringToServiceScorecardTemplatePermissions`.
+- Keep `apiserver/internal/coaching/submitted_scorecard_permissions.go` as a thin compatibility adapter for existing call sites.
+- Keep behavior identical.
+- Add evaluator tests.
+- Update `cresta-proto` to `v2.3.18` in both `go.mod` and `deps.bzl`.
+
+### Phase 2: Add V1 RPC And Direct Evaluator Wiring
+
+- Add `EvaluateScorecardsPermissions` proto in `cresta/v1/coaching/coaching_service.proto`.
+- Add `ScorecardPermission` in `cresta/v1/coaching/scorecard_permission.proto`.
+- Implement request hydration for requester, scorecards, and templates.
+- Call `ScorecardPermissionEvaluator.Evaluate` for each requested scorecard.
+- Return permission decisions with inline `allowed` booleans.
+- Add RPC tests for self/authorized requester evaluation and mixed allow/deny scorecard results.
+- Move existing service call sites from the compatibility adapter to direct evaluator wiring only when that reduces duplication or supports the RPC wiring.
+
+### Phase 3: Stabilize Before Expanding
+
+Do not fully implement grade/appeal/publish/read visibility semantics in this evaluator in the first step. After CONVI-6862 is centralized and stable, implement the next permission and migrate the next scenario.
+
+## Deferred Work
+
+The previous broader design direction remains valid as a later phase, but it should not block this first step.
+
+Deferred topics:
+
+- Permission semantics for grade, appeal, publish, and acknowledge.
+- Permission semantics for scorecard read, score read, comments, submit notifications, publish notifications.
+- Publish state and agent visibility.
+- Appeal request vs appeal resolve permission rules.
+- Group calibration creator/task-audience permission rules.
+- Comment-level visibility.
+- Analytics eligibility remains out of scope unless a separate analytics project is opened.

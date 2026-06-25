@@ -1,0 +1,23 @@
+title: CONVI-7049 - CLO Filter in Performance Insights
+status: investigation_created
+primary_source_repo: director
+primary_repo_path: /Users/xuanyu.wang/repos/director
+backend_repo_path: /Users/xuanyu.wang/repos/go-servers-convi-7080
+proto_repo_path: /Users/xuanyu.wang/repos/cresta-proto
+active_worktree_path: /Users/xuanyu.wang/repos/director
+branch: main
+related_ticket_ids:
+  - CONVI-7049
+  - CONVI-7043
+  - CONVI-7048
+related_links:
+  - https://linear.app/cresta/issue/CONVI-7049/support-clo-filter-in-performance-insights
+  - https://linear.app/cresta/issue/CONVI-7043/custom-clo-as-performance-insights-filter
+  - https://github.com/cresta/go-servers/pull/28769
+current_objective: Support CLO as a filter in Performance Insights.
+last_validated: 2026-06-17
+artifacts:
+  readme: README.md
+  key_docs:
+    - investigation.md
+notes: CLO is used ambiguously in product conversations. In this ticket context it appears to mean Cresta Modeled Outcome, while internal docs also use CLO as conversation-level outcome. Code stores these as CONVERSATION_OUTCOME moment templates and moment annotations.

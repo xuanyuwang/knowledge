@@ -110,6 +110,7 @@ This prevents workflow-specific permissions, mutability rules, and actor respons
 
 - Scorecard and score writes need to stay coherent across update and submit flows.
 - Async work must not treat stale closure state as authoritative truth.
+- Empty-scorecard prevention must cover all scorecard creation paths, not just the coaching `CreateScorecard` API. AutoQA live trigger and backfill paths create scorecards through `scoring.CreateScorecardAndScoresInDB(...)` after `MapToScores(...)` and `ComputeScores(...)`, so they need either path-local guards or a stricter shared persistence contract.
 
 ## Stage 7: Submission / Finalization
 

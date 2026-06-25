@@ -91,6 +91,51 @@ Open questions:
 - Which permission rules come from the latest template state versus the historical template revision?
 - Which evaluation variants share the same scorecard lifecycle?
 
+### AutoQA Evaluation Workflow
+
+Primary purpose:
+
+- automatically instantiate and score evaluation artifacts from detected conversation evidence
+
+Template role:
+
+- identifies which criteria are AutoQA-enabled
+- wires detected, not-detected, not-applicable, occurrence-count, or metadata-triggered outcomes to criterion runtime values
+- constrains the final score through the same template scoring semantics used by manual grading
+
+Scorecard role:
+
+- concrete AI-scored runtime record
+- authoritative Postgres source for later display, analytics projection, and repair
+- downstream evidence that AutoQA evaluated the conversation, agent, or message subject
+
+Main actors:
+
+- AutoQA trigger service
+- scoring mapper and calculator
+- background backfill worker
+- template author who configures AutoQA wiring
+
+Main rule areas:
+
+- template applicability
+- AutoQA item calculation
+- outcome-to-score mapping
+- branch and criterion validation
+- scorecard creation through shared scoring persistence, not the coaching `CreateScorecard` API
+- empty-scorecard prevention when mapped or computed scores are empty
+
+Runtime path:
+
+- Live trigger: `action_trigger_conversation_autoscoring.go` -> `CalculateScoredItems` -> `MapToScorecard` / `MapToScores` -> `ComputeScores` -> `CreateScorecardAndScoresInDB`.
+- Backfill: `backfillscorecards/activity.go` -> `newTemplateProcessor` -> `processConversation` -> `processScorecard` -> `ComputeScores` -> `CreateScorecardAndScoresInDB` or `UpdateScorecardAndScoresInDB`.
+
+Open questions:
+
+- Should empty-scorecard prevention live in each AutoQA path, or in shared scoring persistence?
+- Should explicit backfills reject v2 templates that have no AutoQA-enabled criteria?
+- Should metadata-triggered AutoQA items that map to no score be treated as skipped, failed, or not-applicable?
+
 ### Calibration Workflow
 
 Primary purpose:

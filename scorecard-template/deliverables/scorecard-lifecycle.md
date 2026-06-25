@@ -306,6 +306,49 @@ These are the write-path categories that matter for lifecycle reasoning:
 
 This list is useful because bugs often affect only some write paths, not the whole lifecycle equally.
 
+### AutoQA Runtime Creation Path
+
+AutoQA-created scorecards do not go through the coaching `CreateScorecard` API. The live trigger path writes directly through the shared scoring persistence helpers:
+
+1. `go-servers/apiserver/internal/autoqa/action_trigger_conversation_autoscoring.go`
+2. `calculateAutoScoredTemplateResult(...)`
+3. `scoring.AutoQA.CalculateScoredItems(...)`
+4. `scoring.AutoQA.MapToScorecard(...)`
+5. `scoring.AutoQA.MapToScores(...)`
+6. `scoring.ComputeScores(...)`
+7. `scoring.FlattenCriterionScores(...)`
+8. `scoring.CreateScorecardAndScoresInDB(...)`
+
+The live path skips when the template has no AutoQA-enabled criteria, but the persistence guard is not the coaching API. Any invariant that must apply to AutoQA-created scorecards has to be enforced in this path or in the shared scoring persistence helper.
+
+### AutoQA Backfill Creation Path
+
+Backfill scorecard creation follows a similar direct persistence path:
+
+1. `go-servers/temporal/ingestion/backfillscorecards/activity.go`
+2. `validateAndParse(...)`
+3. `newTemplateProcessor(...)`
+4. `templateProcessor.processConversation(...)`
+5. `scoring.AutoQA.CalculateScoredItems(...)`
+6. `scoring.AutoQA.MapToScores(...)`
+7. `templateProcessor.processScorecard(...)`
+8. `scoring.ComputeScores(...)`
+9. `scoring.CreateScorecardAndScoresInDB(...)` for new scorecards, or `scoring.UpdateScorecardAndScoresInDB(...)` for existing ones
+
+Wildcard backfills use `GetActiveAutoScoreableScorecardTemplates(...)`, which filters out active templates without AutoQA-enabled criteria. Explicit template backfills use `GetV2ScorecardTemplates(...)`, which accepts v2 templates without requiring AutoQA-enabled criteria.
+
+### Empty Scorecard Risk In AutoQA Paths
+
+AutoQA can produce a scorecard row with no persisted score rows if the mapped or computed score list is empty and the write reaches `CreateScorecardAndScoresInDB(...)`.
+
+Known ways this can happen:
+
+- `MapToScores(...)` can drop AutoQA items, especially metadata-triggered items with `NOT_DETECTED`, nil values, or missing option configuration.
+- `ComputeScores(...)` can return no valid criterion scores after template validation or branch filtering.
+- Explicit backfill can process a v2 template even when it has no AutoQA-enabled criteria.
+
+Therefore, a "scorecard must have at least one score" rule cannot be fully enforced by only guarding the manual coaching APIs. AutoQA live trigger and backfill paths need their own guard, or the shared scoring persistence helper needs a stricter contract.
+
 ## Common Failure Classes By Lifecycle Stage
 
 ### Instantiation

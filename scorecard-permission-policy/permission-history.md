@@ -254,7 +254,7 @@ Visibility behavior changed with publish:
 
 Publish is both a capability and a state transition that affects visibility. The policy layer should expose:
 
-- `PUBLISH` capability with denial reasons for not submitted, already published, not original, not conversation template, or missing publisher role.
+- `PUBLISH` capability with validation checks for not submitted, already published, not original, not conversation template, or missing publisher role.
 - `REQUIRES_PUBLISH` / `VISIBLE_TO_AGENT` style visibility facts derived from template + scorecard state.
 
 It should avoid making callers infer "requires publish" from raw role-list length.
@@ -307,7 +307,7 @@ This is the strongest evidence that role-based template permissions are no longe
 - scorecard submitted state,
 - scorecard type.
 
-The output should distinguish "allowed by role" from "allowed by submitted editor allowlist" and "denied because submitted editor allowlist is configured and requester is not included."
+The implementation should keep these branches clear internally: "allowed by role fallback", "allowed by submitted editor allowlist", and "denied because submitted editor allowlist is configured and requester is not included." The first public policy result can still remain a boolean.
 
 ## Implicit And Special-Case Permissions
 
@@ -336,7 +336,7 @@ Agent read visibility is controlled by requester relationship and scorecard stat
 - Unmodified auto-scored scorecards can remain visible.
 - To avoid leaking existence, some denied agent reads are returned as NotFound.
 
-Design implication: visibility decisions need reason codes that can be mapped to "deny" or "not found compatible" at API boundaries.
+Design implication: visibility decisions need enough internal structure to map a denied agent read to either "deny" or "not found compatible" at API boundaries, even if the public permission API only returns booleans.
 
 ### Score Comment Visibility
 

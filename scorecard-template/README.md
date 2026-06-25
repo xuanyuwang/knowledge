@@ -123,6 +123,7 @@ The point is to turn repeated ticket pain into a better domain model over time.
 
 | Date | Summary |
 |------|---------|
+| 2026-06-25 | Captured AutoQA live trigger and backfill scorecard creation paths, including the empty-scorecard guardrail gap outside the coaching `CreateScorecard` API |
 | 2026-06-15 | Published `blog/2026-06-15-from-scorecard-apis-to-business-workflows.md`; supporting blog draft lives under `train-for-staff/deliverables/` |
 | 2026-06-11 | Introduced domain artifacts and behavioral frames as the organizing model, and added a workflow map for evaluation, calibration, appeal, analytics, and repair |
 | 2026-05-17 | Added template lifecycle, business-rules catalog, and ticket-pattern log to complete the first working-reference stack |
