@@ -6,11 +6,14 @@ active_worktree_path: /Users/xuanyu.wang/repos/director-convi-6862
 branch: xwang/convi-6862-submitted-scorecard-editors-v2
 related_ticket_ids:
   - CONVI-6862
+  - CONVI-7197
+  - CONVI-7206
 related_prs:
   - director#19100
   - director#19805
+  - director#20375
 current_objective: Update the submitted-scorecard runtime UI to query `EvaluateScorecardsPermissions` on load, lock denied submitted scorecards before update attempts, and keep reactive 403 fail-and-freeze as fallback.
-last_validated: 2026-06-17
+last_validated: 2026-07-03
 artifacts:
   readme: README.md
   log_dir: log/
@@ -23,4 +26,5 @@ artifacts:
     - deliverables/eng-design-doc.md
     - deliverables/local-test-plan.md
     - deliverables/submitted-scorecard-edit-permission-fail-freeze-plan.md
+    - deliverables/convi-7197-scorecard-editors-dropdown-ux-fix.md
 notes: Backend is merged with `submitted_scorecard_editors` / `submittedScorecardEditors` as a `users + teams + groups` contract. Frontend exposes the control in `TemplateBuilderAdvanced`, round-trips users/teams/groups, does not depend on `permissions.scorecardGraders`, and uses `All users` as the empty-state text. `director#19805` merged the `EvaluateScorecardsPermissions` client wrapper and hook; PR `director#19100` should now use that hook to proactively lock denied submitted scorecards on load.

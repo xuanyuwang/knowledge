@@ -1,7 +1,7 @@
 # CONVI-6862 - Disable Editing on Submitted Scorecard
 
 **Created:** 2026-05-19  
-**Updated:** 2026-06-17
+**Updated:** 2026-07-03
 
 ## Overview
 
@@ -44,6 +44,7 @@ Submit remains a first-submit action for unsubmitted scorecards.
 - Reactive `UpdateScorecard` 403 fail-and-freeze handling remains as a fallback for stale permissions or permission changes after load.
 - The submitted-lock inline warning copy is `You do not have permission to edit this scorecard`.
 - The older audience-style permitted-user pivot is now historical context only and should not be treated as the active contract.
+- **CONVI-7197 (merged `director#20375`):** Scorecard editors dropdown UX fix — Floating UI flip on `UserTeamGroupPopover` caused the menu to jump below the input when search shrank the dropdown near the bottom of the Access tab; fixed by pinning `top-start` and disabling flip on the submitted-editors selector only.
 
 ## Status
 
@@ -70,6 +71,8 @@ Investigation and implementation touch:
 | 2026-05-26 | Verified the landed proto shape is still role-based and documented that current template audience resolution is runtime-based with existing `teams` handling gaps. |
 | 2026-05-29 | Documented the merged backend contract, corrected the FE behavior docs, and added a detailed local FE test plan. |
 | 2026-06-17 | Documented merged `EvaluateScorecardsPermissions` FE client work and updated the active runtime plan to proactive lock on load with reactive fallback. |
+| 2026-07-02 | Triaged FE/BE feature-flag mismatch (CONVI-7206); fixed Scorecard editors dropdown placement bug (CONVI-7197). |
+| 2026-07-03 | Merged `director#20375`; documented root cause and solution for CONVI-7197. |
 
 ## Related Artifacts
 
@@ -78,7 +81,12 @@ Investigation and implementation touch:
 - `log/2026-05-22.md`
 - `log/2026-05-29.md`
 - `log/2026-06-17.md`
+- `log/2026-07-02.md`
+- `log/2026-07-03.md`
 - `sessions/2026-05-19/codex-requirements-and-design.md`
+- `sessions/2026-07-02/codex-convi-7197-dropdown-placement-fix.md`
+- `sessions/2026-07-02/codex-fe-be-feature-flag-mismatch-bug.md`
+- `deliverables/convi-7197-scorecard-editors-dropdown-ux-fix.md`
 - `decisions/2026-05-19-separate-post-submit-permission.md`
 - `decisions/2026-05-22-permitted-users-audience-pivot.md`
 - `decisions/2026-05-29-final-fe-submitted-editor-behavior.md`
