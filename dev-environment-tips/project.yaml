@@ -1,0 +1,20 @@
+title: Dev Environment Tips
+status: active
+primary_source_repo: knowledge
+primary_repo_path: /Users/xuanyu.wang/repos/knowledge
+active_worktree_path: /Users/xuanyu.wang/repos/knowledge
+branch: main
+related_ticket_ids: []
+related_prs: []
+current_objective: Capture durable decisions and operating notes for local development and AI-assisted workspace layout.
+last_validated: 2026-07-03
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - /Users/xuanyu.wang/repos/knowledge/workflow/ai-operating-model.md
+    - /Users/xuanyu.wang/repos/knowledge/workspace/repos.yaml
+notes: This project covers workspace-level development environment guidance; source repo changes normally remain in their own repositories.

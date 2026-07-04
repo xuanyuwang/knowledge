@@ -1,0 +1,24 @@
+title: Knowledge Workspace Operating Protocol
+status: active
+primary_source_repo: knowledge
+primary_repo_path: /Users/xuanyu.wang/repos/knowledge
+active_worktree_path: /Users/xuanyu.wang/repos/knowledge
+branch: main
+related_ticket_ids: []
+related_prs: []
+current_objective: Keep the shared repo/worktree registry, workspace metadata repo, and agent operating protocol reliable across Codex, Claude, and source repo work.
+last_validated: 2026-07-03
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - /Users/xuanyu.wang/repos/README.md
+    - /Users/xuanyu.wang/repos/AGENTS.md
+    - /Users/xuanyu.wang/repos/CLAUDE.md
+    - /Users/xuanyu.wang/repos/workspace.code-workspace
+    - workflow/ai-operating-model.md
+    - workspace/repos.yaml
+notes: Workflow-level changes should be recorded here when they affect how agents discover source repos, use the workspace metadata repo, or save durable project context.

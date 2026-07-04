@@ -92,3 +92,7 @@ Run a short weekly review:
 - [Scorecard template status mismatch](./scorecard-template-status-mismatch.md)
 - [CONVI-7022 example](./convi-7022-scorecard-status-mismatch.md)
 - [percentage_value bug](./percentage-value-bug.md)
+
+## Current Research
+
+- [Team Slack notification routing](./sessions/2026-06-29/codex-team-slack-notification-research.md)

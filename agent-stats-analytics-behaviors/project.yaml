@@ -1,0 +1,32 @@
+title: Agent Stats Analytics Behaviors
+status: active
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers
+branch: main
+related_ticket_ids:
+  - CONVI-6242
+related_prs:
+  - https://github.com/cresta/go-servers/pull/25706
+  - https://github.com/cresta/cresta-proto/pull/8844
+  - https://github.com/cresta/clickhouse-schema/pull/213
+  - https://github.com/cresta/go-servers/pull/28531
+  - https://github.com/cresta/go-servers/pull/28706
+  - https://github.com/cresta/go-servers/pull/29030
+  - https://github.com/cresta/go-servers/pull/29058
+  - https://github.com/cresta/go-servers/pull/29084
+current_objective: Maintain durable context for agent stats analytics behavior; monitor post-CONVI-7143 label repair and Active Days guide accuracy.
+last_validated: 2026-07-03
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - https://coda.io/d/_dXbEJBQXiGs/Agent-Leaderboard-Active-Days-Behavior-Guide_sueK_Nu_
+    - https://cresta.enterprise.slack.com/files/U0896UC4MQF/F0B8PREKRRQ/conversation_with_labels_update.md
+    - /Users/xuanyu.wang/repos/knowledge/agent-stats-active-days-fix
+    - /Users/xuanyu.wang/repos/knowledge/convi-6242-cron-label-conversations
+    - deliverables/active-days-behavior-guide-2026-06.md
+notes: Consolidates legacy Active Days and cron-label-conversations knowledge under a broader analytics-behavior project owned by Performance, Leaderboard, and coaching/QM analytics service APIs.

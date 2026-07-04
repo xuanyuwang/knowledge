@@ -1,10 +1,11 @@
 # CONVI-6842: Holiday Inn PI vs Closed Conversations mismatch
 
-**Status**: Investigation narrowed on no-template population mismatch  
+**Status**: Director PR in corrective cleanup  
 **Ticket**: https://linear.app/cresta/issue/CONVI-6842  
 **Customer**: Holiday Inn Voice and Transfer  
-**Worktree**: `/Users/xuanyu.wang/repos/go-servers-convi-6842`  
-**Branch**: `convi-6842-holiday-inn-voice-and-transfer-performance-insights-shows`
+**Worktree**: `/Users/xuanyu.wang/repos/director-convi-6842`  
+**Branch**: `xwang/convi-6842-conversation-volume`  
+**PR**: https://github.com/cresta/director/pull/20153
 
 ## Problem
 
@@ -56,3 +57,23 @@ If the product intends `Conversation volume` to mean "closed conversations with 
 If the product intends `Conversation volume` to mean "all conversations represented in QA scorecards, including N/A / no-message scorecarded conversations", then the `RetrieveQAScoreStats(includeNaScored=true)` number is the defensible one.
 
 The important point is that these are two different business definitions. The UI label currently hides that distinction.
+
+## Current Implementation Direction
+
+The accepted product decision is to keep Closed Conversations strict and make the Performance Insights conversation-volume card scorecard-centric. The Director PR should stay minimal: replace the no-template conversation-volume data source from `RetrieveConversationStats` to `RetrieveQAScoreStats`, while preserving the existing chart layout, legend behavior, export behavior, and selected-template behavior.
+
+## Log History
+
+| Date | Summary |
+|------|---------|
+| 2026-07-03 | Knowledge wrap-up; PR #20153 in review after staging validation. |
+| 2026-07-02 | Reviewed staging before/after screenshots; confirmed volume delta matches QA source swap. |
+| 2026-06-29 | Reduced Director PR to minimal `ConversationCountChart.tsx` source swap; pushed to PR #20153. |
+
+## Related Artifacts
+
+- `log/2026-06-29.md`
+- `log/2026-07-02.md`
+- `log/2026-07-03.md`
+- `sessions/2026-06-29/codex-pr-diff-cleanup.md`
+- `sessions/2026-07-02/codex-pr-comment-walter-dev.md`

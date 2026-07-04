@@ -1,0 +1,20 @@
+title: CONVI-7162 - Holiday Inn Manager Scorecards Completed Counts
+status: investigated
+primary_source_repo: director
+primary_repo_path: /Users/xuanyu.wang/repos/director
+active_worktree_path: /Users/xuanyu.wang/repos/director
+branch: main
+related_ticket_ids:
+  - CONVI-7162
+related_projects:
+  - /Users/xuanyu.wang/repos/knowledge/convi-6968-schwab-leaderboard-launch
+related_source_repos:
+  - /Users/xuanyu.wang/repos/go-servers
+  - /Users/xuanyu.wang/repos/cresta-proto
+current_objective: Investigate why Holiday Inn Manager Leaderboard Scorecards Completed counts are redistributed or missing by day.
+last_validated: 2026-07-03
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+notes: Current director/main Manager Leaderboard uses RetrieveQAScoreStats and RetrieveQAConversations for Scorecards completed, grouped/filtered by scorecard submitter. That QA path filters and groups time by scorecard_time via the conversation-start target, not by scorecard_submit_time. The older RetrieveScorecardStats path intentionally rewrote scorecard_time to scorecard_submit_time. This is the leading explanation for CONVI-7162 daily redistribution/missing counts versus QM/Coaching Hub submitted scorecard counts.

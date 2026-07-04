@@ -23,8 +23,24 @@ The point is to build a reusable mental model first, then encode it as an operat
 ## Current Artifacts
 
 - `deliverables/pg-ch-data-sync-investigator/SKILL.md` - reusable Codex skill for PG to CH sync incidents
+- `sessions/2026-06-30/codex-scorecard-sync-monitor-timeout.md` - investigation of the 2026-06-30 scorecard-sync-monitor CronJob timeouts after unsubmitted scorecard filtering changed
 - `sessions/2026-06-08/codex-pack-rat-scorecard-sync.md` - Pack Rat live incident investigation and repair notes
+- `log/2026-06-30.md` - concise daily movement for the scorecard-sync-monitor timeout investigation
 - `log/2026-06-08.md` - concise daily movement
+
+## Latest Case: scorecard-sync-monitor timeout
+
+On 2026-06-30, investigated `cron-scorecard-sync-monitor` deadline failures in large prod clusters after PR `#29273` changed unsubmitted scorecard inventory to exclude scorecard shells without `director.scores`.
+
+Key result:
+
+- Current `origin/main` inventory query uses a single scorecards query with a submitted branch and an unsubmitted `created_at` + correlated `EXISTS` branch.
+- The same PR added a second `NOT EXISTS` count for excluded unsubmitted shells.
+- Live `EXPLAIN` on `oportun/us-west-2` showed the excluded count plans a parallel seq scan over `director.scorecards`, and bounded `EXPLAIN ANALYZE` timed out at 45s.
+- GroundCover showed `oportun/us-west-2` started but never emitted stats before the 10:30Z active deadline deletion, while `cvs/us-west-2` completed ClickHouse stats at 10:29:28Z.
+- Best-supported bottleneck is PG inventory/count over high-volume unsubmitted scorecard shells, not `result_collector` or Slack.
+
+Proposed immediate direction: split submitted and unsubmitted inventory, remove/gate the excluded-count query from the critical path, add timing logs, and evaluate a concurrent partial unsubmitted `created_at` index only if query splitting/removing the count is not enough.
 
 ## Working Approach
 

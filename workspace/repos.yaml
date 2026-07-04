@@ -1,14 +1,23 @@
 version: 1
-last_validated: 2026-05-06
+last_validated: 2026-07-03
 root_repos_dir: /Users/xuanyu.wang/repos
 permissions_policy:
-  summary: Keep repos and worktrees under /Users/xuanyu.wang/repos so AI tools can reuse a shared filesystem boundary when supported.
+  summary: Keep repos and worktrees under /Users/xuanyu.wang/repos, which is now a lightweight workspace metadata Git repo, so AI tools can use a Git-backed shared filesystem boundary when supported.
   preferred_workspace_root: /Users/xuanyu.wang/repos
+  workspace_metadata_repo: /Users/xuanyu.wang/repos
   knowledge_checkout_policy: Use the main knowledge checkout directly; do not create a repo-specific worktree for knowledge.
   command_approval_policy: Prefer persistent allowlists or command-prefix approvals for recurring commands when the tool supports them.
   note: Some tools still issue an initial trust prompt for a brand-new worktree path because trust is path-based.
 
 repos:
+  - name: workspace-meta
+    path: /Users/xuanyu.wang/repos
+    default_branch: main
+    worktree_convention: Do not create worktrees for the workspace metadata repo; edit the root checkout directly.
+    purpose: Lightweight Git-backed parent workspace for shared AI/editor metadata, ignoring child source repositories.
+    related_repos:
+      - knowledge
+
   - name: knowledge
     path: /Users/xuanyu.wang/repos/knowledge
     default_branch: main

@@ -1,0 +1,19 @@
+title: QM and Coaching Oncall Knowledge
+status: active
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers
+branch: main
+related_ticket_ids: []
+related_prs: []
+current_objective: Build durable oncall runbooks and implementation notes for QM and Coaching incident response and alert routing.
+last_validated: 2026-07-03
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - sessions/2026-06-29/codex-team-slack-notification-research.md
+notes: Research may span go-servers, director, flux-deployments, and internal Glean-indexed docs.

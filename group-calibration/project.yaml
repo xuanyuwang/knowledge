@@ -1,0 +1,32 @@
+title: Group Calibration
+status: active
+primary_source_repo: director
+primary_repo_path: /Users/xuanyu.wang/repos/director
+active_worktree_path: /Users/xuanyu.wang/repos/director
+branch: convi-7208-group-calibration-add-column-for-scorecard-criterion-level-comments
+related_ticket_ids:
+  - CONVI-7208
+related_prs:
+  - https://github.com/cresta/director/pull/20388
+  - https://github.com/cresta/go-servers/pull/29634
+related_repos:
+  - go-servers
+  - cresta-proto
+current_objective: CONVI-7208 — director PR #20388 open; pending manual QA and merge.
+last_validated: 2026-07-03
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - sessions/2026-07-03/cursor-convi-7208-investigation.md
+    - decisions/2026-07-03-convi-7208-director-only-export.md
+    - deliverables/convi-7208-pm-behavior-summary.md
+    - deliverables/convi-7208-technical-reference.md
+    - deliverables/convi-7208-comment-access-roles.md
+    - deliverables/convi-7208-empty-comment-parity.md
+notes: >
+  CSV export is client-side in director. go-servers already returns scores.comment via ListScorecards;
+  no backend changes required for CONVI-7208.

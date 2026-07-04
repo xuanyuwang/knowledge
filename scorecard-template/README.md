@@ -1,7 +1,7 @@
 # Scorecard & Template Working Reference
 
 **Created:** 2026-03-26
-**Updated:** 2026-06-16
+**Updated:** 2026-06-27
 
 ## Overview
 
@@ -45,12 +45,14 @@ If you are starting fresh, read these in order:
 - `deliverables/template-lifecycle.md`
 - `deliverables/scorecard-lifecycle.md`
 - `deliverables/workflow-map.md`
+- `deliverables/empty-scorecards-workflow-and-api-analysis.md`
+- `deliverables/analytics-apis.md`
 - `deliverables/business-rules-catalog.md`
 - `deliverables/ticket-pattern-log.md`
 - `deliverables/scorecard-template-working-reference-project.md`
 - `deliverables/scorecard-template-system-reference.md`
 
-The domain skeleton is the starting framework. The concept map turns that framework into a first concrete model. The template lifecycle and scorecard lifecycle describe how the two main artifacts move over time. The workflow map describes how the same artifacts take on different roles in evaluation, calibration, appeal, analytics, and repair flows. The business-rules catalog organizes the repeated rules, and the ticket-pattern log captures recurring patterns from real work. The project brief explains how this reference should grow. The system reference is the deeper distilled foundation.
+The domain skeleton is the starting framework. The concept map turns that framework into a first concrete model. The template lifecycle and scorecard lifecycle describe how the two main artifacts move over time. The workflow map describes how the same artifacts take on different roles in evaluation, calibration, appeal, analytics, and repair flows. The empty-scorecards analysis is the first focused workflow/API cross-section using the behavior-frame model. The analytics API attribute map is the canonical analytics reference: it maps scorecard/template attributes to ClickHouse and Postgres query surfaces and lists how each scorecard, score, and template attribute changes analytics API outputs. The business-rules catalog organizes the repeated rules, and the ticket-pattern log captures recurring patterns from real work. The project brief explains how this reference should grow. The system reference is the deeper distilled foundation.
 
 ## Distilled Deliverables
 
@@ -59,6 +61,8 @@ The domain skeleton is the starting framework. The concept map turns that framew
 - `deliverables/template-lifecycle.md` - Lifecycle of the reusable template definition from authoring to historical interpretation
 - `deliverables/scorecard-lifecycle.md` - Runtime lifecycle from instantiation through analytics projection and repair
 - `deliverables/workflow-map.md` - Workflow roles for scorecards and templates across evaluation, calibration, appeal, analytics, and repair
+- `deliverables/empty-scorecards-workflow-and-api-analysis.md` - Cross-workflow and API analysis of persisted scorecards with no usable score rows
+- `deliverables/analytics-apis.md` - Canonical analytics API reference for CH/PG query surfaces and attribute-by-API response impact
 - `deliverables/business-rules-catalog.md` - First organized catalog of repeated rules by lifecycle stage
 - `deliverables/ticket-pattern-log.md` - Seeded log of recurring patterns surfaced by ticket work
 - `deliverables/scorecard-template-working-reference-project.md` - Project brief, scope, and working method
@@ -123,6 +127,9 @@ The point is to turn repeated ticket pain into a better domain model over time.
 
 | Date | Summary |
 |------|---------|
+| 2026-07-03 | Knowledge wrap-up; analytics APIs deliverable is latest polished addition. |
+| 2026-06-27 | Added canonical analytics API attribute map deliverable. |
+| 2026-06-25 | Added empty-scorecards workflow/API analysis. |
 | 2026-06-25 | Captured AutoQA live trigger and backfill scorecard creation paths, including the empty-scorecard guardrail gap outside the coaching `CreateScorecard` API |
 | 2026-06-15 | Published `blog/2026-06-15-from-scorecard-apis-to-business-workflows.md`; supporting blog draft lives under `train-for-staff/deliverables/` |
 | 2026-06-11 | Introduced domain artifacts and behavioral frames as the organizing model, and added a workflow map for evaluation, calibration, appeal, analytics, and repair |

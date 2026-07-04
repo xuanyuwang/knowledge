@@ -7,7 +7,7 @@ branch: main
 related_ticket_ids: []
 related_prs: []
 current_objective: Create a reusable investigation skill and repair playbook for repeated PostgreSQL to ClickHouse scorecard sync issues.
-last_validated: 2026-06-08
+last_validated: 2026-07-03
 artifacts:
   readme: README.md
   log_dir: log/

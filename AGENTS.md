@@ -7,6 +7,7 @@ Read `workflow/ai-operating-model.md` before making substantial changes.
 ## Tool-specific adapter
 
 - Do not create a repo-specific worktree for `knowledge`. Work directly in the main repo checkout.
+- For substantial investigation, design, review, or multi-step execution, open or create the relevant project folder before starting the work.
 - Use `workspace/repos.yaml` to resolve the source repo and any named worktree.
 - When creating a new worktree for any other repo, place it under `/Users/xuanyu.wang/repos`.
 - Prefer existing `<project>/project.yaml` as the machine-readable handoff surface.
@@ -14,6 +15,7 @@ Read `workflow/ai-operating-model.md` before making substantial changes.
 - Record rich session context in `sessions/YYYY-MM-DD/<tool>-<topic>.md`.
 - Record concise daily movement in `log/YYYY-MM-DD.md`.
 - Update the project `README.md` only when the human-facing project state changes.
+- Treat the work as incomplete if durable investigation findings remain only in chat history or terminal output.
 
 ## Write boundaries
 

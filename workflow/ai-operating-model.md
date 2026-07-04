@@ -8,6 +8,7 @@ It exists so Codex, Claude Code, and other AI tools can all work in the same rep
 
 `knowledge` is the **context and synthesis layer** for engineering work.
 
+- `/Users/xuanyu.wang/repos` is a lightweight workspace metadata Git repo that tracks shared AI/editor instructions and ignores child source repositories.
 - Code changes happen in source repos under `~/repos` or in their worktrees.
 - Cross-session reasoning happens here.
 - Staff-level outputs are promoted from raw execution context into durable artifacts.
@@ -71,6 +72,7 @@ These files are the official interfaces between tools and humans:
 - For other repos, create new worktrees under `/Users/xuanyu.wang/repos`.
 - Prefer stable, human-recognizable worktree folder names that match the ticket or topic.
 - Record the exact worktree path in `project.yaml` and in session notes.
+- Do not move source repos under `knowledge`. Keep them as siblings under the Git-backed `/Users/xuanyu.wang/repos` workspace metadata repo.
 
 ## Permissions policy
 
@@ -79,6 +81,7 @@ Many AI tools bind trust and permissions to the opened folder path, not to the u
 Use these defaults to reduce repeated permission requests:
 
 - Keep source repos and new worktrees under `/Users/xuanyu.wang/repos`.
+- Treat `/Users/xuanyu.wang/repos` as a lightweight metadata repo, not a monorepo. Its `.gitignore` intentionally excludes child repositories.
 - When a tool supports choosing a workspace root, prefer `/Users/xuanyu.wang/repos` as the root for code work so repo checkouts and worktrees share one parent boundary.
 - Keep `knowledge` separate: work directly in the main `knowledge` checkout rather than creating a `knowledge` worktree.
 - Prefer persistent command allowlists or prefix-based approvals for recurring commands when the tool supports them.
@@ -139,15 +142,18 @@ Polished artifacts intended for consumption beyond the immediate session, such a
 
 Use the following flow by default:
 
-1. Resolve the source repo via `workspace/repos.yaml`.
-2. Use the main checkout for `knowledge`; if another repo needs a worktree, create it under `/Users/xuanyu.wang/repos`.
-3. Open or create the project folder.
-4. Read `project.yaml` and `README.md`.
-5. Create or update a session note in `sessions/YYYY-MM-DD/`.
-6. Do the work in the source repo or worktree if code changes are required.
-7. Update `log/YYYY-MM-DD.md` with the meaningful movement.
-8. Update `README.md` if project state changed.
-9. Promote durable decisions or polished artifacts as needed.
+1. Decide whether the task creates durable reasoning. Investigations, designs, reviews, and multi-step execution do; tiny one-shot commands and narrow factual answers usually do not.
+2. If the task creates durable reasoning, open or create the project folder under `/Users/xuanyu.wang/repos/knowledge` before starting substantive work.
+3. Resolve the source repo via `workspace/repos.yaml`.
+4. Use the main checkout for `knowledge`; if another repo needs a worktree, create it under `/Users/xuanyu.wang/repos`.
+5. Read `project.yaml` and `README.md`; if the project does not have `project.yaml`, add it from `templates/project.yaml`.
+6. Create or update a session note in `sessions/YYYY-MM-DD/`.
+7. Do the work in the source repo or worktree if code changes are required.
+8. Update `log/YYYY-MM-DD.md` with the meaningful movement before final handoff.
+9. Update `README.md` if project state changed.
+10. Promote durable decisions or polished artifacts as needed.
+
+The default mode for substantial work is therefore **project-first, then work-and-log**. A durable investigation is incomplete until its findings are saved under a project in `knowledge`.
 
 ## Artifact promotion rules
 
