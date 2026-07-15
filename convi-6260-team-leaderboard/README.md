@@ -1,5 +1,7 @@
 # CONVI-6260: Team Leaderboard Not Breaking Out Sub-Teams
 
+> Migrated navigation: [Analytics / Insights User Filter](../analytics/subdomains/insights-user-filter/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-02-13
 **Updated:** 2026-02-17
 

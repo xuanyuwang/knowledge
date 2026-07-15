@@ -1,5 +1,7 @@
 # Export Appeal Comments
 
+> Migrated navigation: [Scorecard Workflows / Appeals](../scorecard-workflows/subdomains/appeals/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-04-14
 **Updated:** 2026-04-14
 

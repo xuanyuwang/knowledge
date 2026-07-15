@@ -1,5 +1,7 @@
 # Auto Backfill Missing Scorecards
 
+> Migrated navigation: [Scorecard Workflows / Process Scorecards and Generation](../scorecard-workflows/subdomains/process-scorecards-and-generation/README.md). PG/CH projection repair remains under Scorecard Data Sync.
+
 ## Status
 
 Active investigation. This project tracks scorecard backfill and auto-heal work in `go-servers`.

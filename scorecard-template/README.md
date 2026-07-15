@@ -1,7 +1,9 @@
 # Scorecard & Template Working Reference
 
+> Migrated navigation: [Scorecard Workflows](../scorecard-workflows/README.md). This folder remains the retained deep reference and historical evidence.
+
 **Created:** 2026-03-26
-**Updated:** 2026-06-27
+**Updated:** 2026-07-06
 
 ## Overview
 
@@ -51,6 +53,7 @@ If you are starting fresh, read these in order:
 - `deliverables/ticket-pattern-log.md`
 - `deliverables/scorecard-template-working-reference-project.md`
 - `deliverables/scorecard-template-system-reference.md`
+- `deliverables/scorecard-export-paths.md`
 
 The domain skeleton is the starting framework. The concept map turns that framework into a first concrete model. The template lifecycle and scorecard lifecycle describe how the two main artifacts move over time. The workflow map describes how the same artifacts take on different roles in evaluation, calibration, appeal, analytics, and repair flows. The empty-scorecards analysis is the first focused workflow/API cross-section using the behavior-frame model. The analytics API attribute map is the canonical analytics reference: it maps scorecard/template attributes to ClickHouse and Postgres query surfaces and lists how each scorecard, score, and template attribute changes analytics API outputs. The business-rules catalog organizes the repeated rules, and the ticket-pattern log captures recurring patterns from real work. The project brief explains how this reference should grow. The system reference is the deeper distilled foundation.
 
@@ -67,6 +70,15 @@ The domain skeleton is the starting framework. The concept map turns that framew
 - `deliverables/ticket-pattern-log.md` - Seeded log of recurring patterns surfaced by ticket work
 - `deliverables/scorecard-template-working-reference-project.md` - Project brief, scope, and working method
 - `deliverables/scorecard-template-system-reference.md` - Canonical system reference and mental model
+- `deliverables/scorecard-export-paths.md` - Scorecard CSV export paths and parity gaps (Group Cal vs QM/Coaching Hub)
+
+## Scorecard Exportation
+
+Scorecards can be exported to CSV from multiple product surfaces. Export logic is **not centralized** — formatting is duplicated between Director (Group Calibration) and go-servers (QM / Coaching Hub export).
+
+See `deliverables/scorecard-export-paths.md` for the full path inventory, grade-value mapping table, and known inconsistencies.
+
+**Known issue (2026-07-06):** Group Calibration session CSV exports raw `numericValue` for labeled-radios criteria while BE export maps to option labels. Fix plan: `group-calibration/deliverables/convi-7208-numeric-grade-csv-fix-plan.md`.
 
 ## Working Notes and Deep Dives
 
@@ -92,6 +104,8 @@ The complete understanding of scorecard templates is spread across multiple proj
 
 | Area | Path |
 |------|------|
+| Group Cal session CSV export | `director/packages/director-app/src/components/qa/report/group-calibration/recent-calibrations-table/buildCriterionCsvColumns.ts` |
+| QM scorecard CSV export | `go-servers/apiserver/internal/coaching/action_export_scorecards.go` |
 | Template Go types & parsing | `go-servers/shared/scoring/scorecard_templates.go` |
 | Score calculation algorithm | `go-servers/shared/scoring/scorecard_calculator.go` |
 | Criterion percentage scoring | `go-servers/shared/scoring/scorecard_scores_dao.go` |
@@ -127,6 +141,7 @@ The point is to turn repeated ticket pain into a better domain model over time.
 
 | Date | Summary |
 |------|---------|
+| 2026-07-06 | Added scorecard export paths deliverable; documented Group Cal vs BE export inconsistencies and CONVI-7208 grade-label gap. |
 | 2026-07-03 | Knowledge wrap-up; analytics APIs deliverable is latest polished addition. |
 | 2026-06-27 | Added canonical analytics API attribute map deliverable. |
 | 2026-06-25 | Added empty-scorecards workflow/API analysis. |

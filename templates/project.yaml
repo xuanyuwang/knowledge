@@ -8,6 +8,7 @@ active_worktree_path: /Users/xuanyu.wang/repos/go-servers-example-worktree
 branch: codex/example-branch
 domain_owners: []
 domain_scope: One sentence defining what belongs in this domain or initiative.
+subdomains: []
 related_ticket_ids: []
 active_work_items: []
 related_prs: []
@@ -15,6 +16,7 @@ current_objective: One-sentence statement of the current objective.
 last_validated: YYYY-MM-DD
 artifacts:
   readme: README.md
+  subdomains_dir: subdomains/
   work_items_dir: work-items/
   log_dir: log/
   session_dir: sessions/

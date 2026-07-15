@@ -1,5 +1,7 @@
 # User Filter Consolidation Project
 
+> Durable domain reference: [Analytics / Insights User Filter](../analytics/subdomains/insights-user-filter/README.md). This initiative folder retains its own execution history.
+
 ## Goal
 
 Unify `ParseUserFilterForAnalytics` into `Parse`, using `ListUsersForAnalytics` and `LiteUser` as the underlying implementation.

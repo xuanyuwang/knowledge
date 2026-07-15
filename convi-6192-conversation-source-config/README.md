@@ -1,5 +1,7 @@
 # CONVI-6192: Allow Conversation Source to be Configurable
 
+> Migrated navigation: [Analytics / Active Days](../analytics/subdomains/active-days/README.md). This folder remains detailed historical evidence.
+
 **Linear**: https://linear.app/cresta/issue/CONVI-6192
 
 ## Problem

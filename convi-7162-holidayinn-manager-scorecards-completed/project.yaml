@@ -1,9 +1,9 @@
 title: CONVI-7162 - Holiday Inn Manager Scorecards Completed Counts
-status: investigated
-primary_source_repo: director
-primary_repo_path: /Users/xuanyu.wang/repos/director
-active_worktree_path: /Users/xuanyu.wang/repos/director
-branch: main
+status: implementation in progress
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7162
+branch: convi-7162-holiday-inn-club-vacations-manager-leaderboard-scorecards
 related_ticket_ids:
   - CONVI-7162
 related_projects:
@@ -11,10 +11,10 @@ related_projects:
 related_source_repos:
   - /Users/xuanyu.wang/repos/go-servers
   - /Users/xuanyu.wang/repos/cresta-proto
-current_objective: Investigate why Holiday Inn Manager Leaderboard Scorecards Completed counts are redistributed or missing by day.
-last_validated: 2026-07-03
+current_objective: Restore submit-time semantics for Manager Leaderboard submitted scorecard completion counts in the QA-backed scorecard APIs.
+last_validated: 2026-07-10
 artifacts:
   readme: README.md
   log_dir: log/
   session_dir: sessions/
-notes: Current director/main Manager Leaderboard uses RetrieveQAScoreStats and RetrieveQAConversations for Scorecards completed, grouped/filtered by scorecard submitter. That QA path filters and groups time by scorecard_time via the conversation-start target, not by scorecard_submit_time. The older RetrieveScorecardStats path intentionally rewrote scorecard_time to scorecard_submit_time. This is the leading explanation for CONVI-7162 daily redistribution/missing counts versus QM/Coaching Hub submitted scorecard counts.
+notes: Implementation branch in go-servers now routes submitted scorecard reviewer/completion QA requests to scorecard_submit_time for filtering and daily grouping, while preserving ordinary QA scorecard queries on conversation-time semantics. Focused analytics tests pass; full analyticsimpl package test was stopped after hanging with no output for several minutes.

@@ -8,7 +8,8 @@ Organize durable knowledge around stable product/system domains while keeping ti
 
 ```text
 domain project
-  -> work item
+  -> subdomain (optional knowledge partition)
+    -> work item (operated at parent domain)
     -> dated session evidence
       -> daily movement
         -> weekly synthesis
@@ -37,11 +38,22 @@ A temporary outcome that deserves independent coordination. Create one only when
 
 A repository operating surface such as `workspace`, `train-for-staff`, or promotion destinations.
 
+## Domain Families and Subdomains
+
+Broad domains may act as domain families. Use `subdomains/<name>/` for product surfaces, bounded capabilities, or workflows that need their own semantic and architectural map but still share parent entities, APIs, operations, or ownership.
+
+- Start as a subdomain when shared truth would otherwise be duplicated.
+- Keep work items, sessions, logs, and decisions at the parent domain; record an optional primary subdomain.
+- Store cross-subdomain contracts at the parent.
+- Promote to an independent top-level domain only when several are true: distinct ownership/roadmap, distinct entities/lifecycle, mostly independent code/data flow, sustained work volume, independent operational health, and low dependence on parent context.
+- A separate UI workflow, large document set, or long-running ticket is not sufficient by itself.
+
 ## Ticket model
 
 Tickets are normally work items, not projects.
 
 - Select exactly one primary domain.
+- Select at most one primary subdomain.
 - Maintain one canonical `work-items/<ticket>.md` for current technical state.
 - Keep official workflow/status in Linear or the relevant issue tracker.
 - Put deep dated evidence in `sessions/YYYY-MM-DD/`.

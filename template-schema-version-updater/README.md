@@ -1,5 +1,7 @@
 # Template Schema Versioning and Updater
 
+> Migrated navigation: [Scorecard Workflows / Template Authoring and Versioning](../scorecard-workflows/subdomains/template-authoring-and-versioning/README.md). This folder remains detailed planning evidence.
+
 **Created:** 2026-05-25
 **Updated:** 2026-05-25
 

@@ -12,8 +12,8 @@ related_prs:
 related_repos:
   - go-servers
   - cresta-proto
-current_objective: CONVI-7208 — director PR #20388 open; pending manual QA and merge.
-last_validated: 2026-07-03
+current_objective: CONVI-7208 — director PR #20388 open; numeric grade label fix planned (see deliverables/convi-7208-numeric-grade-csv-fix-plan.md).
+last_validated: 2026-07-06
 artifacts:
   readme: README.md
   log_dir: log/
@@ -27,6 +27,7 @@ artifacts:
     - deliverables/convi-7208-technical-reference.md
     - deliverables/convi-7208-comment-access-roles.md
     - deliverables/convi-7208-empty-comment-parity.md
+    - deliverables/convi-7208-numeric-grade-csv-fix-plan.md
 notes: >
   CSV export is client-side in director. go-servers already returns scores.comment via ListScorecards;
   no backend changes required for CONVI-7208.

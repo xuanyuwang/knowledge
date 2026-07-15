@@ -14,6 +14,7 @@ Read `workflow/ai-operating-model.md` and `workflow/domain-centered-knowledge-mo
 - If an existing project folder lacks `project.yaml`, add it from `templates/project.yaml` before doing substantial work.
 - Record rich session context in `sessions/YYYY-MM-DD/<tool>-<topic>.md`.
 - Track tickets and continuing tasks in one canonical `<primary-domain>/work-items/<id>.md`.
+- Record an optional primary subdomain, but keep work items, sessions, logs, and decisions at the parent domain; use `subdomains/` for durable reference knowledge only.
 - Before final handoff, automatically record concise daily movement in `log/YYYY-MM-DD.md`; do not wait for an explicit logging request.
 - Use `workflow/skills/daily-capture/SKILL.md` for daily/session closure and `workflow/skills/weekly-summary/SKILL.md` for weekly synthesis.
 - Update the project `README.md` only when the human-facing project state changes.
@@ -25,6 +26,7 @@ In this repo, agents may update only:
 
 - project `README.md`
 - `project.yaml`
+- `subdomains/`
 - `work-items/`
 - `log/`
 - `sessions/`

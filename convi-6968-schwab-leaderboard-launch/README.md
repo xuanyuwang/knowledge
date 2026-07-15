@@ -1,5 +1,7 @@
 # CONVI-6968 - Schwab Leaderboard Launch Support
 
+> Migrated navigation: [Analytics / Leaderboard](../analytics/subdomains/leaderboard/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-06-01  
 **Updated:** 2026-06-08
 

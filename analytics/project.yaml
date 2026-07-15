@@ -13,17 +13,36 @@ branch: main
 domain_owners:
   - Xuanyu Wang
 domain_scope: Performance Insights and Leaderboard frontend/backend semantics, filters, analytics APIs, aggregations, and displayed-data lineage.
+subdomains:
+  - shared-analytics-platform
+  - performance-insights
+  - leaderboard
+  - active-days
+  - quintiles
+  - qa-score
+  - insights-user-filter
+  - conversation-volume
 related_ticket_ids: []
 active_work_items: []
 related_prs: []
-current_objective: Consolidate ticket knowledge into an exact cross-layer reference for Performance Insights and Leaderboard.
-last_validated: 2026-07-14
+current_objective: Maintain shared analytics contracts and exact subdomain semantics for Performance Insights, Leaderboard, filters, metrics, and data lineage.
+last_validated: 2026-07-15
 artifacts:
   readme: README.md
+  subdomains_dir: subdomains/
   work_items_dir: work-items/
   log_dir: log/
   session_dir: sessions/
   decisions_dir: decisions/
   deliverables_dir: deliverables/
-  key_docs: []
-notes: Existing analytics folders remain source material until the migration plan is executed and validated.
+  key_docs:
+    - subdomains/shared-analytics-platform/README.md
+    - subdomains/performance-insights/README.md
+    - subdomains/leaderboard/README.md
+    - subdomains/active-days/README.md
+    - subdomains/quintiles/README.md
+    - subdomains/qa-score/README.md
+    - subdomains/insights-user-filter/README.md
+    - subdomains/conversation-volume/README.md
+    - deliverables/legacy-source-index.md
+notes: Cross-page contracts live at the parent or shared-analytics-platform level. Legacy folders retain raw ticket and execution evidence.

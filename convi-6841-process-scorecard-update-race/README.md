@@ -1,5 +1,7 @@
 # CONVI-6841: Lending Club process scorecard failed to update on creation
 
+> Migrated navigation: [Scorecard Workflows / Scorecard Lifecycle](../scorecard-workflows/subdomains/scorecard-lifecycle/README.md). This folder remains detailed historical evidence.
+
 **Status**: Fix in progress  
 **Ticket**: https://linear.app/cresta/issue/CONVI-6841  
 **Customer**: Lending Club  

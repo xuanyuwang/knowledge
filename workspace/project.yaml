@@ -23,6 +23,7 @@ artifacts:
     - workflow/domain-centered-knowledge-model.md
     - workspace/deliverables/domain-reorganization-plan.md
     - workspace/sessions/2026-07-15/codex-data-sync-notifications-migration.md
+    - workspace/sessions/2026-07-15/codex-analytics-scorecard-workflows-subdomain-migration.md
     - workflow/skills/daily-capture/SKILL.md
     - workflow/skills/weekly-summary/SKILL.md
     - workspace/repos.yaml

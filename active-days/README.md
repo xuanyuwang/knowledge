@@ -1,5 +1,7 @@
 # Active Days Investigation Project
 
+> Migrated navigation: [Analytics / Active Days](../analytics/subdomains/active-days/README.md). This folder remains detailed historical evidence.
+
 **Created**: 2026-03-23
 **Updated**: 2026-03-23
 

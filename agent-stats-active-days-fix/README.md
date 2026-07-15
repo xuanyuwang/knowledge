@@ -1,5 +1,7 @@
 # Agent Stats "Active Days" Fix — FULL OUTER JOIN
 
+> Migrated navigation: [Analytics / Active Days](../analytics/subdomains/active-days/README.md). This folder remains detailed historical evidence.
+
 **Created**: 2026-02-09
 **Updated**: 2026-02-11
 **PR**: https://github.com/cresta/go-servers/pull/25613

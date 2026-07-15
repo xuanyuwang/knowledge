@@ -1,7 +1,9 @@
 # CONVI-6862 - Disable Editing on Submitted Scorecard
 
+> Migrated navigation: [Scorecard Workflows / Permissions and Visibility](../scorecard-workflows/subdomains/permissions-and-visibility/README.md). This folder remains detailed ticket evidence.
+
 **Created:** 2026-05-19  
-**Updated:** 2026-07-03
+**Updated:** 2026-07-08
 
 ## Overview
 
@@ -45,6 +47,7 @@ Submit remains a first-submit action for unsubmitted scorecards.
 - The submitted-lock inline warning copy is `You do not have permission to edit this scorecard`.
 - The older audience-style permitted-user pivot is now historical context only and should not be treated as the active contract.
 - **CONVI-7197 (merged `director#20375`):** Scorecard editors dropdown UX fix — Floating UI flip on `UserTeamGroupPopover` caused the menu to jump below the input when search shrank the dropdown near the bottom of the Access tab; fixed by pinning `top-start` and disabling flip on the submitted-editors selector only.
+- **CONVI-7206 (`go-servers#29774`):** Backend submitted-scorecard editor enforcement now reads the same per-customer `disableEditingOnSubmittedScorecards` Director config flag as the frontend. This is a documented compromise to keep FE/BE rollout synchronized under one same-team config knob.
 
 ## Status
 
@@ -73,6 +76,7 @@ Investigation and implementation touch:
 | 2026-06-17 | Documented merged `EvaluateScorecardsPermissions` FE client work and updated the active runtime plan to proactive lock on load with reactive fallback. |
 | 2026-07-02 | Triaged FE/BE feature-flag mismatch (CONVI-7206); fixed Scorecard editors dropdown placement bug (CONVI-7197). |
 | 2026-07-03 | Merged `director#20375`; documented root cause and solution for CONVI-7197. |
+| 2026-07-08 | Prepared `go-servers#29774` for CONVI-7206; fixed the failed coaching coverage job by adding the missing reset-suite config mock and re-triggered CI. |
 
 ## Related Artifacts
 
@@ -83,9 +87,11 @@ Investigation and implementation touch:
 - `log/2026-06-17.md`
 - `log/2026-07-02.md`
 - `log/2026-07-03.md`
+- `log/2026-07-08.md`
 - `sessions/2026-05-19/codex-requirements-and-design.md`
 - `sessions/2026-07-02/codex-convi-7197-dropdown-placement-fix.md`
 - `sessions/2026-07-02/codex-fe-be-feature-flag-mismatch-bug.md`
+- `sessions/2026-07-08/codex-convi-7206-be-feature-flag-gating.md`
 - `deliverables/convi-7197-scorecard-editors-dropdown-ux-fix.md`
 - `decisions/2026-05-19-separate-post-submit-permission.md`
 - `decisions/2026-05-22-permitted-users-audience-pivot.md`

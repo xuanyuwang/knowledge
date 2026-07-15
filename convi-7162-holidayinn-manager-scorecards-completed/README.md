@@ -1,7 +1,9 @@
 # CONVI-7162 - Holiday Inn Manager Scorecards Completed Counts
 
+> Migrated navigation: [Analytics / Conversation Volume](../analytics/subdomains/conversation-volume/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-07-02  
-**Updated:** 2026-07-02
+**Updated:** 2026-07-10
 
 ## Overview
 
@@ -70,16 +72,17 @@ This explains why Monday and Tuesday showed only 1 each even though Cliff submit
 
 ## Status
 
-Investigation complete with source-code and read-only PG/CH evidence for the primary sample.
+Implementation is in progress on backend branch `convi-7162-holiday-inn-club-vacations-manager-leaderboard-scorecards` in `/Users/xuanyu.wang/repos/go-servers-convi-7162`.
 
-Recommended next step is code fix selection:
+Chosen fix direction: keep the CONVI-6968 QA-backed Manager Leaderboard implementation, but restore submit-time semantics for the submitted scorecard reviewer/completion request shape. In `go-servers`, submitted scorecard reviewer QA requests now filter and group by `scorecard_submit_time` instead of `scorecard_time`; ordinary QA scorecard queries continue using conversation-time semantics.
 
-- Narrow fix: restore Manager aggregate/drawer to submit-time APIs for `Scorecards completed`.
-- Longer-term fix: add submit-time filtering/grouping support to the QA scorecard APIs, then keep the QA-based Manager implementation.
+Focused analytics tests pass. The full `analyticsimpl` package test was attempted on 2026-07-10 but stopped after several minutes with no output.
 
 ## Related Artifacts
 
 - `sessions/2026-07-02/codex-investigation.md`
+- `sessions/2026-07-10/codex-implementation.md`
 - `log/2026-07-02.md`
 - `log/2026-07-03.md`
+- `log/2026-07-10.md`
 - `/Users/xuanyu.wang/repos/knowledge/convi-6968-schwab-leaderboard-launch`

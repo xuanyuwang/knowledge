@@ -22,22 +22,21 @@ The canonical knowledge home for scorecard and template business workflows from 
 - analytics-page display and aggregation semantics: `analytics`
 - delivery mechanics for notifications: `notifications`
 
-## Initial Knowledge Map
+## Subdomains
 
-- scorecard and template concept map
-- lifecycle/state-transition catalog
-- workflow and scorecard-type matrix
-- scoring and N/A semantics
-- permission/visibility policy
-- appeals and group-calibration flows
-- schema compatibility and evolution
-- generation/backfill decision rules
-- frontend/backend contracts
-- operational sharp edges and work-item history
+- [Template Authoring and Versioning](subdomains/template-authoring-and-versioning/README.md): template structure, builder behavior, revisions, duplication, and schema compatibility
+- [Evaluation and Scoring](subdomains/evaluation-and-scoring/README.md): manual/AutoQM evaluation, option mapping, N/A, weights, outcomes, and score computation
+- [Scorecard Lifecycle](subdomains/scorecard-lifecycle/README.md): creation, editing, submission, publishing, reversal, and concurrency/state transitions
+- [Permissions and Visibility](subdomains/permissions-and-visibility/README.md): capability policy, audiences, submitted editing, and runtime visibility
+- [Appeals](subdomains/appeals/README.md): request/resolve workflows, final-value interpretation, comments, and exports
+- [Group Calibration](subdomains/group-calibration/README.md): answer keys, responses, completion, permissions, reporting, and exports
+- [Process Scorecards and Generation](subdomains/process-scorecards-and-generation/README.md): process scorecards, existence rules, generation, repair, and backfill orchestration
 
-## Migration State
+## Current State
 
-The domain is scaffolded. `scorecard-template`, `group-calibration`, and related folders are seed material; no legacy canonical source has been replaced yet.
+The first subdomain migration is complete. The subdomain references and [legacy source index](deliverables/legacy-source-index.md) are canonical navigation; historical folders retain detailed evidence and current work.
+
+Work items, sessions, daily logs, and decisions remain at this parent domain. Future work items should record one optional primary subdomain.
 
 ## Source Context
 
@@ -49,5 +48,7 @@ The domain is scaffolded. `scorecard-template`, `group-calibration`, and related
 
 - `project.yaml`
 - `log/2026-07-14.md`
+- `log/2026-07-15.md`
+- `deliverables/legacy-source-index.md`
 - `work-items/` when active tickets are migrated or created
 - `sessions/`, `decisions/`, and `deliverables/` as content is synthesized

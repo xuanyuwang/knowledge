@@ -1,5 +1,7 @@
 # CONVI-6494: Leaderboard "Raises Answered %" always 0%
 
+> Migrated navigation: [Analytics / Leaderboard](../analytics/subdomains/leaderboard/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-03-24
 **Updated:** 2026-05-07
 **Status:** Root cause still verified; current uncommitted worktree change only updates the SQL fixture, not the committed production implementation

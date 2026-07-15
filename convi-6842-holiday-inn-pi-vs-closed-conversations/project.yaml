@@ -1,5 +1,5 @@
 title: "CONVI-6842: Holiday Inn PI vs Closed Conversations mismatch"
-status: active
+status: resolved
 primary_source_repo: director
 primary_repo_path: /Users/xuanyu.wang/repos/director
 active_worktree_path: /Users/xuanyu.wang/repos/director-convi-6842
@@ -8,13 +8,15 @@ related_ticket_ids:
   - CONVI-6842
 related_prs:
   - https://github.com/cresta/director/pull/20153
-current_objective: Keep the Director PR minimal by changing Performance Insights no-template conversation volume from RetrieveConversationStats to RetrieveQAScoreStats while preserving existing chart UI behavior.
-last_validated: 2026-07-03
+current_objective: Resolved — PM-agreed semantics documented in Coda, Linear, and agent-stats-analytics-behaviors.
+last_validated: 2026-07-06
 artifacts:
   readme: README.md
   log_dir: log/
   session_dir: sessions/
   decisions_dir: decisions/
   deliverables_dir: deliverables/
-  key_docs: []
-notes: Earlier investigation used go-servers to identify the data-source mismatch. The active implementation is now in director because the accepted product fix is a frontend source swap for the Performance Insights conversation-volume card.
+  key_docs:
+    - https://coda.io/d/_doM9F-e3jUe/What-does-Conversation-Count-mean-across-Insights-pages_suvFVqLd
+    - /Users/xuanyu.wang/repos/knowledge/agent-stats-analytics-behaviors/deliverables/conversation-count-behavior-guide-2026-07.md
+notes: Fix merged in director#20153. PI conversation volume is scorecard-centric; Closed Conversations stays strict/non-empty by design.

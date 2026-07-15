@@ -125,9 +125,9 @@ This page uses the `usePerformanceFilters` hook and renders several sub-componen
 
 | API Call | GroupBy | Purpose |
 |----------|---------|---------|
-| `useQAScoreStats(requestParams)` -- QA path | `QA: [TIME_RANGE]` | Scored convo count over time (NO agent grouping) |
-| `useQAScoreStats(unfilteredRequestParams)` -- QA path | `QA: [TIME_RANGE]` | Unfiltered convo count (for ratio) |
-| `useConversationStats(convCountRequestParams)` -- non-QA fallback | `[TIME_RANGE]` | Convo count when no scorecard template selected (NO agent grouping) |
+| `useQAScoreStats(requestParams)` -- no-template path | `QA: [TIME_RANGE]` | Scorecard-backed convo count over time with `includeNaScored: true` via `filtersWithNAValues` (NO agent grouping) |
+| `useQAScoreStats(requestParams)` -- selected-template path | `QA: [TIME_RANGE]` | Scored convo count over time (NO agent grouping) |
+| `useQAScoreStats(unfilteredRequestParams)` -- selected-template path | `QA: [TIME_RANGE]` | Unfiltered convo count (for ratio) |
 
 ### 2d. Performance Progression (Heatmap Table)
 **File:** `packages/director-app/src/components/insights/qa-insights/performance-progression/PerformanceProgression.tsx`
@@ -207,7 +207,7 @@ Uses `useRequestForRetrieveQAStats` with various `groupBy` parameters passed fro
 ### Cases where `groupByAttributeTypes` = `[TIME_RANGE]` only (no agent dimension):
 1. **Performance Score Line Chart** (`ScoreLineChartGraph`): `QA: [TIME_RANGE]` -- score trend over time
 2. **Performance Score Metric Card** (`ScoreInsightsMetric`): `QA: [TIME_RANGE]` -- total average score
-3. **Conversation Count Chart** (`ConversationCountChart`): `QA: [TIME_RANGE]` or non-QA `[TIME_RANGE]` -- convo volume over time
+3. **Conversation Count Chart** (`ConversationCountChart`): `QA: [TIME_RANGE]` for both no-template and selected-template paths (scorecard-backed via `RetrieveQAScoreStats`, `includeNaScored: true` after director#20153) -- convo volume over time
 4. **Performance Progression heatmap rows**: `QA: [CRITERION, TIME_RANGE]` -- per-criterion trend
 5. **Performance Progression "All criteria" row**: `QA: [TIME_RANGE]` -- all-criteria aggregate
 6. **Outcome stats cards** (`useStatsData`): `QA: [CRITERION, TIME_RANGE]` -- outcome trends

@@ -1,7 +1,7 @@
 # Domain-Centered Repository Reorganization Plan
 
 **Created:** 2026-07-14
-**Status:** In progress; Scorecard Data Sync and Notifications migrated on 2026-07-15
+**Status:** Initial migration complete; all four domain foundations migrated on 2026-07-15
 **Canonical model:** `workflow/domain-centered-knowledge-model.md`
 
 ## Target Outcome
@@ -22,7 +22,9 @@ This plan does not authorize a bulk move. Migration is synthesis-first and must 
 - **Scorecard Data Sync:** Canonical architecture, invariants, failure taxonomy, diagnosis, repair/backfill, legacy index, and CONVI-7186 work item created. Source projects retain evidence with migration pointers.
 - **Notifications:** Canonical routing architecture, catalog, recipient semantics, operations playbook, and legacy index created. `oncall` and scorecard permission projects remain canonical for their own concerns and link to the domain synthesis.
 - **Boundary correction:** CONVI-6841 moved to Scorecard Workflows; Hilton coaching discrepancy retained as coaching analytics evidence rather than being forced into Scorecard Data Sync.
-- **Remaining domains:** Analytics and Scorecard Workflows migrations have not started.
+- **Analytics:** Eight subdomains now cover the shared platform, product surfaces, Active Days, Quintiles, QA Score, user filtering, and conversation volume. Legacy projects retain evidence and point to the canonical references.
+- **Scorecard Workflows:** Seven subdomains now cover authoring/versioning, evaluation/scoring, lifecycle, permissions/visibility, appeals, group calibration, and process-scorecard generation. Legacy projects retain evidence and point to the canonical references.
+- **Initial foundation:** All four planned domains now have useful canonical navigation. Semantic expansion and selective legacy closure continue incrementally as tickets validate behavior.
 
 ## Target Topology
 
@@ -33,6 +35,7 @@ scorecard-data-sync/
 notifications/
   project.yaml
   README.md
+  subdomains/            # optional for broad domain families
   work-items/
   log/
   sessions/
@@ -187,6 +190,8 @@ For each domain, create the first useful artifacts rather than empty scaffolding
 
 ### Phase 2: Analytics Pilot
 
+**Foundation status:** Complete on 2026-07-15. Eight subdomains and a legacy-source index were created; retained sources now have navigation pointers. Exact matrices remain incremental follow-up work.
+
 1. Use `agent-stats-analytics-behaviors` as the first seed.
 2. Build the Performance Insights and Leaderboard surface/API/filter inventory.
 3. Migrate two representative cases: one shared API/metric case and one FE-specific interpretation case.
@@ -196,6 +201,8 @@ For each domain, create the first useful artifacts rather than empty scaffolding
 **Exit gate:** a displayed value can be traced from FE semantics to request, BE calculation, and source data; two legacy folders have reviewed pointers.
 
 ### Phase 3: Scorecard Workflows
+
+**Foundation status:** Complete on 2026-07-15. Seven workflow subdomains and a legacy-source index were created; retained sources now have navigation pointers.
 
 1. Synthesize `scorecard-template`, `scorecard-permission-policy`, and `group-calibration` as seeds.
 2. Define lifecycle/state, type, permission, scoring, appeal, and calibration maps.

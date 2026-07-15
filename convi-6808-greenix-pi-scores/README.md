@@ -1,5 +1,7 @@
 # CONVI-6808: Greenix PI Scores Dropped / Metadata Criteria N/A
 
+> Migrated navigation: [Analytics / QA Score](../analytics/subdomains/qa-score/README.md). This folder remains detailed historical evidence.
+
 **Status**: Root cause identified — annotation pipeline issue  
 **Customer**: Greenix  
 **Ticket**: [CONVI-6808](https://linear.app/cresta/issue/CONVI-6808)  

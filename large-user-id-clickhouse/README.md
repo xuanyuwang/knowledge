@@ -1,5 +1,7 @@
 # Large User ID Lists in ClickHouse Queries
 
+> Migrated navigation: [Analytics / Insights User Filter](../analytics/subdomains/insights-user-filter/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-03-09
 **Updated:** 2026-03-24
 

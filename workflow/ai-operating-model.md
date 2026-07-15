@@ -33,6 +33,10 @@ Each active engineering project should converge on this structure:
 <project>/
   project.yaml
   README.md
+  subdomains/
+    <subdomain>/
+      README.md
+      <reference-artifact>.md
   work-items/
     <ticket-or-work-item>.md
   log/
@@ -149,6 +153,17 @@ The canonical current-state companion for a ticket or long-running task. A work 
 
 Choose one primary domain for cross-domain work. Secondary domains link to the canonical work item rather than creating copies.
 
+### `subdomains/`
+
+Durable knowledge partitions inside a broad domain family. A subdomain represents a product surface, bounded capability, or workflow with distinct semantics, but it does not maintain a separate operating history by default.
+
+- Keep `work-items/`, `sessions/`, `log/`, and `decisions/` at the parent domain.
+- Give each work item one optional `primary_subdomain`.
+- Store subdomain scope, architecture, semantics, source maps, and operational references under `subdomains/<name>/`.
+- Keep cross-cutting truth at the nearest common parent.
+- Promote a subdomain to a top-level domain only when ownership, architecture, operations, and sustained work demonstrate independence.
+- Do not create more than two taxonomy levels without updating this operating model.
+
 ### `log/YYYY-MM-DD.md`
 
 Concise daily movement for the project. This is not the full transcript. It is the “what changed today” record.
@@ -177,7 +192,7 @@ Polished artifacts intended for consumption beyond the immediate session, such a
 Use the following flow by default:
 
 1. Decide whether the task creates durable reasoning. Investigations, designs, reviews, and multi-step execution do; tiny one-shot commands and narrow factual answers usually do not.
-2. If the task creates durable reasoning, identify its primary domain. Use an initiative project only when the work meets the initiative threshold in `workflow/domain-centered-knowledge-model.md`.
+2. If the task creates durable reasoning, identify its primary domain and optional primary subdomain. Use an initiative project only when the work meets the initiative threshold in `workflow/domain-centered-knowledge-model.md`.
 3. Resolve the source repo via `workspace/repos.yaml`.
 4. Use the main checkout for `knowledge`; if another repo needs a worktree, create it under `/Users/xuanyu.wang/repos`.
 5. Read `project.yaml` and `README.md`; if the project does not have `project.yaml`, add it from `templates/project.yaml`.
@@ -210,6 +225,7 @@ Agents may update only:
 
 - project `README.md`
 - `project.yaml`
+- `subdomains/`
 - `work-items/`
 - `log/`
 - `sessions/`
@@ -232,6 +248,7 @@ Agents must not invent new top-level folders or new artifact classes without fir
 - Deliverables use descriptive names over ticket-only names.
 - Work items use a stable ticket ID when one exists, for example `CONVI-1234.md`; otherwise use a short descriptive slug.
 - Domain folders use stable product/system names and must not be named for a single ticket.
+- Subdomain folders use stable capability/workflow names and contain durable references rather than duplicated daily operating artifacts.
 
 ## Work-type expectations
 

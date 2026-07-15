@@ -1,5 +1,7 @@
 # bswift Wrong User-to-Team Mapping (Duplicate GUEST_USER)
 
+> Migrated navigation: [Analytics / Insights User Filter](../analytics/subdomains/insights-user-filter/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-04-26
 **Updated:** 2026-04-26
 

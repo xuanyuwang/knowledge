@@ -1,0 +1,20 @@
+name: outcome
+title: Opera adherence annotations and email AutoQA
+status: active
+created: 2026-07-08
+updated: 2026-07-08
+primary_repo: go-servers
+tickets:
+  - COA-2566
+pull_requests:
+  - https://github.com/cresta/go-servers/pull/29694
+  - https://github.com/cresta/go-servers/pull/27494
+  - https://github.com/cresta/go-servers/pull/27040
+topics:
+  - SDX
+  - DDX
+  - DNX
+  - SNX
+  - synthetic SDX
+  - email AutoQA
+  - FilterContextForMessages

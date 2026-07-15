@@ -1,7 +1,9 @@
 # Agent Stats Analytics Behaviors
 
+> Migrated navigation: [Analytics / Shared Analytics Platform](../analytics/subdomains/shared-analytics-platform/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-06-29
-**Updated:** 2026-07-02
+**Updated:** 2026-07-08
 
 ## Overview
 
@@ -11,10 +13,11 @@ This project consolidates older focused investigations:
 
 - `/Users/xuanyu.wang/repos/knowledge/agent-stats-active-days-fix`
 - `/Users/xuanyu.wang/repos/knowledge/convi-6242-cron-label-conversations`
+- `/Users/xuanyu.wang/repos/knowledge/convi-6842-holiday-inn-pi-vs-closed-conversations`
 
 ## Current Objective
 
-Update the Coda Active Days behavior guide from the latest design and PR evidence, especially fixes that changed the assumptions in the original plan.
+Maintain durable conversation-count and agent-stats behavior guides aligned with PM decisions and merged code.
 
 ## Key Findings
 
@@ -29,6 +32,9 @@ Update the Coda Active Days behavior guide from the latest design and PR evidenc
 - CONVI-7143 data source is confirmed from Director source and local dev TanStack Query Devtools: Assistance Insights' powered-by-Agent-Assist chart uses two `RetrieveConversationStats` queries, and the powered count adds `agentAssistFilters=ON`.
 - CONVI-7143 latest `go-servers` `origin/main` already has the correctness fix from PR #29058: `findAgentMessages` scopes messages by `conversation_id` only and no longer filters by batch `platform_timestamp`; PR #29084 chunks IDs to avoid Postgres parameter limits.
 - CONVI-7143 was repaired on 2026-07-02 by running one-off Hilton label backfill job `backfill-labels-hilton-convi-7143-1783017928`; ClickHouse and UI both now show `10 total / 10 powered` for the target Gaylynn Bryant Jun 16 HGV Club Assistance Insights slice.
+- CONVI-7143 follow-up for Linda Nesmith Jun 29 / Jul 6 is not stale pre-#29058 label data. The missing conversations are real-time source but their agent messages fall in short gaps between Agent Assist online-session intervals, so current labeler semantics produce no `conversation_with_labels_d` rows. Closed Conversations Source=batch is not a valid way to identify conversations that are not powered by Agent Assist.
+- CONVI-6842 resolution: PI Conversation volume (no template and selected template) is scorecard-centric via `RetrieveQAScoreStats` with `includeNaScored: true` after director#20153. Closed Conversations stays strict/non-empty via `RetrieveConversationStats`. PI and Closed Conversations are intentionally allowed to differ.
+- Coda page `What does Conversation Count mean across Insights pages?` was refreshed on 2026-07-06 with PM-agreed semantics and a new Closed Conversations section.
 
 ## Status
 
@@ -45,6 +51,8 @@ Active.
 
 | Date | Summary |
 |------|---------|
+| 2026-07-08 | Investigated CONVI-7143 Hilton follow-up; Linda Jun 29 / Jul 6 misses are online-event coverage gaps, not stale pre-#29058 data. |
+| 2026-07-06 | CONVI-6842 wrap-up: director#20153 merged; refreshed Coda conversation-count guide; added deliverable. |
 | 2026-07-03 | Knowledge wrap-up; no new investigation. CONVI-7143 repair remains verified. |
 | 2026-07-02 | Ran the Hilton label backfill for CONVI-7143 and verified ClickHouse/UI now show `10 total / 10 powered`. |
 | 2026-07-02 | Confirmed latest `go-servers` `origin/main` already removed the message timestamp predicate from `findAgentMessages` and chunks conversation ID queries. |
@@ -63,4 +71,7 @@ Active.
 - `sessions/2026-06-30/codex-coda-cleanup.md`
 - `sessions/2026-06-30/codex-convi-7143-target-aa-missing-conversation.md`
 - `sessions/2026-07-02/codex-convi-7143-message-query-performance.md`
+- `sessions/2026-07-06/codex-convi-6842-conversation-count-coda-refresh.md`
+- `sessions/2026-07-08/codex-convi-7143-hilton-followup.md`
 - `deliverables/active-days-behavior-guide-2026-06.md`
+- `deliverables/conversation-count-behavior-guide-2026-07.md`

@@ -12,6 +12,9 @@ related_prs:
   - director#19100
   - director#19805
   - director#20375
+  - go-servers#29774
+backend_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7206
+backend_branch: convi-7206-gate-submitted-scorecard-lock-behind-ff
 current_objective: Update the submitted-scorecard runtime UI to query `EvaluateScorecardsPermissions` on load, lock denied submitted scorecards before update attempts, and keep reactive 403 fail-and-freeze as fallback.
 last_validated: 2026-07-03
 artifacts:

@@ -1,0 +1,20 @@
+title: CONVI-7230 Performance Insights Outcome Filters
+status: active
+primary_source_repo: director
+primary_repo_path: /Users/xuanyu.wang/repos/director
+active_worktree_path: /Users/xuanyu.wang/repos/director-convi-7230
+branch: convi-7230-holiday-inn-transfer-performance-insights-regression-outcome
+related_ticket_ids:
+  - CONVI-7230
+related_prs:
+  - https://github.com/cresta/director/pull/20606
+current_objective: Restore customer-provided outcome filters, including Holiday Inn Transfer Package Paid, in Performance Insights.
+last_validated: 2026-07-09
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs: []
+notes: Issue likely relates to recent CLO filter feature-flag behavior and generic filter metadata plumbing.

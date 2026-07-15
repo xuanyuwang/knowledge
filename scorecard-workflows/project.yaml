@@ -12,17 +12,34 @@ branch: main
 domain_owners:
   - Xuanyu Wang
 domain_scope: Scorecard/template lifecycle and business workflows, including permissions, submission, reversal, appeals, and group calibration, excluding PG/CH synchronization mechanics.
+subdomains:
+  - template-authoring-and-versioning
+  - evaluation-and-scoring
+  - scorecard-lifecycle
+  - permissions-and-visibility
+  - appeals
+  - group-calibration
+  - process-scorecards-and-generation
 related_ticket_ids: []
 active_work_items: []
 related_prs: []
-current_objective: Consolidate scorecard lifecycle, template, permission, evaluation, and review-workflow knowledge into one domain model.
-last_validated: 2026-07-14
+current_objective: Maintain exact workflow semantics across template authoring, evaluation, lifecycle, permissions, appeals, calibration, and process-scorecard generation.
+last_validated: 2026-07-15
 artifacts:
   readme: README.md
+  subdomains_dir: subdomains/
   work_items_dir: work-items/
   log_dir: log/
   session_dir: sessions/
   decisions_dir: decisions/
   deliverables_dir: deliverables/
-  key_docs: []
-notes: PG-to-ClickHouse projection consistency belongs to scorecard-data-sync even when a ticket also changes workflow behavior.
+  key_docs:
+    - subdomains/template-authoring-and-versioning/README.md
+    - subdomains/evaluation-and-scoring/README.md
+    - subdomains/scorecard-lifecycle/README.md
+    - subdomains/permissions-and-visibility/README.md
+    - subdomains/appeals/README.md
+    - subdomains/group-calibration/README.md
+    - subdomains/process-scorecards-and-generation/README.md
+    - deliverables/legacy-source-index.md
+notes: Operating history stays at this parent. PG-to-ClickHouse projection consistency belongs to scorecard-data-sync even when a ticket also changes workflow behavior.

@@ -1,5 +1,7 @@
 # QA Score Popover Bug Fix
 
+> Migrated navigation: [Analytics / QA Score](../analytics/subdomains/qa-score/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-02-07
 **Updated:** 2026-02-07
 

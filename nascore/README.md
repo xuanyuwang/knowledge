@@ -1,5 +1,7 @@
 # N/A Score Support (enableNAScore Feature)
 
+> Migrated navigation: [Scorecard Workflows / Evaluation and Scoring](../scorecard-workflows/subdomains/evaluation-and-scoring/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-04-12
 **Updated:** 2026-04-25
 

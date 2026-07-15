@@ -14,6 +14,7 @@ Read `workflow/ai-operating-model.md` and `workflow/domain-centered-knowledge-mo
 - If an existing project lacks `project.yaml`, add it from `templates/project.yaml` before substantial work.
 - Put rich Claude session context in `sessions/YYYY-MM-DD/claude-<topic>.md`.
 - Track tickets and continuing tasks in one canonical `<primary-domain>/work-items/<id>.md`.
+- Record an optional primary subdomain, but keep work items, sessions, logs, and decisions at the parent domain; use `subdomains/` for durable reference knowledge only.
 - Before final handoff, automatically update the work item and concise daily log; do not wait for an explicit logging request.
 - Use `workflow/skills/daily-capture/SKILL.md` and `workflow/skills/weekly-summary/SKILL.md` as the canonical capture and synthesis workflows. Existing `.claude/skills/wrap-day` and `.claude/skills/wrap-week` are compatibility aliases.
 - Treat the work as incomplete if durable investigation findings remain only in chat history or terminal output.
@@ -24,6 +25,7 @@ Claude may update only:
 
 - project `README.md`
 - `project.yaml`
+- `subdomains/`
 - `work-items/`
 - `log/`
 - `sessions/`

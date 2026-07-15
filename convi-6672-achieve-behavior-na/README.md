@@ -1,5 +1,7 @@
 # CONVI-6672: Achieve Behavior Metric N/A in Performance Insights
 
+> Migrated navigation: [Scorecard Workflows / Evaluation and Scoring](../scorecard-workflows/subdomains/evaluation-and-scoring/README.md). Analytics presentation is indexed under Analytics / QA Score.
+
 **Created:** 2026-04-26
 **Updated:** 2026-04-26
 **Status:** Investigation complete, pending PG template verification

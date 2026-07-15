@@ -1,5 +1,7 @@
 # Agent Quintiles Support
 
+> Migrated navigation: [Analytics / Quintiles](../analytics/subdomains/quintiles/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-02-17
 **Updated:** 2026-02-27
 

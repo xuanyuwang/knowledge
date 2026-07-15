@@ -1,5 +1,7 @@
 # ALOs in Coaching
 
+> Durable domain reference: [Scorecard Workflows / Evaluation and Scoring](../scorecard-workflows/subdomains/evaluation-and-scoring/README.md). This initiative folder retains its independent execution context.
+
 **Created:** 2026-06-17
 **Status:** Design review
 **Ticket:** [CONVI-7071](https://linear.app/cresta/issue/CONVI-7071/alos-in-coaching)

@@ -1,5 +1,7 @@
 # CONVI-7049 - CLO Filter in Performance Insights
 
+> Migrated navigation: [Analytics / Insights User Filter](../analytics/subdomains/insights-user-filter/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-06-17
 **Status:** Initial investigation complete
 **Ticket:** [CONVI-7049](https://linear.app/cresta/issue/CONVI-7049/support-clo-filter-in-performance-insights)

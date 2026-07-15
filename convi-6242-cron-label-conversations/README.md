@@ -1,5 +1,7 @@
 # CONVI-6242: cron-label-conversations Stale Data & Backfill
 
+> Migrated navigation: [Analytics / Active Days](../analytics/subdomains/active-days/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-02-18
 **Updated:** 2026-02-18
 **Linear:** https://linear.app/cresta/issue/CONVI-6242/cron-label-conversations-writes-stale-agentusecase-to-conversation

@@ -1,5 +1,7 @@
 # CONVI-6709: NRG Scorecard UI Displaying Reversed Predicted CSAT / Resolution
 
+> Migrated navigation: [Scorecard Workflows / Scorecard Lifecycle](../scorecard-workflows/subdomains/scorecard-lifecycle/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2026-05-02
 **Updated:** 2026-05-02
 

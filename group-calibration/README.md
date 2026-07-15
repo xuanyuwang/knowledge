@@ -1,5 +1,7 @@
 # Group Calibration
 
+> Migrated navigation: [Scorecard Workflows / Group Calibration](../scorecard-workflows/subdomains/group-calibration/README.md). This folder remains the retained deep project evidence.
+
 Central knowledge base for Group Calibration product work across backend and frontend.
 
 **Status**: CONVI-7208 shipped — [director PR #20388](https://github.com/cresta/director/pull/20388) open  
@@ -44,6 +46,11 @@ Reference formatting: go-servers `action_export_scorecards.go` (`buildCriteriaHe
 | [convi-7208-technical-reference.md](deliverables/convi-7208-technical-reference.md) | Architecture, data path, file list |
 | [convi-7208-comment-access-roles.md](deliverables/convi-7208-comment-access-roles.md) | Comment access roles definition and enforcement |
 | [convi-7208-empty-comment-parity.md](deliverables/convi-7208-empty-comment-parity.md) | Empty comment behavior across exports |
+| [convi-7208-numeric-grade-csv-fix-plan.md](deliverables/convi-7208-numeric-grade-csv-fix-plan.md) | Implementation plan — map labeled-radios grades to option labels in session CSV |
+
+## Known open issue: numeric grade labels
+
+Group Calibration session CSV still exports raw `numericValue` for `labeled-radios` / `dropdown-numeric-values` (e.g. `3` instead of `Great`). Pre-existing since PR #11643. BE export (`action_export_scorecards.go`) already maps to labels. See fix plan above and `scorecard-template/deliverables/scorecard-export-paths.md`.
 
 ## Decisions
 
@@ -55,4 +62,5 @@ Reference formatting: go-servers `action_export_scorecards.go` (`buildCriteriaHe
 - **2026-07-03**: Decision — director-only export; implemented paired grade + comment columns.
 - **2026-07-03**: Published deliverables (PM summary, technical reference, access roles, empty-comment parity).
 - **2026-07-03**: Knowledge wrap-up; investigation parked at downstream backfill recommendation.
+- **2026-07-06**: Numeric grade CSV bug investigation; published fix plan deliverable.
 - **2026-07-03**: Opened [director PR #20388](https://github.com/cresta/director/pull/20388) with CSV export change and unit tests.

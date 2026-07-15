@@ -1,5 +1,7 @@
 # CONVI-6247: Agent-Only Manager Inclusion Filter in Performance
 
+> Migrated navigation: [Analytics / Insights User Filter](../analytics/subdomains/insights-user-filter/README.md). This folder remains detailed historical evidence.
+
 **Created:** 2025-02-17
 **Updated:** 2026-03-23 (default value behavior updated to match "Exclude deactivated users")
 
@@ -70,5 +72,5 @@ Structured phases and task list: **[implementation-plan.md](implementation-plan.
 | 2026-03-18 | Investigated missing `filter_to_agents_only` on `RetrieveQAScoreStats` on prod — root cause: PR #16777 sets `listAgentOnly: undefined` when flag off, fix in PR #17356 confirmed on staging. Reviewed PR #17394 against all earlier PR feedback (7 issues checked, all clean). Fixed import ordering lint failure, pushed. |
 | 2026-03-19 | PR #17394 merged (review fix: simplified `hiddenFilters` to consts). BE PR #26301 merged. FE #17356 deployed to prod. All PRs merged — ready for staging E2E test with `enableAgentOnlyFilter` flag. |
 | 2026-03-23 | Updated filter default value behavior to match "Exclude deactivated users" pattern: default `false`, only appears on filter bar when toggled to `true`, disappears when toggled back to `false`. Previous implementation had default `true` (from Phase 3.1/4.1). |
-| 2026-04-13 | Discovered Assistance page filter gap: child components never received `filterToAgentsOnly` (gap from original PR #17394, not a regression). Fixed by threading `filterOptions` through 20 files. See [assistance-filter-gap.md](assistance-filter-gap.md). |
+| 2026-04-13 | Discovered Assistance page filter gap: child components never received `filterToAgentsOnly` (gap from original PR #17394, not a regression). Fixed by threading `filterOptions` through 20 files. See [assistance-broken-tabs.md](assistance-broken-tabs.md). |
 | 2026-04-20 | Full scan found 2 more missed components (`SummaryUsedLeaderboardByType`, `GenAIAnswersLeaderboardByType`). Fix PR [#18132](https://github.com/cresta/director/pull/18132). |

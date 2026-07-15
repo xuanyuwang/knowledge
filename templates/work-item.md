@@ -2,6 +2,7 @@
 
 **Status:** active | blocked | validating | complete
 **Primary domain:** `<domain>`
+**Primary subdomain:** `<subdomain>` | none
 **Official ticket:** [WORK-ID](URL)
 **Last updated:** YYYY-MM-DD
 

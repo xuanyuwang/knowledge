@@ -1,5 +1,7 @@
 # CONVI-6753: Weight=0 Criteria Showing N/A in Performance Insights
 
+> Migrated navigation: [Analytics / QA Score](../analytics/subdomains/qa-score/README.md). This folder remains detailed historical evidence.
+
 **Status**: Fix implemented, PR pending  
 **Customer**: Home Care Delivered  
 **Ticket**: [ZD #20340](https://crestasupport.zendesk.com/agent/tickets/20340) / [CONVI-6753](https://linear.app/cresta/issue/CONVI-6753)  

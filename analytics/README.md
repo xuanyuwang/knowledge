@@ -36,21 +36,22 @@ For each UI element, the domain should eventually record:
 6. source tables/events and time/identity attribution;
 7. known discrepancies, tests, and operational checks.
 
-## Initial Knowledge Map
+## Subdomains
 
-- Performance Insights surface catalog
-- Leaderboard surface catalog
-- shared analytics API catalog
-- filter semantics matrix
-- metric and chart semantics catalog
-- FE-to-BE request/data-flow maps
-- identity, team, and user-filter behavior
-- operational playbook and known failure modes
-- work-item and historical ticket index
+- [Shared Analytics Platform](subdomains/shared-analytics-platform/README.md): API cluster, group-by/request contracts, source data, and cross-page behavior
+- [Performance Insights](subdomains/performance-insights/README.md): page charts, tables, filters, FE transformations, and exact display semantics
+- [Leaderboard](subdomains/leaderboard/README.md): agent/team/manager tabs, ranking, grouping, and leaderboard-specific presentation
+- [Active Days](subdomains/active-days/README.md): activity evidence, source filtering, label freshness, and adoption interpretation
+- [Quintiles](subdomains/quintiles/README.md): partition/ranking semantics and cross-surface presentation
+- [QA Score](subdomains/qa-score/README.md): `RetrieveQAScoreStats`, score/N/A/option semantics, and criterion display behavior
+- [Insights User Filter](subdomains/insights-user-filter/README.md): user/team/role resolution, hierarchy, active-state, and scalable filtering
+- [Conversation Volume](subdomains/conversation-volume/README.md): surface-specific conversation-count definitions and data sources
 
-## Migration State
+## Current State
 
-The domain is scaffolded. Existing analytics and ticket folders remain canonical until individual artifacts are synthesized and their legacy folders receive pointers.
+The first subdomain migration is complete. The subdomain references and [legacy source index](deliverables/legacy-source-index.md) are canonical navigation; historical ticket folders retain detailed evidence and current uncommitted work.
+
+Work items, sessions, daily logs, and decisions remain at this parent domain. Future work items should record one optional primary subdomain.
 
 ## Source Context
 
@@ -62,5 +63,7 @@ The domain is scaffolded. Existing analytics and ticket folders remain canonical
 
 - `project.yaml`
 - `log/2026-07-14.md`
+- `log/2026-07-15.md`
+- `deliverables/legacy-source-index.md`
 - `work-items/` when active tickets are migrated or created
 - `sessions/`, `decisions/`, and `deliverables/` as content is synthesized

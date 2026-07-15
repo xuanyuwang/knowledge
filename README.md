@@ -37,10 +37,13 @@ The workflow treats these files as the main interfaces:
 
 The default working unit is a long-lived **domain project**. Tickets are tracked as work items inside their primary domain. Standalone initiative projects are reserved for outcomes with multiple workstreams, meaningful cross-team coordination, or an independent design/rollout lifecycle.
 
+Broad domains may contain `subdomains/` for product surfaces, capabilities, or workflows with distinct semantics. Subdomains hold durable reference knowledge; work items and daily operating history remain at the parent domain.
+
 Each active engineering project should eventually contain:
 
 - `project.yaml`
 - `README.md`
+- `subdomains/`
 - `work-items/`
 - `log/`
 - `sessions/`

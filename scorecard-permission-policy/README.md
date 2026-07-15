@@ -1,5 +1,7 @@
 # Scorecard Permission Evaluation
 
+> Migrated navigation: [Scorecard Workflows / Permissions and Visibility](../scorecard-workflows/subdomains/permissions-and-visibility/README.md). This folder remains the retained permission design evidence.
+
 Authors: xuanyu.wang@cresta.ai
 
 Status: Draft
