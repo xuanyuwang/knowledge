@@ -15,8 +15,8 @@ domain_scope: QM/Coaching notification triggers, recipients, visibility, channel
 related_ticket_ids: []
 active_work_items: []
 related_prs: []
-current_objective: Build the first complete inventory and architecture map for QM/Coaching notifications.
-last_validated: 2026-07-14
+current_objective: Maintain the cross-workflow trigger, recipient, routing, delivery, and operational model while closing inventory and retry/idempotency gaps.
+last_validated: 2026-07-15
 artifacts:
   readme: README.md
   work_items_dir: work-items/
@@ -24,5 +24,10 @@ artifacts:
   session_dir: sessions/
   decisions_dir: decisions/
   deliverables_dir: deliverables/
-  key_docs: []
+  key_docs:
+    - deliverables/architecture-and-routing.md
+    - deliverables/notification-catalog.md
+    - deliverables/recipient-and-visibility-semantics.md
+    - deliverables/operational-playbook.md
+    - deliverables/legacy-source-index.md
 notes: Notification-trigger business rules may originate in other domains; delivery mechanics and the cross-workflow notification catalog belong here.

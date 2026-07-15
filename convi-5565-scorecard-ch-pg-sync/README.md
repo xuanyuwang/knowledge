@@ -1,5 +1,7 @@
 # CONVI-5565: Scorecard ClickHouse ↔ PostgreSQL Sync
 
+> **Migrated knowledge:** The canonical ordering invariants and failure classification now live in [`scorecard-data-sync`](../scorecard-data-sync/README.md). This folder remains the detailed ticket, load-test, and production-verification archive.
+
 **Created**: 2025-01-16
 **Updated**: 2026-03-12
 **Linear**: https://linear.app/cresta/issue/CONVI-5565/data-sync-between-ch-and-postgres

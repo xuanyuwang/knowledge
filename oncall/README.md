@@ -96,3 +96,5 @@ Run a short weekly review:
 ## Current Research
 
 - [Team Slack notification routing](./sessions/2026-06-29/codex-team-slack-notification-research.md)
+
+Stable cross-workflow routing and operations knowledge from that investigation is now synthesized in the [`notifications` domain](../notifications/README.md). Keep incident-specific evidence here and promote reusable notification behavior there.

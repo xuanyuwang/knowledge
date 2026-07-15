@@ -1,5 +1,7 @@
 # CONVI-6298: Reindex Process Scorecards into ClickHouse
 
+> **Migrated knowledge:** The canonical process-scorecard coverage and repair model now lives in [`scorecard-data-sync`](../scorecard-data-sync/README.md). This folder remains the implementation, rollout, and backfill archive.
+
 **Created**: 2026-02-24
 **Updated**: 2026-03-20
 **Linear**: https://linear.app/cresta/issue/CONVI-6298

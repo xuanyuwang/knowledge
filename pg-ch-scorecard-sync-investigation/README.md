@@ -1,5 +1,7 @@
 # PostgreSQL ↔ ClickHouse Scorecard Sync Investigation
 
+> **Migrated knowledge:** Canonical architecture, taxonomy, monitoring, and repair guidance now live in [`scorecard-data-sync`](../scorecard-data-sync/README.md). This folder remains the theory, incident, skill, and session evidence archive.
+
 **Created:** 2026-04-20
 **Status:** Active
 
@@ -14,7 +16,7 @@ Several prior efforts touched parts of the same problem from different angles:
 - [backfill-scorecards](../backfill-scorecards/README.md)
 - [convi-5565-scorecard-ch-pg-sync](../convi-5565-scorecard-ch-pg-sync/README.md)
 - [hilton-coaching-discrepancy](../hilton-coaching-discrepancy/README.md)
-- [mismatch-scorecard-count](../mismatch-scorecard-count/auto-heal-design.md)
+- [scorecard auto-heal](../auto-backfill-missing-scorecards/auto-heal-design.md)
 
 Those projects are useful source material, but they start from concrete incidents, fixes, or recovery workflows. This project starts one layer higher: what does it take, in theory, to keep two databases in sync when one is transactional and one is analytical?
 
@@ -23,10 +25,24 @@ The point is to build a reusable mental model first, then encode it as an operat
 ## Current Artifacts
 
 - `deliverables/pg-ch-data-sync-investigator/SKILL.md` - reusable Codex skill for PG to CH sync incidents
+- `sessions/2026-07-08/codex-scorecard-sync-monitor-query-fix.md` - implementation notes for the post-ClickHouse missing-unsubmitted empty-scorecard filter
 - `sessions/2026-06-30/codex-scorecard-sync-monitor-timeout.md` - investigation of the 2026-06-30 scorecard-sync-monitor CronJob timeouts after unsubmitted scorecard filtering changed
 - `sessions/2026-06-08/codex-pack-rat-scorecard-sync.md` - Pack Rat live incident investigation and repair notes
+- `log/2026-07-08.md` - concise daily movement for the monitor query workaround implementation
 - `log/2026-06-30.md` - concise daily movement for the scorecard-sync-monitor timeout investigation
 - `log/2026-06-08.md` - concise daily movement
+
+## Latest Implementation: scorecard-sync-monitor query workaround
+
+On 2026-07-08, implemented a focused workaround in `/Users/xuanyu.wang/repos/go-servers-convi-7186-monitor-query` on branch `convi-7186-monitor-filter-missing-empty`.
+
+The monitor now fetches time-range scorecard inventory without the unsubmitted `EXISTS` score-row filter, queries ClickHouse metadata, and only then checks `director.scores` for missing unsubmitted IDs. Missing unsubmitted scorecards without score rows are excluded from totals and reindex candidates after the ClickHouse lookup.
+
+Validation:
+
+```bash
+go test ./cron/task-runner/tasks/scorecard-sync-monitor
+```
 
 ## Latest Case: scorecard-sync-monitor timeout
 

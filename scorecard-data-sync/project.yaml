@@ -11,11 +11,18 @@ branch: main
 domain_owners:
   - Xuanyu Wang
 domain_scope: PostgreSQL-to-ClickHouse scorecard projection correctness, ordering, monitoring, reindexing, backfill, diagnosis, and repair.
-related_ticket_ids: []
+related_ticket_ids:
+  - CONVI-5565
+  - CONVI-6209
+  - CONVI-6298
+  - CONVI-7186
 active_work_items: []
-related_prs: []
-current_objective: Consolidate PG/CH scorecard synchronization theory, production failure modes, monitors, repairs, and validation evidence.
-last_validated: 2026-07-14
+related_prs:
+  - https://github.com/cresta/go-servers/pull/24103
+  - https://github.com/cresta/go-servers/pull/25916
+  - https://github.com/cresta/go-servers/pull/29786
+current_objective: Maintain the canonical PG/CH scorecard projection contract, diagnosis ladder, and repair/backfill playbook as new incidents occur.
+last_validated: 2026-07-15
 artifacts:
   readme: README.md
   work_items_dir: work-items/
@@ -23,5 +30,11 @@ artifacts:
   session_dir: sessions/
   decisions_dir: decisions/
   deliverables_dir: deliverables/
-  key_docs: []
-notes: Whether a scorecard should exist is a workflow question; whether an existing scorecard is correctly projected to ClickHouse belongs here.
+  key_docs:
+    - deliverables/architecture-and-invariants.md
+    - deliverables/failure-modes-and-case-index.md
+    - deliverables/monitoring-and-diagnosis.md
+    - deliverables/repair-and-backfill-playbook.md
+    - deliverables/legacy-source-index.md
+    - work-items/CONVI-7186.md
+notes: Whether a scorecard should exist is a workflow question; whether an existing scorecard is correctly projected to ClickHouse belongs here. Historical execution code remains in legacy folders pending source-repo cleanup.

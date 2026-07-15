@@ -31,6 +31,8 @@ The permission layer should evaluate from:
 - [permission-history.md](permission-history.md): evolution history for each permission and why behavior changed.
 - [design-plan.md](design-plan.md): proposed permission layer, protobuf/API sketch, semantics, naming guidance, and migration plan.
 
+Notification recipient and delivery implications are synthesized in [`notifications/deliverables/recipient-and-visibility-semantics.md`](../notifications/deliverables/recipient-and-visibility-semantics.md). This project remains the canonical source for the underlying scorecard capability and visibility policy.
+
 ## Core Finding
 
 The user-facing scorecard template JSON structure (`ScorecardTemplateStructureV2`) defines the scoring form, criteria, comments, Auto QA, and scoring-related flags. The permission configuration is not inside `ScorecardTemplateStructureV2`; it lives on `ScorecardTemplate.permissions` / `ScorecardTemplate.Permissions`.

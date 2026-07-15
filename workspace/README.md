@@ -20,6 +20,8 @@ As of 2026-07-14, the repository is moving to a domain-centered model. The initi
 
 Daily capture is now a completion requirement for substantial work. Shared workflows at `workflow/skills/daily-capture/` and `workflow/skills/weekly-summary/` make work-item state, daily evidence, weekly progress, and performance-review candidates part of one promotion chain. Existing Claude `wrap-day` and `wrap-week` skills are compatibility aliases and no longer commit or push automatically.
 
+Migration progress as of 2026-07-15: `scorecard-data-sync` and `notifications` have canonical synthesized artifacts and legacy source links. `analytics` and `scorecard-workflows` remain scaffolded but not migrated.
+
 ## Key Artifacts
 
 - `/Users/xuanyu.wang/repos/AGENTS.md`

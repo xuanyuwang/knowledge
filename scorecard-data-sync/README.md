@@ -25,18 +25,29 @@ The canonical knowledge home for keeping PostgreSQL scorecard state and its Clic
 
 ## Initial Knowledge Map
 
-- end-to-end PG-to-CH data-flow architecture
-- consistency and ordering invariants
-- failure-mode taxonomy
-- monitor/query catalog
-- diagnosis ladder
-- repair/reindex/backfill playbook
-- validation and rollout standards
-- historical incident and decision index
+- [Architecture and invariants](deliverables/architecture-and-invariants.md)
+- [Failure modes and case index](deliverables/failure-modes-and-case-index.md)
+- [Monitoring and diagnosis](deliverables/monitoring-and-diagnosis.md)
+- [Repair and backfill playbook](deliverables/repair-and-backfill-playbook.md)
+- [Legacy source index](deliverables/legacy-source-index.md)
+- [CONVI-7186 completed work item](work-items/CONVI-7186.md)
 
-## Migration State
+## Current State
 
-The domain is scaffolded. `pg-ch-scorecard-sync-investigation`, CONVI-5565, backfill, reindex, and mismatch folders remain source material until synthesized.
+The first migration is complete. The domain artifacts above are now the canonical synthesis for PG/CH scorecard projection. Historical ticket folders remain as evidence and execution archives, with migration pointers back here.
+
+Two originally proposed sources were reclassified after review:
+
+- `convi-6841-process-scorecard-update-race` is a PostgreSQL read-after-write workflow issue, not a PG/CH projection failure.
+- `hilton-coaching-discrepancy` concerns coaching analytics/session semantics, not scorecard data synchronization.
+
+## Reading Order
+
+1. Start with architecture and invariants.
+2. Use the failure-mode index to classify a symptom.
+3. Follow the monitoring/diagnosis ladder to isolate the mismatch.
+4. Choose the narrowest safe repair from the repair/backfill playbook.
+5. Use the legacy source index only when historical detail or execution artifacts are needed.
 
 ## Source Context
 
@@ -48,5 +59,6 @@ The domain is scaffolded. `pg-ch-scorecard-sync-investigation`, CONVI-5565, back
 
 - `project.yaml`
 - `log/2026-07-14.md`
+- `log/2026-07-15.md`
 - `work-items/` when active tickets are migrated or created
 - `sessions/`, `decisions/`, and `deliverables/` as content is synthesized

@@ -7,7 +7,7 @@ spirit: `cresta-cli connstring -i --read-only us-east-1-prod us-east-1-prod spir
 guitar-center: `cresta-cli connstring -i --read-only us-east-1-prod us-east-1-prod guitar-center-us-east-1`
 nclh: `cresta-cli connstring -i --read-only us-east-1-prod us-east-1-prod nclh-us-east-1`
 
-Clickhouse: `clickhouse://admin:ItVIZdiPT8XQmD5Yox16ROpdNcjJYEEx@clickhouse-conversations.us-east-1-prod.internal.cresta.ai:9440?statusColor=F8F8F8&env=production&name=conv-us-east-1-prod&tLSMode=2&usePrivateKey=false&safeModeLevel=0&advancedSafeModeLevel=0&driverVersion=0&lazyload=false`
+ClickHouse: `<redacted; obtain a read-only connection through approved tooling>`
 All customers are on the same clickhouse cluster.
 
 ## Problem Statement

@@ -1,5 +1,7 @@
 # Backfill Scorecards
 
+> **Migrated knowledge:** Canonical repair strategy and operational lessons now live in [`scorecard-data-sync/deliverables/repair-and-backfill-playbook.md`](../scorecard-data-sync/deliverables/repair-and-backfill-playbook.md). This folder remains the historical execution archive for scripts, run tracking, and exact results.
+
 **Created:** 2026-02-07
 **Updated:** 2026-03-10 (PR #25916 review addressed, rebased onto main)
 **Linear:** [CONVI-6209](https://linear.app/cresta/issue/CONVI-6209)

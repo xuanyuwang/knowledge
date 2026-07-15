@@ -1,7 +1,7 @@
 # Domain-Centered Repository Reorganization Plan
 
 **Created:** 2026-07-14
-**Status:** Proposed; domain scaffolding created, legacy migration not started
+**Status:** In progress; Scorecard Data Sync and Notifications migrated on 2026-07-15
 **Canonical model:** `workflow/domain-centered-knowledge-model.md`
 
 ## Target Outcome
@@ -16,6 +16,13 @@ Use four product domains as the stable knowledge navigation layer:
 Tickets become work items inside a primary domain. Standalone initiative projects remain only for multi-workstream or independently coordinated outcomes. Career, blog, weekly, general learning, oncall, and repository workflow surfaces remain separate system/promotion destinations.
 
 This plan does not authorize a bulk move. Migration is synthesis-first and must preserve existing user changes and historical evidence.
+
+## Migration Progress
+
+- **Scorecard Data Sync:** Canonical architecture, invariants, failure taxonomy, diagnosis, repair/backfill, legacy index, and CONVI-7186 work item created. Source projects retain evidence with migration pointers.
+- **Notifications:** Canonical routing architecture, catalog, recipient semantics, operations playbook, and legacy index created. `oncall` and scorecard permission projects remain canonical for their own concerns and link to the domain synthesis.
+- **Boundary correction:** CONVI-6841 moved to Scorecard Workflows; Hilton coaching discrepancy retained as coaching analytics evidence rather than being forced into Scorecard Data Sync.
+- **Remaining domains:** Analytics and Scorecard Workflows migrations have not started.
 
 ## Target Topology
 
@@ -87,6 +94,7 @@ templates/             # artifact templates
 | `auto-backfill-missing-scorecards` | Retain initiative, link | Primary question is scorecard generation; link repair/projection details to data sync |
 | `convi-6672-achieve-behavior-na` | Synthesize | Score/behavior N/A semantics |
 | `convi-6709-reversed-scorecard` | Synthesize | Reversal lifecycle and business rules |
+| `convi-6841-process-scorecard-update-race` | Cross-link; primary here | PostgreSQL read-after-create/replica consistency is workflow behavior, not a CH projection failure |
 | `convi-6862-disable-editing-on-submitted-scorecard` | Synthesize | Submission/permission work item and decision history |
 | `convi-7237` | Synthesize | Scorecard access UI/permission presentation case |
 | `duplicate-template-across-usecase` | Synthesize | Template duplication workflow and compatibility behavior |
@@ -106,8 +114,6 @@ templates/             # artifact templates
 | `backfill-scorecards` | Synthesize | Repair/backfill playbook and run evidence |
 | `convi-5565-scorecard-ch-pg-sync` | Synthesize first; seed | Core race-condition, fix-attempt, and validation history |
 | `convi-6298-reindex-process-scorecards` | Synthesize | Reindex architecture and operational workflow |
-| `convi-6841-process-scorecard-update-race` | Synthesize | Read-after-write/replica-lag case; distinguish PG workflow from CH projection |
-| `hilton-coaching-discrepancy` | Synthesize | Production mismatch investigation/case |
 | `historic-scorecard-missing` | Safety review, then synthesize | Product Go code does not belong in `knowledge`; preserve investigation, relocate code appropriately |
 | `pg-ch-scorecard-sync-investigation` | Synthesize first; seed | Highest-level theory, monitor, query, and reusable diagnosis material |
 
@@ -129,6 +135,7 @@ No current top-level folder is a complete Notifications domain seed. Build it by
 | `blog` | Retain system/promotion | Publication destination |
 | `coaching-session-generation` | Review with `multi-agent-coaching-assistant` | Prototype/hackathon material outside the initial product domains |
 | `convi-6665-deactivated-coaching-plan-visibility` | Retain legacy/other coaching | Coaching-plan behavior is not automatically scorecard workflow; link only where scorecard semantics apply |
+| `hilton-coaching-discrepancy` | Retain legacy/other coaching analytics | Coaching session/efficiency and filtering behavior, not scorecard PG/CH projection |
 | `dev-environment-tips` | Retain or merge into `general-learnings` | Utility knowledge, not a product domain |
 | `general-learnings` | Retain system/promotion | Cross-domain learning destination |
 | `multi-agent-coaching-assistant` | Retain initiative | Independent prototype/outcome |

@@ -7,7 +7,7 @@ branch: main
 related_ticket_ids: []
 related_prs: []
 current_objective: Establish and migrate toward the shared domain-centered knowledge, work-item, daily-capture, and weekly-synthesis operating model across AI tools.
-last_validated: 2026-07-14
+last_validated: 2026-07-15
 artifacts:
   readme: README.md
   log_dir: log/
@@ -22,6 +22,7 @@ artifacts:
     - workflow/ai-operating-model.md
     - workflow/domain-centered-knowledge-model.md
     - workspace/deliverables/domain-reorganization-plan.md
+    - workspace/sessions/2026-07-15/codex-data-sync-notifications-migration.md
     - workflow/skills/daily-capture/SKILL.md
     - workflow/skills/weekly-summary/SKILL.md
     - workspace/repos.yaml

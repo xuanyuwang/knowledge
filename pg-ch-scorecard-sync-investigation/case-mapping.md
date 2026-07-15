@@ -9,7 +9,7 @@ Map prior scorecard sync and discrepancy work into a common taxonomy.
 - [backfill-scorecards](../backfill-scorecards/README.md)
 - [convi-5565-scorecard-ch-pg-sync](../convi-5565-scorecard-ch-pg-sync/README.md)
 - [hilton-coaching-discrepancy](../hilton-coaching-discrepancy/README.md)
-- [mismatch-scorecard-count](../mismatch-scorecard-count/auto-heal-design.md)
+- [scorecard auto-heal](../auto-backfill-missing-scorecards/auto-heal-design.md)
 
 ## Mapping Template
 

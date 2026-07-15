@@ -1,13 +1,15 @@
 title: "PostgreSQL to ClickHouse scorecard sync investigation skill"
-status: active
+project_type: initiative
+status: migrated
 primary_source_repo: go-servers
 primary_repo_path: /Users/xuanyu.wang/repos/go-servers
-active_worktree_path: /Users/xuanyu.wang/repos/go-servers
-branch: main
-related_ticket_ids: []
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7186-monitor-query
+branch: convi-7186-monitor-filter-missing-empty
+related_ticket_ids:
+  - CONVI-7186
 related_prs: []
-current_objective: Create a reusable investigation skill and repair playbook for repeated PostgreSQL to ClickHouse scorecard sync issues.
-last_validated: 2026-07-03
+current_objective: Preserve historical evidence; canonical domain state now lives in scorecard-data-sync.
+last_validated: 2026-07-15
 artifacts:
   readme: README.md
   log_dir: log/
@@ -20,4 +22,6 @@ artifacts:
     - case-mapping.md
     - solution-space.md
     - deliverables/pg-ch-data-sync-investigator/SKILL.md
-notes: This project now tracks both the reusable sync-failure taxonomy and a Codex skill for repeatable incident investigation.
+    - ../scorecard-data-sync/README.md
+    - ../scorecard-data-sync/work-items/CONVI-7186.md
+notes: Migrated into scorecard-data-sync on 2026-07-15. This legacy project retains raw theory, incident, skill, and session evidence.
