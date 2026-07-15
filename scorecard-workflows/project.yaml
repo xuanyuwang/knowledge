@@ -1,0 +1,28 @@
+title: Scorecard Workflows Domain
+project_type: domain
+status: active
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+related_source_repos:
+  - director
+  - cresta-proto
+  - config
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers
+branch: main
+domain_owners:
+  - Xuanyu Wang
+domain_scope: Scorecard/template lifecycle and business workflows, including permissions, submission, reversal, appeals, and group calibration, excluding PG/CH synchronization mechanics.
+related_ticket_ids: []
+active_work_items: []
+related_prs: []
+current_objective: Consolidate scorecard lifecycle, template, permission, evaluation, and review-workflow knowledge into one domain model.
+last_validated: 2026-07-14
+artifacts:
+  readme: README.md
+  work_items_dir: work-items/
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs: []
+notes: PG-to-ClickHouse projection consistency belongs to scorecard-data-sync even when a ticket also changes workflow behavior.

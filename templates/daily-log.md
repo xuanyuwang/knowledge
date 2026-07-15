@@ -2,7 +2,11 @@
 
 ## Progress
 
-- [Summary of what was done today]
+- **Outcome:** [What changed, shipped, was decided, learned, or unblocked]
+- **Impact:** [Why it matters to customers, correctness, reliability, delivery, or the team]
+- **Role:** [Led, designed, diagnosed, implemented, reviewed, coordinated, or supported]
+- **Evidence:** [Work item, ticket, PR, commit, query/dashboard, decision, or feedback]
+- **Follow-up:** [Validation, metric, decision, or next action still needed]
 
 ## Details
 

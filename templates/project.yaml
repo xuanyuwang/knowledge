@@ -1,15 +1,21 @@
 title: Project Title
+project_type: domain
 status: active
 primary_source_repo: go-servers
 primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+related_source_repos: []
 active_worktree_path: /Users/xuanyu.wang/repos/go-servers-example-worktree
 branch: codex/example-branch
+domain_owners: []
+domain_scope: One sentence defining what belongs in this domain or initiative.
 related_ticket_ids: []
+active_work_items: []
 related_prs: []
 current_objective: One-sentence statement of the current objective.
 last_validated: YYYY-MM-DD
 artifacts:
   readme: README.md
+  work_items_dir: work-items/
   log_dir: log/
   session_dir: sessions/
   decisions_dir: decisions/

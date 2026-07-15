@@ -1,0 +1,4 @@
+interface:
+  display_name: "Daily Capture"
+  short_description: "Capture durable daily work evidence"
+  default_prompt: "Use $daily-capture to record today’s meaningful work and update its current work-item state."

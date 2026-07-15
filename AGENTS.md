@@ -2,18 +2,20 @@
 
 This repository uses a shared workflow spec for Codex and other AI tools.
 
-Read `workflow/ai-operating-model.md` before making substantial changes.
+Read `workflow/ai-operating-model.md` and `workflow/domain-centered-knowledge-model.md` before making substantial changes.
 
 ## Tool-specific adapter
 
 - Do not create a repo-specific worktree for `knowledge`. Work directly in the main repo checkout.
-- For substantial investigation, design, review, or multi-step execution, open or create the relevant project folder before starting the work.
+- For substantial investigation, design, review, or multi-step execution, identify the primary domain before starting. Create a standalone initiative only when the operating-model threshold is met.
 - Use `workspace/repos.yaml` to resolve the source repo and any named worktree.
 - When creating a new worktree for any other repo, place it under `/Users/xuanyu.wang/repos`.
 - Prefer existing `<project>/project.yaml` as the machine-readable handoff surface.
 - If an existing project folder lacks `project.yaml`, add it from `templates/project.yaml` before doing substantial work.
 - Record rich session context in `sessions/YYYY-MM-DD/<tool>-<topic>.md`.
-- Record concise daily movement in `log/YYYY-MM-DD.md`.
+- Track tickets and continuing tasks in one canonical `<primary-domain>/work-items/<id>.md`.
+- Before final handoff, automatically record concise daily movement in `log/YYYY-MM-DD.md`; do not wait for an explicit logging request.
+- Use `workflow/skills/daily-capture/SKILL.md` for daily/session closure and `workflow/skills/weekly-summary/SKILL.md` for weekly synthesis.
 - Update the project `README.md` only when the human-facing project state changes.
 - Treat the work as incomplete if durable investigation findings remain only in chat history or terminal output.
 
@@ -23,6 +25,7 @@ In this repo, agents may update only:
 
 - project `README.md`
 - `project.yaml`
+- `work-items/`
 - `log/`
 - `sessions/`
 - `decisions/`
@@ -30,6 +33,8 @@ In this repo, agents may update only:
 - `templates/`
 - `workflow/`
 - `workspace/`
+- `workflow/skills/`
+- `.claude/skills/`
 
 Do not invent new top-level directories or sidecar conventions without first updating `workflow/ai-operating-model.md`.
 

@@ -33,14 +33,15 @@ The workflow treats these files as the main interfaces:
 - `<project>/sessions/YYYY-MM-DD/*.md` - raw session notes
 - `CLAUDE.md` and `AGENTS.md` - tool-specific entrypoints into the shared spec
 
-## Project-first structure
+## Domain-centered structure
 
-The canonical working unit is a **project folder** at the repo root.
+The default working unit is a long-lived **domain project**. Tickets are tracked as work items inside their primary domain. Standalone initiative projects are reserved for outcomes with multiple workstreams, meaningful cross-team coordination, or an independent design/rollout lifecycle.
 
 Each active engineering project should eventually contain:
 
 - `project.yaml`
 - `README.md`
+- `work-items/`
 - `log/`
 - `sessions/`
 - `decisions/`
@@ -48,15 +49,18 @@ Each active engineering project should eventually contain:
 
 Legacy folders are being backfilled incrementally. When reopening an existing project that does not yet have `project.yaml`, add or refresh it before doing substantial work.
 
+The canonical model and initial domains are defined in `workflow/domain-centered-knowledge-model.md`.
+
 ## Promotion path
 
 The intended flow is:
 
 1. A session note captures investigation or execution details.
-2. The daily log records the meaningful movement for that day.
-3. The project `README.md` is updated when project state changes.
-4. Important decisions are promoted into `decisions/`.
-5. Reusable lessons are promoted into `general-learnings/`, `blog/`, or `weekly-summary/`.
+2. A work item maintains current state for a continuing ticket or task.
+3. The daily log records the meaningful movement for that day.
+4. The domain `README.md` is updated when durable understanding changes.
+5. Important decisions are promoted into `decisions/`.
+6. Weekly and annual summaries promote impact evidence without duplicating raw notes.
 
 ## Staff track anchors
 

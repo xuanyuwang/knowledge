@@ -16,6 +16,10 @@ The workspace now has parent-level `/Users/xuanyu.wang/repos/AGENTS.md` and `/Us
 
 Substantial investigations, designs, reviews, and multi-step execution should be project-first: open or create a project under `knowledge`, create or update a session note, then update the daily project log before handoff.
 
+As of 2026-07-14, the repository is moving to a domain-centered model. The initial product domains are `analytics`, `scorecard-workflows`, `scorecard-data-sync`, and `notifications`. Tickets are work items inside one primary domain by default; standalone initiative projects require multiple workstreams, independent coordination, or their own design/rollout lifecycle.
+
+Daily capture is now a completion requirement for substantial work. Shared workflows at `workflow/skills/daily-capture/` and `workflow/skills/weekly-summary/` make work-item state, daily evidence, weekly progress, and performance-review candidates part of one promotion chain. Existing Claude `wrap-day` and `wrap-week` skills are compatibility aliases and no longer commit or push automatically.
+
 ## Key Artifacts
 
 - `/Users/xuanyu.wang/repos/AGENTS.md`
@@ -23,6 +27,10 @@ Substantial investigations, designs, reviews, and multi-step execution should be
 - `/Users/xuanyu.wang/repos/README.md`
 - `/Users/xuanyu.wang/repos/workspace.code-workspace`
 - `workflow/ai-operating-model.md`
+- `workflow/domain-centered-knowledge-model.md`
+- `workspace/deliverables/domain-reorganization-plan.md`
+- `workflow/skills/daily-capture/SKILL.md`
+- `workflow/skills/weekly-summary/SKILL.md`
 - `workspace/repos.yaml`
 - `AGENTS.md`
 - `CLAUDE.md`

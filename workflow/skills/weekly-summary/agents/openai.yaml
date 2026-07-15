@@ -1,0 +1,4 @@
+interface:
+  display_name: "Weekly Summary"
+  short_description: "Synthesize weekly outcomes and impact"
+  default_prompt: "Use $weekly-summary to synthesize this week’s domain work into an impact-oriented weekly summary."

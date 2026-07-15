@@ -6,8 +6,8 @@ active_worktree_path: /Users/xuanyu.wang/repos/knowledge
 branch: main
 related_ticket_ids: []
 related_prs: []
-current_objective: Keep the shared repo/worktree registry, workspace metadata repo, and agent operating protocol reliable across Codex, Claude, and source repo work.
-last_validated: 2026-07-03
+current_objective: Establish and migrate toward the shared domain-centered knowledge, work-item, daily-capture, and weekly-synthesis operating model across AI tools.
+last_validated: 2026-07-14
 artifacts:
   readme: README.md
   log_dir: log/
@@ -20,5 +20,9 @@ artifacts:
     - /Users/xuanyu.wang/repos/CLAUDE.md
     - /Users/xuanyu.wang/repos/workspace.code-workspace
     - workflow/ai-operating-model.md
+    - workflow/domain-centered-knowledge-model.md
+    - workspace/deliverables/domain-reorganization-plan.md
+    - workflow/skills/daily-capture/SKILL.md
+    - workflow/skills/weekly-summary/SKILL.md
     - workspace/repos.yaml
 notes: Workflow-level changes should be recorded here when they affect how agents discover source repos, use the workspace metadata repo, or save durable project context.
