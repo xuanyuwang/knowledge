@@ -10,6 +10,8 @@ Own QA score calculation and display semantics from template options and score r
 - N/A or null means no applicable score; it must not be collapsed into numeric zero.
 - A zero-weight or excluded criterion can carry a raw value while contributing no percentage score.
 - Chapter and criterion aggregates have different denominators and must remain distinguishable.
+- Score rows retain percentage and weight values derived from their referenced template revision; a later template revision does not rewrite historical rows.
+- Criterion-level aggregation across revisions must not assume configured contribution weights are comparable observation weights.
 - Popovers and drill-downs may filter the contributing rows differently from the parent aggregate; their contract must be recorded explicitly.
 
 ## Architecture and Source Map
@@ -31,6 +33,7 @@ Own QA score calculation and display semantics from template options and score r
 - `qa-score-popover-fix/`
 - `convi-6672-achieve-behavior-na/`
 - `nascore/`
+- [CONVI-7254 HCD mixed-revision investigation](../../deliverables/hcd-mixed-revision-qa-score-investigation.md)
 
 ## Open Questions
 

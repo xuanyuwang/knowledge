@@ -53,6 +53,10 @@ The first subdomain migration is complete. The subdomain references and [legacy 
 
 Work items, sessions, daily logs, and decisions remain at this parent domain. Future work items should record one optional primary subdomain.
 
+Active investigation: [CONVI-7254](work-items/CONVI-7254.md) tracks HCD monthly QA criterion aggregation across mixed template revisions.
+
+Investigation report: [HCD mixed-revision QA score investigation](deliverables/hcd-mixed-revision-qa-score-investigation.md) explains the production evidence, calculation pipeline, template-weight timeline, and open aggregation decision.
+
 ## Source Context
 
 - **Primary repo:** `go-servers`
@@ -65,5 +69,6 @@ Work items, sessions, daily logs, and decisions remain at this parent domain. Fu
 - `log/2026-07-14.md`
 - `log/2026-07-15.md`
 - `deliverables/legacy-source-index.md`
+- `deliverables/hcd-mixed-revision-qa-score-investigation.md`
 - `work-items/` when active tickets are migrated or created
 - `sessions/`, `decisions/`, and `deliverables/` as content is synthesized

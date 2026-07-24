@@ -8,8 +8,8 @@ related_source_repos:
   - cresta-proto
   - clickhouse-schema
   - config
-active_worktree_path: /Users/xuanyu.wang/repos/go-servers
-branch: main
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7254
+branch: convi-7254-monthly-qa-score
 domain_owners:
   - Xuanyu Wang
 domain_scope: Performance Insights and Leaderboard frontend/backend semantics, filters, analytics APIs, aggregations, and displayed-data lineage.
@@ -26,9 +26,10 @@ related_ticket_ids: []
 active_work_items:
   - time-range-filter-investigation
   - CONVI-7238
+  - CONVI-7254
 related_prs: []
-current_objective: Investigate CONVI-7238's Manager Leaderboard scorecard undercount while maintaining shared analytics contracts and exact subdomain semantics.
-last_validated: 2026-07-23
+current_objective: Diagnose CONVI-7254's mixed-revision monthly QA criterion aggregation while maintaining shared analytics contracts and exact subdomain semantics.
+last_validated: 2026-07-24
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
@@ -47,4 +48,5 @@ artifacts:
     - subdomains/insights-user-filter/README.md
     - subdomains/conversation-volume/README.md
     - deliverables/legacy-source-index.md
+    - deliverables/hcd-mixed-revision-qa-score-investigation.md
 notes: Cross-page contracts live at the parent or shared-analytics-platform level. Legacy folders retain raw ticket and execution evidence.
