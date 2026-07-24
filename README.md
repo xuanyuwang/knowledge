@@ -39,6 +39,41 @@ The default working unit is a long-lived **domain project**. Tickets are tracked
 
 Broad domains may contain `subdomains/` for product surfaces, capabilities, or workflows with distinct semantics. Subdomains hold durable reference knowledge; work items and daily operating history remain at the parent domain.
 
+## Product domain catalog
+
+### [Analytics](analytics/README.md)
+
+Owns Performance Insights and Leaderboard across frontend and backend: displayed metric semantics, filters, analytics APIs, query/aggregation behavior, and data lineage. It should make each visible value traceable from UI interpretation to its source data.
+
+- [Shared Analytics Platform](analytics/subdomains/shared-analytics-platform/README.md) — shared API, grouping, request, and source-data contracts
+- [Performance Insights](analytics/subdomains/performance-insights/README.md) — page charts, tables, filters, and frontend transformations
+- [Leaderboard](analytics/subdomains/leaderboard/README.md) — agent, team, and manager ranking and presentation behavior
+- [Active Days](analytics/subdomains/active-days/README.md) — activity evidence, source filtering, attribution, and freshness
+- [Quintiles](analytics/subdomains/quintiles/README.md) — ranked-population partition semantics and presentation
+- [QA Score](analytics/subdomains/qa-score/README.md) — QA aggregation, N/A, weighting, option, and criterion semantics
+- [Insights User Filter](analytics/subdomains/insights-user-filter/README.md) — user/team/group resolution, hierarchy, access, and scalable filtering
+- [Conversation Volume](analytics/subdomains/conversation-volume/README.md) — surface-specific count definitions and data sources
+
+### [Scorecard Workflows](scorecard-workflows/README.md)
+
+Owns scorecard and template business behavior from authoring and evaluation through lifecycle transitions, permissions, appeals, calibration, and generation. PostgreSQL-to-ClickHouse projection mechanics belong to Scorecard Data Sync instead.
+
+- [Template Authoring and Versioning](scorecard-workflows/subdomains/template-authoring-and-versioning/README.md) — template structure, revisions, duplication, and schema compatibility
+- [Evaluation and Scoring](scorecard-workflows/subdomains/evaluation-and-scoring/README.md) — manual/AutoQM evaluation, option mapping, N/A, weighting, and score computation
+- [Scorecard Lifecycle](scorecard-workflows/subdomains/scorecard-lifecycle/README.md) — creation, editing, submission, publishing, reversal, and state transitions
+- [Permissions and Visibility](scorecard-workflows/subdomains/permissions-and-visibility/README.md) — capabilities, audiences, submitted editing, and runtime visibility
+- [Appeals](scorecard-workflows/subdomains/appeals/README.md) — appeal request/resolution, final values, comments, and exports
+- [Group Calibration](scorecard-workflows/subdomains/group-calibration/README.md) — answer keys, responses, completion, permissions, reporting, and exports
+- [Process Scorecards and Generation](scorecard-workflows/subdomains/process-scorecards-and-generation/README.md) — existence rules, generation, repair, and backfill orchestration
+
+### [Scorecard Data Sync](scorecard-data-sync/README.md)
+
+Owns the correctness and operation of PostgreSQL-to-ClickHouse scorecard projection: ordering, monitoring, mismatch diagnosis, reindexing, backfill, repair, and validation. It currently remains one cohesive domain without subdomains.
+
+### [Notifications](notifications/README.md)
+
+Owns cross-workflow notification triggers, recipients and visibility, channels, templates, delivery behavior, retry/idempotency, observability, and diagnosis. It currently remains one cohesive domain without subdomains.
+
 Each active engineering project should eventually contain:
 
 - `project.yaml`
@@ -50,7 +85,7 @@ Each active engineering project should eventually contain:
 - `decisions/`
 - `deliverables/`
 
-Legacy folders are being backfilled incrementally. When reopening an existing project that does not yet have `project.yaml`, add or refresh it before doing substantial work.
+Legacy projects migrate into domains gradually, normally when they are reopened or when related domain work needs their evidence. Synthesize durable knowledge and add canonical pointers before considering removal; do not perform a mechanical bulk move.
 
 The canonical model and initial domains are defined in `workflow/domain-centered-knowledge-model.md`.
 

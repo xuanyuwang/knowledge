@@ -7,7 +7,7 @@ branch: main
 related_ticket_ids: []
 related_prs: []
 current_objective: Convert project work into staff-level narratives, blog candidates, and resume-ready impact bullets.
-last_validated: 2026-06-16
+last_validated: 2026-07-15
 artifacts:
   readme: staff-project.md
   log_dir: log/

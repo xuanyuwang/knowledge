@@ -22,6 +22,17 @@ Daily capture is now a completion requirement for substantial work. Shared workf
 
 Migration progress as of 2026-07-15: all four initial domains have canonical synthesized artifacts and legacy source links. `analytics` is organized into eight product/metric/filter subdomains, and `scorecard-workflows` into seven workflow subdomains. Operating history remains at each parent domain so tickets spanning multiple subdomains retain one coherent record.
 
+## Domain Catalog
+
+| Domain | Scope | Subdomains |
+|---|---|---|
+| [`analytics`](../analytics/README.md) | Performance Insights and Leaderboard semantics from frontend display through APIs, aggregation, filters, and source data | Shared Analytics Platform, Performance Insights, Leaderboard, Active Days, Quintiles, QA Score, Insights User Filter, Conversation Volume |
+| [`scorecard-workflows`](../scorecard-workflows/README.md) | Template and scorecard authoring, evaluation, lifecycle, permissions, appeals, calibration, and generation | Template Authoring and Versioning, Evaluation and Scoring, Scorecard Lifecycle, Permissions and Visibility, Appeals, Group Calibration, Process Scorecards and Generation |
+| [`scorecard-data-sync`](../scorecard-data-sync/README.md) | PostgreSQL-to-ClickHouse projection correctness, monitoring, diagnosis, reindexing, backfill, and repair | None currently; kept cohesive |
+| [`notifications`](../notifications/README.md) | Cross-workflow triggers, recipients, visibility, channels, delivery, retries, observability, and diagnosis | None currently; kept cohesive |
+
+Legacy projects migrate into these domains gradually as they are reopened or become relevant to active domain work. Migration is synthesis-first: preserve evidence, establish the canonical domain home, add a pointer, and review deletion separately rather than bulk-moving folders.
+
 ## Key Artifacts
 
 - `/Users/xuanyu.wang/repos/AGENTS.md`

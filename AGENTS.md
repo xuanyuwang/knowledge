@@ -8,6 +8,7 @@ Read `workflow/ai-operating-model.md` and `workflow/domain-centered-knowledge-mo
 
 - Do not create a repo-specific worktree for `knowledge`. Work directly in the main repo checkout.
 - For substantial investigation, design, review, or multi-step execution, identify the primary domain before starting. Create a standalone initiative only when the operating-model threshold is met.
+- Use the domain and subdomain catalog in `README.md` and `workflow/domain-centered-knowledge-model.md` when choosing that home.
 - Use `workspace/repos.yaml` to resolve the source repo and any named worktree.
 - When creating a new worktree for any other repo, place it under `/Users/xuanyu.wang/repos`.
 - Prefer existing `<project>/project.yaml` as the machine-readable handoff surface.
@@ -19,6 +20,7 @@ Read `workflow/ai-operating-model.md` and `workflow/domain-centered-knowledge-mo
 - Use `workflow/skills/daily-capture/SKILL.md` for daily/session closure and `workflow/skills/weekly-summary/SKILL.md` for weekly synthesis.
 - Update the project `README.md` only when the human-facing project state changes.
 - Treat the work as incomplete if durable investigation findings remain only in chat history or terminal output.
+- Migrate legacy projects gradually when they are reopened or their evidence is needed; synthesize and point to the canonical domain before any separately reviewed removal.
 
 ## Write boundaries
 

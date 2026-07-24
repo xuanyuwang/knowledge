@@ -8,17 +8,22 @@ related_ticket_ids:
   - CONVI-6862
   - CONVI-7197
   - CONVI-7206
+  - CONVI-7350
+active_work_items:
+  - work-items/CONVI-7350.md
 related_prs:
   - director#19100
   - director#19805
   - director#20375
   - go-servers#29774
-backend_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7206
-backend_branch: convi-7206-gate-submitted-scorecard-lock-behind-ff
-current_objective: Update the submitted-scorecard runtime UI to query `EvaluateScorecardsPermissions` on load, lock denied submitted scorecards before update attempts, and keep reactive 403 fail-and-freeze as fallback.
-last_validated: 2026-07-03
+  - go-servers#30336
+backend_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7350
+backend_branch: convi-7350-refer-the-latest-revision-of-template-for-permission
+current_objective: Land CONVI-7350 so UpdateScorecard and ResetScorecard authorize against the latest template permissions, matching EvaluateScorecardsPermissions.
+last_validated: 2026-07-22
 artifacts:
   readme: README.md
+  work_items_dir: work-items/
   log_dir: log/
   session_dir: sessions/
   decisions_dir: decisions/
@@ -30,4 +35,6 @@ artifacts:
     - deliverables/local-test-plan.md
     - deliverables/submitted-scorecard-edit-permission-fail-freeze-plan.md
     - deliverables/convi-7197-scorecard-editors-dropdown-ux-fix.md
-notes: Backend is merged with `submitted_scorecard_editors` / `submittedScorecardEditors` as a `users + teams + groups` contract. Frontend exposes the control in `TemplateBuilderAdvanced`, round-trips users/teams/groups, does not depend on `permissions.scorecardGraders`, and uses `All users` as the empty-state text. `director#19805` merged the `EvaluateScorecardsPermissions` client wrapper and hook; PR `director#19100` should now use that hook to proactively lock denied submitted scorecards on load.
+    - work-items/CONVI-7350.md
+    - sessions/2026-07-22/codex-latest-template-permission-evaluation.md
+notes: Backend is merged with `submitted_scorecard_editors` / `submittedScorecardEditors` as a `users + teams + groups` contract. Frontend exposes the control in `TemplateBuilderAdvanced`, round-trips users/teams/groups, does not depend on `permissions.scorecardGraders`, and uses `All users` as the empty-state text. `director#19805` merged the `EvaluateScorecardsPermissions` client wrapper and hook; PR `director#19100` should now use that hook to proactively lock denied submitted scorecards on load. CONVI-7350 is implemented on `go-servers-convi-7350` so write enforcement loads the latest template revision for authorization while preserving pinned revisions for scoring.

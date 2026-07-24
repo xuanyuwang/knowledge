@@ -1,40 +1,47 @@
 # Blog and Resume Candidates
 
 **Created:** 2026-06-05
+**Refreshed:** 2026-07-15
 
-This pass picks up newer staff-level material after the first three polished examples in `staff-project.md`.
+This is the active publication pool. Published posts are explicitly excluded so future reviews do not repeatedly recommend the same argument under a slightly different title.
 
-## Blog candidates
+## Published exclusions
 
-### 1. Turning Ticket Work into a Domain Reference
+Do not return these topics to the active pool unless the proposed post has a clearly different thesis and new evidence:
 
-Draft:
+| Published post | Covered thesis; exclude close variants |
+|---|---|
+| [Who Sees What: Why Access Semantics Can't Be Left to Convention](https://www.xuanyuwang.com/blog/2026-02-28-staff-perspective-user-filter-consolidation/) | Consolidating divergent user-filter semantics across many APIs; behavioral standard before migration |
+| [The Trap of Async Side Effects in Dual-Write Systems](https://www.xuanyuwang.com/blog/2026-03-13-debugging-dual-database-sync/) | PostgreSQL/ClickHouse async races, stale captures, version ordering, and verification |
+| [Solving for the Class of Problems, Not the Instance](https://www.xuanyuwang.com/blog/2026-03-13-ext-tables-clickhouse-reference-data/) | ClickHouse external tables for large reference-data filters |
+| [Turning Ticket Work into a Domain Reference](https://www.xuanyuwang.com/blog/2026-06-05-turning-ticket-work-into-domain-reference/) | Turning repeated ticket investigations into a durable domain reference and shared engineering leverage |
+| [From Scorecard APIs to Business Workflows](https://www.xuanyuwang.com/blog/2026-06-15-from-scorecard-apis-to-business-workflows/) | Moving from artifact-centric scorecard APIs to explicit business workflows |
 
-- `train-for-staff/deliverables/turning-ticket-work-into-a-domain-reference.md`
+## Active blog candidates
+
+### 1. The Same Count Can Be Correct Twice
 
 Source projects:
 
-- `scorecard-template/README.md`
-- `scorecard-template/deliverables/scorecard-template-system-reference.md`
-- `scorecard-template/deliverables/business-rules-catalog.md`
-- `scorecard-template/deliverables/ticket-pattern-log.md`
-- `template-schema-version-updater/README.md`
+- `analytics/subdomains/conversation-volume/README.md`
+- `convi-6842-holiday-inn-pi-vs-closed-conversations/README.md`
+- `agent-stats-analytics-behaviors/deliverables/conversation-count-behavior-guide-2026-07.md`
 
 Core argument:
 
-Staff leverage in a business-rule-heavy domain often comes from making repeated ambiguity visible. The scorecard/template work is a good example: each ticket exposed a local bug, but the reusable value came from building a domain map, lifecycle model, rule catalog, and improvement backlog.
+Two product surfaces can display different conversation counts without either being defective because they answer different business questions. Correct analytics work starts by making eligibility, transcript requirements, score applicability, time attribution, and source systems part of the metric contract.
 
 Possible outline:
 
-1. The symptom: every scorecard/template ticket required rediscovering the same concepts.
-2. The real problem: business rules were split across UI behavior, proto, DB shape, analytics projection, and historical tickets.
-3. The intervention: create a living working reference rather than another one-off investigation doc.
-4. The staff move: turn repeated local pain into shared vocabulary, lifecycle stages, rule buckets, and concrete improvement proposals.
-5. The follow-up: explicit template schema versioning as an example of a small systemic improvement born from the reference.
+1. Start with a customer-visible mismatch.
+2. Decompose “conversation count” into explicit predicates.
+3. Compare Performance Insights, Closed Conversations, Customer Insights, and Leaderboard.
+4. Explain why reconciliation is not always equality.
+5. Build a metric contract and diagnostic matrix before changing code.
 
 Resume angle:
 
-- Domain stewardship, cross-functional clarity, reducing repeated investigation, making future changes safer.
+- Analytics semantics, cross-surface correctness, customer diagnosis, and shared metric contracts.
 
 ### 2. When a Metric Changes Its Subject: Agent vs Submitter Semantics
 
@@ -60,53 +67,77 @@ Resume angle:
 
 - API strategy, analytics correctness, cross-layer product semantics, future-proofing with provider abstraction.
 
-### 3. Fail-and-Freeze as a Safer UX Pattern for Permission Drift
+### 3. N/A Is a Data Contract, Not a Display Label
 
 Source projects:
 
-- `convi-6862-disable-editing-on-submitted-scorecard/README.md`
-- `convi-6862-disable-editing-on-submitted-scorecard/deliverables/submitted-scorecard-edit-permission-fail-freeze-plan.md`
-- `convi-6862-disable-editing-on-submitted-scorecard/decisions/2026-05-29-final-fe-submitted-editor-behavior.md`
+- `scorecard-workflows/subdomains/evaluation-and-scoring/README.md`
+- `analytics/subdomains/qa-score/README.md`
+- `nascore/README.md`
 
 Core argument:
 
-Submitted scorecard edit permissions can change while a user is already editing. The safer frontend pattern is not a fake preflight write or optimistic continuation; it is reactive rollback plus freeze when the authoritative write fails with permission denied.
+Null, N/A, zero, excluded, and missing encode different business states. Once an evaluation crosses template JSON, form state, scoring helpers, PostgreSQL, ClickHouse, analytics aggregation, and UI display, collapsing any two states produces plausible but incorrect results. The staff move is to define an end-to-end value contract rather than patch each representation independently.
 
 Possible outline:
 
-1. The product problem: submitted scorecards can remain visible but become no longer editable.
-2. The tempting approach: preflight "sniffing" writes.
-3. The chosen approach: fail-and-freeze on real permission denial.
-4. The UX contract: restore persisted state, disable further edits, show inline warning, suppress noisy handled toasts.
-5. The system lesson: permission drift should be handled as a runtime consistency problem.
+1. Distinguish option identity, raw value, mapped score, percentage, weight, and label.
+2. Show why N/A and zero require different algebra.
+3. Preserve meaning across storage and analytics projections.
+4. Test transition and aggregation behavior, not only individual fields.
+5. Use a representation matrix as the shared FE/BE/data contract.
 
 Resume angle:
 
-- Risk management, UX correctness, permission semantics, rollback behavior, avoiding extra write traffic.
+- Semantic correctness across FE/BE/data layers, invariant design, and prevention of plausible-but-wrong analytics.
 
-### 4. From Scorecard APIs to Business Workflows
-
-Draft:
-
-- `train-for-staff/deliverables/from-scorecard-apis-to-business-workflows.md`
-
-Published:
-
-- `blog/2026-06-15-from-scorecard-apis-to-business-workflows.md`
+### 4. Backfills Are Product Operations, Not Database Scripts
 
 Source projects:
 
-- `scorecard-template/README.md`
-- `scorecard-template/deliverables/scorecard-template-domain-skeleton.md`
-- `scorecard-template/deliverables/workflow-map.md`
+- `scorecard-workflows/subdomains/process-scorecards-and-generation/README.md`
+- `scorecard-data-sync/README.md`
+- `auto-backfill-missing-scorecards/README.md`
 
 Core argument:
 
-Generic artifact APIs work while a product has one dominant workflow. Once calibration, group calibration, appeal, analytics, and repair workflows emerged, names like `updateScorecard`, `submitScorecard`, and `createScorecard` hid too much business meaning. The useful shift was separating domain artifacts from behavioral frames, then designing workflow-specific commands over small artifact primitives.
+A historical repair can execute product logic, create customer-visible annotations, trigger scorecard generation, and alter analytics—not merely copy rows. Safe backfill design therefore needs eligibility rules, dependency ordering, visibility analysis, idempotency, throttling, observability, and an explicit choice between one-time and recurring execution.
+
+Possible outline:
+
+1. Classify generation, projection, and query defects before repairing anything.
+2. Model upstream dependencies such as Opera annotations.
+3. Treat feature flags and customer visibility as separate controls.
+4. Prefer a finite downstream job over a permanent cron for one-time repair.
+5. Define idempotency, throttling, monitoring, and rollback as product behavior.
 
 Resume angle:
 
-- Domain modeling, API semantics, business workflow design, moving from code-level abstraction to product-level architecture.
+- Cross-domain architecture, operational safety, customer visibility, and repair strategy.
+
+### 5. Export Parity Is a Product Contract
+
+Source projects:
+
+- `scorecard-workflows/subdomains/group-calibration/README.md`
+- `scorecard-template/deliverables/scorecard-export-paths.md`
+- `group-calibration/deliverables/convi-7208-numeric-grade-csv-fix-plan.md`
+
+Core argument:
+
+When multiple product surfaces export the same business object through separate frontend and backend implementations, schema and display semantics drift silently. Treating export parity as a product contract—rather than copying formatting code—creates a repeatable way to reason about labels, comments, empty values, ordering, permissions, and historical revisions.
+
+Possible outline:
+
+1. Discover duplicated export paths.
+2. Separate transport shape from user-visible representation.
+3. Define parity dimensions and intentional differences.
+4. Use a canonical value resolver instead of parallel ad hoc mappings.
+5. Test exports as stable external contracts.
+
+Resume angle:
+
+- Cross-surface contract design, semantic consistency, and prevention of customer-facing data drift.
 
 ## Resume candidates to polish next
 

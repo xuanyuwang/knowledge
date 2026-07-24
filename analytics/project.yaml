@@ -23,10 +23,12 @@ subdomains:
   - insights-user-filter
   - conversation-volume
 related_ticket_ids: []
-active_work_items: []
+active_work_items:
+  - time-range-filter-investigation
+  - CONVI-7238
 related_prs: []
-current_objective: Maintain shared analytics contracts and exact subdomain semantics for Performance Insights, Leaderboard, filters, metrics, and data lineage.
-last_validated: 2026-07-15
+current_objective: Investigate CONVI-7238's Manager Leaderboard scorecard undercount while maintaining shared analytics contracts and exact subdomain semantics.
+last_validated: 2026-07-23
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/

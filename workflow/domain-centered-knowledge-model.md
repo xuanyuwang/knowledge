@@ -67,17 +67,42 @@ Tickets are normally work items, not projects.
 
 Performance Insights and Leaderboard, frontend and backend. Covers exact UI/chart/table semantics, filter interpretation, request construction, analytics-service APIs, backend aggregation/query behavior, and the correspondence between displayed values and source data.
 
+Subdomains:
+
+- `shared-analytics-platform`: cross-page API, request/grouping, source-data, and aggregation contracts
+- `performance-insights`: page-specific charts, tables, filters, and frontend interpretation
+- `leaderboard`: agent/team/manager ranking, grouping, metrics, and presentation
+- `active-days`: activity evidence, attribution, source filtering, and freshness
+- `quintiles`: ranked-population partition semantics and cross-surface use
+- `qa-score`: QA score, N/A, weighting, option, and criterion aggregation semantics
+- `insights-user-filter`: user/team/group resolution, hierarchy, access scope, and scalable filtering
+- `conversation-volume`: surface-specific count definitions, eligibility, and data sources
+
 ### `scorecard-workflows`
 
 Scorecard and template lifecycle, creation/evaluation/submission, permissions, reversal, appeals, group calibration, related review workflows, backfill/generation behavior, and surrounding business rules. PG-to-ClickHouse synchronization mechanics are explicitly excluded.
+
+Subdomains:
+
+- `template-authoring-and-versioning`: template structure, builder behavior, revisions, duplication, and compatibility
+- `evaluation-and-scoring`: manual/AutoQM evaluation, option mapping, N/A, weighting, and score computation
+- `scorecard-lifecycle`: creation, editing, submission, publishing, reversal, and state transitions
+- `permissions-and-visibility`: capability policy, audiences, submitted editing, and runtime visibility
+- `appeals`: request/resolution workflows, final-value interpretation, comments, and exports
+- `group-calibration`: answer keys, responses, completion, permissions, reporting, and exports
+- `process-scorecards-and-generation`: process scorecards, existence rules, generation, repair, and backfill orchestration
 
 ### `scorecard-data-sync`
 
 PostgreSQL-to-ClickHouse scorecard projection, ordering and consistency, reindex/backfill mechanics, monitoring, diagnosis, repair, validation, and rollout safety.
 
+No subdomains are defined currently; the architecture, monitoring, and repair concerns remain tightly coupled enough to keep one domain reference.
+
 ### `notifications`
 
 Notification triggers, recipients/visibility, delivery channels, templates/configuration, retry and idempotency behavior, observability, diagnosis, and ownership boundaries.
+
+No subdomains are defined currently; the cross-workflow trigger-to-delivery model remains the useful ownership boundary.
 
 ## Daily-to-yearly promotion
 
@@ -94,8 +119,10 @@ Ticket/PR counts and hours are supporting evidence, not impact by themselves.
 ## Migration principles
 
 - Inventory before moving.
+- Migrate legacy projects gradually, normally when they are reopened or their evidence is needed by active domain work; do not run a mechanical bulk migration.
 - Synthesize durable knowledge; do not mechanically concatenate ticket notes.
 - Preserve history through links and thin legacy pointers until confidence is high.
+- Remove a legacy project only after its durable knowledge, current work state, and evidence links have canonical homes and the deletion is reviewed separately.
 - Give each artifact one canonical home.
 - Do not force unrelated personal, career, workflow, or experimental material into product domains.
 - Correct security and separation-of-concerns issues separately from taxonomy changes.

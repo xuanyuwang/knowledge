@@ -62,6 +62,18 @@ Most of the work should be in Director:
 
 Backend may only need tests, unless Performance request construction drops these moment groups before calling analytics APIs.
 
+## Query Performance Follow-up
+
+The backend support merged in `cresta/go-servers#29175`, but its CLO query path is structurally more expensive than the existing metadata-moment path:
+
+- Metadata-only filters continue to use the narrow, monthly-partitioned `moment_annotation_mv_by_metadata_d` view with typed value columns. Their generated SQL did not change.
+- CLO filters use the broad `moment_annotation_d` table and parse outcome values from `moment_annotation_payload` with ClickHouse JSON functions.
+- The source-table choice is request-wide. If a request contains any CLO group, existing metadata include/exclude filters in that same request are also moved back to `moment_annotation_d`.
+
+This creates the clearest regression risk for mixed CLO + metadata filters. It is a code-structure finding, not yet a measured production latency result. The preferred short-term change is per-moment-group table routing so metadata CTEs stay on the optimized view; the long-term option is a typed, partitioned conversation-outcome materialized view.
+
+Detailed evidence and a runtime validation matrix are in `sessions/2026-07-23/codex-query-structure-performance.md`.
+
 ## Key Files
 
 - Frontend Performance filter setup: `/Users/xuanyu.wang/repos/director/packages/director-app/src/components/insights/hooks/performance-filters/usePerformanceFilters.tsx`

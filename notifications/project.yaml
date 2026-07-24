@@ -12,6 +12,7 @@ branch: main
 domain_owners:
   - Xuanyu Wang
 domain_scope: QM/Coaching notification triggers, recipients, visibility, channels, delivery behavior, configuration, and operations.
+subdomains: []
 related_ticket_ids: []
 active_work_items: []
 related_prs: []

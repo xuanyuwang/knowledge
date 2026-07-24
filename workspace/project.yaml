@@ -6,8 +6,8 @@ active_worktree_path: /Users/xuanyu.wang/repos/knowledge
 branch: main
 related_ticket_ids: []
 related_prs: []
-current_objective: Establish and migrate toward the shared domain-centered knowledge, work-item, daily-capture, and weekly-synthesis operating model across AI tools.
-last_validated: 2026-07-15
+current_objective: Maintain clear domain/subdomain navigation and migrate legacy projects gradually into the shared domain-centered operating model.
+last_validated: 2026-07-24
 artifacts:
   readme: README.md
   log_dir: log/
@@ -24,6 +24,7 @@ artifacts:
     - workspace/deliverables/domain-reorganization-plan.md
     - workspace/sessions/2026-07-15/codex-data-sync-notifications-migration.md
     - workspace/sessions/2026-07-15/codex-analytics-scorecard-workflows-subdomain-migration.md
+    - workspace/sessions/2026-07-24/codex-domain-catalog-metadata.md
     - workflow/skills/daily-capture/SKILL.md
     - workflow/skills/weekly-summary/SKILL.md
     - workspace/repos.yaml

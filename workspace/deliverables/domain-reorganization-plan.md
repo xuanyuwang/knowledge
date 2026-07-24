@@ -15,7 +15,7 @@ Use four product domains as the stable knowledge navigation layer:
 
 Tickets become work items inside a primary domain. Standalone initiative projects remain only for multi-workstream or independently coordinated outcomes. Career, blog, weekly, general learning, oncall, and repository workflow surfaces remain separate system/promotion destinations.
 
-This plan does not authorize a bulk move. Migration is synthesis-first and must preserve existing user changes and historical evidence.
+This plan does not authorize a bulk move. After the initial domain foundations, migrate legacy projects gradually when they are reopened or needed by active domain work. Migration is synthesis-first and must preserve existing user changes and historical evidence.
 
 ## Migration Progress
 

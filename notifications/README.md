@@ -22,6 +22,10 @@ The canonical knowledge home for QM/Coaching notification behavior from business
 - analytics presentation semantics: `analytics`
 - scorecard PG/CH projection: `scorecard-data-sync`
 
+## Subdomains
+
+No subdomains are defined currently. The cross-workflow trigger-to-recipient-to-delivery path remains the useful cohesive ownership boundary.
+
 ## Initial Knowledge Map
 
 - [Architecture and routing](deliverables/architecture-and-routing.md)

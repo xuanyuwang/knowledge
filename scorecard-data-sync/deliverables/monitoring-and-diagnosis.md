@@ -11,7 +11,13 @@ A useful monitor must answer more than whether aggregate counts match:
 5. Which entities are intentionally excluded?
 6. Can the monitor finish inside its operational deadline on the largest profiles?
 
-The current scorecard sync monitor primarily detects missing scorecard IDs. It does not prove field-level correctness for rows already present.
+The current scorecard sync monitor detects both missing scorecard IDs and existing rows whose submit/update timestamps are stale. It does not prove full field-level or criterion-level correctness.
+
+### Slack summary semantics
+
+The per-profile Slack fraction (`missing/total`) reports only absent ClickHouse rows. Auto-heal candidates are broader: they are the union of missing rows and existing rows with stale submit/update timestamps. A line can therefore correctly report `0/N missing` while creating a reindex workflow for stale scorecards.
+
+The workflow payload is authoritative for the resource names dispatched. The cron `reindex_candidates` log is the source for aggregate missing and stale-reason counts. Slack currently omits stale and total candidate counts, so created-job lines should not be interpreted as contradicting a zero missing count.
 
 ## Inventory Semantics
 
@@ -78,7 +84,7 @@ Operational guidance:
 
 ## Known Detection Gaps
 
-- Existing-but-stale CH scorecards can pass ID comparison.
+- Existing CH scorecards with stale fields other than the monitored submit/update timestamps can pass comparison.
 - Aggregate counts can match while individual fields are wrong.
 - Criterion count comparison can false-positive on chapter rows.
 - Time-range selection can miss entities when the wrong creation/submission/process timestamp is used.

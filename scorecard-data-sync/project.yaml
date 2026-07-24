@@ -11,6 +11,7 @@ branch: main
 domain_owners:
   - Xuanyu Wang
 domain_scope: PostgreSQL-to-ClickHouse scorecard projection correctness, ordering, monitoring, reindexing, backfill, diagnosis, and repair.
+subdomains: []
 related_ticket_ids:
   - CONVI-5565
   - CONVI-6209
@@ -21,8 +22,8 @@ related_prs:
   - https://github.com/cresta/go-servers/pull/24103
   - https://github.com/cresta/go-servers/pull/25916
   - https://github.com/cresta/go-servers/pull/29786
-current_objective: Maintain the canonical PG/CH scorecard projection contract, diagnosis ladder, and repair/backfill playbook as new incidents occur.
-last_validated: 2026-07-15
+current_objective: Maintain the canonical PG/CH scorecard projection contract, diagnosis ladder, monitor-reporting semantics, and repair/backfill playbook as new incidents occur.
+last_validated: 2026-07-22
 artifacts:
   readme: README.md
   work_items_dir: work-items/

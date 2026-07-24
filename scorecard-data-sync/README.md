@@ -23,6 +23,10 @@ The canonical knowledge home for keeping PostgreSQL scorecard state and its Clic
 - Performance Insights/Leaderboard presentation semantics: `analytics`
 - notification delivery: `notifications`
 
+## Subdomains
+
+No subdomains are defined currently. Projection architecture, monitoring, diagnosis, and repair remain tightly coupled and are maintained as one cohesive domain.
+
 ## Initial Knowledge Map
 
 - [Architecture and invariants](deliverables/architecture-and-invariants.md)
@@ -40,6 +44,8 @@ Two originally proposed sources were reclassified after review:
 
 - `convi-6841-process-scorecard-update-race` is a PostgreSQL read-after-write workflow issue, not a PG/CH projection failure.
 - `hilton-coaching-discrepancy` concerns coaching analytics/session semantics, not scorecard data synchronization.
+
+On 2026-07-22, a production Slack ambiguity was confirmed: the displayed fraction counts only missing ClickHouse rows, while reindex workflows include both missing and timestamp-stale scorecards. A zero-missing line can therefore create a valid stale-row repair workflow; see `sessions/2026-07-22/codex-slack-missing-vs-reindex.md`.
 
 ## Reading Order
 

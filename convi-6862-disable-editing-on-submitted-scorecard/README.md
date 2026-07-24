@@ -3,7 +3,7 @@
 > Migrated navigation: [Scorecard Workflows / Permissions and Visibility](../scorecard-workflows/subdomains/permissions-and-visibility/README.md). This folder remains detailed ticket evidence.
 
 **Created:** 2026-05-19  
-**Updated:** 2026-07-08
+**Updated:** 2026-07-22
 
 ## Overview
 
@@ -48,6 +48,9 @@ Submit remains a first-submit action for unsubmitted scorecards.
 - The older audience-style permitted-user pivot is now historical context only and should not be treated as the active contract.
 - **CONVI-7197 (merged `director#20375`):** Scorecard editors dropdown UX fix — Floating UI flip on `UserTeamGroupPopover` caused the menu to jump below the input when search shrank the dropdown near the bottom of the Access tab; fixed by pinning `top-start` and disabling flip on the submitted-editors selector only.
 - **CONVI-7206 (`go-servers#29774`):** Backend submitted-scorecard editor enforcement now reads the same per-customer `disableEditingOnSubmittedScorecards` Director config flag as the frontend. This is a documented compromise to keep FE/BE rollout synchronized under one same-team config knob.
+- Proactive permission evaluation currently reads the latest template revision, while `UpdateScorecard` and `ResetScorecard` enforce submitted editors from the scorecard's pinned revision. Allowlist changes after scorecard creation can therefore produce an editable frontend followed by a backend 403.
+- **CONVI-7350:** Implemented on `go-servers-convi-7350`. `hasSubmittedScorecardEditPermission` now loads `LatestRevisionName` internally so update/reset enforcement matches proactive evaluation, while pinned revisions remain for scorecard content and scoring.
+- Director currently fails open after an `EvaluateScorecardsPermissions` query error because an undefined decision is not treated as denied.
 
 ## Status
 
@@ -77,6 +80,7 @@ Investigation and implementation touch:
 | 2026-07-02 | Triaged FE/BE feature-flag mismatch (CONVI-7206); fixed Scorecard editors dropdown placement bug (CONVI-7197). |
 | 2026-07-03 | Merged `director#20375`; documented root cause and solution for CONVI-7197. |
 | 2026-07-08 | Prepared `go-servers#29774` for CONVI-7206; fixed the failed coaching coverage job by adding the missing reset-suite config mock and re-triggered CI. |
+| 2026-07-22 | Diagnosed submitted-editor FE/BE disagreement as latest-versus-pinned template revision authorization, plus a Director permission-query fail-open edge. |
 
 ## Related Artifacts
 
@@ -88,10 +92,14 @@ Investigation and implementation touch:
 - `log/2026-07-02.md`
 - `log/2026-07-03.md`
 - `log/2026-07-08.md`
+- `log/2026-07-22.md`
 - `sessions/2026-05-19/codex-requirements-and-design.md`
 - `sessions/2026-07-02/codex-convi-7197-dropdown-placement-fix.md`
 - `sessions/2026-07-02/codex-fe-be-feature-flag-mismatch-bug.md`
 - `sessions/2026-07-08/codex-convi-7206-be-feature-flag-gating.md`
+- `sessions/2026-07-22/codex-submitted-editor-update-403.md`
+- `sessions/2026-07-22/codex-latest-template-permission-evaluation.md`
+- `work-items/CONVI-7350.md`
 - `deliverables/convi-7197-scorecard-editors-dropdown-ux-fix.md`
 - `decisions/2026-05-19-separate-post-submit-permission.md`
 - `decisions/2026-05-22-permitted-users-audience-pivot.md`
