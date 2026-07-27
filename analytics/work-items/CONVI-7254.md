@@ -4,11 +4,11 @@
 **Primary domain:** `analytics`
 **Primary subdomain:** `qa-score`
 **Official ticket:** [CONVI-7254](https://linear.app/cresta/issue/CONVI-7254/home-care-delivered-performance-insights-monthly-view-shows-0percent)
-**Last updated:** 2026-07-24
+**Last updated:** 2026-07-27
 
 ## Objective and Impact
 
-- **Objective:** Determine why monthly `RetrieveQAScoreStats` aggregation reports effectively 0% for HCD's "Asking for phone number" criterion while most daily values are non-zero.
+- **Objective:** Determine why monthly `RetrieveQAScoreStats` aggregation reports effectively 0% for HCD's "Asking for phone number" criterion and 100% for "How did you hear about HCD" despite contradictory drill-down data.
 - **Customer/system impact:** HCD cannot trust monthly Performance Insights criterion scores.
 - **Role:** diagnosed
 
@@ -16,7 +16,7 @@
 
 **In scope**
 
-- `RetrieveQAScoreStats`, its ClickHouse aggregation, and source rows for criterion `019e7502-0e12-756b-a7ca-c81276df1781`.
+- `RetrieveQAScoreStats`, its ClickHouse aggregation, frontend request/rendering paths, and source rows for criteria `019e7502-0e12-756b-a7ca-c81276df1781` and `0199c056-ce00-751a-ab4b-ecc11e4d7412`.
 
 **Non-goals**
 
@@ -32,7 +32,7 @@
 
 ## Current Understanding
 
-Production ClickHouse rows for May contain 4,747 scores from template revision `2ab0f092` with semantic weight zero, physically stored as `float_weight=1e-13` to keep aggregation arithmetic defined, plus three zero-valued scores from revision `33e46102` with weight 1. Production PostgreSQL revision history shows that `33e46102` introduced the criterion at weight 1 on May 29 at 14:32:09 Toronto time, and `2ab0f092` changed it to weight 0 only 3 minutes 44 seconds later. The weight remained zero through June and was restored to 1 by revision `d0aa3ef7` on July 1 at 07:37:43. The exact SQL shape captured by the unit-test golden queries reproduces the API's monthly result, confirming that the three rows created during the brief May weight-1 interval dominate the criterion aggregate. A fix has not yet been selected.
+Both reported symptoms are caused by cross-template-revision criterion weighting. In May, three failing weight-1 rows dominate 4,747 semantic-weight-zero rows and force "Asking for phone number" toward 0%. In February, one passing weight-1 row dominates 427 semantic-weight-zero rows and forces "How did you hear about HCD" toward 100%, even though only 94 of 428 scorecards passed. Exact generated-query reproductions match both API results. Frontend requests and rendering pass through the backend results without recomputing the headline from agent percentages. A fix has not yet been selected.
 
 ## Findings and Decisions
 
@@ -44,6 +44,10 @@ Production ClickHouse rows for May contain 4,747 scores from template revision `
 - Root cause is cross-template-revision weighting within criterion-grouped aggregation, not monthly time truncation, voicemail exclusion, response conversion, or cache behavior.
 - Template history is `1 → 0 → 1`, not only `0 → 1`: criterion introduced at weight 1 in `33e46102` (2026-05-29 14:32:09 Toronto), changed to 0 in `2ab0f092` 3m44s later, remained 0 across four June revisions, and returned to 1 in `d0aa3ef7` (2026-07-01 07:37:43 Toronto).
 - Restoring the latest template to weight 1 does not rewrite historical score rows; each row retains values derived from its referenced revision.
+- For "How did you hear about HCD" in February, source rows are one passing weight-1 row, 93 passing `1e-13` rows, and 334 failing `1e-13` rows. The weighted result is `0.9999999999666005` (displayed as 100%); the equal-observation result is `94 / 428 = 21.96%`.
+- Latrese Proctor owns the unit-weight pass. Her weighted result is approximately 100% across eight scorecards, while an equal-observation result is `1 / 8 = 12.5%`. Stacy Brown's three equal-weight rows produce the visible 33.33%.
+- `averageQaScore` is reconstructed from summed ClickHouse weighted numerators and denominators, not averaged from the displayed per-agent percentages. The frontend displays this field in the popover headline and displays each returned agent score without further aggregation.
+- The second symptom confirms the same defect in the opposite direction: a unit-weight failure collapses a bucket toward 0%, while a unit-weight pass inflates it toward 100%.
 
 ## Blockers and Dependencies
 
@@ -53,6 +57,7 @@ Production ClickHouse rows for May contain 4,747 scores from template revision `
 
 - Production ClickHouse source distribution and daily aggregates queried on 2026-07-24.
 - Exact monthly and daily generated-query shapes executed against production and matched the reported API output.
+- Exact February per-agent query executed against production and matched the supplied 428-scorecard response and `averageQaScore=1`.
 - Temporary runtime instrumentation was removed after the exact SQL reproduction; the source worktree is clean.
 
 ## Next Actions
@@ -64,3 +69,4 @@ Production ClickHouse rows for May contain 4,747 scores from template revision `
 ## Timeline
 
 - 2026-07-24 — Reproduced the near-zero monthly math from production source rows and the exact generated SQL shape, isolated cross-revision criterion weights as the cause, and recovered the production weight-revision timeline. Evidence: `sessions/2026-07-24/codex-convi-7254-monthly-qa-score.md`.
+- 2026-07-27 — Traced the frontend cell/popover request and rendering paths and reproduced the February 100% result from production. Confirmed that one passing unit-weight row dominates 427 semantic-weight-zero rows. Evidence: `sessions/2026-07-27/codex-convi-7254-february-qa-score.md`.

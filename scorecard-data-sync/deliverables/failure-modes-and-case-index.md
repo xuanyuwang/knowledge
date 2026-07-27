@@ -43,5 +43,6 @@ The monitor is too coarse, too expensive, or unable to distinguish missing from 
 
 - `convi-6841-process-scorecard-update-race` is a read-after-create failure caused by PG replica lag before `UpdateScorecard`; no CH divergence is required to trigger it. Primary domain: `scorecard-workflows`.
 - `hilton-coaching-discrepancy` covers coaching session/efficiency and user-filter semantics. It is not a scorecard PG/CH projection case.
+- [CONVI-7378](https://linear.app/cresta/issue/CONVI-7378) (SCAN Consent to Call) was initially routed here while ruling out PG/CH misalignment. Postgres and ClickHouse were aligned; the reported mismatch is pinned-revision option-to-score semantics in Performance Insights and Closed Conversations. Primary domain: `analytics`. Evidence: `analytics/deliverables/convi-7378-scan-consent-qa-score-investigation.md`.
 
 Keeping these boundaries prevents every database-adjacent issue from being mislabeled as data sync.

@@ -53,9 +53,18 @@ The first subdomain migration is complete. The subdomain references and [legacy 
 
 Work items, sessions, daily logs, and decisions remain at this parent domain. Future work items should record one optional primary subdomain.
 
-Active investigation: [CONVI-7254](work-items/CONVI-7254.md) tracks HCD monthly QA criterion aggregation across mixed template revisions.
+Active investigations:
 
-Investigation report: [HCD mixed-revision QA score investigation](deliverables/hcd-mixed-revision-qa-score-investigation.md) explains the production evidence, calculation pipeline, template-weight timeline, and open aggregation decision.
+- [CONVI-7254](work-items/CONVI-7254.md) — HCD monthly QA 0% / 100% discrepancies from cross-revision weight domination.
+- [CONVI-7238](work-items/CONVI-7238.md) — United Manager Leaderboard undercount from revision-derived N/A exclusion.
+- [CONVI-7378](work-items/CONVI-7378.md) — SCAN Consent to Call: PI 0% after manual override under pinned-revision inverted option mapping (diagnosed).
+
+Pattern index: [Mixed-revision QA score semantics](deliverables/mixed-revision-qa-score-semantics.md) unifies the three cases.
+
+PM/manager-ready reports:
+
+- [CONVI-7378 SCAN investigation](deliverables/convi-7378-scan-consent-qa-score-investigation.md) — initiative options and customer communication
+- [CONVI-7254 HCD investigation](deliverables/hcd-mixed-revision-qa-score-investigation.md) — aggregation evidence and open decision
 
 ## Source Context
 

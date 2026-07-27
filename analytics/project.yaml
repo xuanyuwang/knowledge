@@ -22,14 +22,18 @@ subdomains:
   - qa-score
   - insights-user-filter
   - conversation-volume
-related_ticket_ids: []
+related_ticket_ids:
+  - CONVI-7238
+  - CONVI-7254
+  - CONVI-7378
 active_work_items:
   - time-range-filter-investigation
   - CONVI-7238
   - CONVI-7254
+  - CONVI-7378
 related_prs: []
-current_objective: Diagnose CONVI-7254's mixed-revision monthly QA criterion aggregation while maintaining shared analytics contracts and exact subdomain semantics.
-last_validated: 2026-07-24
+current_objective: Maintain the mixed-revision QA score semantics pattern index and resolve open aggregation/filter semantics across CONVI-7254, CONVI-7238, and SCAN Consent to Call.
+last_validated: 2026-07-27
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
@@ -49,4 +53,6 @@ artifacts:
     - subdomains/conversation-volume/README.md
     - deliverables/legacy-source-index.md
     - deliverables/hcd-mixed-revision-qa-score-investigation.md
+    - deliverables/mixed-revision-qa-score-semantics.md
+    - deliverables/convi-7378-scan-consent-qa-score-investigation.md
 notes: Cross-page contracts live at the parent or shared-analytics-platform level. Legacy folders retain raw ticket and execution evidence.

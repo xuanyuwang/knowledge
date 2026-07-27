@@ -44,6 +44,7 @@ Two originally proposed sources were reclassified after review:
 
 - `convi-6841-process-scorecard-update-race` is a PostgreSQL read-after-write workflow issue, not a PG/CH projection failure.
 - `hilton-coaching-discrepancy` concerns coaching analytics/session semantics, not scorecard data synchronization.
+- [CONVI-7378](https://linear.app/cresta/issue/CONVI-7378) (SCAN Consent to Call) was ruled out after PG/CH alignment; canonical evidence lives in `analytics`.
 
 On 2026-07-22, a production Slack ambiguity was confirmed: the displayed fraction counts only missing ClickHouse rows, while reindex workflows include both missing and timestamp-stale scorecards. A zero-missing line can therefore create a valid stale-row repair workflow; see `sessions/2026-07-22/codex-slack-missing-vs-reindex.md`.
 

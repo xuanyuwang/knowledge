@@ -16,6 +16,7 @@ This index records where migrated knowledge came from. The domain deliverables a
 |---|---|---|
 | `convi-6841-process-scorecard-update-race` | `scorecard-workflows` | PG replica read-after-create behavior; no CH projection failure required |
 | `hilton-coaching-discrepancy` | Retained coaching analytics reference | Coaching session/efficiency and filtering behavior, not scorecard projection |
+| CONVI-7378 (SCAN Consent to Call) | `analytics` | PG/CH aligned; mixed-revision QA score semantics, not projection failure |
 
 ## Current-State Notes
 
