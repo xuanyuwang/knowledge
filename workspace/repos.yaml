@@ -191,3 +191,33 @@ named_worktrees:
     path: /Users/xuanyu.wang/repos/go-servers-convi-7350
     branch: convi-7350-refer-the-latest-revision-of-template-for-permission
     purpose: Use latest scorecard template revision for submitted-editor authorization in UpdateScorecard and ResetScorecard (CONVI-7350).
+
+  - name: go-servers-convi-7384
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7384
+    branch: convi-7384-coaching-scorecard-time-parity
+    purpose: Diagnose Coaching Hub Performance and Scorecards time-basis/count mismatch (CONVI-7384).
+
+  - name: director-convi-7385
+    source_repo: director
+    path: /Users/xuanyu.wang/repos/director-convi-7385
+    branch: convi-7385-qa-scorecard-api-count-mismatch-between-column-and-drawer
+    purpose: Preserve Leaderboard scorecard drawer voicemail filter parity with column counts (CONVI-7385).
+
+  - name: cresta-proto-convi-7162
+    source_repo: cresta-proto
+    path: /Users/xuanyu.wang/repos/cresta-proto-convi-7162
+    branch: convi-7162-scorecard-time-basis
+    purpose: Add ScorecardTimeBasis for Manager Leaderboard submit-time filtering (CONVI-7162).
+
+  - name: go-servers-convi-7162
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7162
+    branch: convi-7162-holiday-inn-club-vacations-manager-leaderboard-scorecards
+    purpose: Wire QA ClickHouse path to scorecard_submit_time when ScorecardTimeBasis=SUBMIT_TIME (CONVI-7162).
+
+  - name: director-convi-7162
+    source_repo: director
+    path: /Users/xuanyu.wang/repos/director-convi-7162
+    branch: convi-7162-manager-scorecards-submit-time
+    purpose: Set ScorecardTimeBasis=SUBMIT_TIME on Manager Leaderboard stats and drawer only (CONVI-7162).

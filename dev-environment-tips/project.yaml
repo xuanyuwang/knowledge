@@ -6,8 +6,8 @@ active_worktree_path: /Users/xuanyu.wang/repos/knowledge
 branch: main
 related_ticket_ids: []
 related_prs: []
-current_objective: Capture durable decisions and operating notes for local development and AI-assisted workspace layout.
-last_validated: 2026-07-03
+current_objective: Capture durable decisions and operating notes for local development, secure tooling, and AI-assisted workspace layout.
+last_validated: 2026-07-28
 artifacts:
   readme: README.md
   log_dir: log/
@@ -17,4 +17,7 @@ artifacts:
   key_docs:
     - /Users/xuanyu.wang/repos/knowledge/workflow/ai-operating-model.md
     - /Users/xuanyu.wang/repos/knowledge/workspace/repos.yaml
+    - /Users/xuanyu.wang/.cursor/skills/connect-customer-clickhouse/SKILL.md
+    - /Users/xuanyu.wang/.cursor/skills/connect-customer-app-db/SKILL.md
+    - /Users/xuanyu.wang/.cursor/skills/connect-customer-auth-db/SKILL.md
 notes: This project covers workspace-level development environment guidance; source repo changes normally remain in their own repositories.

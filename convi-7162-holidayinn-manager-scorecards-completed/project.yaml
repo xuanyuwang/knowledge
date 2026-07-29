@@ -1,5 +1,5 @@
 title: CONVI-7162 - Holiday Inn Manager Scorecards Completed Counts
-status: implementation in progress
+status: implementing; proto PR open
 primary_source_repo: go-servers
 primary_repo_path: /Users/xuanyu.wang/repos/go-servers
 active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7162
@@ -8,13 +8,22 @@ related_ticket_ids:
   - CONVI-7162
 related_projects:
   - /Users/xuanyu.wang/repos/knowledge/convi-6968-schwab-leaderboard-launch
+  - /Users/xuanyu.wang/repos/knowledge/analytics
 related_source_repos:
   - /Users/xuanyu.wang/repos/go-servers
   - /Users/xuanyu.wang/repos/cresta-proto
-current_objective: Restore submit-time semantics for Manager Leaderboard submitted scorecard completion counts in the QA-backed scorecard APIs.
-last_validated: 2026-07-10
+  - /Users/xuanyu.wang/repos/director
+related_worktrees:
+  - /Users/xuanyu.wang/repos/cresta-proto-convi-7162
+  - /Users/xuanyu.wang/repos/go-servers-convi-7162
+  - /Users/xuanyu.wang/repos/director-convi-7162
+current_objective: Land ScorecardTimeBasis proto, wire go-servers submit-time path, set Manager-only FE opt-in.
+last_validated: 2026-07-28
 artifacts:
   readme: README.md
   log_dir: log/
   session_dir: sessions/
-notes: Implementation branch in go-servers now routes submitted scorecard reviewer/completion QA requests to scorecard_submit_time for filtering and daily grouping, while preserving ordinary QA scorecard queries on conversation-time semantics. Focused analytics tests pass; full analyticsimpl package test was stopped after hanging with no output for several minutes.
+  deliverables_dir: deliverables/
+  key_docs:
+    - deliverables/submit-time-exact-match-evidence.md
+notes: Proto PR https://github.com/cresta/cresta-proto/pull/9402. Backend and FE implemented in worktrees; waiting on proto publish before bumping deps and opening go-servers/director PRs.

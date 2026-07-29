@@ -1,0 +1,17 @@
+title: CONVI-7379 - Pure Focus Criteria Display
+status: active
+primary_source_repo: director
+primary_repo_path: /Users/xuanyu.wang/repos/director
+related_ticket_ids:
+  - CONVI-7379
+related_prs: []
+current_objective: Investigate why Pure coaching plan 1:1 sessions show raw focus-criteria IDs instead of criterion names, and identify the correct fix path.
+last_validated: 2026-07-28
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs: []
+notes: Investigation spans director frontend and go-servers coaching APIs. Pure prod DB confirms stale focus-criteria IDs after Security scorecard template revisions.

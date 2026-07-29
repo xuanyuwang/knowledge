@@ -23,8 +23,8 @@ subdomains:
 related_ticket_ids: []
 active_work_items: []
 related_prs: []
-current_objective: Maintain exact workflow semantics across template authoring, evaluation, lifecycle, permissions, appeals, calibration, and process-scorecard generation.
-last_validated: 2026-07-15
+current_objective: Maintain exact workflow semantics and advance a product direction for preventing scorecard template configuration mistakes and safely remediating affected scorecards.
+last_validated: 2026-07-28
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
@@ -42,4 +42,5 @@ artifacts:
     - subdomains/group-calibration/README.md
     - subdomains/process-scorecards-and-generation/README.md
     - deliverables/legacy-source-index.md
+    - deliverables/scorecard-configuration-safety-initiative-proposals.md
 notes: Operating history stays at this parent. PG-to-ClickHouse projection consistency belongs to scorecard-data-sync even when a ticket also changes workflow behavior.

@@ -3,7 +3,7 @@
 > Migrated navigation: [Analytics / Insights User Filter](../analytics/subdomains/insights-user-filter/README.md). This folder remains detailed historical evidence.
 
 **Created:** 2026-06-17
-**Status:** Initial investigation complete
+**Status:** Preliminary production evidence collected; CLO MV Insights flag proto merged ([cresta-proto#9400](https://github.com/cresta/cresta-proto/pull/9400)); waiting on config schema sync; ClickHouse MV create/backfill/TTL investigation written for [CONVI-7383](https://linear.app/cresta/issue/CONVI-7383/improve-clo-conversation-outcome-filter-query-performance-via)
 **Ticket:** [CONVI-7049](https://linear.app/cresta/issue/CONVI-7049/support-clo-filter-in-performance-insights)
 
 ## Objective
@@ -74,6 +74,14 @@ This creates the clearest regression risk for mixed CLO + metadata filters. It i
 
 Detailed evidence and a runtime validation matrix are in `sessions/2026-07-23/codex-query-structure-performance.md`.
 
+An executable plan is available at `deliverables/clo-filter-performance-test-plan.md`. It defines the A–J benchmark matrix, direct-SQL and UI tracks, selectivity/cardinality controls, query-log collection, safe staging/production gates, component-decomposition tests, recording templates, and decision criteria.
+
+Preliminary production measurement on 2026-07-28 found that the supplied six-month NCLH boolean CLO request completed in 85.83 s versus 66.67 s for the closest same-filter no-CLO query, while increasing reads by approximately 10.1× rows and 7.5× bytes. The CLO annotation component alone took 17.83 s and read 245.4 GB. A paired count showed that the JSON payload increased bytes by 3.02× and shard user CPU by 2.29×. This justifies a typed CLO MV prototype in staging, but not yet a production schema decision or stable p95 claim.
+
+Detailed evidence and limitations are in `deliverables/clo-filter-performance-results-2026-07-28.md`.
+
+ClickHouse MV rollout investigation (general MV background, Cresta `POPULATE` pattern vs recommended chunked 180-day backfill, TTL recommendation) is in `deliverables/clo-mv-clickhouse-creation-investigation.md`.
+
 ## Key Files
 
 - Frontend Performance filter setup: `/Users/xuanyu.wang/repos/director/packages/director-app/src/components/insights/hooks/performance-filters/usePerformanceFilters.tsx`
@@ -87,3 +95,5 @@ Detailed evidence and a runtime validation matrix are in `sessions/2026-07-23/co
 - `investigation.md`
 - `data-flow.md`
 - `project.yaml`
+- `deliverables/clo-filter-performance-test-plan.md`
+- `deliverables/clo-filter-performance-results-2026-07-28.md`

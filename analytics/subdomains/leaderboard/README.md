@@ -11,6 +11,7 @@ Own Agent, Team, and Manager Leaderboard semantics, including ranking/grouping, 
 - Manager Leaderboard uses manager-oriented scorecard, coaching-session, comment, and Live Assist APIs and does not share every agent-filter rule.
 - Summary cards may reuse response-level aggregates from the same grouped requests as the table.
 - Ranking semantics such as tiers/quintiles should be referenced from their metric subdomain rather than redefined here.
+- Scorecard template drawers must inherit page conversation filters that affect scorecard membership, including voicemail exclusion. Drawer requests may narrow to the selected agent or manager, but must not silently drop shared filters such as `voicemailMoment`.
 
 ## Source Map
 

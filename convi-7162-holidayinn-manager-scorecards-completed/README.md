@@ -2,8 +2,8 @@
 
 > Migrated navigation: [Analytics / Conversation Volume](../analytics/subdomains/conversation-volume/README.md). This folder remains detailed historical evidence.
 
-**Created:** 2026-07-02  
-**Updated:** 2026-07-10
+**Created:** 2026-07-02
+**Updated:** 2026-07-28
 
 ## Overview
 
@@ -21,6 +21,12 @@ Current `director/main` no longer uses the old `RetrieveScorecardStats` response
 - `scoreResource = QA_SCORE_RESOURCE_SCORECARD`
 
 That QA path counts submitted scorecards, but its time range is still based on `scorecard_time` by default. For conversation scorecards, `scorecard_time` means conversation start time, not submission time. A scorecard submitted on Friday for a Monday conversation can therefore appear under Monday, and a scorecard submitted in the selected week for a conversation outside the week can be absent from that week's daily submitted-count view.
+
+Concrete production evidence that grouping/filtering by `scorecard_submit_time` restores exact daily submission counts for the primary repro is in:
+
+`deliverables/submit-time-exact-match-evidence.md`
+
+**Product fix is in progress** across three worktrees (proto PR [#9402](https://github.com/cresta/cresta-proto/pull/9402); go-servers + director not yet opened pending proto publish). See `sessions/2026-07-28/cursor-implementation.md`.
 
 ## Key Evidence
 
@@ -72,14 +78,13 @@ This explains why Monday and Tuesday showed only 1 each even though Cliff submit
 
 ## Status
 
-Implementation is in progress on backend branch `convi-7162-holiday-inn-club-vacations-manager-leaderboard-scorecards` in `/Users/xuanyu.wang/repos/go-servers-convi-7162`.
+No product fix has shipped yet. Earlier exploratory work existed on branch `convi-7162-holiday-inn-club-vacations-manager-leaderboard-scorecards`, but production Manager Leaderboard still uses QA APIs timed by `scorecard_time`.
 
-Chosen fix direction: keep the CONVI-6968 QA-backed Manager Leaderboard implementation, but restore submit-time semantics for the submitted scorecard reviewer/completion request shape. In `go-servers`, submitted scorecard reviewer QA requests now filter and group by `scorecard_submit_time` instead of `scorecard_time`; ordinary QA scorecard queries continue using conversation-time semantics.
-
-Focused analytics tests pass. The full `analyticsimpl` package test was attempted on 2026-07-10 but stopped after several minutes with no output.
+Chosen fix direction remains: keep the CONVI-6968 QA-backed Manager Leaderboard implementation, and add explicit submit-time filtering/grouping for Manager `Scorecards completed` aggregate and drawer.
 
 ## Related Artifacts
 
+- `deliverables/submit-time-exact-match-evidence.md`
 - `sessions/2026-07-02/codex-investigation.md`
 - `sessions/2026-07-10/codex-implementation.md`
 - `log/2026-07-02.md`

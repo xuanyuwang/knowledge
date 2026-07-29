@@ -38,6 +38,10 @@ The first subdomain migration is complete. The subdomain references and [legacy 
 
 Work items, sessions, daily logs, and decisions remain at this parent domain. Future work items should record one optional primary subdomain.
 
+Current product-direction proposal:
+
+- [Scorecard Configuration Safety](deliverables/scorecard-configuration-safety-initiative-proposals.md) — a two-part lifecycle for preventing template configuration mistakes through preview and AI assistance, then assessing and remediating affected scorecards through an auditable workflow.
+
 ## Source Context
 
 - **Primary repo:** `go-servers`
@@ -49,6 +53,9 @@ Work items, sessions, daily logs, and decisions remain at this parent domain. Fu
 - `project.yaml`
 - `log/2026-07-14.md`
 - `log/2026-07-15.md`
+- `log/2026-07-27.md`
+- `log/2026-07-28.md`
 - `deliverables/legacy-source-index.md`
+- `deliverables/scorecard-configuration-safety-initiative-proposals.md`
 - `work-items/` when active tickets are migrated or created
 - `sessions/`, `decisions/`, and `deliverables/` as content is synthesized

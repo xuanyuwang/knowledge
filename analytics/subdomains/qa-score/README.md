@@ -14,6 +14,7 @@ Own QA score calculation and display semantics from template options and score r
 - Criterion-level aggregation across revisions must not assume configured contribution weights are comparable observation weights.
 - Option-to-score mappings can change across revisions; a Yes/No label shown in UI is not sufficient to infer pass/fail percentage without the pinned revision's mapping.
 - Popovers and drill-downs may filter the contributing rows differently from the parent aggregate; their contract must be recorded explicitly.
+- Agent and Manager Leaderboard scorecard columns and template drawers use QA APIs and must preserve the same scorecard-membership filters; see the [Leaderboard invariant](../leaderboard/README.md#current-semantics).
 
 ## Architecture and Source Map
 

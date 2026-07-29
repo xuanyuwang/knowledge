@@ -2,13 +2,14 @@
 
 ## Purpose
 
-Own the contracts shared by Performance Insights and Leaderboard: analytics-service APIs, request/grouping semantics, FE request construction, source tables, attribution, and cross-page operational behavior.
+Own the contracts shared by Performance Insights, Assistance Insights, and Leaderboard: analytics-service APIs, request/grouping semantics, FE request construction, source tables, attribution, and cross-page operational behavior.
 
 ## Shared Contracts
 
 - Analytics responses can contain pre-aggregated summary fields alongside grouped `resultGroups`; `groupBy` controls breakdown shape and does not necessarily remove response-level aggregates.
 - Non-QA APIs use `AttributeStructure`; QA APIs use `QAAttributeType`. Similar-looking grouping values are distinct proto systems.
 - Performance Insights is primarily QA/`RetrieveQAScoreStats`; Leaderboard combines agent, conversation, assistance, QA, coaching, comment, and scorecard statistics.
+- Assistance Insights uses several assistance APIs; [RetrieveHintStats](retrieve-hint-stats.md) is the canonical hint counts and engagement contract.
 - Filters must be traced end-to-end: FE state/default/persistence → request field → backend user/data filtering → grouping/aggregation → display.
 - ClickHouse is the main analytical source, but exact tables and eligibility vary by API; Elasticsearch and Postgres still back some surfaces.
 
@@ -26,6 +27,10 @@ Own the contracts shared by Performance Insights and Leaderboard: analytics-serv
 - `insights-user-filter/analytics-apis-list.md`
 - `insights-user-filter/fe-group-by-usage-patterns.md`
 - `user-filter-consolidation/`
+
+## API References
+
+- [RetrieveHintStats](retrieve-hint-stats.md) — Director callers, filters/grouping, backend flow, source tables, hint-type semantics, known mixed-grain defect, validation queries, and test gaps.
 
 ## Open Questions
 

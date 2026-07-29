@@ -12,10 +12,11 @@ active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7254
 branch: convi-7254-monthly-qa-score
 domain_owners:
   - Xuanyu Wang
-domain_scope: Performance Insights and Leaderboard frontend/backend semantics, filters, analytics APIs, aggregations, and displayed-data lineage.
+domain_scope: Performance Insights, Assistance Insights, and Leaderboard frontend/backend semantics, filters, analytics APIs, aggregations, and displayed-data lineage.
 subdomains:
   - shared-analytics-platform
   - performance-insights
+  - assistance-insights
   - leaderboard
   - active-days
   - quintiles
@@ -26,14 +27,20 @@ related_ticket_ids:
   - CONVI-7238
   - CONVI-7254
   - CONVI-7378
+  - CONVI-7384
+  - CONVI-7385
 active_work_items:
+  - heartland-behavior-hints-adherence-mismatch
   - time-range-filter-investigation
   - CONVI-7238
   - CONVI-7254
   - CONVI-7378
-related_prs: []
-current_objective: Maintain the mixed-revision QA score semantics pattern index and resolve open aggregation/filter semantics across CONVI-7254, CONVI-7238, and SCAN Consent to Call.
-last_validated: 2026-07-27
+  - CONVI-7384
+  - CONVI-7385
+related_prs:
+  - https://github.com/cresta/director/pull/21214
+current_objective: Resolve open analytics aggregation/filter semantics, including the diagnosed Heartland mixed-unit Behavioral Hints aggregation, CONVI-7254, CONVI-7238, SCAN Consent to Call, CONVI-7384 Coaching Hub time-basis parity, and CONVI-7385 drawer filter parity.
+last_validated: 2026-07-28
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
@@ -44,7 +51,9 @@ artifacts:
   deliverables_dir: deliverables/
   key_docs:
     - subdomains/shared-analytics-platform/README.md
+    - subdomains/shared-analytics-platform/retrieve-hint-stats.md
     - subdomains/performance-insights/README.md
+    - subdomains/assistance-insights/README.md
     - subdomains/leaderboard/README.md
     - subdomains/active-days/README.md
     - subdomains/quintiles/README.md
@@ -55,4 +64,8 @@ artifacts:
     - deliverables/hcd-mixed-revision-qa-score-investigation.md
     - deliverables/mixed-revision-qa-score-semantics.md
     - deliverables/convi-7378-scan-consent-qa-score-investigation.md
-notes: Cross-page contracts live at the parent or shared-analytics-platform level. Legacy folders retain raw ticket and execution evidence.
+    - work-items/CONVI-7384.md
+    - work-items/CONVI-7385.md
+    - deliverables/convi-7385-column-drawer-count-parity-plan.md
+    - work-items/heartland-behavior-hints-adherence-mismatch.md
+notes: Cross-page contracts live at the parent or shared-analytics-platform level. RetrieveHintStats now has a canonical API reference, and Assistance Insights is a first-class subdomain. Legacy folders retain raw ticket and execution evidence. Heartland Behavioral Hints is diagnosed as a RetrieveHintStats mixed-unit aggregation (followed moments over sent actions). CONVI-7384 is diagnosed at the data level as scorecard-time versus submit-time plus frequency-boundary membership; instrumented end-to-end validation is pending. CONVI-7385 filter-parity fix is in draft Director PR #21214 with lint, type checking, and commit hooks passing; manual CNG validation remains.
