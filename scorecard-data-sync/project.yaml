@@ -6,8 +6,8 @@ primary_repo_path: /Users/xuanyu.wang/repos/go-servers
 related_source_repos:
   - clickhouse-schema
   - cresta-proto
-active_worktree_path: /Users/xuanyu.wang/repos/go-servers
-branch: main
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers-alaska-scorecard-orphan
+branch: debug/alaska-scorecard-orphan
 domain_owners:
   - Xuanyu Wang
 domain_scope: PostgreSQL-to-ClickHouse scorecard projection correctness, ordering, monitoring, reindexing, backfill, diagnosis, and repair.
@@ -17,15 +17,21 @@ related_ticket_ids:
   - CONVI-6209
   - CONVI-6298
   - CONVI-7186
-active_work_items: []
+  - CONVI-7397
+  - INSI-4251
+active_work_items:
+  - alaska-air-orphaned-scorecard
 related_prs:
   - https://github.com/cresta/go-servers/pull/24103
   - https://github.com/cresta/go-servers/pull/25916
   - https://github.com/cresta/go-servers/pull/29786
-current_objective: Maintain the canonical PG/CH scorecard projection contract, diagnosis ladder, monitor-reporting semantics, and repair/backfill playbook as new incidents occur.
-last_validated: 2026-07-22
+  - https://github.com/cresta/flux-deployments/pull/312915
+  - https://github.com/cresta/flux-deployments/pull/312923
+current_objective: Confirm and fix an asynchronous scorecard write versus reset/delete race that leaves orphaned ClickHouse analytics rows.
+last_validated: 2026-08-02
 artifacts:
   readme: README.md
+  cases_dir: cases/
   work_items_dir: work-items/
   log_dir: log/
   session_dir: sessions/
@@ -36,6 +42,9 @@ artifacts:
     - deliverables/failure-modes-and-case-index.md
     - deliverables/monitoring-and-diagnosis.md
     - deliverables/repair-and-backfill-playbook.md
+    - deliverables/alaska-air-orphaned-scorecard-report.md
+    - deliverables/2026-08-us-east-distributed-backlog-incident.md
+    - cases/2026-08-us-east-distributed-backlog/README.md
     - deliverables/legacy-source-index.md
     - work-items/CONVI-7186.md
-notes: Whether a scorecard should exist is a workflow question; whether an existing scorecard is correctly projected to ClickHouse belongs here. Historical execution code remains in legacy folders pending source-repo cleanup.
+notes: Whether a scorecard should exist is a workflow question; whether an existing scorecard is correctly projected to ClickHouse belongs here. The August 2026 us-east Distributed backlog is owned here as a scorecard-sync case while documenting that its infrastructure root cause affected broader ClickHouse ingestion. Historical execution code remains in legacy folders pending source-repo cleanup.

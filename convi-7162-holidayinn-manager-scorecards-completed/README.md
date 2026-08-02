@@ -26,7 +26,11 @@ Concrete production evidence that grouping/filtering by `scorecard_submit_time` 
 
 `deliverables/submit-time-exact-match-evidence.md`
 
-**Product fix is in progress** across three worktrees (proto PR [#9402](https://github.com/cresta/cresta-proto/pull/9402); go-servers + director not yet opened pending proto publish). See `sessions/2026-07-28/cursor-implementation.md`.
+Coaching Hub and QM Report (the ticket’s comparison UIs) already count by submit time (`submitted_at`); see:
+
+`deliverables/coaching-hub-qm-report-submit-time-investigation.md`
+
+**Product fix is in progress** across three worktrees. Proto is landed on `main` via [#9402](https://github.com/cresta/cresta-proto/pull/9402) and [#9430](https://github.com/cresta/cresta-proto/pull/9430) (`TimeRangeFilterTarget`, field `time_range_filter_target`). go-servers and director remain unopened pending `cresta-proto/v2` publication and dependency bumps.
 
 ## Key Evidence
 
@@ -82,8 +86,11 @@ No product fix has shipped yet. Earlier exploratory work existed on branch `conv
 
 Chosen fix direction remains: keep the CONVI-6968 QA-backed Manager Leaderboard implementation, and add explicit submit-time filtering/grouping for Manager `Scorecards completed` aggregate and drawer.
 
+**Product decision (2026-07-30, Tinglin Liu):** Restore scorecard **submit time** on Manager Leaderboard. Rationale: pre–CONVI-6968 Leaderboard used submit time; conversation start time was introduced by the CONVI-6968 QA API migration, not an intentional long-standing choice. See `decisions/2026-07-30-manager-leaderboard-submit-time.md`.
+
 ## Related Artifacts
 
+- `deliverables/qa-time-range-column-mapping.md` — before/after visualization of how `filter_by_time_range` maps to ClickHouse columns
 - `deliverables/submit-time-exact-match-evidence.md`
 - `sessions/2026-07-02/codex-investigation.md`
 - `sessions/2026-07-10/codex-implementation.md`

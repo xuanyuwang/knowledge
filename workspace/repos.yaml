@@ -186,11 +186,11 @@ named_worktrees:
     branch: convi-7206-gate-submitted-scorecard-lock-behind-ff
     purpose: Gate apiserver submitted-scorecard editor enforcement behind per-customer disableEditingOnSubmittedScorecards config flag (CONVI-7206).
 
-  - name: go-servers-convi-7350
+  - name: go-servers-convi-7383
     source_repo: go-servers
-    path: /Users/xuanyu.wang/repos/go-servers-convi-7350
-    branch: convi-7350-refer-the-latest-revision-of-template-for-permission
-    purpose: Use latest scorecard template revision for submitted-editor authorization in UpdateScorecard and ResetScorecard (CONVI-7350).
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7383
+    branch: convi-7383-clo-mv-flag
+    purpose: Wire Insights CLO MV config flag into QA ClickHouse query routing (CONVI-7383).
 
   - name: go-servers-convi-7384
     source_repo: go-servers

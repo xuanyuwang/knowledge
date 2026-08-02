@@ -17,8 +17,9 @@ related_links:
   - https://linear.app/cresta/issue/CONVI-7383/improve-clo-conversation-outcome-filter-query-performance-via
   - https://github.com/cresta/go-servers/pull/28769
   - https://github.com/cresta/cresta-proto/pull/9400
-current_objective: Wait for cresta/config schema sync after cresta-proto#9400; use clo-mv-clickhouse-creation-investigation.md to design staging CLO MV create + 180d chunked backfill for CONVI-7383.
-last_validated: 2026-07-28
+  - https://github.com/cresta/go-servers/pull/30588
+current_objective: Implement CLO MV using INSI-4097 TO-target-table pattern (storage + trigger + distributed); chunked 180d backfill for selected large customers before enabling the flag.
+last_validated: 2026-07-30
 artifacts:
   readme: README.md
   key_docs:
@@ -28,5 +29,11 @@ artifacts:
     - deliverables/clo-filter-performance-results-2026-07-28.md
     - sessions/2026-07-28/codex-clo-mv-config-flag.md
     - deliverables/clo-mv-clickhouse-creation-investigation.md
+    - deliverables/clo-mv-without-populate-proposal.md
+    - deliverables/clo-mv-to-target-table-proposal.md
+    - deliverables/clo-mv-moment-mv-landscape-and-schema-scope.md
     - sessions/2026-07-28/cursor-clo-mv-clickhouse-investigation.md
+    - sessions/2026-07-29/cursor-clo-mv-flag-go-servers.md
+    - sessions/2026-07-30/cursor-clo-mv-to-target-table-proposal.md
+    - sessions/2026-07-30/cursor-clo-mv-moment-landscape-research.md
 notes: CLO is used ambiguously in product conversations. In this ticket context it appears to mean Cresta Modeled Outcome, while internal docs also use CLO as conversation-level outcome. Code stores these as CONVERSATION_OUTCOME moment templates and moment annotations.

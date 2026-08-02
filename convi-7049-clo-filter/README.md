@@ -82,6 +82,8 @@ Detailed evidence and limitations are in `deliverables/clo-filter-performance-re
 
 ClickHouse MV rollout investigation (general MV background, Cresta `POPULATE` pattern vs recommended chunked 180-day backfill, TTL recommendation) is in `deliverables/clo-mv-clickhouse-creation-investigation.md`.
 
+The recommended ClickHouse rollout proposal is in `deliverables/clo-mv-to-target-table-proposal.md`. It follows the production INSI-4097 `TO target_table` pattern (`metadata_moment_value_count`): separate storage table, trigger MV without `POPULATE`, distributed table over storage, and chunked 180-day backfill for selected large customers. Schema-scope research in `deliverables/clo-mv-moment-mv-landscape-and-schema-scope.md` concludes the CLO target table should stay narrow (type 14 only) and not merge with metadata or other moment MVs. An earlier inline-MV draft remains in `deliverables/clo-mv-without-populate-proposal.md`.
+
 ## Key Files
 
 - Frontend Performance filter setup: `/Users/xuanyu.wang/repos/director/packages/director-app/src/components/insights/hooks/performance-filters/usePerformanceFilters.tsx`
@@ -97,3 +99,6 @@ ClickHouse MV rollout investigation (general MV background, Cresta `POPULATE` pa
 - `project.yaml`
 - `deliverables/clo-filter-performance-test-plan.md`
 - `deliverables/clo-filter-performance-results-2026-07-28.md`
+- `deliverables/clo-mv-to-target-table-proposal.md`
+- `deliverables/clo-mv-moment-mv-landscape-and-schema-scope.md`
+- `deliverables/clo-mv-without-populate-proposal.md`

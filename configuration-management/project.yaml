@@ -1,0 +1,29 @@
+title: Configuration Management
+project_type: domain
+status: active
+primary_source_repo: config
+primary_repo_path: /Users/xuanyu.wang/repos/config
+related_source_repos:
+  - tenant-admin
+  - go-servers
+active_worktree_path: /Users/xuanyu.wang/repos/config
+branch: master
+domain_owners: []
+domain_scope: Customer configuration schemas, Config Admin editing workflows, GitOps review, synchronization, and feature-flag rollout practices.
+subdomains: []
+related_ticket_ids: []
+active_work_items: []
+related_prs: []
+current_objective: Preserve reliable operational practices for reviewing and rolling out customer configuration changes.
+last_validated: 2026-07-29
+artifacts:
+  readme: README.md
+  subdomains_dir: subdomains/
+  work_items_dir: work-items/
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - sessions/2026-07-29/codex-global-frontend-feature-flag-rollout.md
+notes: The config repository is authoritative; Tenant Admin is the preferred UI for generating reviewed config PRs.
