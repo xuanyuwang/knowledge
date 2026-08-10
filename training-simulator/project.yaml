@@ -1,0 +1,53 @@
+title: Training Simulator Domain
+project_type: domain
+status: active
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+related_source_repos:
+  - director
+  - cresta-proto
+  - python-ai-services
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers
+branch: main
+domain_owners:
+  - Xuanyu Wang
+domain_scope: Scenario-based AI practice for agents — training content configuration (lessons/modules/scenarios), assignment as Director Tasks, Customer AI simulation runtime, Opera/LLM evaluation, and session-level reporting.
+subdomains:
+  - training-content
+  - assignment-and-session
+  - simulation-runtime
+  - evaluation
+  - reporting
+related_ticket_ids:
+  - CONVI-6747
+  - CONVI-6774
+  - CONVI-6923
+  - CONVI-6926
+  - CONVI-7010
+  - CONVI-7020
+  - CONVI-7023
+  - CONVI-7047
+  - CONVI-7110
+  - CONVI-7145
+  - CONVI-7146
+  - CONVI-7241
+active_work_items: []
+related_prs: []
+current_objective: Maintain a canonical engineering map of the Training Simulator (launched as paid add-on July 9, 2026) as it moves from limited beta toward GA, covering content config, assignment, simulation runtime, evaluation, and reporting.
+last_validated: 2026-08-09
+artifacts:
+  readme: README.md
+  subdomains_dir: subdomains/
+  work_items_dir: work-items/
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs:
+    - subdomains/training-content/README.md
+    - subdomains/assignment-and-session/README.md
+    - subdomains/simulation-runtime/README.md
+    - subdomains/evaluation/README.md
+    - subdomains/reporting/README.md
+    - sessions/2026-08-09/claude-training-simulator-domain-setup.md
+notes: Seeded from Glean-fetched design docs (Training Simulator Design by Jack Jee / Kevin Kiernicki, Coaching Simulator Assignment Flow, Training Simulator PRD) plus local cresta-proto and go-servers inspection. Design docs remain draft/patchy relative to merged code; treat proto + go-servers implementation as authoritative.

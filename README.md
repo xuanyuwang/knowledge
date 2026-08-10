@@ -74,6 +74,16 @@ Owns the correctness and operation of PostgreSQL-to-ClickHouse scorecard project
 
 Owns cross-workflow notification triggers, recipients and visibility, channels, templates, delivery behavior, retry/idempotency, observability, and diagnosis. It currently remains one cohesive domain without subdomains.
 
+### [Training Simulator](training-simulator/README.md)
+
+Owns scenario-based AI practice for agents: training content configuration, assignment as Director Tasks, Customer AI simulation runtime, Opera/LLM evaluation, and session-level reporting. Launched July 9, 2026 as a paid QM & Coach add-on; the engineering surface spans go-servers, director, cresta-proto, and python-ai-services.
+
+- [Training Content](training-simulator/subdomains/training-content/README.md) — lessons, modules, scenarios, evaluation criteria, and quiz templates
+- [Assignment and Session](training-simulator/subdomains/assignment-and-session/README.md) — DirectorTask modeling, audience expansion, task runs, and statuses
+- [Simulation Runtime](training-simulator/subdomains/simulation-runtime/README.md) — Customer AI virtual agents, voice-agent/LiveKit pipeline, and role mapping
+- [Evaluation](training-simulator/subdomains/evaluation/README.md) — Opera/LLM evaluation, moment annotations, scoring, pass/fail, and auto-fail
+- [Reporting](training-simulator/subdomains/reporting/README.md) — session/agent/task stats, completion and pass-rate rollups
+
 Each active engineering project should eventually contain:
 
 - `project.yaml`
