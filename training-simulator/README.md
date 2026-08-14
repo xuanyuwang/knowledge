@@ -14,7 +14,7 @@ Training Simulator is a **paid add-on to QM & Coach** that launched July 9, 2026
 - Assignment and session model: bulk/individual assignment of lessons to agents, modeled as Director Tasks with a training task type, per-agent task runs
 - Simulation runtime: Customer AI virtual agents, voice-agent/LiveKit pipeline, role mapping, conversation creation with `TRAINING_SIMULATOR` source
 - Evaluation: Opera basic/composite moment detection, optional LLM evaluation, module/session scoring, pass/fail, auto-fail, N/A handling
-- Reporting: session-level stats, per-agent results, completion/pass-rate rollups, Training Simulator page
+- Reporting: session-level stats (shipped), designed lesson/module-level diagnostics, exploratory/uncommitted CSV export, per-agent results, completion/pass-rate rollups, Training Simulator page
 - Frontend and backend contracts and invariants for the above
 
 **Out of scope**
@@ -30,6 +30,7 @@ Training Simulator is a **paid add-on to QM & Coach** that launched July 9, 2026
 - Backend lives in `go-servers/apiserver/internal/trainingsimulator/` (service impl + action handlers). Proto surface in `cresta-proto/cresta/v1/trainingsimulator/`.
 - FE lives in `director/packages/director-app/src/features/training-simulator/` (Training Simulator page with Training Sessions + Lesson Configuration tabs) plus `hooks/training-simulator/`.
 - Bounded by a **minimum vertical slice**: creation → assignment → simulation → evaluation → reporting, reusing Director / Coaching infrastructure (DirectorTask, Coaching Plan, Voice-agent, Opera/AutoQA).
+- **Active planning:** [CONVI-7281](work-items/CONVI-7281.md) will distinguish Opera rules for Quality Management/production conversations, Training Simulator conversations, or both. This must filter policy loading before Opera generates annotations; it is not only a Director Finalize-step setting.
 
 ## Subdomains
 
@@ -37,15 +38,15 @@ Training Simulator is a **paid add-on to QM & Coach** that launched July 9, 2026
 - [Assignment and Session](subdomains/assignment-and-session/README.md) — DirectorTask modeling, audience expansion, task runs, statuses (NOT_STARTED/IN_PROGRESS/PASSED/FAILED/OVERDUE)
 - [Simulation Runtime](subdomains/simulation-runtime/README.md) — Customer AI virtual agents, voice-agent/LiveKit pipelping, GoWalter role/channel mapping, simulator conversation creation
 - [Evaluation](subdomains/evaluation/README.md) — Opera/LLM evaluation, moment annotations, scoring, pass/fail and auto-fail, N/A and evidence
-- [Reporting](subdomains/reporting/README.md) — session/agent/task stats APIs, CompletionStats/pass-rate/rollups, dashboards
+- [Reporting](subdomains/reporting/README.md) — session/agent/task stats APIs (shipped), designed lesson/module rollups, exploratory CSV, dashboards
 
 ## Key Semantics and Invariants
 
 - **Lesson** = ordered collection of modules with shared training focus; treated as a single **Session** when assigned to an agent.
-- **Module** = atomic training unit; binds scenario pool, optional quiz, and evaluation criteria + scorecard template; one scenario chosen at random per run.
+- **Module** = atomic training unit; binds scenario pool, optional quiz, and evaluation criteria + scorecard template; the FE (`pickRandomScenario`) picks one scenario at random from the pool per run.
 - **Scenario** = a Customer AI virtual-agent configuration (a customer situation); changes to a scenario rematerialize VA revisions.
-- **Session** = one agent's execution of a lesson; aggregates module scores/outcomes into session result.
-- One **conversation = one module attempt**; each attempt is a `TrainingSimulatorTaskRun`.
+- **Session** = one agent's execution of a lesson (a `DIRECTOR_TASK_TYPE_TRAINING_SIMULATOR` DirectorTask referencing the lesson); aggregates module scores/outcomes into session result. Agents see and launch assigned sessions from the Coaching Plan; **the lesson is content, only the assignment/session is a DirectorTask**.
+- One **conversation = one module attempt**; each attempt is a `TrainingSimulatorTaskRun`. **Passing a module requires passing a single scenario attempt** (one conversation against one random scenario) — not every scenario in the pool.
 - Training conversations use `ConversationSource.TRAINING_SIMULATOR` and must **not** be included in agent progression/live analytics.
 - Customers should be able to self-serve lesson/module/config via UI; RBAC separates supervisors (create/assign/view results) from agents (see/run only their own sessions).
 
@@ -77,7 +78,11 @@ Storage: director.training_lessons/modules/scenarios(+quiz), app.chat conversati
 
 ## Current Objective
 
-Maintain a canonical, implementation-accurate engineering map of Training Simulator as it moves toward GA, and use it as the home for ongoing CONVI training work items (permission hardening CONVI-7145, quiz P1, Synthetic Customers, GA readiness).
+Maintain a canonical, implementation-accurate engineering map of Training Simulator as it moves toward GA, and use it as the home for ongoing CONVI work including Opera deactivation warnings (CONVI-7280), Opera product-area applicability (CONVI-7281), **lesson/module statistics reporting discovery**, permission hardening, quiz P1, Synthetic Customers, and GA readiness.
+
+Active reporting brief: [deliverables/lesson-module-statistics-reporting.md](deliverables/lesson-module-statistics-reporting.md).
+BE engineering design: [deliverables/lesson-module-statistics-eng-design.md](deliverables/lesson-module-statistics-eng-design.md).
+FE engineering design: [deliverables/lesson-module-statistics-fe-design.md](deliverables/lesson-module-statistics-fe-design.md).
 
 ## Key Findings (seeded from Glean docs, 2026-08-09)
 
@@ -103,7 +108,17 @@ Maintain a canonical, implementation-accurate engineering map of Training Simula
 
 - `project.yaml`
 - `log/2026-08-09.md`
+- `log/2026-08-10.md`
+- `log/2026-08-11.md`
 - `sessions/2026-08-09/claude-training-simulator-domain-setup.md`
+- `sessions/2026-08-10/codex-convi-7280.md`
+- `sessions/2026-08-10/codex-convi-7281-plan.md`
+- `sessions/2026-08-11/cursor-lesson-module-stats-docs.md`
 - `subdomains/<name>/README.md`
-- `work-items/` as CONVI tickets are tracked
-- `decisions/`, `deliverables/` as content is synthesized
+- `work-items/CONVI-7280.md`
+- `work-items/CONVI-7281.md`
+- `work-items/lesson-module-statistics-reporting.md`
+- `deliverables/lesson-module-statistics-reporting.md`
+- `deliverables/lesson-module-statistics-eng-design.md`
+- `deliverables/lesson-module-statistics-fe-design.md`
+- `decisions/` as content is synthesized

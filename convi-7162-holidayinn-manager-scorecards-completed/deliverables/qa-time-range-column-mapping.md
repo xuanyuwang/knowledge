@@ -100,7 +100,7 @@ flowchart TD
 2. That override makes Step 1 return `scorecard_submit_time` directly, so Step 2 does **not** turn it into `scorecard_time`.
 3. For `conversation_d`, submit-time mode passes `nil` time range so the selected window is **not** applied again as conversation start/end.
 4. Moment filters still use conversation start/end (intentionally not submit time).
-5. No runtime rejection if `SUBMIT_TIME` is combined with `CONVERSATION_ENDED_AT`; Manager (and other callers) simply do not set both. If both were set, the submit-time override wins on score/scorecard tables.
+5. `SUBMIT_TIME` + `CONVERSATION_ENDED_AT` is rejected with `InvalidArgument`. Under submit-time the conversation date range is cleared; keeping `needsConversationEndTime` would otherwise `JOIN conversation` without emitting a `conversation` CTE.
 
 ---
 

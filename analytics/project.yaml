@@ -29,6 +29,8 @@ related_ticket_ids:
   - CONVI-7378
   - CONVI-7384
   - CONVI-7385
+  - CONVI-7387
+  - CONVI-7435
 active_work_items:
   - heartland-behavior-hints-adherence-mismatch
   - time-range-filter-investigation
@@ -37,10 +39,12 @@ active_work_items:
   - CONVI-7378
   - CONVI-7384
   - CONVI-7385
+  - CONVI-7435
 related_prs:
   - https://github.com/cresta/director/pull/21214
-current_objective: Resolve open analytics aggregation/filter semantics, including the diagnosed Heartland mixed-unit Behavioral Hints aggregation, CONVI-7254, CONVI-7238, SCAN Consent to Call, CONVI-7384 Coaching Hub time-basis parity, and CONVI-7385 drawer filter parity.
-last_validated: 2026-07-28
+  - https://github.com/cresta/go-servers/pull/30782
+current_objective: Resolve open analytics aggregation/filter semantics, including CONVI-7435 Bswift PI Manual vs N/A leak, CONVI-7387 Behavioral Hints, CONVI-7254, CONVI-7238, SCAN Consent, CONVI-7384, and CONVI-7385.
+last_validated: 2026-08-05
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
@@ -66,6 +70,8 @@ artifacts:
     - deliverables/convi-7378-scan-consent-qa-score-investigation.md
     - work-items/CONVI-7384.md
     - work-items/CONVI-7385.md
+    - work-items/CONVI-7435.md
     - deliverables/convi-7385-column-drawer-count-parity-plan.md
+    - deliverables/convi-7435-bswift-pi-qm-investigation.md
     - work-items/heartland-behavior-hints-adherence-mismatch.md
-notes: Cross-page contracts live at the parent or shared-analytics-platform level. RetrieveHintStats now has a canonical API reference, and Assistance Insights is a first-class subdomain. Legacy folders retain raw ticket and execution evidence. Heartland Behavioral Hints is diagnosed as a RetrieveHintStats mixed-unit aggregation (followed moments over sent actions). CONVI-7384 is diagnosed at the data level as scorecard-time versus submit-time plus frequency-boundary membership; instrumented end-to-end validation is pending. CONVI-7385 filter-parity fix is in draft Director PR #21214 with lint, type checking, and commit hooks passing; manual CNG validation remains.
+notes: Cross-page contracts live at the parent or shared-analytics-platform level. RetrieveHintStats now has a canonical API reference, including the independent action/moment annotation schemas, application-level adherence link, query stages, and integrity caveat. Assistance Insights is a first-class subdomain. Legacy folders retain raw ticket and execution evidence. CONVI-7387 fixes the Heartland Behavioral Hints mixed-unit aggregation in go-servers PR #30782 by counting followed actions instead of followed moments. CONVI-7384 is diagnosed at the data level as scorecard-time versus submit-time plus frequency-boundary membership; instrumented end-to-end validation is pending. CONVI-7385 filter-parity fix is in draft Director PR #21214 with lint, type checking, and commit hooks passing; manual CNG validation remains.

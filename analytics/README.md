@@ -61,7 +61,7 @@ Work items, sessions, daily logs, and decisions remain at this parent domain. Fu
 
 Active investigations:
 
-- [Heartland Behavior Hints adherence mismatch](work-items/heartland-behavior-hints-adherence-mismatch.md) — diagnosed mixed-unit `RetrieveHintStats` aggregation producing 160.4%; Performance separately uses QA criterion scores, while the action-deduplicated hint rate is 79.1%.
+- [Heartland Behavior Hints adherence mismatch](work-items/heartland-behavior-hints-adherence-mismatch.md) — action-grain `RetrieveHintStats` fix is in review in [go-servers #30782](https://github.com/cresta/go-servers/pull/30782); deployed behavior can produce 160.4%, while the action-deduplicated hint rate is 79.1%.
 - [CONVI-7254](work-items/CONVI-7254.md) — HCD monthly QA 0% / 100% discrepancies from cross-revision weight domination.
 - [CONVI-7238](work-items/CONVI-7238.md) — United Manager Leaderboard undercount from revision-derived N/A exclusion.
 - [CONVI-7378](work-items/CONVI-7378.md) — SCAN Consent to Call: PI 0% after manual override under pinned-revision inverted option mapping (diagnosed).

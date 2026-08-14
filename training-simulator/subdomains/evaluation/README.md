@@ -34,6 +34,7 @@ How a simulator conversation (one module attempt) is scored: Opera moment detect
 - `CriterionEvaluationResult`: criterion_id, behavior_name, passed, weight, auto_failed, `CriterionEvidence` (moment annotation + message + adherence type), not_applicable.
 - N/A: when the score is not applicable (e.g., timeout / "NA" scores), `score`/`passed` are not meaningful; design notes "NA scores due to timeouts" handling.
 - Score/passed are persisted to the task run (`evaluation_score` 0.0–1.0, `evaluation_passed`, criterion_results) and to conversation metadata.
+- Opera rule product-area applicability must be enforced upstream when orchestrator selects policies for a conversation. The Training Simulator evaluator only consumes the resulting moment annotations, so filtering criteria after evaluation would be too late (CONVI-7281).
 
 ## Architecture and Source Map
 

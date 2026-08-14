@@ -3,7 +3,7 @@
 > Migrated navigation: [Analytics / Conversation Volume](../analytics/subdomains/conversation-volume/README.md). This folder remains detailed historical evidence.
 
 **Created:** 2026-07-02
-**Updated:** 2026-07-28
+**Updated:** 2026-08-10
 
 ## Overview
 
@@ -30,7 +30,7 @@ Coaching Hub and QM Report (the ticket’s comparison UIs) already count by subm
 
 `deliverables/coaching-hub-qm-report-submit-time-investigation.md`
 
-**Product fix is in progress** across three worktrees. Proto is landed on `main` via [#9402](https://github.com/cresta/cresta-proto/pull/9402) and [#9430](https://github.com/cresta/cresta-proto/pull/9430) (`TimeRangeFilterTarget`, field `time_range_filter_target`). go-servers and director remain unopened pending `cresta-proto/v2` publication and dependency bumps.
+The product changes are merged and deployed to `director-beta`. With `?filterByScorecardSubmitTime=true`, the beta Holiday Inn UI for Cliff Hawker on Aug 4–10 showed 2 scorecards on Aug 4, 5, 6, and 10 (8 total), exactly matching ClickHouse `scorecard_submit_time`. However, the official `/director/` route with the same flag query showed only 6 (Aug 5, 6, and 10), matching the old `scorecard_time` basis. The official customer-facing release does not yet honor the guarded fix. See `sessions/2026-08-10/codex-release-verification.md` and `sessions/2026-08-10/cursor-staging-release-investigation.md`.
 
 ## Key Evidence
 
@@ -82,7 +82,7 @@ This explains why Monday and Tuesday showed only 1 each even though Cliff submit
 
 ## Status
 
-No product fix has shipped yet. Earlier exploratory work existed on branch `convi-7162-holiday-inn-club-vacations-manager-leaderboard-scorecards`, but production Manager Leaderboard still uses QA APIs timed by `scorecard_time`.
+The guarded change is verified on `director-beta`, but the official `/director/` release still uses `scorecard_time` even when the URL flag override is present. The remaining steps are to update the official Director release, enable the intended rollout configuration, and rerun this comparison.
 
 Chosen fix direction remains: keep the CONVI-6968 QA-backed Manager Leaderboard implementation, and add explicit submit-time filtering/grouping for Manager `Scorecards completed` aggregate and drawer.
 
@@ -91,6 +91,7 @@ Chosen fix direction remains: keep the CONVI-6968 QA-backed Manager Leaderboard 
 ## Related Artifacts
 
 - `deliverables/qa-time-range-column-mapping.md` — before/after visualization of how `filter_by_time_range` maps to ClickHouse columns
+- `deliverables/staging-walter-dev-golden-sql-verification.md` — voice-staging run of adapted submit-time goldens
 - `deliverables/submit-time-exact-match-evidence.md`
 - `sessions/2026-07-02/codex-investigation.md`
 - `sessions/2026-07-10/codex-implementation.md`

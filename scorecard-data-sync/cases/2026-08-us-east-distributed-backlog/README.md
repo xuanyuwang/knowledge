@@ -16,6 +16,26 @@ The scorecard missing-rate monitor was the first strong symptom of a region-wide
 
 The issue later surfaced as missing Performance Insights data, successful backfills whose rows remained invisible, and independent `score_d` / `scorecard_d` version skew. Enabling batched delivery and split-on-failure, increasing the sender pool from 16 to 48, and rolling the Conversations ClickHouse nodes restored delivery.
 
+## Post-recovery verification
+
+On August 3, the production sync monitor checked all 91 profiles for July 28 through August 3:
+
+- regional missing rate: 56,676 / 16,858,725 (0.3362%);
+- Guitar Center: 0 / 246,129 missing, 4 stale;
+- Home Care Delivered: 0 / 57,360 missing, 10 stale;
+- 72 profiles had zero missing rows.
+
+The reported customer gaps were recovered. Before the repair run, CNG remained a separate outlier at 54,819 / 514,722 missing (10.65%), accounting for 96.72% of regional misses. Its score and scorecard Distributed queues were empty, so that residual gap was not a currently undrained backlog.
+
+An all-profile auto-heal then created 47 reindex jobs for 57,773 missing/stale candidates. All workflows completed. Post-backfill verification found:
+
+- CNG: zero missing and zero stale;
+- Guitar Center: zero missing and zero stale;
+- HCD: zero missing and zero stale;
+- region: 26 / 16,908,176 missing (0.0002%) and 3 stale.
+
+The only residual is 26 submitted Alaska Air conversation scorecards. Their automatic backfill completed without recreating them, so they require targeted diagnosis rather than another identical retry.
+
 ## Case artifacts
 
 ### Canonical synthesis
@@ -29,12 +49,14 @@ The Canvas source remains in Cursor's managed `canvases` directory so it can be 
 
 - [Initial July 29 missing-rate investigation](../../sessions/2026-07-30/codex-us-east-1-missing-spike.md)
 - [Guitar Center and HCD incident investigation](../../sessions/2026-08-01/codex-performance-insights-missing-data.md)
+- [Post-recovery all-customer verification](../../sessions/2026-08-03/codex-post-recovery-missing-rate.md)
 - [INSI-4251 work item](../../work-items/INSI-4251.md)
 
 ### Daily movement
 
 - [2026-08-01 incident investigation](../../log/2026-08-01.md)
 - [2026-08-02 resolution](../../log/2026-08-02.md)
+- [2026-08-03 post-recovery verification](../../log/2026-08-03.md)
 
 ## Production changes
 

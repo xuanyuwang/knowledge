@@ -6,8 +6,8 @@ primary_repo_path: /Users/xuanyu.wang/repos/go-servers
 related_source_repos:
   - clickhouse-schema
   - cresta-proto
-active_worktree_path: /Users/xuanyu.wang/repos/go-servers-alaska-scorecard-orphan
-branch: debug/alaska-scorecard-orphan
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers-stale-reporting
+branch: scorecard-sync-monitor-stale-reporting
 domain_owners:
   - Xuanyu Wang
 domain_scope: PostgreSQL-to-ClickHouse scorecard projection correctness, ordering, monitoring, reindexing, backfill, diagnosis, and repair.
@@ -18,17 +18,20 @@ related_ticket_ids:
   - CONVI-6298
   - CONVI-7186
   - CONVI-7397
+  - CONVI-7414
   - INSI-4251
 active_work_items:
   - alaska-air-orphaned-scorecard
+  - scorecard-sync-monitor-stale-reporting
 related_prs:
   - https://github.com/cresta/go-servers/pull/24103
   - https://github.com/cresta/go-servers/pull/25916
   - https://github.com/cresta/go-servers/pull/29786
+  - https://github.com/cresta/go-servers/pull/30911
   - https://github.com/cresta/flux-deployments/pull/312915
   - https://github.com/cresta/flux-deployments/pull/312923
-current_objective: Confirm and fix an asynchronous scorecard write versus reset/delete race that leaves orphaned ClickHouse analytics rows.
-last_validated: 2026-08-02
+current_objective: Ship scorecard-sync-monitor Slack/cluster reporting that surfaces stale scorecards alongside missing counts.
+last_validated: 2026-08-07
 artifacts:
   readme: README.md
   cases_dir: cases/

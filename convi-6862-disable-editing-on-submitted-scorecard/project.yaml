@@ -1,15 +1,17 @@
 title: CONVI-6862 - Disable Editing on Submitted Scorecard
 status: active
-primary_source_repo: director
-primary_repo_path: /Users/xuanyu.wang/repos/director
-active_worktree_path: /Users/xuanyu.wang/repos/director-convi-6862
-branch: xwang/convi-6862-submitted-scorecard-editors-v2
+primary_source_repo: config
+primary_repo_path: /Users/xuanyu.wang/repos/config
+active_worktree_path: /Users/xuanyu.wang/repos/config-convi-7386-us-west-2
+branch: convi-7386-us-west-2-enable-submitted-scorecard-lock
 related_ticket_ids:
   - CONVI-6862
   - CONVI-7197
   - CONVI-7206
   - CONVI-7350
+  - CONVI-7386
 active_work_items:
+  - work-items/CONVI-6862.md
   - work-items/CONVI-7350.md
 related_prs:
   - director#19100
@@ -17,10 +19,22 @@ related_prs:
   - director#20375
   - go-servers#29774
   - go-servers#30336
+  - director#21556
+  - go-servers#30861
+  - config#151019
+  - config#151187
 backend_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7350
 backend_branch: convi-7350-refer-the-latest-revision-of-template-for-permission
-current_objective: Land CONVI-7350 so UpdateScorecard and ResetScorecard authorize against the latest template permissions, matching EvaluateScorecardsPermissions.
-last_validated: 2026-07-22
+ga_frontend_worktree_path: /Users/xuanyu.wang/repos/director-ga-submitted-scorecard-lock
+ga_frontend_branch: xwang/ga-submitted-scorecard-lock
+ga_backend_worktree_path: /Users/xuanyu.wang/repos/go-servers-ga-submitted-scorecard-lock
+ga_backend_branch: convi-ga-submitted-scorecard-lock
+config_cleanup_worktree_path: /Users/xuanyu.wang/repos/config-remove-submitted-scorecard-flag
+config_cleanup_branch: convi-remove-submitted-scorecard-flag
+config_rollout_worktree_path: /Users/xuanyu.wang/repos/config-convi-7386-us-west-2
+config_rollout_branch: convi-7386-us-west-2-enable-submitted-scorecard-lock
+current_objective: Complete staged production rollout by enabling disableEditingOnSubmittedScorecards for remaining profiles through customer configuration.
+last_validated: 2026-08-10
 artifacts:
   readme: README.md
   work_items_dir: work-items/
@@ -35,6 +49,9 @@ artifacts:
     - deliverables/local-test-plan.md
     - deliverables/submitted-scorecard-edit-permission-fail-freeze-plan.md
     - deliverables/convi-7197-scorecard-editors-dropdown-ux-fix.md
+    - work-items/CONVI-6862.md
     - work-items/CONVI-7350.md
+    - sessions/2026-08-10/codex-convi-7386-us-west-2-ga.md
+    - sessions/2026-08-06/codex-ga-flag-override.md
     - sessions/2026-07-22/codex-latest-template-permission-evaluation.md
 notes: Backend is merged with `submitted_scorecard_editors` / `submittedScorecardEditors` as a `users + teams + groups` contract. Frontend exposes the control in `TemplateBuilderAdvanced`, round-trips users/teams/groups, does not depend on `permissions.scorecardGraders`, and uses `All users` as the empty-state text. `director#19805` merged the `EvaluateScorecardsPermissions` client wrapper and hook; PR `director#19100` should now use that hook to proactively lock denied submitted scorecards on load. CONVI-7350 is implemented on `go-servers-convi-7350` so write enforcement loads the latest template revision for authorization while preserving pinned revisions for scoring.

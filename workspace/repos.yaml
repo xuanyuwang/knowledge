@@ -150,6 +150,18 @@ repos:
       - knowledge
 
 named_worktrees:
+  - name: go-servers-convi-7379
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7379
+    branch: convi-7379-focus-criteria-display-names-be
+    purpose: Resolve coaching focus-criterion display names from historical scorecard-template revisions without changing revision-independent persistence.
+
+  - name: director-convi-7379
+    source_repo: director
+    path: /Users/xuanyu.wang/repos/director-convi-7379
+    branch: xw/convi-7379-focus-criteria-display-names-fe
+    purpose: Consume backend-populated coaching focus-criterion display names across plan and session UI surfaces.
+
   - name: go-servers-convi-6494
     source_repo: go-servers
     path: /Users/xuanyu.wang/repos/go-servers-convi-6494
@@ -185,6 +197,12 @@ named_worktrees:
     path: /Users/xuanyu.wang/repos/go-servers-convi-7206
     branch: convi-7206-gate-submitted-scorecard-lock-behind-ff
     purpose: Gate apiserver submitted-scorecard editor enforcement behind per-customer disableEditingOnSubmittedScorecards config flag (CONVI-7206).
+
+  - name: director-convi-7280
+    source_repo: director
+    path: /Users/xuanyu.wang/repos/director-convi-7280
+    branch: convi-7280-add-warning-for-opera-rules-deactivated-in-module-view
+    purpose: Add Training Simulator module and criterion warnings for deactivated Opera behaviors (CONVI-7280).
 
   - name: go-servers-convi-7383
     source_repo: go-servers

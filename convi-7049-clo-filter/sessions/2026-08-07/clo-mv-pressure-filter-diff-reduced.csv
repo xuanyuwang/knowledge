@@ -1,0 +1,47 @@
+id,ok,elapsed_s,raw_count,mv_count,raw_only,mv_only,error
+180d__conversion,True,109.464,16970,16970,0,0,
+180d__csat_a+csat_b+resolved+conversion,False,375.309,,,,,"Received exception from server (version 26.3.12):
+Code: 159. DB::Exception: Received from clickhouse-conversations.voice-staging.internal.cresta.ai:9440. DB::Exception: Timeout exceeded: elapsed 374743.081112 ms, maximum: 300000 ms. (TIMEOUT_EXCEEDED)
+(query: WITH
+
+raw_t1_0 AS (
+  SELECT conversation_id, MAX(create_time) AS latest_t FROM moment_annotation_d
+  WHERE conversation_start_time >= '2026-02-02 04:00:00' AND conversation_start_time < '2026-08-01 03:59:59' AND moment_type = 14 AND moment"
+180d__csat_a,True,291.143,38609,38609,0,0,
+180d__csat_b,True,34.487,37842,37842,0,0,
+180d__resolved,True,36.445,43518,43518,0,0,
+30d__conversion,True,14.749,11197,11197,0,0,
+30d__csat_a+conversion,True,20.725,11197,11197,0,0,
+30d__csat_a+csat_b+conversion,True,45.499,10967,10967,0,0,
+30d__csat_a+csat_b+resolved+conversion,True,75.559,10915,10915,0,0,
+30d__csat_a+csat_b+resolved,True,45.223,10915,10915,0,0,
+30d__csat_a+csat_b,True,25.856,10971,10971,0,0,
+30d__csat_a+resolved+conversion,True,43.051,11138,11138,0,0,
+30d__csat_a+resolved,True,20.799,11138,11138,0,0,
+30d__csat_a,True,8.241,11201,11201,0,0,
+30d__csat_b+conversion,True,23.968,10967,10967,0,0,
+30d__csat_b+resolved+conversion,True,42.165,10915,10915,0,0,
+30d__csat_b+resolved,True,84.611,10915,10915,0,0,
+30d__csat_b,True,7.24,10971,10971,0,0,
+30d__resolved+conversion,True,20.088,11138,11138,0,0,
+30d__resolved,True,7.844,11138,11138,0,0,
+7d__conversion,True,1.884,2349,2349,0,0,
+7d__csat_a+conversion,True,4.646,2349,2349,0,0,
+7d__csat_a+csat_b+conversion,True,9.236,2275,2275,0,0,
+7d__csat_a+csat_b+resolved+conversion,True,15.256,2275,2275,0,0,
+7d__csat_a+csat_b+resolved,True,8.111,2275,2275,0,0,
+7d__csat_a+csat_b,True,4.709,2276,2276,0,0,
+7d__csat_a+resolved+conversion,True,8.587,2349,2349,0,0,
+7d__csat_a+resolved,True,4.751,2349,2349,0,0,
+7d__csat_a,True,1.753,2350,2350,0,0,
+7d__csat_b+conversion,True,4.484,2275,2275,0,0,
+7d__csat_b+resolved+conversion,True,8.289,2275,2275,0,0,
+7d__csat_b+resolved,True,4.276,2275,2275,0,0,
+7d__csat_b,True,1.794,2276,2276,0,0,
+7d__resolved+conversion,True,4.213,2349,2349,0,0,
+7d__resolved,True,1.828,2349,2349,0,0,
+90d__conversion,True,11.96,16967,16967,0,0,
+90d__csat_a+csat_b+resolved+conversion,True,294.119,16594,16594,0,0,
+90d__csat_a,True,15.092,25146,25146,0,0,
+90d__csat_b,True,15.301,24423,24423,0,0,
+90d__resolved,True,15.619,25080,25080,0,0,

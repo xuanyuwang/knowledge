@@ -115,11 +115,127 @@ A user belonging to multiple requested groups contributes to each group. Group t
 
 Time filtering uses `conversation_start_time`, not scorecard submission time or `scorecard_time`.
 
-The query is generated as three stages:
+### Annotation concepts
 
-1. `hint_sent`: union behavioral and non-behavioral sent counts.
-2. `combined_hint_sent`: collapse the sent branches with `MAX` per grouping key.
-3. `hint_followed`: union behavioral/checklist followed moments with KB/GW followed action events, then join to sent rows and `SUM` followed counts.
+The configured objects and their runtime annotations are different:
+
+- An `Action` is a configured definition such as a Hint. Its stable template identifier becomes `action_id`.
+- An `ActionAnnotation` is one runtime prediction in a conversation/message that results in an action. For Behavioral Hints, one `action_annotation_id` identifies one concrete hint firing or delivery.
+- A `Moment` is a configured detector or conversation-state definition. Its stable template identifier becomes `moment_template_id`.
+- A `MomentAnnotation` is one runtime observation of a moment in a conversation/message. Its occurrence identifier is `moment_annotation_id`.
+
+An action annotation is not necessarily something the agent performed. In the Behavioral Hint flow, it is normally the system-side assistance action shown to the agent. A moment annotation is evidence about what happened in the conversation, such as detecting the encouraged behavior.
+
+### Independence and linkage
+
+`action_annotation_d` and `moment_annotation_d` are independent ClickHouse tables. A moment annotation does not contain all action annotations, and neither table is a child table embedded inside the other.
+
+The general relationship is optional:
+
+- many moment annotations have no action relationship;
+- an action annotation can have no related adherence moments;
+- an adherence outcome moment has one singular `adherence_action_annotation_id`;
+- multiple positive or negative outcome moments can reference the same action annotation.
+
+For adherence moments, `moment_annotation_d` denormalizes selected information about the linked action:
+
+- `adherence_action_annotation_id`: runtime action occurrence; logically references `action_annotation_d.action_annotation_id`;
+- `adherence_action_id`: configured action/template identifier; corresponds to `action_annotation_d.action_id`;
+- `adherence_action_policy_id`, `adherence_action_policy_source_type`, `adherence_action_type`, `adherence_action_detailed_type`, and `adherence_action_adherence_type`: copied action dimensions used by analytics;
+- `adherence_moment_annotation_id` and related `adherence_moment_*` fields: the SDX moment associated with a DDX/DNX adherence result.
+
+The service proto defines `MomentAnnotationMetadata.adherence_action_annotation` as the SDX action of a DDX and requires it to be in the same conversation. Conversion code parses that resource name and stores only its action annotation ID in PostgreSQL. During ClickHouse projection, `buildMomentAnnotationRows` looks up that action annotation and copies its configured action ID, type, adherence type, policy, and other dimensions into the `adherence_action_*` columns. ClickHouse does not declare a foreign-key constraint, so this is an application-level relationship rather than a database-enforced one.
+
+The identifier hierarchy is therefore:
+
+```text
+configured Action (action_id)
+  -> runtime ActionAnnotation (action_annotation_id)
+       <- adherence_action_annotation_id on zero or more MomentAnnotation rows
+
+configured Moment (moment_template_id)
+  -> runtime MomentAnnotation (moment_annotation_id)
+```
+
+For Behavioral Hint adherence:
+
+```text
+hint action annotation A1
+  <- positive DDX moment M1
+  <- positive DDX moment M2
+  <- positive DDX moment M3
+```
+
+This means one hint was sent and one hint was followed, even though three positive moments were observed.
+
+### Physical ClickHouse schema
+
+The local `action_annotation` table is a `ReplicatedReplacingMergeTree` keyed for analytics by conversation hour, agent, and policy. `action_annotation_d` is the distributed table used by queries. Relevant columns include:
+
+- occurrence and template identity: `action_annotation_id`, `action_id`;
+- classification: `action_type`, `action_detailed_type`, `adherence_type`;
+- dimensions: `agent_user_id`, `conversation_id`, `message_id`, `policy_id`, `policy_source_type`;
+- timestamps and lifecycle: `conversation_start_time`, `create_time`, `update_time`;
+- action-specific payload columns.
+
+The local `moment_annotation` table is a separate `ReplicatedReplacingMergeTree`; `moment_annotation_d` is its distributed query surface. Relevant columns include:
+
+- occurrence and template identity: `moment_annotation_id`, `moment_template_id`;
+- classification: `moment_type`, `moment_detailed_type`, `adherence_type`;
+- dimensions: `agent_user_id`, `behavior_id`, `conversation_id`, `message_id`, `policy_id`, `policy_source_type`;
+- adherence linkage: all `adherence_action_*` and `adherence_moment_*` columns;
+- timestamps, labels, metadata values, and moment payload.
+
+The schemas define ordering and replacement behavior but no foreign key from `moment_annotation_d.adherence_action_annotation_id` to `action_annotation_d.action_annotation_id`.
+
+### Query structure
+
+`hintStatsClickhouseQuery` creates the SQL in these stages:
+
+1. Parse the request into table-specific filters and group expressions for `moment_annotation_d`, `action_annotation_d`, and `conversation_event_d`. Supported final keys are agent, behavior, policy, and truncated time.
+2. Build `hint_sent` as a `UNION ALL`:
+   - default Behavioral path: read DDX/DNX rows from `moment_annotation_d` and count distinct non-empty `adherence_action_annotation_id`;
+   - action-annotation Behavioral path: read `action_annotation_d`, restricted to action IDs referenced by DDX/DNX moment rows, and count distinct `action_annotation_id`;
+   - non-Behavioral path: read action annotations for regular hints, manager alerts, GW hints, and KB hints with unspecified adherence.
+3. Build `combined_hint_sent` per grouping key. The implementation uses `MAX`, not `SUM`, across the two sent branches. This assumes at most one branch contributes a meaningful count for each request/group. If Behavioral and non-Behavioral branches both contribute to the same group, `MAX` undercounts their union.
+4. Build `hint_followed` as a `UNION ALL`:
+   - Behavioral/checklist branch: read positive DDX rows (`adherence_type = 2`) from `moment_annotation_d`;
+   - KB/GW branch: read followed events (`event_type = 9`) from `conversation_event_d`.
+5. Left-join followed groups to sent groups using the requested grouping keys. The final select keeps sent/conversation/user counts with `MAX` and combines followed branches with `SUM`. Consequently, an unfiltered mixed-category request can sum Behavioral and KB/GW followed counts while retaining only the larger sent branch.
+
+### CONVI-7387 behavior change
+
+Before the fix, the Behavioral followed branch used:
+
+```sql
+COUNT(DISTINCT moment_annotation_id) AS hint_followed_count
+```
+
+That answered “how many positive adherence observations occurred?” It did not answer “how many sent hints were followed?”
+
+PR #30782 changes it to:
+
+```sql
+COUNT(DISTINCT adherence_action_annotation_id) AS hint_followed_count
+```
+
+with `adherence_action_annotation_id <> ''`. All positive moments linked to the same hint action now contribute one followed hint.
+
+For the default sent path, the intended subset relationship is explicit:
+
+- sent IDs: distinct action annotation IDs appearing in DDX or DNX rows;
+- followed IDs: distinct action annotation IDs appearing in DDX rows;
+- therefore followed IDs are a subset of sent IDs under the same filters and grouping dimensions.
+
+For the action-annotation sent path, the same relationship is weaker:
+
+- sent applies `maCondition` inside the moment subquery and `aaCondition` to the outer action row;
+- followed applies `maCondition` only because it always reads `moment_annotation_d`;
+- each followed link must also resolve to an `action_annotation_d` row whose filter/group fields agree.
+
+ClickHouse has no foreign key enforcing the link, and the two paths do not apply identical table predicates. The fix resolves the observed multi-moment fan-out, but action-filter asymmetry, orphaned links, or inconsistent denormalized dimensions could still violate the percentage invariant.
+
+For a request explicitly filtered to Behavioral Hints, the non-Behavioral sent branch is made empty by the conflicting adherence filter, so the `MAX` mixed-branch risk does not explain CONVI-7387. It remains a separate risk for unfiltered or mixed-category requests.
 
 Golden SQL fixtures live under:
 
@@ -150,7 +266,7 @@ The alternate path changes how behavioral sent hints are read. It does not, by i
 
 ## Counting Semantics and Invariants
 
-### Current behavioral query
+### Deployed behavioral query before CONVI-7387
 
 - Sent: `COUNT(DISTINCT adherence_action_annotation_id)`
 - Followed: `COUNT(DISTINCT moment_annotation_id)`
@@ -161,7 +277,7 @@ These are different entities:
 - a moment annotation represents an observed adherence moment;
 - one hint action can link to several positive moment annotations.
 
-Therefore the current API can return `total_hint_followed_count > total_hint_sent_count`, and Director can display engagement above 100%.
+Therefore the deployed API can return `total_hint_followed_count > total_hint_sent_count`, and Director can display engagement above 100%.
 
 ### Required metric decision
 
@@ -187,6 +303,12 @@ The Heartland investigation demonstrated the current mismatch for the week `[202
 - action-deduplicated hint rate: `106 / 134 = 79.1%`.
 
 The source rows are valid. The invalid percentage is created by dividing valid counts of different entities.
+
+Fix status:
+
+- [go-servers #30782](https://github.com/cresta/go-servers/pull/30782) changes the behavioral numerator to `COUNT(DISTINCT adherence_action_annotation_id)`.
+- The query now requires a non-empty action annotation ID and covers both behavioral sent-query implementations.
+- The targeted `RetrieveHintStats` Bazel test passes. Production verification remains pending deployment.
 
 Canonical investigation:
 
@@ -250,17 +372,26 @@ ORDER BY positive_moments DESC;
 
 ## Testing Gaps
 
-Existing tests validate generated SQL shapes and response conversion but do not establish the percentage invariant.
+Before CONVI-7387, tests validated generated SQL shapes and response conversion but did not establish the behavioral counting grain. PR #30782 adds a focused query test for both sent-query implementations and updates all golden SQL fixtures.
 
 Required regression coverage:
 
-1. one behavioral hint action linked to multiple positive moment annotations;
-2. followed behavioral count deduplicated at the intended hint-action grain;
-3. `followed <= sent` for percentage-producing hint types;
-4. agent + policy aggregation without frequency;
-5. group + policy aggregation from per-agent rows;
-6. both default and action-annotation sent-query paths;
-7. archived/unresolved policy removal recomputes response totals correctly.
+1. end-to-end fixture data with one behavioral hint action linked to multiple positive moment annotations;
+2. `followed <= sent` for percentage-producing hint types;
+3. agent + policy aggregation without frequency;
+4. group + policy aggregation from per-agent rows;
+5. archived/unresolved policy removal recomputes response totals correctly.
+6. a mixed Behavioral + non-Behavioral request where both sent branches contribute to one group;
+7. the action-annotation sent path with action-table predicates that do not match denormalized moment predicates.
+
+## Source References
+
+- ClickHouse tables: `clickhouse-schema/conversations/migrations/20230824160348_init_db.up.sql`
+- Service concepts: `cresta-proto/cresta/v1/action/action.proto`, `cresta-proto/cresta/v1/action/action_annotation.proto`, `cresta-proto/cresta/v1/moment/moment.proto`, `cresta-proto/cresta/v1/moment/moment_annotation.proto`
+- PostgreSQL source tables: `go-servers/apiserver/sql-schema/app/app-schema.sql`
+- ClickHouse projection and adherence denormalization: `go-servers/shared/clickhouse/conversations/conversation.go`
+- API query: `go-servers/insights-server/internal/analyticsimpl/retrieve_hint_stats_clickhouse.go`
+- Filter and grouping mappings: `go-servers/insights-server/internal/analyticsimpl/common_clickhouse.go`
 
 ## Troubleshooting Checklist
 

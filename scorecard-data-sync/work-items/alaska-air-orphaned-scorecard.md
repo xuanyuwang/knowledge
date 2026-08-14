@@ -42,3 +42,5 @@ Orphaned ClickHouse data was backed up and removed on 2026-07-30. Production evi
 - 2026-07-29: published the evidence-backed bug report at `../deliverables/alaska-air-orphaned-scorecard-report.md`.
 - 2026-07-30: backed up 9 score rows and 1 scorecard row locally, deleted both entities from owning ClickHouse shard 1, and verified zero rows through distributed `FINAL` views and raw all-replica queries.
 - 2026-07-30: published the full investigation, operational repair, checksums, and lossless Markdown representation of the backed-up records to the Linear document attached to CONVI-7397.
+
+- 2026-08-08: created follow-up ticket CONVI-7462 for monitor/Temporal CH orphan cleanup support: https://linear.app/cresta/issue/CONVI-7462/detect-and-cleanup-clickhouse-orphan-scorecards-missing-from-postgres

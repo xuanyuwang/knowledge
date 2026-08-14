@@ -4,14 +4,18 @@ primary_source_repo: director
 primary_repo_path: /Users/xuanyu.wang/repos/director
 related_ticket_ids:
   - CONVI-7379
-related_prs: []
-current_objective: Investigate why Pure coaching plan 1:1 sessions show raw focus-criteria IDs instead of criterion names, and identify the correct fix path.
-last_validated: 2026-07-28
+related_prs:
+  - https://github.com/cresta/go-servers/pull/31048
+  - https://github.com/cresta/director/pull/21757
+current_objective: Review and merge the independent BE and FE pull requests.
+last_validated: 2026-08-14
 artifacts:
   readme: README.md
   log_dir: log/
   session_dir: sessions/
   decisions_dir: decisions/
   deliverables_dir: deliverables/
-  key_docs: []
-notes: Investigation spans director frontend and go-servers coaching APIs. Pure prod DB confirms stale focus-criteria IDs after Security scorecard template revisions.
+  key_docs:
+    - work-items/CONVI-7379.md
+    - decisions/2026-08-13-read-path-only-focus-criterion-label-recovery.md
+notes: Decision changed from revision-qualified writes to read-path-only label recovery after mixed-format backward compatibility and revision-independent target compatibility issues were identified. Backend worktree is /Users/xuanyu.wang/repos/go-servers-convi-7379 on convi-7379-focus-criteria-display-names-be. Frontend worktree is /Users/xuanyu.wang/repos/director-convi-7379 on xw/convi-7379-focus-criteria-display-names-fe; commits cff1d057b3 and 6abb06d6b6 are open as Director PR #21757 directly against main.

@@ -27,7 +27,8 @@ Training content configuration: how supervisors/training leads create and edit t
 
 ## Semantics and Invariants
 
-- A **module** selects one scenario at random from its pool per run.
+- The FE (`pickRandomScenario` in `simulation/lessonUtils.ts`) picks **one scenario at random** from the module's pool when the agent starts a module; the pool is not run as a set.
+- **Passing a module requires passing a single scenario attempt**: one attempt = one conversation with one randomly-chosen scenario (a `TrainingSimulatorTaskRun`), scored against the module's `EvaluationConfig`. A passing score (or all-applicable-criteria pass when no `passing_score` is set) passes the module. You do **not** need to pass every scenario in the pool; a failed attempt can be retried up to `allowed_number_attempts`, each retry picking a (possibly new) random scenario.
 - A module is the atomic training unit; a lesson is an ordered list of modules.
 - Scenarios map to VA configs: changing a scenario triggers `BatchCreateVirtualAgentRevision` to rematerialize VA revisions (multi-call batching for >N scenarios, CONVI-7049/CONVI-7010 handling >1 scenario flows).
 - Training VAs are `SINGLE_PROMPT_SUB_VA` with purpose `training_simulator`; they must be excluded from general VA lists.

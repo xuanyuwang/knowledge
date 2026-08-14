@@ -27,7 +27,8 @@ How training lessons become per-agent work: the DirectorTask-based assignment mo
 
 ## Semantics and Invariants
 
-- A **session** is a DirectorTask of type `DIRECTOR_TASK_TYPE_TRAINING_SIMULATOR`; content config references the lesson; audience config lists per-agent user resource names; schedule config holds `due_time`.
+- **The DirectorTask is the session/assignment, not the lesson.** A **session** is a DirectorTask of type `DIRECTOR_TASK_TYPE_TRAINING_SIMULATOR`; its content config references the **lesson** (`training_lesson_names`), so one lesson can be referenced by many per-agent tasks. The lesson itself is content in `training_lessons`, never a task.
+- **Agents see and launch their assigned sessions from the Coaching Plan** (`coaching-workflow/agent-coaching/assigned-training-sessions/` "Assigned Training Sessions"; manager/coach surfaces in Training Simulator / Coaching Hub). The DirectorTask carries audience config (per-agent user resource names) + schedule config (`due_time`).
 - Bulk assignment expands groups/teams (and optional individuals) into per-agent tasks, validates coaching plans per agent, and stores coaching-plan context in task metadata. Multi-plan linking supported.
 - One agent execution of a lesson = session; each module attempt creates a `TrainingSimulatorTaskRun` (one conversation per run).
 - Trainees must pass all modules within a lesson in order (module ordering enforced).

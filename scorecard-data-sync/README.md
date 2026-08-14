@@ -57,6 +57,10 @@ On 2026-08-01, [INSI-4251](https://linear.app/cresta/issue/INSI-4251) showed tha
 
 On 2026-08-02, the incident was resolved and the regional root cause confirmed: unbatched Distributed inserts produced approximately 6.36 million small spool files while the 16-thread sender pool was saturated across 3,328 Distributed tables. Enabling batched sends and split-on-failure, increasing the pool to 48, and rolling the Conversations nodes drained the queue and restored affected tenants. The canonical case index gathers the retrospective, investigation records, work item, logs, production changes, and interactive Canvas at `cases/2026-08-us-east-distributed-backlog/README.md`.
 
+On 2026-08-03, a post-recovery monitor run covering July 28 onward found 0 missing rows for Guitar Center and HCD. An all-profile auto-heal created 47 workflows for 57,773 missing/stale candidates, all of which completed. Verification reduced the region to 26/16,908,176 missing (0.0002%); CNG, Guitar Center, and HCD are fully synced. The only residual is 26 submitted Alaska Air conversation scorecards that were not recreated by their successful automatic backfill and require targeted diagnosis.
+
+On 2026-08-04, `us-west-2` reported 411,246/2,076,359 missing scorecards (19.81%) across 43 profiles. Live checks confirmed the same immediate Distributed-delivery failure mode as the East incident: approximately 1.48 million queued files / 21.1 GiB across 66 databases, with all six spool-bearing nodes saturating their 48-thread sender pools while replicas remained healthy. By 22:22 UTC, the queue had recovered to 210 files / 1.90 MiB and sender utilization was below capacity. A dry monitor rerun should determine the residual gap before any targeted repair. See `sessions/2026-08-04/codex-us-west-2-distributed-backlog.md`.
+
 ## Reading Order
 
 1. Start with architecture and invariants.

@@ -3,7 +3,7 @@
 > Migrated navigation: [Scorecard Workflows / Permissions and Visibility](../scorecard-workflows/subdomains/permissions-and-visibility/README.md). This folder remains detailed ticket evidence.
 
 **Created:** 2026-05-19  
-**Updated:** 2026-07-22
+**Updated:** 2026-08-10
 
 ## Overview
 
@@ -13,7 +13,7 @@ The active requirement set still comes from the 2026-05-22 product clarification
 
 ## Current Objective
 
-Keep the knowledge docs aligned with the merged backend behavior and the current frontend behavior, and update PR `director#19100` to use scorecard permission evaluation for proactive submitted-scorecard locking.
+Complete the staged GA rollout by enabling `disableEditingOnSubmittedScorecards` for remaining production profiles through customer configuration.
 
 ## Current Scope
 
@@ -51,6 +51,7 @@ Submit remains a first-submit action for unsubmitted scorecards.
 - Proactive permission evaluation currently reads the latest template revision, while `UpdateScorecard` and `ResetScorecard` enforce submitted editors from the scorecard's pinned revision. Allowlist changes after scorecard creation can therefore produce an editable frontend followed by a backend 403.
 - **CONVI-7350:** Implemented on `go-servers-convi-7350`. `hasSubmittedScorecardEditPermission` now loads `LatestRevisionName` internally so update/reset enforcement matches proactive evaluation, while pinned revisions remain for scorecard content and scoring.
 - Director currently fails open after an `EvaluateScorecardsPermissions` query error because an undefined decision is not treated as denied.
+- **GA direction update (2026-08-10):** The earlier unconditional-runtime and flag-removal PRs were closed without merge. GA is proceeding through staged customer configuration rollouts. [config#151187](https://github.com/cresta/config/pull/151187) enables the flag for 44 supplied us-west-2 production profiles.
 
 ## Status
 
@@ -81,6 +82,8 @@ Investigation and implementation touch:
 | 2026-07-03 | Merged `director#20375`; documented root cause and solution for CONVI-7197. |
 | 2026-07-08 | Prepared `go-servers#29774` for CONVI-7206; fixed the failed coaching coverage job by adding the missing reset-suite config mock and re-triggered CI. |
 | 2026-07-22 | Diagnosed submitted-editor FE/BE disagreement as latest-versus-pinned template revision authorization, plus a Director permission-query fail-open edge. |
+| 2026-08-06 | Opened coordinated Director, go-servers, and config PRs to make submitted-scorecard restrictions unconditional and remove the retired flag. |
+| 2026-08-10 | Recorded closure of the flag-removal PRs and opened the us-west-2 staged config rollout for 44 profiles. |
 
 ## Related Artifacts
 
@@ -93,12 +96,17 @@ Investigation and implementation touch:
 - `log/2026-07-03.md`
 - `log/2026-07-08.md`
 - `log/2026-07-22.md`
+- `log/2026-08-06.md`
+- `log/2026-08-10.md`
 - `sessions/2026-05-19/codex-requirements-and-design.md`
 - `sessions/2026-07-02/codex-convi-7197-dropdown-placement-fix.md`
 - `sessions/2026-07-02/codex-fe-be-feature-flag-mismatch-bug.md`
 - `sessions/2026-07-08/codex-convi-7206-be-feature-flag-gating.md`
 - `sessions/2026-07-22/codex-submitted-editor-update-403.md`
 - `sessions/2026-07-22/codex-latest-template-permission-evaluation.md`
+- `sessions/2026-08-06/codex-ga-flag-override.md`
+- `sessions/2026-08-10/codex-convi-7386-us-west-2-ga.md`
+- `work-items/CONVI-6862.md`
 - `work-items/CONVI-7350.md`
 - `deliverables/convi-7197-scorecard-editors-dropdown-ux-fix.md`
 - `decisions/2026-05-19-separate-post-submit-permission.md`

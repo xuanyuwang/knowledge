@@ -39,6 +39,18 @@ Create the `training-simulator` domain under `knowledge` and fill it with projec
 - Created `log/2026-08-09.md`.
 - Updated `knowledge/README.md` domain catalog.
 
+## Concept verification pass (code-grounding)
+
+After domain creation, verified 8 user-supplied concepts against merged code:
+
+- Hierarchy Lesson→Module→Scenario ✅; Scenario AI-as-customer ✅; separate tables ✅; `TrainingSimulatorTaskStats` = `RetrieveTrainingSimulatorTaskStats` ✅.
+- FE picks scenario: confirmed `pickRandomScenario` in `director/.../simulation/lessonUtils.ts:14` (`Math.floor(Math.random() * len)`).
+- Passing rule confirmed: 1 attempt = 1 conversation = 1 scenario (`TrainingSimulatorTaskRun.training_scenario_name`, evaluated against module `EvaluationConfig`); stats score the latest attempt per module, and pass = all required modules passed (`calculateTaskMetrics`/`buildAgentPerformanceEntries`).
+- Claim 8 was wrong: it's the **session/assignment** that is a `DIRECTOR_TASK_TYPE_TRAINING_SIMULATOR` DirectorTask; the **lesson** is content referenced via `training_lesson_names`.
+- Coaching Plan hosts assigned sessions: `coaching-workflow/agent-coaching/assigned-training-sessions/` FE surface.
+
+Applied refinements to domain README, `subdomains/training-content` (#4 passing rule + FE picker), and `subdomains/assignment-and-session` (#5 Coaching Plan surface, #8 lesson-vs-task).
+
 ## Next steps
 
 - Add CONVI work items as they progress (permission access controls CONVI-7145 is the visible active thread).

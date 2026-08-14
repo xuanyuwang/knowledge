@@ -3,7 +3,7 @@
 > Migrated navigation: [Analytics / Insights User Filter](../analytics/subdomains/insights-user-filter/README.md). This folder remains detailed historical evidence.
 
 **Created:** 2026-06-17
-**Status:** Preliminary production evidence collected; CLO MV Insights flag proto merged ([cresta-proto#9400](https://github.com/cresta/cresta-proto/pull/9400)); waiting on config schema sync; ClickHouse MV create/backfill/TTL investigation written for [CONVI-7383](https://linear.app/cresta/issue/CONVI-7383/improve-clo-conversation-outcome-filter-query-performance-via)
+**Status:** CONVI-7383 staging and all approved prod Phase B backfills are complete; [CONVI-7460](https://linear.app/cresta/issue/CONVI-7460/rollout-phase-b-gha-apply-prod) is Done. NCLH's optimized path produced a directional 2.12–2.29× browser improvement. Ready-for-review config [#151643](https://github.com/cresta/config/pull/151643) aligns the customer-facing CLO flag with the MV flag across all 18 NCLH and six supported Holiday Inn voice use cases. Legacy Holiday Inn chat remains excluded; chat also has a known two-row cross-shard deduplication anomaly affecting Cresta chat-demo and Verizon wireless. ca-central/Comcast/Schwab and no-payload legacy DBs remain excluded.
 **Ticket:** [CONVI-7049](https://linear.app/cresta/issue/CONVI-7049/support-clo-filter-in-performance-insights)
 
 ## Objective
@@ -78,11 +78,17 @@ An executable plan is available at `deliverables/clo-filter-performance-test-pla
 
 Preliminary production measurement on 2026-07-28 found that the supplied six-month NCLH boolean CLO request completed in 85.83 s versus 66.67 s for the closest same-filter no-CLO query, while increasing reads by approximately 10.1× rows and 7.5× bytes. The CLO annotation component alone took 17.83 s and read 245.4 GB. A paired count showed that the JSON payload increased bytes by 3.02× and shard user CPU by 2.29×. This justifies a typed CLO MV prototype in staging, but not yet a production schema decision or stable p95 claim.
 
+After the NCLH CLO MV flag was enabled, a directional production browser check on 2026-08-11 observed a 180-day daily conversion-only refresh clearing all visible loading regions in 37.5-40.5 s. Compared with the 85.83 s historical raw-table CLO query, this suggests 52.8-56.3% lower latency (2.12-2.29x faster) and remains well below the 120 s frontend timeout. The filters, execution window, cache state, and measurement layer were not identical, so this is rough evidence rather than a controlled before/after or p95 claim. Details are in `sessions/2026-08-11/codex-browser-mv-performance.md`.
+
 Detailed evidence and limitations are in `deliverables/clo-filter-performance-results-2026-07-28.md`.
 
 ClickHouse MV rollout investigation (general MV background, Cresta `POPULATE` pattern vs recommended chunked 180-day backfill, TTL recommendation) is in `deliverables/clo-mv-clickhouse-creation-investigation.md`.
 
 The recommended ClickHouse rollout proposal is in `deliverables/clo-mv-to-target-table-proposal.md`. It follows the production INSI-4097 `TO target_table` pattern (`metadata_moment_value_count`): separate storage table, trigger MV without `POPULATE`, distributed table over storage, and chunked 180-day backfill for selected large customers. Schema-scope research in `deliverables/clo-mv-moment-mv-landscape-and-schema-scope.md` concludes the CLO target table should stay narrow (type 14 only) and not merge with metadata or other moment MVs. An earlier inline-MV draft remains in `deliverables/clo-mv-without-populate-proposal.md`.
+
+## Prod Storage Outcome
+
+The completed full-history prod backfill consumes 64.18 GiB across physical replicas. The original one-year plan would consume approximately 53.11 GiB; older history adds 11.08 GiB (20.9%). These bytes use already-provisioned gp3 PVCs, so the immediate marginal EBS bill is zero. The equivalent allocated value is about $5.15/month for full history and $0.89/month for the older-history increment. Details: `deliverables/clo-prod-storage-cost-2026-08-08.md`.
 
 ## Key Files
 

@@ -7,8 +7,8 @@ related_source_repos:
   - director
   - cresta-proto
   - python-ai-services
-active_worktree_path: /Users/xuanyu.wang/repos/go-servers
-branch: main
+active_worktree_path: /Users/xuanyu.wang/repos/director-convi-7280
+branch: convi-7280-add-warning-for-opera-rules-deactivated-in-module-view
 domain_owners:
   - Xuanyu Wang
 domain_scope: Scenario-based AI practice for agents — training content configuration (lessons/modules/scenarios), assignment as Director Tasks, Customer AI simulation runtime, Opera/LLM evaluation, and session-level reporting.
@@ -31,10 +31,15 @@ related_ticket_ids:
   - CONVI-7145
   - CONVI-7146
   - CONVI-7241
-active_work_items: []
+  - CONVI-7280
+  - CONVI-7281
+active_work_items:
+  - CONVI-7280
+  - CONVI-7281
+  - lesson-module-statistics-reporting
 related_prs: []
-current_objective: Maintain a canonical engineering map of the Training Simulator (launched as paid add-on July 9, 2026) as it moves from limited beta toward GA, covering content config, assignment, simulation runtime, evaluation, and reporting.
-last_validated: 2026-08-09
+current_objective: Review and sequence the backend-first, frontend-second implementation plan for lesson/module statistics reporting, including assignment snapshots, normalized conversation/quiz outcomes, and Director drawers.
+last_validated: 2026-08-13
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
@@ -49,5 +54,15 @@ artifacts:
     - subdomains/simulation-runtime/README.md
     - subdomains/evaluation/README.md
     - subdomains/reporting/README.md
+    - deliverables/lesson-module-statistics-reporting.md
+    - deliverables/lesson-module-statistics-eng-design.md
+    - deliverables/lesson-module-statistics-fe-design.md
     - sessions/2026-08-09/claude-training-simulator-domain-setup.md
-notes: Seeded from Glean-fetched design docs (Training Simulator Design by Jack Jee / Kevin Kiernicki, Coaching Simulator Assignment Flow, Training Simulator PRD) plus local cresta-proto and go-servers inspection. Design docs remain draft/patchy relative to merged code; treat proto + go-servers implementation as authoritative.
+    - work-items/CONVI-7280.md
+    - sessions/2026-08-10/codex-convi-7280.md
+    - work-items/CONVI-7281.md
+    - sessions/2026-08-10/codex-convi-7281-plan.md
+    - work-items/lesson-module-statistics-reporting.md
+    - sessions/2026-08-11/cursor-lesson-module-stats-docs.md
+    - sessions/2026-08-13/codex-lesson-module-stats-design.md
+notes: Seeded from Glean-fetched design docs (Training Simulator Design by Jack Jee / Kevin Kiernicki, Coaching Simulator Assignment Flow, Training Simulator PRD) plus local cresta-proto and go-servers inspection. Design docs remain draft/patchy relative to merged code; treat proto + go-servers implementation as authoritative. The 2026-08-11 lesson/module reporting brief used the installed Glean plugin for focused product/design, customer/GTM, and implementation searches; direct full-document reading remained limited.

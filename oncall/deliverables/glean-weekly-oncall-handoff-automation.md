@@ -33,13 +33,6 @@ Glean should never become the authoritative status store. Linear remains authori
 - Allow the specific Slack message tool to **Run without user confirmation** if the scheduled agent will post automatically. Background writes cannot wait for an interactive approval.
 - Confirm Agent Builder access for the builder and activation access for the schedule owner.
 
-### Agent-owner prerequisites
-
-- In **Profile > Settings > Data Sources > Slack**, opt in to private-channel and DM access if private Slack content is in scope. Adding the Glean app to a private channel is not the same as making that channel searchable by the agent owner.
-- Verify access to every Linear view, PagerDuty incident, Slack channel, document, and GitHub repository that the agent is expected to summarize.
-- Add the Glean Slack app to the destination channel when required by the Slack action.
-- Choose a stable human owner and record a backup maintainer. Scheduled subscriptions are per user and use that user's permissions.
-
 ## Build steps
 
 1. In Glean, open **Agents** and create a **Workflow mode** agent named `QM/Coaching Weekly Oncall Handoff`.

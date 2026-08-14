@@ -1,5 +1,5 @@
 title: CONVI-7162 - Holiday Inn Manager Scorecards Completed Counts
-status: implementing; proto PR merged
+status: director-beta verified with flag; official Director release still uses scorecard_time
 primary_source_repo: go-servers
 primary_repo_path: /Users/xuanyu.wang/repos/go-servers
 active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7162
@@ -17,8 +17,8 @@ related_worktrees:
   - /Users/xuanyu.wang/repos/cresta-proto-convi-7162
   - /Users/xuanyu.wang/repos/go-servers-convi-7162
   - /Users/xuanyu.wang/repos/director-convi-7162
-current_objective: Wait for cresta-proto/v2 publish, then wire go-servers submit-time path and Manager-only FE opt-in using TimeRangeFilterTarget / time_range_filter_target.
-last_validated: 2026-07-30
+current_objective: Release the verified director-beta guarded path to official Director, enable intended rollout config, and rerun the flag-on comparison.
+last_validated: 2026-08-10
 artifacts:
   readme: README.md
   log_dir: log/
@@ -28,4 +28,4 @@ artifacts:
     - deliverables/submit-time-exact-match-evidence.md
     - deliverables/coaching-hub-qm-report-submit-time-investigation.md
     - decisions/2026-07-30-manager-leaderboard-submit-time.md
-notes: Tinglin decided 2026-07-30 to restore Manager Leaderboard to scorecard submit time (pre–CONVI-6968 semantics). Coaching Hub/QM already use submitted_at. Proto landed via #9402 (`dfc39d93ae`) and #9430 (`f4ebb13e31`, field `time_range_filter_target`).
+notes: Tinglin decided 2026-07-30 to restore Manager Leaderboard to scorecard submit time (pre–CONVI-6968 semantics). On 2026-08-10 director-beta with ?filterByScorecardSubmitTime=true matched ClickHouse submit time (8), but official /director/ with the same query flag still matched scorecard_time (6).
