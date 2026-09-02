@@ -8,8 +8,8 @@ related_source_repos:
   - cresta-proto
   - clickhouse-schema
   - config
-active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7254
-branch: convi-7254-monthly-qa-score
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7402
+branch: convi-7402-bswift-users-getting-qa-score-stats-errors
 domain_owners:
   - Xuanyu Wang
 domain_scope: Performance Insights, Assistance Insights, and Leaderboard frontend/backend semantics, filters, analytics APIs, aggregations, and displayed-data lineage.
@@ -32,21 +32,20 @@ related_ticket_ids:
   - CONVI-7387
   - CONVI-7435
   - CONVI-7402
+  - CONVI-7533
 active_work_items:
   - heartland-behavior-hints-adherence-mismatch
   - time-range-filter-investigation
   - CONVI-7238
-  - CONVI-7254
   - CONVI-7378
   - CONVI-7384
   - CONVI-7385
   - CONVI-7435
-  - CONVI-7402
 related_prs:
   - https://github.com/cresta/director/pull/21214
   - https://github.com/cresta/go-servers/pull/30782
-current_objective: Resolve open analytics aggregation/filter semantics, including CONVI-7402 PI metadata no-value+value ClickHouse OR parity, CONVI-7435 Bswift PI Manual vs N/A leak, CONVI-7387 Behavioral Hints, CONVI-7254, CONVI-7238, SCAN Consent, CONVI-7384, and CONVI-7385.
-last_validated: 2026-08-14
+current_objective: Resolve open analytics aggregation/filter semantics, including CONVI-7435 Bswift PI Manual vs N/A leak, CONVI-7387 Behavioral Hints, CONVI-7238, SCAN Consent, CONVI-7384, and CONVI-7385; preserve CONVI-7254 as evidence for the broader mixed-revision product question.
+last_validated: 2026-08-27
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/

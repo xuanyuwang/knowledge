@@ -42,6 +42,10 @@ Current product-direction proposal:
 
 - [Scorecard Configuration Safety](deliverables/scorecard-configuration-safety-initiative-proposals.md) — a two-part lifecycle for preventing template configuration mistakes through preview and AI assistance, then assessing and remediating affected scorecards through an auditable workflow.
 
+Recent completed work:
+
+- [CONVI-7533 pre-deletion scorecard backup](work-items/CONVI-7533.md) — preserved 4 scorecards and 190 score rows as directly readable, checksum-verified CSV in Linear before deletion.
+
 ## Source Context
 
 - **Primary repo:** `go-servers`

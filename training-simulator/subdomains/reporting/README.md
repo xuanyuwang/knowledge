@@ -8,7 +8,7 @@ Multi-level reporting for Training Simulator: session (assignment) stats today, 
 
 **In scope**
 
-- `RetrieveTrainingSimulatorTaskStats` API (per-task stats, per-agent entries, scores, pass rates) — **shipped**
+- `RetrieveTrainingSimulatorTaskStats` API (per-task stats, per-agent entries, scores, pass rates) — **shipped, with Milestone 1 correctness hardening in CONVI-7583** for zero-run coverage, uncapped bounded reads, deterministic latest selection, authoritative attempt count, authorization, and telemetry
 - Aggregates: session overview, agent overview, completion stats (assigned/completed counts, average score, pass rate, duration)
 - Filters: time_range, training lessons, direct-team-only, users, groups
 - Consumed by Training Simulator session status view + dashboards
@@ -34,7 +34,8 @@ Multi-level reporting for Training Simulator: session (assignment) stats today, 
 - An agent **passes** only if they completed all required modules AND all modules passed (`AgentCompletionStatus.COMPLETE/INCOMPLETE`, `passed` on `AgentPerformanceEntry`).
 - Lesson score is the simple average of required module scores; the latest module attempt is the official reporting score.
 - Score normalization: overall scores are 0–1 in task stats proto (TaskStats `score`, AgentPerformanceEntry `score`); module eval scores are 0–100.
-- N/A (`not_applicable`) values are excluded from aggregate scores; all-N/A denominator behavior must be explicit. Nil scores are skipped to avoid skewing average/rate.
+- Criterion-level N/A values are excluded from aggregate scores. Under the 2026-08-27 decision, an overall all-criteria-N/A zero/false result is failure-equivalent for reporting rather than a separate bucket. Nil scores are skipped to avoid skewing average/rate.
+- For enriched lesson/module list APIs, content filters choose definitions and reporting filters choose counted result facts. Apply content ordering and pagination first, then issue one statistics load for only the returned page IDs plus the selected authorized users and date range; keep the parallel statistics list aligned to that page.
 
 ## Architecture and Source Map
 

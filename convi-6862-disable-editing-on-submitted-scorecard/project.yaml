@@ -10,6 +10,7 @@ related_ticket_ids:
   - CONVI-7206
   - CONVI-7350
   - CONVI-7386
+  - CONVI-7598
 active_work_items:
   - work-items/CONVI-6862.md
   - work-items/CONVI-7350.md
@@ -23,6 +24,7 @@ related_prs:
   - go-servers#30861
   - config#151019
   - config#151187
+  - director#22149
 backend_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7350
 backend_branch: convi-7350-refer-the-latest-revision-of-template-for-permission
 ga_frontend_worktree_path: /Users/xuanyu.wang/repos/director-ga-submitted-scorecard-lock

@@ -1,28 +1,33 @@
 title: CONVI-7049 - CLO Filter in Performance Insights
-status: production_customer_enablement_pr_ready_for_review
+status: repair_merged_replay_pending
 primary_source_repo: director
 primary_repo_path: /Users/xuanyu.wang/repos/director
 backend_repo_path: /Users/xuanyu.wang/repos/go-servers-convi-7080
 proto_repo_path: /Users/xuanyu.wang/repos/cresta-proto
-active_worktree_path: /Users/xuanyu.wang/repos/config-convi-7049-clo-prod
-branch: xw/convi-7049-clo-production-customers
+active_worktree_path: /Users/xuanyu.wang/repos/config-convi-7543-repair
+branch: xw/convi-7543-repair-clo-enablement
 related_ticket_ids:
   - CONVI-7049
   - CONVI-7043
   - CONVI-7048
   - CONVI-7383
   - CONVI-7460
+  - CONVI-7543
 related_links:
   - https://linear.app/cresta/issue/CONVI-7049/support-clo-filter-in-performance-insights
   - https://linear.app/cresta/issue/CONVI-7043/custom-clo-as-performance-insights-filter
   - https://linear.app/cresta/issue/CONVI-7383/improve-clo-conversation-outcome-filter-query-performance-via
   - https://linear.app/cresta/issue/CONVI-7460/rollout-phase-b-gha-apply-prod
+  - https://linear.app/cresta/issue/CONVI-7543/ga-enable-clo-filter-for-all-customers
   - https://github.com/cresta/go-servers/pull/28769
   - https://github.com/cresta/cresta-proto/pull/9400
   - https://github.com/cresta/go-servers/pull/30588
   - https://github.com/cresta/config/pull/151643
-current_objective: Review and deploy config #151643 for supported NCLH and Holiday Inn production scopes, then capture comparable post-enable performance evidence while preserving chat and regional exclusions.
-last_validated: 2026-08-14
+  - https://github.com/cresta/config/pull/152031
+  - https://github.com/cresta/config/pull/152040
+  - https://github.com/cresta/config/pull/152115
+current_objective: Replay the complete desired master state after the repair merge sync was cancelled, then verify Admin plus ConfigService read-back state; Comcast and Schwab production remain excluded.
+last_validated: 2026-08-23
 artifacts:
   readme: README.md
   key_docs:
@@ -49,4 +54,8 @@ artifacts:
     - deliverables/clo-prod-storage-cost-2026-08-08.md
     - sessions/2026-08-08/cursor-prod-clo-storage-cost.md
     - sessions/2026-08-11/cursor-nclh-prod-flag-readiness.md
+    - work-items/CONVI-7543.md
+    - sessions/2026-08-20/codex-convi-7543-ga-rollout.md
+    - sessions/2026-08-21/codex-spruce-config-collision.md
+    - sessions/2026-08-23/codex-remote-master-verification.md
 notes: CLO is used ambiguously in product conversations. In this ticket context it appears to mean Cresta Modeled Outcome, while internal docs also use CLO as conversation-level outcome. Code stores these as CONVERSATION_OUTCOME moment templates and moment annotations. Flag enablement is per-customer Insights Feature Config after CH MV+backfill; see sessions/2026-08-07/cursor-enable-clo-mv-config-flag.md.

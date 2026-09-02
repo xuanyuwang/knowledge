@@ -11,7 +11,9 @@ Use these as polished, outcome-focused bullets (with metrics filled in when avai
 - Identified a systemic gap in analytics query infrastructure — no mechanism for passing reference data into ClickHouse without embedding it in SQL text — and designed a general-purpose solution using ClickHouse external tables. Evaluated 10 alternatives, benchmarked performance (4.8x faster at 5K users, flat scaling vs linear degradation), and implemented across 19 caller sites with a 4-phase rollout (dev → shadow mode with 10,000+ query comparison → production canary → global). The "always ext" design traded ~17ms overhead for small lists for zero branching complexity. Pattern is reusable for any reference data type beyond user IDs.
 
 ### Scorecard PG↔ClickHouse Data Consistency
-- Investigated and resolved a multi-customer data inconsistency between PostgreSQL and ClickHouse caused by two independent race conditions in scorecard APIs (async closure capturing stale data + ORM full-struct saves causing lost updates). After the initially proposed timestamp-based fix caused a P2 incident, built custom load testing tools to quantify failure rates at different timing thresholds (10ms→80%, 100ms→100% pass) and prove the actual root cause. Designed a multi-layered fix (atomic transactions, async re-read from DB, GORM partial updates) with feature-flagged rollout. Production verification: 0 score/submitter mismatches across ~3,000 submitted records over 39 days, with 0.87% acceptable residual documented and root-caused to rapid UI interactions.
+- Diagnosed multi-customer scorecard inconsistencies across PostgreSQL and ClickHouse, uncovering async stale-write and ORM lost-update races; designed atomic, post-commit re-read and partial-update fixes, built concurrency/cross-store verification tooling, and led a feature-flagged rollout that produced zero score or submitter mismatches across 2,996 comparable production scorecards over 39 days.
+
+Phone-screen narrative and claims ledger: [`deliverables/phone-screen-scorecard-pg-clickhouse.md`](deliverables/phone-screen-scorecard-pg-clickhouse.md).
 
 ## Candidate bullets to refine
 

@@ -7,8 +7,8 @@ related_source_repos:
   - director
   - cresta-proto
   - python-ai-services
-active_worktree_path: /Users/xuanyu.wang/repos/director-convi-7280
-branch: convi-7280-add-warning-for-opera-rules-deactivated-in-module-view
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7583
+branch: xw/convi-7583-session-reporting-backend
 domain_owners:
   - Xuanyu Wang
 domain_scope: Scenario-based AI practice for agents — training content configuration (lessons/modules/scenarios), assignment as Director Tasks, Customer AI simulation runtime, Opera/LLM evaluation, and session-level reporting.
@@ -33,13 +33,25 @@ related_ticket_ids:
   - CONVI-7241
   - CONVI-7280
   - CONVI-7281
+  - CONVI-7582
+  - CONVI-7583
+  - CONVI-7584
+  - CONVI-7600
+  - CONVI-7601
 active_work_items:
   - CONVI-7280
   - CONVI-7281
+  - CONVI-7583
   - lesson-module-statistics-reporting
-related_prs: []
-current_objective: Review and sequence the backend-first, frontend-second implementation plan for lesson/module statistics reporting, including assignment snapshots, normalized conversation/quiz outcomes, and Director drawers.
-last_validated: 2026-08-13
+related_prs:
+  - https://github.com/cresta/cresta-proto/pull/9716
+  - https://github.com/cresta/cresta-proto/pull/9656
+  - https://github.com/cresta/cresta-proto/pull/9677
+  - https://github.com/cresta/cresta-proto/pull/9676
+  - https://github.com/cresta/go-servers/pull/31521
+  - https://github.com/cresta/director/pull/22107
+current_objective: Finish CONVI-7583 assignment-rooted session reporting and the two verified CONVI-7584 visible deltas (unique assigned agents with incomplete visible work and drawer attempt count); attempt_count is the only new protobuf datum, while request filters and row-level authorization remain absent from the backend draft.
+last_validated: 2026-08-31
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
@@ -57,6 +69,11 @@ artifacts:
     - deliverables/lesson-module-statistics-reporting.md
     - deliverables/lesson-module-statistics-eng-design.md
     - deliverables/lesson-module-statistics-fe-design.md
+    - deliverables/lesson-module-statistics-ticket-plan.md
+    - deliverables/milestone-1-session-reporting-review.md
+    - deliverables/convi-7583-backend-implementation-plan.md
+    - decisions/2026-08-28-dedicated-lesson-module-stats-apis.md
+    - deliverables/milestone-2-3-dedicated-stats-proto-prompts.md
     - sessions/2026-08-09/claude-training-simulator-domain-setup.md
     - work-items/CONVI-7280.md
     - sessions/2026-08-10/codex-convi-7280.md

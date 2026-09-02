@@ -1,12 +1,12 @@
 # CONVI-7378: Auto-scored scorecard changes not updating
 
-**Status:** complete (diagnosed)
+**Status:** follow-up diagnosed; customer response drafted
 **Primary domain:** analytics
 **Primary subdomain:** qa-score
 **Official ticket:** [CONVI-7378](https://linear.app/cresta/issue/CONVI-7378/auto-scored-scorecard-changes-not-updating)
 **Pattern:** [mixed-revision QA score semantics](../deliverables/mixed-revision-qa-score-semantics.md) — pinned-revision option-score inversion
 **Report:** [SCAN Consent to Call investigation](../deliverables/convi-7378-scan-consent-qa-score-investigation.md)
-**Last updated:** 2026-07-27
+**Last updated:** 2026-08-19
 
 ## Objective and Impact
 
@@ -49,6 +49,16 @@
 | Criterion | `019d4176-27ef-76e1-9836-9d2cabe674b5` (Consent to Call) |
 | Section | `019d4174-0ed4-7040-8c43-c6a57bdc439d` (Positive Contact / Communication Skills) |
 
+### Follow-up example
+
+| Field | Value |
+|---|---|
+| Conversation | `019ffc63-5239-7c1b-9f9d-ebaef898ec5d` |
+| Scorecard | `019ffc6d-4515-7c21-a9df-c383019e2ee2` |
+| Created | 2026-08-13 18:40:47 UTC |
+| Scorecard revision | `7290d017` (published 2026-08-04) |
+| Score | 95.8 overall; 83.3 Positive Contact section |
+
 ## Current Understanding
 
 The manual override **did update** stored data. Postgres and ClickHouse are aligned. The reported mismatch is explained by **mixed-revision QA score semantics**:
@@ -60,10 +70,21 @@ The manual override **did update** stored data. Postgres and ClickHouse are alig
 
 This is the same pattern family as [CONVI-7254](CONVI-7254.md) and [CONVI-7238](CONVI-7238.md). It is not a `scorecard-data-sync` defect.
 
+The 2026-08-17 follow-up exposed a revision regression that the original explanation did not cover:
+
+- The newer scorecard is pinned to `7290d017`, not the July `a88e3c94` revision.
+- `7290d017` reintroduced the inverted mapping: Consent Yes/value 0 -> 0 points and No/value 1 -> 1 point.
+- The latest observed revision, `b3facf54` from 2026-08-17, still has the inverted mapping.
+- The override persisted (`numeric_value=0`, `ai_value=1`, `manually_scored=true`) and PostgreSQL/ClickHouse agree.
+- Of 24 leaf criteria, Consent is the only one with `percentage_value=0`; `23 / 24 = 95.8%`. Its six-criterion section is `5 / 6 = 83.3%`.
+
+Therefore the follow-up conversation was created after the July correction, but on a later revision that regressed the scoring configuration. The issue remains template semantics rather than data propagation.
+
 ## Findings and Decisions
 
 - Reclassified from `scorecard-data-sync` after PG/CH alignment was confirmed. Sync-domain duplicate artifacts were removed; routing note retained in `scorecard-data-sync/log/2026-07-27.md`.
 - Linear ticket created and triaged to Done with label `scorecard-template-revision`.
+- Follow-up investigation corrected the earlier customer explanation: later revisions reintroduced the inverted Consent mapping.
 
 ## Blockers and Dependencies
 
@@ -78,12 +99,15 @@ This is the same pattern family as [CONVI-7254](CONVI-7254.md) and [CONVI-7238](
 
 ## Next Actions
 
-1. Share investigation deliverable with PM/managers for initiative planning.
-2. Confirm with template owner whether `a88e3c94` inversion was a configuration bug fixed in `eb3e8862`.
-3. Decide whether to fold into umbrella mixed-revision QA semantics initiative alongside CONVI-7238 and CONVI-7254.
+1. Send the drafted follow-up response after review.
+2. Ask the SCAN template owner to correct the active Consent mapping to Yes = 1 and No = 0.
+3. Decide how to remediate manually edited scorecards pinned to affected revisions; the existing AutoQM-only backfill does not cover them.
+4. Keep this case in the umbrella mixed-revision QA semantics initiative alongside CONVI-7238 and CONVI-7254.
 
 ## Timeline
 
 - 2026-07-26 — Jimmy Skelton reports on Slack.
 - 2026-07-27 — PG + CH investigation; sync ruled out; pattern named and reclassified to analytics.
 - 2026-07-27 — [CONVI-7378](https://linear.app/cresta/issue/CONVI-7378/auto-scored-scorecard-changes-not-updating) created and triaged to Done. Evidence: `sessions/2026-07-27/codex-convi-7378-scan-consent-qa-score.md`, `deliverables/convi-7378-scan-consent-qa-score-investigation.md`.
+- 2026-08-17 — Jimmy supplied newer conversation `019ffc63-5239-7c1b-9f9d-ebaef898ec5d`, challenging the old-revision-only explanation.
+- 2026-08-19 — Follow-up production validation found revision `7290d017` had reintroduced the inverted mapping; draft response recorded in `sessions/2026-08-19/codex-convi-7378-follow-up.md`.

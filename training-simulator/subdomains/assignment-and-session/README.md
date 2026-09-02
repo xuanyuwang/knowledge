@@ -2,14 +2,14 @@
 
 ## Purpose
 
-How training lessons become per-agent work: the DirectorTask-based assignment model, audience expansion, the per-attempt `TrainingSimulatorTaskRun`, session/task status, and the link into Coaching Plan.
+How training lessons become agent work: one DirectorTask-based assignment can target multiple explicit users, while each agent's session state is derived from that shared task plus their per-module `TrainingSimulatorTaskRun` attempts.
 
 ## Scope and Boundaries
 
 **In scope**
 
 - Director Task modeling for training (`DIRECTOR_TASK_TYPE_TRAINING_SIMULATOR`), audience/content/schedule configs
-- Bulk vs individual assignment flows; audience expansion to concrete agent IDs; coaching-plan validation
+- Single-agent and multi-agent assignment flows; explicit audience membership and mutation
 - `TrainingSimulatorTaskRun` (one conversation = one module attempt) linking conversation → task → lesson → module → scenario → agent, plus evaluation results
 - Session/task statuses and completion semantics (NOT_STARTED / IN_PROGRESS / PASSED / FAILED / OVERDUE)
 - Task listing/filters (by conversation, task, agent, module, lesson) and time-range filter (CONVI-7110)
@@ -27,11 +27,12 @@ How training lessons become per-agent work: the DirectorTask-based assignment mo
 
 ## Semantics and Invariants
 
-- **The DirectorTask is the session/assignment, not the lesson.** A **session** is a DirectorTask of type `DIRECTOR_TASK_TYPE_TRAINING_SIMULATOR`; its content config references the **lesson** (`training_lesson_names`), so one lesson can be referenced by many per-agent tasks. The lesson itself is content in `training_lessons`, never a task.
-- **Agents see and launch their assigned sessions from the Coaching Plan** (`coaching-workflow/agent-coaching/assigned-training-sessions/` "Assigned Training Sessions"; manager/coach surfaces in Training Simulator / Coaching Hub). The DirectorTask carries audience config (per-agent user resource names) + schedule config (`due_time`).
-- Bulk assignment expands groups/teams (and optional individuals) into per-agent tasks, validates coaching plans per agent, and stores coaching-plan context in task metadata. Multi-plan linking supported.
-- One agent execution of a lesson = session; each module attempt creates a `TrainingSimulatorTaskRun` (one conversation per run).
-- Trainees must pass all modules within a lesson in order (module ordering enforced).
+- **The DirectorTask is the shared assignment/supervisor session, not the lesson.** It has type `DIRECTOR_TASK_TYPE_TRAINING_SIMULATOR`, an explicit list of audience user names, lesson content config, and due time. The lesson remains reusable content.
+- **One DirectorTask can target multiple users.** An agent session is the `(task, agent)` projection joined with that agent's attempts; it is not a separate per-agent DirectorTask.
+- **Agents see and launch their assigned sessions from the agent Coaching surface** (`coaching-workflow/agent-coaching/assigned-training-sessions/`); manager/coach surfaces live in Training Simulator / Coaching Hub.
+- Current Director creates one lesson per task even though the proto field is repeated and backend contracts can round-trip multiple names; runtime reads the first lesson, so one lesson per assignment is the current product invariant.
+- Each agent/module attempt creates a `TrainingSimulatorTaskRun`; retries create additional runs under the same task/module/agent identity.
+- Director locks later modules behind the first not-yet-passed module; passed modules remain sticky/unlocked.
 - Agent completion: an agent is COMPLETE only when all required modules are completed; PASSED requires completing all required modules **and** all passed.
 - Training conversations (`conversation_source = TRAINING_SIMULATOR`) are excluded from agent progression/live analytics.
 
@@ -45,9 +46,11 @@ How training lessons become per-agent work: the DirectorTask-based assignment mo
 
 ## Operational Knowledge
 
-- Task runs are created for each attempt; stale runs without evaluation score must not skew stats (nil-score guard in `RetrieveTrainingSimulatorTaskStats`, CONVI-7146).
+- Task runs are created for each attempt; latest-attempt selection and nil-score guards prevent stale/unevaluated runs from skewing stats.
 - Status computation depends on lesson-required modules; changing lesson composition affects in-flight sessions.
-- Audience expansion happens at assignment time for groups/teams.
+- Training task audience is stored as explicit user names. Removing one user updates the shared task; removing the final user archives it.
+- Task persistence precedes best-effort notification delivery, so an assignment can exist even if notification creation fails.
+- The current stats handler omits an assignment when it has zero runs; agent UI compensates by joining task rows with optional stats, but aggregate reporting remains a correctness gap.
 
 ## Legacy Sources and Cases
 
@@ -56,5 +59,6 @@ How training lessons become per-agent work: the DirectorTask-based assignment mo
 
 ## Open Questions
 
-- Behavior of session/task status when a lesson's modules change after assignment (snapshot vs refetch).
-- Retry semantics across allowed-number-of-attempts at the task-run and session level.
+- Assignment-time lesson/module revision snapshots and the behavior of in-flight tasks after content edits (CONVI-7263).
+- Audience-history semantics for add/remove after attempts and historical reporting cohorts.
+- Server-side retry enforcement for `allowed_number_attempts` and its interaction with admin/overdue overrides.

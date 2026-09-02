@@ -1,5 +1,5 @@
 title: CONVI-7162 - Holiday Inn Manager Scorecards Completed Counts
-status: director-beta verified with flag; official Director release still uses scorecard_time
+status: fixed and verified in Holiday Inn production after global flag rollout
 primary_source_repo: go-servers
 primary_repo_path: /Users/xuanyu.wang/repos/go-servers
 active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7162
@@ -13,12 +13,14 @@ related_source_repos:
   - /Users/xuanyu.wang/repos/go-servers
   - /Users/xuanyu.wang/repos/cresta-proto
   - /Users/xuanyu.wang/repos/director
+  - /Users/xuanyu.wang/repos/config
 related_worktrees:
   - /Users/xuanyu.wang/repos/cresta-proto-convi-7162
   - /Users/xuanyu.wang/repos/go-servers-convi-7162
   - /Users/xuanyu.wang/repos/director-convi-7162
-current_objective: Release the verified director-beta guarded path to official Director, enable intended rollout config, and rerun the flag-on comparison.
-last_validated: 2026-08-10
+  - /Users/xuanyu.wang/repos/config-convi-7162-global-submit-time
+current_objective: Communicate that historical Leaderboard counts self-correct by submit time without a backfill, while distinguishing the conversation timestamp shown on detail rows.
+last_validated: 2026-08-24
 artifacts:
   readme: README.md
   log_dir: log/
@@ -28,4 +30,4 @@ artifacts:
     - deliverables/submit-time-exact-match-evidence.md
     - deliverables/coaching-hub-qm-report-submit-time-investigation.md
     - decisions/2026-07-30-manager-leaderboard-submit-time.md
-notes: Tinglin decided 2026-07-30 to restore Manager Leaderboard to scorecard submit time (pre–CONVI-6968 semantics). On 2026-08-10 director-beta with ?filterByScorecardSubmitTime=true matched ClickHouse submit time (8), but official /director/ with the same query flag still matched scorecard_time (6).
+notes: Tinglin decided 2026-07-30 to restore Manager Leaderboard to scorecard submit time (pre–CONVI-6968 semantics). The code is deployed and the global flag is enabled. On 2026-08-19, the official Holiday Inn production route returned 2 for Cliff Hawker on Aug 17 in both the Leaderboard and scorecard breakdown.

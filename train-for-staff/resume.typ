@@ -50,7 +50,7 @@
   details: [
     - Standardized user-filter semantics across 30+ analytics APIs and three independent implementations; identified five silent logic divergences (including union vs. intersection), and led full migration to a canonical path (12/29 → 29/29) using feature flags and shadow-mode validation (10,000+ queries, 0 mismatches).
     - Designed and rolled out ClickHouse external table strategy for large-scale filtering, eliminating massive `IN` clause expansion; evaluated 10 approaches, benchmarked performance (~4.8× improvement at scale), and deployed across 19+ production call sites.
-    - Diagnosed and resolved cross-system data inconsistencies between PostgreSQL and ClickHouse caused by async execution races and ORM full-struct overwrites; designed and shipped a multi-layer solution (atomic transactions, async re-read after commit, partial updates) validated via load testing and production verification.
+    - Diagnosed multi-customer PostgreSQL–ClickHouse inconsistencies caused by async stale-write and ORM lost-update races; shipped atomic, post-commit re-read and partial-update fixes, with zero score or submitter mismatches across 2,996 comparable production scorecards over 39 days.
     - Owned backend architecture and delivery for Group Calibration, including task CRUD, consistency scoring, analytics APIs, and notification workflows, enabling end-to-end QM calibration processes.
     - Delivered multiple high-impact backend features for enterprise customers, including Agent-on-Call (assignment flows, manager whisper, live assist annotations) and critical fixes across coaching and analytics systems.
   ],

@@ -21,4 +21,5 @@ artifacts:
     - deliverables/blog-and-resume-candidates.md
     - deliverables/from-scorecard-apis-to-business-workflows.md
     - deliverables/fy27-mid-year-self-review-draft.md
+    - deliverables/phone-screen-scorecard-pg-clickhouse.md
 notes: Legacy growth folder reopened under the shared project workflow; `staff-project.md` is the current human-facing project home.

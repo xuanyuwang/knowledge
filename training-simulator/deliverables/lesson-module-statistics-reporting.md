@@ -1,7 +1,11 @@
 # Training Simulator: Lesson & Module Level Statistics Reporting
 
+> **Decision update (2026-08-27):** Overall all-criteria-N/A is no longer a separate reporting bucket when persisted as zero/false; the listed timeout, all-N/A, and failed cases are failure-equivalent. Criterion-level N/A remains excluded from scoring. Any `not_applicable_count` examples below predate this decision and require rebaselining before implementation. See [the decision record](../decisions/2026-08-27-collapse-overall-zero-false-results.md).
+
+> **API decision (2026-08-28):** Lesson and module reporting use dedicated `RetrieveTrainingSimulatorLessonStats` and `RetrieveTrainingSimulatorModuleStats` batch RPCs. Earlier proposals to enrich the content-list APIs are superseded. See [the decision record](../decisions/2026-08-28-dedicated-lesson-module-stats-apis.md).
+
 **Created:** 2026-08-11
-**Updated:** 2026-08-13
+**Updated:** 2026-08-28
 **Domain:** `training-simulator` / subdomain `reporting`
 **Status:** Discovery / requirements synthesis (no implementation ticket yet)
 **Primary design:** [Figma — Training Simulator / Coaching Simulator, node 13108:21741](https://www.figma.com/design/B5tJUlNnKbbjVfxH44nqNl/Training-Simulator--Coaching-Simulator-?node-id=13108-21741)
@@ -448,7 +452,7 @@ Both requests should carry:
 
 - required `parent`
 - optional `time_range` (DirectorTask window overlap, matching current task-stats semantics)
-- existing `direct_team_only`, `user_names`, and `group_names`
+- `direct_team_only`, `user_names`, `virtual_group_names`, and `team_group_names`; Director preserves its existing group/team distinction so the backend does not need a group-type lookup before resolving membership
 - required `training_lesson_names` or `training_module_names`
 
 Require 1–100 content names per call. The existing paginated Lesson/Module list drives the current page, then requests stats for only those names; this avoids an unbounded stats response.
@@ -464,7 +468,8 @@ message RetrieveTrainingSimulatorLessonStatsRequest {
   repeated string training_lesson_names = 3;
   bool direct_team_only = 4;
   repeated string user_names = 5;
-  repeated string group_names = 6;
+  repeated string virtual_group_names = 6;
+  repeated string team_group_names = 7;
 }
 
 message RetrieveTrainingSimulatorLessonStatsResponse {
@@ -477,7 +482,8 @@ message RetrieveTrainingSimulatorModuleStatsRequest {
   repeated string training_module_names = 3;
   bool direct_team_only = 4;
   repeated string user_names = 5;
-  repeated string group_names = 6;
+  repeated string virtual_group_names = 6;
+  repeated string team_group_names = 7;
 }
 
 message RetrieveTrainingSimulatorModuleStatsResponse {

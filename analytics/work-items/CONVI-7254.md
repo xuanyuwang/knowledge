@@ -1,10 +1,10 @@
 # CONVI-7254: HCD monthly QA criterion aggregation
 
-**Status:** active
+**Status:** customer remediation complete; systemic aggregation semantics remain open
 **Primary domain:** `analytics`
 **Primary subdomain:** `qa-score`
 **Official ticket:** [CONVI-7254](https://linear.app/cresta/issue/CONVI-7254/home-care-delivered-performance-insights-monthly-view-shows-0percent)
-**Last updated:** 2026-07-27
+**Last updated:** 2026-08-27
 
 ## Objective and Impact
 
@@ -32,7 +32,7 @@
 
 ## Current Understanding
 
-Both reported symptoms are caused by cross-template-revision criterion weighting. In May, three failing weight-1 rows dominate 4,747 semantic-weight-zero rows and force "Asking for phone number" toward 0%. In February, one passing weight-1 row dominates 427 semantic-weight-zero rows and forces "How did you hear about HCD" toward 100%, even though only 94 of 428 scorecards passed. Exact generated-query reproductions match both API results. Frontend requests and rendering pass through the backend results without recomputing the headline from agent percentages. A fix has not yet been selected.
+Both reported symptoms were caused by cross-template-revision criterion weighting. HCD approved deletion of the four historical unit-weight outliers through CONVI-7533. After deletion, PostgreSQL and ClickHouse exact-ID checks are clean, the production formula returns 27.45% for May and 21.78% for February, and live Performance Insights renders the corrected cells as 27% and 22%. This completes the customer remediation; a general product fix for mixed-revision criterion aggregation has not been selected.
 
 ## Findings and Decisions
 
@@ -51,7 +51,7 @@ Both reported symptoms are caused by cross-template-revision criterion weighting
 
 ## Blockers and Dependencies
 
-- Need agreement on the intended criterion-grouped weighting semantics before implementing a code fix.
+- No blocker for the completed HCD remediation. A systemic fix still needs agreement on intended criterion-grouped weighting semantics.
 
 ## Validation and Rollout
 
@@ -59,14 +59,16 @@ Both reported symptoms are caused by cross-template-revision criterion weighting
 - Exact monthly and daily generated-query shapes executed against production and matched the reported API output.
 - Exact February per-agent query executed against production and matched the supplied 428-scorecard response and `averageQaScore=1`.
 - Temporary runtime instrumentation was removed after the exact SQL reproduction; the source worktree is clean.
+- CONVI-7533 deleted the four approved outliers after backup and verified zero matching rows in PostgreSQL and ClickHouse source/projection tables.
+- Post-delete production aggregation and live PI verification completed: May 27.45% / rendered 27%; February 21.78% / rendered 22%.
 
 ## Next Actions
 
-1. Confirm whether criterion-grouped results should average applicable criterion scores independently of template weight.
-2. Implement and test the agreed aggregation semantics.
-3. Re-run the exact monthly and daily production queries for validation.
+1. Track any general aggregation-semantics change separately from the completed HCD deletion remediation.
+2. If pursued, confirm whether criterion-grouped results should average applicable criterion scores independently of template weight, then implement and test that behavior.
 
 ## Timeline
 
 - 2026-07-24 — Reproduced the near-zero monthly math from production source rows and the exact generated SQL shape, isolated cross-revision criterion weights as the cause, and recovered the production weight-revision timeline. Evidence: `sessions/2026-07-24/codex-convi-7254-monthly-qa-score.md`.
 - 2026-07-27 — Traced the frontend cell/popover request and rendering paths and reproduced the February 100% result from production. Confirmed that one passing unit-weight row dominates 427 semantic-weight-zero rows. Evidence: `sessions/2026-07-27/codex-convi-7254-february-qa-score.md`.
+- 2026-08-27 — Completed the customer-approved four-scorecard deletion through CONVI-7533, verified PostgreSQL and ClickHouse cleanup, recomputed May at 27.45% and February at 21.78%, and confirmed the live PI cells render 27% and 22%.

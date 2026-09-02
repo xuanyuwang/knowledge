@@ -3,7 +3,7 @@
 > Migrated navigation: [Analytics / Conversation Volume](../analytics/subdomains/conversation-volume/README.md). This folder remains detailed historical evidence.
 
 **Created:** 2026-07-02
-**Updated:** 2026-08-10
+**Updated:** 2026-08-19
 
 ## Overview
 
@@ -30,7 +30,11 @@ Coaching Hub and QM Report (the ticket’s comparison UIs) already count by subm
 
 `deliverables/coaching-hub-qm-report-submit-time-investigation.md`
 
-The product changes are merged and deployed to `director-beta`. With `?filterByScorecardSubmitTime=true`, the beta Holiday Inn UI for Cliff Hawker on Aug 4–10 showed 2 scorecards on Aug 4, 5, 6, and 10 (8 total), exactly matching ClickHouse `scorecard_submit_time`. However, the official `/director/` route with the same flag query showed only 6 (Aug 5, 6, and 10), matching the old `scorecard_time` basis. The official customer-facing release does not yet honor the guarded fix. See `sessions/2026-08-10/codex-release-verification.md` and `sessions/2026-08-10/cursor-staging-release-investigation.md`.
+The product changes are in the official release: the Director `2026-08-13` tag and Aug 12 prod-main deployment contain frontend PR #21534, and deployed go-servers revisions contain backend PR #30635. Config PR [#151886](https://github.com/cresta/config/pull/151886) enabled `filterByScorecardSubmitTime` broadly in production while preserving Schwab and Comcast's separate release flows.
+
+Production verification passed on 2026-08-19. On the official `holidayinn-transfers-voice` `/director/` route, Cliff Hawker's Aug 17 Leaderboard cell now shows 2, and an Aug 17-only filter returns 2 in both the Leaderboard and the Ride Along Template breakdown. The exact customer-reported mismatch (Leaderboard 1 vs details 2) no longer reproduces. See `sessions/2026-08-19/codex-production-flag-retest.md`.
+
+The correction also applies to historical reporting periods without a backfill. The Leaderboard queries the existing historical rows using `scorecard_submit_time`, so reopening an affected range since the issue began recalculates the daily and weekly counts under the submission day. One UI nuance remains: an individual breakdown row can display the conversation timestamp even though the row is included and counted under its submission day. See `sessions/2026-08-24/codex-historical-correction-question.md`.
 
 ## Key Evidence
 
@@ -82,7 +86,7 @@ This explains why Monday and Tuesday showed only 1 each even though Cliff submit
 
 ## Status
 
-The guarded change is verified on `director-beta`, but the official `/director/` release still uses `scorecard_time` even when the URL flag override is present. The remaining steps are to update the official Director release, enable the intended rollout configuration, and rerun this comparison.
+The fix is deployed, globally enabled, and verified on the official Holiday Inn production route. The exact Cliff Hawker Aug 17 scenario now returns 2 in both the Manager Leaderboard and its scorecard breakdown.
 
 Chosen fix direction remains: keep the CONVI-6968 QA-backed Manager Leaderboard implementation, and add explicit submit-time filtering/grouping for Manager `Scorecards completed` aggregate and drawer.
 

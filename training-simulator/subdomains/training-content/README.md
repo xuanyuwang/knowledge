@@ -9,11 +9,11 @@ Training content configuration: how supervisors/training leads create and edit t
 **In scope**
 
 - `TrainingScenario`: customer situation backed by a Customer AI virtual agent (context, visitor objective, initial message, VA name + revision)
-- `TrainingModule`: ordered scenario pool + `EvaluationConfig` + optional quiz template reference
+- `TrainingModule`: exactly one content type—an ordered scenario pool plus `EvaluationConfig`, or one pinned quiz-template revision
 - `TrainingLesson`: ordered module composition + lesson focus criteria + use case + state (ACTIVE/ARCHIVED)
 - `EvaluationConfig` / `EvaluationCriterion`: criteria, weights, `passing_score`, `allowed_number_attempts`, `maximum_conversation_turns`, `auto_fail`
-- QuizTemplate (P1: versioned quiz, each save = new revision; stored JSONB; responses in `training.quiz_responses`)
-- Content lifecycle: create/update/archive; module/lesson edits are append-only versioned (CONVI-7047), contents editable at any time, in-use sessions use snapshot
+- QuizTemplate: versioned quiz content (each save = new revision), with question snapshots and outcomes in `director.quiz_scores` / `director.quiz_question_scores`
+- Content lifecycle: create/update/archive; scenario/module/lesson edits are append-only versioned; in-use sessions require assignment-time revision snapshots, but the current DirectorTask lesson-name contract leaves that as an active correctness gap (CONVI-7263)
 
 **Shared parent truth**
 
@@ -27,10 +27,11 @@ Training content configuration: how supervisors/training leads create and edit t
 
 ## Semantics and Invariants
 
-- The FE (`pickRandomScenario` in `simulation/lessonUtils.ts`) picks **one scenario at random** from the module's pool when the agent starts a module; the pool is not run as a set.
-- **Passing a module requires passing a single scenario attempt**: one attempt = one conversation with one randomly-chosen scenario (a `TrainingSimulatorTaskRun`), scored against the module's `EvaluationConfig`. A passing score (or all-applicable-criteria pass when no `passing_score` is set) passes the module. You do **not** need to pass every scenario in the pool; a failed attempt can be retried up to `allowed_number_attempts`, each retry picking a (possibly new) random scenario.
-- A module is the atomic training unit; a lesson is an ordered list of modules.
-- Scenarios map to VA configs: changing a scenario triggers `BatchCreateVirtualAgentRevision` to rematerialize VA revisions (multi-call batching for >N scenarios, CONVI-7049/CONVI-7010 handling >1 scenario flows).
+- A module carries exactly one content type: one-or-more scenarios or one quiz. The backend rejects both/neither; scenario modules require evaluation criteria in Director.
+- For a scenario module, the FE (`pickRandomScenario` in `simulation/lessonUtils.ts`) picks **one scenario at random** from the pool when the agent starts; the pool is not run as a set.
+- **Passing a scenario module requires passing a single scenario attempt**: one attempt = one conversation with one randomly-chosen scenario (a `TrainingSimulatorTaskRun`), scored against the module's `EvaluationConfig`. A passing score (or all-applicable-criteria pass when no `passing_score` is set) passes the module. You do **not** need to pass every scenario in the pool. `allowed_number_attempts` expresses the configured limit, but the current conversation pipeline treats enforcement as a future hook; each actual retry picks a possibly new random scenario.
+- A module is the atomic training unit; a lesson is an ordered list of existing modules.
+- Scenarios map to VA configs: changing a VA-affecting field or scenario state rematerializes VA revisions; unchanged VA inputs carry the prior revision forward (multi-call handling covers >1 scenario flows).
 - Training VAs are `SINGLE_PROMPT_SUB_VA` with purpose `training_simulator`; they must be excluded from general VA lists.
 - Evaluation criteria define both whether a criterion is met (`behavior_id` → moment) and its weight/auto_fail semantics.
 
@@ -40,7 +41,7 @@ Training content configuration: how supervisors/training leads create and edit t
 - **APIs:** `TrainingSimulatorService` — `BatchCreate/BatchUpdateTrainingScenarios`, `CreateTrainingModule`, `ListTrainingModules`, `UpdateTrainingModule`, `CreateTrainingLesson`, `ListTrainingLessons`, `UpdateTrainingLesson` (protos in `cresta-proto/cresta/v1/trainingsimulator/training_simulator_service.proto`; entity protos `training_lesson.proto`, `training_module.proto`, `training_scenario.proto`, `quiz_template.proto`)
 - **Backend/services:** `go-servers/apiserver/internal/trainingsimulator/` — `action_batch_create_training_scenarios.go`, `action_create_training_module.go`, `action_create_training_lesson.go`, `action_list_*.go`, `action_update_*.go`; `converter/` (goverter, `module.go` module factory)
 - **VA creation:** `apiserver/internal/trainingsimulator/action_batch_create_training_scenarios.go` → `batchCreateAIAgents` creates `SINGLE_PROMPT_SUB_VA` revisions; `go-servers/bot-server/internal/virtualagent/validate.go` allows training-simulator batches to skip base umbrella VA via `isTrainingSimulatorBatch`
-- **Storage/data sources:** `director.training_lessons` (training_module_ids, focus criteria), `director.training_modules` (evaluation JSONB, scenario refs, quiz fields), `director.training_scenarios`; quiz revisions/`training.quiz_responses`
+- **Storage/data sources:** append-only `director.training_lessons`, `director.training_modules`, and `director.training_scenarios`; `director.quiz_templates`/`quiz_questions`; attempt outcomes in `director.quiz_scores`/`quiz_question_scores`
 - **Configuration/flags:** `enableTrainingSimulator` (LA gating); role-based gating (admin / QA_ADMIN / supervisor) as interim, migrating to permission-based access (CONVI-7145)
 
 ## Operational Knowledge
@@ -56,5 +57,5 @@ Training content configuration: how supervisors/training leads create and edit t
 
 ## Open Questions
 
-- Quiz reward/impact on module score and interaction with conversation scoring (P1 partially defined in design).
+- Align quiz pass semantics and the module threshold across task-run creation, session stats, and future lesson/module reporting; question weight/auto-fail controls are not yet persisted by the current contract.
 - How/when training content is projected to analytics store for reporting scale (current JSONB arrays noted as tech debt; ClickHouse normalization contemplated).

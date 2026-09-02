@@ -8,11 +8,11 @@ How an agent starts a module attempt and converses with the simulated customer: 
 
 **In scope**
 
-- Customer AI simulator virtual agents (persona: context, visitor objective, initial message, model) vs normal AI-agent-as-agent
-- Voice-agent (python) `run_bot()`: VA load via `VirtualAgentService.GetVirtualAgentRevision`, Pipecat pipeline construction (LiveKit transport, VAD, STT, `CrestaVALLMService`, TTS, GoWalter)
-- Conversation creation in `app.chat` with `conversation_source = TRAINING_SIMULATOR` + training metadata (session/lesson/module/scenario/attempt)
+- Scenario-backed Customer AI virtual agents (context, visitor objective, initial message, model, voice, and turn-taking)
+- Shared Virtual Agent/LiveKit voice execution; the current local checkout does not include the `python-ai-services` runtime implementation, so its internals remain a dependency rather than revalidated fact here
+- Conversation creation in `app.chat` with `conversation_source = TRAINING_SIMULATOR` + call/lesson/module/scenario/trainee metadata
 - GoWalter speaker role mapping and the [AGENT, VISITOR] channel swap for training calls
-- Marking a call as training: `platform_params` and/or VA `kind`/conversation source branching
+- Marking a call as training through the four required training metadata keys and persisting the resulting conversation source
 
 **Shared parent truth**
 
@@ -28,26 +28,29 @@ How an agent starts a module attempt and converses with the simulated customer: 
 ## Semantics and Invariants
 
 - In training, **AI plays the customer**, human plays the agent (opposite of normal voice-agent calls).
-- FE requests a module attempt → picks a scenario from the module's pool → `{vaDomain}/livekit/join/room/{room}/{vaPath}`; `vaPath` encodes which Customer AI simulator to load.
-- The VA proto returned for a training scenario is effectively a `SINGLE_PROMPT_SUB_VA` (system prompt combining context/objective/behavior) plus model; optionally `CUSTOMER_AI_SIMULATOR` kind with `CustomerAIConfig`, `emotional_states`, function tools, pre/postprocessors.
-- Voice-agent builds the Pipecat pipeline from VA config and uses it for every turn (CrestaVALLMService), but **voice-agent does not assign speaker roles** — GoWalter does.
-- GoWalter maps participants [Agent(channel0/TTS), Visitor(channel1/STT)] to roles; for training, a flag in `customer_ai_config`/conversation metadata swaps channels so the "customer"/bot is visitor role and the trainee is agent role.
+- FE requests a module attempt, randomly selects one scenario from the module, and launches the scenario's umbrella VA pinned to `virtual_agent_revision_id`.
+- Each scenario currently compiles into an `UMBRELLA_VA` plus a `SINGLE_PROMPT_SUB_VA`; both use `AI_AGENT_APP_TRAINING_SIMULATOR`. The sub-VA prompt combines context/objective/shared guidelines and uses the initial visitor message as its welcome message.
+- Director passes a fresh platform call ID plus lesson/module/scenario IDs and the full trainee user name. `training_session_id` currently contains that call ID, not the DirectorTask name.
+- GoWalter classifies the conversation as training only when all four session/lesson/module/scenario metadata keys are present. It separately uses `training_agent_user_name` to assign the conversation to the human trainee.
+- GoWalter swaps speaker roles so channel 0 / AI customer is `VISITOR` and channel 1 / human trainee is `AGENT`, including diarized processing.
+- Director does not pre-create or close the conversation. It resolves GoWalter's conversation by platform call ID, subscribes to messages, and disconnects the call; GoWalter finalizes and closes the conversation server-side.
 
 ## Architecture and Source Map
 
-- **Frontend:** `director/.../features/training-simulator/simulation`, `training-conversation`; LiveKit join handled in FE; `useConversationDetails()` live polling
+- **Frontend:** `director/.../features/training-simulator/simulation`, `training-conversation`; LiveKit launch in FE, conversation polling by platform ID, then live message subscription
 - **Backend/services:**
-  - Voice-agent (python): `python-ai-services/voice-agent/src/processors/gowalter.py` (hardcodes participants [Agent, Visitor], sends text at L438-444)
-  - GoWalter (Go): `go-servers/voice-integration/gowalter/internal/voicesession/messagehandler.go` (channel→role mapping L350-357), conversation creation with training source/metadata
-  - Virtual-agent service: `VirtualAgentService.GetVirtualAgentRevision` for Customer AI VA load; batch VA revision creation from scenarios
-  - CrestaVALLMService for turn-by-turn LLM (model per scenario)
+  - Scenario materialization: `go-servers/apiserver/internal/trainingsimulator/action_batch_create_training_scenarios.go`, `action_batch_update_training_scenarios.go`, and `constants.go`
+  - GoWalter: `go-servers/voice-integration/gowalter/internal/voicesession/streamingvoicesession.go` and `utils.go` for source, ownership, role mapping, transcript finalization, and close
+  - Virtual Agent service: revisioned umbrella/sub-VA execution; the scenario persists the umbrella ID and revision ID
 - **APIs:** (runtime uses LiveKit/VA platform; no dedicated training RPC for starting a call)
-- **Configuration/flags:** VA `labels`/`app: TRAINING_SIMULATOR`, `purpose: training_simulator`, `conversation_source` enum `TRAINING_SIMULATOR = 13`
+- **Configuration/flags:** VA `app: AI_AGENT_APP_TRAINING_SIMULATOR`; `TRAINING_SIMULATOR_MAIN_MODEL`; training VAD flags; conversation source `TRAINING_SIMULATOR = 13`
 
 ## Operational Knowledge
 
-- Need to mark training calls distinctly (platform_params or branch on VA kind / conversation source) so they are not treated as live or agent-progression traffic.
-- Audio/transcripts flow to external providers (STT/TTS, LLM) — compliance/PII review per customer.
+- Training classification requires all four metadata keys; trainee ownership is a separate, fail-open metadata path.
+- `custom.call.simulated=true` currently causes GoWalter to skip PII redaction, so trainees must not use real customer data and the retention/data-handling policy must be explicit.
+- The pinned VA revision lives on the conversation, while the task run stores stable content names. Historical reconstruction requires joining both artifacts.
+- Audio/transcripts flow through STT/TTS/LLM infrastructure; runtime changes can alter evaluation inputs and per-attempt cost.
 - Hang-up handling and VAD settings for simulated customers were fixed during development (Flux VAD settings, hang up tool #29079).
 
 ## Legacy Sources and Cases
@@ -58,4 +61,6 @@ How an agent starts a module attempt and converses with the simulated customer: 
 ## Open Questions
 
 - Chat (non-voice) simulation flow parity with voice path.
-- Whether `CUSTOMER_AI_SIMULATOR` kind is used in production or only `SINGLE_PROMPT_SUB_VA`; design docs show both.
+- Repair/reconciliation for a valid training conversation whose task-run creation fails.
+- Explicit SLOs and cross-service correlation for launch, conversation resolution, close, and transcript finalization.
+- Whether VAD settings placed on the initial sub-VA are consumed consistently by the active voice runtime; the proto warns that initial-sub-VA settings may not be used.

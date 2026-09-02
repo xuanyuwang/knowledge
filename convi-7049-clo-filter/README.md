@@ -3,7 +3,7 @@
 > Migrated navigation: [Analytics / Insights User Filter](../analytics/subdomains/insights-user-filter/README.md). This folder remains detailed historical evidence.
 
 **Created:** 2026-06-17
-**Status:** CONVI-7383 staging and all approved prod Phase B backfills are complete; [CONVI-7460](https://linear.app/cresta/issue/CONVI-7460/rollout-phase-b-gha-apply-prod) is Done. NCLH's optimized path produced a directional 2.12–2.29× browser improvement. Ready-for-review config [#151643](https://github.com/cresta/config/pull/151643) aligns the customer-facing CLO flag with the MV flag across all 18 NCLH and six supported Holiday Inn voice use cases. Legacy Holiday Inn chat remains excluded; chat also has a known two-row cross-shard deduplication anomaly affecting Cresta chat-demo and Verizon wireless. ca-central/Comcast/Schwab and no-payload legacy DBs remain excluded.
+**Status:** CONVI-7383 staging and approved prod Phase B backfills are complete. NCLH's optimized path produced a directional 2.12–2.29× browser improvement. Production GA config [#152031](https://github.com/cresta/config/pull/152031), staging GA [#152040](https://github.com/cresta/config/pull/152040), and repair [#152115](https://github.com/cresta/config/pull/152115) merged. On 2026-08-23, the complete 354-customer eligible production state was replayed with persistence enabled; [workflow run 32655059116](https://github.com/cresta/config/actions/runs/32655059116) succeeded in every production region. Effective ConfigService/Admin read-back is still pending. The 117 Comcast/Schwab production maps remain intentional exclusions.
 **Ticket:** [CONVI-7049](https://linear.app/cresta/issue/CONVI-7049/support-clo-filter-in-performance-insights)
 
 ## Objective

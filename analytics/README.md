@@ -62,7 +62,8 @@ Work items, sessions, daily logs, and decisions remain at this parent domain. Fu
 Active investigations:
 
 - [Heartland Behavior Hints adherence mismatch](work-items/heartland-behavior-hints-adherence-mismatch.md) — action-grain `RetrieveHintStats` fix is in review in [go-servers #30782](https://github.com/cresta/go-servers/pull/30782); deployed behavior can produce 160.4%, while the action-deduplicated hint rate is 79.1%.
-- [CONVI-7254](work-items/CONVI-7254.md) — HCD monthly QA 0% / 100% discrepancies from cross-revision weight domination.
+- [CONVI-7254](work-items/CONVI-7254.md) — HCD customer remediation complete through CONVI-7533; the live monthly cells now render 27% for May and 22% for February. General mixed-revision aggregation semantics remain a broader product question.
+- [CONVI-7533](work-items/CONVI-7533.md) — Complete. Deleted all four customer-approved weight-1 outliers after full PostgreSQL backup; PostgreSQL and ClickHouse checks are clean. PI now renders May at 27% (27.45% chart point) and February at 22% (21.73% chart point), and the tracker is Done.
 - [CONVI-7238](work-items/CONVI-7238.md) — United Manager Leaderboard undercount from revision-derived N/A exclusion.
 - [CONVI-7378](work-items/CONVI-7378.md) — SCAN Consent to Call: PI 0% after manual override under pinned-revision inverted option mapping (diagnosed).
 - [CONVI-7384](work-items/CONVI-7384.md) — Coaching Hub weekly/monthly Performance and Scorecards-tab mismatch from different date boundaries and `scorecard_time` versus submit-time membership; instrumented confirmation pending.

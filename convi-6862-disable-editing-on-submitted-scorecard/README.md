@@ -3,7 +3,7 @@
 > Migrated navigation: [Scorecard Workflows / Permissions and Visibility](../scorecard-workflows/subdomains/permissions-and-visibility/README.md). This folder remains detailed ticket evidence.
 
 **Created:** 2026-05-19  
-**Updated:** 2026-08-10
+**Updated:** 2026-08-25
 
 ## Overview
 
@@ -52,6 +52,9 @@ Submit remains a first-submit action for unsubmitted scorecards.
 - **CONVI-7350:** Implemented on `go-servers-convi-7350`. `hasSubmittedScorecardEditPermission` now loads `LatestRevisionName` internally so update/reset enforcement matches proactive evaluation, while pinned revisions remain for scorecard content and scoring.
 - Director currently fails open after an `EvaluateScorecardsPermissions` query error because an undefined decision is not treated as denied.
 - **GA direction update (2026-08-10):** The earlier unconditional-runtime and flag-removal PRs were closed without merge. GA is proceeding through staged customer configuration rollouts. [config#151187](https://github.com/cresta/config/pull/151187) enables the flag for 44 supplied us-west-2 production profiles.
+- **RCG denial investigation (2026-08-25):** Canonical scorecard `019f386e-a934-7271-93ae-838feb4468be` is pinned to `019f1b3c-ee76-724c-9dd5-020f2f41955c@28a6df1c`. That template resource's latest revision is inactive and none of its revisions has submitted editors; similarly named active replacement templates do not affect authorization for this scorecard. Production `EvaluateScorecardsPermissions` returns `allowed: true` for both Quality Assurance 40 (`829fd45d23e3d691`) and Quality Assurance 44 (`83f68adf7584b433`), so their reported block is not reproduced by the backend permission gate.
+- **RCG frontend root cause (2026-08-25):** The canonical scorecard was acknowledged on Aug 3. Director's `ScorecardForm` has a legacy independent gate that disables acknowledged scorecards unless the frontend role includes `QA_ADMIN`; QM Specialist (`QA_SPECIALIST`) is therefore locked even when the submitted-scorecard permission API explicitly allows editing. This exact logic is deployed in production commit `06cf4817ec3214a6a7b238f217f1bb71e7c9f6dd`. It was intentionally introduced by CONVI-5098 / [director#13338](https://github.com/cresta/director/pull/13338) in August 2025; the newer submitted-editor integration added another lock path without reconciling this existing policy. Reset also has a separate creator/admin restriction.
+- **Lock explanation follow-up:** [CONVI-7598](https://linear.app/cresta/issue/CONVI-7598/explain-scorecard-lock-reasons) introduces typed lock reasons and consistent reason-specific warning/tooltip copy without changing authorization behavior. Implementation is in draft [director#22149](https://github.com/cresta/director/pull/22149).
 
 ## Status
 
@@ -84,6 +87,7 @@ Investigation and implementation touch:
 | 2026-07-22 | Diagnosed submitted-editor FE/BE disagreement as latest-versus-pinned template revision authorization, plus a Director permission-query fail-open edge. |
 | 2026-08-06 | Opened coordinated Director, go-servers, and config PRs to make submitted-scorecard restrictions unconditional and remove the retired flag. |
 | 2026-08-10 | Recorded closure of the flag-removal PRs and opened the us-west-2 staged config rollout for 44 profiles. |
+| 2026-08-25 | Correlated an RCG QA Specialist reset 403 with production permission logs and confirmed the requester was absent from the persisted submitted-editor user IDs; ruled out role and ACL filtering as the root cause. |
 
 ## Related Artifacts
 

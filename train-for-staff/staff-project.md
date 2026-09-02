@@ -186,8 +186,9 @@ The core solution — **atomic transaction + async re-read from DB + feature-fla
 | Architecture doc shared for design review | [Notion: Scorecard Async Database Updates](https://www.notion.so/cresta/Scorecard-Async-Database-Updates-2974a587b06180f595c3c14492a96104) |
 | Load testing tool (quantified failure rates) | `tools/test_async_order/main.go` |
 | Verification tool (PG vs CH comparison) | `tools/verify_sync/main.go` |
-| Production verification results (9,155 scorecards) | `README.md` → Production Verification |
+| Production verification results (9,155 inspected; 2,996 comparable) | `README.md` → Production Verification |
 | Blog writeup (staff perspective) | [`blog/2026-03-13-debugging-dual-database-sync.md`](../blog/2026-03-13-debugging-dual-database-sync.md) |
+| Phone interview narrative and claims ledger | [`deliverables/phone-screen-scorecard-pg-clickhouse.md`](deliverables/phone-screen-scorecard-pg-clickhouse.md) |
 
 ### Key insights (from blog writeup)
 

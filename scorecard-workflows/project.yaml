@@ -20,11 +20,12 @@ subdomains:
   - appeals
   - group-calibration
   - process-scorecards-and-generation
-related_ticket_ids: []
+related_ticket_ids:
+  - CONVI-7533
 active_work_items: []
 related_prs: []
 current_objective: Maintain exact workflow semantics and advance a product direction for preventing scorecard template configuration mistakes and safely remediating affected scorecards.
-last_validated: 2026-07-28
+last_validated: 2026-08-27
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
