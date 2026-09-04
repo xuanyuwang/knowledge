@@ -6,8 +6,8 @@ active_worktree_path: /Users/xuanyu.wang/repos/knowledge
 branch: main
 related_ticket_ids: []
 related_prs: []
-current_objective: Convert project work into staff-level narratives, including the FY27 mid-year self-review, blog candidates, and resume-ready impact bullets.
-last_validated: 2026-08-14
+current_objective: Maintain an evidence-backed career position, strengthen complementary interview stories, and convert domain work into Staff-calibrated performance and resume narratives.
+last_validated: 2026-09-02
 artifacts:
   readme: staff-project.md
   log_dir: log/
@@ -15,6 +15,7 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
+    - CAREER_POSITION.md
     - senior-to-staff.md
     - staff-project.md
     - resume-snippets.md
@@ -22,4 +23,5 @@ artifacts:
     - deliverables/from-scorecard-apis-to-business-workflows.md
     - deliverables/fy27-mid-year-self-review-draft.md
     - deliverables/phone-screen-scorecard-pg-clickhouse.md
+    - deliverables/workstream-2-recurring-strengths.md
 notes: Legacy growth folder reopened under the shared project workflow; `staff-project.md` is the current human-facing project home.
