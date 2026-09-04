@@ -66,6 +66,11 @@ This file defines the method and direction. It should not duplicate detailed evi
 | Current Senior-to-Staff assessment framework | `senior-to-staff.md` |
 | Staff-calibrated project portfolio | `staff-project.md` |
 | Recurring-strength evidence synthesis | `deliverables/workstream-2-recurring-strengths.md` |
+| Current seniority calibration | `deliverables/workstream-3-seniority-calibration.md` |
+| Current career hypotheses | `deliverables/workstream-4-career-hypotheses.md` |
+| Current next-role fit criteria | `deliverables/workstream-5-next-role-fit.md` |
+| Current resume and interview projection | `deliverables/workstream-6-resume-and-interview-projection.md` |
+| Current career-work state and next actions | `work-items/career-positioning.md` |
 | Resume bullet bank | `resume-snippets.md` |
 | Current resume | `resume.typ` and `resume.pdf` |
 | Interview stories and claims ledgers | `deliverables/` |
@@ -90,7 +95,11 @@ The work is not at the beginning of a six-phase sequence.
 ### Foundation completed
 
 - A substantial evidence inventory exists across domain artifacts, legacy project records, Staff project narratives, and weekly summaries.
-- Several recurring strengths and Senior-to-Staff gaps have been synthesized.
+- Workstream 2 has a first evidence-backed recurring-strength synthesis.
+- Workstream 3 has a first seniority calibration: established high-performing Senior, with repeated Staff-like behavior inside bounded technical domains and incomplete evidence of organization-scale Staff impact.
+- Workstream 4 has three testable career hypotheses and a provisional working position centered on product infrastructure, anchored by the strongest data-correctness evidence.
+- Workstream 5 has a role-fit scorecard and interview questions for evaluating mandate, production ownership, leverage, growth scope, team interfaces, and sustainability.
+- Workstream 6 has a product-infrastructure-targeted resume and a six-story interview portfolio with explicit claim boundaries and evidence-recovery needs.
 - Initial career and Staff-level positioning hypotheses exist.
 - A working resume and resume bullet bank exist.
 - Published technical writing demonstrates several strong projects.
@@ -185,6 +194,8 @@ One exceptional project may be a strong story without defining my overall engine
 
 ## Workstream 3: Calibrate seniority
 
+Current output: [`deliverables/workstream-3-seniority-calibration.md`](deliverables/workstream-3-seniority-calibration.md). Revisit it when new evidence changes demonstrated scope, influence, leverage, time horizon, or business impact; do not rerun it merely because another technically difficult project is completed.
+
 Do not infer level primarily from years of experience or technical difficulty. Evaluate the evidence across these dimensions:
 
 - **Problem scope:** defined task, feature, ambiguous system problem, cross-cutting problem, or organizational problem.
@@ -204,6 +215,8 @@ Produce a nuanced assessment rather than a binary Senior-or-Staff label:
 
 ## Workstream 4: Refine the career hypothesis
 
+Current output: [`deliverables/workstream-4-career-hypotheses.md`](deliverables/workstream-4-career-hypotheses.md). It maintains distinct correctness/reliability, product-infrastructure, and product-systems hypotheses; the product-infrastructure version is the first working position to test, not a permanent selection.
+
 Maintain two to four genuinely different candidate descriptions when the evidence permits. A candidate might emphasize, for example:
 
 - cross-system backend diagnosis and reliability;
@@ -222,6 +235,8 @@ Do not select one merely because it sounds senior. For each candidate, assess:
 The current hypothesis may change. Treat interviews, recruiter conversations, job descriptions, and experience in new projects as feedback rather than as a one-time verdict on identity.
 
 ## Workstream 5: Define the next-role fit
+
+Current output: [`deliverables/workstream-5-next-role-fit.md`](deliverables/workstream-5-next-role-fit.md). Use its hard requirements and weighted opportunity scorecard against real roles; update the criteria when interviews or representative work reveal false positives or changed preferences.
 
 The career model must answer both:
 
@@ -270,6 +285,8 @@ Evaluate:
 Separate evidence-based preferences from hypotheses that still need real-world testing.
 
 ## Workstream 6: Derive resumes and interview narratives
+
+Current output: [`deliverables/workstream-6-resume-and-interview-projection.md`](deliverables/workstream-6-resume-and-interview-projection.md), with a targeted resume at [`deliverables/resume-product-infrastructure.typ`](deliverables/resume-product-infrastructure.typ) and [`deliverables/resume-product-infrastructure.pdf`](deliverables/resume-product-infrastructure.pdf). Tailor from this projection only after a real role passes the Workstream 5 fit screen.
 
 Construct or tailor the resume only from a reasonably stable career hypothesis and verified evidence bank.
 

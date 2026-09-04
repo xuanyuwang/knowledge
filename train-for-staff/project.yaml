@@ -7,7 +7,7 @@ branch: main
 related_ticket_ids: []
 related_prs: []
 current_objective: Maintain an evidence-backed career position, strengthen complementary interview stories, and convert domain work into Staff-calibrated performance and resume narratives.
-last_validated: 2026-09-02
+last_validated: 2026-09-03
 artifacts:
   readme: staff-project.md
   log_dir: log/
@@ -24,4 +24,11 @@ artifacts:
     - deliverables/fy27-mid-year-self-review-draft.md
     - deliverables/phone-screen-scorecard-pg-clickhouse.md
     - deliverables/workstream-2-recurring-strengths.md
+    - deliverables/workstream-3-seniority-calibration.md
+    - deliverables/workstream-4-career-hypotheses.md
+    - deliverables/workstream-5-next-role-fit.md
+    - deliverables/workstream-6-resume-and-interview-projection.md
+    - deliverables/resume-product-infrastructure.typ
+    - deliverables/resume-product-infrastructure.pdf
+    - work-items/career-positioning.md
 notes: Legacy growth folder reopened under the shared project workflow; `staff-project.md` is the current human-facing project home.
