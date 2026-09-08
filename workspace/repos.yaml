@@ -162,36 +162,6 @@ named_worktrees:
     branch: xw/convi-7583-session-stats-contract
     purpose: Add the per-agent session attempt count to the Training Simulator task statistics contract.
 
-  - name: cresta-proto-convi-7582
-    source_repo: cresta-proto
-    path: /Users/xuanyu.wang/repos/cresta-proto-convi-7582
-    branch: convi-7582-persist-evaluation-result-contract
-    purpose: Add presence-aware Training Simulator evaluation status and overall N/A fields to the task-run contract.
-
-  - name: go-servers-convi-7582
-    source_repo: go-servers
-    path: /Users/xuanyu.wang/repos/go-servers-convi-7582
-    branch: convi-7582-persist-evaluation-result
-    purpose: Persist Training Simulator evaluation status and overall N/A atomically with conversation score results.
-
-  - name: director-convi-7582
-    source_repo: director
-    path: /Users/xuanyu.wang/repos/director-convi-7582
-    branch: convi-7582-send-evaluation-result-state
-    purpose: Send evaluator status and overall N/A when Director persists completed or timeout snapshots.
-
-  - name: go-servers-convi-7379
-    source_repo: go-servers
-    path: /Users/xuanyu.wang/repos/go-servers-convi-7379
-    branch: convi-7379-focus-criteria-display-names-be
-    purpose: Resolve coaching focus-criterion display names from historical scorecard-template revisions without changing revision-independent persistence.
-
-  - name: director-convi-7379
-    source_repo: director
-    path: /Users/xuanyu.wang/repos/director-convi-7379
-    branch: xw/convi-7379-focus-criteria-display-names-fe
-    purpose: Consume backend-populated coaching focus-criterion display names across plan and session UI surfaces.
-
   - name: go-servers-convi-6494
     source_repo: go-servers
     path: /Users/xuanyu.wang/repos/go-servers-convi-6494
@@ -234,12 +204,6 @@ named_worktrees:
     branch: convi-7280-add-warning-for-opera-rules-deactivated-in-module-view
     purpose: Add Training Simulator module and criterion warnings for deactivated Opera behaviors (CONVI-7280).
 
-  - name: go-servers-convi-7383
-    source_repo: go-servers
-    path: /Users/xuanyu.wang/repos/go-servers-convi-7383
-    branch: convi-7383-clo-mv-flag
-    purpose: Wire Insights CLO MV config flag into QA ClickHouse query routing (CONVI-7383).
-
   - name: go-servers-convi-7384
     source_repo: go-servers
     path: /Users/xuanyu.wang/repos/go-servers-convi-7384
@@ -258,17 +222,11 @@ named_worktrees:
     branch: convi-7162-scorecard-time-basis
     purpose: Add ScorecardTimeBasis for Manager Leaderboard submit-time filtering (CONVI-7162).
 
-  - name: go-servers-convi-7162
+  - name: go-servers-convi-7638
     source_repo: go-servers
-    path: /Users/xuanyu.wang/repos/go-servers-convi-7162
-    branch: convi-7162-holiday-inn-club-vacations-manager-leaderboard-scorecards
-    purpose: Wire QA ClickHouse path to scorecard_submit_time when ScorecardTimeBasis=SUBMIT_TIME (CONVI-7162).
-
-  - name: director-convi-7162
-    source_repo: director
-    path: /Users/xuanyu.wang/repos/director-convi-7162
-    branch: convi-7162-manager-scorecards-submit-time
-    purpose: Set ScorecardTimeBasis=SUBMIT_TIME on Manager Leaderboard stats and drawer only (CONVI-7162).
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7638
+    branch: convi-7638-modules-in-lesson-scope
+    purpose: Honor training_lesson_names scope in RetrieveTrainingSimulatorModuleStats (CONVI-7638).
 
   - name: cresta-proto-milestone-2
     source_repo: cresta-proto

@@ -1,10 +1,10 @@
 # CONVI-7584: Focused Director session-reporting updates
 
-**Status:** backlog; scope reverified
+**Status:** draft PR open; branch review identified two follow-ups; Linear status remains authoritative
 **Primary domain:** `training-simulator`
 **Primary subdomain:** `reporting`
 **Official ticket:** [CONVI-7584](https://linear.app/cresta/issue/CONVI-7584/complete-the-focused-director-updates-for-training-simulator-session)
-**Last updated:** 2026-08-31
+**Last updated:** 2026-09-02
 
 ## Objective and Impact
 
@@ -27,7 +27,7 @@
 - Display authoritative `AgentPerformanceEntry.attempt_count` in each session-drawer agent row.
 - Preserve existing backend-derived Passed/Failed/Incomplete plus score presentation; do not add a second “per-agent pass rate” unless Product separately defines a historical-attempt metric and denominator.
 - Preserve unavailable rendering, View routing, and the defensive assignment join during backend rollout.
-- Rename the internal `completedAt` field to latest-activity semantics when touching the row because incomplete retries can also supply the timestamp.
+- Rename the internal `completedAt` field to `latestAttemptAt` because incomplete retries can also supply the latest-attempt timestamp.
 - Add focused state, accessibility, loading, and error tests for the two visible additions.
 
 ## Non-goals
@@ -40,7 +40,20 @@
 
 ## Dependencies
 
-- Blocked by [CONVI-7583](https://linear.app/cresta/issue/CONVI-7583/complete-the-training-simulator-session-reporting-backend).
+- [CONVI-7583](https://linear.app/cresta/issue/CONVI-7583/complete-the-training-simulator-session-reporting-backend) and the `attempt_count` contract are merged. Linear still retains the stale blocker relation and Backlog status.
+
+## Implementation
+
+- Director worktree: `/Users/xuanyu.wang/repos/director-convi-7584`
+- Branch: `convi-7584-session-reporting-fe`
+- Commit after squash: `a84fb080df` (`[CONVI-7584] Complete session reporting frontend`)
+- Draft PR: [director#22413](https://github.com/cresta/director/pull/22413)
+- The dashboard now reports unique incomplete and overdue agents, matching Figma's two-pill Assigned agents card.
+- The session drawer maps protobuf `int64` `attempt_count` from its generated string representation into a numeric view-model field and renders localized attempt text, including zero.
+- `AgentResult.completedAt` was renamed to `latestAttemptAt`.
+- `@cresta/web-client` was upgraded from `2.22.5` to `2.22.13`.
+- Validation: 40 focused tests pass; Director app TypeScript check passes; pre-commit i18n, lint, i18next lint, and formatting hooks pass.
+- Branch review: CodeRabbit reported zero findings. Manual review found no blocker in the changed logic, but loading badges can flash zero values and stats-query errors currently fall through to zero-attempt incomplete rows; decide whether to address these inherited states before PR.
 
 ## Release Gates
 
@@ -55,3 +68,9 @@
 - 2026-08-31 — Rebased the recorded frontend gap on the accepted 2026-08-27 result-state decision: distinct overall all-N/A presentation and legacy missing-status warnings are no longer required solely to distinguish the collapsed zero/false cases. No local CONVI-7584 implementation worktree or branch is present; Linear remains authoritative for official status.
 - 2026-08-31 — Reverified current Director and Figma. The remaining visible data additions are the filtered-set incomplete count and drawer attempt count. Per-agent Passed/Failed/Incomplete plus score and unavailable aggregate rendering already exist. Only attempt count requires new backend response data; the incomplete count is derivable in Director.
 - 2026-08-31 — Replaced the Linear description with the verified two-delta scope, explicit incomplete-count grain decision, response derivability, non-goals, and acceptance criteria. Linear status remains Backlog and blocked by CONVI-7583.
+- 2026-09-02 — Reverified GitHub Director main after the backend merge. `SessionsDashboard` still shows assigned/completed/overdue rather than incomplete, while `AgentResult` and the review drawer do not carry or render backend `attempt_count`. These remain the two visible Milestone 1 implementation gaps.
+- 2026-09-02 — Created `/Users/xuanyu.wang/repos/director-convi-7584` from current `origin/main`, implemented both visible gaps, renamed latest-attempt semantics, upgraded the generated client, added focused aggregation/mapping/drawer coverage, and committed locally.
+- 2026-09-02 — Reviewed the local branch with CodeRabbit and an interactive canvas. Automated review found no issues; manual review recorded the loading-badge flash and stats-error fallback as two non-core follow-ups.
+- 2026-09-02 — Renamed `latestActivityAt` to the more precise `latestAttemptAt`, revalidated 40 focused tests/typecheck/lint, and rebased both local commits onto the latest `origin/main`.
+- 2026-09-02 — Squashed the two unpushed implementation commits into `a84fb080df`; the branch is one commit ahead of `origin/main`.
+- 2026-09-02 — Pushed the branch and opened draft [director#22413](https://github.com/cresta/director/pull/22413).

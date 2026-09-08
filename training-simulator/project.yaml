@@ -7,8 +7,8 @@ related_source_repos:
   - director
   - cresta-proto
   - python-ai-services
-active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7583
-branch: xw/convi-7583-session-reporting-backend
+active_worktree_path: /Users/xuanyu.wang/repos/director-convi-7584
+branch: convi-7584-session-reporting-fe
 domain_owners:
   - Xuanyu Wang
 domain_scope: Scenario-based AI practice for agents — training content configuration (lessons/modules/scenarios), assignment as Director Tasks, Customer AI simulation runtime, Opera/LLM evaluation, and session-level reporting.
@@ -38,20 +38,25 @@ related_ticket_ids:
   - CONVI-7584
   - CONVI-7600
   - CONVI-7601
+  - CONVI-7638
 active_work_items:
   - CONVI-7280
   - CONVI-7281
-  - CONVI-7583
+  - CONVI-7584
+  - CONVI-7638
   - lesson-module-statistics-reporting
 related_prs:
+  - https://github.com/cresta/cresta-proto/pull/9769
+  - https://github.com/cresta/director/pull/22413
   - https://github.com/cresta/cresta-proto/pull/9716
   - https://github.com/cresta/cresta-proto/pull/9656
   - https://github.com/cresta/cresta-proto/pull/9677
   - https://github.com/cresta/cresta-proto/pull/9676
   - https://github.com/cresta/go-servers/pull/31521
+  - https://github.com/cresta/go-servers/pull/32039
   - https://github.com/cresta/director/pull/22107
-current_objective: Finish CONVI-7583 assignment-rooted session reporting and the two verified CONVI-7584 visible deltas (unique assigned agents with incomplete visible work and drawer attempt count); attempt_count is the only new protobuf datum, while request filters and row-level authorization remain absent from the backend draft.
-last_validated: 2026-08-31
+current_objective: Review and validate draft Director PR 22413 for filtered unique-agent incomplete counts and per-agent session attempt counts; Milestone 1 backend and contract changes are merged.
+last_validated: 2026-09-04
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/

@@ -1,10 +1,10 @@
 # CONVI-7583: Complete the session-reporting backend
 
-**Technical status:** In Progress in Linear; backend PR open with two minor review findings
+**Technical status:** Backend and contract merged; Linear still shows In Progress
 **Primary domain:** `training-simulator`
 **Primary subdomain:** `reporting`
 **Official ticket:** [CONVI-7583](https://linear.app/cresta/issue/CONVI-7583/complete-the-training-simulator-session-reporting-backend)
-**Last updated:** 2026-09-01
+**Last updated:** 2026-09-02
 
 ## Objective and Impact
 
@@ -34,10 +34,10 @@
 - Preserve existing settled-result detection: conversation score presence and quiz submission presence. Missing pass semantics remain false rather than making the run incomplete.
 - Plan: [CONVI-7583 backend implementation plan](../deliverables/convi-7583-backend-implementation-plan.md).
 - Contract PR: [cresta-proto#9716](https://github.com/cresta/cresta-proto/pull/9716), commit `7d425251e5`.
-- Contract PR status at the latest verification: open, mergeable, and green.
+- Contract PR merged on 2026-08-31 as `4c8bc07d0fe6d4f0b53d4733e5ee7f11769653bd`.
 - Follow-up: correct the published field comment, which currently narrows attempts to required modules.
-- Backend PR: [go-servers#31780](https://github.com/cresta/go-servers/pull/31780), latest commit `286c64633e`, from `/Users/xuanyu.wang/repos/go-servers-convi-7583` on `xw/convi-7583-session-reporting-backend`. It uses main's cresta-proto v2.21.28. Request user/group fields select matching tasks through `ListDirectorTasks`; every matched task is aggregated over its full stored audience. Current Director callers do not require `direct_team_only`; row-level ACL and agent self-scope remain separate work. Go and Bazel package tests, Gazelle, vet, formatting, and diff checks pass. Repository lint is blocked by the local golangci-lint binary's Go 1.24 build version versus the repository's Go 1.25 target.
-- Interactive review artifact: `/Users/xuanyu.wang/repos/pr-31780-training-simulator-review.html`. The review confirmed one functional edge case: a zero-run task filtered to a non-first configured lesson can report metadata for the first lesson, plus one misleading-comment issue in the equal-time tie-break test. At review time the PR was one commit behind `main`.
+- Backend PR: [go-servers#31780](https://github.com/cresta/go-servers/pull/31780), merged on 2026-09-02 as `f3766193554678e2795319a381963e45f46e55e6`. Request user/group fields select matching tasks through `ListDirectorTasks`; every matched task is aggregated over its full stored audience.
+- Interactive review artifact: `/Users/xuanyu.wang/repos/pr-31780-training-simulator-review.html`. Its two findings have been addressed locally: the misleading test comments were reverted and zero-run tasks now select a configured lesson matching the request before falling back to the first configured lesson. The artifact predates the lesson fix and needs regeneration after the local changes are finalized.
 
 ## Current Behavior to Preserve
 
@@ -56,7 +56,6 @@
 - Enforce self-only scope for agent-only callers and manageable-user scope for managers rather than trusting request filters; administrators retain their authorized customer/profile scope.
 - Reconcile representative staging cases, including zero-run assignees, retries, quiz-containing sessions, and the old 1,000-run boundary.
 - Validate explicit safety bounds, authorization failures, query-stage counts/latency telemetry, and deterministic latest-attempt tie breaking.
-- Fix the zero-run requested-lesson fallback and its regression coverage; correct the multiple-attempt test comments before merge.
 
 ## Evidence
 
@@ -80,3 +79,5 @@
 - 2026-08-31 — Rebuilt the go-servers draft after revalidation: retained existing explicit user/group filtering and audience intersection, made assignments the aggregation root, added bounded direct reads and batched outcome enrichment, counted attempts before deterministic latest selection, and added zero-run plus newer-incomplete-retry tests. `gofmt` and `git diff --check` pass; compilation succeeds when the pending `AttemptCount` references are temporarily excluded. The final branch now fails only on the unpublished generated field, while DB suite execution remains blocked in local PostgreSQL setup.
 - 2026-08-31 — Upgraded go-servers to cresta-proto v2.21.27 and polished the implementation for review. Added filter-forwarding/intersection, deterministic tie-break, stale-module, mixed attempt-count, and 1,001-attempt coverage. `mage cleanBuild`, full Go package tests, Bazel package tests, Gazelle, vet, formatting, and diff checks pass. No commit was created.
 - 2026-09-01 — Generated an interactive review page for [go-servers#31780](https://github.com/cresta/go-servers/pull/31780). Verified the assignment-rooted/full-audience design and identified two minor follow-ups: select the requested configured lesson for filtered zero-run tasks, and correct copied comments in the equal-time tie-break test. The artifact's 30 diff-hunk anchors and 15 cross-links passed static validation.
+- 2026-09-02 — Fixed the remaining zero-run lesson-selection finding by passing the request lesson filter into aggregation and selecting a matching configured lesson before the existing first-lesson fallback. Extended the zero-run regression test to request the task's second configured lesson; the focused stats suite, formatting, and diff checks pass. Changes remain uncommitted.
+- 2026-09-02 — [go-servers#31780](https://github.com/cresta/go-servers/pull/31780) merged as `f37661935546`; the supporting contract PR had already merged. CONVI-7584 is technically unblocked, although Linear still shows CONVI-7583 In Progress and retains the blocker relation.
