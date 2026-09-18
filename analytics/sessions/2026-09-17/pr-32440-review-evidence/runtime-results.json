@@ -1,0 +1,4930 @@
+[
+  {
+    "case": "BoolFalse_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 300
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 300
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 220
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 220,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 220
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 220,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endfalse_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 340
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 340
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endfalse_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 340
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 340
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endfalse_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endfalse_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 390
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 390
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 390
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 390
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 220
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 220,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 220
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 220,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endtrue_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 430
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 430
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endtrue_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 430
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 430
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endtrue_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolFalse_Endtrue_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 670
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 670
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 670
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 670
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 370
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 370,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 370
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 370,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endfalse_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 700
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 700
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endfalse_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 700
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 700
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endfalse_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endfalse_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 660
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 660
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 660
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 660
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endtrue_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 690
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 690
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endtrue_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 690
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 690
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endtrue_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 290
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 290,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "BoolTrue_Endtrue_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 290
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 290,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endfalse_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endfalse_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endfalse_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endfalse_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endtrue_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endtrue_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endtrue_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "EmptyString_Endtrue_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 4,
+        "user_count": 2,
+        "aht_sec": 240
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 2,
+        "aht_sec": 240
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 4,
+        "user_count": 2,
+        "aht_sec": 240
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 2,
+        "aht_sec": 240
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endfalse_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 280
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 280
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endfalse_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 280
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 280
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endfalse_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endfalse_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 330
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 330
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 330
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 330
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endtrue_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 370
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 370
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endtrue_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 370
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 370
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endtrue_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "ExclusiveInclusive_Endtrue_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 170,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 480
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 480
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 480
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 480
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 320
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 320,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 320
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 320,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endfalse_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 510
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 510
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endfalse_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 510
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 510
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endfalse_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 350
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 350,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endfalse_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 350
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 350,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 160,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 470
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 470
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 470
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 470
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 210
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 260
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 210,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 210
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 260
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 210,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endtrue_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 500
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 500
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endtrue_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 500
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 500
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endtrue_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 240
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 260
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 240,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "IncludeOnly_Endtrue_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 240
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 260
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 240,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MissingOnly_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 2,
+        "user_count": 2,
+        "aht_sec": 190
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 2,
+        "aht_sec": 190
+      }
+    ]
+  },
+  {
+    "case": "MissingOnly_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 140
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 140,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MissingOnly_Endfalse_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 2,
+        "user_count": 2,
+        "aht_sec": 190
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 2,
+        "aht_sec": 190
+      }
+    ]
+  },
+  {
+    "case": "MissingOnly_Endfalse_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 140
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 140,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MissingOnly_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 2,
+        "user_count": 2,
+        "aht_sec": 190
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 2,
+        "aht_sec": 190
+      }
+    ]
+  },
+  {
+    "case": "MissingOnly_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 140
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 140,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MissingOnly_Endtrue_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 2,
+        "user_count": 2,
+        "aht_sec": 190
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 2,
+        "aht_sec": 190
+      }
+    ]
+  },
+  {
+    "case": "MissingOnly_Endtrue_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 140
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 140,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MixedGroups_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 370
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 370
+      }
+    ]
+  },
+  {
+    "case": "MixedGroups_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 190
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 180
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 190,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 180,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MixedGroups_Endfalse_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 400
+      }
+    ]
+  },
+  {
+    "case": "MixedGroups_Endfalse_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 220
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 180
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 220,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 180,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MixedGroups_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 360
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 2,
+        "aht_sec": 360
+      }
+    ]
+  },
+  {
+    "case": "MixedGroups_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 280
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 80,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 280,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MixedGroups_Endtrue_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 390
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 2,
+        "aht_sec": 390
+      }
+    ]
+  },
+  {
+    "case": "MixedGroups_Endtrue_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 110
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 280
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 110,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 280,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 10,
+        "user_count": 2,
+        "aht_sec": 720
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 10,
+        "user_count": 2,
+        "aht_sec": 720
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 10,
+        "user_count": 2,
+        "aht_sec": 720
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 10,
+        "user_count": 2,
+        "aht_sec": 720
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 320
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 320,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 320
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 320,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endfalse_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 10,
+        "user_count": 2,
+        "aht_sec": 720
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 10,
+        "user_count": 2,
+        "aht_sec": 720
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endfalse_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 10,
+        "user_count": 2,
+        "aht_sec": 720
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 10,
+        "user_count": 2,
+        "aht_sec": 720
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endfalse_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 320
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 320,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endfalse_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 320
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 320,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 11,
+        "user_count": 2,
+        "aht_sec": 800
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 11,
+        "user_count": 2,
+        "aht_sec": 800
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 11,
+        "user_count": 2,
+        "aht_sec": 800
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 11,
+        "user_count": 2,
+        "aht_sec": 800
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 380
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 420
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 380,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 420,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 380
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 420
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 380,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 420,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endtrue_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 11,
+        "user_count": 2,
+        "aht_sec": 800
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 11,
+        "user_count": 2,
+        "aht_sec": 800
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endtrue_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 11,
+        "user_count": 2,
+        "aht_sec": 800
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 11,
+        "user_count": 2,
+        "aht_sec": 800
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endtrue_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 380
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 420
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 380,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 420,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultiValue_Endtrue_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 380
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 420
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 380,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 420,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 540
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 540
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 540
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 540
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 240
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 240,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 240
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 240,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endfalse_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 570
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 570
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endfalse_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 570
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 570
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endfalse_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 270
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 270,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endfalse_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 270
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 270,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 530
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 530
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 530
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 7,
+        "user_count": 2,
+        "aht_sec": 530
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 130
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 130,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 130
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 130,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endtrue_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 560
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 560
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endtrue_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 560
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 560
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endtrue_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 160
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 160,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "MultipleGroups_Endtrue_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 160
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 160,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 670
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 670
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 670
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 670
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 370
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 370,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 370
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 370,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endfalse_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 700
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 700
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endfalse_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 700
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 700
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endfalse_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endfalse_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 660
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 660
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 660
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 660
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endtrue_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 690
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 690
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endtrue_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 690
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 690
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endtrue_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 290
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 290,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Singleton_Endtrue_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 290
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 290,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "String_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 670
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 670
+      }
+    ]
+  },
+  {
+    "case": "String_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 670
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 670
+      }
+    ]
+  },
+  {
+    "case": "String_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 370
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 370,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "String_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 370
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 370,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "String_Endfalse_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 700
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 700
+      }
+    ]
+  },
+  {
+    "case": "String_Endfalse_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 700
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 700
+      }
+    ]
+  },
+  {
+    "case": "String_Endfalse_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "String_Endfalse_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 6,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 3,
+        "user_count": 1,
+        "aht_sec": 300,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "String_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 660
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 660
+      }
+    ]
+  },
+  {
+    "case": "String_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 660
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 8,
+        "user_count": 2,
+        "aht_sec": 660
+      }
+    ]
+  },
+  {
+    "case": "String_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "String_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 260,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "String_Endtrue_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 690
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 690
+      }
+    ]
+  },
+  {
+    "case": "String_Endtrue_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 690
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 9,
+        "user_count": 2,
+        "aht_sec": 690
+      }
+    ]
+  },
+  {
+    "case": "String_Endtrue_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 290
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 290,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "String_Endtrue_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 290
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 5,
+        "user_count": 1,
+        "aht_sec": 290,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 4,
+        "user_count": 1,
+        "aht_sec": 400,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endfalse_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endfalse_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endfalse_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endfalse_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endfalse_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endfalse_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endtrue_Stalefalse_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endtrue_Stalefalse_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endtrue_Staletrue_Groupfalse",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endtrue_Staletrue_Groupfalse",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 3,
+        "user_count": 2,
+        "aht_sec": 250
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endtrue_Staletrue_Grouptrue",
+    "nulls": 0,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  },
+  {
+    "case": "Zero_Endtrue_Staletrue_Grouptrue",
+    "nulls": 1,
+    "pass": true,
+    "actual": [
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0",
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50
+      },
+      {
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1",
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200
+      }
+    ],
+    "expected": [
+      {
+        "convo_count": 1,
+        "user_count": 1,
+        "aht_sec": 50,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u0"
+      },
+      {
+        "convo_count": 2,
+        "user_count": 1,
+        "aht_sec": 200,
+        "truncated_time": "2026-01-05 00:00:00",
+        "agent_user_id": "u1"
+      }
+    ]
+  }
+]

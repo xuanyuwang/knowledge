@@ -182,13 +182,15 @@ Added NOTE comments to 3 tests:
 - `B_PG_3_DefaultGroupExcludedFromMappings` — same
 - `B_GM_5_HasAgentAsGroupByKeyOnlyDirectMemberships` — unified impl removes hasAgentAsGroupByKey; replace with separate direct/all map tests
 
-### Phase 1: COMPLETE (2026-03-19)
+### Phase 1 analytics baseline: COMPLETE (2026-03-19)
 
-The behavioral test suite now covers all behaviors from the behavioral standard:
+The behavioral test suite covers the analytics `ParseUserFilterForAnalytics` baseline described in the original review:
 - **62 tests**, all passing
-- **0 gaps** remaining
+- **0 gaps** remaining for the reviewed analytics baseline
 - **3 tests** annotated for revision when retargeting at `Parser.Parse()`
-- Ready for Phase 2 (types + interface) and Phase 3 (unified implementation)
+- Ready for Phase 2 (types + interface)
+
+This does **not** prove the complete unified `ParseOptions` contract. The suite does not cover the existing shared-parser eligibility filters `Roles`, `GroupRoles`, `UserTypes`, or `State`, because the reference analytics parser does not accept those inputs and `LiteUser` cannot evaluate them locally. Those regressions are a Phase 3 prerequisite before the unified implementation is considered behaviorally complete.
 
 ---
 
@@ -201,3 +203,12 @@ The behavioral test suite now covers all behaviors from the behavioral standard:
 | New tests added (Priority 1) | 3 (DONE) |
 | New tests added (Priority 2) | 3 (DONE) |
 | **Total** | **62** (all passing) |
+
+### Additional unified-contract gaps identified 2026-09-08
+
+- Empty versus non-empty `Roles`
+- Mixed-role users versus exact `ListAgentOnly` semantics
+- `UserTypes` allowlist behavior
+- Active/inactive `State`
+- `GroupRoles` on TEAM expansion and its removal for DYNAMIC expansion
+- Combination/validation rules for overlapping analytics and shared-parser options

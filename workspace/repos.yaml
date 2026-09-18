@@ -1,5 +1,5 @@
 version: 1
-last_validated: 2026-07-03
+last_validated: 2026-09-15
 root_repos_dir: /Users/xuanyu.wang/repos
 permissions_policy:
   summary: Keep repos and worktrees under /Users/xuanyu.wang/repos, which is now a lightweight workspace metadata Git repo, so AI tools can use a Git-backed shared filesystem boundary when supported.
@@ -24,6 +24,16 @@ repos:
     worktree_convention: Do not create a repo-specific worktree for `knowledge`; work directly in the main checkout.
     purpose: Central console for logs, investigations, decisions, and staff-level synthesis.
     related_repos: []
+
+  - name: coaching-qm-skills
+    path: /Users/xuanyu.wang/repos/coaching-qm-skills
+    default_branch: main
+    worktree_convention: Use the main checkout for focused skill changes; create a dedicated worktree under `/Users/xuanyu.wang/repos` only for concurrent work.
+    purpose: Shared tool-agnostic AI-agent skills for Coaching and Quality Management engineering workflows.
+    related_repos:
+      - knowledge
+      - go-servers
+      - config
 
   - name: go-servers
     path: /Users/xuanyu.wang/repos/go-servers
@@ -150,6 +160,54 @@ repos:
       - knowledge
 
 named_worktrees:
+  - name: cresta-proto-convi-7707
+    source_repo: cresta-proto
+    path: /Users/xuanyu.wang/repos/cresta-proto-convi-7707
+    branch: xw/convi-7707-scenario-images
+    purpose: Add TrainingScenario.images using the existing quiz media contract for CONVI-7707.
+
+  - name: go-servers-convi-7707
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7707
+    branch: xw/convi-7707-scenario-images
+    purpose: Prepare scenario image JSONB persistence, generated converters, and metadata validation for CONVI-7707.
+
+  - name: cresta-proto-convi-7281
+    source_repo: cresta-proto
+    path: /Users/xuanyu.wang/repos/cresta-proto-convi-7281
+    branch: xw/convi-7281-add-training-simulator-only-option-for-new-opera-rule
+    purpose: Add the shared policy conversation-source applicability contract for Training Simulator-only Opera rules.
+
+  - name: go-servers-convi-7281
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7281
+    branch: xw/convi-7281-add-training-simulator-only-option-for-new-opera-rule
+    purpose: Persist, propagate, and enforce Opera policy applicability by conversation source.
+
+  - name: go-servers-convi-7671
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7671
+    branch: xw/convi-7671-list-comments-size
+    purpose: Narrow scorecard-export comment requests and strip unconsumed inline images before ListComments response serialization.
+
+  - name: go-servers-convi-7706
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7706
+    branch: xw/convi-7706-conversation-stats-value-or-missing
+    purpose: Add metadata value-or-missing OR semantics to RetrieveConversationStats for the Bswift Average Handle Time regression.
+
+  - name: cresta-proto-convi-7671
+    source_repo: cresta-proto
+    path: /Users/xuanyu.wang/repos/cresta-proto-convi-7671
+    branch: xw/convi-7671-list-comments-size
+    purpose: Add the backward-compatible ListComments inline-image projection contract for CONVI-7671.
+
+  - name: director-convi-7663
+    source_repo: director
+    path: /Users/xuanyu.wang/repos/director-convi-7663
+    branch: xw/convi-7663-usecase-scope
+    purpose: Scope scorecard-template permission requests to each consumer's effective use cases for CONVI-7663.
+
   - name: go-servers-convi-7583
     source_repo: go-servers
     path: /Users/xuanyu.wang/repos/go-servers-convi-7583

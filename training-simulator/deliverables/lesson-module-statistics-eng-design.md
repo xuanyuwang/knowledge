@@ -1,5 +1,7 @@
 # Training Simulator Lesson and Module Statistics — Backend Design
 
+> **Superseded requirement (2026-09-08):** The "Reporting includes `ACTIVE` and `ARCHIVED` Training Simulator tasks" clause (and the matching load step) is reversed for lesson stats: `RetrieveTrainingSimulatorLessonStats` now scopes to `ACTIVE` DirectorTasks only, matching `RetrieveTrainingSimulatorModuleStats`. See [the decision record](../decisions/2026-09-08-lesson-stats-active-tasks-only.md).
+
 > **Superseded requirement (2026-08-27):** Statements in this design requiring persisted overall evaluation status/N/A or a distinct overall all-N/A reporting state are no longer current. Product accepted failure-equivalent reporting for the listed zero/false timeout, all-criteria-N/A, and failed cases. Criterion-level N/A remains excluded from scoring. See [the decision record](../decisions/2026-08-27-collapse-overall-zero-false-results.md).
 
 Authors: xuanyu.wang@cresta.ai

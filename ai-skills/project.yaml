@@ -1,0 +1,21 @@
+title: Shared AI Skills
+project_type: system
+status: active
+primary_source_repo: coaching-qm-skills
+primary_repo_path: /Users/xuanyu.wang/repos/coaching-qm-skills
+active_worktree_path: /Users/xuanyu.wang/repos/coaching-qm-skills-frontend-feature-flag
+branch: xw/enable-frontend-feature-flag
+current_objective: Review the production-discovered profile-only fallback and continue exercising the feature-flag rollout skill through effective read-back.
+last_validated: 2026-09-10
+related_prs:
+  - https://github.com/cresta/coaching-qm-skills/pull/2
+  - https://github.com/cresta/coaching-qm-skills/pull/3
+  - https://github.com/cresta/coaching-qm-skills/pull/5
+  - https://github.com/cresta/coaching-qm-skills/pull/6
+related_ticket_ids:
+  - CONVI-7659
+  - CONVI-7642
+artifacts:
+  readme: README.md
+  log_dir: log/
+  session_dir: sessions/

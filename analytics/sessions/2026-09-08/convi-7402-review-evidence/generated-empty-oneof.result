@@ -1,0 +1,1 @@
+Code: 43. DB::Exception: Illegal type (Tuple()) of 2 argument of function and: In scope  t1_moment_annotation_filter_0 AS t1. (ILLEGAL_TYPE_OF_ARGUMENT)

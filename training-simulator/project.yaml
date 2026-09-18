@@ -7,8 +7,8 @@ related_source_repos:
   - director
   - cresta-proto
   - python-ai-services
-active_worktree_path: /Users/xuanyu.wang/repos/director-convi-7584
-branch: convi-7584-session-reporting-fe
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7707
+branch: xw/convi-7707-scenario-images
 domain_owners:
   - Xuanyu Wang
 domain_scope: Scenario-based AI practice for agents — training content configuration (lessons/modules/scenarios), assignment as Director Tasks, Customer AI simulation runtime, Opera/LLM evaluation, and session-level reporting.
@@ -19,6 +19,7 @@ subdomains:
   - evaluation
   - reporting
 related_ticket_ids:
+  - CONVI-7707
   - CONVI-6747
   - CONVI-6774
   - CONVI-6923
@@ -40,12 +41,18 @@ related_ticket_ids:
   - CONVI-7601
   - CONVI-7638
 active_work_items:
+  - CONVI-7707
   - CONVI-7280
   - CONVI-7281
   - CONVI-7584
   - CONVI-7638
+  - CONVI-7656
   - lesson-module-statistics-reporting
 related_prs:
+  - https://github.com/cresta/go-servers/pull/32494
+  - https://github.com/cresta/cresta-proto/pull/9918
+  - https://github.com/cresta/cresta-proto/pull/9890
+  - https://github.com/cresta/go-servers/pull/32384
   - https://github.com/cresta/cresta-proto/pull/9769
   - https://github.com/cresta/director/pull/22413
   - https://github.com/cresta/cresta-proto/pull/9716
@@ -55,8 +62,8 @@ related_prs:
   - https://github.com/cresta/go-servers/pull/31521
   - https://github.com/cresta/go-servers/pull/32039
   - https://github.com/cresta/director/pull/22107
-current_objective: Review and validate draft Director PR 22413 for filtered unique-agent incomplete counts and per-agent session attempt counts; Milestone 1 backend and contract changes are merged.
-last_validated: 2026-09-04
+current_objective: Review CONVI-7707 definitions and persistence draft PRs, release the proto dependency, then integrate signed scenario reads and coordinate schema rollout.
+last_validated: 2026-09-18
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
@@ -85,6 +92,7 @@ artifacts:
     - work-items/CONVI-7281.md
     - sessions/2026-08-10/codex-convi-7281-plan.md
     - work-items/lesson-module-statistics-reporting.md
+    - work-items/CONVI-7656.md
     - sessions/2026-08-11/cursor-lesson-module-stats-docs.md
     - sessions/2026-08-13/codex-lesson-module-stats-design.md
 notes: Seeded from Glean-fetched design docs (Training Simulator Design by Jack Jee / Kevin Kiernicki, Coaching Simulator Assignment Flow, Training Simulator PRD) plus local cresta-proto and go-servers inspection. Design docs remain draft/patchy relative to merged code; treat proto + go-servers implementation as authoritative. The 2026-08-11 lesson/module reporting brief used the installed Glean plugin for focused product/design, customer/GTM, and implementation searches; direct full-document reading remained limited.

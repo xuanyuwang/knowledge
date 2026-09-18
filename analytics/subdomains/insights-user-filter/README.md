@@ -23,6 +23,13 @@ Own how analytics requests resolve users, teams, groups, roles, hierarchy, acces
 
 - Compare the selected UI model, expanded IDs, request filter, `groupBy`, ACL scope, and returned identities separately.
 - Treat virtual-group behavior as security-sensitive; visibility must be proven, not inferred from UI availability.
+- `ListUsersForAnalytics.AgentOnly` and public `ListUsers.Roles=[AGENT]` are different contracts: the former excludes users with any non-agent role, while the latter matches users having the requested role.
+- Role-filtered group expansion can intentionally preserve explicitly selected users. CONVI-6930 uses this for agent audiences, while reviewer audiences intentionally omit the role filter to include non-agent reviewers.
+- Current `ListUsersForAnalytics` supports user-ID narrowing, but its proto `user_types` field is not applied by the go-servers auth implementation after CONVI-7343 was reverted.
+
+## Active Work
+
+- [CONVI-6719](../../work-items/CONVI-6719.md) — revalidated Phase 3 before implementation. The unified parser is not implemented; its design must explicitly preserve both analytics `AgentOnly` semantics and coaching/role-based `ListUsers` semantics.
 
 ## Legacy Sources and Cases
 
@@ -39,3 +46,4 @@ Own how analytics requests resolve users, teams, groups, roles, hierarchy, acces
 
 - Produce a canonical matrix for empty/root/explicit/virtual selections across every Analytics API.
 - Define deactivated-user and historical-membership behavior.
+- Decide how the unified parser selects or validates its analytics versus coaching population contract; do not silently combine `ListAgentOnly` with `Roles`/`GroupRoles`/`UserTypes`/`State`.

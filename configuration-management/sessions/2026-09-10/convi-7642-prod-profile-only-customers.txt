@@ -1,0 +1,5 @@
+cresta-testing-au
+cresta-testing-east
+cresta-testing-gcp-prod-us
+cresta-testing-west
+marriott-gc-sbx

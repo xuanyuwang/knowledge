@@ -1,5 +1,7 @@
 # User Filter Consolidation - Re-evaluation
 
+> Historical snapshot from 2026-02-09. The later Phase 2 contract uses `Parser.Parse`, not `ParseV2`; current planning and 2026-09-08 corrections live in `README.md`, `implementation-plan.md`, and the canonical `analytics/work-items/CONVI-6719.md` work item.
+
 **Date**: 2026-02-09
 **Purpose**: Re-evaluate the project against the current codebase state
 

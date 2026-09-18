@@ -22,12 +22,14 @@ Own answer-key and reviewer-response workflows, completion semantics, permission
 
 - Diagnose export gaps at the frontend transformer/CSV layer before adding backend fields already present in the API.
 - Compare Group Calibration CSV behavior with QM/Coaching Hub export intentionally; implementations are separate.
+- Calibration consistency scores returned on scorecards use a 0-100 scale. Director's locale-aware `fmtPercentage` expects a 0-1 fraction, so callers must normalize before formatting.
 
 ## Legacy Sources and Cases
 
 - `group-calibration/`
 - `scorecard-template/deliverables/scorecard-export-paths.md`
 - `scorecard-permission-policy/`
+- `work-items/CONVI-7682.md`
 
 ## Open Questions
 

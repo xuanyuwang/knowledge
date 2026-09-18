@@ -319,8 +319,11 @@ Keep metrics permanently. Set up alerts for:
 
 ### Phase 3: Unified Implementation
 - Implement the new `Parse` method in `shared/user-filter/`
-- Wire up to `ListUsersForAnalytics`, ACL, group expansion
-- All behavioral tests must pass
+- Use `ListUsersForAnalytics` as the canonical profile-scoped identity and membership source
+- Explicitly implement `Roles`, `GroupRoles`, `UserTypes`, and `State`; `LiteUser` cannot evaluate these fields by itself
+- Decide between extending `ListUsersForAnalytics`, intersecting a public-`ListUsers` eligibility set, or enriching the internal response
+- Wire up ACL and group expansion after the population contract is established
+- All analytics and population-filter behavioral tests must pass
 - Behind feature flag — no callers use it yet
 - **PR pattern**: implementation PR (may be larger, but behind flag)
 
@@ -356,4 +359,4 @@ Keep metrics permanently. Set up alerts for:
 1. **Shadow mode cost**: Is 2x RPC cost acceptable during validation? Alternative: offline comparison using recorded request/response pairs.
 2. **Migration order**: Which callers to migrate first? Lowest-traffic APIs for safety, or highest-traffic for maximum coverage?
 3. **Timeline for feature flag removal**: How long should the flag stay active after 100% rollout? (Suggested: 2 sprints of stability)
-4. **Coaching callers**: The current `Parse` in `shared/user-filter/` uses `ListUsers` (not `ListUsersForAnalytics`). Coaching callers will need to switch to the new API. Is this acceptable?
+4. **Population eligibility implementation**: Should missing `Roles`/`GroupRoles`/`UserTypes`/`State` support be added to `ListUsersForAnalytics`, computed through a second `ListUsers` eligibility query and intersection, or enabled by enriching `LiteUser`? The original plan retained these options but did not answer this question.

@@ -13,6 +13,7 @@ Own the exact meaning of Active Days and the evidence pipeline that decides whet
 - New rows are attributed by message time; fallback/legacy rows use conversation start time.
 - Labeling open conversations can produce stale agent/use-case metadata after reassignment; final-state labeling and cleanup/backfill are required.
 - Missing heartbeats can indicate desktop adoption rather than a calculation bug; product interpretation must distinguish evidence absence from join/filter defects.
+- The current labeler has a confirmed long-session false-negative: since `7950abdd8e`, its ClickHouse event query selects sessions by start time inside a ±3-hour batch window instead of true interval overlap. An Agent Assist session can span all agent messages but be omitted if it began too early. See [INSI-4262](../../work-items/INSI-4262.md).
 
 ## Legacy Sources and Cases
 
@@ -25,6 +26,7 @@ Own the exact meaning of Active Days and the evidence pipeline that decides whet
 ## Operational Checks
 
 - Compare conversation source, label rows, agent/use-case assignment, message time, online-session intervals, and heartbeat adoption before classifying the symptom.
+- Compare the whole online interval to message times; do not treat absence from the labeler's session-start window as absence of a qualifying online session.
 - Separate “0” (evidence evaluated false) from “N/A” (row/denominator absent).
 
 ## Open Questions

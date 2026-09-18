@@ -27,6 +27,8 @@ Canonical engineering knowledge home and progressive staff-level learning guide 
 
 ### Current design work
 
+**Scenario media preparation (2026-09-18):** [CONVI-7707](work-items/CONVI-7707.md) has draft [proto#9918](https://github.com/cresta/cresta-proto/pull/9918) and [backend#32494](https://github.com/cresta/go-servers/pull/32494). They reuse `QuizQuestionImage`, its SQL wrapper/converters, both quiz media RPCs, and storage paths; add scenario image metadata/JSONB; and normalize/validate scenario writes. Local focused tests pass, including image-only edits preserving VA revisions. The backend awaits the published proto dependency; signed scenario reads, frontend integration, and deployment remain pending.
+
 CONVI-7583 is merged in [go-servers#31780](https://github.com/cresta/go-servers/pull/31780). It makes assignments and each matched task's full stored audience the reporting root, reuses task-run List parsing/enrichment through an internal method with configurable page size and a 100,001-row reporting overflow probe, counts every assigned-agent task run within the session before deterministic latest-attempt reduction, handles conversation and quiz outcomes, excludes stale modules from completion/score/pass calculations while retaining their attempt counts, and returns unavailable aggregates as zero plus `not_applicable`. Existing request user/group fields remain task selectors through `ListDirectorTasks`; they do not project a matched task's audience down to those users, and an empty resolved audience means no task-audience filter. Current Director callers do not require `direct_team_only`, while row-level ACL and agent self-scope remain separate work.
 
 The two remaining visible Milestone 1 Director deltas are implemented in draft [director#22413](https://github.com/cresta/director/pull/22413): the Assigned agents card now shows unique agents with at least one incomplete visible session, and each session drawer row shows authoritative `AgentPerformanceEntry.attempt_count`, including zero. The change also renames the frontend timestamp to `latestAttemptAt`, upgrades `@cresta/web-client` to `2.22.13`, and passes focused tests, TypeScript checking, lint, and commit hooks.
@@ -40,6 +42,8 @@ The lesson/module statistics API boundary closed on 2026-08-28 with dedicated ba
 The CONVI-7601 module and CONVI-7600 lesson contracts are released through cresta-proto `v2.22.11` around dedicated ordered batch statistics APIs. Both content list APIs remain content-only, and both reporting requests accept ordered content names plus an optional assignment-window time range. Lesson results expose distinct assigned-session count, passed/total assignment counts, and normalized average plus availability count; nested module results were removed so the lesson drawer can lazily call the module API with lesson scope. The CONVI-7600 backend will be rebuilt from current go-servers main in two review gates: request/read/input preparation, then aggregation/ordered response/RPC integration, with tests in each gate and one production action file initially.
 
 **Contract update (2026-09-04):** Module reporting now distinguishes conversation and quiz modules explicitly. [cresta-proto#9769](https://github.com/cresta/cresta-proto/pull/9769) adds shared `TrainingModuleType` in `training_module.proto`; conversation modules populate criterion statistics, while quiz modules populate separate question statistics using correct answers over answered results. Clients should use the discriminator rather than infer module type from empty repeated fields. Backend and Director population/rendering remain follow-up work.
+
+**Staging validation update (2026-09-09):** `RetrieveTrainingSimulatorModuleStats` and `RetrieveTrainingSimulatorLessonStats` are deployed and passed all planned black-box scenarios against independent read-only `walter-dev` DB calculations. Coverage includes full discovery aggregates, validation, conversation/quiz scoring, configured question order, single/multi-module completeness, zero/never-started assignments, latest scored and unscored retakes, lesson scope, and time-range narrowing. See [CONVI-7656](work-items/CONVI-7656.md).
 
 ## 1. Product Context, Customer Value, and Business Stage
 
@@ -451,7 +455,7 @@ A scenario-module criterion contains:
 
 Despite a stale proto comment calling `behavior_id` an Opera rule ID, the implementation resolves it as a behavior. The distinction matters because policy changes propagate into behavior state and annotations.
 
-The criterion is a reference, not a snapshot of Opera's behavior implementation. Deactivation, archive, deletion, product-area applicability, or semantic changes in the referenced behavior can therefore change whether future attempts are evaluable. Authoring surfaces must reveal broken/inactive references, and runtime policy selection must enforce whether a behavior applies to Training Simulator before annotations are produced.
+The criterion is a reference, not a snapshot of Opera's behavior implementation. Deactivation, archive, deletion, conversation-source applicability, or semantic changes in the referenced behavior can therefore change whether future attempts are evaluable. Authoring surfaces must reveal broken/inactive references, and runtime policy selection must enforce whether a behavior applies to Training Simulator before annotations are produced.
 
 ### Quizzes: independently revisioned content
 
@@ -962,7 +966,7 @@ Review evaluation changes against these questions:
 - Backend lives in `go-servers/apiserver/internal/trainingsimulator/` (service impl + action handlers). Proto surface in `cresta-proto/cresta/v1/trainingsimulator/`.
 - FE lives in `director/packages/director-app/src/features/training-simulator/` (Training Simulator page with Training Sessions + Lesson Configuration tabs) plus `hooks/training-simulator/`.
 - Bounded by a **minimum vertical slice**: creation → assignment → simulation → evaluation → reporting, reusing Director / Coaching infrastructure (DirectorTask, Coaching Plan, Voice-agent, Opera/AutoQA).
-- **Active planning:** [CONVI-7281](work-items/CONVI-7281.md) will distinguish Opera rules for Quality Management/production conversations, Training Simulator conversations, or both. This must filter policy loading before Opera generates annotations; it is not only a Director Finalize-step setting.
+- **Active implementation:** [CONVI-7281](work-items/CONVI-7281.md) constrains Opera rules by the existing `Conversation.Source` enum. Empty applicability means all sources; non-empty applicability uses OR matching. The proto and backend changes are open in [cresta-proto#9890](https://github.com/cresta/cresta-proto/pull/9890) and [go-servers#32384](https://github.com/cresta/go-servers/pull/32384); the Director Finalize control remains.
 
 ### Subdomains
 
@@ -1000,7 +1004,7 @@ Storage: director.training_lessons/modules/scenarios(+quiz), app.chat conversati
 
 ### Current Objective
 
-Maintain a canonical, implementation-accurate engineering map of Training Simulator as it moves toward GA, and use it as the home for ongoing CONVI work including Opera deactivation warnings (CONVI-7280), Opera product-area applicability (CONVI-7281), **lesson/module statistics reporting discovery**, permission hardening, quiz P1, Synthetic Customers, and GA readiness.
+Maintain a canonical, implementation-accurate engineering map of Training Simulator as it moves toward GA, and use it as the home for ongoing CONVI work including Opera deactivation warnings (CONVI-7280), Opera conversation-source applicability (CONVI-7281), **lesson/module statistics reporting discovery**, permission hardening, quiz P1, Synthetic Customers, and GA readiness.
 
 Active reporting brief: [deliverables/lesson-module-statistics-reporting.md](deliverables/lesson-module-statistics-reporting.md).
 BE engineering design: [deliverables/lesson-module-statistics-eng-design.md](deliverables/lesson-module-statistics-eng-design.md).

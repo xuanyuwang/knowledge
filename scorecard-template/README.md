@@ -3,7 +3,7 @@
 > Migrated navigation: [Scorecard Workflows](../scorecard-workflows/README.md). This folder remains the retained deep reference and historical evidence.
 
 **Created:** 2026-03-26
-**Updated:** 2026-07-06
+**Updated:** 2026-09-16
 
 ## Overview
 
@@ -80,6 +80,14 @@ See `deliverables/scorecard-export-paths.md` for the full path inventory, grade-
 
 **Known issue (2026-07-06):** Group Calibration session CSV exports raw `numericValue` for labeled-radios criteria while BE export maps to option labels. Fix plan: `group-calibration/deliverables/convi-7208-numeric-grade-csv-fix-plan.md`.
 
+## Current operational sharp edge
+
+Two coaching paths expose the same byte-unbounded gRPC failure class and now have separate tickets. `ListCurrentScorecardTemplates` can exceed the 50 MiB send limit when a caller requests all full template bodies; Director's shared permission hook did this while consuming only identity and permissions. For the RCG incident it fetched 3,330 distinct template resources across 98 individual use cases. No use case dominates: the largest has 126 templates (3.78%), so supplying the current conversation use case would reduce even the largest observed selection by 96.22%. The quick Director mitigation in `xw/convi-7663-usecase-scope` is intentionally limited to Closed Conversations scoring call sites, the dominant observed trigger. Other unscoped consumers remain outside this patch. Deployed RCG validation and backend defense in depth remain outstanding under [CONVI-7663](https://linear.app/cresta/issue/CONVI-7663/bound-listcurrentscorecardtemplates-responses-by-serialized-size).
+
+Scorecard export uses fixed 250-record `ListComments` pages, but seven `AI_AGENT_FEEDBACK` comments in the affected sandbox profile contain PNG screenshots embedded as base64 data URIs. Those seven records contain 6.91 MB of content while the profile-wide median is 92 bytes. The comments are genuine screenshot-backed demo feedback rather than large plain-text test payloads. The export only emits criterion-linked comments as plain text in scorecard CSV cells, and all seven oversized records have no criterion, so the immediate failure is unnecessary over-fetch as well as byte-unbounded paging. The CONVI-7671 implementation in merged cresta-proto PR [#9876](https://github.com/cresta/cresta-proto/pull/9876) and dependent go-servers PR [#32304](https://github.com/cresta/go-servers/pull/32304) moves selected IDs into the nested filter, requests only `CONVERSATION` comments, and opts into a backward-compatible `ListComments` projection that removes HTML image elements before response serialization. The backend inherits the published v2.24.7 bindings from current `main` and passes standalone affected-target validation; residual byte-aware protection remains necessary for unusually large text. This work is tracked in [CONVI-7671](https://linear.app/cresta/issue/CONVI-7671/bound-listcomments-responses-containing-inline-images).
+
+See the [original combined investigation](sessions/2026-09-09/codex-list-current-templates-oversize.md), [frontend trigger follow-up](sessions/2026-09-10/codex-convi-7663-frontend-trigger-scope.md), [comment-data follow-up](sessions/2026-09-10/codex-list-comments-inline-images.md), and the canonical work items for [CONVI-7663](work-items/CONVI-7663.md) and [CONVI-7671](work-items/CONVI-7671.md).
+
 ## Working Notes and Deep Dives
 
 - `template-structure.md` - Template schema, hierarchy, scoring flow, and storage model
@@ -141,6 +149,11 @@ The point is to turn repeated ticket pain into a better domain model over time.
 
 | Date | Summary |
 |------|---------|
+| 2026-09-16 | Rebased go-servers PR #32304 onto current main, retained main's newer cresta-proto v2.24.7, and resolved the dependency conflict without downgrading. |
+| 2026-09-15 | Opened the CONVI-7671 proto PR and dependent draft go-servers PR for narrowed comment selection and opt-in inline-image stripping. |
+| 2026-09-14 | Narrowed the Director mitigation to Closed Conversations scoring call sites; restored all other consumers to their original behavior. |
+| 2026-09-13 | Implemented an initial broad Director scope-alignment patch, superseded by the Closed Conversations-only scope on 2026-09-14. |
+| 2026-09-09 | Unified two oversized coaching gRPC incidents under the byte-unbounded-response pattern: RCG template permissions need a narrow view, while sandbox scorecard export needs adaptive comment paging. |
 | 2026-07-06 | Added scorecard export paths deliverable; documented Group Cal vs BE export inconsistencies and CONVI-7208 grade-label gap. |
 | 2026-07-03 | Knowledge wrap-up; analytics APIs deliverable is latest polished addition. |
 | 2026-06-27 | Added canonical analytics API attribute map deliverable. |

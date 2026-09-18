@@ -106,6 +106,8 @@ Determines **which users are eligible** to appear in results (the "base populati
 
 They operate at different levels of the pipeline and are not redundant.
 
+**Representation boundary**: `LiteUser` is sufficient for output metadata and group-membership construction, but it does not expose `Roles`, `UserTypes`, `State`, or membership-role information for `GroupRoles`. The unified parser cannot evaluate those filters from a `LiteUser` value alone. They must be enforced by the fetch service, by a separately queried eligibility set that is intersected with the `LiteUser` population, or by a deliberate response enrichment.
+
 **Redundancy note**: `excludeDeactivatedUsers` and `State` express the same constraint (active-only filtering). In the unified implementation, these should be consolidated. See discussion below.
 
 ### D. Membership Resolution
@@ -316,12 +318,13 @@ The base population pattern provides a **safety guarantee**: no matter how many 
 
 The base population is fetched via `ListUsersForAnalytics`. The flags that shape the base population are those **natively supported by that API** — they are pushed down as server-side filters so the response is already narrowed before any client-side logic runs.
 
-Currently supported flags:
+Currently enforced by the go-servers `ListUsersForAnalytics` implementation:
 
 | Flag | Maps to | Effect |
 |------|---------|--------|
 | `listAgentOnly` | `AgentOnly` in request | Only return users who are agents |
 | `excludeDeactivatedUsers` | `IncludeInactiveUsers` (inverted) | Only return active users |
+| selected user IDs | `UserIds` | Narrow to the requested canonical auth user IDs |
 
 Resulting base population:
 
@@ -332,7 +335,15 @@ Resulting base population:
 | false | true | All active users |
 | false | false | All users |
 
-**Future expansion**: As `ListUsersForAnalytics` adds support for more filter criteria (e.g., `Roles`, `UserTypes`), the corresponding population filters should be pushed down into this call. Moving filters server-side reduces the base population size early, improving performance and simplifying client-side logic.
+The request proto also contains `user_types`, but the current go-servers auth implementation does not apply it after CONVI-7343 was reverted. Proto presence is not evidence that a filter is enforced.
+
+**Unified-parser gap**: `Roles`, `GroupRoles`, `UserTypes`, and general `State` semantics are accepted by `ParseOptions` but are not all natively enforceable by the current `ListUsersForAnalytics` path. Before implementation, choose one explicit eligibility strategy:
+
+- add server-side support to `ListUsersForAnalytics`;
+- obtain the eligible set through public `ListUsers` and intersect it with the canonical base population; or
+- enrich the internal response and filter locally.
+
+Regardless of strategy, the final set must retain B-BP-3's base-population safety invariant and profile-scoped metadata. Moving filters server-side is preferable when the contract can be extended safely because it reduces data volume and avoids duplicating filter logic.
 
 > **Implementation evidence**: `listAllUsers` at lines 449-487.
 
@@ -585,11 +596,11 @@ When a parent team is selected as a group filter for a **team leaderboard** (gro
 
 The old path (`ListUsersMappedToGroups`) achieves this via `ListGroups` which sets `IncludeGroupMemberships: true` and iterates the parent group's members to discover child groups (see B-GH-1). The child groups are appended to the group list, so `filterTeamGroupNames` includes both parent and children. When iterating user memberships, the `slices.Contains(filterTeamGroupNames, groupName)` check passes for child groups, allowing them into `groupsToAggregate`.
 
-**Note**: The current `ParseUserFilterForAnalytics` does NOT expand child groups. Its `buildUserGroupMappings` uses `FetchGroups` which returns only the explicitly-requested group IDs — child groups are not discovered. This is a known bug (see [Divergence 10](#divergence-10-child-group-expansion-in-groupstoaggregate)). The unified implementation must match the old path's behavior.
+**Current state**: CONVI-6260 fixed `ParseUserFilterForAnalytics` to use `shared.ListGroups`, so it now expands child groups and passes B-GH-4. The unified implementation must preserve this fixed behavior.
 
 > **Bug evidence**: CONVI-6260 — Hilton's team leaderboard showed only parent team as a single row instead of sub-teams.
 > **Implementation evidence (old path)**: `ListGroups` at lines 745-758 — child group expansion. `ListUsersMappedToGroups` at line 865 — `slices.Contains(filterTeamGroupNames, groupName)` passes for children.
-> **Implementation evidence (new path, buggy)**: `buildUserGroupMappings` at line 395 — `FetchGroups` returns only requested groups, no children. Line 433 — `slices.Contains(groupNames, groupName)` fails for child groups.
+> **Historical bug evidence**: the pre-CONVI-6260 implementation used `FetchGroups`, which returned only requested groups and omitted child group names from the aggregation gate.
 
 ### B-GH-5: Cross-Profile Group Safety
 
@@ -819,7 +830,7 @@ These are cases where the two existing implementations (`Parse` and `ParseUserFi
 |-|-------|---------------------------|
 | **Behavior** | Uses `ListUsers` (UserServiceClient) — returns full `User` objects with `GroupMemberships`. | Uses `ListUsersForAnalytics` (InternalUserServiceClient) — returns lightweight `LiteUser` with `Memberships`. |
 | **Impact** | `ListUsers` returns heavier objects. `ListUsersForAnalytics` is optimized for analytics workloads. |
-| **Decision** | **ListUsersForAnalytics.** Lighter, purpose-built, already validated in production. |
+| **Decision** | Use **ListUsersForAnalytics** as the canonical source for profile-scoped identity, metadata, and memberships. This does not resolve eligibility filters that the service does not enforce. Preserve `ListUsers` filter semantics through an explicit server extension, eligibility-set intersection, or deliberate response enrichment. |
 
 ### Divergence 4: Output Format
 
@@ -875,12 +886,11 @@ These are cases where the two existing implementations (`Parse` and `ParseUserFi
 
 ### Divergence 10: Child Group Expansion in GroupsToAggregate
 
-| | ParseUserFilterForAnalytics / buildUserGroupMappings | ListUsersMappedToGroups (old pattern) |
-|-|------------------------------------------------------|--------------------------------------|
-| **Behavior** | `FetchGroups` returns only the explicitly-requested group IDs. **No child group expansion.** Sub-teams are missing from `groupsToAggregate`. | `ListGroups` sets `IncludeGroupMemberships: true`, iterates parent group's members to discover child groups. Sub-teams are included in `filterTeamGroupNames` and pass the `slices.Contains` check. |
-| **Impact** | Team leaderboard for a parent team shows only one row (the parent) instead of rows for each sub-team. **Active production bug** (CONVI-6260). |
-| **Code evidence** | `buildUserGroupMappings` line 395: `FetchGroups(ctx, customerID, profileID, filter, ...)` — filter contains only parent group IDs. Line 433: `slices.Contains(groupNames, groupName)` fails for child group names not in the list. | `ListGroups` lines 745-758: iterates `g.GetMembers()`, appends child groups. Line 865: `slices.Contains(filterTeamGroupNames, groupName)` passes for children. |
-| **Decision** | **Expand child groups.** The unified implementation must match the old path's behavior: discover child teams from parent group memberships and include them in the group list used for the `slices.Contains` gate. See B-GH-4. |
+| | Historical ParseUserFilterForAnalytics | Current ParseUserFilterForAnalytics and old pattern |
+|-|-----------------------------------------|--------------------------------------------------|
+| **Behavior** | Used `FetchGroups`, which returned only explicitly requested group IDs and omitted child teams from `groupsToAggregate`. | Uses `shared.ListGroups`, which requests group memberships and discovers child groups. |
+| **Impact** | Parent-team leaderboards collapsed to a single parent row (CONVI-6260). | Child teams are included as aggregation rows; B-GH-4 passes. |
+| **Decision** | **Preserve child expansion.** The unified implementation must continue discovering child teams from parent group memberships and include them in the aggregation group set. |
 
 ---
 

@@ -10,9 +10,9 @@ Unify `ParseUserFilterForAnalytics` into `Parse`, using `ListUsersForAnalytics` 
 1. `ParseUserFilterForAnalytics` used analytics package functions to minimize risk during refactoring
 2. `Parse` was written before `ListUsersForAnalytics` and `LiteUser` existed
 
-## LiteUser Field Mapping
+## LiteUser Output and Membership Mapping
 
-`LiteUser` can fully support `Parse`'s needs:
+`LiteUser` contains enough information to construct the unified parser's user metadata and membership outputs:
 
 | Parse needs (from User/GroupMembership) | LiteUser equivalent |
 |----------------------------------------|---------------------|
@@ -26,13 +26,24 @@ Unify `ParseUserFilterForAnalytics` into `Parse`, using `ListUsersForAnalytics` 
 | `group.GroupType` | Map: `LiteGroup_Type` → `userpb.Group_Type` |
 | `group.IsIndirect` | Derive: `!membership.IsDirectMember` |
 
-**Conclusion**: ✅ `LiteUser` fully supports all `Parse` requirements.
+**Conclusion**: `LiteUser` fully supports the output and membership mappings in this table. It does **not** contain the fields needed to evaluate every population filter.
+
+The following existing `Parse` inputs cannot be derived from `LiteUser`:
+
+| Eligibility input | Why `LiteUser` is insufficient |
+|-------------------|--------------------------------|
+| `Roles` | `LiteUser` does not expose user roles |
+| `UserTypes` | `LiteUser` does not expose user type |
+| `State` | `LiteUser` does not expose active state or per-profile status |
+| `GroupRoles` | `LiteUser` memberships do not expose the role used to qualify a member during group expansion |
+
+These constraints must therefore be enforced before or alongside construction of the `LiteUser` base population. The original plan did not specify how this would work.
 
 ## Proposed Changes
 
-### 1. Switch Parse to use ListUsersForAnalytics
+### 1. Use ListUsersForAnalytics for canonical analytics identity and membership data
 
-Replace `FetchUsers` (ListUsers) with `FetchLiteUsers` (ListUsersForAnalytics):
+Use `FetchLiteUsers` (`ListUsersForAnalytics`) to produce profile-scoped `LiteUser` metadata and memberships:
 
 ```go
 // New internal function
@@ -43,6 +54,18 @@ func fetchLiteUsers(
     client internaluserpb.InternalUserServiceClient,
 ) (map[string]*internaluserpb.LiteUser, error)
 ```
+
+This does not, by itself, replace every semantic use of public `ListUsers`. The implementation must also preserve `Roles`, `GroupRoles`, `UserTypes`, and `State` eligibility.
+
+### 1a. Resolve population-filter eligibility
+
+Before implementing `Parser.Parse`, choose and test one of these strategies:
+
+1. **Extend `ListUsersForAnalytics`** to enforce the missing filters server-side. This best matches the original single-fetch architecture, but requires an RPC and auth-service contract change.
+2. **Eligibility query plus intersection**: use public `ListUsers` to compute the users eligible under `Roles`, `GroupRoles`, `UserTypes`, and `State`, then intersect that set with the canonical `ListUsersForAnalytics` population. This preserves the current public-filter semantics but adds another query and requires verified identity mapping.
+3. **Enrich `LiteUser` and filter locally**: return the missing eligibility fields and evaluate them in the parser. This increases response payloads and duplicates server-side filtering logic, so it should be chosen only deliberately.
+
+Do not silently ignore fields or treat `ListAgentOnly` as equivalent to `Roles=[AGENT]`. Empty `Roles` means no role restriction.
 
 ### 2. Add ProfileID and Analytics Options
 
@@ -120,10 +143,11 @@ type FilteredUsersAndGroups struct {
 5. Add new `Parse` signature with options (keep old for compat)
 
 ### Phase 2: Implement unified logic
-1. Port `listAllUsers` logic (uses ListUsersForAnalytics)
-2. Port `applyResourceACL` logic with group expansion
-3. Port `buildUserGroupMappings` logic
-4. Add comprehensive tests
+1. Decide and implement population-filter eligibility for `Roles`, `GroupRoles`, `UserTypes`, and `State`
+2. Port `listAllUsers` logic using `ListUsersForAnalytics` as the canonical metadata/membership population
+3. Port `applyResourceACL` logic with group expansion
+4. Port `buildUserGroupMappings` logic
+5. Add analytics plus coaching/population-filter tests
 
 ### Phase 3: Migrate callers
 1. Update insights-server `retrieve_*_stats.go` files (12+)
@@ -173,6 +197,10 @@ This is a shared user-filter design concern, not just a coaching concern, becaus
 - group expansion semantics
 - default population semantics
 
+## Confirmed Unified Population Contract
+
+As of 2026-09-08, the unified parser must implement all existing population filters represented in `ParseOptions`: `Roles`, `GroupRoles`, `UserTypes`, and `State`, in addition to analytics-oriented `ListAgentOnly` and `ExcludeDeactivatedUsers`. An empty `Roles` slice means no role restriction. `ListAgentOnly` remains semantically distinct from `Roles=[AGENT]`; their combination and the overlap between `State` and `ExcludeDeactivatedUsers` must be validated explicitly rather than resolved by undocumented precedence.
+
 ## Files to Modify
 
 ### shared/user-filter/
@@ -206,6 +234,7 @@ This is a shared user-filter design concern, not just a coaching concern, becaus
 
 | Date | Summary |
 |------|---------|
+| 2026-09-08 | Revalidated Phase 3 against current main and Linear. The unified implementation is still absent; merged API is `Parser.Parse`, analytics caller count and audience use have grown, child expansion is already fixed, and role-sensitive coaching/manual-QA semantics need explicit tests and a population-strategy decision before implementation. Canonical work item: `analytics/work-items/CONVI-6719.md`. |
 | 2026-05-07 | Noted future mixed active-state requirement from CONVI-6665: explicitly selected users may need inactive bypass while teams/groups remain active-only. |
 | 2026-02-20 | B-SF-3 fix merged to main ([PR #25829](https://github.com/cresta/go-servers/pull/25829)). Linear: CONVI-6284. |
 | 2026-02-19 | Fixed B-SF-3 (Divergence 5): `ParseUserFilterForAnalytics` now uses UNION for combined user+group selections. Branch: `xwang/fix-bsf3-union-semantics`. |

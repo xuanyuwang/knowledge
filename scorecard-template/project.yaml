@@ -1,13 +1,21 @@
 title: Scorecard & Template Working Reference
 status: active
-primary_source_repo: go-servers
-primary_repo_path: /Users/xuanyu.wang/repos/go-servers
-active_worktree_path: /Users/xuanyu.wang/repos/go-servers
-branch: codex/move-sleep-out-of-api
-related_ticket_ids: []
-related_prs: []
-current_objective: Build a living working reference for scorecard and template in coaching service, starting from a domain skeleton and growing it through real ticket work.
-last_validated: 2026-07-06
+primary_source_repo: director
+primary_repo_path: /Users/xuanyu.wang/repos/director
+active_worktree_path: /Users/xuanyu.wang/repos/director-convi-7663
+branch: xw/convi-7663-usecase-scope
+related_ticket_ids:
+  - CONVI-7663
+  - CONVI-7671
+active_work_items:
+  - work-items/CONVI-7663.md
+  - work-items/CONVI-7671.md
+related_prs:
+  - https://github.com/cresta/director/pull/22809
+  - https://github.com/cresta/cresta-proto/pull/9876
+  - https://github.com/cresta/go-servers/pull/32304
+current_objective: Validate and ship the Closed Conversations-only Director use-case-scoping mitigation for CONVI-7663 and complete the dependent CONVI-7671 proto and go-servers PR sequence.
+last_validated: 2026-09-16
 artifacts:
   readme: README.md
   log_dir: log/
@@ -15,6 +23,14 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
+    - work-items/CONVI-7663.md
+    - work-items/CONVI-7671.md
+    - sessions/2026-09-10/codex-list-comments-inline-images.md
+    - sessions/2026-09-09/codex-list-current-templates-oversize.md
+    - sessions/2026-09-13/codex-convi-7663-implementation.md
+    - sessions/2026-09-14/codex-convi-7663-closed-conversation-scope.md
+    - sessions/2026-09-15/codex-convi-7671-implementation.md
+    - sessions/2026-09-16/codex-convi-7671-conflict-resolution.md
     - deliverables/scorecard-template-domain-skeleton.md
     - deliverables/scorecard-template-concept-map.md
     - deliverables/template-lifecycle.md

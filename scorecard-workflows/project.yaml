@@ -22,6 +22,7 @@ subdomains:
   - process-scorecards-and-generation
 related_ticket_ids:
   - CONVI-7533
+  - CONVI-7682
 active_work_items: []
 related_prs: []
 current_objective: Maintain exact workflow semantics and advance a product direction for preventing scorecard template configuration mistakes and safely remediating affected scorecards.

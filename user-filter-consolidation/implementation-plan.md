@@ -109,7 +109,7 @@ Add test cases:
 - B-GS-2: Group types handled separately (TEAM vs DYNAMIC)
 - B-GS-3: Direct membership controls group→user expansion (add two-direction test)
 - B-GS-4: Unparseable group names silently skipped
-- B-GH-4: Child teams must appear in GroupsToAggregate — **this will document the current bug in `ParseUserFilterForAnalytics`** (known Divergence 10: `FetchGroups` does not expand child groups). Test asserts the current (broken) behavior where only the parent group appears in `GroupsToAggregate`.
+- B-GH-4: Child teams must appear in GroupsToAggregate — originally added for the CONVI-6260 bug. Current `ParseUserFilterForAnalytics` passes this behavior through `shared.ListGroups`; the test must preserve the fixed behavior.
 - B-DU-1/B-DU-2: Deactivated users excluded/included (complex scenarios: deactivated + ACL + groups)
 - B-GM-1: Both direct and indirect memberships tracked in output maps
 - B-GM-3: Only TEAM groups in mappings
@@ -230,13 +230,37 @@ These are pure functions — implement them immediately with unit tests.
 
 **Goal**: Implement the new `Parse` method. All behavioral tests from Phase 1 should pass (after retargeting).
 
+**Coverage prerequisite**: Phase 1 primarily captures `ParseUserFilterForAnalytics`. Before implementing the unified parser, add tests for the existing shared-parser population filters that are present in `ParseOptions` but absent from `LiteUser`: `Roles`, `GroupRoles`, `UserTypes`, and `State`. Empty `Roles` means no role restriction. `ListAgentOnly` remains distinct from `Roles=[AGENT]`.
+
+#### PR 3.0: Population-filter contract and regression tests
+
+**Files**: `shared/user-filter/*_test.go`, this plan, and the behavioral standard; production files only if the chosen fetch contract requires a supporting API change.
+
+1. Choose how the parser obtains the eligibility set for filters unsupported by the `LiteUser` payload:
+   - extend `ListUsersForAnalytics` with server-side filters;
+   - query eligible users through public `ListUsers` and intersect by verified canonical identity; or
+   - enrich `LiteUser` and filter locally.
+2. Specify invalid or combined option behavior, especially:
+   - `ListAgentOnly` with non-empty `Roles`;
+   - `ExcludeDeactivatedUsers` with `State`;
+   - `GroupRoles` for TEAM versus DYNAMIC groups.
+3. Add regressions for:
+   - empty and non-empty `Roles`;
+   - mixed-role users (`AGENT` plus another role) versus exact `ListAgentOnly` behavior;
+   - `UserTypes` allowlists;
+   - active/inactive `State`;
+   - TEAM group expansion with `GroupRoles`;
+   - DYNAMIC group expansion with `GroupRoles` cleared, matching current behavior.
+
+Do not start the mechanical port until this contract is explicit; otherwise the new parser can compile while silently ignoring accepted options.
+
 #### PR 3.1: Core parse implementation — base population + ACL
 
 **Files**: NEW `shared/user-filter/parse.go`
 
 Implement:
 - `(p *Parser) Parse(ctx context.Context, opts ParseOptions) (*ParseResult, error)`
-- Internal: `listBasePopulation()` — calls `ListUsersForAnalytics` with pagination
+- Internal: `listBasePopulation()` — obtains canonical profile-scoped `LiteUser` metadata/memberships through `ListUsersForAnalytics`, then applies or intersects the eligibility policy selected in PR 3.0
 - Internal: `applyACL()` — calls ACL helper, determines state, applies intersection
 - Metrics: `shared.user_filter.parse.request.count`, `.error.count`, `.duration_ms`
 - Logging: entry, base population count, ACL before/after, exit
@@ -277,7 +301,7 @@ Implement:
 Move/adapt from `common_user_filter.go`:
 - `buildUserGroupMappings()` — split into two maps (direct + all), remove hasAgentAsGroupByKey coupling
 
-**Critical fix**: Child group expansion (Divergence 10 / B-GH-4). The current `buildUserGroupMappings` uses `FetchGroups` which only returns explicitly-requested groups — child teams are not discovered. The unified implementation must expand child groups from parent group memberships (matching the old path's `ListGroups` behavior). Without this, team leaderboards for parent teams only show one row. See CONVI-6260.
+**Required preserved behavior**: Child group expansion (B-GH-4) is already fixed in `ParseUserFilterForAnalytics` through `shared.ListGroups`. The unified implementation must preserve this behavior so parent-team leaderboards continue to break out child teams. See CONVI-6260.
 
 **Size**: ~200-300 lines
 
@@ -289,6 +313,7 @@ Create a new test suite that:
 - Uses the same test scenarios from Phase 1
 - Targets `Parser.Parse()` instead of `ParseUserFilterForAnalytics`
 - All tests should pass (B-SF-3 UNION test already passes after fix on `xwang/fix-bsf3-union-semantics`, and B-GH-4 child group expansion test that previously documented the bug)
+- Includes the PR 3.0 population-filter cases; the analytics behavioral suite alone is insufficient to validate the unified contract
 
 **Size**: ~500-800 lines (comprehensive test suite)
 

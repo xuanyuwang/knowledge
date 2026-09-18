@@ -67,7 +67,7 @@ How an already-closed simulator conversation becomes a module outcome: project O
 ## Legacy Sources and Cases
 
 - Older design documents described direct LLM evaluation, AutoQA scorecard scoring, backend polling, and conversation-metadata persistence. Those are not the current handler behavior.
-- CONVI-6926 (`EvaluateTrainingConversation`), CONVI-7146 (module preview), CONVI-7281 (Opera product-area applicability).
+- CONVI-6926 (`EvaluateTrainingConversation`), CONVI-7146 (module preview), CONVI-7281 (Opera conversation-source applicability).
 
 ## Open Questions
 

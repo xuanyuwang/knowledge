@@ -61,6 +61,10 @@ On 2026-08-03, a post-recovery monitor run covering July 28 onward found 0 missi
 
 On 2026-08-04, `us-west-2` reported 411,246/2,076,359 missing scorecards (19.81%) across 43 profiles. Live checks confirmed the same immediate Distributed-delivery failure mode as the East incident: approximately 1.48 million queued files / 21.1 GiB across 66 databases, with all six spool-bearing nodes saturating their 48-thread sender pools while replicas remained healthy. By 22:22 UTC, the queue had recovered to 210 files / 1.90 MiB and sender utilization was below capacity. A dry monitor rerun should determine the residual gap before any targeted repair. See `sessions/2026-08-04/codex-us-west-2-distributed-backlog.md`.
 
+On 2026-09-11, the original per-profile auto-heal ceiling of 1,000 was recalibrated using 84 days of Groundcover metrics and 14 days of exact dispatch/skip logs. The current ceiling handled 492/555 recent profile actions (88.6%); 5,000 would have handled 522/555 (94.1%) while adding at most one workflow per profile and seven workflows / 24,023 candidates on the busiest observed day. The `reindex_scorecards` Temporal queue completed 2,519/2,521 workflows (99.92%) with an 8.35-second p95. The current recommendation is 5,000 first, with exact convergence telemetry and a regional dispatch guard before materially higher thresholds. See `work-items/auto-heal-threshold-recalibration.md`.
+
+On 2026-09-17, an RCG scorecard was confirmed internally inconsistent in PostgreSQL: its five equally weighted criteria calculate to 80%, but the parent stores 50%. PR #32447 likely prevents the leading submit/autosave overwrite mechanism for this incident, but concurrent `UpdateScorecard` requests still lack backend ordering/version protection and can preserve a broader stale-write or parent/child mismatch hazard. See `work-items/rcg-casino-dtq-score-mismatch.md`.
+
 ## Reading Order
 
 1. Start with architecture and invariants.

@@ -6,16 +6,22 @@ primary_repo_path: /Users/xuanyu.wang/repos/config
 related_source_repos:
   - tenant-admin
   - go-servers
-active_worktree_path: /Users/xuanyu.wang/repos/config
-branch: master
+active_worktree_path: /Users/xuanyu.wang/repos/config-convi-7642-prod
+branch: xw/convi-7642-enable-na-score-prod
 domain_owners: []
 domain_scope: Customer configuration schemas, Config Admin editing workflows, GitOps review, synchronization, and feature-flag rollout practices.
 subdomains: []
-related_ticket_ids: []
+related_ticket_ids:
+  - CONVI-7642
 active_work_items: []
-related_prs: []
-current_objective: Preserve reliable operational practices for reviewing and rolling out customer configuration changes.
-last_validated: 2026-07-29
+related_prs:
+  - https://github.com/cresta/config/pull/153660
+  - https://github.com/cresta/config/pull/153693
+  - https://github.com/cresta/config/pull/153777
+  - https://github.com/cresta/config/pull/153802
+  - https://github.com/cresta/coaching-qm-skills/pull/6
+current_objective: Land the reviewed frontend feature-flag skill hardening in coaching-qm-skills PR #6 and preserve the completed CONVI-7642 rollout record.
+last_validated: 2026-09-11
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
@@ -26,4 +32,4 @@ artifacts:
   deliverables_dir: deliverables/
   key_docs:
     - sessions/2026-07-29/codex-global-frontend-feature-flag-rollout.md
-notes: The config repository is authoritative; Tenant Admin is the preferred UI for generating reviewed config PRs.
+notes: The config repository is authoritative. Tenant Admin calls ConfigService to generate reviewed PRs; the reusable skill can reproduce that merge directly from an explicit customer manifest.

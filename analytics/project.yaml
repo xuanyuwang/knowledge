@@ -8,8 +8,8 @@ related_source_repos:
   - cresta-proto
   - clickhouse-schema
   - config
-active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7402
-branch: convi-7402-bswift-users-getting-qa-score-stats-errors
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7706
+branch: xw/convi-7706-conversation-stats-value-or-missing
 domain_owners:
   - Xuanyu Wang
 domain_scope: Performance Insights, Assistance Insights, and Leaderboard frontend/backend semantics, filters, analytics APIs, aggregations, and displayed-data lineage.
@@ -24,6 +24,9 @@ subdomains:
   - insights-user-filter
   - conversation-volume
 related_ticket_ids:
+  - INSI-4262
+  - CONVI-7467
+  - CONVI-6719
   - CONVI-7238
   - CONVI-7254
   - CONVI-7378
@@ -32,20 +35,37 @@ related_ticket_ids:
   - CONVI-7387
   - CONVI-7435
   - CONVI-7402
+  - CONVI-7706
+  - CONVI-7708
   - CONVI-7533
+  - CONVI-7667
+  - CONVI-7674
+  - CONVI-7681
 active_work_items:
+  - INSI-4262
+  - CONVI-7467
+  - CONVI-6719
   - heartland-behavior-hints-adherence-mismatch
   - time-range-filter-investigation
   - CONVI-7238
   - CONVI-7378
   - CONVI-7384
   - CONVI-7385
+  - CONVI-7402
+  - CONVI-7706
+  - CONVI-7708
   - CONVI-7435
+  - CONVI-7667
+  - CONVI-7674
+  - CONVI-7681
 related_prs:
+  - https://github.com/cresta/go-servers/pull/32443
+  - https://github.com/cresta/go-servers/pull/32440
+  - https://github.com/cresta/go-servers/pull/31335
   - https://github.com/cresta/director/pull/21214
   - https://github.com/cresta/go-servers/pull/30782
-current_objective: Resolve open analytics aggregation/filter semantics, including CONVI-7435 Bswift PI Manual vs N/A leak, CONVI-7387 Behavioral Hints, CONVI-7238, SCAN Consent, CONVI-7384, and CONVI-7385; preserve CONVI-7254 as evidence for the broader mixed-revision product question.
-last_validated: 2026-08-27
+current_objective: Resolve open analytics correctness and latency work, including CONVI-7706 RetrieveConversationStats value-or-missing support, CONVI-7708 Assistance Insights value-or-missing parity, INSI-4262 Bill West long-session Active Days false negatives, CONVI-7467 Oportun Active Days visibility, CONVI-7674 RCG process-scorecard no-data validation, urgent CONVI-7681 RCG tail latency, CONVI-7667 process-scorecard request construction, CONVI-6719 unified user-filter validation, and remaining score/aggregation discrepancies.
+last_validated: 2026-09-17
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
@@ -64,6 +84,9 @@ artifacts:
     - subdomains/quintiles/README.md
     - subdomains/qa-score/README.md
     - subdomains/insights-user-filter/README.md
+    - work-items/INSI-4262.md
+    - work-items/CONVI-6719.md
+    - work-items/CONVI-7467.md
     - subdomains/conversation-volume/README.md
     - deliverables/legacy-source-index.md
     - deliverables/hcd-mixed-revision-qa-score-investigation.md
@@ -73,7 +96,13 @@ artifacts:
     - work-items/CONVI-7385.md
     - work-items/CONVI-7435.md
     - work-items/CONVI-7402.md
+    - work-items/CONVI-7706.md
+    - work-items/CONVI-7708.md
     - deliverables/convi-7385-column-drawer-count-parity-plan.md
     - deliverables/convi-7435-bswift-pi-qm-investigation.md
     - work-items/heartland-behavior-hints-adherence-mismatch.md
-notes: Cross-page contracts live at the parent or shared-analytics-platform level. RetrieveHintStats now has a canonical API reference, including the independent action/moment annotation schemas, application-level adherence link, query stages, and integrity caveat. Assistance Insights is a first-class subdomain. Legacy folders retain raw ticket and execution evidence. CONVI-7387 fixes the Heartland Behavioral Hints mixed-unit aggregation in go-servers PR #30782 by counting followed actions instead of followed moments. CONVI-7384 is diagnosed at the data level as scorecard-time versus submit-time plus frequency-boundary membership; instrumented end-to-end validation is pending. CONVI-7385 filter-parity fix is in draft Director PR #21214 with lint, type checking, and commit hooks passing; manual CNG validation remains. CONVI-7402 PI 400 on Team+(no value) is a ClickHouse QA vs ES contract mismatch; investigation filled on the Linear issue.
+    - work-items/CONVI-7667.md
+    - work-items/CONVI-7674.md
+    - work-items/CONVI-7681.md
+notes: >-
+  Cross-page contracts live at the parent or shared-analytics-platform level. RetrieveHintStats now has a canonical API reference, including the independent action/moment annotation schemas, application-level adherence link, query stages, and integrity caveat. Assistance Insights is a first-class subdomain. Legacy folders retain raw ticket and execution evidence. INSI-4262 is diagnosed as a long-session false-negative introduced by the June 10 per-message labeler; open go-servers PR #32443 restores true interval overlap and directly covers the confirmed Bill cases, with merge/deploy and historical re-label remaining. CONVI-7387 fixes the Heartland Behavioral Hints mixed-unit aggregation in go-servers PR #30782 by counting followed actions instead of followed moments. CONVI-7384 is diagnosed at the data level as scorecard-time versus submit-time plus frequency-boundary membership; instrumented confirmation pending. CONVI-7385 filter-parity fix is in draft Director PR #21214 with lint, type checking, and commit hooks passing; manual CNG validation remains. CONVI-7402 PR #31335 merged and fixes the QA paths; CONVI-7706 is in review in go-servers PR #32440 for the remaining Bswift `RetrieveConversationStats` regression. CONVI-7708 tracks value-or-missing parity for the nine Assistance Insights RPCs with a confirmed Director contract, while other shared callers retain explicit rejection pending contract decisions. CONVI-7667 is diagnosed as a Director request-construction regression: the default conversation-ended target removes standalone process scorecards even when PG and CH agree. CONVI-7681 tracks urgent RCG analytics tail latency; the captured calls spend 47-50 seconds in server wait, while reindex/write load and cache opt-out remain unproven hypotheses.
