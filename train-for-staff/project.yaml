@@ -1,21 +1,21 @@
-title: Train for Staff
+title: Career Direction and Engineering Evidence
 status: active
 primary_source_repo: knowledge
-primary_repo_path: /Users/xuanyu.wang/repos/knowledge
-active_worktree_path: /Users/xuanyu.wang/repos/knowledge
+primary_repo_path: /Users/xuanyuwang/repos/knowledge
+active_worktree_path: /Users/xuanyuwang/repos/knowledge
 branch: main
 related_ticket_ids: []
 related_prs: []
-current_objective: Maintain an evidence-backed career position, strengthen complementary interview stories, and convert domain work into Staff-calibrated performance and resume narratives.
-last_validated: 2026-09-03
+current_objective: Seek meaningfully higher financial value and interesting technical work while protecting family time, health, and mental attention; preserve evidence-backed resume claims without requiring organizational transformation.
+last_validated: 2026-09-18
 artifacts:
-  readme: staff-project.md
+  readme: README.md
   log_dir: log/
   session_dir: sessions/
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
-    - CAREER_POSITION.md
+    - deliverables/career-position.md
     - senior-to-staff.md
     - staff-project.md
     - resume-snippets.md
@@ -31,4 +31,5 @@ artifacts:
     - deliverables/resume-product-infrastructure.typ
     - deliverables/resume-product-infrastructure.pdf
     - work-items/career-positioning.md
-notes: Legacy growth folder reopened under the shared project workflow; `staff-project.md` is the current human-facing project home.
+project_type: system
+notes: Current career guidance is in README.md and deliverables/career-position.md. Legacy Staff frameworks remain evidence references, not mandatory growth plans.

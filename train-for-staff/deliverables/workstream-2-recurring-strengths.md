@@ -9,6 +9,12 @@ Identify engineering characteristics that recur across multiple projects, distin
 
 This is not yet the final career identity or seniority assessment. It is an evidence-backed input to Workstreams 3 and 4.
 
+## Interpretation update — 2026-09-18
+
+This is a capability/evidence assessment, not a prescription for desired responsibility. The [current career goal](career-position.md) prioritizes financial value and interesting technical work with protected family time, health, and attention. Recurring debugging, ownership, or influence demonstrate ability; they do not imply a preference for firefighting or organizational transformation.
+
+The user reports having influenced organizational change at IBM. This evidence inventory is mainly based on later technical project records and is not a comprehensive judgment of lifetime organizational capability. Recover the IBM specifics if needed for a relevant interview claim; do not require another organizational rescue project to prove capability. Missing documentation is not inability, and broader Staff evidence is not a prerequisite for a worthwhile next role.
+
 ## Evidence set
 
 The first pass prioritizes work with enough detail to evaluate problem context, personal contribution, judgment, execution, and outcome:

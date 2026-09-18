@@ -10,6 +10,18 @@ Project the working career hypothesis into a selective resume and a balanced int
 
 The tailored resume is available as [`resume-product-infrastructure.typ`](resume-product-infrastructure.typ) and a visually verified one-page [`resume-product-infrastructure.pdf`](resume-product-infrastructure.pdf). The existing `resume.typ` remains the canonical general resume and was not overwritten.
 
+## Career intent and presentation — updated 2026-09-18
+
+Apply the [current career position](career-position.md) and [fit framework](workstream-5-next-role-fit.md) before tailoring. The technical positioning and accomplishment evidence below remain useful. They demonstrate capability, not consent to unlimited production support, firefighting, political ownership, or organizational transformation. Keep leadership accomplishments where supported; do not market willingness to repair a dysfunctional organization as the main value proposition.
+
+The existing targeted resume already emphasizes hands-on backend reasoning, contracts, architecture, and validation without claiming an organizational-transformation objective, so its source/PDF remain unchanged. Family and financial-independence motivations guide private job selection; they need not be inserted into employer-facing resume copy. The legacy general resume and snippet bank retain older claims; prefer this claims ledger for tailoring, especially the incomplete user-filter migration boundary.
+
+A possible interview explanation of next-role intent is:
+
+> I enjoy difficult backend and infrastructure problems where careful reasoning and engineering quality matter. I’m looking for meaningful technical learning, supported autonomy, and strong compensation in a team with sustainable operating expectations. I can identify structural issues and propose improvements, but I’m looking for a primarily technical contribution with clear responsibilities and resources.
+
+For a discussion of leaving, explain the agency ceiling factually: recurring problems could not be addressed with the available authority or investment; communicate proposals, describe the organization's response, and explain the desired next environment. Do not frame departure as failure or claim that all organizational problems can be eliminated. IBM organizational influence is user-reported context; recover a specific story before adding new external outcome claims.
+
 ## Positioning used
 
 > Senior backend and product-infrastructure engineer who owns ambiguous data-correctness and business-semantic problems across system boundaries, turns them into explicit reusable contracts, and carries solutions through safe production validation.
@@ -264,7 +276,7 @@ Recover launch scope, usage, customer outcome, collaborators, and exact personal
 
 ## Missing stories and evidence
 
-The portfolio is not yet balanced for every Senior or Staff interview. Highest-value recovery:
+The portfolio is not yet balanced for every Senior or Staff interview. Recovery candidates, prioritized by the interviews for roles that pass the fit screen:
 
 1. A specific mentoring, delegation, or execution-through-others story.
 2. A named cross-functional disagreement or alignment outcome.
@@ -298,7 +310,7 @@ The portfolio is not yet balanced for every Senior or Staff interview. Highest-v
 1. Rehearse Stories 1 and 2 as two-minute phone-screen answers and ten-minute deep dives.
 2. Turn Story 3 into one bounded narrative instead of a list of monitoring, repair, and cleanup activities.
 3. Recover the missing evidence for Stories 5 and 6.
-4. Build a genuine mentoring or delegation story before claiming broader Staff readiness.
+4. Recover a genuine mentoring, delegation, or IBM influence story if a desirable role requires it; do not take on new organizational responsibility merely to fill a portfolio gap.
 5. Tailor only after applying the Workstream 5 opportunity scorecard to a real role.
 
 ## Sources

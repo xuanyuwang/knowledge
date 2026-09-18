@@ -1,6 +1,6 @@
 # Knowledge
 
-This repo is the operating system for staff-level engineering work.
+This repo preserves engineering knowledge, work evidence, and career decision context.
 
 It sits alongside source repos under `~/repos` and captures the context that should outlive a single branch, prompt, terminal session, or AI tool run.
 
@@ -12,7 +12,7 @@ It sits alongside source repos under `~/repos` and captures the context that sho
 
 ## Why this exists
 
-This repo exists to make growth toward **Staff Engineer** explicit, measurable, and repeatable.
+This repo makes engineering judgment and evidence durable. Its original Staff-growth framing remains useful for capability assessment, but Staff promotion is not the default career objective. The [current career direction](train-for-staff/README.md) prioritizes financial value and interesting technical work while protecting family time, health, and attention.
 
 It is used to:
 
@@ -110,7 +110,10 @@ The intended flow is:
 5. Important decisions are promoted into `decisions/`.
 6. Weekly and annual summaries promote impact evidence without duplicating raw notes.
 
-## Staff track anchors
+## Career and capability anchors
+
+- Current goals and tradeoffs: [Career direction](train-for-staff/README.md)
+- Historical Staff references below assess capability; current career guidance supersedes their promotion-first prescriptions.
 
 - Senior vs Staff gap framework: `train-for-staff/senior-to-staff.md`
 - Staff project framing: `train-for-staff/staff-project.md`
