@@ -13,9 +13,10 @@ active_work_items:
 related_prs:
   - https://github.com/cresta/director/pull/22809
   - https://github.com/cresta/cresta-proto/pull/9876
+  - https://github.com/cresta/cresta-proto/pull/9969
   - https://github.com/cresta/go-servers/pull/32304
 current_objective: Validate and ship the Closed Conversations-only Director use-case-scoping mitigation for CONVI-7663 and complete the dependent CONVI-7671 proto and go-servers PR sequence.
-last_validated: 2026-09-16
+last_validated: 2026-09-22
 artifacts:
   readme: README.md
   log_dir: log/
@@ -31,6 +32,7 @@ artifacts:
     - sessions/2026-09-14/codex-convi-7663-closed-conversation-scope.md
     - sessions/2026-09-15/codex-convi-7671-implementation.md
     - sessions/2026-09-16/codex-convi-7671-conflict-resolution.md
+    - sessions/2026-09-22/codex-convi-7671-html-to-text.md
     - deliverables/scorecard-template-domain-skeleton.md
     - deliverables/scorecard-template-concept-map.md
     - deliverables/template-lifecycle.md

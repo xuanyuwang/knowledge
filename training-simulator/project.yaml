@@ -7,8 +7,8 @@ related_source_repos:
   - director
   - cresta-proto
   - python-ai-services
-active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7707
-branch: xw/convi-7707-scenario-images
+active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7707-scenario-v2
+branch: xw/convi-7707-scenario-images-v2
 domain_owners:
   - Xuanyu Wang
 domain_scope: Scenario-based AI practice for agents — training content configuration (lessons/modules/scenarios), assignment as Director Tasks, Customer AI simulation runtime, Opera/LLM evaluation, and session-level reporting.
@@ -49,9 +49,17 @@ active_work_items:
   - CONVI-7656
   - lesson-module-statistics-reporting
 related_prs:
+  - https://github.com/cresta/cresta-proto/pull/10057
+  - https://github.com/cresta/go-servers/pull/33043
+  - https://github.com/cresta/go-servers/pull/33045
+  - https://github.com/cresta/cresta-proto/pull/9995
+  - https://github.com/cresta/director/pull/23164
   - https://github.com/cresta/go-servers/pull/32494
+  - https://github.com/cresta/go-servers/pull/32597
+  - https://github.com/cresta/go-servers/pull/32598
   - https://github.com/cresta/cresta-proto/pull/9918
   - https://github.com/cresta/cresta-proto/pull/9890
+  - https://github.com/cresta/go-servers/pull/32650
   - https://github.com/cresta/go-servers/pull/32384
   - https://github.com/cresta/cresta-proto/pull/9769
   - https://github.com/cresta/director/pull/22413
@@ -62,8 +70,8 @@ related_prs:
   - https://github.com/cresta/go-servers/pull/31521
   - https://github.com/cresta/go-servers/pull/32039
   - https://github.com/cresta/director/pull/22107
-current_objective: Review CONVI-7707 definitions and persistence draft PRs, release the proto dependency, then integrate signed scenario reads and coordinate schema rollout.
-last_validated: 2026-09-18
+current_objective: Review the generic S3File backend PR, merge and release the reduced scenario image proto contract, then bump the scenario backend dependency and validate the scenario flow before rollout.
+last_validated: 2026-09-29
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/

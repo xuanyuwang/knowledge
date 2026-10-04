@@ -1,0 +1,17 @@
+ClickHouse local 26.8.2.7; synthetic data only.
+wall_clock_stale_wins	1
+query_cannot_recover_merged_version	1
+source_version_rejects_late_old	1
+all_fresh_rows_match_old_cleanup	1
+index_clock_distinguishes_fresh_rows	1
+cleanup_actually_deletes_fresh_rows	1
+mixed_version_domains_reject_repair	1
+changed_sort_key_survives_final	1
+newer_tombstone_suppresses_late_insert	1
+
+Exit: 0
+
+Node v24.11.1; installed TanStack Query; no network calls.
+PASS: same scope serializes already enqueued saves and submit
+PASS: scope cannot order an edit that has not entered the queue
+PASS: save-before-submit needs a success barrier, not just a shared scope

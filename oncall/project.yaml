@@ -15,6 +15,8 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
+    - deliverables/qm-reliability-infrastructure.md
+    - work-items/qm-reliability-infrastructure.md
     - deliverables/glean-weekly-oncall-handoff-automation.md
     - sessions/2026-06-29/codex-team-slack-notification-research.md
     - ../notifications/README.md

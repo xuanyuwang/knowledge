@@ -6,6 +6,8 @@
 
 Unify `ParseUserFilterForAnalytics` into `Parse`, using `ListUsersForAnalytics` and `LiteUser` as the underlying implementation.
 
+The unified output design should split the current analytics `GroupsToAggregate` role: callers derive `teamsForAgentInfo` for direct TEAM metadata on agent rows and `teamsForAggregation` for TEAM statistic buckets from the parser's membership facts. See the [behavioral standard](user-filter-behavioral-standard.md#split-the-current-groupstoaggregate-role) and [implementation plan](implementation-plan.md).
+
 **Key insight**: Both functions should produce the same final results. The different approaches exist due to historical reasons:
 1. `ParseUserFilterForAnalytics` used analytics package functions to minimize risk during refactoring
 2. `Parse` was written before `ListUsersForAnalytics` and `LiteUser` existed

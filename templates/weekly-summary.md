@@ -3,48 +3,18 @@
 **Created:** YYYY-MM-DD
 **Timezone:** America/Toronto
 
-## Executive Summary
+**Coverage:** Monday-Sunday week. Note any missing evidence window if the record does not cover the full range.
 
-- [Most important outcome and why it matters]
+## Progress
 
-## Outcomes Delivered
+- **TICKET-ID: short human-readable label:** [Current outcome or status stated in plain language.]
+- **TICKET-ID: short human-readable label:** [Current outcome or status stated in plain language.]
 
-### Domain or Initiative
+## Problem
 
-- **Outcome:**
-- **Impact:**
-- **Role:**
-- **Status:** complete | validating | blocked | active
-- **Evidence:**
+- None.
 
-## Domain Stewardship
+## Plan
 
-- [Semantics, architecture, operational knowledge, ownership, or knowledge gaps improved]
-
-## Reliability and Risk
-
-- [Risk reduced, incident handled, rollout made safer, or unresolved exposure]
-
-## Leverage and Influence
-
-- [Reusable artifact, decision, review, alignment, or people enabled]
-
-## Problems and Lessons
-
-- [Blocker, failure, changed hypothesis, or durable lesson]
-
-## Next-Week Priorities
-
-1. [Priority]
-
-## Performance Evidence Candidates
-
-### Candidate outcome
-
-- **Competency:** scope/ownership | strategy | architecture | leverage | influence | operational excellence
-- **Situation:**
-- **Role and action:**
-- **Outcome and impact:**
-- **Evidence:**
-- **Collaborators:**
-- **Pending metrics/follow-up:**
+- [One concrete next action atom.]
+- [One concrete next action atom.]

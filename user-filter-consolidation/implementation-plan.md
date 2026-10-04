@@ -170,6 +170,11 @@ type ParseResult struct {
     ShouldQueryAllUsers bool
 }
 
+// Analytics callers derive two distinct values from these membership outputs:
+// teamsForAgentInfo enriches per-agent rows with direct TEAM memberships.
+// teamsForAggregation defines TEAM buckets for per-user-to-team statistics.
+// A selected DYNAMIC group chooses users, not a TEAM aggregation bucket.
+
 // LiteUser is a lightweight user representation with metadata.
 type LiteUser struct {
     ResourceName string
@@ -297,6 +302,7 @@ Implement:
 - Internal: `buildMembershipMaps()` — build UserToDirectGroups, UserToAllGroups, GroupToDirectMembers, GroupToAllMembers, AllGroups
 - Internal: `buildResult()` — assemble ParseResult, sort by resource name
 - `ShouldQueryAllUsers` computation
+- Return complete TEAM membership facts; do not carry `GroupsToAggregate` over as one output. Analytics callers will derive `teamsForAgentInfo` and `teamsForAggregation` separately. Document root/default, direct/indirect, selected-team/child-team, and dynamic-only selection rules for each.
 
 Move/adapt from `common_user_filter.go`:
 - `buildUserGroupMappings()` — split into two maps (direct + all), remove hasAgentAsGroupByKey coupling

@@ -186,11 +186,22 @@ Callers derive what they need from the core outputs:
 |---------------|---------------|---------|
 | User-to-groups map (no root/default) | `StripRootAndDefaultGroups(UserToDirectGroups)` | Analytics: team leaderboard |
 | User-to-groups map (with root/default) | Use `UserToDirectGroups` directly | Analytics: agent leaderboard |
-| Groups for aggregation (selected) | Use `FinalGroups` directly | Analytics: group-by-group aggregation |
-| Groups for aggregation (all) | Use `AllGroups` directly | Analytics: group-by-agent |
+| Teams for agent information | Derive `teamsForAgentInfo` from `UserToDirectGroups` and TEAM metadata | Analytics: enrich agent rows |
+| Teams for aggregation | Derive `teamsForAggregation` from final users' TEAM memberships and selected TEAM scope | Analytics: group-by-group aggregation |
 | User resource names | `Keys(FinalUsers)` | Coaching, WHERE clause |
 | User IDs | `UserIDs(FinalUsers)` | Coaching: database queries |
 | Group resource names | `Keys(AllGroups)` | WHERE clause |
+
+### Split the current `GroupsToAggregate` role
+
+The analytics parser's `GroupsToAggregate` has two separate uses. The unified parser should expose the underlying TEAM membership facts, and analytics callers should derive two separately named values:
+
+| Caller value | Derived from parser output | Purpose |
+|--------------|----------------------------|---------|
+| `teamsForAgentInfo` | Direct TEAM memberships of `FinalUsers` from `UserToDirectGroups`, with the group metadata needed by the response | Enrich agent rows with team memberships; does not calculate statistics. Preserve the current agent-row treatment of root/default teams. |
+| `teamsForAggregation` | TEAM groups represented by `FinalUsers` after applying the selected TEAM scope (including child teams), root/default exclusion, and the request's direct/indirect membership rule | Define buckets for aggregating per-user statistics into team rows. The selected dynamic group only selects users; it is not a TEAM bucket. |
+
+These are response concerns, not two copies of the request's group filter. `AllGroups`, `FinalGroups`, and the user-to-group maps provide the data to derive them. In particular, a dynamic-only selection must leave no selected TEAM restriction, so `teamsForAggregation` can contain the real teams of the selected users. The precise `FinalGroups` contract for that case must be specified and tested before migrating callers.
 
 ---
 
@@ -671,7 +682,7 @@ When grouping by agent or group, callers use the user-to-groups mapping (`UserTo
 
 ### B-CC-3: Groups Output Used as Aggregation Buckets
 
-When grouping by group (not agent), callers use the groups output (`FinalGroups` or `AllGroups`, depending on use case) to initialize per-group result buckets. Per-user stats are then summed into the matching group bucket(s) via the user-to-groups mapping. A user's stats may contribute to multiple groups if they have multiple memberships.
+When grouping by group (not agent), callers derive `teamsForAggregation` from the parser's TEAM membership outputs and use it to initialize per-team result buckets. Per-user stats are then summed into the matching team bucket(s) via the user-to-groups mapping. A user's stats may contribute to multiple teams if they have multiple memberships. Agent-row enrichment instead uses `teamsForAgentInfo`; it does not aggregate statistics.
 
 > **Implementation evidence**: `convertRowsPerUserToPerGroupAgentStatsResponse` at lines 287-312.
 
@@ -916,7 +927,7 @@ The flag's name describes a **caller's grouping strategy**, not a user filter be
 
 ### Proposed Change
 
-**Remove `hasAgentAsGroupByKey` from the user filter function signature.** The user filter returns complete, unfiltered data. Callers apply post-processing.
+**Remove `hasAgentAsGroupByKey` from the user filter function signature.** The user filter returns complete TEAM membership data. Callers derive `teamsForAgentInfo` and `teamsForAggregation` separately, rather than carrying the current dual-purpose `GroupsToAggregate` value forward.
 
 #### Before (current)
 
@@ -947,11 +958,13 @@ result, err := Parse(
 if groupingByAgent {
     // Agent leaderboard: direct groups, keep root/default, all groups
     groupMap = result.UserToDirectGroups
-    groups = result.AllGroups
+    teamsForAgentInfo = teamsForFinalUsers(result.UserToDirectGroups, result.AllGroups)
 } else {
-    // Team leaderboard: strip root/default, use FinalGroups (selected groups)
-    groupMap = userfilter.StripRootAndDefaultGroups(result.UserToDirectGroups)
-    groups = result.FinalGroups
+    // Team leaderboard: choose mapping by the request's membership rule.
+    groupMap = userfilter.StripRootAndDefaultGroups(
+        groupMapForMembershipRule(result, directMembershipsOnly))
+    // Choose TEAM buckets, including selected child teams.
+    teamsForAggregation = selectTeamBuckets(result, selectedTeams, directMembershipsOnly)
 }
 ```
 

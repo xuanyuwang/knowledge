@@ -44,6 +44,8 @@ Across the most recent 14 complete daily runs, the monitor dispatched 492 workfl
 
 Recommendation: raise the immediate per-profile ceiling to `5000`, retaining the `5000` chunk size. Consider `10000` only after observing the 5,000 rollout. Keep `25000` as an incident/manual ceiling until a cluster-wide candidate or concurrency budget exists.
 
+The threshold can also become an approval boundary instead of a creation boundary. The preferred shape is one profile-level repair-request workflow: automatically approve small requests, pause larger requests for an authorized manager decision, and create the existing 5,000-scorecard execution chunks only after approval and a fresh candidate check. Do not eagerly create and pause every reindex chunk.
+
 ## Findings and Decisions
 
 - Accessible Slack evidence is sparse: Glean returned daily summaries for 2026-06-23, 2026-06-26, 2026-07-29, and 2026-08-07 only. The June 23 post had no dispatched workflow links, so the threshold sample uses the other three dates.
@@ -79,12 +81,39 @@ Recommendation: raise the immediate per-profile ceiling to `5000`, retaining the
 - Full-window Temporal latency was 1.92 seconds p50, 8.35 seconds p95, and 44.23 seconds p99; mean 3.22 seconds. Over the last 30 days it was 2.42 seconds p50, 8.55 seconds p95, and 30.94 seconds p99; mean 2.86 seconds.
 - For triggered profiles with a nonzero prior-day missing count, the next daily monitor showed 51.7% fully clear and 71.3% improved. This is only a rolling-window proxy: it cannot prove repair of the same scorecard IDs because the 24-hour population changes between runs.
 
+## Approval-Gated Workflow Design
+
+Temporal supports a human-in-the-loop wait through a signal or Workflow Update. The repository already uses a signal to pause retraining for manual review, so the primitive is established. The approval must still enter through an authenticated application endpoint: direct Temporal UI signaling does not provide the product RBAC and audit trail required for a manager decision.
+
+Recommended lifecycle:
+
+1. The monitor creates or upserts one repair request per customer/profile and monitoring window. It records the observed counts, missing rate, missing/stale breakdown, query window, policy version, and a candidate-set fingerprint or durable snapshot reference.
+2. Requests within the auto-approval policy proceed immediately. Larger requests enter `AWAITING_APPROVAL`, notify the approver, and wait for approve, reject, cancel, or expiry.
+3. The approval endpoint validates the approver's scope, records actor/time/reason plus the approved maximum candidate count, then signals or updates the request workflow.
+4. On approval, the workflow recomputes or revalidates the candidate set. If count, rate, or regional health changed beyond the approved envelope, it returns to approval rather than silently expanding scope.
+5. The workflow creates 5,000-scorecard child jobs through the existing chunked-job facility, using an explicit `max_concurrent_chunks` and a regional candidate/concurrency budget. The parent rolls up child progress and terminal state.
+6. A post-repair check records exact-ID ClickHouse convergence; Temporal completion alone remains insufficient.
+
+Why not start all chunk workflows before approval:
+
+- Current `CreateJob` scheduling starts a Temporal execution immediately, and the generic job wrapper changes it to `RUNNING` before workflow logic can wait.
+- The reindex handler has a 24-hour workflow execution timeout, which is a poor match for an unbounded approval wait.
+- A very large incident would create hundreds of dormant job/workflow records and retain large candidate-name payloads before anyone approved the load.
+- Daily monitoring could create duplicate pending repairs unless requests are deterministically deduplicated or coalesced.
+- Candidate membership can change while approval is pending, so executing an old snapshot without revalidation can waste load or exceed what the manager intended to approve.
+
+The existing generic Job state enum has no `AWAITING_APPROVAL` value. Prefer a purpose-built repair-request state or extend the job model; do not present an approval wait as ordinary `RUNNING`. A state-details-only stopgap is possible but makes filtering, alerting, and operational interpretation weaker.
+
+The automatic policy should remain count- and capacity-based rather than missing-rate-only. A high percentage over a tiny denominator may be cheap, while a modest percentage in a large profile may be incident-scale. Use candidate count, missing rate, regional backlog/health, and a cluster-wide dispatch budget together.
+
 ## Blockers and Dependencies
 
 - Temporal queue metrics provide aggregate duration and terminal status, but they do not carry workflow ID or candidate count, so duration cannot be correlated with payload size per workflow.
 - Monitor metrics do not emit stale count or exact reindex-candidate count. Recent logs fill this gap, but a durable candidate-count metric is still needed.
 - The monitor emits only a pre-repair gauge. The next daily run is too late and uses a different rolling cohort, so exact time-to-ClickHouse-convergence remains unknown.
 - Before a `25000` automatic default, add or verify a cluster-wide dispatch budget/concurrency cap so medium profiles cannot create an unbounded regional repair wave.
+- An approval surface and API do not exist for this repair path today. They need authorization, immutable audit fields, idempotent decisions, expiry, rejection, cancellation, and notification handling.
+- The current job model and generic workflow wrapper cannot accurately represent a waiting-for-approval execution without extension.
 
 ## Validation and Rollout
 
@@ -99,7 +128,10 @@ Recommendation: raise the immediate per-profile ceiling to `5000`, retaining the
 2. Add exact Temporal and convergence telemetry to make the next threshold capacity-based.
 3. Add exact stale and total reindex-candidate gauges.
 4. Add or verify a cluster-wide candidate/workflow cap before considering `25000` or higher.
+5. Design the profile-level repair-request job/API and approval RBAC; use the existing chunked-job concurrency facility after approval.
+6. Define deduplication, expiry, revalidation, rejection, and regional circuit-breaker semantics before implementation.
 
 ## Timeline
 
 - 2026-09-11 — Reconstructed the accessible Slack action sample and initially recommended 25,000; then added 84 days of Groundcover metrics and 14 days of exact candidate logs, measured 99.92% Temporal terminal success, and revised the immediate recommendation to 5,000. Evidence: `../sessions/2026-09-11/codex-auto-heal-threshold-recalibration.md`, `../log/2026-09-11.md`.
+- 2026-09-20 — Confirmed Temporal can support approval-gated repairs, but recommended one profile-level repair-request workflow rather than eagerly starting paused reindex chunks. Approval should trigger candidate revalidation followed by bounded 5,000-scorecard child jobs. Evidence: `../sessions/2026-09-20/codex-approval-gated-auto-heal.md`, `../log/2026-09-20.md`.

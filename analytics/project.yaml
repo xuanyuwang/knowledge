@@ -24,6 +24,9 @@ subdomains:
   - insights-user-filter
   - conversation-volume
 related_ticket_ids:
+  - CONVI-7715
+  - CONVI-7747
+  - CONVI-7711
   - INSI-4262
   - CONVI-7467
   - CONVI-6719
@@ -42,6 +45,9 @@ related_ticket_ids:
   - CONVI-7674
   - CONVI-7681
 active_work_items:
+  - CONVI-7715
+  - CONVI-7747
+  - CONVI-7711
   - INSI-4262
   - CONVI-7467
   - CONVI-6719
@@ -65,7 +71,7 @@ related_prs:
   - https://github.com/cresta/director/pull/21214
   - https://github.com/cresta/go-servers/pull/30782
 current_objective: Resolve open analytics correctness and latency work, including CONVI-7706 RetrieveConversationStats value-or-missing support, CONVI-7708 Assistance Insights value-or-missing parity, INSI-4262 Bill West long-session Active Days false negatives, CONVI-7467 Oportun Active Days visibility, CONVI-7674 RCG process-scorecard no-data validation, urgent CONVI-7681 RCG tail latency, CONVI-7667 process-scorecard request construction, CONVI-6719 unified user-filter validation, and remaining score/aggregation discrepancies.
-last_validated: 2026-09-17
+last_validated: 2026-09-25
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
@@ -102,6 +108,7 @@ artifacts:
     - deliverables/convi-7435-bswift-pi-qm-investigation.md
     - work-items/heartland-behavior-hints-adherence-mismatch.md
     - work-items/CONVI-7667.md
+    - work-items/CONVI-7711.md
     - work-items/CONVI-7674.md
     - work-items/CONVI-7681.md
 notes: >-

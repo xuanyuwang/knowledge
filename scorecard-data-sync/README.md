@@ -30,6 +30,8 @@ No subdomains are defined currently. Projection architecture, monitoring, diagno
 ## Initial Knowledge Map
 
 - [Architecture and invariants](deliverables/architecture-and-invariants.md)
+- [Why PG updated_at breaks CH reindex cleanup: concepts and examples](deliverables/why-pg-updated-at-breaks-ch-cleanup.md)
+- [UI → PG → CH ordering options and timestamp cleanup failure](deliverables/ui-pg-ch-ordering-options.md)
 - [Failure modes and case index](deliverables/failure-modes-and-case-index.md)
 - [Monitoring and diagnosis](deliverables/monitoring-and-diagnosis.md)
 - [Repair and backfill playbook](deliverables/repair-and-backfill-playbook.md)
@@ -63,7 +65,15 @@ On 2026-08-04, `us-west-2` reported 411,246/2,076,359 missing scorecards (19.81%
 
 On 2026-09-11, the original per-profile auto-heal ceiling of 1,000 was recalibrated using 84 days of Groundcover metrics and 14 days of exact dispatch/skip logs. The current ceiling handled 492/555 recent profile actions (88.6%); 5,000 would have handled 522/555 (94.1%) while adding at most one workflow per profile and seven workflows / 24,023 candidates on the busiest observed day. The `reindex_scorecards` Temporal queue completed 2,519/2,521 workflows (99.92%) with an 8.35-second p95. The current recommendation is 5,000 first, with exact convergence telemetry and a regional dispatch guard before materially higher thresholds. See `work-items/auto-heal-threshold-recalibration.md`.
 
+On 2026-09-20, an approval-gated extension was assessed. Temporal can durably wait for manager approval, but the recommended unit is one profile-level repair request rather than eagerly created paused reindex chunks. Approved requests should revalidate their candidate set, then use bounded 5,000-scorecard child jobs with regional capacity controls and exact convergence verification. See `sessions/2026-09-20/codex-approval-gated-auto-heal.md`.
+
 On 2026-09-17, an RCG scorecard was confirmed internally inconsistent in PostgreSQL: its five equally weighted criteria calculate to 80%, but the parent stores 50%. PR #32447 likely prevents the leading submit/autosave overwrite mechanism for this incident, but concurrent `UpdateScorecard` requests still lack backend ordering/version protection and can preserve a broader stale-write or parent/child mismatch hazard. See `work-items/rcg-casino-dtq-score-mismatch.md`.
+
+On 2026-09-19, source investigation and isolated ClickHouse execution confirmed why the original PG timestamp substitution is unsafe: `ReindexConversations` and offline cleanup treat `update_time` as indexing time, so old PG timestamps can make rebuilt rows qualify for deletion. The main frontend form already serializes queued mutations; the remaining local gap is debounce completion and a save-success barrier before Submit, correcting earlier debounce-only descriptions. Seven solution families are compared in `deliverables/ui-pg-ch-ordering-options.md`: start with no-schema FE/BE mitigations, then use aggregate revisions plus a PG outbox and explicit CH deletion semantics for complete eventual convergence. PR #32447 was still open at inspection; no implementation or rollout was performed. See `work-items/ui-pg-ch-ordering.md`.
+
+On 2026-09-28, a second RCG scorecard for CEL Retreat was confirmed internally inconsistent in PostgreSQL: four equally weighted criteria calculated to 75%, while the parent stored 50%; ClickHouse mirrored both. A user then toggled one criterion N/A → No, and PG plus the latest CH rows became 75%, while a report/chart was still reported as showing 50%. The original near-coincident submit/update times and pre-PR #32447 incident date support the same submit/autosave race without proving the request order. The remaining report discrepancy needs its exact serving path. See `work-items/rcg-cel-retreat-score-mismatch.md`.
+
+On 2026-10-01, [CONVI-7784](https://linear.app/cresta/issue/CONVI-7784/systematically-evaluate-scorecard-write-race-conditions-and) was placed in Backlog to systematically evaluate scorecard writer paths, concurrency risks, and parent/criterion consistency. It calls for deterministic reproduction and a ranked mitigation plan; no particular incident request order has been established. See `work-items/CONVI-7784.md`.
 
 ## Reading Order
 

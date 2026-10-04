@@ -21,7 +21,7 @@ Investigation and fix for scorecard data inconsistency between PostgreSQL (sourc
 
 ## Summary of Fixes
 
-1. **Fix 1 (reverted)**: Use PG `updated_at` for CH timestamp — failed because async work read stale closure data
+1. **Fix 1 (reverted)**: Use PG `updated_at` for CH timestamp. **2026-09-19 correction:** the earlier stale-closure explanation does not explain an older version defeating a newer version for the same replacement key. Source and isolated ClickHouse checks confirm a cleanup-contract conflict: conversation reindex cleanup treats `update_time` as indexing time and can delete freshly rebuilt rows carrying old PG timestamps. Exact historical incident attribution remains unverified; see [current analysis](../scorecard-data-sync/deliverables/ui-pg-ch-ordering-options.md).
 2. **Fix 2 (merged, PR #24103)**: Atomic transactions — move historic writes inside transaction, async work re-reads from DB
 3. **Fix 3 (merged)**: GORM `Omit` — prevent UpdateScorecard from overwriting `submitted_at`/`submitter_user_id`
 

@@ -6,6 +6,7 @@ primary_repo_path: /Users/xuanyu.wang/repos/go-servers
 related_source_repos:
   - clickhouse-schema
   - cresta-proto
+  - director
 active_worktree_path: /Users/xuanyu.wang/repos/go-servers-stale-reporting
 branch: scorecard-sync-monitor-stale-reporting
 domain_owners:
@@ -20,11 +21,14 @@ related_ticket_ids:
   - CONVI-7397
   - CONVI-7414
   - CONVI-7461
+  - CONVI-7784
   - INSI-4251
 active_work_items:
   - alaska-air-orphaned-scorecard
   - CONVI-7461
   - auto-heal-threshold-recalibration
+  - ui-pg-ch-ordering
+  - CONVI-7784
 related_prs:
   - https://github.com/cresta/go-servers/pull/24103
   - https://github.com/cresta/go-servers/pull/25916
@@ -32,8 +36,8 @@ related_prs:
   - https://github.com/cresta/go-servers/pull/30911
   - https://github.com/cresta/flux-deployments/pull/312915
   - https://github.com/cresta/flux-deployments/pull/312923
-current_objective: Recalibrate scorecard-sync-monitor auto-heal thresholds from observed workflow capacity and end-to-end convergence evidence.
-last_validated: 2026-09-11
+current_objective: Evaluate end-to-end scorecard ordering and durable projection options alongside ongoing auto-heal and repair work; implementation selection is pending.
+last_validated: 2026-09-19
 artifacts:
   readme: README.md
   cases_dir: cases/
@@ -43,6 +47,8 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
+    - deliverables/why-pg-updated-at-breaks-ch-cleanup.md
+    - deliverables/ui-pg-ch-ordering-options.md
     - deliverables/architecture-and-invariants.md
     - deliverables/failure-modes-and-case-index.md
     - deliverables/monitoring-and-diagnosis.md

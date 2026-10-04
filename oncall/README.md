@@ -95,6 +95,7 @@ Run a short weekly review:
 
 ## Current Research
 
+- [QM reliability infrastructure proposal](./deliverables/qm-reliability-infrastructure.md) — initial 2026-09-23 priorities for coaching and analytics: access diagnosis, data freshness, early end-to-end tests, observability, alerts, and bounded automation. Planning only; [work item](./work-items/qm-reliability-infrastructure.md).
 - [Team Slack notification routing](./sessions/2026-06-29/codex-team-slack-notification-research.md)
 - [Glean weekly oncall handoff automation](./deliverables/glean-weekly-oncall-handoff-automation.md)
 

@@ -57,10 +57,11 @@ RCG's unpaginated full-template response exceeds a 50 MiB send limit. The shared
 ## Blockers and Dependencies
 
 - Backend serialized-size protection and any narrower permission contract remain separate follow-up work across `cresta-proto` and `go-servers`.
+- A loaded conversation may legitimately omit its optional use case. The generic conversation-details hook cannot distinguish consumer policy from that field alone; a hard no-unscoped-request guarantee for this edge requires an explicit Closed Conversations policy rather than a global skip.
 
 ## Validation and Rollout
 
-- The narrowed Director worktree implementation passes TypeScript, changed-file lint, and 2 focused permission-request tests.
+- The narrowed Director worktree implementation, including the Closed Conversations-only required-use-case policy in `e976584f17`, passes TypeScript, changed-file lint, and 10 tests across 3 focused permission-request suites.
 - RCG deployed-environment request-shape and serialized-size validation remains pending.
 
 ## Next Actions
@@ -82,3 +83,6 @@ RCG's unpaginated full-template response exceeds a 50 MiB send limit. The shared
 - 2026-09-14 — Rebased onto current `origin/main`, committed as `49e6af05e5`, and opened draft Director PR [#22809](https://github.com/cresta/director/pull/22809) using the repository template with both Closed Conversations call paths in the description.
 - 2026-09-14 — Applied review fix `ecb8f70c18`: skipped permission lookups now return no permissions, preventing filtering/grading/reset actions before scope exists, while ordinary loading and error states retain the existing permissive fallback.
 - 2026-09-14 — Applied review fix `1efbdb7431`: omitted use-case scope remains an unscoped permission lookup, while Closed Conversations explicitly signals when it is waiting for conversation scope.
+- 2026-09-18 — Removed the configurable waiting flag after validating review feedback. Permission lookup now skips while coaching details are disabled or conversation data is pending, uses the loaded use case when present, and preserves the unscoped fallback for a loaded conversation without a use case. Rebased cleanly over remote merge `35e2d577cc`, validated lint, TypeScript, and 9 focused tests, then pushed `12e36f4f75` to PR #22809.
+- 2026-09-18 — Validated CodeRabbit's loaded-without-use-case suggestion. The unscoped permission lookup is confirmed, but the global skip would hide scorecards and disable actions on other consumers and leaves a separate agent-filtered unscoped template request. No product change was made; a Closed Conversations-specific product policy is required for this edge.
+- 2026-09-18 — Added the explicit Closed Conversations-only policy in `e976584f17`. `requireUsecaseForTemplatePermissions` is enabled only by `ClosedConversations.tsx`; Focus View, Opera, and other consumers preserve the default fallback. Lint, TypeScript, and 10 focused tests passed before push to PR #22809.

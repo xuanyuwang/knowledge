@@ -21,7 +21,7 @@ Investigation complete on 2026-09-17. PostgreSQL is internally inconsistent: per
 - Manual calculation: four 100% criteria and one 0% criterion, each weight 20, equals 80%; stored chapter rows also read `100/0/100/100/100`, while `scorecards.score = 50`.
 - The scorecard's `submitted_at` and `updated_at` are only 516 microseconds apart, supporting (but not proving) the PR's submit-overwrites-newer-autosave mechanism.
 - PR #32447 makes `SubmitScorecard` preserve stored scoring fields and reload after commit. Its tests cover submit versus a newer score update, not two concurrent `UpdateScorecard` requests.
-- Director's debounced autosave does not queue or version mutations, and the backend does not reject stale updates. Requests from overlapping autosaves, tabs, users, or other clients can still commit in a different order from the edits that produced them.
+- **2026-09-19 source correction:** the main Director scorecard form already serializes enqueued mutations with TanStack Query's shared `saveScorecard` scope. A pending debounce, failed save, separate unscoped hooks, other tabs/users and non-UI clients remain outside a complete causal-order contract; the backend still lacks revision equality checks. See [current ordering analysis](../deliverables/ui-pg-ch-ordering-options.md). The earlier claim that this form had no queue was incorrect.
 
 ## Next actions
 

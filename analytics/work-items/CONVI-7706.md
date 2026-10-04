@@ -4,7 +4,7 @@
 **Primary domain:** analytics
 **Primary subdomain:** performance-insights
 **Official ticket:** [CONVI-7706](https://linear.app/cresta/issue/CONVI-7706/regressionbswift-retrieveconversationstats-rejects-team-value-no-value)
-**Last updated:** 2026-09-17
+**Last updated:** 2026-09-25
 
 ## Objective and Impact
 
@@ -30,7 +30,7 @@
 - **Repos:** `/Users/xuanyu.wang/repos/go-servers`
 - **Worktrees:** `/Users/xuanyu.wang/repos/go-servers-convi-7706`
 - **Branches:** `xw/convi-7706-conversation-stats-value-or-missing`, based on `origin/main` at `cda4a39f9a`
-- **PRs/commits:** [go-servers PR #32440](https://github.com/cresta/go-servers/pull/32440); `e7704f6637` (`[CONVI-7706] Support value-or-missing in conversation stats`), rebased onto `origin/main` at `6e2648ebed`
+- **PRs/commits:** [go-servers PR #32440](https://github.com/cresta/go-servers/pull/32440); implementation `e7704f6637`; golden SQL coverage `b1568e1d72`
 
 ## Current Understanding
 
@@ -46,11 +46,16 @@ The local fix extracts only the exact metadata value-or-missing group accepted b
 ## Blockers and Dependencies
 
 - No implementation blocker.
-- PR review and CI remain.
+- Required CI passes; code-owner review remains.
+- The committed-query coverage gap is resolved by `b1568e1d72`: full-RPC golden SQL cases now cover latest-value and stale-enabled value-or-missing behavior.
 
 ## Validation and Rollout
 
 - Focused Go tests pass for the new conversation-stats path, existing conversation-stats suite, shared rejection, and QA overlap parsing/query behavior.
+- Existing `RetrieveConversationStats` golden SQL tests pass unchanged, which confirms ordinary metadata-filter behavior did not drift. They do not cover the new overlap shape.
+- Added two full-RPC cases to `RetrieveConversationStatsTestSuite`, with independent golden SQL files for latest-value and stale-enabled query shapes. The direct structural test remains for focused parser/query-builder assertions.
+- Executed both committed golden SQL shapes against the real `voice-staging` conversations ClickHouse database `cresta_walter_dev` using Walter Dev data. The synthetic fixture literals execute successfully but return no rows, as expected; substituting a real September 25–27 window, metadata template, and real string values produced non-empty aggregates in both modes.
+- With real `user_hangup` + `transfer` values, both modes returned 52 aggregate rows, summed conversation count 1,173, and 44,255 handle-time seconds. With the narrower real `transfer` + `agent_hangup` values, both returned 50 rows, summed conversation count 698, and 11,892 handle-time seconds. This validates execution of both SQL shapes but the sampled data does not contain a stale-only difference for those selections.
 - `bazel run //:gazelle` completed without generated changes.
 - `git diff --check` passes.
 - Local ClickHouse fixtures confirmed latest mode returns selected plus missing conversations, excludes a nonmatching latest value, and stale-enabled mode additionally accepts an older matching value.
@@ -58,7 +63,7 @@ The local fix extracts only the exact metadata value-or-missing group accepted b
 
 ## Next Actions
 
-1. Resolve the existing CI blocker: the ES BasicRequest response-body EOF also reproduces on the exact PR base. Semantic review found no actionable correctness defect; code-owner review remains.
+1. Let CI complete for golden-test commit `b1568e1d72` and obtain code-owner approval.
 2. After deployment, confirm both current and comparison-window Bswift `RetrieveConversationStats` calls return 200 and AHT renders.
 3. Implement the confirmed Assistance Insights parity cluster under CONVI-7708; keep Smart Compose metadata-filter correctness separate.
 
@@ -68,3 +73,6 @@ The local fix extracts only the exact metadata value-or-missing group accepted b
 - 2026-09-17 — Rebased the focused commit onto current `origin/main` as `e7704f6637`, reran focused tests and Gazelle, and opened go-servers PR #32440. Linear automatically moved CONVI-7706 to In Progress and attached the PR.
 
 - 2026-09-17 — Completed [PR #32440 semantic review](../deliverables/convi-7706-pr-32440-semantic-review.md): no actionable correctness findings; 176 local ClickHouse checks pass. Reproduced the ES BasicRequest CI failure on both head and exact base. No product changes or external review submission.
+- 2026-09-25 — Rechecked PR head `f1257181a0` and current CI. Required CI passes. The PR adds no golden SQL and its new test manually checks query fragments rather than the RPC-generated query, so full-RPC value-or-missing golden coverage is recommended before merge.
+- 2026-09-25 — Added, committed, and pushed two full-RPC golden SQL cases as `b1568e1d72`: default latest-value selection and `AllowMatchingStaleMetadataValues=true`. The focused `TestRetrieveConversationStats` suite and Gazelle pass; broader analytics tests were intentionally not run.
+- 2026-09-25 — Ran both golden SQL files on `voice-staging` for `cresta/walter-dev` with their fixture arguments and with real recent metadata arguments. Both query branches execute and return non-empty aggregates with real values; sampled latest/stale totals are equal, so no claim of observed stale-only behavior is made. Evidence: `sessions/2026-09-25/codex-convi-7706-staging-golden-sql-validation.md`.

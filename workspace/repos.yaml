@@ -160,11 +160,41 @@ repos:
       - knowledge
 
 named_worktrees:
+  - name: go-servers-convi-7707-s3file-backend
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7707-s3file-backend
+    branch: xw/convi-7707-s3file-backend
+    purpose: Implement merged generic S3FileService upload and commit contract for CONVI-7707.
+
+  - name: cresta-proto-convi-7707-image-contract
+    source_repo: cresta-proto
+    path: /Users/xuanyu.wang/repos/cresta-proto-convi-7707-image-contract
+    branch: xw/convi-7707-scenario-image-contract
+    purpose: Define the reduced scenario image descriptor and field for CONVI-7707.
+
+  - name: go-servers-convi-7707-scenario-v2
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7707-scenario-v2
+    branch: xw/convi-7707-scenario-images-v2
+    purpose: Persist and sign scenario images using the generic S3File key namespace.
+
+  - name: go-servers-convi-7715
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7715
+    branch: xw/convi-7715-dynamic-group-filter
+    purpose: Isolated worktree for CONVI-7715 dynamic-group user-filter investigation and implementation.
+
+  - name: cresta-proto-convi-7707-s3file
+    source_repo: cresta-proto
+    path: /Users/xuanyu.wang/repos/cresta-proto-convi-7707-s3file
+    branch: xw/convi-7707-s3-file-lifecycle
+    purpose: Add generic S3FileService staged upload and permanent-file commit contracts, with initial domain configuration enforced by FE.
+
   - name: cresta-proto-convi-7707
     source_repo: cresta-proto
     path: /Users/xuanyu.wang/repos/cresta-proto-convi-7707
     branch: xw/convi-7707-scenario-images
-    purpose: Add TrainingScenario.images using the existing quiz media contract for CONVI-7707.
+    purpose: Define TrainingModuleImage and generalized media APIs for CONVI-7707.
 
   - name: go-servers-convi-7707
     source_repo: go-servers
@@ -172,17 +202,59 @@ named_worktrees:
     branch: xw/convi-7707-scenario-images
     purpose: Prepare scenario image JSONB persistence, generated converters, and metadata validation for CONVI-7707.
 
+  - name: go-servers-convi-7707-media
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7707-media
+    branch: xw/convi-7707-media-apis
+    purpose: CONVI-7707 stack part 2, generalized media APIs and legacy quiz adapters.
+
+  - name: go-servers-convi-7707-reads
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7707-reads
+    branch: xw/convi-7707-scenario-image-reads
+    purpose: CONVI-7707 stack part 3, fresh signed URLs on scenario reads.
+
   - name: cresta-proto-convi-7281
     source_repo: cresta-proto
     path: /Users/xuanyu.wang/repos/cresta-proto-convi-7281
     branch: xw/convi-7281-add-training-simulator-only-option-for-new-opera-rule
-    purpose: Add the shared policy conversation-source applicability contract for Training Simulator-only Opera rules.
+    purpose: Add the Training Simulator policy source type for Training Simulator-only Opera rules.
+
+  - name: cresta-proto-convi-7281-policy-search
+    source_repo: cresta-proto
+    path: /Users/xuanyu.wang/repos/cresta-proto-convi-7281-policy-search
+    branch: xw/convi-7281-carry-conversation-source-to-policy-search
+    purpose: Carry conversation source through the internal Orchestrator conversation and policy search request.
 
   - name: go-servers-convi-7281
     source_repo: go-servers
     path: /Users/xuanyu.wang/repos/go-servers-convi-7281
     branch: xw/convi-7281-add-training-simulator-only-option-for-new-opera-rule
-    purpose: Persist, propagate, and enforce Opera policy applicability by conversation source.
+    purpose: Propagate conversation source to policy search and select active policies using the normal-versus-Training-Simulator applicability truth table.
+
+  - name: go-servers-convi-7281-policy-source
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7281-policy-source
+    branch: xw/convi-7281-policy-source-infra
+    purpose: Add the DB Training Simulator policy source enum and explicit public-to-DB converter mappings.
+
+  - name: director-convi-7281
+    source_repo: director
+    path: /Users/xuanyu.wang/repos/director-convi-7281
+    branch: xw/convi-7281-add-training-simulator-only-option-for-new-opera-rule
+    purpose: Add and persist the Training Simulator-only applicability selection in Opera rule creation and editing.
+
+  - name: director-convi-7744
+    source_repo: director
+    path: /Users/xuanyu.wang/repos/director-convi-7744
+    branch: xw/convi-7744-scorecard-pagination
+    purpose: Load all conversation scorecard pages and recover generated scorecard names after failed creates.
+
+  - name: director-convi-7785
+    source_repo: director
+    path: /Users/xuanyu.wang/repos/director-convi-7785
+    branch: xw/convi-7785-exclude-simulator-rules
+    purpose: Exclude Training Simulator-only Opera rules from Performance Configuration conversation templates.
 
   - name: go-servers-convi-7671
     source_repo: go-servers
@@ -201,6 +273,12 @@ named_worktrees:
     path: /Users/xuanyu.wang/repos/cresta-proto-convi-7671
     branch: xw/convi-7671-list-comments-size
     purpose: Add the backward-compatible ListComments inline-image projection contract for CONVI-7671.
+
+  - name: cresta-proto-convi-7671-content-format
+    source_repo: cresta-proto
+    path: /Users/xuanyu.wang/repos/cresta-proto-convi-7671-content-format
+    branch: xw/convi-7671-comment-content-format
+    purpose: Closed follow-up that explored, then rejected, a new ListComments content-format contract for CONVI-7671.
 
   - name: director-convi-7663
     source_repo: director

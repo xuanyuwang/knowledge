@@ -7,8 +7,8 @@ related_source_repos:
   - director
   - cresta-proto
   - config
-active_worktree_path: /Users/xuanyu.wang/repos/go-servers
-branch: main
+active_worktree_path: /Users/xuanyu.wang/repos/director-convi-7744
+branch: xw/convi-7744-scorecard-pagination
 domain_owners:
   - Xuanyu Wang
 domain_scope: Scorecard/template lifecycle and business workflows, including permissions, submission, reversal, appeals, and group calibration, excluding PG/CH synchronization mechanics.
@@ -23,10 +23,15 @@ subdomains:
 related_ticket_ids:
   - CONVI-7533
   - CONVI-7682
-active_work_items: []
-related_prs: []
-current_objective: Maintain exact workflow semantics and advance a product direction for preventing scorecard template configuration mistakes and safely remediating affected scorecards.
-last_validated: 2026-08-27
+  - CONVI-7744
+  - CONVI-7785
+active_work_items:
+  - work-items/CONVI-7744.md
+  - work-items/CONVI-7785.md
+related_prs:
+  - https://github.com/cresta/director/pull/23190
+current_objective: Complete and review CONVI-7744 so conversation scoring loads all existing scorecards across every API page.
+last_validated: 2026-09-24
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/

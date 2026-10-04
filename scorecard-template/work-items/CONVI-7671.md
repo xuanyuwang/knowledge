@@ -4,7 +4,7 @@
 **Primary domain:** `scorecard-template`
 **Primary subdomain:** none
 **Official ticket:** [CONVI-7671](https://linear.app/cresta/issue/CONVI-7671/bound-listcomments-responses-containing-inline-images)
-**Last updated:** 2026-09-16
+**Last updated:** 2026-09-22
 
 ## Objective and Impact
 
@@ -31,9 +31,9 @@
 ## Source Context
 
 - **Repos:** `/Users/xuanyu.wang/repos/go-servers`, `/Users/xuanyu.wang/repos/cresta-proto`
-- **Worktrees:** `/Users/xuanyu.wang/repos/go-servers-convi-7671`, `/Users/xuanyu.wang/repos/cresta-proto-convi-7671`
-- **Branches:** `xw/convi-7671-list-comments-size` in both repositories
-- **PRs/commits:** merged [cresta-proto PR #9876](https://github.com/cresta/cresta-proto/pull/9876); dependent [go-servers PR #32304](https://github.com/cresta/go-servers/pull/32304) at `a274bc548a`; go-servers PR #30472 / `a81bcb24ad` is the prior fixed-page-size mitigation
+- **Worktrees:** `/Users/xuanyu.wang/repos/go-servers-convi-7671`, `/Users/xuanyu.wang/repos/cresta-proto-convi-7671`, `/Users/xuanyu.wang/repos/cresta-proto-convi-7671-content-format`
+- **Branches:** go-servers `xw/convi-7671-list-comments-size`; original proto `xw/convi-7671-list-comments-size`; content-format proto `xw/convi-7671-comment-content-format`
+- **PRs/commits:** merged [cresta-proto PR #9876](https://github.com/cresta/cresta-proto/pull/9876); closed/superseded [cresta-proto PR #9969](https://github.com/cresta/cresta-proto/pull/9969); dependent [go-servers PR #32304](https://github.com/cresta/go-servers/pull/32304) at `24cf976403`; go-servers PR #30472 / `a81bcb24ad` is the prior fixed-page-size mitigation
 
 ## Current Understanding
 
@@ -59,7 +59,8 @@ The outliers are legitimate screenshot-bearing `AI_AGENT_FEEDBACK`, not syntheti
 
 - Read-only production data inspection completed.
 - Linear description updated with the exact Director entry points, frontend and backend call locations, customer-facing export flow, prioritized mitigations, and an affected conversation deep link.
-- Implementation is prepared in fresh `cresta-proto` and `go-servers` worktrees. The proto adds backward-compatible `ListCommentsRequest.strip_inline_images`; the server removes HTML `<img>` elements only when requested; scorecard export opts in and sends selected IDs plus `CONVERSATION` under the nested filter.
+- The final agreed implementation requires no new protobuf field. Unset `strip_inline_images` preserves stored HTML; when true, go-servers converts content from HTML to text before serialization. Scorecard export enables this existing flag and sends selected IDs plus `CONVERSATION` under the nested filter.
+- `ListComments` calls `jaytaylor.com/html2text.FromString` directly. Existing domain-specific converters that preprocess email, cap HTML nesting, or enable pretty tables remain local.
 - The full `TestListComments` and `TestExportScorecards` suites pass against locally generated proto bindings. The image-projection integration test stores a 5 MiB base64 image, proving it is removed before the gRPC response reaches the default-size client.
 - Proto `buf lint` and `buf build` pass. Repository `mage Lint` could not run because `mage` is unavailable in the local environment.
 - Verified and skipped a review suggestion to commit `ListCommentsRequest.json` manually. Proto CI runs generation on pull requests but gates `Commit & Release` to `main` (or an explicitly committing manual dispatch); after merge, the generated commit updates tracked `gen/` artifacts. Existing history confirms this exact schema is maintained by `Auto generate code from protobuf for ...` commits.
@@ -69,9 +70,8 @@ The outliers are legitimate screenshot-bearing `AI_AGENT_FEEDBACK`, not syntheti
 ## Next Actions
 
 1. Let go-servers PR #32304 CI complete; investigate only failures attributable to this change.
-2. Mark the dependent PR ready for review after required checks and review feedback are resolved.
-3. Retain adaptive or deterministic byte-aware protection for genuinely large text comments. Define explicit behavior for a single comment above the response budget because pagination alone cannot solve it.
-4. Decide whether create/update should reject oversized content and whether media references require a separate migration ticket; creation limits do not repair existing oversized rows.
+2. Retain adaptive or deterministic byte-aware protection for genuinely large text comments. Define explicit behavior for a single comment above the response budget because pagination alone cannot solve it.
+3. Decide whether create/update should reject oversized content and whether media references require a separate migration ticket; creation limits do not repair existing oversized rows.
 
 ## Timeline
 
@@ -89,3 +89,4 @@ The outliers are legitimate screenshot-bearing `AI_AGENT_FEEDBACK`, not syntheti
 - 2026-09-15 — Updated go-servers PR #32304 to published cresta-proto v2.24.3, regenerated Go/Bazel dependency metadata, rebased onto current `main`, and revalidated the affected targets without a local proto replacement.
 - 2026-09-15 — Removed the single-use production request-construction helper after review, inlined the `ListCommentsRequest`, and retained only a test helper shared by 22 mock expectations; focused export tests passed.
 - 2026-09-16 — Rebased PR #32304 onto current `origin/main`; resolved the proto dependency conflict by dropping the obsolete v2.24.3 bump and retaining main's v2.24.7, which includes the required field. Focused tests passed and the mergeable branch was force-pushed with a lease.
+- 2026-09-22 — Reached agreement with Tinglin to return text directly from `ListComments`; finalized the design by reusing `strip_inline_images`, closed the unnecessary content-format proto PR #9969, inlined `html2text.FromString`, and rebased the go-servers branch onto current main.

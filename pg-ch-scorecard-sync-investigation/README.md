@@ -2,6 +2,10 @@
 
 > **Migrated knowledge:** Canonical architecture, taxonomy, monitoring, and repair guidance now live in [`scorecard-data-sync`](../scorecard-data-sync/README.md). This folder remains the theory, incident, skill, and session evidence archive.
 
+> **2026-09-21 explainer:** [Why PG updated_at breaks CH reindex cleanup](../scorecard-data-sync/deliverables/why-pg-updated-at-breaks-ch-cleanup.md) explains the conflicting timestamp assumptions, then demonstrates ordering and valid-row deletion with concrete examples and source references.
+
+> **2026-09-19 follow-up:** [UI → PG → CH ordering options](../scorecard-data-sync/deliverables/ui-pg-ch-ordering-options.md) recovers the PG-timestamp/reindex-cleanup conflict, corrects earlier frontend ordering assumptions, and compares lightweight mitigations with revision/outbox, Temporal and CDC designs. [Canonical work item](../scorecard-data-sync/work-items/ui-pg-ch-ordering.md).
+
 **Created:** 2026-04-20
 **Status:** Active
 

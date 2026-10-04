@@ -5,6 +5,7 @@
 **Primary subdomain:** `insights-user-filter`
 **Official ticket:** [CONVI-6719](https://linear.app/cresta/issue/CONVI-6719/phase-3-unified-parser-implementation)
 **Last updated:** 2026-09-08
+**Design follow-up (2026-09-29):** The unified parser should not carry the analytics-only dual-purpose `GroupsToAggregate` field forward. Return complete TEAM membership facts; analytics callers derive separate `teamsForAgentInfo` and `teamsForAggregation` values. The dynamic-only selection rule for `FinalGroups` remains to be specified and tested. See the updated [behavioral standard](../../user-filter-consolidation/user-filter-behavioral-standard.md) and [implementation plan](../../user-filter-consolidation/implementation-plan.md).
 
 ## Objective and Impact
 
