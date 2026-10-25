@@ -28,8 +28,10 @@ related_ticket_ids:
 active_work_items:
   - work-items/CONVI-7744.md
   - work-items/CONVI-7785.md
+  - work-items/qm-task-template-scope.md
 related_prs:
   - https://github.com/cresta/director/pull/23190
+  - https://github.com/cresta/director/pull/23461
 current_objective: Complete and review CONVI-7744 so conversation scoring loads all existing scorecards across every API page.
 last_validated: 2026-09-24
 artifacts:
@@ -41,6 +43,7 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
+    - decisions/2026-10-08-qm-task-inherits-template-usecase-scope.md
     - subdomains/template-authoring-and-versioning/README.md
     - subdomains/evaluation-and-scoring/README.md
     - subdomains/scorecard-lifecycle/README.md

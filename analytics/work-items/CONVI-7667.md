@@ -1,10 +1,10 @@
 # CONVI-7667: Oportun process scorecards missing from Performance Insights
 
-**Status:** in review
+**Status:** Done in Linear; production control populated on 2026-10-06
 **Primary domain:** `analytics`
 **Primary subdomain:** `performance-insights`
 **Official ticket:** [CONVI-7667](https://linear.app/cresta/issue/CONVI-7667/oportun-process-scorecard-qa-noa-bo-ops-zeus-app-verification-v11)
-**Last updated:** 2026-09-13
+**Last updated:** 2026-10-06
 
 ## Objective and Impact
 
@@ -29,11 +29,11 @@
 - **Implementation branch:** `convi-7667-process-scorecard-date-target`
 - **Relevant commit:** Director `bd4074c5f4` / PR #22057 (`CONVI-7586`)
 - **Fix commit:** Director `961a44a922`
-- **Draft PR:** [cresta/director#22772](https://github.com/cresta/director/pull/22772)
+- **Merged PR:** [cresta/director#22772](https://github.com/cresta/director/pull/22772), retargeted to the confirmed RCG case [CONVI-7674](https://linear.app/cresta/issue/CONVI-7674)
 
 ## Current Understanding
 
-This is a **presentation/request-construction issue**, not a PostgreSQL-to-ClickHouse sync gap. Director commit `bd4074c5f4` changed the Performance Insights default `dateRangeTarget` from unspecified to `CONVERSATION_ENDED_AT`. The process-template normalization clears conversation-only filters but does not clear `dateRangeTarget`. `useQAScoreStatsRequestParams` therefore sends the close-time target for process scorecards. The analytics backend implements that target by inner-joining scorecard rows to `conversation_d`; process scorecards have empty conversation IDs, so all are removed.
+The source and data investigation reproduced a **request-construction hazard**, not a PostgreSQL-to-ClickHouse sync gap. Director commit `bd4074c5f4` changed the Performance Insights default `dateRangeTarget` from unspecified to `CONVERSATION_ENDED_AT`. The process-template normalization then left that field in place. When `useQAScoreStatsRequestParams` sends the close-time target for process scorecards, the analytics backend inner-joins scorecard rows to `conversation_d`; process scorecards have empty conversation IDs, so all are removed. The originally reported failing Oportun request was never captured, so attribution of that customer's blank session to this hazard remains unconfirmed. RCG's [CONVI-7674](https://linear.app/cresta/issue/CONVI-7674) later confirmed the mechanism end to end.
 
 For the exact template/revision (`94e6b75d-b1eb-4e41-a477-1d070d96fa9c` / `c0139eb5`), July 2026 has 338 submitted/scored rows in PostgreSQL and 338 distinct ClickHouse scorecards. Valid ClickHouse criterion rows reproduce an aggregate score of 99.7207%. Reproducing the conversation-ended-at join returns exactly 0 scorecards and 0 score rows, matching the UI.
 
@@ -51,7 +51,7 @@ For the exact template/revision (`94e6b75d-b1eb-4e41-a477-1d070d96fa9c` / `c0139
 
 ## Blockers and Dependencies
 
-- Add before/after preview videos for the declared `smoke-functional` QA request, then complete CI/review, merge, and deployment of draft Director PR #22772.
+- A failing Oportun session request and response would be needed to attribute any renewed blank result to a specific mechanism.
 
 ## Validation and Rollout
 
@@ -63,11 +63,12 @@ For the exact template/revision (`94e6b75d-b1eb-4e41-a477-1d070d96fa9c` / `c0139
 
 ## Next Actions
 
-1. Complete CI and review for draft Director PR #22772.
-2. Revalidate the deployed PI request/response for the reported template: volume 338 and aggregate approximately 99.72%, subject to live-data changes.
+1. If Support still sees a blank page for this process template, capture that affected session's exact filters, request, response, and deployed build before reopening or creating another issue.
+2. Track the separate conversation-linked FUP report in [CONVI-7807](https://linear.app/cresta/issue/CONVI-7807).
 
 ## Timeline
 
+- 2026-10-06 — Production Director showed the original template in Backoffice Processes (voice) for July 1–31, 2025, Daily: 99% Performance Score and 353 scorecards. The October 6 Support comment reports it still blank, but this engineering session did not reproduce that symptom. No new process-template ticket opened; the separate FUP report is CONVI-7807. Evidence: `sessions/2026-10-06/codex-oportun-pi-followups.md`.
 - 2026-09-10 — Root cause confirmed through Linear screenshot arithmetic, source history, indexed PostgreSQL counts, ClickHouse aggregation, and exact zero-result reproduction. Evidence: `sessions/2026-09-10/codex-convi-7667-oportun-process-pi.md`, `log/2026-09-10.md`.
 - 2026-09-13 — Posted the investigation report to Linear with the root cause, PG/CH evidence, explicit no-backfill conclusion, and proposed Director fix/test plan. Linear comment ID: `df73e6fb-740a-4a29-a46c-308bf595b265`. Evidence: `log/2026-09-13.md`.
 - 2026-09-13 — Implemented and validated the process-template normalization fix in commit `961a44a922`; opened draft Director PR [#22772](https://github.com/cresta/director/pull/22772). Evidence: `sessions/2026-09-13/codex-convi-7667-fix.md`, `log/2026-09-13.md`.

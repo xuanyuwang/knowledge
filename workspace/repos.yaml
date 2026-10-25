@@ -160,6 +160,11 @@ repos:
       - knowledge
 
 named_worktrees:
+  - name: director-convi-7812
+    source_repo: director
+    path: /Users/xuanyu.wang/repos/director-convi-7812
+    branch: xw/convi-7812-quiz-question-pass-rates
+    purpose: Display criterion pass rates as percentages while retaining per-criterion denominators after rubric changes.
   - name: go-servers-convi-7707-s3file-backend
     source_repo: go-servers
     path: /Users/xuanyu.wang/repos/go-servers-convi-7707-s3file-backend

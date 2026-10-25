@@ -9,6 +9,12 @@ related_source_repos:
   - clickhouse-schema
   - config
 active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7706
+related_worktrees:
+  - /Users/xuanyu.wang/repos/go-servers-convi-7879-conversation-tracing
+  - /Users/xuanyu.wang/repos/director-convi-7879-conversation-tracing
+  - /Users/xuanyu.wang/repos/go-servers-convi-7777-assistance-usage
+  - /Users/xuanyu.wang/repos/cresta-proto-convi-7777-assistance-usage
+  - /Users/xuanyu.wang/repos/director-convi-7777-assistance-usage
 branch: xw/convi-7706-conversation-stats-value-or-missing
 domain_owners:
   - Xuanyu Wang
@@ -24,6 +30,9 @@ subdomains:
   - insights-user-filter
   - conversation-volume
 related_ticket_ids:
+  - CONVI-7879
+  - CONVI-7807
+  - CONVI-7777
   - CONVI-7715
   - CONVI-7747
   - CONVI-7711
@@ -45,6 +54,9 @@ related_ticket_ids:
   - CONVI-7674
   - CONVI-7681
 active_work_items:
+  - CONVI-7879
+  - CONVI-7807
+  - CONVI-7777
   - CONVI-7715
   - CONVI-7747
   - CONVI-7711
@@ -65,12 +77,18 @@ active_work_items:
   - CONVI-7674
   - CONVI-7681
 related_prs:
+  - https://github.com/cresta/go-servers/pull/34417
+  - https://github.com/cresta/director/pull/24065
+  - https://github.com/cresta/flux-deployments/pull/349836
+  - https://github.com/cresta/director/pull/24019
+  - https://github.com/cresta/director/pull/24020
+  - https://github.com/cresta/cresta-proto/pull/10283
   - https://github.com/cresta/go-servers/pull/32443
   - https://github.com/cresta/go-servers/pull/32440
   - https://github.com/cresta/go-servers/pull/31335
   - https://github.com/cresta/director/pull/21214
   - https://github.com/cresta/go-servers/pull/30782
-current_objective: Resolve open analytics correctness and latency work, including CONVI-7706 RetrieveConversationStats value-or-missing support, CONVI-7708 Assistance Insights value-or-missing parity, INSI-4262 Bill West long-session Active Days false negatives, CONVI-7467 Oportun Active Days visibility, CONVI-7674 RCG process-scorecard no-data validation, urgent CONVI-7681 RCG tail latency, CONVI-7667 process-scorecard request construction, CONVI-6719 unified user-filter validation, and remaining score/aggregation discrepancies.
+current_objective: Review CONVI-7777 backend Phase I counts, now pushed to #33993 with the restricted-user external-table fix, GLOBAL IN replacement, two-file organization, Go/Bazel/race validation and a two-shard synthetic query check on rebased #34044; #33993 is detached and retargeted. Parallel frontend draft column is locally implemented; production benchmarking, generated-client migration and live integration remain pending. Resolve open analytics correctness and latency work, including CONVI-7706 RetrieveConversationStats value-or-missing support, CONVI-7708 Assistance Insights value-or-missing parity, INSI-4262 Bill West long-session Active Days false negatives, CONVI-7467 Oportun Active Days visibility, CONVI-7674 RCG process-scorecard no-data validation, urgent CONVI-7681 RCG tail latency, CONVI-7667 process-scorecard request construction, CONVI-6719 unified user-filter validation, and remaining score/aggregation discrepancies.
 last_validated: 2026-09-25
 artifacts:
   readme: README.md
@@ -81,6 +99,12 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
+    - deliverables/convi-7777-assistance-scan-audit.html
+    - deliverables/convi-7777-assistance-scan-audit.md
+    - deliverables/convi-7777-api-implementation-review.html
+    - deliverables/convi-7777-feature-refactors.html
+    - deliverables/convi-7777-assistance-analytics-issue-register.md
+    - deliverables/convi-7777-production-join-check.sql
     - subdomains/shared-analytics-platform/README.md
     - subdomains/shared-analytics-platform/retrieve-hint-stats.md
     - subdomains/performance-insights/README.md

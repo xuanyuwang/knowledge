@@ -4,6 +4,8 @@ Durable context for the tool-agnostic skills maintained in `/Users/xuanyu.wang/r
 
 ## Current state
 
+- `record-director-pr-videos` is drafted in `/Users/xuanyu.wang/repos/coaching-qm-skills-director-pr-videos`. It covers comparable full-screen Before/After recordings, clip QA, GitHub inline attachments, live PR-body preservation, and QA metadata verification. The skill and README entry are validated locally and remain uncommitted.
+- [CONVI-7803](https://linear.app/cresta/issue/CONVI-7803/add-reusable-interactive-code-review-skill) / [coaching-qm-skills#10](https://github.com/cresta/coaching-qm-skills/pull/10) merged `review-code-change`, a shared skill for standalone interactive HTML code review reports. The PR #33223 construction review was the trial model; the skill merged as `59489d2` after its review finding was addressed.
 - Existing customer app DB, auth DB, and ClickHouse connection skills provide credential-safe read-only access.
 - The DB skills now distinguish missing AWS profiles from expired sessions, point to single-account `cresta-cli setup-aws-profiles`, and support guarded `cresta-cli --force` plus cache refresh for dedicated accounts omitted from its static list. The Comcast app PG path passed a live read-only `SELECT 1`; the auth DB account resolution and missing-profile paths were validated without an auth DB connection.
 - [coaching-qm-skills#8](https://github.com/cresta/coaching-qm-skills/pull/8) contains these DB access skill changes and is open for review.

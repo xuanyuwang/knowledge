@@ -1,7 +1,7 @@
 # Dev Environment Tips
 
 **Created:** 2026-02-07
-**Updated:** 2026-07-28
+**Updated:** 2026-10-22
 
 ## Overview
 
@@ -53,3 +53,9 @@ See `log/2025-12-18.md` for full details.
 | 2026-07-28 | Added and validated secure customer ClickHouse, app DB, and auth DB connection skills |
 | 2026-07-03 | Evaluated AI workspace layout options; recommended preserving sibling repos and considering a lightweight workspace-meta repo |
 | 2025-12-18 | PostgreSQL shared memory issue - diagnosis, quick fix, and long-term solution |
+
+### Director Dependency Updates
+
+Run Renovate for Director through [cresta/action-renovatebot-execute](https://github.com/cresta/action-renovatebot-execute/actions/workflows/single-run.yaml), setting `repos` to `cresta/director`. For individual pending updates, use the [Dependency Dashboard](https://github.com/cresta/director/issues/6936). [Verified workflow and command](sessions/2026-10-22/codex-director-dependency-update.md).
+
+The 2026-10-22 web-client CI investigation found a deterministic missing enum mapping already fixed on main. A scoped Renovate refresh cleared PR #23970's conflicts and brought in the mapping; latest CI remains pending. [Current retry state](work-items/director-web-client-ci-retry.md).

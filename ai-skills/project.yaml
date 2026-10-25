@@ -3,11 +3,16 @@ project_type: system
 status: active
 primary_source_repo: coaching-qm-skills
 primary_repo_path: /Users/xuanyu.wang/repos/coaching-qm-skills
-active_worktree_path: /Users/xuanyu.wang/repos/coaching-qm-skills-db-access
-branch: xw/db-access-profile-recovery
-current_objective: Update customer database access skills for dedicated accounts, missing AWS profiles, and stale cresta-cli profile caches.
-last_validated: 2026-09-25
+active_worktree_path: /Users/xuanyu.wang/repos/coaching-qm-skills-code-review
+branch: xw/code-review-skill-draft
+additional_active_worktrees:
+  - path: /Users/xuanyu.wang/repos/coaching-qm-skills-director-pr-videos
+    branch: xw/director-pr-proof-videos
+    purpose: Draft the reusable Director PR Before/After video skill.
+current_objective: Maintain the shared AI skills repository; CONVI-7803 is complete.
+last_validated: 2026-10-06
 related_prs:
+  - https://github.com/cresta/coaching-qm-skills/pull/10
   - https://github.com/cresta/coaching-qm-skills/pull/9
   - https://github.com/cresta/coaching-qm-skills/pull/2
   - https://github.com/cresta/coaching-qm-skills/pull/3
@@ -15,6 +20,7 @@ related_prs:
   - https://github.com/cresta/coaching-qm-skills/pull/6
   - https://github.com/cresta/coaching-qm-skills/pull/8
 related_ticket_ids:
+  - CONVI-7803
   - CONVI-7747
   - CONVI-7659
   - CONVI-7642

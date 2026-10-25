@@ -9,6 +9,10 @@ related_source_repos:
   - python-ai-services
 active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7707-scenario-v2
 branch: xw/convi-7707-scenario-images-v2
+additional_active_worktrees:
+  - path: /Users/xuanyu.wang/repos/director-convi-7812
+    branch: xw/convi-7812-quiz-question-pass-rates
+    work_item: CONVI-7812
 domain_owners:
   - Xuanyu Wang
 domain_scope: Scenario-based AI practice for agents — training content configuration (lessons/modules/scenarios), assignment as Director Tasks, Customer AI simulation runtime, Opera/LLM evaluation, and session-level reporting.
@@ -19,6 +23,7 @@ subdomains:
   - evaluation
   - reporting
 related_ticket_ids:
+  - CONVI-7812
   - CONVI-7707
   - CONVI-6747
   - CONVI-6774
@@ -41,6 +46,7 @@ related_ticket_ids:
   - CONVI-7601
   - CONVI-7638
 active_work_items:
+  - CONVI-7812
   - CONVI-7707
   - CONVI-7280
   - CONVI-7281
@@ -49,6 +55,7 @@ active_work_items:
   - CONVI-7656
   - lesson-module-statistics-reporting
 related_prs:
+  - https://github.com/cresta/director/pull/23579
   - https://github.com/cresta/cresta-proto/pull/10057
   - https://github.com/cresta/go-servers/pull/33043
   - https://github.com/cresta/go-servers/pull/33045
