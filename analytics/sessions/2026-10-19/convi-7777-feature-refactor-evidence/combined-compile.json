@@ -1,0 +1,121 @@
+{
+  "command": "go test -p 2 ./insights-server/internal/analyticsimpl -run '^$' -count=1",
+  "result": "pass",
+  "sources": [
+    {
+      "group": "kb-search",
+      "commit": "782f12c88aa815ae3ce63655b5545352bc80a1f9",
+      "path": "insights-server/internal/analyticsimpl/common_knowledge_base_usage_clickhouse.go",
+      "sha256": "dfa91ae1aa35487982c423cb5f3bd04fbe510d20be4d38e4c5fa399d3eb674d1"
+    },
+    {
+      "group": "kb-search",
+      "commit": "782f12c88aa815ae3ce63655b5545352bc80a1f9",
+      "path": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_clickhouse.go",
+      "sha256": "35a31655c48e551c56f65b076efa9d2a3f097500b8b4fd91b58f1ab280387125"
+    },
+    {
+      "group": "kb-search",
+      "commit": "782f12c88aa815ae3ce63655b5545352bc80a1f9",
+      "path": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go",
+      "sha256": "17cb995d15b0954e43d2f0d9a2158e53644b7fba314dc0a0c4f647be90dd6ce2"
+    },
+    {
+      "group": "notes-workflow",
+      "commit": "b721a5086e6bbe09b41bd842645bf10d0d7c7bb7",
+      "path": "insights-server/internal/analyticsimpl/common_guided_workflow_usage_clickhouse.go",
+      "sha256": "7f9bf7dc0450f64fba92ed2cf29e956af67065c1b58416bdd939914bc4766725"
+    },
+    {
+      "group": "notes-workflow",
+      "commit": "b721a5086e6bbe09b41bd842645bf10d0d7c7bb7",
+      "path": "insights-server/internal/analyticsimpl/common_note_taking_usage_clickhouse.go",
+      "sha256": "5720884130071b7a66e53008534dbac74a80751f00912789b9a8ce9af23747f9"
+    },
+    {
+      "group": "notes-workflow",
+      "commit": "b721a5086e6bbe09b41bd842645bf10d0d7c7bb7",
+      "path": "insights-server/internal/analyticsimpl/common_notes_workflow_usage_test.go",
+      "sha256": "c34ae44465de43c2ecde84f0a24bf6dd4d155620949549bcc9e48bc943fb9620"
+    },
+    {
+      "group": "notes-workflow",
+      "commit": "b721a5086e6bbe09b41bd842645bf10d0d7c7bb7",
+      "path": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_clickhouse.go",
+      "sha256": "f1a3a4552ca869ad3a635de2272e736aed873e371d627092f6d772032130f56c"
+    },
+    {
+      "group": "notes-workflow",
+      "commit": "b721a5086e6bbe09b41bd842645bf10d0d7c7bb7",
+      "path": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go",
+      "sha256": "b9956ca12ccabda8ff5bbbd41b5f12ad8aedeafc45cec4de471e695c73aabb2a"
+    },
+    {
+      "group": "notes-workflow",
+      "commit": "b721a5086e6bbe09b41bd842645bf10d0d7c7bb7",
+      "path": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_clickhouse.go",
+      "sha256": "18b28073c813ab62b2ac2f20a9877e8a613b877b955b036000c1b355340f5db8"
+    },
+    {
+      "group": "notes-workflow",
+      "commit": "b721a5086e6bbe09b41bd842645bf10d0d7c7bb7",
+      "path": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go",
+      "sha256": "3b59601489966cee0a796851ef6e67533354e9d98b0405d24a1de3dfdd242d85"
+    },
+    {
+      "group": "hints",
+      "commit": "77a9aec2bdaba22ff3e362b6c9964415b69d06f7",
+      "path": "insights-server/internal/analyticsimpl/common_hint_usage_clickhouse.go",
+      "sha256": "76c74a6c90d4c42c25048b0bd181c4c9d0e71bbf50066f62724e860c7a5b87e5"
+    },
+    {
+      "group": "hints",
+      "commit": "77a9aec2bdaba22ff3e362b6c9964415b69d06f7",
+      "path": "insights-server/internal/analyticsimpl/retrieve_hint_stats_clickhouse.go",
+      "sha256": "8e6cd21eb36c430750c5d76ee1eabc84c5d4b8d023bb814ca0779e7dd5085b30"
+    },
+    {
+      "group": "hints",
+      "commit": "77a9aec2bdaba22ff3e362b6c9964415b69d06f7",
+      "path": "insights-server/internal/analyticsimpl/retrieve_hint_stats_test.go",
+      "sha256": "c2b7032c62b61b0ee987ad41a0c443f8b1771130314dd6759c5987d0d7deb519"
+    },
+    {
+      "group": "summary-genai",
+      "commit": "00fd23587abc3f229e562d77d9b798006de77693",
+      "path": "insights-server/internal/analyticsimpl/common_knowledge_assist_usage_clickhouse.go",
+      "sha256": "af6a2cb63876a802139a3b9732c9216f338a5cfdb6e6ae794752fdfcb117d369"
+    },
+    {
+      "group": "summary-genai",
+      "commit": "00fd23587abc3f229e562d77d9b798006de77693",
+      "path": "insights-server/internal/analyticsimpl/common_summarization_usage_clickhouse.go",
+      "sha256": "bc117d8e4d073c3acfcc5ddfe12bd416b72d12f0bf479add956a02e4cc84c3f3"
+    },
+    {
+      "group": "summary-genai",
+      "commit": "00fd23587abc3f229e562d77d9b798006de77693",
+      "path": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_clickhouse.go",
+      "sha256": "2e083f2153c7c2590dc486b59f54bdd57a1edfcb2d20acf527775849799f3769"
+    },
+    {
+      "group": "summary-genai",
+      "commit": "00fd23587abc3f229e562d77d9b798006de77693",
+      "path": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+      "sha256": "967b7842bf1c80b54c935cbdde78932e7ce33267afad83b6138510a4de1619db"
+    },
+    {
+      "group": "summary-genai",
+      "commit": "00fd23587abc3f229e562d77d9b798006de77693",
+      "path": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_clickhouse.go",
+      "sha256": "7c0b66e7579d365669f83fddbbe5839468830f06b5e7e248205957b3b77fe6b7"
+    },
+    {
+      "group": "summary-genai",
+      "commit": "00fd23587abc3f229e562d77d9b798006de77693",
+      "path": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+      "sha256": "618bab4893f0148ba6c6d1e6236b6aa8600f58dccd86832d6b75dd6ea4dc6914"
+    }
+  ],
+  "scope": "Temporary combined source overlay of all five independent heads; compile only, no integration suite execution."
+}

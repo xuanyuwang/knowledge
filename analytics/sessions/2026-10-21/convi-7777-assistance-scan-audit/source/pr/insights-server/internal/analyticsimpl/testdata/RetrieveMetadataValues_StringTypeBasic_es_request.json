@@ -1,0 +1,66 @@
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "terms": {
+            "conversation_to_message_join": [
+              "conversation"
+            ]
+          }
+        },
+        {
+          "nested": {
+            "path": "moment_annotations",
+            "query": {
+              "terms": {
+                "moment_annotations.moment_template_id.keyword": [
+                  "1"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "terms": {
+            "usecase_id.keyword": [
+              "usecase_id_1"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "moments": {
+      "nested": {
+        "path": "moment_annotations"
+      },
+      "aggs": {
+        "moment_annotations": {
+          "filter": {
+            "bool": {
+              "filter": [
+                {
+                  "terms": {
+                    "moment_annotations.moment_template_id.keyword": [
+                      "1"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "aggs": {
+            "payload_value": {
+              "terms": {
+                "field": "moment_annotations.payload.conversationMetadataPayload.values.stringValue.keyword",
+                "size": 1000
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

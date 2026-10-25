@@ -1,0 +1,46 @@
+{
+  "took": 11,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "moments": {
+      "meta": {},
+      "buckets": [
+        {
+          "doc_count": 100,
+          "total_conversation_message_count": {
+            "value": 100
+          },
+          "total_conversation_count": {
+            "value": 10
+          },
+          "total_conversation_handle_time_secs_sum": {
+            "value": 30
+          }
+        }
+      ]
+    },
+    "total_conversation_message_count": {
+      "value": 100
+    },
+    "total_conversation_count": {
+      "value": 10
+    },
+    "total_conversation_handle_time_secs_sum": {
+      "value": 30
+    }
+  }
+}

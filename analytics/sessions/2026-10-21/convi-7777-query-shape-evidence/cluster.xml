@@ -1,0 +1,1 @@
+<clickhouse><listen_host>0.0.0.0</listen_host><remote_servers><two_shards><shard><replica><host>convi-7777-plan-a</host><port>9000</port></replica></shard><shard><replica><host>convi-7777-plan-b</host><port>9000</port></replica></shard></two_shards></remote_servers></clickhouse>

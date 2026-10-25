@@ -1,0 +1,113 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "conversation"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "range": {
+                        "message_count": {
+                            "gt": 0
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "range": {
+                                            "conversation_started_at": {
+                                                "gte": "2024-07-01T00:00:00Z",
+                                                "lt": "2024-10-01T00:00:00Z",
+                                                "time_zone": "+00:00"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "bucket_aggs": {
+            "filters": {
+                "filters": [
+                    {
+                        "terms": {
+                            "agent_user_id.keyword": [
+                                "agent-id-1"
+                            ]
+                        }
+                    },
+                    {
+                        "terms": {
+                            "agent_user_id.keyword": [
+                                "agent-id-2"
+                            ]
+                        }
+                    },
+                    {
+                        "terms": {
+                            "agent_user_id.keyword": [
+                                "agent-id-3"
+                            ]
+                        }
+                    },
+                    {
+                        "terms": {
+                            "agent_user_id.keyword": [
+                                "agent-id-4"
+                            ]
+                        }
+                    }
+                ]
+            },
+            "aggs": {
+                "bucket_aggs": {
+                    "date_histogram": {
+                        "field": "conversation_started_at",
+                        "time_zone": "+00:00",
+                        "calendar_interval": "month",
+                        "min_doc_count": 0,
+                        "extended_bounds": {
+                            "min": "2024-07-01T00:00:00Z",
+                            "max": "2024-10-01T00:00:00Z"
+                        }
+                    },
+                    "aggs": {
+                        "metrics_agg_on_numeric_field": {
+                            "avg": {
+                                "field": "conversation_duration_secs"
+                            }
+                        }
+                    }
+                },
+                "metrics_agg_on_numeric_field": {
+                    "avg": {
+                        "field": "conversation_duration_secs"
+                    }
+                }
+            }
+        }
+    }
+}

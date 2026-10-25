@@ -1,0 +1,132 @@
+{
+   "took": 43,
+   "timed_out": false,
+   "_shards": {
+     "total": 12,
+     "successful": 12,
+     "skipped": 0,
+     "failed": 0
+   },
+   "hits": {
+     "total": {
+       "value": 5,
+       "relation": "eq"
+     },
+     "max_score": null,
+     "hits": [
+       {
+          "_index": "customer_id-profile_id-conversations-v2",
+          "_id": "1",
+          "_score": null,
+          "_source": {
+            "agent": 3469,
+            "agent_user_id": "35636a572d7ec364",
+            "agent_name": "Fake Agent Name 1",
+            "agent_is_dev_user": false,
+            "chat_id": 17684332,
+            "conversation_id": "1",
+            "conversation_to_message_join": "conversation",
+            "conversation_created_at": "2022-11-16T05:31:37.991842Z",
+            "conversation_started_at": "2022-11-16T05:31:37.742Z",
+            "conversation_ended_at": "2022-11-16T05:41:37.742Z",
+            "conversation_duration_secs": 93.258,
+            "conversation_source": 0,
+            "platform_conversation_id": "802971256093903003",
+            "platform_account_id": "802765031358338337",
+            "message_count": 19,
+            "moment_annotations": [
+              {
+                "moment_template_id": "moment-id-1",
+                "display_name": "numeric metadata moment",
+                "type": 19,
+                "taxonomy": "xxx.yy",
+                "moment_annotation_id": "moment-annotation-id-1",
+                "payload": {
+                   "conversationMetadataPayload": {
+                      "metadataType": "METADATA_TYPE_CUSTOM_NUMBER",
+                      "values": [
+                        {
+                          "stringValue": "Ohio"
+                        }
+                      ],
+                      "source": "CONVERSATION_METADATA_SOURCE_FILE"
+                    },
+                  "metadata": {}
+                }
+              },
+              {
+                "moment_template_id": "moment-id-1",
+                "display_name": "numeric metadata moment",
+                "type": 19,
+                "taxonomy": "xxx.yy",
+                "moment_annotation_id": "moment-annotation-id-1",
+                "payload": {
+                   "conversationMetadataPayload": {
+                      "metadataType": "METADATA_TYPE_CUSTOM_NUMBER",
+                      "values": [
+                        {
+                          "stringValue": "New York"
+                        }
+                      ],
+                      "source": "CONVERSATION_METADATA_SOURCE_FILE"
+                    },
+                  "metadata": {}
+                }
+              }
+            ],
+            "usecase_id": "profile_id"
+          },
+          "sort": [
+            "2022-11-16T05:31:37.991Z"
+          ]
+        },
+        {
+          "_index": "customer_id-profile_id-conversations-v2",
+          "_id": "2",
+          "_score": null,
+          "_source": {
+            "agent": 47655,
+            "agent_user_id": "2f540f161f3a452c",
+            "agent_name": "Fake Agent Name 2",
+            "agent_is_dev_user": false,
+            "chat_id": 17684276,
+            "conversation_id": "2",
+            "conversation_to_message_join": "conversation",
+            "conversation_created_at": "2022-11-16T04:42:12.791014Z",
+            "conversation_started_at": "2022-11-16T04:42:12.436Z",
+            "conversation_ended_at": "2022-11-16T04:52:12.436Z",
+            "conversation_duration_secs": 93.284,
+            "conversation_source": 0,
+            "platform_conversation_id": "802971227085718610",
+            "platform_account_id": "802923334523160937",
+            "message_count": 10,
+            "moment_annotations": [
+              {
+                "moment_template_id": "moment-id-1",
+                "display_name": "numeric metadata moment",
+                "type": 19,
+                "taxonomy": "xxx.yy",
+                "moment_annotation_id": "moment-annotation-id-2",
+                "payload": {
+                   "conversationMetadataPayload": {
+                      "metadataType": "METADATA_TYPE_CUSTOM_NUMBER",
+                      "values": [
+                        {
+                          "stringValue": "Ohio"
+                        }
+                      ],
+                      "source": "CONVERSATION_METADATA_SOURCE_FILE"
+                    },
+                  "metadata": {}
+                }
+              }
+            ],
+            "usecase_id": "profile_id"
+          },
+          "sort": [
+            "2022-11-16T04:42:12.791Z"
+          ]
+        }
+     ]
+   }
+ }

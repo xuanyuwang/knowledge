@@ -1,0 +1,74 @@
+{
+    "took": 975,
+    "timed_out": false,
+    "_shards": {
+        "total": 12,
+        "successful": 12,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 6458,
+            "relation": "eq"
+        },
+        "max_score": 0
+    },
+    "aggregations": {
+        "moments": {
+            "buckets": [
+                {
+                    "doc_count": 5912,
+                    "annotation_hit": {
+                        "hits": {
+                            "total": {
+                                "value": 5912,
+                                "relation": "eq"
+                            },
+                            "max_score": 0
+                        }
+                    },
+                    "total_conversation_message_count": {
+                        "value": 6103
+                    },
+                    "total_conversation_count": {
+                        "value": 190
+                    },
+                    "total_conversation_handle_time_secs_sum": {
+                        "value": 1900
+                    }
+                },
+                {
+                    "doc_count": 98,
+                    "annotation_hit": {
+                        "hits": {
+                            "total": {
+                                "value": 98,
+                                "relation": "eq"
+                            },
+                            "max_score": 0
+                        }
+                    },
+                    "total_conversation_message_count": {
+                        "value": 103
+                    },
+                    "total_conversation_count": {
+                        "value": 5
+                    },
+                    "total_conversation_handle_time_secs_sum": {
+                        "value": 50
+                    }
+                }
+            ]
+        },
+        "total_conversation_message_count": {
+            "value": 6206
+        },
+        "total_conversation_count": {
+            "value": 195
+        },
+        "total_conversation_handle_time_secs_sum": {
+            "value": 1950
+        }
+    }
+}

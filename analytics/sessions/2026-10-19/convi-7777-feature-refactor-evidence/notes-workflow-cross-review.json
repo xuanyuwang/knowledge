@@ -1,0 +1,46 @@
+{
+  "reviewer": "notes-workflow agent",
+  "skill": "review-code-change",
+  "purpose": "Independently check KB and Suggestions tests-first raw-row extractions preserve legacy statistics.",
+  "kb_head": "86a0f551c02867d1da5fc02027ac3c4cef9bc271",
+  "suggestions_head": "34399998b3bc90c6d1f8b32682903366b88e81e8",
+  "suggestions_working_files": [
+    {
+      "path": "insights-server/internal/analyticsimpl/common_suggestion_usage_clickhouse.go",
+      "sha256": "236b56c5ced0ff3c5b9129faffe4b89defbe1ac62acf4fe7c01c346f1a31aa4d"
+    },
+    {
+      "path": "insights-server/internal/analyticsimpl/retrieve_suggestion_stats_clickhouse.go",
+      "sha256": "010907de68a9cdace1d5129e415c1dc628e8c6c78f739ea7a6797aca8299ddd7"
+    },
+    {
+      "path": "insights-server/internal/analyticsimpl/retrieve_suggestion_stats_regression_test.go",
+      "sha256": "cbd7672145aa1fa0546948602a7fd8867b20ac7e524e6f0e74db70030a801d9d"
+    }
+  ],
+  "verdict": "No demonstrated production semantic regression. Suggestions final verification was in progress when reviewed.",
+  "findings": [],
+  "equivalence_checks": [
+    "Raw helpers retain all event types, including denominator-only rows.",
+    "Neither introduces DISTINCT or qualifying-event filtering before the aggregate.",
+    "Metadata arguments still precede event arguments; original metadata generator parameters and aliases remain.",
+    "Selected fields retain conversation_id,agent_user_id,conversation_start_time,event_id,event_type with stable ID aliases.",
+    "Readers permit only agent/time grouping, both supported by the raw projection.",
+    "COUNT DISTINCT gates remain KB13, chat4/5/10, emailpartial25,emailfull27.",
+    "Reader routing, external tables and response conversion remain unchanged apart from gofmt whitespace."
+  ],
+  "test_assessment": [
+    "KB real-reader scenarios cover duplicates, overall/agent/day/week counts, selection/external table, time/attribute/source/developer filters, metadata latest and null-join exclusion behavior.",
+    "Suggestions covers analogous chat scenarios and complete protobuf counter expectations for chat and both email categories.",
+    "Empty-ID fixtures are replaced with generated IDs by fixture helpers; no claim of empty event-ID coverage. Such an edge is not changed by the extraction."
+  ],
+  "nonblocking_coverage_limits": [
+    "Combined grouped email/frequency scenarios are not exercised by the new full-proto email test; grouping source/counter expressions remain unchanged.",
+    "KB ungrouped empty-event response representation is not separately pinned by a new real-reader test."
+  ],
+  "mechanical_note": "Suggestions git diff --check reported trailing whitespace on metadata SQL snapshot lines95 and97; reported to root before commit.",
+  "validation_limits": [
+    "No duplicate test runs performed during this cross-review; inspected root baseline/after evidence and source.",
+    "No production performance or deployment claim."
+  ]
+}

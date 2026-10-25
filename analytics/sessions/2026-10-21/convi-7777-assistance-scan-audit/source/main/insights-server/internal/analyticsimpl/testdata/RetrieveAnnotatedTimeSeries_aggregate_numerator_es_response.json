@@ -1,0 +1,134 @@
+{
+  "aggregations": {
+    "time_ranges": {
+      "buckets": [
+        {
+          "key": 1656633600000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 10
+              },
+              {
+                "doc_count": 20
+              }
+            ]
+          }
+        },
+        {
+          "key": 1656720000000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 11
+              },
+              {
+                "doc_count": 21
+              }
+            ]
+          }
+        },
+        {
+          "key": 1656806400000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 12
+              },
+              {
+                "doc_count": 22
+              }
+            ]
+          }
+        },
+        {
+          "key": 1656892800000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 13
+              },
+              {
+                "doc_count": 23
+              }
+            ]
+          }
+        },
+        {
+          "key": 1656979200000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 14
+              },
+              {
+                "doc_count": 24
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657065600000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 15
+              },
+              {
+                "doc_count": 25
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657152000000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 16
+              },
+              {
+                "doc_count": 26
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657238400000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 17
+              },
+              {
+                "doc_count": 27
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657324800000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 18
+              },
+              {
+                "doc_count": 28
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

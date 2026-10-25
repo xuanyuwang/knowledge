@@ -1,0 +1,31 @@
+{
+  "took": 6,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 6545,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "doc_count": 57978,
+      "bucket_aggs": {
+        "doc_count": 0,
+        "bucket_aggs": {
+          "doc_count_error_upper_bound": 0,
+          "sum_other_doc_count": 0,
+          "buckets": []
+        }
+      }
+    }
+  }
+}

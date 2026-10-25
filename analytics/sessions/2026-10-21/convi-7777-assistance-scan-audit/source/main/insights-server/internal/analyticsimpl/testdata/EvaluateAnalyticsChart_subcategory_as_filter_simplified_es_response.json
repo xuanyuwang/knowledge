@@ -1,0 +1,64 @@
+{
+  "took": 231,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "buckets": [
+        {
+          "key_as_string": "2024-07-01T00:00:00.000Z",
+          "key": 1719792000000,
+          "doc_count": 10,
+          "metrics_conversation_count": {
+            "value": 10
+          }
+        },
+        {
+          "key_as_string": "2024-08-01T00:00:00.000Z",
+          "key": 1722470400000,
+          "doc_count": 20,
+          "metrics_conversation_count": {
+            "value": 20
+          }
+        },
+        {
+          "key_as_string": "2024-09-01T00:00:00.000Z",
+          "key": 1725148800000,
+          "doc_count": 30,
+          "metrics_conversation_count": {
+            "value": 30
+          }
+        },
+        {
+          "key_as_string": "2024-10-01T00:00:00.000Z",
+          "key": 1727740800000,
+          "doc_count": 40,
+          "metrics_conversation_count": {
+            "value": 40
+          }
+        },
+        {
+          "key_as_string": "2024-11-01T00:00:00.000Z",
+          "key": 1730419200000,
+          "doc_count": 50,
+          "metrics_conversation_count": {
+            "value": 50
+          }
+        }
+      ]
+    }
+  }
+}

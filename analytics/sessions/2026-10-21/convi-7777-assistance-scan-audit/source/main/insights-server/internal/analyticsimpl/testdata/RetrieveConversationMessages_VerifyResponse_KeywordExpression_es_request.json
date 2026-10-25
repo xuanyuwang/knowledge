@@ -1,0 +1,153 @@
+{
+    "highlight": {
+        "pre_tags": [
+            "\u003cmark\u003e"
+        ],
+        "post_tags": [
+            "\u003c/mark\u003e"
+        ],
+        "fields": {
+            "message_text": {
+                "number_of_fragments": 0
+            },
+            "message_text_whitespace": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.english": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.spanish": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.french": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.italian": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.german": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.dutch": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.portuguese": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.russian": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.thai": {
+                "number_of_fragments": 0
+            }
+        }
+    },
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "has_parent": {
+                        "parent_type": "conversation",
+                        "query": {
+                            "bool": {
+                                "filter": [
+                                    {
+                                        "range": {
+                                            "conversation_started_at": {
+                                                "gte": "2022-04-13T00:00:00Z",
+                                                "lt": "2022-07-13T00:00:00Z",
+                                                "time_zone": "-10:00"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "bool": {
+                                            "should": [
+                                                {
+                                                    "terms": {
+                                                        "conversation_source": [
+                                                            0,
+                                                            7,
+                                                            8
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "bool": {
+                                                        "must_not": {
+                                                            "exists": {
+                                                                "field": "conversation_source"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "terms": {
+                                            "agent_user_id.keyword": [
+                                                "user-id1"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "4"
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            ],
+            "must": [
+                {
+                    "multi_match": {
+                        "query": "this is",
+                        "type": "phrase",
+                        "fields": [
+                            "message_text_with_custom_analyzer.dutch",
+                            "message_text_with_custom_analyzer.english",
+                            "message_text_with_custom_analyzer.french",
+                            "message_text_with_custom_analyzer.german",
+                            "message_text_with_custom_analyzer.italian",
+                            "message_text_with_custom_analyzer.portuguese",
+                            "message_text_with_custom_analyzer.russian",
+                            "message_text_with_custom_analyzer.spanish",
+                            "message_text_with_custom_analyzer.thai"
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    "sort": [
+        {
+            "conversation_ended_at": {
+                "format": "strict_date_optional_time_nanos",
+                "order": "desc"
+            }
+        },
+        {
+            "created_at": {
+                "format": "strict_date_optional_time_nanos",
+                "order": "asc"
+            }
+        }
+    ]
+}

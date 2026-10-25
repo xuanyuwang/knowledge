@@ -1,0 +1,77 @@
+{
+    "took": 165,
+    "timed_out": false,
+    "_shards": {
+        "total": 12,
+        "successful": 12,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 4243,
+            "relation": "eq"
+        },
+        "max_score": null,
+        "hits": []
+    },
+    "aggregations": {
+        "agents": {
+            "doc_count_error_upper_bound": 49,
+            "sum_other_doc_count": 4136,
+            "buckets": [
+                {
+                    "key": "user1",
+                    "doc_count": 49,
+                    "outcomes": {
+                        "doc_count": 339,
+                        "outcomes": {
+                            "buckets": [
+                                {
+                                    "doc_count": 16
+                                },
+                                {
+                                    "doc_count": 9
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "key": "user2",
+                    "doc_count": 15,
+                    "outcomes": {
+                        "doc_count": 219,
+                        "outcomes": {
+                            "buckets": [
+                                {
+                                    "doc_count": 6
+                                },
+                                {
+                                    "doc_count": 11
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "key": "user3",
+                    "doc_count": 28,
+                    "outcomes": {
+                        "doc_count": 226,
+                        "outcomes": {
+                            "buckets": [
+                                {
+                                    "doc_count": 8
+                                },
+                                {
+                                    "doc_count": 10
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

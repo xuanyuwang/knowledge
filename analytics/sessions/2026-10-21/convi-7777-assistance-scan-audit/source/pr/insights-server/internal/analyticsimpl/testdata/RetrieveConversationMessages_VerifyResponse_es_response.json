@@ -1,0 +1,198 @@
+{
+    "took": 103,
+    "timed_out": false,
+    "_shards": {
+        "total": 12,
+        "successful": 12,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 1234,
+            "relation": "gte"
+        },
+        "max_score": null,
+        "hits": [
+            {
+                "_index": "customer_id-profile_id-conversations-v0",
+                "_id": "a8ac836f4be5a4bf5515291f7d459c27-617517452",
+                "_score": null,
+                "_routing": "a8ac836f4be5a4bf5515291f7d459c27",
+                "_source": {
+                    "agent": 1992,
+                    "agent_user_id": "f2002c54507582da",
+                    "chat_id": 111,
+                    "message_id": 111111,
+                    "conversation_correlation_id": "convo-correlation-id-1",
+                    "conversation_id": "convo-id-1",
+                    "platform_conversation_id": "803206930507824894",
+                    "platform_account_id": "807690351445127928",
+                    "conversation_message_id": "convo-msg-id-1",
+                    "conversation_to_message_join": {
+                        "name": "message",
+                        "parent": "convo-id-1"
+                    },
+                    "message_forward_position": 1,
+                    "message_text": "dummy-message-text-1",
+                    "speaker_role": "visitor",
+                    "conversation_created_at": "2022-07-11T15:00:00Z",
+                    "conversation_started_at": "2022-07-11T16:00:00Z",
+                    "conversation_ended_at": "2022-07-11T17:00:00Z",
+                    "created_at": "2022-07-11T16:00:01.433157+00:00",
+                    "updated_at": "2022-07-11T16:00:01.433157+00:00",
+                    "platform_timestamp": "2022-07-11T15:59:59.500Z",
+                    "moment_annotations": [
+                        {
+                            "moment_template_id": "moment-id-1",
+                            "display_name": "moment-displayname-1",
+                            "type": 6,
+                            "taxonomy": "moment-taxonomy-1"
+                        },
+                        {
+                            "moment_template_id": "moment-id-2",
+                            "display_name": "moment-displayname-2",
+                            "type": 2,
+                            "taxonomy": "moment-taxonomy-2"
+                        },
+                        {
+                            "moment_template_id": "moment-id-topic-1",
+                            "display_name": "moment-displayname-topic-1",
+                            "type": 8,
+                            "taxonomy": "moment-taxonomy-topic-1",
+                            "payload": {
+                                "topicPayload": {
+                                    "conversationReason": "Visitor wants to buy a product.",
+                                    "extractedQuestion": "How much does it cost?"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "sort": [
+                    "2022-05-27T02:12:30.174Z"
+                ]
+            },
+            {
+                "_index": "customer_id-profile_id-conversations-v0",
+                "_id": "e28442a9a4e42e2981fcce538e156f1f-617517245",
+                "_score": null,
+                "_routing": "e28442a9a4e42e2981fcce538e156f1f",
+                "_source": {
+                    "agent": 62,
+                    "agent_user_id": "b00620fdfb50a1bf",
+                    "chat_id": 111,
+                    "message_id": 222222,
+                    "conversation_correlation_id": "convo-correlation-id-1",
+                    "conversation_id": "convo-id-1",
+                    "conversation_message_id": "convo-msg-id-2",
+                    "conversation_to_message_join": {
+                        "name": "message",
+                        "parent": "convo-id-1"
+                    },
+                    "message_forward_position": 2,
+                    "message_text": "dummy-message-text-2",
+                    "speaker_role": "visitor",
+                    "conversation_created_at": "2022-07-11T16:00:00Z",
+                    "conversation_started_at": "2022-07-11T16:00:00Z",
+                    "conversation_ended_at": "2022-07-11T17:00:00Z",
+                    "created_at": "2022-07-11T16:00:02.433157+00:00",
+                    "updated_at": "2022-07-11T16:00:02.433157+00:00",
+                    "platform_timestamp": "2022-07-11T16:00:01.500Z",
+                    "moment_annotations": [
+                        {
+                            "moment_template_id": "moment-id-3",
+                            "display_name": "moment-displayname-3",
+                            "type": 6,
+                            "taxonomy": "moment-taxonomy-3"
+                        }
+                    ]
+                },
+                "sort": [
+                    "2022-05-27T02:11:54.505Z",
+                    "2022-05-27T02:11:52.505Z"
+                ]
+            },
+            {
+                "_index": "customer_id-profile_id-conversations-v0",
+                "_id": "e28442a9a4e42e2981fcce538e156f1f-617517245",
+                "_score": null,
+                "_routing": "e28442a9a4e42e2981fcce538e156f1f",
+                "_source": {
+                    "agent": 62,
+                    "agent_user_id": "b00620fdfb50a1bf",
+                    "chat_id": 111,
+                    "message_id": 222222,
+                    "message_ids": [222222],
+                    "conversation_correlation_id": "convo-correlation-id-1",
+                    "conversation_id": "convo-id-1",
+                    "conversation_message_id": "convo-msg-id-2",
+                    "conversation_to_message_join": {
+                        "name": "message_group",
+                        "parent": "convo-id-1"
+                    },
+                    "message_text": "dummy-message-text-2-message-group",
+                    "speaker_role": "visitor",
+                    "conversation_created_at": "2022-07-11T16:00:00Z",
+                    "conversation_started_at": "2022-07-11T16:00:00Z",
+                    "conversation_ended_at": "2022-07-11T17:00:00Z",
+                    "created_at": "2022-07-11T16:00:02.433157+00:00",
+                    "updated_at": "2022-07-11T16:00:02.433157+00:00",
+                    "platform_timestamp": "2022-07-11T16:00:01.500Z",
+                    "moment_annotations": [
+                        {
+                            "moment_template_id": "moment-id-3",
+                            "display_name": "moment-displayname-3",
+                            "type": 6,
+                            "taxonomy": "moment-taxonomy-3"
+                        }
+                    ]
+                },
+                "sort": [
+                    "2022-05-27T02:11:54.505Z",
+                    "2022-05-27T02:11:52.505Z"
+                ]
+            },
+            {
+                "_index": "customer_id-profile_id-conversations-v0",
+                "_id": "e28442a9a4e42e2981fcce538e156f1f-617517245",
+                "_score": null,
+                "_routing": "e28442a9a4e42e2981fcce538e156f1f",
+                "_source": {
+                    "agent": 62,
+                    "agent_user_id": "b00620fdfb50a1bf",
+                    "chat_id": 111,
+                    "message_id": 222222,
+                    "message_ids": [222222,333333],
+                    "conversation_correlation_id": "convo-correlation-id-1",
+                    "conversation_id": "convo-id-1",
+                    "conversation_message_id": "convo-msg-id-2",
+                    "conversation_to_message_join": {
+                        "name": "message_group",
+                        "parent": "convo-id-1"
+                    },
+                    "message_forward_position": 3,
+                    "message_text": "dummy-message-text-2+dummy_message_text-3",
+                    "speaker_role": "visitor",
+                    "conversation_created_at": "2022-07-11T16:00:00Z",
+                    "conversation_started_at": "2022-07-11T16:00:00Z",
+                    "conversation_ended_at": "2022-07-11T17:00:00Z",
+                    "created_at": "2022-07-11T16:00:03.433157+00:00",
+                    "updated_at": "2022-07-11T16:00:03.433157+00:00",
+                    "moment_annotations": [
+                        {
+                            "moment_template_id": "moment-id-3",
+                            "display_name": "moment-displayname-3",
+                            "type": 6,
+                            "taxonomy": "moment-taxonomy-3"
+                        }
+                    ]
+                },
+                "sort": [
+                    "2022-05-27T02:11:54.505Z",
+                    "2022-05-27T02:11:52.505Z"
+                ]
+            }
+        ]
+    }
+}

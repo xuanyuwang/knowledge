@@ -1,0 +1,114 @@
+{
+	"_source": {
+		"includes": [
+			"conversation_id",
+			"moment_annotations",
+			"message_count"
+		]
+	},
+	"query": {
+		"bool": {
+			"filter": [
+				{
+					"range": {
+						"conversation_started_at": {
+							"gte": "2022-04-13T00:00:00Z",
+							"lt": "2022-07-13T00:00:00Z",
+							"time_zone": "-10:00"
+						}
+					}
+				},
+				{
+					"bool": {
+						"should": [
+							{
+								"terms": {
+									"conversation_source": [
+										0,
+										7,
+										8
+									]
+								}
+							},
+							{
+								"bool": {
+									"must_not": {
+										"exists": {
+											"field": "conversation_source"
+										}
+									}
+								}
+							}
+						]
+					}
+				},
+				{
+					"terms": {
+						"agent_user_id.keyword": [
+							"2f540f161f3a452c",
+							"35636a572d7ec364",
+							"d072a51a8359fe51",
+							"user-id4-deactivated"
+						]
+					}
+				},
+				{
+					"bool": {
+						"should": [
+							{
+								"bool": {
+									"must_not": {
+										"nested": {
+											"path": "conversation_events",
+											"query": {
+												"bool": {
+													"filter": [
+														{
+															"terms": {
+																"conversation_events.type": [
+																	11
+																]
+															}
+														}
+													]
+												}
+											}
+										}
+									}
+								}
+							}
+						],
+						"minimum_should_match": 1
+					}
+				},
+				{
+					"terms": {
+						"conversation_to_message_join": [
+							"conversation"
+						]
+					}
+				},
+				{
+					"range": {
+						"message_count": {
+							"gt": 0
+						}
+					}
+				}
+			]
+		}
+	},
+	"sort": [
+		{
+			"conversation_ended_at": {
+				"format": "strict_date_optional_time_nanos",
+				"order": "desc"
+			}
+		},
+		{
+			"conversation_id.keyword": {
+				"order": "asc"
+			}
+		}
+	]
+}

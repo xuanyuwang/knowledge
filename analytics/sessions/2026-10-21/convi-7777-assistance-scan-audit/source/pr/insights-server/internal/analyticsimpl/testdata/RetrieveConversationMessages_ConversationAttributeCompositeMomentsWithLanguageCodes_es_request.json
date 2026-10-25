@@ -1,0 +1,287 @@
+{
+    "highlight": {
+        "pre_tags": [
+            "<mark>"
+        ],
+        "post_tags": [
+            "</mark>"
+        ],
+        "fields": {
+            "message_text": {
+                "number_of_fragments": 0
+            },
+            "message_text_whitespace": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.english": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.spanish": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.french": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.italian": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.german": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.dutch": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.portuguese": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.russian": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.thai": {
+                "number_of_fragments": 0
+            }
+        }
+    },
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "has_parent": {
+                        "parent_type": "conversation",
+                        "query": {
+                            "bool": {
+                                "filter": [
+                                    {
+                                        "range": {
+                                            "conversation_started_at": {
+                                                "gte": "1970-01-01T00:00:00Z",
+                                                "lt": "2025-12-15T19:10:33Z",
+                                                "time_zone": "+02:00"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "bool": {
+                                            "should": [
+                                                {
+                                                    "terms": {
+                                                        "conversation_source": [
+                                                            0,
+                                                            7,
+                                                            8
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "bool": {
+                                                        "must_not": {
+                                                            "exists": {
+                                                                "field": "conversation_source"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "terms": {
+                                            "agent_user_id.keyword": [
+                                                "user-id1"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "terms": {
+                                            "effective_language.keyword": [
+                                                "es-ES"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "bool": {
+                                            "should": [
+                                                {
+                                                    "has_child": {
+                                                        "type": "message",
+                                                        "query": {
+                                                            "bool": {
+                                                                "filter": [
+                                                                    {
+                                                                        "bool": {
+                                                                            "must_not": [
+                                                                                {
+                                                                                    "bool": {
+                                                                                        "should": [
+                                                                                            {
+                                                                                                "multi_match": {
+                                                                                                    "query": "moment_1_keyword_excluded_1",
+                                                                                                    "type": "phrase",
+                                                                                                    "fields": [
+                                                                                                        "message_text"
+                                                                                                    ]
+                                                                                                }
+                                                                                            },
+                                                                                            {
+                                                                                                "multi_match": {
+                                                                                                    "query": "moment_1_keyword_excluded_2",
+                                                                                                    "type": "phrase",
+                                                                                                    "fields": [
+                                                                                                        "message_text"
+                                                                                                    ]
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            ],
+                                                                            "minimum_should_match": 1,
+                                                                            "should": [
+                                                                                {
+                                                                                    "bool": {
+                                                                                        "filter": [
+                                                                                            {
+                                                                                                "terms": {
+                                                                                                    "conversation_to_message_join": [
+                                                                                                        "message"
+                                                                                                    ]
+                                                                                                }
+                                                                                            }
+                                                                                        ],
+                                                                                        "should": [
+                                                                                            {
+                                                                                                "multi_match": {
+                                                                                                    "query": "moment_1_keyword_included_1",
+                                                                                                    "type": "phrase",
+                                                                                                    "fields": [
+                                                                                                        "message_text"
+                                                                                                    ]
+                                                                                                }
+                                                                                            }
+                                                                                        ],
+                                                                                        "minimum_should_match": 1
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "has_child": {
+                                                        "type": "message",
+                                                        "query": {
+                                                            "bool": {
+                                                                "filter": [
+                                                                    {
+                                                                        "bool": {
+                                                                            "minimum_should_match": 1,
+                                                                            "should": [
+                                                                                {
+                                                                                    "bool": {
+                                                                                        "filter": [
+                                                                                            {
+                                                                                                "terms": {
+                                                                                                    "conversation_to_message_join": [
+                                                                                                        "message"
+                                                                                                    ]
+                                                                                                }
+                                                                                            }
+                                                                                        ],
+                                                                                        "should": [
+                                                                                            {
+                                                                                                "multi_match": {
+                                                                                                    "query": "moment_2_keyword_included_1",
+                                                                                                    "type": "phrase",
+                                                                                                    "fields": [
+                                                                                                        "message_text"
+                                                                                                    ]
+                                                                                                }
+                                                                                            },
+                                                                                            {
+                                                                                                "multi_match": {
+                                                                                                    "query": "flexible keyword",
+                                                                                                    "type": "phrase",
+                                                                                                    "fields": [
+                                                                                                        "message_text_with_custom_analyzer.spanish"
+                                                                                                    ],
+                                                                                                    "slop": 5
+                                                                                                }
+                                                                                            }
+                                                                                        ],
+                                                                                        "minimum_should_match": 1
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "has_child": {
+                                                        "type": "message_group",
+                                                        "query": {
+                                                            "bool": {
+                                                                "filter": [
+                                                                    {
+                                                                        "bool": {
+                                                                            "minimum_should_match": 1,
+                                                                            "should": [
+                                                                                {
+                                                                                    "nested": {
+                                                                                        "path": "moment_annotations",
+                                                                                        "query": {
+                                                                                            "bool": {
+                                                                                                "filter": [
+                                                                                                    {
+                                                                                                        "terms": {
+                                                                                                            "moment_annotations.moment_template_id.keyword": [
+                                                                                                                "moment_2_cluster_1"
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "sort": [
+        {
+            "conversation_ended_at": {
+                "format": "strict_date_optional_time_nanos",
+                "order": "desc"
+            }
+        },
+        {
+            "created_at": {
+                "format": "strict_date_optional_time_nanos",
+                "order": "asc"
+            }
+        }
+    ]
+}

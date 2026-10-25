@@ -1,0 +1,83 @@
+{
+    "_source": {
+        "includes": [
+            "conversation_id",
+            "moment_annotations",
+            "message_count"
+        ]
+    },
+    "query": {
+        "function_score": {
+            "query": {
+                "bool": {
+                    "filter": [
+                        {
+                            "range": {
+                                "conversation_started_at": {
+                                    "gte": "2023-08-01T00:00:00Z",
+                                    "lt": "2063-07-31T23:59:59Z",
+                                    "time_zone": "UTC"
+                                }
+                            }
+                        },
+                        {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "terms": {
+                                            "conversation_source": [
+                                                0,
+                                                7,
+                                                8
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "bool": {
+                                            "must_not": {
+                                                "exists": {
+                                                    "field": "conversation_source"
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "terms": {
+                                "agent_user_id.keyword": [
+                                    "agent_id_1",
+                                    "agent_id_2"
+                                ]
+                            }
+                        },
+                        {
+                            "terms": {
+                                "usecase_id.keyword": [
+                                    "usecase_id"
+                                ]
+                            }
+                        },
+                        {
+                            "terms": {
+                                "conversation_to_message_join": [
+                                    "conversation"
+                                ]
+                            }
+                        },
+                        {
+                            "range": {
+                                "message_count": {
+                                    "gt": 0
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "random_score": {},
+            "boost_mode": "replace"
+        }
+    }
+}

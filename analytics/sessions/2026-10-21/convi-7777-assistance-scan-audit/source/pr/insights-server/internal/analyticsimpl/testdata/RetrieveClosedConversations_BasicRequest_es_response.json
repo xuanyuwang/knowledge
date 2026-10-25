@@ -1,0 +1,218 @@
+{
+    "took": 43,
+    "timed_out": false,
+    "_shards": {
+      "total": 12,
+      "successful": 12,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 5,
+        "relation": "eq"
+      },
+      "max_score": null,
+      "hits": [
+        {
+          "_index": "customer_id-profile_id-conversations-v2",
+          "_id": "1",
+          "_score": null,
+          "_source": {
+            "agent": 3469,
+            "agent_user_id": "35636a572d7ec364",
+            "agent_name": "Fake Agent Name 1",
+            "agent_is_dev_user": false,
+            "chat_id": 17684332,
+            "conversation_id": "1",
+            "conversation_to_message_join": "conversation",
+            "conversation_created_at": "2022-11-16T05:31:37.991842Z",
+            "conversation_started_at": "2022-11-16T05:31:37.742Z",
+            "conversation_ended_at": "2022-11-16T05:41:37.742Z",
+            "conversation_duration_secs": 93.258,
+            "conversation_source": 0,
+            "platform_conversation_id": "802971256093903003",
+            "platform_account_id": "802765031358338337",
+            "message_count": 19,
+            "usecase_id": "profile_id"
+          },
+          "sort": [
+            "2022-11-16T05:31:37.991Z",
+            "1"
+          ]
+        },
+        {
+          "_index": "customer_id-profile_id-conversations-v2",
+          "_id": "2",
+          "_score": null,
+          "_source": {
+            "agent": 47655,
+            "agent_user_id": "2f540f161f3a452c",
+            "agent_name": "Fake Agent Name 2",
+            "agent_is_dev_user": false,
+            "chat_id": 17684276,
+            "conversation_id": "2",
+            "conversation_to_message_join": "conversation",
+            "conversation_created_at": "2022-11-16T04:42:12.791014Z",
+            "conversation_started_at": "2022-11-16T04:42:12.436Z",
+            "conversation_ended_at": "2022-11-16T04:52:12.436Z",
+            "conversation_duration_secs": 93.284,
+            "conversation_source": 0,
+            "platform_conversation_id": "802971227085718610",
+            "platform_account_id": "802923334523160937",
+            "message_count": 10,
+            "moment_annotations": [
+              {
+                "moment_template_id": "68",
+                "display_name": "Neutral",
+                "type": 6,
+                "taxonomy": "sentiment.neutral",
+                "moment_annotation_id": "aa503815-b42a-4ffd-8db9-d72c9b1d24bd",
+                "payload": {
+                  "sentiment": {
+                    "confidence": 0.4727064,
+                    "sentiment": "NEUTRAL"
+                  },
+                  "metadata": {}
+                }
+              }
+            ],
+            "usecase_id": "profile_id"
+          },
+          "sort": [
+            "2022-11-16T04:42:12.791Z",
+            "2"
+          ]
+        },
+        {
+          "_index": "customer_id-profile_id-conversations-v2",
+          "_id": "3",
+          "_score": null,
+          "_source": {
+            "agent": 47641,
+            "agent_user_id": "d072a51a8359fe51",
+            "agent_name": "Fake Agent Name 3",
+            "agent_is_dev_user": false,
+            "chat_id": 17684271,
+            "conversation_id": "3",
+            "conversation_to_message_join": "conversation",
+            "conversation_created_at": "2022-11-16T04:36:50.66658Z",
+            "conversation_started_at": "2022-11-16T04:36:50.326Z",
+            "conversation_ended_at": "2022-11-16T04:46:50.326Z",
+            "conversation_duration_secs": 69.674,
+            "conversation_source": 0,
+            "platform_conversation_id": "802971223025209494",
+            "platform_account_id": "802923338704580377",
+            "message_count": 8,
+            "moment_annotations": [
+              {
+                "moment_template_id": "68",
+                "display_name": "Neutral",
+                "type": 6,
+                "taxonomy": "sentiment.neutral",
+                "moment_annotation_id": "3830dc88-1fa0-45a6-9ef4-79f4b2290e77",
+                "payload": {
+                  "sentiment": {
+                    "confidence": 0.76253194,
+                    "sentiment": "NEUTRAL"
+                  },
+                  "metadata": {}
+                }
+              }
+            ],
+            "usecase_id": "profile_id"
+          },
+          "sort": [
+            "2022-11-16T04:36:50.666Z",
+            "3"
+          ]
+        },
+        {
+          "_index": "customer_id-profile_id-conversations-v2",
+          "_id": "4",
+          "_score": null,
+          "_source": {
+            "agent": 47651,
+            "agent_user_id": "35636a572d7ec364",
+            "agent_name": "Fake Agent Name 1",
+            "agent_is_dev_user": false,
+            "chat_id": 17684249,
+            "conversation_id": "4",
+            "conversation_to_message_join": "conversation",
+            "conversation_created_at": "2022-11-16T04:19:13.903549Z",
+            "conversation_started_at": "2022-11-16T04:19:13.616Z",
+            "conversation_ended_at": "2022-11-16T04:29:13.616Z",
+            "conversation_duration_secs": 102.683,
+            "conversation_source": 0,
+            "platform_conversation_id": "802971211936993436",
+            "platform_account_id": "802923326707862032",
+            "message_count": 17,
+            "moment_annotations": [
+              {
+                "moment_template_id": "68",
+                "display_name": "Neutral",
+                "type": 6,
+                "taxonomy": "sentiment.neutral",
+                "moment_annotation_id": "ae523025-f42d-489e-a5da-9d7346cc44fc",
+                "payload": {
+                  "sentiment": {
+                    "confidence": 0.67787486,
+                    "sentiment": "NEUTRAL"
+                  },
+                  "metadata": {}
+                }
+              }
+            ],
+            "usecase_id": "profile_id"
+          },
+          "sort": [
+            "2022-11-16T04:19:13.903Z",
+            "4"
+          ]
+        },
+        {
+          "_index": "customer_id-profile_id-conversations-v2",
+          "_id": "5",
+          "_score": null,
+          "_source": {
+            "agent": 3469,
+            "agent_user_id": "35636a572d7ec364",
+            "agent_name": "Fake Agent Name 1",
+            "agent_is_dev_user": false,
+            "chat_id": 17684248,
+            "conversation_id": "5",
+            "conversation_to_message_join": "conversation",
+            "conversation_created_at": "2022-11-16T04:18:27.409687Z",
+            "conversation_started_at": "2022-11-16T04:18:27.102Z",
+            "conversation_ended_at": "2022-11-16T04:28:27.102Z",
+            "conversation_duration_secs": 79.898,
+            "conversation_source": 0,
+            "platform_conversation_id": "802971211254847241",
+            "platform_account_id": "802765031358338337",
+            "message_count": 9,
+            "moment_annotations": [
+              {
+                "moment_template_id": "68",
+                "display_name": "Neutral",
+                "type": 6,
+                "taxonomy": "sentiment.neutral",
+                "moment_annotation_id": "27b3afbe-c0eb-4aba-9b15-4918cd81a0f2",
+                "payload": {
+                  "sentiment": {
+                    "confidence": 0.46213603,
+                    "sentiment": "NEUTRAL"
+                  },
+                  "metadata": {}
+                }
+              }
+            ],
+            "usecase_id": "profile_id"
+          },
+          "sort": [
+            "2022-11-16T04:18:27.409Z",
+            "5"
+          ]
+        }
+      ]
+    }
+  }

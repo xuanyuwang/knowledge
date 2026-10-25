@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "update-es-index_lib",
+    srcs = [
+        "const.go",
+        "update_es_index.go",
+    ],
+    importpath = "github.com/cresta/go-servers/insights-server/internal/analyticsimpl/tools/update-es-index",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_elastic_go_elasticsearch_v8//:go-elasticsearch",
+        "@com_github_elastic_go_elasticsearch_v8//esapi",
+    ],
+)
+
+go_binary(
+    name = "update_es_index",
+    embed = [":update-es-index_lib"],
+    visibility = ["//insights-server:__subpackages__"],
+)
+
+go_test(
+    name = "update-es-index_test",
+    srcs = ["update_es_index_test.go"],
+    embed = [":update-es-index_lib"],
+)

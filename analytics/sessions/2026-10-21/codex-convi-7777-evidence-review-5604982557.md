@@ -1,0 +1,39 @@
+# PR #33993: validate CodeRabbit evidence-query review
+
+## Request and source
+
+Xuanyu pointed to [review 5604982557](https://github.com/cresta/go-servers/pull/33993#pullrequestreview-5604982557) after approving and publishing the population external-user fix. This turn validates the two additional comments; it does not implement them or post replies. Primary domain/subdomain: analytics / assistance-insights. Local and remote head both verified at 9cd953dddc7319f5fedac1e99e9efa5cb0baf9c3. The review body names the earlier 0e69191289 revision, but both concerns still apply to the unchanged evidence-query file.
+
+## Inline evidence agents: confirmed failure; refine the suggested fix
+
+[Comment 4340956124](https://github.com/cresta/go-servers/pull/33993#discussion_r4340956124) identifies evidence-agent IDs expanded into positional SQL. The current builder always calls columnIn(agent_user_id, agentUserIDs), and the reader collects distinct agents from selected population rows before building all seven queries. No all-users exception or external agent-list transport exists. This is separate from the just-fixed population reader: enabling external users there does not affect feature-query arguments.
+
+A temporary real-ClickHouse diagnostic passed 8,001 agent IDs to the actual KB evidence query and readConversationAssistanceUsageFeature, using a one-pair external population. It reproduced ClickHouse code 62 / Max query size exceeded at position 262128. Exact user IDs are synthetic UUID-length values. This demonstrates the transport failure locally; it does not establish how often customers select enough distinct agents to trigger it. Trigger cardinality concerns agents represented in selected conversations, not simply directory size.
+
+Recommend fixing evidence-agent transport before merge with a compact external agent table or another tested bounded transport while keeping the exact eligible-pair join outside reduction. Omitting source agent predicates for all-user requests preserves final population membership, but removes useful pruning: an all-users request may still select conversations from only a few agents. Omitting the predicate can therefore worsen the separate historical-scan concern, and does not solve scoped requests. Prefer consistent transport of the selected population agents over a blind all-users exception. Preserve distributed execution and avoid restoring a GLOBAL broadcast of the full conversation/agent cohort.
+
+## Historical evidence scans: valid cost concern; proposed seven-day window is not established
+
+[Comment 4340956097](https://github.com/cresta/go-servers/pull/33993#discussion_r4340956097) correctly observes that all seven feature sources have agent predicates but no conversation_start_time bounds. The eligible population join occurs after pair reduction. Short-range requests can therefore read historical feature rows and reduce historical pairs before the final match. Actual production latency, read volume and memory impact remain unmeasured; static analysis alone does not establish the review’s severity.
+
+The proposed correction-window fix needs a stronger premise. LateEvidence’s seven-day offset is a synthetic regression example, not a maximum-skew contract. No seven-day bound for all seven evidence families was found in the inspected builder/tests or existing construction contract. The repository’s QA/screen-analytics 24-hour correction slack is for different query paths and does not establish a bound for these copied feature timestamps.
+
+The same diagnostic seeded KB evidence whose copied start time is fourteen days before or after its population start, then executed the actual reader with the eligible pair. Both cases qualify under the current preserved two-key matching behavior. A request-range +/- seven-day guard would reject these rows. These synthetic examples prove the proposed guard changes accepted inputs; they do not prove such skew occurs in production or that upstream invariants permit arbitrary skew. A safe pruning plan requires a documented, verified upstream skew guarantee for every evidence family, or another retrieval/index strategy that retains exact pair eligibility without a guessed time cutoff.
+
+## Validation and disposition
+
+The three diagnostic scenarios passed as expected in 17.875s on the repository’s ClickHouse 23.8.16.40 test image: one expected size failure, and two successful out-of-window matches. [Fixture, fetched comments and filtered outcomes](convi-7777-evidence-review-5604982557/). The temporary source file was removed, leaving the API worktree clean. No product implementation, commit, push, GitHub reply or review resolution was performed. Git/gh used normal authentication; no AWS, Okta, Azure or SSH credential entry was selected/read.
+
+## Approved external-agent transport follow-up
+
+Xuanyu agreed to always use an external agent table if the earlier research supported its cost. The [March design review](../../../large-user-id-clickhouse/design-review.md) records a local ClickHouse 24.2 benchmark with 10,000 seeded conversations and five iterations: five IDs cost 4.3 ms with external data versus 1.2 ms inline; 5,000 IDs cost 2.4 ms versus 6.5 ms. This supports avoiding a list-size threshold; it does not measure this API or production shard overhead. External tables are query-scoped data sent with the query, without persistent DDL or an extra create-table round trip.
+
+The adapter replaces columnIn expansion with agent_user_id IN (SELECT user_id FROM assistance_usage_agents), builds that table using buildUsersExtTable, and attaches an independent instance alongside each query's eligible-pair table. Agent IDs are deduplicated once per request. All seven source families retain their existing predicates and the outer exact pair join. Existing feature APIs and timestamp selection are unchanged.
+
+The permanent TestLargeAgentPopulation uses 8,001 eligible UUID-length agents plus outside-conversation and wrong-agent evidence. It failed before the fix with Max query size exceeded and passed afterward. The full real-ClickHouse evidence suite passed in 22.572s. A fresh two-node/two-shard fixture sent 8,001 agent IDs as external data and executed all seven queries with distributed_product_mode=deny and prefer_localhost_replica=0, preserving KB evidence from both shards and cross-shard Summary matching. Captured remote SQL references assistance_usage_agents and does not reference assistance_usage_population. [Saved regression and distributed evidence](convi-7777-evidence-external-agents/).
+
+## Clarification: copied start time is not search time
+
+The October 6 / October 20 example was synthetic, not an observed production case. KB evidence reads conversation_event_d.conversation_start_time. Both conversation rows and KB event rows copy Chats.StartedAt; CreateTime separately records event creation. Delayed event ingestion alone does not explain a fourteen-day difference. The indexing builder skips already-existing PostgreSQL event IDs (shared/clickhouse/conversations/conversation.go:2838) and writes the conversation start into new event rows (line 3001). Therefore a selectively refreshed conversation after a start-time correction can leave an older event copy, but this investigation has not established an actual fourteen-day correction or a maximum correction window. Proving the current query accepts synthetic mismatches does not establish that every such input is a valid business case. Safe time pruning needs the actual correction/reindexing contract for the feature families.
+
+Validation and publication: complete API Bazel target passed in 35.7s after explicitly overriding the stale reusable-container configuration with a fresh container. Gazelle and diff whitespace checks passed. Commit 0d1b75da684ee0a9237020d6d500e117db6f7b4e was pushed to PR #33993. No GitHub review reply or resolution was posted.

@@ -1,0 +1,62 @@
+[
+  {
+    "group": "feature-regressions",
+    "result": "pass",
+    "status": "",
+    "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-feature-regressions.log"
+  },
+  {
+    "group": "kb-search-refactor",
+    "result": "pass",
+    "status": "",
+    "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-kb-search-refactor.log"
+  },
+  {
+    "group": "chat-suggestions-tests",
+    "result": "pass",
+    "status": "",
+    "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-chat-suggestions-tests.log"
+  },
+  {
+    "group": "chat-suggestions-refactor",
+    "result": "pass",
+    "status": "",
+    "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-chat-suggestions-refactor.log"
+  },
+  {
+    "group": "notes-workflow-tests",
+    "result": "pass",
+    "status": "",
+    "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-notes-workflow-tests.log"
+  },
+  {
+    "group": "notes-workflow-refactor",
+    "result": "pass",
+    "status": "",
+    "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-notes-workflow-refactor.log"
+  },
+  {
+    "group": "hints-tests",
+    "result": "pass",
+    "status": "",
+    "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-hints-tests.log"
+  },
+  {
+    "group": "hints-refactor",
+    "result": "pass",
+    "status": "",
+    "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-hints-refactor.log"
+  },
+  {
+    "group": "summary-genai-tests",
+    "result": "pass",
+    "status": "",
+    "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-summary-genai-tests.log"
+  },
+  {
+    "group": "summary-genai-refactor",
+    "result": "pass",
+    "status": " M insights-server/internal/analyticsimpl/BUILD.bazel\n M insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_clickhouse.go\n M insights-server/internal/analyticsimpl/retrieve_summarization_stats_clickhouse.go\n M insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_AgentOnly_request.sql\n M insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_Basic_request.sql\n M insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql\n?? insights-server/internal/analyticsimpl/common_knowledge_assist_usage_clickhouse.go\n?? insights-server/internal/analyticsimpl/common_summarization_usage_clickhouse.go\n",
+    "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-summary-genai-refactor.log"
+  }
+]

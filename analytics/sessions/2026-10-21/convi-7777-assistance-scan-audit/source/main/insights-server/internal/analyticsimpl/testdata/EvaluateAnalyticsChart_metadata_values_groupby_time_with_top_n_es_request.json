@@ -1,0 +1,279 @@
+{
+    "aggs": {
+        "bucket_aggs": {
+            "aggs": {
+                "bucket_aggs": {
+                    "filters": {
+                        "filters": [
+                            {
+                                "bool": {
+                                    "must_not": [
+                                        {
+                                            "nested": {
+                                                "path": "moment_annotations",
+                                                "query": {
+                                                    "bool": {
+                                                        "filter": [
+                                                            {
+                                                                "terms": {
+                                                                    "moment_annotations.moment_template_id.keyword": [
+                                                                        "metadata-moment-id"
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "nested": {
+                                    "path": "moment_annotations",
+                                    "query": {
+                                        "bool": {
+                                            "filter": [
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.moment_template_id.keyword": [
+                                                            "metadata-moment-id"
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.payload.conversationMetadataPayload.values.stringValue.keyword": [
+                                                            "metadata-value-1"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "nested": {
+                                    "path": "moment_annotations",
+                                    "query": {
+                                        "bool": {
+                                            "filter": [
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.moment_template_id.keyword": [
+                                                            "metadata-moment-id"
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.payload.conversationMetadataPayload.values.stringValue.keyword": [
+                                                            "metadata-value-2"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "nested": {
+                                    "path": "moment_annotations",
+                                    "query": {
+                                        "bool": {
+                                            "filter": [
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.moment_template_id.keyword": [
+                                                            "metadata-moment-id"
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.payload.conversationMetadataPayload.values.stringValue.keyword": [
+                                                            "metadata-value-3"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "nested": {
+                                    "path": "moment_annotations",
+                                    "query": {
+                                        "bool": {
+                                            "filter": [
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.moment_template_id.keyword": [
+                                                            "metadata-moment-id"
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.payload.conversationMetadataPayload.values.stringValue.keyword": [
+                                                            "metadata-value-4"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "date_histogram": {
+                "calendar_interval": "week",
+                "extended_bounds": {
+                    "max": "2026-05-16T03:59:59Z",
+                    "min": "2026-05-01T04:00:00Z"
+                },
+                "field": "conversation_started_at",
+                "min_doc_count": 0,
+                "offset": "-1d",
+                "time_zone": "-04:00"
+            }
+        }
+    },
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "conversation"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "range": {
+                        "message_count": {
+                            "gt": 0
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "minimum_should_match": 1,
+                                "should": [
+                                    {
+                                        "range": {
+                                            "conversation_started_at": {
+                                                "gte": "2026-05-01T04:00:00Z",
+                                                "lt": "2026-05-16T03:59:59Z",
+                                                "time_zone": "+00:00"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "minimum_should_match": 1,
+                                "should": [
+                                    {
+                                        "terms": {
+                                            "usecase_id.keyword": [
+                                                "call-center-voice"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "minimum_should_match": 1,
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "metadata-moment-id"
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.payload.conversationMetadataPayload.values.stringValue.keyword": [
+                                                                    "metadata-value-1",
+                                                                    "metadata-value-2",
+                                                                    "metadata-value-3",
+                                                                    "metadata-value-4"
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "bool": {
+                                            "must_not": [
+                                                {
+                                                    "nested": {
+                                                        "path": "moment_annotations",
+                                                        "query": {
+                                                            "bool": {
+                                                                "filter": [
+                                                                    {
+                                                                        "terms": {
+                                                                            "moment_annotations.moment_template_id.keyword": [
+                                                                                "metadata-moment-id"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

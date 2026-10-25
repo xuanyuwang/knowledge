@@ -1,0 +1,22 @@
+{
+  "go": {
+    "named_pass_nodes": 90,
+    "failures": 0,
+    "package": {
+      "Time": "2026-10-20T18:33:06.601587-04:00",
+      "Action": "pass",
+      "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+      "Elapsed": 36.195
+    }
+  },
+  "race": {
+    "named_pass_nodes": 49,
+    "failures": 0,
+    "package": {
+      "Time": "2026-10-20T18:37:16.401394-04:00",
+      "Action": "pass",
+      "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+      "Elapsed": 51.068
+    }
+  }
+}

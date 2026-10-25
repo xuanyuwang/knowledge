@@ -1,0 +1,565 @@
+[
+  {
+    "Time": "2026-10-21T10:37:11.992285-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestAggregationAttributionAndBuckets/ATTRIBUTE_TYPE_AGENT",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.992958-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestAggregationAttributionAndBuckets/ATTRIBUTE_TYPE_GROUP",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.992998-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestAggregationAttributionAndBuckets",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.994045-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestEvidenceQueriesAvoidGlobalBroadcast/IncludeBots_false",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.99407-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestEvidenceQueriesAvoidGlobalBroadcast/IncludeBots_true",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.994081-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestEvidenceQueriesAvoidGlobalBroadcast",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.994144-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestInvalidParent",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.994192-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/Monthly",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.994215-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/MultipleGroupings",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.99424-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/BehaviorGrouping",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.99426-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/Details",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.99501-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/Timezone",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.995037-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/MissingTime",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.99506-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/ReversedTime",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.995076-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.995313-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestWeeklyAndUnspecifiedFrequency/SUNDAY",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.995957-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestWeeklyAndUnspecifiedFrequency/MONDAY",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.995994-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation/TestWeeklyAndUnspecifiedFrequency",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:11.996009-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageValidation",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-21T10:37:22.042112-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestACLRestrictsEligibleAgents",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-21T10:37:22.049041-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestEligiblePairsUseStartTimeAndPreserveRequest/ExternalUsers_false",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-21T10:37:22.055844-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestEligiblePairsUseStartTimeAndPreserveRequest/ExternalUsers_true",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-21T10:37:22.055924-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestEligiblePairsUseStartTimeAndPreserveRequest",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-21T10:37:22.076162-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestProfileBotPolicy/DisableBots_false",
+    "Elapsed": 0.02
+  },
+  {
+    "Time": "2026-10-21T10:37:22.097832-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestProfileBotPolicy/DisableBots_true",
+    "Elapsed": 0.02
+  },
+  {
+    "Time": "2026-10-21T10:37:22.097869-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestProfileBotPolicy",
+    "Elapsed": 0.04
+  },
+  {
+    "Time": "2026-10-21T10:37:22.104489-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithoutExternalTable/AgentsOnly",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-21T10:37:22.11039-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithoutExternalTable/ActiveOnly",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-21T10:37:22.110527-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithoutExternalTable/NoEligibleAgents",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:22.110559-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithoutExternalTable",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-21T10:37:28.144478-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH",
+    "Elapsed": 16.15
+  },
+  {
+    "Time": "2026-10-21T10:37:28.145055-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestEmptyACLAudienceDoesNotQueryAllUsers",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.145316-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestEmptySelectedAudienceDoesNotQueryAllUsers",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.146074-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRPCReadErrorsDiscardPartialRows/Query",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.146367-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRPCReadErrorsDiscardPartialRows/Scan",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.146716-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRPCReadErrorsDiscardPartialRows/Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.146757-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRPCReadErrorsDiscardPartialRows",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.147326-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRPCReturnsDistinctPopulationCount/HasPopulation_false",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.148476-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRPCReturnsDistinctPopulationCount/HasPopulation_true",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.148521-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRPCReturnsDistinctPopulationCount",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.150149-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRPCUsesEvidenceUnion",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.15133-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/KB_search_Query",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.152021-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/KB_search_Scan",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.152818-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/KB_search_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.153543-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Chat_Suggestions_Query",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.154125-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Chat_Suggestions_Scan",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.154692-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Chat_Suggestions_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.155153-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/GenAI_Query",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.155481-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/GenAI_Scan",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.155797-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/GenAI_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.156071-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Summary_Query",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.15672-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Summary_Scan",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.157128-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Summary_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.157719-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Hints_Query",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.15813-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Hints_Scan",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.158672-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Hints_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.159103-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Notes_Query",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.159598-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Notes_Scan",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.159908-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Notes_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.160266-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Guided_Workflow_Query",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.160838-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Guided_Workflow_Scan",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.161161-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Guided_Workflow_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T10:37:28.161175-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-21T10:37:28.161186-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsage",
+    "Elapsed": 0.02
+  },
+  {
+    "Time": "2026-10-21T10:37:38.874808-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/KBSearch",
+    "Elapsed": 10.71
+  },
+  {
+    "Time": "2026-10-21T10:37:38.932154-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/LateEvidence",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:38.978537-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/Suggestion",
+    "Elapsed": 0.05
+  },
+  {
+    "Time": "2026-10-21T10:37:39.031074-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/HintSuggestion",
+    "Elapsed": 0.05
+  },
+  {
+    "Time": "2026-10-21T10:37:39.079583-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/SearchSuggestion",
+    "Elapsed": 0.05
+  },
+  {
+    "Time": "2026-10-21T10:37:39.137559-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/GenAI",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:39.196873-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/GenAIWithoutSession",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:39.253036-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/GenAIBotSource",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:39.313179-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/SummaryCopy",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:39.376049-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/SummaryEditType2",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:39.434913-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/SummaryWithoutCopy",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:39.492619-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/SummaryMismatchedTime",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:39.547648-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/SummaryWithoutGeneration",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:39.619906-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/SummarySingleNoteType3",
+    "Elapsed": 0.07
+  },
+  {
+    "Time": "2026-10-21T10:37:39.678274-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/BehavioralHint",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:39.735021-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/ChecklistHint",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:39.793757-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/UnfollowedHint",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:39.851311-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/RegularHint",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:39.904331-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/KBHint",
+    "Elapsed": 0.05
+  },
+  {
+    "Time": "2026-10-21T10:37:39.965873-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/WorkflowHint",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:40.023355-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/NotesCopy",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T10:37:40.072502-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/NotesEdit",
+    "Elapsed": 0.05
+  },
+  {
+    "Time": "2026-10-21T10:37:40.120937-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/WorkflowDocument",
+    "Elapsed": 0.05
+  },
+  {
+    "Time": "2026-10-21T10:37:40.172131-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/OrdinaryDocument",
+    "Elapsed": 0.05
+  },
+  {
+    "Time": "2026-10-21T10:37:40.222105-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/WrongAgent",
+    "Elapsed": 0.05
+  },
+  {
+    "Time": "2026-10-21T10:37:40.287676-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/OfferedOnly",
+    "Elapsed": 0.07
+  },
+  {
+    "Time": "2026-10-21T10:37:40.371051-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection/MultipleFeatures",
+    "Elapsed": 0.08
+  },
+  {
+    "Time": "2026-10-21T10:37:40.371085-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestFeaturePredicatesAndPairIntersection",
+    "Elapsed": 12.21
+  },
+  {
+    "Time": "2026-10-21T10:37:46.681579-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsageEvidenceCH",
+    "Elapsed": 18.52
+  },
+  {
+    "Time": "2026-10-21T10:37:46.683815-04:00",
+    "Action": "pass",
+    "Elapsed": 36.065
+  }
+]

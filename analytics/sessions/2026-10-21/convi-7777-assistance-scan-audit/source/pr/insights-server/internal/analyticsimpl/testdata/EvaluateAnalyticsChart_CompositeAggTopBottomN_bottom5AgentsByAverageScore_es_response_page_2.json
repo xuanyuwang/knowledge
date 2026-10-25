@@ -1,0 +1,147 @@
+{
+  "took": 10,
+  "timed_out": false,
+  "_shards": {
+    "total": 24,
+    "successful": 24,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 2030,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "after_key": {
+        "bucket_aggs": "cb4222b829bcbc80"
+      },
+      "buckets": [
+        {
+          "key": {
+            "bucket_aggs": "89a7e2d410af32de"
+          },
+          "doc_count": 1,
+          "bucket_aggs": {
+            "doc_count": 197,
+            "bucket_aggs": {
+              "doc_count": 1,
+              "metrics_agg_on_numeric_field": {
+                "value": 65
+              }
+            }
+          }
+        },
+        {
+          "key": {
+            "bucket_aggs": "8e41e791735c67de"
+          },
+          "doc_count": 6,
+          "bucket_aggs": {
+            "doc_count": 1166,
+            "bucket_aggs": {
+              "doc_count": 6,
+              "metrics_agg_on_numeric_field": {
+                "value": 31
+              }
+            }
+          }
+        },
+        {
+          "key": {
+            "bucket_aggs": "95e8bc6539683405"
+          },
+          "doc_count": 25,
+          "bucket_aggs": {
+            "doc_count": 4839,
+            "bucket_aggs": {
+              "doc_count": 25,
+              "metrics_agg_on_numeric_field": {
+                "value": 99
+              }
+            }
+          }
+        },
+        {
+          "key": {
+            "bucket_aggs": "9f21643654aa2b6"
+          },
+          "doc_count": 90,
+          "bucket_aggs": {
+            "doc_count": 17530,
+            "bucket_aggs": {
+              "doc_count": 90,
+              "metrics_agg_on_numeric_field": {
+                "value": 33
+              }
+            }
+          }
+        },
+        {
+          "key": {
+            "bucket_aggs": "a56e4941090016e0"
+          },
+          "doc_count": 3,
+          "bucket_aggs": {
+            "doc_count": 585,
+            "bucket_aggs": {
+              "doc_count": 3,
+              "metrics_agg_on_numeric_field": {
+                "value": 50
+              }
+            }
+          }
+        },
+        {
+          "key": {
+            "bucket_aggs": "a9de139bc3485a27"
+          },
+          "doc_count": 201,
+          "bucket_aggs": {
+            "doc_count": 39172,
+            "bucket_aggs": {
+              "doc_count": 201,
+              "metrics_agg_on_numeric_field": {
+                "value": 21
+              }
+            }
+          }
+        },
+        {
+          "key": {
+            "bucket_aggs": "c285a214997f74bf"
+          },
+          "doc_count": 6,
+          "bucket_aggs": {
+            "doc_count": 1171,
+            "bucket_aggs": {
+              "doc_count": 6,
+              "metrics_agg_on_numeric_field": {
+                "value": 89
+              }
+            }
+          }
+        },
+        {
+          "key": {
+            "bucket_aggs": "cb4222b829bcbc80"
+          },
+          "doc_count": 19,
+          "bucket_aggs": {
+            "doc_count": 3693,
+            "bucket_aggs": {
+              "doc_count": 19,
+              "metrics_agg_on_numeric_field": {
+                "value": 42
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

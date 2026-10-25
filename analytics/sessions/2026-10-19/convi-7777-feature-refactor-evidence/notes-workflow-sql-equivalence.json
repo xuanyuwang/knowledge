@@ -1,0 +1,145 @@
+[
+  {
+    "file": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_BasicFilterAndGroupByAgent_request.sql",
+    "flattened_aggregate_equivalent": true,
+    "raw_columns": [
+      "agent_user_id",
+      "conversation_id",
+      "conversation_start_time",
+      "event_type",
+      "event_name",
+      "guided_workflow_name",
+      "doc_type",
+      "session_metadata_id"
+    ]
+  },
+  {
+    "file": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_DailyGroupByGuidedWorkflow_request.sql",
+    "flattened_aggregate_equivalent": true,
+    "raw_columns": [
+      "agent_user_id",
+      "conversation_id",
+      "conversation_start_time",
+      "event_type",
+      "event_name",
+      "guided_workflow_name",
+      "doc_type",
+      "session_metadata_id"
+    ]
+  },
+  {
+    "file": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_FilterAndGroupByAgent_request.sql",
+    "flattened_aggregate_equivalent": true,
+    "raw_columns": [
+      "agent_user_id",
+      "conversation_id",
+      "conversation_start_time",
+      "event_type",
+      "event_name",
+      "guided_workflow_name",
+      "doc_type",
+      "session_metadata_id"
+    ]
+  },
+  {
+    "file": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_FilterAndGroupByGroups_request.sql",
+    "flattened_aggregate_equivalent": true,
+    "raw_columns": [
+      "agent_user_id",
+      "conversation_id",
+      "conversation_start_time",
+      "event_type",
+      "event_name",
+      "guided_workflow_name",
+      "doc_type",
+      "session_metadata_id"
+    ]
+  },
+  {
+    "file": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+    "flattened_aggregate_equivalent": true,
+    "raw_columns": [
+      "agent_user_id",
+      "conversation_id",
+      "conversation_start_time",
+      "event_type",
+      "guided_workflow_name",
+      "doc_type",
+      "session_metadata_id"
+    ]
+  },
+  {
+    "file": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_WeeklyGroupByAgent_request.sql",
+    "flattened_aggregate_equivalent": true,
+    "raw_columns": [
+      "agent_user_id",
+      "conversation_id",
+      "conversation_start_time",
+      "event_type",
+      "event_name",
+      "guided_workflow_name",
+      "doc_type",
+      "session_metadata_id"
+    ]
+  },
+  {
+    "file": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_BasicFilterAndGroupByAgent_request.sql",
+    "flattened_aggregate_equivalent": true,
+    "raw_columns": [
+      "agent_user_id",
+      "conversation_id",
+      "conversation_start_time",
+      "event_type",
+      "event_name",
+      "event_id"
+    ]
+  },
+  {
+    "file": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_FilterAndGroupByAgent_request.sql",
+    "flattened_aggregate_equivalent": true,
+    "raw_columns": [
+      "agent_user_id",
+      "conversation_id",
+      "conversation_start_time",
+      "event_type",
+      "event_name",
+      "event_id"
+    ]
+  },
+  {
+    "file": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_FilterAndGroupByGroups_request.sql",
+    "flattened_aggregate_equivalent": true,
+    "raw_columns": [
+      "agent_user_id",
+      "conversation_id",
+      "conversation_start_time",
+      "event_type",
+      "event_name",
+      "event_id"
+    ]
+  },
+  {
+    "file": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+    "flattened_aggregate_equivalent": true,
+    "raw_columns": [
+      "agent_user_id",
+      "conversation_id",
+      "conversation_start_time",
+      "event_type",
+      "event_id",
+      "note_taking_data_type"
+    ]
+  },
+  {
+    "file": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_WeeklyGroupByAgent_request.sql",
+    "flattened_aggregate_equivalent": true,
+    "raw_columns": [
+      "agent_user_id",
+      "conversation_id",
+      "conversation_start_time",
+      "event_type",
+      "event_name",
+      "event_id"
+    ]
+  }
+]

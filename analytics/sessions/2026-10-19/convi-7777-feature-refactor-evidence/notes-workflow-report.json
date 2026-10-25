@@ -1,0 +1,443 @@
+{
+  "group": "notes-workflow",
+  "status": "complete",
+  "tests_worktree": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-notes-workflow-tests/go-servers",
+  "refactor_worktree": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-notes-workflow-refactor/go-servers",
+  "base_commit": "6ba478ae4d7d7322e6f904dce2eb3f4ff2ea58c9",
+  "tests_commit": "4481c7fe36944ed28d89b9c2845b8dfd34264142",
+  "refactor_commit": "b721a5086e6bbe09b41bd842645bf10d0d7c7bb7",
+  "test_files": [
+    {
+      "path": "insights-server/internal/analyticsimpl/common_notes_workflow_usage_test.go",
+      "sha256": "c34ae44465de43c2ecde84f0a24bf6dd4d155620949549bcc9e48bc943fb9620"
+    },
+    {
+      "path": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go",
+      "sha256": "3b59601489966cee0a796851ef6e67533354e9d98b0405d24a1de3dfdd242d85"
+    },
+    {
+      "path": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go",
+      "sha256": "b9956ca12ccabda8ff5bbbd41b5f12ad8aedeafc45cec4de471e695c73aabb2a"
+    }
+  ],
+  "frozen_hashes_unchanged": true,
+  "commands": [
+    {
+      "stage": "before",
+      "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^TestRetrieve(NoteTaking|GuidedWorkflow)Stats$' -count=1 -timeout 20m -json",
+      "cwd": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-notes-workflow-tests/go-servers",
+      "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-before.jsonl",
+      "sha256": "47f0028cfa2e2d633e18d6d0aa16585abe7ae165a234f48de524f48578d2ad5e",
+      "result": "pass",
+      "elapsed": 150.708,
+      "passed_nodes": [
+        "TestRetrieveGuidedWorkflowStats",
+        "TestRetrieveGuidedWorkflowStats/TestCases",
+        "TestRetrieveGuidedWorkflowStats/TestCases/Test_BasicFilterAndGroupByAgent",
+        "TestRetrieveGuidedWorkflowStats/TestCases/Test_DailyFilterAndGroupByAgent",
+        "TestRetrieveGuidedWorkflowStats/TestCases/Test_DailyFilterAndGroupByGroup",
+        "TestRetrieveGuidedWorkflowStats/TestCases/Test_DailyGroupByGuidedWorkflow",
+        "TestRetrieveGuidedWorkflowStats/TestCases/Test_FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+        "TestRetrieveGuidedWorkflowStats/TestCases/Test_WeeklyGroupByAgent",
+        "TestRetrieveGuidedWorkflowStats/TestConversationAndEventTimeFiltersApplyBeforeJoin",
+        "TestRetrieveGuidedWorkflowStats/TestDistinctSessionsAcrossEventsDocumentsAndConversations",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/EmptyDocument",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/EmptySessionCountsOnce",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/MissingPayload",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/MissingSessionCountsOnce",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/NumericDocumentType",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/NumericSessionRemainsCountable",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/ValidSession",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/WhitespaceSessionCounts",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/WrongDocumentType",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/WrongEventType",
+        "TestRetrieveGuidedWorkflowStats/TestGroupingByDocumentCountsSessionWithinEachDocument",
+        "TestRetrieveGuidedWorkflowStats/TestInlineAndExternalUserFilters",
+        "TestRetrieveGuidedWorkflowStats/TestInlineAndExternalUserFilters/External",
+        "TestRetrieveGuidedWorkflowStats/TestInlineAndExternalUserFilters/Inline",
+        "TestRetrieveGuidedWorkflowStats/TestMetadataLatestIncludeAndExclude",
+        "TestRetrieveGuidedWorkflowStats/TestMetadataLatestIncludeAndExclude/ExcludeOnly",
+        "TestRetrieveGuidedWorkflowStats/TestMetadataLatestIncludeAndExclude/IncludeAndExclude",
+        "TestRetrieveGuidedWorkflowStats/TestMetadataLatestIncludeAndExclude/LatestInclude",
+        "TestRetrieveGuidedWorkflowStats/TestMetadataTypedDocumentGatesAndEmptySession",
+        "TestRetrieveGuidedWorkflowStats/TestNoMatchingDataAndNoEventConversation",
+        "TestRetrieveGuidedWorkflowStats/TestNoMatchingDataAndNoEventConversation/Grouped",
+        "TestRetrieveGuidedWorkflowStats/TestNoMatchingDataAndNoEventConversation/Ungrouped",
+        "TestRetrieveGuidedWorkflowStats/TestSameConversationMultipleAgentsGroupedAndOverall",
+        "TestRetrieveGuidedWorkflowStats/TestSameConversationMultipleAgentsGroupedAndOverall/Overall",
+        "TestRetrieveGuidedWorkflowStats/TestSameConversationMultipleAgentsGroupedAndOverall/PerAgent",
+        "TestRetrieveGuidedWorkflowStats/TestTimeBoundsAndTimezoneGrouping",
+        "TestRetrieveGuidedWorkflowStats/Test_BasicRequestAndResponse",
+        "TestRetrieveGuidedWorkflowStats/Test_BasicRequestAndResponse_GroupByGuidedWorkflowName",
+        "TestRetrieveGuidedWorkflowStats/Test_InvalidRequestThrows",
+        "TestRetrieveNoteTakingStats",
+        "TestRetrieveNoteTakingStats/TestCases",
+        "TestRetrieveNoteTakingStats/TestCases/Test_BasicFilterAndGroupByAgent",
+        "TestRetrieveNoteTakingStats/TestCases/Test_DailyFilterAndGroupByAgent",
+        "TestRetrieveNoteTakingStats/TestCases/Test_DailyFilterAndGroupByGroup",
+        "TestRetrieveNoteTakingStats/TestCases/Test_FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+        "TestRetrieveNoteTakingStats/TestCases/Test_WeeklyGroupByAgent",
+        "TestRetrieveNoteTakingStats/TestConversationAndEventTimeFiltersApplyBeforeJoin",
+        "TestRetrieveNoteTakingStats/TestCopyEntityGateDistinctEventIDsAndJoinedDenominators",
+        "TestRetrieveNoteTakingStats/TestInlineAndExternalUserFilters",
+        "TestRetrieveNoteTakingStats/TestInlineAndExternalUserFilters/External",
+        "TestRetrieveNoteTakingStats/TestInlineAndExternalUserFilters/Inline",
+        "TestRetrieveNoteTakingStats/TestMetadataLatestIncludeAndExclude",
+        "TestRetrieveNoteTakingStats/TestMetadataLatestIncludeAndExclude/ExcludeOnly",
+        "TestRetrieveNoteTakingStats/TestMetadataLatestIncludeAndExclude/IncludeAndExclude",
+        "TestRetrieveNoteTakingStats/TestMetadataLatestIncludeAndExclude/LatestInclude",
+        "TestRetrieveNoteTakingStats/TestMetadataUsesTypedCopyEntityGate",
+        "TestRetrieveNoteTakingStats/TestNoMatchingDataAndNoEventConversation",
+        "TestRetrieveNoteTakingStats/TestNoMatchingDataAndNoEventConversation/Grouped",
+        "TestRetrieveNoteTakingStats/TestNoMatchingDataAndNoEventConversation/Ungrouped",
+        "TestRetrieveNoteTakingStats/TestSameConversationMultipleAgentsGroupedAndOverall",
+        "TestRetrieveNoteTakingStats/TestSameConversationMultipleAgentsGroupedAndOverall/Overall",
+        "TestRetrieveNoteTakingStats/TestSameConversationMultipleAgentsGroupedAndOverall/PerAgent",
+        "TestRetrieveNoteTakingStats/TestTimeBoundsAndTimezoneGrouping",
+        "TestRetrieveNoteTakingStats/Test_BasicRequestAndResponse",
+        "TestRetrieveNoteTakingStats/Test_InvalidRequestThrows"
+      ],
+      "failed_nodes": []
+    },
+    {
+      "stage": "after",
+      "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^TestRetrieve(NoteTaking|GuidedWorkflow)Stats$' -count=1 -timeout 20m -json",
+      "cwd": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-notes-workflow-refactor/go-servers",
+      "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-after.jsonl",
+      "sha256": "f6f06c4648af1debe94b5eabbc8823d257f3e110ae0f5ccc0b2773a890256dd5",
+      "result": "pass",
+      "elapsed": 148.66,
+      "passed_nodes": [
+        "TestRetrieveGuidedWorkflowStats",
+        "TestRetrieveGuidedWorkflowStats/TestCases",
+        "TestRetrieveGuidedWorkflowStats/TestCases/Test_BasicFilterAndGroupByAgent",
+        "TestRetrieveGuidedWorkflowStats/TestCases/Test_DailyFilterAndGroupByAgent",
+        "TestRetrieveGuidedWorkflowStats/TestCases/Test_DailyFilterAndGroupByGroup",
+        "TestRetrieveGuidedWorkflowStats/TestCases/Test_DailyGroupByGuidedWorkflow",
+        "TestRetrieveGuidedWorkflowStats/TestCases/Test_FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+        "TestRetrieveGuidedWorkflowStats/TestCases/Test_WeeklyGroupByAgent",
+        "TestRetrieveGuidedWorkflowStats/TestConversationAndEventTimeFiltersApplyBeforeJoin",
+        "TestRetrieveGuidedWorkflowStats/TestDistinctSessionsAcrossEventsDocumentsAndConversations",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/EmptyDocument",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/EmptySessionCountsOnce",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/MissingPayload",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/MissingSessionCountsOnce",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/NumericDocumentType",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/NumericSessionRemainsCountable",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/ValidSession",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/WhitespaceSessionCounts",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/WrongDocumentType",
+        "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates/WrongEventType",
+        "TestRetrieveGuidedWorkflowStats/TestGroupingByDocumentCountsSessionWithinEachDocument",
+        "TestRetrieveGuidedWorkflowStats/TestInlineAndExternalUserFilters",
+        "TestRetrieveGuidedWorkflowStats/TestInlineAndExternalUserFilters/External",
+        "TestRetrieveGuidedWorkflowStats/TestInlineAndExternalUserFilters/Inline",
+        "TestRetrieveGuidedWorkflowStats/TestMetadataLatestIncludeAndExclude",
+        "TestRetrieveGuidedWorkflowStats/TestMetadataLatestIncludeAndExclude/ExcludeOnly",
+        "TestRetrieveGuidedWorkflowStats/TestMetadataLatestIncludeAndExclude/IncludeAndExclude",
+        "TestRetrieveGuidedWorkflowStats/TestMetadataLatestIncludeAndExclude/LatestInclude",
+        "TestRetrieveGuidedWorkflowStats/TestMetadataTypedDocumentGatesAndEmptySession",
+        "TestRetrieveGuidedWorkflowStats/TestNoMatchingDataAndNoEventConversation",
+        "TestRetrieveGuidedWorkflowStats/TestNoMatchingDataAndNoEventConversation/Grouped",
+        "TestRetrieveGuidedWorkflowStats/TestNoMatchingDataAndNoEventConversation/Ungrouped",
+        "TestRetrieveGuidedWorkflowStats/TestSameConversationMultipleAgentsGroupedAndOverall",
+        "TestRetrieveGuidedWorkflowStats/TestSameConversationMultipleAgentsGroupedAndOverall/Overall",
+        "TestRetrieveGuidedWorkflowStats/TestSameConversationMultipleAgentsGroupedAndOverall/PerAgent",
+        "TestRetrieveGuidedWorkflowStats/TestTimeBoundsAndTimezoneGrouping",
+        "TestRetrieveGuidedWorkflowStats/Test_BasicRequestAndResponse",
+        "TestRetrieveGuidedWorkflowStats/Test_BasicRequestAndResponse_GroupByGuidedWorkflowName",
+        "TestRetrieveGuidedWorkflowStats/Test_InvalidRequestThrows",
+        "TestRetrieveNoteTakingStats",
+        "TestRetrieveNoteTakingStats/TestCases",
+        "TestRetrieveNoteTakingStats/TestCases/Test_BasicFilterAndGroupByAgent",
+        "TestRetrieveNoteTakingStats/TestCases/Test_DailyFilterAndGroupByAgent",
+        "TestRetrieveNoteTakingStats/TestCases/Test_DailyFilterAndGroupByGroup",
+        "TestRetrieveNoteTakingStats/TestCases/Test_FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+        "TestRetrieveNoteTakingStats/TestCases/Test_WeeklyGroupByAgent",
+        "TestRetrieveNoteTakingStats/TestConversationAndEventTimeFiltersApplyBeforeJoin",
+        "TestRetrieveNoteTakingStats/TestCopyEntityGateDistinctEventIDsAndJoinedDenominators",
+        "TestRetrieveNoteTakingStats/TestInlineAndExternalUserFilters",
+        "TestRetrieveNoteTakingStats/TestInlineAndExternalUserFilters/External",
+        "TestRetrieveNoteTakingStats/TestInlineAndExternalUserFilters/Inline",
+        "TestRetrieveNoteTakingStats/TestMetadataLatestIncludeAndExclude",
+        "TestRetrieveNoteTakingStats/TestMetadataLatestIncludeAndExclude/ExcludeOnly",
+        "TestRetrieveNoteTakingStats/TestMetadataLatestIncludeAndExclude/IncludeAndExclude",
+        "TestRetrieveNoteTakingStats/TestMetadataLatestIncludeAndExclude/LatestInclude",
+        "TestRetrieveNoteTakingStats/TestMetadataUsesTypedCopyEntityGate",
+        "TestRetrieveNoteTakingStats/TestNoMatchingDataAndNoEventConversation",
+        "TestRetrieveNoteTakingStats/TestNoMatchingDataAndNoEventConversation/Grouped",
+        "TestRetrieveNoteTakingStats/TestNoMatchingDataAndNoEventConversation/Ungrouped",
+        "TestRetrieveNoteTakingStats/TestSameConversationMultipleAgentsGroupedAndOverall",
+        "TestRetrieveNoteTakingStats/TestSameConversationMultipleAgentsGroupedAndOverall/Overall",
+        "TestRetrieveNoteTakingStats/TestSameConversationMultipleAgentsGroupedAndOverall/PerAgent",
+        "TestRetrieveNoteTakingStats/TestTimeBoundsAndTimezoneGrouping",
+        "TestRetrieveNoteTakingStats/Test_BasicRequestAndResponse",
+        "TestRetrieveNoteTakingStats/Test_InvalidRequestThrows"
+      ],
+      "failed_nodes": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "Notes:ConversationAndEventTimeFiltersApplyBeforeJoin",
+      "expected_behavior": "Conversation and event start bounds both apply; starts are inclusive, ends exclusive; empty conversation agents do not join.",
+      "evidence": "TestRetrieveNoteTakingStats/TestConversationAndEventTimeFiltersApplyBeforeJoin"
+    },
+    {
+      "name": "Notes:InlineAndExternalUserFilters",
+      "expected_behavior": "Only selected user contributes for both inline lists and external tables.",
+      "evidence": "TestRetrieveNoteTakingStats/TestInlineAndExternalUserFilters"
+    },
+    {
+      "name": "Notes:MetadataLatestIncludeAndExclude",
+      "expected_behavior": "Latest metadata value wins. Include-only selects two matching conversations; include+exclude and exclude-only preserve zero aggregates in the test environment.",
+      "evidence": "TestRetrieveNoteTakingStats/TestMetadataLatestIncludeAndExclude"
+    },
+    {
+      "name": "Notes:NoMatchingDataAndNoEventConversation",
+      "expected_behavior": "No-event conversations do not contribute. Ungrouped query retains a zero row and grouped query returns empty response.",
+      "evidence": "TestRetrieveNoteTakingStats/TestNoMatchingDataAndNoEventConversation"
+    },
+    {
+      "name": "Notes:SameConversationMultipleAgentsGroupedAndOverall",
+      "expected_behavior": "A shared key counts once overall, once per grouped agent; global denominator is one conversation/two users and grouped totals sum two conversations.",
+      "evidence": "TestRetrieveNoteTakingStats/TestSameConversationMultipleAgentsGroupedAndOverall"
+    },
+    {
+      "name": "Notes:TimeBoundsAndTimezoneGrouping",
+      "expected_behavior": "Time bounds retain two events in separate Honolulu day buckets; frequency user denominator is summed across buckets; user fields are enriched.",
+      "evidence": "TestRetrieveNoteTakingStats/TestTimeBoundsAndTimezoneGrouping"
+    },
+    {
+      "name": "GuidedWorkflow:ConversationAndEventTimeFiltersApplyBeforeJoin",
+      "expected_behavior": "Conversation and event start bounds both apply; starts are inclusive, ends exclusive; empty conversation agents do not join.",
+      "evidence": "TestRetrieveGuidedWorkflowStats/TestConversationAndEventTimeFiltersApplyBeforeJoin"
+    },
+    {
+      "name": "GuidedWorkflow:InlineAndExternalUserFilters",
+      "expected_behavior": "Only selected user contributes for both inline lists and external tables.",
+      "evidence": "TestRetrieveGuidedWorkflowStats/TestInlineAndExternalUserFilters"
+    },
+    {
+      "name": "GuidedWorkflow:MetadataLatestIncludeAndExclude",
+      "expected_behavior": "Latest metadata value wins. Include-only selects two matching conversations; include+exclude and exclude-only preserve zero aggregates in the test environment.",
+      "evidence": "TestRetrieveGuidedWorkflowStats/TestMetadataLatestIncludeAndExclude"
+    },
+    {
+      "name": "GuidedWorkflow:NoMatchingDataAndNoEventConversation",
+      "expected_behavior": "No-event conversations do not contribute. Ungrouped query retains a zero row and grouped query returns empty response.",
+      "evidence": "TestRetrieveGuidedWorkflowStats/TestNoMatchingDataAndNoEventConversation"
+    },
+    {
+      "name": "GuidedWorkflow:SameConversationMultipleAgentsGroupedAndOverall",
+      "expected_behavior": "A shared key counts once overall, once per grouped agent; global denominator is one conversation/two users and grouped totals sum two conversations.",
+      "evidence": "TestRetrieveGuidedWorkflowStats/TestSameConversationMultipleAgentsGroupedAndOverall"
+    },
+    {
+      "name": "GuidedWorkflow:TimeBoundsAndTimezoneGrouping",
+      "expected_behavior": "Time bounds retain two events in separate Honolulu day buckets; frequency user denominator is summed across buckets; user fields are enriched.",
+      "evidence": "TestRetrieveGuidedWorkflowStats/TestTimeBoundsAndTimezoneGrouping"
+    },
+    {
+      "name": "Notes:CopyEntityGateDistinctEventIDsAndJoinedDenominators",
+      "expected_behavior": "Three distinct qualifying event IDs, three joined conversations and three event users. Duplicate IDs across conversations count once; wrong type/name do not count as use; unrelated events still affect denominators.",
+      "evidence": "TestRetrieveNoteTakingStats/TestCopyEntityGateDistinctEventIDsAndJoinedDenominators"
+    },
+    {
+      "name": "Notes:MetadataUsesTypedCopyEntityGate",
+      "expected_behavior": "Only data_type=1 with event_type=5 qualifies; duplicates, updates, missing typed payload and wrong event type do not inflate usage.",
+      "evidence": "TestRetrieveNoteTakingStats/TestMetadataUsesTypedCopyEntityGate"
+    },
+    {
+      "name": "GuidedWorkflow:DocumentPayloadGates",
+      "expected_behavior": "Ten real JSON payload scenarios protect valid/empty/missing/numeric/whitespace sessions, empty document, wrong document/event type, missing payload and numeric document type. Empty/missing session remains countable.",
+      "evidence": "TestRetrieveGuidedWorkflowStats/TestDocumentPayloadGates"
+    },
+    {
+      "name": "GuidedWorkflow:DistinctSessionsAcrossEventsDocumentsAndConversations",
+      "expected_behavior": "Three distinct sessions including one empty key across duplicate events, multiple documents, conversations and event agents; unrelated rows contribute denominators.",
+      "evidence": "TestRetrieveGuidedWorkflowStats/TestDistinctSessionsAcrossEventsDocumentsAndConversations"
+    },
+    {
+      "name": "GuidedWorkflow:MetadataTypedDocumentGatesAndEmptySession",
+      "expected_behavior": "Typed document/type/event gates retain one nonempty and one empty session; same session across documents counts once.",
+      "evidence": "TestRetrieveGuidedWorkflowStats/TestMetadataTypedDocumentGatesAndEmptySession"
+    },
+    {
+      "name": "GuidedWorkflow:GroupingByDocumentCountsSessionWithinEachDocument",
+      "expected_behavior": "One shared session contributes once per grouped document; top totals retain summed repeated-conversation counts.",
+      "evidence": "TestRetrieveGuidedWorkflowStats/TestGroupingByDocumentCountsSessionWithinEachDocument"
+    },
+    {
+      "name": "ConsolidatedFullRPC",
+      "expected_behavior": "Former SQL-only cases execute seeded ClickHouse through the full RPC and compare complete responses for selected users, duration ranges, groups, weekly buckets, metadata include/exclude, and Guided Workflow names. Three original conversion expectation blocks remain unchanged.",
+      "evidence": "TestRetrieveNoteTakingStats/TestCases and TestRetrieveGuidedWorkflowStats/TestCases, plus original Test_BasicRequestAndResponse cases"
+    }
+  ],
+  "extraction": [
+    {
+      "file": "insights-server/internal/analyticsimpl/common_note_taking_usage_clickhouse.go",
+      "boundary": "buildNoteTakingUsageRowsQuery returns a complete SELECT of explicitly aliased joined distinct event columns before aggregation.",
+      "why": "A future consumer can derive qualifying conversation/agent rows without consuming event-count aggregates.",
+      "invariants": [
+        "Ordinary event name vs typed metadata storage remains caller-selected",
+        "Original selected columns and DISTINCT grain",
+        "Metadata->conversation->event argument order",
+        "Conversation-only inner join",
+        "Nonqualifying event rows remain available for denominators"
+      ]
+    },
+    {
+      "file": "insights-server/internal/analyticsimpl/common_guided_workflow_usage_clickhouse.go",
+      "boundary": "buildGuidedWorkflowUsageRowsQuery returns the complete raw event/session/document relation for JSON or typed storage.",
+      "why": "Allows reuse of session/document evidence independently from distinct-session aggregates.",
+      "invariants": [
+        "Original JSON extraction and typed metadata columns",
+        "Original DISTINCT projection, including ordinary event_name",
+        "Metadata latest/include/exclude query generation",
+        "Stable merged unqualified conversation_id output alias",
+        "No nonempty-session validation introduced"
+      ]
+    },
+    {
+      "file": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_clickhouse.go and retrieve_guided_workflow_stats_clickhouse.go",
+      "boundary": "Legacy aggregate query wraps raw relation in usage_rows.",
+      "why": "Keeps event/session counts, denominator definitions, grouping and responses owned by the original RPC.",
+      "invariants": [
+        "Legacy usage gates and COUNT DISTINCT expressions unchanged",
+        "Reader and conversion unchanged except formatting",
+        "Connection routing and external-table attachment unchanged",
+        "Frozen consolidated readers and full-RPC cases preserve the original aggregate contract"
+      ]
+    }
+  ],
+  "preserved_issues": [
+    {
+      "title": "Metadata exclusions return zero aggregate in this test environment",
+      "trigger": "Nonempty ExcludedMoments, both with include filter and exclusion-only",
+      "observed": "Zero usage/conversation counts despite a nonexcluded matching conversation. SQL checks joined exclusion ID IS NULL; default nonnullable joins are a likely explanation, not separately verified deployment configuration.",
+      "scope": "Preserved; no metadata behavior correction."
+    },
+    {
+      "title": "Empty or missing Guided Workflow session IDs count as use",
+      "trigger": "event_type=4, doc_type=2, nonempty document, empty/missing session",
+      "observed": "One distinct empty session key contributes one use.",
+      "scope": "Both JSON and typed-column branches preserved."
+    },
+    {
+      "title": "Ungrouped year-1 timestamp",
+      "trigger": "No frequency grouping, including zero aggregate",
+      "observed": "Row TimeRange.StartTimestamp is 0001-01-01T00:00:00Z.",
+      "scope": "Preserved response conversion."
+    }
+  ],
+  "risks": [
+    "Real ClickHouse tests cover the characterized cases and seeded full-RPC responses; no production deployment, data census, benchmark or query-plan comparison was performed.",
+    "Metadata exclusion observations use local ClickHouse 23.8 join defaults.",
+    "Both merged suites passed through Go; generated Bazel targets were not executed by this agent."
+  ],
+  "source_files": [
+    "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_clickhouse.go",
+    "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_clickhouse.go",
+    "insights-server/internal/analyticsimpl/common_note_taking_usage_clickhouse.go",
+    "insights-server/internal/analyticsimpl/common_guided_workflow_usage_clickhouse.go"
+  ],
+  "transient_extraction_issue": {
+    "observed": "Wildcard right-table projection exported qualified conversation_id, causing missing-column errors in frozen readers. Explicit qualified right-key alias also failed in a minimal query.",
+    "repair": "Project merged unqualified columns with explicit stable AS aliases. Minimal query and final full frozen suites verify repair.",
+    "test_expectations_changed": false
+  },
+  "credentials": "No credential profiles or keys read or selected. Local Git, Go, Gazelle and Docker-backed test infrastructure only.",
+  "prs": {
+    "tests": "https://github.com/cresta/go-servers/pull/34040",
+    "refactor": "https://github.com/cresta/go-servers/pull/34041"
+  },
+  "independent_review": {
+    "reviewer": "hints",
+    "verdict": "No demonstrated semantic blocker. DISTINCT projections, prejoin filters, conversation-only joins, and usage gates preserved. Review covered final whitespace-only amended commit.",
+    "scope": "Prior production semantic review still applies: all reviewed refactor production files are byte-identical. Suite consolidation was self-reviewed with body/assertion equivalence checks."
+  },
+  "test_node_count": 66,
+  "identical_passed_test_nodes": true,
+  "historical_verification_report": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-pre-consolidation-report.json",
+  "suite_consolidation": {
+    "model_commit": "77eb016897c59a286160c73f114f5d2f7a839f06",
+    "pattern_pr": "https://github.com/cresta/go-servers/pull/34001",
+    "characterization_body_equivalence": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-body-equivalence.json",
+    "legacy_response_equivalence": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-legacy-response-equivalence.json",
+    "case_mapping": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-case-mapping.json",
+    "complete_test_hashes": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-frozen-tests.json",
+    "preserved_moved_methods": 24,
+    "preserved_legacy_response_assertion_blocks": 3,
+    "seeded_full_rpc_replacements": 11,
+    "obsolete_sql_snapshots_removed": 11,
+    "runnable_suites": [
+      "TestRetrieveNoteTakingStats",
+      "TestRetrieveGuidedWorkflowStats"
+    ],
+    "helper_is_not_runnable": true,
+    "old_characterization_suite_files_and_targets_removed": true,
+    "duplicate_guided_workflow_entrypoint_removed": true
+  },
+  "production_bytes_match_previous_refactor": true,
+  "original_refactor_production": {
+    "commit": "0546e0ba5e31f445f201ef50f6269f2c1caf62fd",
+    "files": [
+      {
+        "path": "insights-server/internal/analyticsimpl/common_note_taking_usage_clickhouse.go",
+        "sha256": "5720884130071b7a66e53008534dbac74a80751f00912789b9a8ce9af23747f9"
+      },
+      {
+        "path": "insights-server/internal/analyticsimpl/common_guided_workflow_usage_clickhouse.go",
+        "sha256": "7f9bf7dc0450f64fba92ed2cf29e956af67065c1b58416bdd939914bc4766725"
+      },
+      {
+        "path": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_clickhouse.go",
+        "sha256": "18b28073c813ab62b2ac2f20a9877e8a613b877b955b036000c1b355340f5db8"
+      },
+      {
+        "path": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_clickhouse.go",
+        "sha256": "f1a3a4552ca869ad3a635de2272e736aed873e371d627092f6d772032130f56c"
+      }
+    ]
+  },
+  "calibration_runs": [
+    {
+      "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-calibration.jsonl",
+      "result": "fail",
+      "reason": "Fixture inserted conversation_duration_secs into legacy conversation_event_d, which has no such column. Corrected fixture only; frozen characterization expectations unchanged."
+    },
+    {
+      "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-rpc-calibration.jsonl",
+      "result": "fail",
+      "reason": "Full-RPC group request includes selected group IDs in ListGroups. Added exact mock expectation; characterization and all three legacy response tests passed during this calibration."
+    },
+    {
+      "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-membership-calibration.jsonl",
+      "result": "fail",
+      "reason": "Selected-group ListGroups also requests IncludeGroupMemberships and IncludeIndirectGroupMemberships. Added exact false/false and true/true request variants; no production or business response expectations changed."
+    }
+  ],
+  "static_validation": [
+    "gofmt -w -s on all three merged test/helper files",
+    "Cached Gazelle helper regenerated both existing targets with shared fixture src and large/long settings",
+    "git diff --check passed for both commits",
+    "Tests branch production files unchanged from base",
+    "All four refactor production files byte-identical to 0546e0ba5e31f445f201ef50f6269f2c1caf62fd"
+  ],
+  "focused_group_probe": {
+    "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-group-probe.jsonl",
+    "result": "pass",
+    "passed_test_nodes": [
+      "TestRetrieveGuidedWorkflowStats/TestCases/Test_DailyFilterAndGroupByGroup",
+      "TestRetrieveGuidedWorkflowStats/TestCases",
+      "TestRetrieveGuidedWorkflowStats",
+      "TestRetrieveNoteTakingStats/TestCases/Test_DailyFilterAndGroupByGroup",
+      "TestRetrieveNoteTakingStats/TestCases",
+      "TestRetrieveNoteTakingStats"
+    ],
+    "elapsed": 37.358
+  }
+}

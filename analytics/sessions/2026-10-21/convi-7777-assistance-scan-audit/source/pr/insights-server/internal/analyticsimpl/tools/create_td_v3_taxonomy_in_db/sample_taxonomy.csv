@@ -1,0 +1,15 @@
+id,name,description,level,percentage,example_1,example_2,example_3
+1,Category A,Top-level category A,1,40.0,Example A1,Example A2,Example A3
+1.1,Subcategory A1,First subcategory of A,2,15.0,Example A1-1,Example A1-2,Example A1-3
+1.1.1,Detail A1a,Detail under subcategory A1,3,5.0,Example A1a-1,Example A1a-2,Example A1a-3
+1.1.2,Detail A1b,Another detail under subcategory A1,3,5.0,Example A1b-1,Example A1b-2,Example A1b-3
+1.1.3,Other Detail A1,Other topics within subcategory A1,3,5.0,Example A1c-1,Example A1c-2,Example A1c-3
+1.2,Subcategory A2,Second subcategory of A,2,10.0,Example A2-1,Example A2-2,Example A2-3
+1.3,Other Subcategory A,Other topics within category A,2,15.0,Example A3-1,Example A3-2,Example A3-3
+2,Category B,Top-level category B,1,30.0,Example B1,Example B2,Example B3
+2.1,Subcategory B1,First subcategory of B,2,20.0,Example B1-1,Example B1-2,Example B1-3
+2.1.1,Detail B1a,Detail under subcategory B1,3,10.0,Example B1a-1,Example B1a-2,Example B1a-3
+2.2,Other Subcategory B,Other topics within category B,2,10.0,Example B2-1,Example B2-2,Example B2-3
+3,Category C,Top-level category C,1,20.0,Example C1,Example C2,Example C3
+3.1,Subcategory C1,First subcategory of C,2,20.0,Example C1-1,Example C1-2,Example C1-3
+4,Other,Other topics not covered above,1,10.0,Example D1,Example D2,Example D3

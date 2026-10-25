@@ -1,0 +1,20 @@
+{
+  "static_html": "pass",
+  "unique_ids": 23,
+  "pinned_source_anchors": 15,
+  "local_companion_links": "pass",
+  "javascript_syntax": "pass",
+  "browser_controls": {
+    "three_steps": "pass",
+    "snapshot_and_changes": "pass",
+    "previous_and_next_boundaries": "pass",
+    "direct_step_selection": "pass",
+    "scenario_and_feature_selectors": "pass"
+  },
+  "browser_console_errors": [],
+  "visual_inspection": "Desktop report table and construction panel viewed without clipping; full page structure verified in accessibility tree.",
+  "semantic_verification": 107,
+  "knowledge_closure": "Scoped whitespace checks and new report/session links pass; canonical work item, README, project index, session and daily log updated.",
+  "cleanup": "Own disposable container stopped/removed; prior named synthetic databases absent on shared server; shared container retained.",
+  "revision_checks": "Requested [S,E) baseline; padded comparison removed; two displayed scan variants; JS syntax and companion links pass. Revised file visual check blocked by browser file-URL policy; original report browser tests passed."
+}

@@ -1,0 +1,137 @@
+{
+  "took": 5,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "doc_count": 144650,
+      "bucket_aggs": {
+        "doc_count": 3022,
+        "bucket_aggs": {
+          "doc_count_error_upper_bound": 0,
+          "sum_other_doc_count": 110,
+          "buckets": [
+            {
+              "key": "metadata-value1",
+              "doc_count": 2551,
+              "bucket_aggs": {
+                "doc_count": 2551,
+                "bucket_aggs": {
+                  "buckets": [
+                    {
+                      "key_as_string": "2025-01-01T00:00:00.000Z",
+                      "key": 1735689600000,
+                      "doc_count": 1143,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 11
+                      }
+                    },
+                    {
+                      "key_as_string": "2025-02-01T00:00:00.000Z",
+                      "key": 1738368000000,
+                      "doc_count": 1039,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 12
+                      }
+                    },
+                    {
+                      "key_as_string": "2025-03-01T00:00:00.000Z",
+                      "key": 1740787200000,
+                      "doc_count": 369,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 13
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "key": "metadata-value2",
+              "doc_count": 258,
+              "bucket_aggs": {
+                "doc_count": 258,
+                "bucket_aggs": {
+                  "buckets": [
+                    {
+                      "key_as_string": "2025-01-01T00:00:00.000Z",
+                      "key": 1735689600000,
+                      "doc_count": 2,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 21
+                      }
+                    },
+                    {
+                      "key_as_string": "2025-02-01T00:00:00.000Z",
+                      "key": 1738368000000,
+                      "doc_count": 5,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 22
+                      }
+                    },
+                    {
+                      "key_as_string": "2025-03-01T00:00:00.000Z",
+                      "key": 1740787200000,
+                      "doc_count": 251,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 23
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "key": "metadata-value3",
+              "doc_count": 103,
+              "bucket_aggs": {
+                "doc_count": 103,
+                "bucket_aggs": {
+                  "buckets": [
+                    {
+                      "key_as_string": "2025-01-01T00:00:00.000Z",
+                      "key": 1735689600000,
+                      "doc_count": 7,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 31
+                      }
+                    },
+                    {
+                      "key_as_string": "2025-02-01T00:00:00.000Z",
+                      "key": 1738368000000,
+                      "doc_count": 92,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 32
+                      }
+                    },
+                    {
+                      "key_as_string": "2025-03-01T00:00:00.000Z",
+                      "key": 1740787200000,
+                      "doc_count": 4,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 33
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "took": 231,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 12345,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": [
+      {
+        "_index": "customer-profile-conversations-v2",
+        "_id": "conversation_id_1",
+        "_score": null,
+        "_source": {
+          "customer_id": "customer",
+          "profile_id": "profile",
+          "agent": 12345,
+          "agent_user_id": "12345",
+          "agent_name": "Test Agent",
+          "agent_is_dev_user": false,
+          "agent_type": 0,
+          "chat_id": 1,
+          "conversation_id": "conversation_id_1",
+          "conversation_to_message_join": "conversation",
+          "conversation_created_at": "2024-12-12T23:00:31Z",
+          "conversation_started_at": "2024-12-12T23:00:31Z",
+          "conversation_ended_at": "2024-12-12T23:17:07Z",
+          "conversation_duration_secs": 123.456,
+          "conversation_source": 0,
+          "platform_conversation_id": "plat_conversation_id_1",
+          "platform_account_id": "agent_id",
+          "effective_language": "en-US",
+          "message_count": 160,
+          "usecase_id": "usecase-1",
+          "raise_hand_state": 1,
+          "handle_time_secs": 678
+        },
+        "sort": [
+          "2024-12-12T23:17:07.155Z"
+        ]
+      },
+      {
+        "_index": "customer-profile-conversations-v2",
+        "_id": "conversation_id_2",
+        "_score": null,
+        "_source": {
+          "customer_id": "customer",
+          "profile_id": "profile",
+          "agent": 12345,
+          "agent_user_id": "12345",
+          "agent_name": "Test Agent",
+          "agent_is_dev_user": false,
+          "agent_type": 0,
+          "chat_id": 1,
+          "conversation_id": "conversation_id_2",
+          "conversation_to_message_join": "conversation",
+          "conversation_created_at": "2024-12-12T23:00:31Z",
+          "conversation_started_at": "2024-12-12T23:00:31Z",
+          "conversation_ended_at": "2024-12-12T23:17:07Z",
+          "conversation_duration_secs": 234.567,
+          "conversation_source": 0,
+          "platform_conversation_id": "plat_conversation_id_2",
+          "platform_account_id": "agent_id",
+          "effective_language": "en-US",
+          "message_count": 180,
+          "usecase_id": "usecase-2",
+          "raise_hand_state": 1,
+          "handle_time_secs": 789
+        },
+        "sort": [
+          "2024-12-12T23:17:07.155Z"
+        ]
+      }
+    ]
+  }
+}

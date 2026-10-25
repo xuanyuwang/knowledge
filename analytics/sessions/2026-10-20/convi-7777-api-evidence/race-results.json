@@ -1,0 +1,351 @@
+[
+  {
+    "Time": "2026-10-20T18:36:27.222122-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestAggregationAttributionAndBuckets/ATTRIBUTE_TYPE_AGENT",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-20T18:36:27.227421-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestAggregationAttributionAndBuckets/ATTRIBUTE_TYPE_GROUP",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-20T18:36:27.227469-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestAggregationAttributionAndBuckets",
+    "Elapsed": 0.02
+  },
+  {
+    "Time": "2026-10-20T18:36:27.227803-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestInvalidParent",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.227928-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/Monthly",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.227982-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/MultipleGroupings",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.228025-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/BehaviorGrouping",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.228071-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/Details",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.228826-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/Timezone",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.228888-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/MissingTime",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.228954-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions/ReversedTime",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.22899-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestUnsupportedRequestOptions",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.230361-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestWeeklyAndUnspecifiedFrequency/SUNDAY",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.231486-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestWeeklyAndUnspecifiedFrequency/MONDAY",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.231513-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation/TestWeeklyAndUnspecifiedFrequency",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.231525-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageValidation",
+    "Elapsed": 0.02
+  },
+  {
+    "Time": "2026-10-20T18:36:27.2335-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestEmptyACLAudienceDoesNotQueryAllUsers",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:27.235161-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestEmptySelectedAudienceDoesNotQueryAllUsers",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:33.240442-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRPCReadErrorsDiscardPartialRows/Query",
+    "Elapsed": 6.01
+  },
+  {
+    "Time": "2026-10-20T18:36:33.241546-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRPCReadErrorsDiscardPartialRows/Scan",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:33.24246-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRPCReadErrorsDiscardPartialRows/Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:33.24248-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRPCReadErrorsDiscardPartialRows",
+    "Elapsed": 6.01
+  },
+  {
+    "Time": "2026-10-20T18:36:33.24353-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRPCReturnsDistinctPopulationCount/HasPopulation_false",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:33.245971-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRPCReturnsDistinctPopulationCount/HasPopulation_true",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:33.24599-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRPCReturnsDistinctPopulationCount",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:33.249634-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRPCUsesEvidenceUnion",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:39.258065-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/KB_search_Query",
+    "Elapsed": 6.01
+  },
+  {
+    "Time": "2026-10-20T18:36:39.264357-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/KB_search_Scan",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-20T18:36:39.269015-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/KB_search_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:45.279022-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Chat_Suggestions_Query",
+    "Elapsed": 6.01
+  },
+  {
+    "Time": "2026-10-20T18:36:45.284921-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Chat_Suggestions_Scan",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-20T18:36:45.290291-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Chat_Suggestions_Iteration",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-20T18:36:51.30053-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/GenAI_Query",
+    "Elapsed": 6.01
+  },
+  {
+    "Time": "2026-10-20T18:36:51.307336-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/GenAI_Scan",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-20T18:36:51.311667-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/GenAI_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:36:57.321105-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Summary_Query",
+    "Elapsed": 6.01
+  },
+  {
+    "Time": "2026-10-20T18:36:57.327643-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Summary_Scan",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-20T18:36:57.33216-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Summary_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:37:03.344156-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Hints_Query",
+    "Elapsed": 6.01
+  },
+  {
+    "Time": "2026-10-20T18:37:03.349989-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Hints_Scan",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-20T18:37:03.352846-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Hints_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:37:09.363784-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Notes_Query",
+    "Elapsed": 6.01
+  },
+  {
+    "Time": "2026-10-20T18:37:09.370665-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Notes_Scan",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-20T18:37:09.37559-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Notes_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:37:15.383848-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Guided_Workflow_Query",
+    "Elapsed": 6.01
+  },
+  {
+    "Time": "2026-10-20T18:37:15.3876-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Guided_Workflow_Scan",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:37:15.390719-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults/Guided_Workflow_Iteration",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-20T18:37:15.390751-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage/TestRequiredEvidenceFailuresDiscardResults",
+    "Elapsed": 42.14
+  },
+  {
+    "Time": "2026-10-20T18:37:15.390801-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsage",
+    "Elapsed": 48.16
+  },
+  {
+    "Time": "2026-10-20T18:37:16.401394-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Elapsed": 51.068
+  }
+]

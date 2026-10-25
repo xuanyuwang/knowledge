@@ -1,0 +1,37 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "create_td_v3_taxonomy_in_db_lib",
+    srcs = ["create_taxonomy.go"],
+    embedsrcs = ["sample_taxonomy.csv"],
+    importpath = "github.com/cresta/go-servers/insights-server/internal/analyticsimpl/tools/create_td_v3_taxonomy_in_db",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/customer",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/moment",
+        "@com_github_cresta_shared_go//framework/client/grpc",
+        "@com_github_cresta_shared_go//middleware/rpcauth",
+        "@org_golang_google_grpc//metadata",
+        "@org_golang_google_protobuf//types/known/fieldmaskpb",
+    ],
+)
+
+go_binary(
+    name = "create_td_v3_taxonomy_in_db",
+    embed = [":create_td_v3_taxonomy_in_db_lib"],
+    visibility = ["//insights-server:__subpackages__"],
+)
+
+go_test(
+    name = "create_td_v3_taxonomy_in_db_test",
+    srcs = ["create_taxonomy_test.go"],
+    embed = [":create_td_v3_taxonomy_in_db_lib"],
+    deps = [
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/customer",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/moment",
+        "@com_github_cresta_cresta_proto_v2//gen/gomock2/cresta/v1/moment",
+        "@com_github_golang_mock//gomock",
+        "@com_github_stretchr_testify//suite",
+        "@org_golang_google_protobuf//proto",
+    ],
+)

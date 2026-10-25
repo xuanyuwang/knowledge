@@ -1,0 +1,10 @@
+[
+  {
+    "file": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_clickhouse.go",
+    "reader_and_conversion_equivalent_ignoring_whitespace": true
+  },
+  {
+    "file": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_clickhouse.go",
+    "reader_and_conversion_equivalent_ignoring_whitespace": true
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "command": "bazel build //insights-server/internal/analyticsimpl:retrieve_suggestion_stats_test --jobs=2",
+  "result": "pass",
+  "elapsed": 11.679,
+  "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/consolidated-suggestions-bazel-build.log",
+  "scope": "Compile/link of consolidated existing Suggestions target; real ClickHouse runtime evidence is recorded in per-group before/after Go test logs."
+}

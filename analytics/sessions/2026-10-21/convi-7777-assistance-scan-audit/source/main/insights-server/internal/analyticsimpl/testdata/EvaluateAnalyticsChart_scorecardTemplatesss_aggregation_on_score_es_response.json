@@ -1,0 +1,96 @@
+{
+  "took": 17,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "buckets": [
+        {
+          "key_as_string": "2024-07-01T00:00:00.000Z",
+          "key": 1719792000000,
+          "doc_count": 15715,
+          "bucket_aggs": {
+            "doc_count": 754495,
+            "bucket_aggs": {
+              "buckets": [
+                {
+                  "doc_count": 14391,
+                  "metrics_agg_on_numeric_field": {
+                    "value": 0.11
+                  }
+                },
+                {
+                  "doc_count": 14391,
+                  "metrics_agg_on_numeric_field": {
+                    "value": 0.12
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "key_as_string": "2024-08-01T00:00:00.000Z",
+          "key": 1722470400000,
+          "doc_count": 18096,
+          "bucket_aggs": {
+            "doc_count": 831217,
+            "bucket_aggs": {
+              "buckets": [
+                {
+                  "doc_count": 14957,
+                  "metrics_agg_on_numeric_field": {
+                    "value": 0.21
+                  }
+                },
+                {
+                  "doc_count": 14957,
+                  "metrics_agg_on_numeric_field": {
+                    "value": 0.22
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "key_as_string": "2024-09-01T00:00:00.000Z",
+          "key": 1725148800000,
+          "doc_count": 18868,
+          "bucket_aggs": {
+            "doc_count": 893956,
+            "bucket_aggs": {
+              "buckets": [
+                {
+                  "doc_count": 15218,
+                  "metrics_agg_on_numeric_field": {
+                    "value": 0.31
+                  }
+                },
+                {
+                  "doc_count": 15218,
+                  "metrics_agg_on_numeric_field": {
+                    "value": 0.32
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

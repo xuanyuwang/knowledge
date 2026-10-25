@@ -1,0 +1,86 @@
+{
+  "took": 111,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "buckets": [
+        {
+          "doc_count": 30045,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 100,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 200,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              },
+              {
+                "key_as_string": "2024-09-01T00:00:00.000Z",
+                "key": 1725148800000,
+                "doc_count": 300,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              }
+            ]
+          }
+        },
+        {
+          "doc_count": 2093,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 20,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 30,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              },
+              {
+                "key_as_string": "2024-09-01T00:00:00.000Z",
+                "key": 1725148800000,
+                "doc_count": 0,
+                "metrics_conversation_count": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

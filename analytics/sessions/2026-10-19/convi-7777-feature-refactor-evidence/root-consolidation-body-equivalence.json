@@ -1,0 +1,23 @@
+[
+  {
+    "group": "kb-search",
+    "result": "pass",
+    "methods": [
+      "TestEventCountsAndGrouping",
+      "TestEventFiltersAndTimeBoundaries",
+      "TestMetadataIsConversationScopedAndUsesLatestValue",
+      "TestNonSearchEventsRetainDenominator"
+    ]
+  },
+  {
+    "group": "chat-suggestions",
+    "result": "pass",
+    "methods": [
+      "TestEventCountsAndGrouping",
+      "TestEventFiltersAndTimeBoundaries",
+      "TestMetadataIsConversationScopedAndUsesLatestValue",
+      "TestNonSuggestionEventsRetainDenominator",
+      "TestEmailAndChatCountersRemainIndependent"
+    ]
+  }
+]

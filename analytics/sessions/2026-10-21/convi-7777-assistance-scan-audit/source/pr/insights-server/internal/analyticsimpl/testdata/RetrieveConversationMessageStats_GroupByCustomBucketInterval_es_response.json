@@ -1,0 +1,53 @@
+{
+    "took": 12,
+    "timed_out": false,
+    "_shards": {
+      "total": 12,
+      "successful": 12,
+      "skipped": 0,
+      "failed": 0
+    },
+    "aggregations": {
+      "time_ranges": {
+        "buckets": [
+          {
+            "key_as_string": "2022-04-13T00:00:00.000-00:00",
+            "key": 1649808000000,
+            "doc_count": 5,
+            "total_conversation_message_count": {
+              "value": 9
+            },
+            "total_conversation_count": {
+              "value": 4
+            },
+            "total_conversation_handle_time_secs_sum": {
+              "value": 8
+            }
+          },
+          {
+            "key_as_string": "2022-04-13T00:20:00.000-00:00",
+            "key": 1649809200000,
+            "doc_count": 7,
+            "total_conversation_message_count": {
+              "value": 13
+            },
+            "total_conversation_count": {
+              "value": 6
+            },
+            "total_conversation_handle_time_secs_sum": {
+              "value": 18
+            }
+          }
+        ]
+      },
+      "total_conversation_message_count": {
+        "value": 22
+      },
+      "total_conversation_count": {
+        "value": 10
+      },
+      "total_conversation_handle_time_secs_sum": {
+        "value": 26
+      }
+    }
+  }

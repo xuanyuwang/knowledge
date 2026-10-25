@@ -1,0 +1,82 @@
+[
+  {
+    "group": "kb-search",
+    "stage": "tests",
+    "path": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-feature-regressions/go-servers",
+    "branch": "xw/convi-7777-kb-search-tests",
+    "head": "1998f72c731a9ee84bfe8afeb0041e95a06fb630",
+    "clean": true
+  },
+  {
+    "group": "kb-search",
+    "stage": "refactor",
+    "path": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-kb-search-refactor/go-servers",
+    "branch": "xw/convi-7777-kb-search-refactor",
+    "head": "1b4068940e893d368f71b67ceea2675f4f819d5c",
+    "clean": true
+  },
+  {
+    "group": "chat-suggestions",
+    "stage": "tests",
+    "path": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-chat-suggestions-tests/go-servers",
+    "branch": "xw/convi-7777-chat-suggestions-tests",
+    "head": "6789995fb94df62eeca17a7b5542e904fc389596",
+    "clean": true
+  },
+  {
+    "group": "chat-suggestions",
+    "stage": "refactor",
+    "path": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-chat-suggestions-refactor/go-servers",
+    "branch": "xw/convi-7777-chat-suggestions-refactor",
+    "head": "6789995fb94df62eeca17a7b5542e904fc389596",
+    "clean": true
+  },
+  {
+    "group": "notes-workflow",
+    "stage": "tests",
+    "path": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-notes-workflow-tests/go-servers",
+    "branch": "xw/convi-7777-notes-workflow-tests",
+    "head": "6789995fb94df62eeca17a7b5542e904fc389596",
+    "clean": true
+  },
+  {
+    "group": "notes-workflow",
+    "stage": "refactor",
+    "path": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-notes-workflow-refactor/go-servers",
+    "branch": "xw/convi-7777-notes-workflow-refactor",
+    "head": "6789995fb94df62eeca17a7b5542e904fc389596",
+    "clean": true
+  },
+  {
+    "group": "summary-genai",
+    "stage": "tests",
+    "path": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-summary-genai-tests/go-servers",
+    "branch": "xw/convi-7777-summary-genai-tests",
+    "head": "6789995fb94df62eeca17a7b5542e904fc389596",
+    "clean": true
+  },
+  {
+    "group": "summary-genai",
+    "stage": "refactor",
+    "path": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-summary-genai-refactor/go-servers",
+    "branch": "xw/convi-7777-summary-genai-refactor",
+    "head": "6789995fb94df62eeca17a7b5542e904fc389596",
+    "clean": true
+  },
+  {
+    "group": "hints",
+    "stage": "tests",
+    "path": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-hints-tests/go-servers",
+    "branch": "xw/convi-7777-hints-tests",
+    "head": "6789995fb94df62eeca17a7b5542e904fc389596",
+    "clean": true
+  },
+  {
+    "group": "hints",
+    "stage": "refactor",
+    "path": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-hints-refactor/go-servers",
+    "branch": "xw/convi-7777-hints-refactor",
+    "head": "6789995fb94df62eeca17a7b5542e904fc389596",
+    "clean": true
+  }
+]

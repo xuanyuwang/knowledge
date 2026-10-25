@@ -1,0 +1,38 @@
+[
+  {
+    "file": "retrieve_note_taking_stats_test.go",
+    "result": "pass",
+    "methods": [
+      "request",
+      "expected",
+      "equalResponse",
+      "TestCopyEntityGateDistinctEventIDsAndJoinedDenominators",
+      "TestMetadataUsesTypedCopyEntityGate",
+      "TestInlineAndExternalUserFilters",
+      "TestMetadataLatestIncludeAndExclude",
+      "TestNoMatchingDataAndNoEventConversation",
+      "TestTimeBoundsAndTimezoneGrouping",
+      "TestSameConversationMultipleAgentsGroupedAndOverall",
+      "TestConversationAndEventTimeFiltersApplyBeforeJoin"
+    ]
+  },
+  {
+    "file": "retrieve_guided_workflow_stats_test.go",
+    "result": "pass",
+    "methods": [
+      "request",
+      "expected",
+      "equalResponse",
+      "TestDocumentPayloadGates",
+      "TestDistinctSessionsAcrossEventsDocumentsAndConversations",
+      "TestMetadataTypedDocumentGatesAndEmptySession",
+      "TestInlineAndExternalUserFilters",
+      "TestMetadataLatestIncludeAndExclude",
+      "TestNoMatchingDataAndNoEventConversation",
+      "TestTimeBoundsAndTimezoneGrouping",
+      "TestSameConversationMultipleAgentsGroupedAndOverall",
+      "TestGroupingByDocumentCountsSessionWithinEachDocument",
+      "TestConversationAndEventTimeFiltersApplyBeforeJoin"
+    ]
+  }
+]

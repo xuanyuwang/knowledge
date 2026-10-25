@@ -1,0 +1,583 @@
+diff --git a/packages/director-app/locales/en-US/director-app-insights.json b/packages/director-app/locales/en-US/director-app-insights.json
+index 5c77fa383d..dc1af02189 100644
+--- a/packages/director-app/locales/en-US/director-app-insights.json
++++ b/packages/director-app/locales/en-US/director-app-insights.json
+@@ -1028,6 +1028,7 @@
+     "assistance-used-by-agent-leaderboard": {
+       "active-days": "Active Days",
+       "assistance-used-per-day": "Assistance used (per day)",
++      "conversations-with-assistance-used-percent": "Conversations with assistance used %",
+       "convos-per-day-per-agent": "# of convos (per day)",
+       "convos-powered-by-aa-percent": "Convos powered by AA %",
+       "icon": "Icon",
+@@ -1037,6 +1038,7 @@
+     "assistance-used-by-team-leaderboard": {
+       "assistance-used-per-day": "Assistance used (per day)",
+       "average-active-days": "Average active days",
++      "conversations-with-assistance-used-percent": "Conversations with assistance used %",
+       "convos-per-day-per-agent": "# of convos (per day per agent)",
+       "convos-powered-by-aa-percent": "Convos powered by AA %",
+       "team-name": "Team name"
+@@ -1063,6 +1065,7 @@
+         "assistance-used-per-day": "# of Assistance used (per day)",
+         "behavioral-hint-followed": "Behavioral hint followed (%)",
+         "checklist-followed": "Checklist followed (%)",
++        "conversations-with-assistance-used": "Conversations with assistance used (%)",
+         "convos-per-day": "# of convos (per day)",
+         "convos-powered-by-aa": "Convos powered by AA (%)",
+         "convos-with-realtime-summaries-per-day": "Conversations w. Realtime Summaries (per day)",
+diff --git a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/AssistanceUsedLeaderboardContainer.tsx b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/AssistanceUsedLeaderboardContainer.tsx
+index 8f55994123..1f7be07b55 100644
+--- a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/AssistanceUsedLeaderboardContainer.tsx
++++ b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/AssistanceUsedLeaderboardContainer.tsx
+@@ -1,10 +1,12 @@
+ import type React from 'react';
+ import { memo } from 'react';
++import { useQuery } from '@tanstack/react-query';
+ 
+ import type { DateRange, DirectorEnvironment } from '@cresta/director-api';
+ import type { AttributeStructure } from '@cresta/web-client';
+-import { AttributeType } from '@cresta/web-client';
++import { AttributeType, Frequency } from '@cresta/web-client';
+ 
++import { conversationAssistanceUsageStatsQuery } from '@/features/insights/assistance/api/conversationAssistanceUsageStatsQuery';
+ import type { FilterByAttributesOptions } from '@/hooks/insights';
+ import { useAuthenticatedUser } from '@/hooks/user';
+ import type { InsightsAttribute } from '@/types';
+@@ -22,6 +24,7 @@ import { ATTRIBUTE_STRUCTURE_AGENT_TEAM } from '../../../utils';
+ import { AssistanceUsedLeaderboard } from './assistance-used-leaderboard';
+ 
+ const INSIGHTS_REQUEST_PARAMS_OPTIONS_FOR_CONVOS_WITH_AA = { agentAssistUsedOnly: true };
++const ATTRIBUTE_STRUCTURE_BY_AGENT: AttributeStructure[] = [{ attributeType: AttributeType.ATTRIBUTE_TYPE_AGENT }];
+ const ATTRIBUTE_STRUCTURE_BY_GROUP: AttributeStructure[] = [{ attributeType: AttributeType.ATTRIBUTE_TYPE_GROUP }];
+ const GET_HINT_STATS_BY_HINT_TYPE_OPTIONAL_PARAMS = {};
+ 
+@@ -89,6 +92,19 @@ export const AssistanceUsedLeaderboardContainer = memo(function AssistanceUsedLe
+   const knowledgeAssistStatsForTeam = useKnowledgeAssistStats(insightsRequestParamsForTeam);
+   const conversationStats = useConversationStats(insightsRequestParams);
+   const conversationStatsForTeam = useConversationStats(insightsRequestParamsForTeam);
++  const conversationAssistanceUsageStats = useQuery(
++    conversationAssistanceUsageStatsQuery({
++      ...insightsRequestParams,
++      frequency: Frequency.FREQUENCY_UNSPECIFIED,
++      groupByAttributeTypes: ATTRIBUTE_STRUCTURE_BY_AGENT,
++    })
++  );
++  const conversationAssistanceUsageStatsForTeam = useQuery(
++    conversationAssistanceUsageStatsQuery({
++      ...insightsRequestParamsForTeam,
++      frequency: Frequency.FREQUENCY_UNSPECIFIED,
++    })
++  );
+   const conversationStatsWithAA = useConversationStats(insightsRequestParamsWithAA);
+   const conversationStatsWithAAForTeam = useConversationStats(insightsRequestParamsWithAAForTeam);
+   const agentStats = useAgentStats(insightsRequestParams);
+@@ -104,6 +120,12 @@ export const AssistanceUsedLeaderboardContainer = memo(function AssistanceUsedLe
+       allHintTypeLoadingForTeam={allHintTypeLoadingForTeam}
+       knowledgeAssistStats={knowledgeAssistStats}
+       displayAsAgent={isAgentOnly}
++      conversationAssistanceUsageStats={
++        conversationAssistanceUsageStats.isError ? undefined : conversationAssistanceUsageStats.data
++      }
++      conversationAssistanceUsageStatsForTeam={
++        conversationAssistanceUsageStatsForTeam.isError ? undefined : conversationAssistanceUsageStatsForTeam.data
++      }
+       conversationStats={conversationStats}
+       conversationStatsWithAA={conversationStatsWithAA}
+       agentStats={agentStats}
+diff --git a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/AssistanceUsedLeaderboard.tsx b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/AssistanceUsedLeaderboard.tsx
+index 2eb9c5a24b..5e62b48560 100644
+--- a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/AssistanceUsedLeaderboard.tsx
++++ b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/AssistanceUsedLeaderboard.tsx
+@@ -2,7 +2,7 @@ import type React from 'react';
+ import { memo, useCallback, useMemo, useState } from 'react';
+ import { Flex, Tabs } from '@mantine/core';
+ 
+-import type { DirectorEnvironment } from '@cresta/director-api';
++import type { ConversationAssistanceUsageStatsResponse, DirectorEnvironment } from '@cresta/director-api';
+ import { DirectorTable, DTPageSize, DTPaginationType } from '@cresta/director-components';
+ import type { AttributeHintType } from '@cresta/web-client';
+ 
+@@ -28,6 +28,8 @@ import styles from './AssistanceUsedLeaderboard.module.css';
+ 
+ interface AssistanceUsedLeaderboardProps {
+   appType: DirectorEnvironment;
++  conversationAssistanceUsageStats: ConversationAssistanceUsageStatsResponse | undefined;
++  conversationAssistanceUsageStatsForTeam: ConversationAssistanceUsageStatsResponse | undefined;
+   assistanceStats: AssistanceStatsBaseResult;
+   hintStatsByHintType: Record<AttributeHintType, ManagedHintStats>;
+   allHintTypeLoading: boolean;
+@@ -55,6 +57,8 @@ export const AssistanceUsedLeaderboard = memo(function AssistanceUsedLeaderboard
+ ): React.ReactElement {
+   const {
+     appType,
++    conversationAssistanceUsageStats,
++    conversationAssistanceUsageStatsForTeam,
+     assistanceStats,
+     hintStatsByHintType,
+     allHintTypeLoading,
+@@ -86,7 +90,8 @@ export const AssistanceUsedLeaderboard = memo(function AssistanceUsedLeaderboard
+     displayAsAgent,
+     conversationStats,
+     conversationStatsWithAA,
+-    agentStats
++    agentStats,
++    conversationAssistanceUsageStats
+   );
+ 
+   const {
+@@ -103,7 +108,8 @@ export const AssistanceUsedLeaderboard = memo(function AssistanceUsedLeaderboard
+     conversationStatsForTeam,
+     conversationStatsWithAAForTeam,
+     agentStatsForTeam,
+-    displayAsAgent
++    displayAsAgent,
++    conversationAssistanceUsageStatsForTeam
+   );
+ 
+   const { t } = useTranslation('director-app-insights', { keyPrefix: 'assistance.used-leaderboard' });
+diff --git a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsageColumn.test.tsx b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsageColumn.test.tsx
+new file mode 100644
+index 0000000000..accb3c7020
+--- /dev/null
++++ b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsageColumn.test.tsx
+@@ -0,0 +1,246 @@
++import { MantineProvider } from '@mantine/core';
++import type { RenderHookResult } from '@testing-library/react';
++import { saveAs } from 'file-saver';
++import { afterEach, describe, expect, it, vi } from 'vitest';
++import { mock } from 'vitest-mock-extended';
++
++import type {
++  AgentStatsGroupResult,
++  AgentStatsResponse,
++  Attribute,
++  ConversationAssistanceUsageStatsResponse,
++  ConversationStatsGroupResult,
++  ConversationStatsResponse,
++  Group,
++  User,
++} from '@cresta/director-api';
++import { DirectorEnvironment } from '@cresta/director-api';
++import { AttributeHintType } from '@cresta/web-client';
++
++import { renderHook } from '@/testing';
++import { parseCsv } from '@/utils';
++
++import type {
++  ConversationStatsQueryResult,
++  ManagedAgentStats,
++  ManagedKnowledgeAssistStats,
++} from '../../../../../hooks';
++import type { ManagedHintStats } from '../../../../../types';
++
++import { useAssistanceUsedByAgentLeaderboard } from './useAssistanceUsedByAgentLeaderboard';
++import { useAssistanceUsedByTeamLeaderboard } from './useAssistanceUsedByTeamLeaderboard';
++
++vi.mock('file-saver', () => ({ saveAs: vi.fn() }));
++
++async function readCSV(blob: Blob): Promise<string[][]> {
++  const text = await new Promise<string>((resolve, reject) => {
++    const reader = new FileReader();
++    reader.onload = () => {
++      if (typeof reader.result !== 'string') {
++        reject(new Error('Expected CSV text'));
++        return;
++      }
++      resolve(reader.result);
++    };
++    reader.onerror = () => reject(reader.error);
++    reader.readAsText(blob);
++  });
++  return parseCsv(text);
++}
++
++function setup(
++  usage?: ConversationAssistanceUsageStatsResponse,
++  baselineAttributes?: Attribute
++): RenderHookResult<
++  {
++    agent: ReturnType<typeof useAssistanceUsedByAgentLeaderboard>;
++    team: ReturnType<typeof useAssistanceUsedByTeamLeaderboard>;
++  },
++  unknown
++> {
++  const assistanceStats = { data: undefined, isLoading: false, isPending: false, error: null };
++  const conversationStats = mock<ConversationStatsQueryResult>({
++    data: baselineAttributes
++      ? mock<ConversationStatsResponse>({
++          resultGroups: [
++            mock<ConversationStatsGroupResult>({
++              groupedByAttributes: baselineAttributes,
++              totalConversationCount: 10,
++              averageConversationCountPerFrequencyPerUser: 2,
++              averageHandleTime: 120,
++            }),
++          ],
++        })
++      : undefined,
++    isPending: false,
++    error: null,
++  });
++  const knowledgeAssistStats = mock<ManagedKnowledgeAssistStats>({ data: undefined, isLoading: false, error: null });
++  const agentStats = mock<ManagedAgentStats>({
++    data: baselineAttributes
++      ? mock<AgentStatsResponse>({
++          resultsGroupedByAttributeTypes: [
++            mock<AgentStatsGroupResult>({
++              groupedByAttributes: baselineAttributes,
++              averageActiveDayCountPerUser: 5,
++            }),
++          ],
++        })
++      : undefined,
++    isLoading: false,
++    error: null,
++  });
++  const hints = {
++    [AttributeHintType.HINT_TYPE_UNSPECIFIED]: mock<ManagedHintStats>({
++      data: undefined,
++      isLoading: false,
++      error: null,
++    }),
++    [AttributeHintType.REGULAR_HINT]: mock<ManagedHintStats>({ data: undefined, isLoading: false, error: null }),
++    [AttributeHintType.BEHAVIOR_HINT]: mock<ManagedHintStats>({ data: undefined, isLoading: false, error: null }),
++    [AttributeHintType.CHECKLIST_HINT]: mock<ManagedHintStats>({ data: undefined, isLoading: false, error: null }),
++    [AttributeHintType.KB_HINT]: mock<ManagedHintStats>({ data: undefined, isLoading: false, error: null }),
++    [AttributeHintType.GW_HINT]: mock<ManagedHintStats>({ data: undefined, isLoading: false, error: null }),
++  };
++  return renderHook(
++    () => ({
++      agent: useAssistanceUsedByAgentLeaderboard(
++        DirectorEnvironment.VOICE,
++        assistanceStats,
++        hints,
++        false,
++        knowledgeAssistStats,
++        false,
++        conversationStats,
++        conversationStats,
++        agentStats,
++        usage
++      ),
++      team: useAssistanceUsedByTeamLeaderboard(
++        DirectorEnvironment.VOICE,
++        assistanceStats,
++        hints,
++        false,
++        knowledgeAssistStats,
++        conversationStats,
++        conversationStats,
++        agentStats,
++        false,
++        usage
++      ),
++    }),
++    { wrapper: ({ children }) => <MantineProvider>{children}</MantineProvider> }
++  );
++}
++
++describe('Assistance Used conversation usage rows', () => {
++  afterEach(() => vi.clearAllMocks());
++
++  it('includes an eligible agent with measured zero usage and an eligible team with positive usage', () => {
++    const { result } = setup({
++      resultGroups: [
++        {
++          groupedByAttributes: {
++            user: mock<User>({
++              name: 'customers/acme/users/agent-1',
++              fullName: 'Agent One',
++              username: 'agent1',
++              isDevUser: false,
++            }),
++          },
++          totalConversationCount: 5,
++          conversationsWithAssistanceUsedCount: 0,
++          conversationsWithAssistanceUsedPercent: 0,
++        },
++        {
++          groupedByAttributes: {
++            group: mock<Group>({ name: 'customers/acme/groups/team-1', displayName: 'Team One' }),
++          },
++          totalConversationCount: 8,
++          conversationsWithAssistanceUsedCount: 3,
++          conversationsWithAssistanceUsedPercent: 37.5,
++        },
++      ],
++    });
++    expect(result.current.agent.rows).toEqual([
++      expect.objectContaining({
++        resourceName: 'customers/acme/users/agent-1',
++        name: 'Agent One',
++        conversationsWithAssistanceUsedPercent: 0,
++      }),
++    ]);
++    expect(result.current.team.rows).toEqual([
++      expect.objectContaining({
++        resourceName: 'customers/acme/groups/team-1',
++        team: 'Team One',
++        conversationsWithAssistanceUsedPercent: 37.5,
++      }),
++    ]);
++  });
++
++  it('exports numeric percentages for both tables and honors hidden columns', async () => {
++    const { result } = setup({
++      resultGroups: [
++        {
++          groupedByAttributes: {
++            user: mock<User>({ name: 'customers/acme/users/agent-1', fullName: 'Agent One', isDevUser: false }),
++            group: mock<Group>({ name: 'customers/acme/groups/team-1', displayName: 'Team One' }),
++          },
++          totalConversationCount: 8,
++          conversationsWithAssistanceUsedCount: 3,
++          conversationsWithAssistanceUsedPercent: 37.5,
++        },
++      ],
++    });
++
++    for (const table of [result.current.agent, result.current.team]) {
++      table.exportCSV([]);
++      const file = vi.mocked(saveAs).mock.lastCall?.[0];
++      if (!(file instanceof Blob)) {
++        throw new Error('Expected CSV file');
++      }
++      const [headers, row] = await readCSV(file);
++      const index = headers?.indexOf('Conversations with assistance used (%)') ?? -1;
++      expect(index).toBeGreaterThanOrEqual(0);
++      expect(row?.[index]).toBe('37.5');
++
++      table.exportCSV(['conversationsWithAssistanceUsedPercent']);
++      const hiddenFile = vi.mocked(saveAs).mock.lastCall?.[0];
++      if (!(hiddenFile instanceof Blob)) {
++        throw new Error('Expected CSV file');
++      }
++      const [hiddenHeaders] = await readCSV(hiddenFile);
++      expect(hiddenHeaders).not.toContain('Conversations with assistance used (%)');
++    }
++  });
++
++  it('retains the existing conversation and active-day metrics for rows with no other assistance activity', () => {
++    const groupedByAttributes = {
++      user: mock<User>({ name: 'customers/acme/users/agent-1', fullName: 'Agent One', isDevUser: false }),
++      group: mock<Group>({ name: 'customers/acme/groups/team-1', displayName: 'Team One' }),
++    };
++    const { result } = setup(
++      {
++        resultGroups: [
++          {
++            groupedByAttributes,
++            totalConversationCount: 8,
++            conversationsWithAssistanceUsedCount: 0,
++            conversationsWithAssistanceUsedPercent: 0,
++          },
++        ],
++      },
++      groupedByAttributes
++    );
++
++    for (const table of [result.current.agent, result.current.team]) {
++      expect(table.rows?.[0]).toMatchObject({
++        avgConvosPerDay: 2,
++        averageHandleTime: 120,
++        activeDays: 5,
++        convosPoweredByAARate: 1,
++        conversationsWithAssistanceUsedPercent: 0,
++      });
++    }
++  });
++});
+diff --git a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsedByAgentLeaderboard.tsx b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsedByAgentLeaderboard.tsx
+index ead8baabfa..b5b0519285 100644
+--- a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsedByAgentLeaderboard.tsx
++++ b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsedByAgentLeaderboard.tsx
+@@ -9,6 +9,8 @@ import { Link } from 'react-router';
+ import type {
+   AgentStatsGroupResult,
+   AssistanceStatsGroupResult,
++  ConversationAssistanceUsageStatsGroupResult,
++  ConversationAssistanceUsageStatsResponse,
+   ConversationStatsGroupResult,
+   DirectorEnvironment,
+   HintStatsGroupResult,
+@@ -73,6 +75,7 @@ function getCorrectRowFromLeaderboard(
+     | AssistanceStatsGroupResult
+     | HintStatsGroupResult
+     | KnowledgeAssistStatsGroupResult
++    | ConversationAssistanceUsageStatsGroupResult
+     | ConversationStatsGroupResult
+     | AgentStatsGroupResult,
+   agentIdToData: Map<string, AgentAssistanceUsedLeaderboardRow>
+@@ -99,7 +102,8 @@ export function useAssistanceUsedByAgentLeaderboard(
+   displayAsAgent: boolean,
+   conversationStats: ConversationStatsQueryResult,
+   conversationStatsWithAA: ConversationStatsQueryResult,
+-  agentStats: ManagedAgentStats
++  agentStats: ManagedAgentStats,
++  conversationAssistanceUsageStats: ConversationAssistanceUsageStatsResponse | undefined
+ ): {
+   directorTableProps: DirectorTableSortingStateProps;
+   rows: AgentAssistanceUsedLeaderboardRow[] | undefined;
+@@ -202,6 +206,17 @@ export function useAssistanceUsedByAgentLeaderboard(
+       agentIdToData.set(row.resourceName, row);
+     }
+ 
++    for (const groupResult of conversationAssistanceUsageStats?.resultGroups || []) {
++      const row = getCorrectRowFromLeaderboard(groupResult, agentIdToData);
++      if (!row) {
++        continue;
++      }
++      row.name ||= groupResult.groupedByAttributes.user?.fullName || '';
++      row.username ||= groupResult.groupedByAttributes.user?.username || '';
++      row.conversationsWithAssistanceUsedPercent = groupResult.conversationsWithAssistanceUsedPercent;
++      agentIdToData.set(row.resourceName, row);
++    }
++
+     for (const groupResult of agentStats.data?.resultsGroupedByAttributeTypes || []) {
+       const row = getCorrectRowFromLeaderboard(groupResult, agentIdToData);
+       if (!row) {
+@@ -345,6 +360,7 @@ export function useAssistanceUsedByAgentLeaderboard(
+     conversationStats.isPending,
+     conversationStats.error,
+     conversationStats.data?.resultGroups,
++    conversationAssistanceUsageStats,
+     conversationStatsWithAA.isPending,
+     conversationStatsWithAA.error,
+     conversationStatsWithAA.data?.resultGroups,
+@@ -454,6 +470,20 @@ export function useAssistanceUsedByAgentLeaderboard(
+       stickyHeadersWidth += STICKY_STATS_COL_WIDTH;
+     }
+ 
++    if (visibleColumns.has('conversationsWithAssistanceUsedPercent')) {
++      stickyColumns.push(
++        columnHelper.accessor('conversationsWithAssistanceUsedPercent', {
++          header: t('conversations-with-assistance-used-percent', 'Conversations with assistance used %'),
++          meta: { sticky: true, fixedWidth: STICKY_STATS_COL_WIDTH },
++          cell: (cell) => {
++            const rate = cell.getValue();
++            return rate === undefined ? 'N/A' : formatNumberToFixed(rate, 1);
++          },
++        })
++      );
++      stickyHeadersWidth += STICKY_STATS_COL_WIDTH;
++    }
++
+     const agentLeaderboardColumns: ColumnDef<AgentAssistanceUsedLeaderboardRow, unknown>[] = [
+       columnHelper.group({
+         header: ' ',
+diff --git a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsedByTeamLeaderboard.tsx b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsedByTeamLeaderboard.tsx
+index 883bef3dfd..d4df85d683 100644
+--- a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsedByTeamLeaderboard.tsx
++++ b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsedByTeamLeaderboard.tsx
+@@ -9,6 +9,8 @@ import { Link } from 'react-router';
+ import type {
+   AgentStatsGroupResult,
+   AssistanceStatsGroupResult,
++  ConversationAssistanceUsageStatsGroupResult,
++  ConversationAssistanceUsageStatsResponse,
+   ConversationStatsGroupResult,
+   DirectorEnvironment,
+   HintStatsGroupResult,
+@@ -73,6 +75,7 @@ function getCorrectRowFromLeaderboard(
+     | AssistanceStatsGroupResult
+     | HintStatsGroupResult
+     | KnowledgeAssistStatsGroupResult
++    | ConversationAssistanceUsageStatsGroupResult
+     | ConversationStatsGroupResult
+     | AgentStatsGroupResult,
+   teamIDtoData: Map<string, TeamAssistanceUsedLeaderboardRow>,
+@@ -100,7 +103,8 @@ export function useAssistanceUsedByTeamLeaderboard(
+   conversationStats: ConversationStatsQueryResult,
+   conversationStatsWithAA: ConversationStatsQueryResult,
+   agentStats: ManagedAgentStats,
+-  displayAsAgent: boolean
++  displayAsAgent: boolean,
++  conversationAssistanceUsageStats: ConversationAssistanceUsageStatsResponse | undefined
+ ): {
+   directorTableProps: DirectorTableSortingStateProps;
+   rows: TeamAssistanceUsedLeaderboardRow[] | undefined;
+@@ -188,6 +192,15 @@ export function useAssistanceUsedByTeamLeaderboard(
+       teamIdToRow.set(row.resourceName, row);
+     }
+ 
++    for (const groupResult of conversationAssistanceUsageStats?.resultGroups || []) {
++      const row = getCorrectRowFromLeaderboard(groupResult, teamIdToRow);
++      if (!row) {
++        continue;
++      }
++      row.conversationsWithAssistanceUsedPercent = groupResult.conversationsWithAssistanceUsedPercent;
++      teamIdToRow.set(row.resourceName, row);
++    }
++
+     for (const groupResult of agentStats.data?.resultsGroupedByAttributeTypes || []) {
+       const row = getCorrectRowFromLeaderboard(groupResult, teamIdToRow);
+       if (!row) {
+@@ -329,6 +342,7 @@ export function useAssistanceUsedByTeamLeaderboard(
+     conversationStats.isPending,
+     conversationStats.error,
+     conversationStats.data?.resultGroups,
++    conversationAssistanceUsageStats,
+     conversationStatsWithAA.isPending,
+     conversationStatsWithAA.error,
+     conversationStatsWithAA.data?.resultGroups,
+@@ -410,6 +424,20 @@ export function useAssistanceUsedByTeamLeaderboard(
+       stickyHeadersWidth += STICKY_STATS_COL_WIDTH;
+     }
+ 
++    if (visibleColumns.has('conversationsWithAssistanceUsedPercent')) {
++      stickyColumns.push(
++        columnHelper.accessor('conversationsWithAssistanceUsedPercent', {
++          header: t('conversations-with-assistance-used-percent', 'Conversations with assistance used %'),
++          meta: { sticky: true, fixedWidth: STICKY_STATS_COL_WIDTH },
++          cell: (cell) => {
++            const rate = cell.getValue();
++            return rate === undefined ? 'N/A' : formatNumberToFixed(rate, 1);
++          },
++        })
++      );
++      stickyHeadersWidth += STICKY_STATS_COL_WIDTH;
++    }
++
+     const teamLeaderboardColumns: ColumnDef<TeamAssistanceUsedLeaderboardRow, unknown>[] = [
+       columnHelper.group({
+         header: ' ',
+diff --git a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useVisibleColumnsForAssistanceUsedLeaderboards.tsx b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useVisibleColumnsForAssistanceUsedLeaderboards.tsx
+index f7e21d2752..368a47854d 100644
+--- a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useVisibleColumnsForAssistanceUsedLeaderboards.tsx
++++ b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useVisibleColumnsForAssistanceUsedLeaderboards.tsx
+@@ -14,6 +14,7 @@ const alwaysVisible: (keyof AssistanceUsedLeaderboardRow)[] = [
+   'assistanceUsed',
+   'overallEngagement',
+   'avgConvosPerDay',
++  'conversationsWithAssistanceUsedPercent',
+   'averageHandleTime',
+ ];
+ 
+diff --git a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/types.ts b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/types.ts
+index 044902195a..244c1ee031 100644
+--- a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/types.ts
++++ b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/types.ts
+@@ -7,6 +7,7 @@ export interface AssistanceUsedLeaderboardRow {
+   overallEngagement?: number;
+ 
+   numOfConvos?: number;
++  conversationsWithAssistanceUsedPercent?: number;
+   numOfConvosPoweredByAA?: number;
+   avgConvosPerDay?: number;
+   convosPoweredByAARate?: number;
+diff --git a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/utils.tsx b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/utils.tsx
+index db0860b871..681be08346 100644
+--- a/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/utils.tsx
++++ b/packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/utils.tsx
+@@ -406,6 +406,10 @@ export function getAssistanceUsedLeaderboardRowCSVHeader(
+     ['avgConvosPerDay', t('convos-per-day', '# of convos (per day)')],
+     ['activeDays', t('active-days', 'Active days')],
+     ['convosPoweredByAARate', t('convos-powered-by-aa', 'Convos powered by AA (%)')],
++    [
++      'conversationsWithAssistanceUsedPercent',
++      t('conversations-with-assistance-used', 'Conversations with assistance used (%)'),
++    ],
+     ['assistanceUsed', t('assistance-used-per-day', '# of Assistance used (per day)')],
+     ['overallEngagement', t('overall-engagement', 'Overall Engagement (%)')],
+     ['averageHandleTime', `${fullName} (seconds)`], // getAHTTerminology already includes i18n

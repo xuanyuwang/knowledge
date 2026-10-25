@@ -1,0 +1,1331 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CONVI-7777 — Step 1 implementation review</title><style>body{margin:0;background:#f4f6f8;color:#192d40;font:16px/1.6 system-ui,sans-serif}main{max-width:1120px;margin:auto;padding:32px 24px 64px}h1,h2,h3{line-height:1.2}h1{font-size:clamp(30px,4vw,46px)}h2{margin-top:0}section,.hero{background:white;border:1px solid #d8e1e8;border-radius:16px;padding:24px;margin-bottom:22px}.hero{background:#eaf4fa}.tag{font-size:13px;color:#256081;font-weight:700}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{padding:15px;border:1px solid #d8e1e8;border-radius:10px}.card p{margin-bottom:0}button{font:inherit;cursor:pointer;border:1px solid #b8cad8;border-radius:7px;padding:8px 12px;background:white;color:#192d40;margin:3px}button[aria-current=step],button[aria-pressed=true]{background:#205f86;color:white}button:disabled{opacity:.4;cursor:default}pre{overflow:auto;white-space:pre;background:#142a3c;color:#e5f1fa;padding:20px;border-radius:10px;font:13px/1.6 ui-monospace,monospace}table{border-collapse:collapse;width:100%}th,td{padding:12px;border-bottom:1px solid #d8e1e8;text-align:left;vertical-align:top}th{background:#eef4f8}.tablewrap{overflow:auto}.muted{color:#4a6072;font-size:14px}.flow{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.flow span{padding:9px;background:#e7f1f6;border-radius:6px}a{color:#165f94}nav{margin-bottom:18px}.warning{border-left:4px solid #b37520;padding-left:15px}@media(max-width:650px){main{padding:16px 12px}.cards{grid-template-columns:1fr}section,.hero{padding:18px}td,th{padding:8px}}p,li,td{overflow-wrap:anywhere}pre{max-width:100%}.flow span{max-width:100%;box-sizing:border-box}</style></head><body><main><header class="hero"><div class="tag">CONVI-7777 · BACKEND PHASE I · STEP 1 IMPLEMENTED</div><h1>Share the eligible conversation population</h1><p>ConversationStats now aggregates a shared eligible-pair SELECT. The builder retains conversation and agent keys, selected conversation time, matching-message handle time, bind arguments and external user tables.</p><p><strong>Status:</strong> implementation complete; focused Go verification passed. Bazel test target passed (44.1s). Pausing after this step for user review.</p><p class="muted">Working tree: xw/convi-7777-step-1-population · base 40faeac75f2d55b06a4e3e29ac64fe782b8abd99 · cresta-proto v2.32.18. Step 1 was accepted and committed as a9eeda0e75: <a href="https://github.com/cresta/go-servers/pull/33992">PR #33992</a>. The population-only RPC follows in <a href="https://github.com/cresta/go-servers/pull/33993">PR #33993</a>.</p></header>
+<section id="code-operation-summary"><h2>Code-level operation summary</h2><p>Step 1 is a refactor of existing query logic. Most eligibility SQL moves into a shared file; the query boundary changes so callers can use eligible rows before aggregation.</p><ol><li><strong>Move conversation/message selection and metadata filtering into a shared file.</strong> Extract the existing eligibility logic from <code>retrieve_conversation_stats_clickhouse.go</code> into <code>common_conversation_population_clickhouse.go</code>, with <code>buildConversationPopulationQuery</code> as the entry point. This gives future consumers one place to reuse the selection rules.</li><li><strong>Make that query return rows before aggregation.</strong> Instead of returning final counts and sums, return one row per eligible conversation/agent pair: <code>conversation_id</code>, <code>agent_user_id</code>, selected <code>conversation_time</code>, and matching-message <code>aht_sec</code>. This preserves the keys needed to match feature-use evidence later.</li><li><strong>Have ConversationStats wrap those rows with its existing counts, sums, and grouping.</strong> Add <code>conversationStatsPopulationAggregate</code> in the existing file and have the reader execute the combined query, carrying the shared builder’s arguments and external user tables. ConversationStats keeps its existing response behavior.</li></ol><p><strong>Before:</strong> ConversationStats owns eligibility and aggregation together.<br><strong>After:</strong> a shared builder owns eligibility; ConversationStats owns aggregation. Assistance-use counting is not added in this step.</p></section>
+<section><h2>Current state → change → resulting state</h2><p><strong>Before:</strong> ConversationStats selected eligible conversation/agent pairs through ordinary or metadata paths, then immediately aggregated away their keys.</p><p><strong>Change:</strong> Move complete eligibility into common_conversation_population_clickhouse.go. Keep matching-message MAX and selected conversation/label time in the resulting relation. ConversationStats adds its existing COUNT/SUM/GROUP BY.</p><p><strong>After:</strong> One builder owns the population. ConversationStats consumes it today; a later AssistanceUsage consumer can project the same keys for feature-evidence intersection.</p><div class="flow"><span>Resolve users and ACLs; guard empty selection</span>→<span>Select conversation/label rows + matching messages</span>→<span>Apply metadata eligibility</span>→<span>Four-column eligible relation</span>→<span>ConversationStats aggregate</span></div><p>Phase I remains backend counts only. Feature evidence, numerator/union, new grouping/buckets, public AssistanceUsage RPC wiring, usage details and Director remain later work.</p></section>
+<section id="detailed-edit-map"><h2>Detailed code editing order</h2><p>Use this as a source-reading checklist. The shared file receives existing selection logic; the existing file keeps the aggregate and execution. These edits describe the accepted Step 1 extraction committed as a9eeda0e75.</p><div class="tablewrap"><table><thead><tr><th>Edit</th><th>Operation</th><th>Working-tree location</th><th>Concrete edit</th></tr></thead><tbody><tr><td>1</td><td>Add input/result types</td><td><code>common_conversation_population_clickhouse.go:15–33</code></td><td>Create common_conversation_population_clickhouse.go. Add conversationPopulationInputs and conversationPopulationQuery; include the external-user-table option and document the caller’s resolved-ACL prerequisite.</td></tr><tr><td>2</td><td>Move AA selection</td><td><code>common_conversation_population_clickhouse.go:73–162; body compared byte-for-byte with pinned base</code></td><td>Move buildAgentAssistFiltersSubQuery into the shared population file with its function name and body unchanged. Keep existing CTE-name constants where they are; this is the same Go package.</td></tr><tr><td>3</td><td>Move metadata helpers</td><td><code>common_conversation_population_clickhouse.go:164–267</code></td><td>Move both helpers. Rename them to buildConversationPopulationMomentFilterQuery and parseConversationPopulationValueOrMissingFilters. Retarget SQL joins from conversation_stats_per_conversation to conversation_population_per_pair.</td></tr><tr><td>4</td><td>Return population rows</td><td><code>common_conversation_population_clickhouse.go:269–437; old simple aggregate path is replaced by the wrapper in edit 6</code></td><td>Adapt the metadata-capable builder into buildConversationPopulationSelect and use it for ordinary filters too. Remove grouping inputs and final aggregates; use agent_user_id consistently; project selected time as conversation_time.</td></tr><tr><td>5</td><td>Assemble the shared query</td><td><code>common_conversation_population_clickhouse.go:35–71; reuses existing common_clickhouse.go parsers</code></td><td>Add buildConversationPopulationQuery. Move population-only setup from the reader: time-column selection, metadata parsing, message conditions, conversation time/user conditions, bot policy, AA selection and SELECT construction.</td></tr><tr><td>6</td><td>Restore the existing aggregate</td><td><code>retrieve_conversation_stats_clickhouse.go:62–75</code></td><td>Add conversationStatsPopulationAggregate in retrieve_conversation_stats_clickhouse.go. Embed the shared SELECT as eligible_population and apply existing distinct conversation/user counts, AHT sum and GROUP BY.</td></tr><tr><td>7</td><td>Wire the current reader</td><td><code>retrieve_conversation_stats_clickhouse.go:77–128; unchanged handler: retrieve_conversation_stats.go</code></td><td>Call buildConversationPopulationQuery with request filter/time settings. Keep parseClickhouseGroupBy and unsupported-key validation. Build the outer aggregate, attach population.externalTables and execute with population.args.</td></tr><tr><td>8</td><td>Verify rows and aggregates</td><td><code>common_conversation_population_clickhouse_test.go:30,101,144,210; existing version integration suite retained</code></td><td>Add ConversationPopulationCHTestSuite with real ClickHouse cases for pair identity/MAX, conversation-scoped metadata, AA/source rules, and selected/missing/excluded metadata. Run both the shared SELECT and its aggregate wrapper.</td></tr><tr><td>9</td><td>Update callers and fixtures</td><td><code>retrieve_conversation_stats_test.go:649,682; BUILD.bazel; testdata/clickhouse_RetrieveConversationStats_*_request.sql</code></td><td>Retarget the parser test to the shared helper names/signature. Update 12 SQL golden files for eligible_population plus the outer aggregate. Include Gazelle-generated production source registration and the focused test target.</td></tr></tbody></table></div><p class="muted">Current source was re-read for this walkthrough on October 16, 2026. Backend test results elsewhere on this page are retained from the earlier implementation session. This update validates report content and controls; it does not repeat or extend the product-code test run.</p></section>
+<section><h2>Step 1 construction walkthrough</h2><p class="muted">These nine edits reconstruct a reading order for the existing Step 1 change. They are not historical commits or separately approved implementation steps. Code snapshots are actual working-tree excerpts; changes compare against pinned base 40faeac75f. Each view names the file/function and explains the edit, reason and resulting state.</p><nav id="nav" aria-label="Step 1 review sections"></nav><h3 id="topic"></h3><div id="cards" class="cards"></div><p><button id="snapshot" aria-pressed="true">Code snapshot</button><button id="diff" aria-pressed="false">Edit against pinned base</button></p><pre id="code"></pre><p id="source" class="muted"></p><button id="prev">Previous section</button><button id="next">Next section</button><noscript><p>The overview, acceptance table and review outcome remain readable without JavaScript. The linked contract describes the complete acceptance criteria.</p></noscript></section>
+<section><h2>Scenario assessment</h2><p id="verification"><strong>Focused Go tests passed: four entry points, 45 named test nodes, zero failures (73.107s). The strengthened user-scope suite also passed (44.409s), and the generated Bazel target passed (44.1s).</strong> Tests execute generated SQL against real ClickHouse; goldens separately verify the intended query structure and arguments. Bazel used fresh test containers after the pre-existing reusable container failed local readiness/ZooKeeper setup. No production or performance claim is made.</p><div class="tablewrap"><table><thead><tr><th>Boundary</th><th>Expected and asserted behavior</th><th>Evidence</th></tr></thead><tbody>
+<tr><td>Pair identity and aggregates</td><td>Alice/Bob share one conversation: two eligible pairs; aggregate count=1, users=2, sum AHT=35.</td><td>TestEligiblePairsAndMatchingHandleTime</td></tr>
+<tr><td>Matching message MAX</td><td>Voicemail-exclusion criterion removes 90 before MAX; matching 10/20 yields 20. A conversation without messages and messages without a selected conversation are absent.</td><td>Same real-CH test</td></tr>
+<tr><td>Time bounds and version selection</td><td>Lower bound included; upper bound excluded. An older matching conversation version survives when its newer version falls outside the interval.</td><td>Same real-CH test</td></tr>
+<tr><td>Metadata attribution and stale/latest</td><td>Metadata written for Alice also qualifies Bob’s participation. Latest “other” rejects older “wanted”; stale mode accepts it.</td><td>TestMetadataEligibilityIsConversationScoped</td></tr>
+<tr><td>Metadata selection</td><td>Selected→wanted; missing/exclusion→missing; selected OR missing→wanted+missing.</td><td>TestMetadataSelectedMissingAndExcluded</td></tr>
+<tr><td>AA/source/developer branches</td><td>Default and OFF retain conversation source/dev checks. ON retains label behavior. Message rules still apply. Bot inclusion follows input policy; mixed true/false label rows remain assisted.</td><td>TestAgentAssistAndSourcePolicies</td></tr>
+<tr><td>Execution artifacts</td><td>Inline and external user tables both exclude otherwise eligible Charlie and execute the same selection and aggregate; ordered placeholders are exercised with time, user and metadata inputs.</td><td>Real-CH suite + 12 SQL goldens</td></tr>
+<tr><td>Legacy time buckets and response</td><td>End-time daily/HST counts once using newest selected time; existing response expectations remain.</td><td>Existing conversation-version integration suite + RetrieveConversationStats tests</td></tr>
+<tr><td>ACL empty population</td><td>Existing ApplyUserFilterFromResult early return stays before the reader; the builder documents the resolved-user prerequisite.</td><td>Source unchanged; no new ACL behavior</td></tr>
+<tr><td>Week/timezone and performance</td><td>Existing parser expression retained, with selected-time alias substituted. Weekly behavior is source-checked; no new weekly runtime case or benchmark.</td><td>Explicit validation limit</td></tr>
+</tbody></table></div></section>
+<section><h2>Review judgment and effects</h2><p>The extraction matches the agreed ownership boundary. The independent read-only review found no demonstrated semantic regressions. Its shared-conversation aggregate coverage suggestion was added. Existing authorization, caching, tenant/profile connection routing, response conversion and Team aggregation remain outside the moved builder.</p><p><strong>Findings:</strong> no blocking issue demonstrated. The builder still requires callers to resolve user scope and honor the empty-selection guard.</p><p><strong>Non-blocking:</strong> a dedicated weekly runtime case would extend coverage; the existing bucket parser and week/timezone options remain in use. There is no performance benchmark. Retaining MAX avoids a second message scan in the production query, but does not establish latency parity.</p><p><strong>Review outcome:</strong> ready for the user’s Step 1 review after focused Go verification. Bazel test target also passed. This is not authorization to proceed to Step 2 or merge.</p></section>
+<section><h2>PR stack and next checkpoint</h2><p>Step 1 is committed as a9eeda0e75 in <a href="https://github.com/cresta/go-servers/pull/33992">PR #33992</a>. The authorized population-only RPC is committed as 73da2b45e3 in stacked <a href="https://github.com/cresta/go-servers/pull/33993">PR #33993</a>. Its TODOs cover feature evidence, totals/buckets and opt-in details; the RPC returns the distinct overall population count per the October 18 user decision, with assistance-use counts deferred. Local Go and Bazel tests pass; remote checks are pending.</p></section>
+<section><h2>Actual Go changes</h2><p class="muted">Complete Go diff against the pinned base. The interactive edit order above is reconstructed for explanation; this diff remains the combined review unit. SQL goldens are updated separately for the wrapper and population SELECT.</p><details><summary>Expand the complete Go diff</summary><pre>--- base/insights-server/internal/analyticsimpl/common_conversation_population_clickhouse.go
++++ working-tree/insights-server/internal/analyticsimpl/common_conversation_population_clickhouse.go
+@@ -0,0 +1,437 @@
++package analyticsimpl
++
++import (
++	&quot;context&quot;
++	&quot;fmt&quot;
++	&quot;strings&quot;
++
++	&quot;github.com/ClickHouse/clickhouse-go/v2/ext&quot;
++	analyticspb &quot;github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/analytics&quot;
++	&quot;google.golang.org/protobuf/proto&quot;
++
++	&quot;github.com/cresta/go-servers/insights-server/internal/shared&quot;
++)
++
++// Callers resolve ACLs and return early for an empty authorized user selection
++// before constructing these inputs. An empty attribute user list means all users.
++type conversationPopulationInputs struct {
++	timeRange                        *analyticspb.TimeRange
++	attribute                        *analyticspb.Attribute
++	timeRangeField                   analyticspb.RetrieveClosedConversationsRequest_TargetFieldForTimeRange
++	includeBotConversations          bool
++	allowMatchingStaleMetadataValues bool
++	useExternalUserTable             bool
++}
++
++// query is a complete SELECT with one row per eligible conversation/agent pair:
++// conversation_id, agent_user_id, conversation_time, and matching-message aht_sec.
++// Keep its bind arguments and external tables when embedding it in another query.
++type conversationPopulationQuery struct {
++	query          string
++	args           []any
++	externalTables []*ext.Table
++}
++
++func buildConversationPopulationQuery(ctx context.Context, inputs conversationPopulationInputs) (conversationPopulationQuery, error) {
++	timeColumn := getConversationTimeRangeColumn(getConversationQueryOptions(WithTimeRangeType(inputs.timeRangeField)))
++	attribute, valueOrMissingFilters, err := parseConversationPopulationValueOrMissingFilters(inputs.timeRange, inputs.attribute, timeColumn)
++	if err != nil {
++		return conversationPopulationQuery{}, err
++	}
++	conditions, moments, excludedMoments, usersTable, err := parseClickhouseFilter(ctx, inputs.timeRange, attribute, []ClickhouseTable{messageTable}, inputs.useExternalUserTable, WithTimeRangeType(inputs.timeRangeField))
++	if err != nil {
++		return conversationPopulationQuery{}, err
++	}
++	conversationTables := []ClickhouseTable{conversationLabelTable, conversationTable}
++	conversationConditions, err := buildTimeRangeConditionAndArgs(inputs.timeRange, conversationTables, timeColumn)
++	if err != nil {
++		return conversationPopulationQuery{}, err
++	}
++	if inputs.attribute != nil {
++		userConditions, conversationUsersTable, err := buildUsersConditionAndArgs(inputs.attribute.GetUsers(), conversationTables, inputs.useExternalUserTable)
++		if err != nil {
++			return conversationPopulationQuery{}, err
++		}
++		if usersTable == nil {
++			usersTable = conversationUsersTable
++		}
++		conversationConditions = mergeTableConditionsAndArgs(conversationConditions, userConditions)
++	}
++	sourceCondition := &quot;conversation_source IN (0, 8)&quot;
++	if inputs.includeBotConversations {
++		sourceCondition = &quot;conversation_source IN (0, 7, 8)&quot;
++	}
++	conversationQuery, conversationArgs := buildAgentAssistFiltersSubQuery(inputs.attribute.GetAgentAssistFilters(), conversationConditions, sourceCondition, timeColumn)
++	query, args := buildConversationPopulationSelect(conditions, moments, excludedMoments, valueOrMissingFilters, timeColumn, conversationQuery, conversationArgs, sourceCondition, inputs.allowMatchingStaleMetadataValues)
++	result := conversationPopulationQuery{query: query, args: args}
++	if usersTable != nil {
++		result.externalTables = []*ext.Table{usersTable}
++	}
++	return result, nil
++}
++
++func buildAgentAssistFiltersSubQuery(
++	agentAssistFilters []*analyticspb.Attribute_AgentAssistFilter,
++	conversationCondAndArgs map[ClickhouseTable][]conditionAndArg,
++	conversationSourceCondition string,
++	conversationTimeColumn string,
++) (string, []any) {
++	conds, args := concatConditionsAndArgs(conversationCondAndArgs[conversationLabelTable])
++	// in default, use all conversation IDs when there is no AA filter
++	convWithAASubQuery := fmt.Sprintf(`
++		%s AS (
++			SELECT
++				agent_user_id, conversation_id, %s
++			FROM
++				conversation_d
++			WHERE TRUE
++				AND %s
++				AND is_dev_user = 0
++				AND agent_user_id &lt;&gt; &#x27;&#x27;
++			 	AND %s
++			ORDER BY update_time DESC
++			LIMIT 1 BY agent_user_id, conversation_id
++		)`, ConvWithAa, conversationTimeColumn, conversationSourceCondition, conds)
++	if len(agentAssistFilters) == 0 {
++		return convWithAASubQuery, args
++	}
++
++	agentAssistState := agentAssistFilters[0].AgentAssistUsed
++	switch agentAssistState {
++	case analyticspb.Attribute_AgentAssistFilter_AGENT_ASSIST_STATE_TYPE_ON:
++		// Filter conversations by their conversation time range (not message time), because
++		// the question is &quot;did this conversation have agent assistance?&quot; — not &quot;did assistance
++		// happen at a specific message time?&quot;. max(has_agent_assistance) handles backward
++		// compatibility: old per-conversation rows (message_id=&#x27;&#x27;) and new per-message rows
++		// (message_id=uuid) coexist; if any row is true, the conversation is assisted.
++		// The value true is hardcoded (not a placeholder) so args stays unchanged.
++		// Rows of one conversation can carry different conversation times, such as the
++		// placeholder end (end = start) and the real end, so the time comes from the
++		// newest row, keeping one row per agent and conversation like the other
++		// variants. The alias differs from the column so that conds reads the column.
++		convWithAASubQuery = fmt.Sprintf(`
++		%s AS (
++				SELECT
++					agent_user_id, conversation_id, latest_conversation_time AS %s
++				FROM (
++					SELECT
++						agent_user_id, conversation_id,
++						argMax(%s, update_time) AS latest_conversation_time,
++						max(has_agent_assistance) AS max_has_assistance
++					FROM
++						conversation_with_labels_d
++					WHERE
++						agent_user_id &lt;&gt; &#x27;&#x27;
++						AND %s
++					GROUP BY agent_user_id, conversation_id
++				)
++				WHERE max_has_assistance = true
++			)`, ConvWithAa, conversationTimeColumn, conversationTimeColumn, conds)
++
++	case analyticspb.Attribute_AgentAssistFilter_AGENT_ASSIST_STATE_TYPE_OFF:
++		// For conversations WITHOUT assistance: start from conversation_d and anti-join
++		// against any true row in conversation_with_labels_d. Scoped by conversation time
++		// (not message time) for the same reason as the ON case. Backward compatible:
++		// - Old data (message_id=&#x27;&#x27;): false rows only → no true row → correctly included.
++		// - New data: unassisted conversations have no rows → no true row → included.
++		// - Mixed (old false + new true): true row exists → excluded correctly.
++		// conds appears twice so args are duplicated: first for the anti-join subquery,
++		// then for the outer WHERE on conversation_d.
++		args = append(append([]any{}, args...), args...)
++		convWithAASubQuery = fmt.Sprintf(`
++		%s AS (
++				SELECT
++					agent_user_id, conversation_id, %s
++				FROM conversation_d
++				GLOBAL LEFT ANTI JOIN (
++					SELECT DISTINCT conversation_id, agent_user_id
++					FROM conversation_with_labels_d
++					WHERE has_agent_assistance = true
++					AND %s
++				) AS assisted USING (conversation_id, agent_user_id)
++				WHERE TRUE
++					AND %s
++					AND is_dev_user = 0
++					AND agent_user_id &lt;&gt; &#x27;&#x27;
++					AND %s
++				ORDER BY update_time DESC
++				LIMIT 1 BY agent_user_id, conversation_id
++			)`, ConvWithAa, conversationTimeColumn, conds, conversationSourceCondition, conds)
++	}
++	return convWithAASubQuery, args
++}
++
++func buildConversationPopulationMomentFilterQuery(
++	filter momentAnnotationFilter,
++	index int,
++	joinType string,
++	allowMatchingStaleMetadataValues bool,
++) (string, string, []any) {
++	conditions, args := concatConditionsAndArgs(filter.conditions)
++	resultConversationID := fmt.Sprintf(&quot;conversation_id_%d&quot;, index)
++	if allowMatchingStaleMetadataValues {
++		return fmt.Sprintf(`
++			moment_annotation_filter_%d AS (
++				SELECT DISTINCT
++					conversation_id AS %s
++				FROM
++					%s
++				WHERE
++					%s
++			),
++		`, index, resultConversationID, filter.source.tableName(), conditions), fmt.Sprintf(`
++			%s moment_annotation_filter_%d ON
++				conversation_population_per_pair.conversation_id = moment_annotation_filter_%d.%s
++		`, joinType, index, index, resultConversationID), args
++	}
++
++	conditionsNoMetadataValue, argsNoMetadataValue := concatConditionsAndArgsWithPredicate(filter.conditions, func(caa conditionAndArg) bool {
++		for _, keyword := range momentAnnotationValueConditionKeywords() {
++			if strings.Contains(caa.condition, keyword) {
++				return true
++			}
++		}
++		return false
++	}, true /* concatWithAnd */)
++	latestTimeColumn := filter.source.latestTimeColumn()
++	return fmt.Sprintf(`
++			t1_moment_annotation_filter_%d AS (
++				SELECT
++					-- Rename the column to avoid ambiguous column issue.
++					conversation_id,
++					MAX(%s) AS latest_create_time
++				FROM
++					%s
++				WHERE
++					%s
++				GROUP BY conversation_id
++			),
++			t2_moment_annotation_filter_%d AS (
++				SELECT
++					conversation_id,
++					%s
++				FROM
++					%s
++				WHERE
++					%s
++			),
++			moment_annotation_filter_%d AS (
++				SELECT DISTINCT
++					t1.conversation_id AS %s
++				FROM
++					t1_moment_annotation_filter_%d AS t1
++				JOIN t2_moment_annotation_filter_%d AS t2 ON t1.conversation_id = t2.conversation_id AND t1.latest_create_time = t2.%s
++			),
++		`, index, latestTimeColumn, filter.source.tableName(), conditionsNoMetadataValue,
++			index, latestTimeColumn, filter.source.tableName(), conditions,
++			index, resultConversationID, index, index, latestTimeColumn), fmt.Sprintf(`
++			%s moment_annotation_filter_%d ON
++				conversation_population_per_pair.conversation_id = moment_annotation_filter_%d.%s
++		`, joinType, index, index, resultConversationID), append(argsNoMetadataValue, args...)
++}
++
++func parseConversationPopulationValueOrMissingFilters(
++	timeRange *analyticspb.TimeRange,
++	attribute *analyticspb.Attribute,
++	timeColumn string,
++) (*analyticspb.Attribute, []qaMomentValueOrMissingFilter, error) {
++	if !*enableExcludedMoments || attribute == nil {
++		return attribute, nil, nil
++	}
++	startTime, endTime, err := shared.ParseFilterByTimeRange(timeRange)
++	if err != nil {
++		return nil, nil, err
++	}
++
++	remainingAttribute := proto.Clone(attribute).(*analyticspb.Attribute)
++	remainingAttribute.MomentGroups = nil
++	valueOrMissingFilters := []qaMomentValueOrMissingFilter{}
++	for _, momentGroup := range attribute.MomentGroups {
++		valueOrMissingFilter, err := parseValueOrMissingMetadataMomentGroup(
++			momentGroup,
++			startTime,
++			endTime,
++			false, /* fetchFromMetadataView */
++			timeColumn,
++		)
++		if err != nil {
++			return nil, nil, err
++		}
++		if valueOrMissingFilter != nil {
++			valueOrMissingFilters = append(valueOrMissingFilters, *valueOrMissingFilter)
++			continue
++		}
++		remainingAttribute.MomentGroups = append(remainingAttribute.MomentGroups, momentGroup)
++	}
++	return remainingAttribute, valueOrMissingFilters, nil
++}
++
++func buildConversationPopulationSelect(
++	conditionsAndArgs map[ClickhouseTable][]conditionAndArg,
++	momentConditionsAndArgsList, excludedMomentConditionsAndArgsList [][]conditionAndArg,
++	valueOrMissingFilters []qaMomentValueOrMissingFilter,
++	timeColumn string,
++	agentAssistFiltersSubQuery string,
++	agentAssistFiltersSubArgs []any,
++	conversationSourceCondition string,
++	allowMatchingStaleMetadataValues bool,
++) (string, []any) {
++	allArgs := []any{}
++
++	// Build sub queries based on `moment_annotation_d` table.
++	momentSubQueryList := []string{}
++	momentJoinQueryList := []string{}
++	momentIndex := 0
++	for _, momentConditionsAndArgs := range momentConditionsAndArgsList {
++		filter := momentAnnotationFilter{conditions: momentConditionsAndArgs, source: momentAnnotationFilterSourceRaw}
++		subQuery, joinQuery, args := buildConversationPopulationMomentFilterQuery(
++			filter,
++			momentIndex,
++			&quot;INNER JOIN&quot;,
++			allowMatchingStaleMetadataValues,
++		)
++		momentSubQueryList = append(momentSubQueryList, subQuery)
++		momentJoinQueryList = append(momentJoinQueryList, joinQuery)
++		allArgs = append(allArgs, args...)
++		momentIndex++
++	}
++
++	selectedValueIndices := make([]int, len(valueOrMissingFilters))
++	for filterIndex, filter := range valueOrMissingFilters {
++		selectedValueIndices[filterIndex] = momentIndex
++		subQuery, joinQuery, args := buildConversationPopulationMomentFilterQuery(
++			filter.selectedValueFilter,
++			momentIndex,
++			&quot;LEFT JOIN&quot;,
++			allowMatchingStaleMetadataValues,
++		)
++		momentSubQueryList = append(momentSubQueryList, subQuery)
++		momentJoinQueryList = append(momentJoinQueryList, joinQuery)
++		allArgs = append(allArgs, args...)
++		momentIndex++
++	}
++	momentSubQueries := strings.Join(momentSubQueryList, &quot;\n&quot;)
++	momentJoinQueries := strings.Join(momentJoinQueryList, &quot;\n&quot;)
++
++	// Build sub queries based on excluded (metadata) moments.
++	excludedMomentSubQueryList := []string{}
++	excludedMomentJoinQueryList := []string{}
++	excludedMomentWhereQueryList := []string{}
++	for i, excludedMomentConditionsAndArgs := range excludedMomentConditionsAndArgsList {
++		conditions, args := concatConditionsAndArgs(excludedMomentConditionsAndArgs)
++		excludedMomentSubQueryList = append(excludedMomentSubQueryList, fmt.Sprintf(`
++			moment_annotation_exclude_filter_%d AS (
++				SELECT DISTINCT
++					-- Rename the column to avoid ambiguous column issue.
++					conversation_id AS conversation_id_exclude_%d
++				FROM
++					moment_annotation_d
++				WHERE
++					%s
++			),
++		`, i, i, conditions))
++		allArgs = append(allArgs, args...)
++		excludedMomentJoinQueryList = append(excludedMomentJoinQueryList, fmt.Sprintf(`
++			LEFT JOIN moment_annotation_exclude_filter_%d ON
++				conversation_population_per_pair.conversation_id = moment_annotation_exclude_filter_%d.conversation_id_exclude_%d
++		`, i, i, i))
++		excludedMomentWhereQueryList = append(excludedMomentWhereQueryList, fmt.Sprintf(`
++			AND moment_annotation_exclude_filter_%d.conversation_id_exclude_%d = &#x27;&#x27;
++		`, i, i))
++	}
++	valueOrMissingWhereQueryList := []string{}
++	missingBaseIndex := len(excludedMomentConditionsAndArgsList)
++	for filterIndex, filter := range valueOrMissingFilters {
++		missingIndex := missingBaseIndex + filterIndex
++		conditions, args := concatConditionsAndArgs(filter.existenceFilter.conditions)
++		excludedMomentSubQueryList = append(excludedMomentSubQueryList, fmt.Sprintf(`
++			moment_annotation_exclude_filter_%d AS (
++				SELECT DISTINCT
++					conversation_id AS conversation_id_exclude_%d
++				FROM
++					%s
++				WHERE
++					%s
++			),
++		`, missingIndex, missingIndex, filter.existenceFilter.source.tableName(), conditions))
++		allArgs = append(allArgs, args...)
++		excludedMomentJoinQueryList = append(excludedMomentJoinQueryList, fmt.Sprintf(`
++			LEFT JOIN moment_annotation_exclude_filter_%d ON
++				conversation_population_per_pair.conversation_id = moment_annotation_exclude_filter_%d.conversation_id_exclude_%d
++		`, missingIndex, missingIndex, missingIndex))
++
++		selectedValueIndex := selectedValueIndices[filterIndex]
++		valueOrMissingWhereQueryList = append(valueOrMissingWhereQueryList, fmt.Sprintf(`
++			AND (
++				ifNull(moment_annotation_filter_%d.conversation_id_%d, &#x27;&#x27;) != &#x27;&#x27; OR
++				ifNull(moment_annotation_exclude_filter_%d.conversation_id_exclude_%d, &#x27;&#x27;) = &#x27;&#x27;
++			)
++		`, selectedValueIndex, selectedValueIndex, missingIndex, missingIndex))
++	}
++	excludedMomentSubQueries := strings.Join(excludedMomentSubQueryList, &quot;\n&quot;)
++	excludedMomentJoinQueries := strings.Join(excludedMomentJoinQueryList, &quot;\n&quot;)
++	excludedMomentWhereQueries := &quot;&quot;
++	if len(excludedMomentWhereQueryList) &gt; 0 || len(valueOrMissingWhereQueryList) &gt; 0 {
++		whereQueryList := make([]string, 0, len(excludedMomentWhereQueryList)+len(valueOrMissingWhereQueryList))
++		whereQueryList = append(whereQueryList, excludedMomentWhereQueryList...)
++		whereQueryList = append(whereQueryList, valueOrMissingWhereQueryList...)
++		excludedMomentWhereQueries = &quot;WHERE TRUE &quot; + strings.Join(whereQueryList, &quot;\n&quot;)
++	}
++
++	// Build conditions and args for conversation_stats query on `message_d` table.
++	messageCondition, messageArgs := concatConditionsAndArgs(conditionsAndArgs[messageTable])
++	allArgs = append(allArgs, agentAssistFiltersSubArgs...)
++	allArgs = append(allArgs, messageArgs...)
++	// Bucket time must come from the selected conversation/label row. Message
++	// copies can have placeholder end times from before the conversation closed.
++	return fmt.Sprintf(`
++		WITH
++		%s
++		%s
++		%s,
++        %s AS (
++			SELECT
++				agent_user_id,
++				conversation_id,
++				MAX(handle_time_secs) AS aht_sec
++			FROM
++				message_d
++			WHERE TRUE
++				AND %s
++				AND is_dev_user = 0
++				AND agent_user_id &lt;&gt; &#x27;&#x27;
++				AND %s	-- Additional filters
++			GROUP BY agent_user_id, conversation_id
++		),
++		conversation_population_per_pair AS (
++			SELECT *
++			FROM %s JOIN %s ON %s.conversation_id = %s.conversation_id
++				AND %s.agent_user_id = %s.agent_user_id
++		)
++		SELECT 
++			conversation_id, agent_user_id, %s AS conversation_time, aht_sec
++		FROM
++			conversation_population_per_pair
++				%s
++				%s
++		-- WHERE is optional.
++		%s`,
++			momentSubQueries,
++			excludedMomentSubQueries,
++			agentAssistFiltersSubQuery,
++			// group-by-conv cte
++			ConvWithAht,
++			conversationSourceCondition, messageCondition,
++			// conversation_population_per_pair
++			ConvWithAht, ConvWithAa,
++			ConvWithAht, ConvWithAa,
++			ConvWithAht, ConvWithAa,
++			// main query
++			// select
++			timeColumn,
++			// from
++			momentJoinQueries, excludedMomentJoinQueries,
++			// where
++			excludedMomentWhereQueries),
++		allArgs
++}
+--- base/insights-server/internal/analyticsimpl/retrieve_conversation_stats_clickhouse.go
++++ working-tree/insights-server/internal/analyticsimpl/retrieve_conversation_stats_clickhouse.go
+@@ -9,7 +9,6 @@
+ 
+ 	analyticspb &quot;github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/analytics&quot;
+ 	userpb &quot;github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/user&quot;
+-	&quot;google.golang.org/protobuf/proto&quot;
+ 
+ 	&quot;github.com/cresta/go-servers/insights-server/internal/shared&quot;
+ 	clickhouseshared &quot;github.com/cresta/go-servers/shared/clickhouse/shared&quot;
+@@ -60,445 +59,19 @@
+ 	return
+ }
+ 
+-func buildAgentAssistFiltersSubQuery(
+-	agentAssistFilters []*analyticspb.Attribute_AgentAssistFilter,
+-	conversationCondAndArgs map[ClickhouseTable][]conditionAndArg,
+-	conversationSourceCondition string,
+-	conversationTimeColumn string,
+-) (string, []any) {
+-	conds, args := concatConditionsAndArgs(conversationCondAndArgs[conversationLabelTable])
+-	// in default, use all conversation IDs when there is no AA filter
+-	convWithAASubQuery := fmt.Sprintf(`
+-		%s AS (
+-			SELECT
+-				agent_user_id, conversation_id, %s
+-			FROM
+-				conversation_d
+-			WHERE TRUE
+-				AND %s
+-				AND is_dev_user = 0
+-				AND agent_user_id &lt;&gt; &#x27;&#x27;
+-			 	AND %s
+-			ORDER BY update_time DESC
+-			LIMIT 1 BY agent_user_id, conversation_id
+-		)`, ConvWithAa, conversationTimeColumn, conversationSourceCondition, conds)
+-	if len(agentAssistFilters) == 0 {
+-		return convWithAASubQuery, args
+-	}
+-
+-	agentAssistState := agentAssistFilters[0].AgentAssistUsed
+-	switch agentAssistState {
+-	case analyticspb.Attribute_AgentAssistFilter_AGENT_ASSIST_STATE_TYPE_ON:
+-		// Filter conversations by their conversation time range (not message time), because
+-		// the question is &quot;did this conversation have agent assistance?&quot; — not &quot;did assistance
+-		// happen at a specific message time?&quot;. max(has_agent_assistance) handles backward
+-		// compatibility: old per-conversation rows (message_id=&#x27;&#x27;) and new per-message rows
+-		// (message_id=uuid) coexist; if any row is true, the conversation is assisted.
+-		// The value true is hardcoded (not a placeholder) so args stays unchanged.
+-		// Rows of one conversation can carry different conversation times, such as the
+-		// placeholder end (end = start) and the real end, so the time comes from the
+-		// newest row, keeping one row per agent and conversation like the other
+-		// variants. The alias differs from the column so that conds reads the column.
+-		convWithAASubQuery = fmt.Sprintf(`
+-		%s AS (
+-				SELECT
+-					agent_user_id, conversation_id, latest_conversation_time AS %s
+-				FROM (
+-					SELECT
+-						agent_user_id, conversation_id,
+-						argMax(%s, update_time) AS latest_conversation_time,
+-						max(has_agent_assistance) AS max_has_assistance
+-					FROM
+-						conversation_with_labels_d
+-					WHERE
+-						agent_user_id &lt;&gt; &#x27;&#x27;
+-						AND %s
+-					GROUP BY agent_user_id, conversation_id
+-				)
+-				WHERE max_has_assistance = true
+-			)`, ConvWithAa, conversationTimeColumn, conversationTimeColumn, conds)
+-
+-	case analyticspb.Attribute_AgentAssistFilter_AGENT_ASSIST_STATE_TYPE_OFF:
+-		// For conversations WITHOUT assistance: start from conversation_d and anti-join
+-		// against any true row in conversation_with_labels_d. Scoped by conversation time
+-		// (not message time) for the same reason as the ON case. Backward compatible:
+-		// - Old data (message_id=&#x27;&#x27;): false rows only → no true row → correctly included.
+-		// - New data: unassisted conversations have no rows → no true row → included.
+-		// - Mixed (old false + new true): true row exists → excluded correctly.
+-		// conds appears twice so args are duplicated: first for the anti-join subquery,
+-		// then for the outer WHERE on conversation_d.
+-		args = append(append([]any{}, args...), args...)
+-		convWithAASubQuery = fmt.Sprintf(`
+-		%s AS (
+-				SELECT
+-					agent_user_id, conversation_id, %s
+-				FROM conversation_d
+-				GLOBAL LEFT ANTI JOIN (
+-					SELECT DISTINCT conversation_id, agent_user_id
+-					FROM conversation_with_labels_d
+-					WHERE has_agent_assistance = true
+-					AND %s
+-				) AS assisted USING (conversation_id, agent_user_id)
+-				WHERE TRUE
+-					AND %s
+-					AND is_dev_user = 0
+-					AND agent_user_id &lt;&gt; &#x27;&#x27;
+-					AND %s
+-				ORDER BY update_time DESC
+-				LIMIT 1 BY agent_user_id, conversation_id
+-			)`, ConvWithAa, conversationTimeColumn, conds, conversationSourceCondition, conds)
+-	}
+-	return convWithAASubQuery, args
+-}
+-
+-func conversationStatsClickhouseQuery(
+-	conditionsAndArgs map[ClickhouseTable][]conditionAndArg,
+-	groupByKeys []string,
+-	groupByQueries map[ClickhouseTable][]string,
+-	agentAssistFiltersSubQuery string,
+-	agentAssistFiltersSubQueryArgs []any,
+-	conversationSourceCondition string,
+-) (string, []any) {
+-	messageGroupByQueries := concatQueries(groupByQueries[messageTable])
+-	messageCondition, messageArgs := concatConditionsAndArgs(conditionsAndArgs[messageTable])
++func conversationStatsPopulationAggregate(populationQuery string, groupByKeys, groupByQueries []string, timeColumn string) string {
+ 	optionalGroupBy := &quot;&quot;
+ 	if len(groupByKeys) &gt; 0 {
+-		optionalGroupBy = fmt.Sprintf(&quot;GROUP BY %s&quot;, concatKeys(groupByKeys))
+-	}
+-	convWithStatsQuery := fmt.Sprintf(`
+-        WITH %s,
+-        %s AS (
+-			SELECT
+-				conversation_id, agent_user_id,
+-				MAX(handle_time_secs) AS aht_sec
+-			FROM
+-				message_d
+-			WHERE TRUE
+-				AND %s
+-				AND is_dev_user = 0
+-				AND agent_user_id &lt;&gt; &#x27;&#x27;
+-				AND %s	-- Additional filters
+-			GROUP BY
+-				conversation_id, agent_user_id
+-		)
+-		SELECT
+-			%s
+-			COUNT(DISTINCT conversation_id) AS convo_count,
+-			COUNT(DISTINCT agent_user_id) AS user_count,
+-			SUM(aht_sec) AS aht_sec
+-		FROM
+-			%s JOIN %s USING (conversation_id, agent_user_id)
+-		-- GROUP BY is optional.
+-		%s`,
+-		agentAssistFiltersSubQuery,
+-		// group-by-conv cte
+-		ConvWithAht,
+-		conversationSourceCondition,
+-		messageCondition,
+-		// main query
+-		// select
+-		messageGroupByQueries,
+-		// from
+-		ConvWithAht,
+-		ConvWithAa,
+-		// group by
+-		optionalGroupBy,
+-	)
+-	messageArgs = append(agentAssistFiltersSubQueryArgs, messageArgs...)
+-	return convWithStatsQuery, messageArgs
+-}
+-
+-func buildConversationStatsMomentFilterQuery(
+-	filter momentAnnotationFilter,
+-	index int,
+-	joinType string,
+-	allowMatchingStaleMetadataValues bool,
+-) (string, string, []any) {
+-	conditions, args := concatConditionsAndArgs(filter.conditions)
+-	resultConversationID := fmt.Sprintf(&quot;conversation_id_%d&quot;, index)
+-	if allowMatchingStaleMetadataValues {
+-		return fmt.Sprintf(`
+-			moment_annotation_filter_%d AS (
+-				SELECT DISTINCT
+-					conversation_id AS %s
+-				FROM
+-					%s
+-				WHERE
+-					%s
+-			),
+-		`, index, resultConversationID, filter.source.tableName(), conditions), fmt.Sprintf(`
+-			%s moment_annotation_filter_%d ON
+-				conversation_stats_per_conversation.conversation_id = moment_annotation_filter_%d.%s
+-		`, joinType, index, index, resultConversationID), args
+-	}
+-
+-	conditionsNoMetadataValue, argsNoMetadataValue := concatConditionsAndArgsWithPredicate(filter.conditions, func(caa conditionAndArg) bool {
+-		for _, keyword := range momentAnnotationValueConditionKeywords() {
+-			if strings.Contains(caa.condition, keyword) {
+-				return true
+-			}
+-		}
+-		return false
+-	}, true /* concatWithAnd */)
+-	latestTimeColumn := filter.source.latestTimeColumn()
+-	return fmt.Sprintf(`
+-			t1_moment_annotation_filter_%d AS (
+-				SELECT
+-					-- Rename the column to avoid ambiguous column issue.
+-					conversation_id,
+-					MAX(%s) AS latest_create_time
+-				FROM
+-					%s
+-				WHERE
+-					%s
+-				GROUP BY conversation_id
+-			),
+-			t2_moment_annotation_filter_%d AS (
+-				SELECT
+-					conversation_id,
+-					%s
+-				FROM
+-					%s
+-				WHERE
+-					%s
+-			),
+-			moment_annotation_filter_%d AS (
+-				SELECT DISTINCT
+-					t1.conversation_id AS %s
+-				FROM
+-					t1_moment_annotation_filter_%d AS t1
+-				JOIN t2_moment_annotation_filter_%d AS t2 ON t1.conversation_id = t2.conversation_id AND t1.latest_create_time = t2.%s
+-			),
+-		`, index, latestTimeColumn, filter.source.tableName(), conditionsNoMetadataValue,
+-			index, latestTimeColumn, filter.source.tableName(), conditions,
+-			index, resultConversationID, index, index, latestTimeColumn), fmt.Sprintf(`
+-			%s moment_annotation_filter_%d ON
+-				conversation_stats_per_conversation.conversation_id = moment_annotation_filter_%d.%s
+-		`, joinType, index, index, resultConversationID), append(argsNoMetadataValue, args...)
+-}
+-
+-func parseConversationStatsValueOrMissingFilters(
+-	timeRange *analyticspb.TimeRange,
+-	attribute *analyticspb.Attribute,
+-	timeColumn string,
+-) (*analyticspb.Attribute, []qaMomentValueOrMissingFilter, error) {
+-	if !*enableExcludedMoments || attribute == nil {
+-		return attribute, nil, nil
+-	}
+-	startTime, endTime, err := shared.ParseFilterByTimeRange(timeRange)
+-	if err != nil {
+-		return nil, nil, err
+-	}
+-
+-	remainingAttribute := proto.Clone(attribute).(*analyticspb.Attribute)
+-	remainingAttribute.MomentGroups = nil
+-	valueOrMissingFilters := []qaMomentValueOrMissingFilter{}
+-	for _, momentGroup := range attribute.MomentGroups {
+-		valueOrMissingFilter, err := parseValueOrMissingMetadataMomentGroup(
+-			momentGroup,
+-			startTime,
+-			endTime,
+-			false, /* fetchFromMetadataView */
+-			timeColumn,
+-		)
+-		if err != nil {
+-			return nil, nil, err
+-		}
+-		if valueOrMissingFilter != nil {
+-			valueOrMissingFilters = append(valueOrMissingFilters, *valueOrMissingFilter)
+-			continue
+-		}
+-		remainingAttribute.MomentGroups = append(remainingAttribute.MomentGroups, momentGroup)
+-	}
+-	return remainingAttribute, valueOrMissingFilters, nil
+-}
+-
+-func (a AnalyticsServiceImpl) conversationStatsClickhouseQueryWithMoment(
+-	conditionsAndArgs map[ClickhouseTable][]conditionAndArg,
+-	momentConditionsAndArgsList, excludedMomentConditionsAndArgsList [][]conditionAndArg,
+-	valueOrMissingFilters []qaMomentValueOrMissingFilter,
+-	groupByKeys []string,
+-	groupByQueries map[ClickhouseTable][]string,
+-	agentAssistFiltersSubQuery string,
+-	agentAssistFiltersSubArgs []any,
+-	conversationSourceCondition string,
+-	allowMatchingStaleMetadataValues bool,
+-) (string, []any) {
+-	allArgs := []any{}
+-
+-	// Build sub queries based on `moment_annotation_d` table.
+-	momentSubQueryList := []string{}
+-	momentJoinQueryList := []string{}
+-	momentIndex := 0
+-	for _, momentConditionsAndArgs := range momentConditionsAndArgsList {
+-		filter := momentAnnotationFilter{conditions: momentConditionsAndArgs, source: momentAnnotationFilterSourceRaw}
+-		subQuery, joinQuery, args := buildConversationStatsMomentFilterQuery(
+-			filter,
+-			momentIndex,
+-			&quot;INNER JOIN&quot;,
+-			allowMatchingStaleMetadataValues,
+-		)
+-		momentSubQueryList = append(momentSubQueryList, subQuery)
+-		momentJoinQueryList = append(momentJoinQueryList, joinQuery)
+-		allArgs = append(allArgs, args...)
+-		momentIndex++
+-	}
+-
+-	selectedValueIndices := make([]int, len(valueOrMissingFilters))
+-	for filterIndex, filter := range valueOrMissingFilters {
+-		selectedValueIndices[filterIndex] = momentIndex
+-		subQuery, joinQuery, args := buildConversationStatsMomentFilterQuery(
+-			filter.selectedValueFilter,
+-			momentIndex,
+-			&quot;LEFT JOIN&quot;,
+-			allowMatchingStaleMetadataValues,
+-		)
+-		momentSubQueryList = append(momentSubQueryList, subQuery)
+-		momentJoinQueryList = append(momentJoinQueryList, joinQuery)
+-		allArgs = append(allArgs, args...)
+-		momentIndex++
+-	}
+-	momentSubQueries := strings.Join(momentSubQueryList, &quot;\n&quot;)
+-	momentJoinQueries := strings.Join(momentJoinQueryList, &quot;\n&quot;)
+-
+-	// Build sub queries based on excluded (metadata) moments.
+-	excludedMomentSubQueryList := []string{}
+-	excludedMomentJoinQueryList := []string{}
+-	excludedMomentWhereQueryList := []string{}
+-	for i, excludedMomentConditionsAndArgs := range excludedMomentConditionsAndArgsList {
+-		conditions, args := concatConditionsAndArgs(excludedMomentConditionsAndArgs)
+-		excludedMomentSubQueryList = append(excludedMomentSubQueryList, fmt.Sprintf(`
+-			moment_annotation_exclude_filter_%d AS (
+-				SELECT DISTINCT
+-					-- Rename the column to avoid ambiguous column issue.
+-					conversation_id AS conversation_id_exclude_%d
+-				FROM
+-					moment_annotation_d
+-				WHERE
+-					%s
+-			),
+-		`, i, i, conditions))
+-		allArgs = append(allArgs, args...)
+-		excludedMomentJoinQueryList = append(excludedMomentJoinQueryList, fmt.Sprintf(`
+-			LEFT JOIN moment_annotation_exclude_filter_%d ON
+-				conversation_stats_per_conversation.conversation_id = moment_annotation_exclude_filter_%d.conversation_id_exclude_%d
+-		`, i, i, i))
+-		excludedMomentWhereQueryList = append(excludedMomentWhereQueryList, fmt.Sprintf(`
+-			AND moment_annotation_exclude_filter_%d.conversation_id_exclude_%d = &#x27;&#x27;
+-		`, i, i))
+-	}
+-	valueOrMissingWhereQueryList := []string{}
+-	missingBaseIndex := len(excludedMomentConditionsAndArgsList)
+-	for filterIndex, filter := range valueOrMissingFilters {
+-		missingIndex := missingBaseIndex + filterIndex
+-		conditions, args := concatConditionsAndArgs(filter.existenceFilter.conditions)
+-		excludedMomentSubQueryList = append(excludedMomentSubQueryList, fmt.Sprintf(`
+-			moment_annotation_exclude_filter_%d AS (
+-				SELECT DISTINCT
+-					conversation_id AS conversation_id_exclude_%d
+-				FROM
+-					%s
+-				WHERE
+-					%s
+-			),
+-		`, missingIndex, missingIndex, filter.existenceFilter.source.tableName(), conditions))
+-		allArgs = append(allArgs, args...)
+-		excludedMomentJoinQueryList = append(excludedMomentJoinQueryList, fmt.Sprintf(`
+-			LEFT JOIN moment_annotation_exclude_filter_%d ON
+-				conversation_stats_per_conversation.conversation_id = moment_annotation_exclude_filter_%d.conversation_id_exclude_%d
+-		`, missingIndex, missingIndex, missingIndex))
+-
+-		selectedValueIndex := selectedValueIndices[filterIndex]
+-		valueOrMissingWhereQueryList = append(valueOrMissingWhereQueryList, fmt.Sprintf(`
+-			AND (
+-				ifNull(moment_annotation_filter_%d.conversation_id_%d, &#x27;&#x27;) != &#x27;&#x27; OR
+-				ifNull(moment_annotation_exclude_filter_%d.conversation_id_exclude_%d, &#x27;&#x27;) = &#x27;&#x27;
+-			)
+-		`, selectedValueIndex, selectedValueIndex, missingIndex, missingIndex))
+-	}
+-	excludedMomentSubQueries := strings.Join(excludedMomentSubQueryList, &quot;\n&quot;)
+-	excludedMomentJoinQueries := strings.Join(excludedMomentJoinQueryList, &quot;\n&quot;)
+-	excludedMomentWhereQueries := &quot;&quot;
+-	if len(excludedMomentWhereQueryList) &gt; 0 || len(valueOrMissingWhereQueryList) &gt; 0 {
+-		whereQueryList := make([]string, 0, len(excludedMomentWhereQueryList)+len(valueOrMissingWhereQueryList))
+-		whereQueryList = append(whereQueryList, excludedMomentWhereQueryList...)
+-		whereQueryList = append(whereQueryList, valueOrMissingWhereQueryList...)
+-		excludedMomentWhereQueries = &quot;WHERE TRUE &quot; + strings.Join(whereQueryList, &quot;\n&quot;)
+-	}
+-
+-	// Build conditions and args for conversation_stats query on `message_d` table.
+-	messageGroupByQueries := concatQueries(groupByQueries[messageTable])
+-	messageCondition, messageArgs := concatConditionsAndArgs(conditionsAndArgs[messageTable])
+-	allArgs = append(allArgs, agentAssistFiltersSubArgs...)
+-	allArgs = append(allArgs, messageArgs...)
+-	optionalGroupBy := &quot;&quot;
+-	if len(groupByKeys) &gt; 0 {
+-		optionalGroupBy = fmt.Sprintf(&quot;GROUP BY %s&quot;, concatKeys(groupByKeys))
+-	}
+-
+-	// The time bucket comes from conv_with_aa, which keeps one row per agent and
+-	// conversation, as in conversationStatsClickhouseQuery. Bucketing in conv_with_aht
+-	// would read each message_d row&#x27;s own copy of the conversation time, and rows
+-	// written before and after a conversation&#x27;s time changed, such as the
+-	// placeholder end (end = start) and the real end, can fall in different buckets.
+-	// The conversation would then count once per bucket and add its aht_sec to each.
+-	return fmt.Sprintf(`
+-		WITH
+-		%s
+-		%s
+-		%s,
+-        %s AS (
+-			SELECT
+-				agent_user_id AS user_id,
+-				conversation_id,
+-				MAX(handle_time_secs) AS aht_sec
+-			FROM
+-				message_d
+-			WHERE TRUE
+-				AND %s
+-				AND is_dev_user = 0
+-				AND agent_user_id &lt;&gt; &#x27;&#x27;
+-				AND %s	-- Additional filters
+-			GROUP BY user_id, conversation_id
+-		),
+-		conversation_stats_per_conversation AS (
+-			SELECT *
+-			FROM %s JOIN %s ON %s.conversation_id = %s.conversation_id
+-				AND %s.user_id = %s.agent_user_id
+-		)
+-		SELECT 
+-			%s
+-			COUNT(DISTINCT conversation_id) AS convo_count,
+-			COUNT(DISTINCT user_id) AS user_count,
+-			SUM(aht_sec) AS aht_sec
+-		FROM
+-			conversation_stats_per_conversation
+-				%s
+-				%s
+-		-- WHERE is optional.
+-		%s
+-		-- GROUP BY is optional.
+-		%s`,
+-			momentSubQueries,
+-			excludedMomentSubQueries,
+-			agentAssistFiltersSubQuery,
+-			// group-by-conv cte
+-			ConvWithAht,
+-			conversationSourceCondition, messageCondition,
+-			// conversation_stats_per_conversation
+-			ConvWithAht, ConvWithAa,
+-			ConvWithAht, ConvWithAa,
+-			ConvWithAht, ConvWithAa,
+-			// main query
+-			// select
+-			messageGroupByQueries,
+-			// from
+-			momentJoinQueries, excludedMomentJoinQueries,
+-			// where
+-			excludedMomentWhereQueries,
+-			// group by
+-			optionalGroupBy),
+-		allArgs
++		optionalGroupBy = &quot;GROUP BY &quot; + concatKeys(groupByKeys)
++	}
++	groupProjection := strings.ReplaceAll(concatQueries(groupByQueries), timeColumn, &quot;conversation_time&quot;)
++	return fmt.Sprintf(`WITH eligible_population AS (%s)
++ SELECT %s
++ COUNT(DISTINCT conversation_id) AS convo_count,
++ COUNT(DISTINCT agent_user_id) AS user_count,
++ SUM(aht_sec) AS aht_sec
++ FROM eligible_population
++ %s`, populationQuery, groupProjection, optionalGroupBy)
+ }
+ 
+ func (a AnalyticsServiceImpl) readConversationStatsFromClickhouse(
+@@ -512,26 +85,18 @@
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-	targetTables := []ClickhouseTable{
+-		messageTable,
+-	}
+-	filterByAttribute, valueOrMissingFilters, err := parseConversationStatsValueOrMissingFilters(
+-		req.FilterByTimeRange,
+-		req.FilterByAttribute,
+-		getConversationTimeRangeColumn(getConversationQueryOptions(WithTimeRangeType(req.ConversationTimeRangeField))),
+-	)
+-	if err != nil {
+-		return nil, err
+-	}
+-	conditionsAndArgs, momentConditionsAndArgsList, excludedMomentConditionsAndArgsList, usersExtTable, err := parseClickhouseFilter(ctx, req.FilterByTimeRange,
+-		filterByAttribute,
+-		targetTables,
+-		a.enableExtTableForUserFilter,
+-		WithTimeRangeType(req.ConversationTimeRangeField),
+-	)
+-	if err != nil {
+-		return nil, err
+-	}
++	population, err := buildConversationPopulationQuery(ctx, conversationPopulationInputs{
++		timeRange:                        req.FilterByTimeRange,
++		attribute:                        req.FilterByAttribute,
++		timeRangeField:                   req.ConversationTimeRangeField,
++		includeBotConversations:          includeBotConversations,
++		allowMatchingStaleMetadataValues: allowMatchingStaleMetadataValues,
++		useExternalUserTable:             a.enableExtTableForUserFilter,
++	})
++	if err != nil {
++		return nil, err
++	}
++	targetTables := []ClickhouseTable{messageTable}
+ 	groupByKeys, groupByQueries, err := parseClickhouseGroupBy(
+ 		&amp;req.Frequency,
+ 		req.GroupByAttributeTypes,
+@@ -546,48 +111,7 @@
+ 		return nil, fmt.Errorf(&quot;group_by keys %v are not supported&quot;, v)
+ 	}
+ 
+-	timeColumn := conversationStartTimeColumn
+-	if req.ConversationTimeRangeField == analyticspb.RetrieveClosedConversationsRequest_TARGET_FIELD_FOR_TIME_RANGE_CONVERSATION_ENDED_AT {
+-		timeColumn = conversationEndTimeColumn
+-	}
+-
+-	conversationTables := []ClickhouseTable{conversationLabelTable, conversationTable}
+-	conversationConditionsAndArgs, err := buildTimeRangeConditionAndArgs(req.FilterByTimeRange, conversationTables, timeColumn)
+-	if err != nil {
+-		return nil, err
+-	}
+-	if req.FilterByAttribute != nil {
+-		usersConditionsAndArgs, convUsersExtTable, err := buildUsersConditionAndArgs(req.FilterByAttribute.Users, conversationTables, a.enableExtTableForUserFilter)
+-		if err != nil {
+-			return nil, err
+-		}
+-		if usersExtTable == nil {
+-			usersExtTable = convUsersExtTable
+-		}
+-		conversationConditionsAndArgs = mergeTableConditionsAndArgs(conversationConditionsAndArgs, usersConditionsAndArgs)
+-	}
+-
+-	// Whether to enable CONVERSATION_SOURCE_BOT for conversation stats.
+-	// Currently we only have few customers (e.g. Brinks VA) enabling this.
+-	// However, previously chatbot customers (e.g. Intuit, Snap) not enabling this.
+-	conversationSourceCondition := &quot;conversation_source IN (0, 8)&quot;
+-	if includeBotConversations {
+-		conversationSourceCondition = &quot;conversation_source IN (0, 7, 8)&quot;
+-	}
+-
+-	agentAssistFiltersSubQuery, agentAssistFiltersSubQueryArgs := buildAgentAssistFiltersSubQuery(
+-		req.FilterByAttribute.AgentAssistFilters,
+-		conversationConditionsAndArgs,
+-		conversationSourceCondition,
+-		timeColumn,
+-	)
+-	var chQuery string
+-	var chArgs []any
+-	if len(momentConditionsAndArgsList) == 0 &amp;&amp; len(excludedMomentConditionsAndArgsList) == 0 &amp;&amp; len(valueOrMissingFilters) == 0 {
+-		chQuery, chArgs = conversationStatsClickhouseQuery(conditionsAndArgs, groupByKeys, groupByQueries, agentAssistFiltersSubQuery, agentAssistFiltersSubQueryArgs, conversationSourceCondition)
+-	} else {
+-		chQuery, chArgs = a.conversationStatsClickhouseQueryWithMoment(conditionsAndArgs, momentConditionsAndArgsList, excludedMomentConditionsAndArgsList, valueOrMissingFilters, groupByKeys, groupByQueries, agentAssistFiltersSubQuery, agentAssistFiltersSubQueryArgs, conversationSourceCondition, allowMatchingStaleMetadataValues)
+-	}
++	chQuery := conversationStatsPopulationAggregate(population.query, groupByKeys, groupByQueries[messageTable], getConversationTimeRangeColumn(getConversationQueryOptions(WithTimeRangeType(req.ConversationTimeRangeField))))
+ 	a.logger.Infof(ctx, &quot;clickhouse query: %v&quot;, chQuery)
+ 
+ 	conn, err := a.getConversationsClickhouseConn(ctx, parent.CustomerID, parent.ProfileID)
+@@ -595,9 +119,9 @@
+ 		return nil, err
+ 	}
+ 
+-	ctx = attachExtTablesToContext(ctx, usersExtTable)
++	ctx = attachExtTablesToContext(ctx, population.externalTables...)
+ 	startT := time.Now()
+-	rows, err := clickhouseshared.QueryWithRetry(ctx, conn, chQuery, chArgs...)
++	rows, err := clickhouseshared.QueryWithRetry(ctx, conn, chQuery, population.args...)
+ 	if err != nil {
+ 		return nil, fmt.Errorf(&quot;querying clickhouse: %w&quot;, err)
+ 	}
+--- base/insights-server/internal/analyticsimpl/common_conversation_population_clickhouse_test.go
++++ working-tree/insights-server/internal/analyticsimpl/common_conversation_population_clickhouse_test.go
+@@ -0,0 +1,263 @@
++package analyticsimpl
++
++import (
++	&quot;fmt&quot;
++	&quot;testing&quot;
++	&quot;time&quot;
++
++	analyticspb &quot;github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/analytics&quot;
++	commonpb &quot;github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/common/metadata&quot;
++	momentpb &quot;github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/moment&quot;
++	userpb &quot;github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/user&quot;
++	chtesting &quot;github.com/cresta/go-servers/shared/clickhouse/testing&quot;
++	&quot;github.com/google/uuid&quot;
++	&quot;github.com/stretchr/testify/suite&quot;
++	&quot;google.golang.org/protobuf/types/known/timestamppb&quot;
++)
++
++type ConversationPopulationCHTestSuite struct {
++	suite.Suite
++	chtesting.ClickhouseContainerTestSuite
++}
++
++func (s *ConversationPopulationCHTestSuite) SetupSuite() {
++	s.ClickhouseContainerTestSuite.SetupSuite(s.T())
++}
++func (s *ConversationPopulationCHTestSuite) TearDownSuite() {
++	s.ClickhouseContainerTestSuite.TearDownSuite(s.T())
++}
++
++func (s *ConversationPopulationCHTestSuite) TestEligiblePairsAndMatchingHandleTime() {
++	for _, externalUsers := range []bool{false, true} {
++		s.Run(fmt.Sprintf(&quot;ExternalUsers_%t&quot;, externalUsers), func() {
++			// Given
++			conn := s.GetConversationConnection(&quot;population&quot;, uuid.NewString())
++			start := time.Date(2021, 1, 6, 7, 30, 0, 0, time.UTC)
++			end := start.Add(48 * time.Hour)
++			for _, pair := range [][2]string{{&quot;shared&quot;, &quot;alice&quot;}, {&quot;shared&quot;, &quot;bob&quot;}, {&quot;shared&quot;, &quot;charlie&quot;}, {&quot;no-messages&quot;, &quot;alice&quot;}, {&quot;upper-bound&quot;, &quot;alice&quot;}} {
++				conversationTime := start
++				if pair[0] == &quot;upper-bound&quot; {
++					conversationTime = end
++				}
++				s.Require().NoError(conn.Exec(s.T().Context(), `INSERT INTO conversation_d (conversation_id, agent_user_id, conversation_start_time, conversation_end_time, update_time) VALUES (?, ?, ?, ?, ?)`, pair[0], pair[1], conversationTime, conversationTime.Add(time.Hour), start))
++			}
++			// The latest conversation row is outside the interval; the earlier matching row must survive.
++			s.Require().NoError(conn.Exec(s.T().Context(), `INSERT INTO conversation_d (conversation_id, agent_user_id, conversation_start_time, conversation_end_time, update_time) VALUES (&#x27;shared&#x27;, &#x27;alice&#x27;, ?, ?, ?)`, end, end, end))
++			for _, message := range []struct {
++				conversation, agent string
++				aht                 int
++				voicemail           int
++			}{{&quot;shared&quot;, &quot;alice&quot;, 10, 0}, {&quot;shared&quot;, &quot;alice&quot;, 20, 0}, {&quot;shared&quot;, &quot;alice&quot;, 90, 1}, {&quot;shared&quot;, &quot;bob&quot;, 15, 0}, {&quot;shared&quot;, &quot;charlie&quot;, 25, 0}, {&quot;message-only&quot;, &quot;alice&quot;, 30, 0}, {&quot;upper-bound&quot;, &quot;alice&quot;, 40, 0}} {
++				s.Require().NoError(conn.Exec(s.T().Context(), `INSERT INTO message (message_id, conversation_id, agent_user_id, conversation_start_time, conversation_end_time, handle_time_secs, is_voice_mail) VALUES (?, ?, ?, ?, ?, ?, ?)`, uuid.NewString(), message.conversation, message.agent, start, end, message.aht, message.voicemail))
++			}
++			inputs := conversationPopulationInputs{
++				timeRange:            &amp;analyticspb.TimeRange{StartTimestamp: timestamppb.New(start), EndTimestamp: timestamppb.New(end)},
++				attribute:            &amp;analyticspb.Attribute{ConversationCriterions: []analyticspb.ConversationCriterion{analyticspb.ConversationCriterion_EXCLUDE_VOICE_MAIL}, Users: []*userpb.User{{Name: &quot;customers/population/users/alice&quot;}, {Name: &quot;customers/population/users/bob&quot;}}},
++				useExternalUserTable: externalUsers,
++			}
++
++			// When
++			population, err := buildConversationPopulationQuery(s.T().Context(), inputs)
++			var got []struct {
++				Conversation string    `ch:&quot;conversation_id&quot;`
++				Agent        string    `ch:&quot;agent_user_id&quot;`
++				Time         time.Time `ch:&quot;conversation_time&quot;`
++				AHT          int32     `ch:&quot;aht_sec&quot;`
++			}
++			if err == nil {
++				err = conn.Select(attachExtTablesToContext(s.T().Context(), population.externalTables...), &amp;got, population.query, population.args...)
++			}
++			var aggregate []struct {
++				Conversations uint64 `ch:&quot;convo_count&quot;`
++				Users         uint64 `ch:&quot;user_count&quot;`
++				HandleTime    int64  `ch:&quot;aht_sec&quot;`
++			}
++			if err == nil {
++				query := conversationStatsPopulationAggregate(population.query, nil /* groupByKeys */, nil /* groupByQueries */, conversationStartTimeColumn)
++				err = conn.Select(attachExtTablesToContext(s.T().Context(), population.externalTables...), &amp;aggregate, query, population.args...)
++			}
++
++			// Then
++			s.Require().NoError(err)
++			s.Require().Len(got, 2)
++			byAgent := map[string]int32{}
++			for _, row := range got {
++				s.Equal(&quot;shared&quot;, row.Conversation)
++				s.Equal(start, row.Time)
++				byAgent[row.Agent] = row.AHT
++			}
++			s.Equal(map[string]int32{&quot;alice&quot;: 20, &quot;bob&quot;: 15}, byAgent)
++			s.Require().Len(aggregate, 1)
++			s.Equal(uint64(1), aggregate[0].Conversations)
++			s.Equal(uint64(2), aggregate[0].Users)
++			s.Equal(int64(35), aggregate[0].HandleTime)
++			if externalUsers {
++				s.Require().Len(population.externalTables, 1)
++			}
++		})
++	}
++}
++
++func (s *ConversationPopulationCHTestSuite) TestMetadataEligibilityIsConversationScoped() {
++	for _, allowStale := range []bool{false, true} {
++		s.Run(fmt.Sprintf(&quot;AllowStale_%t&quot;, allowStale), func() {
++			// Given
++			conn := s.GetConversationConnection(&quot;population&quot;, uuid.NewString())
++			start := time.Date(2021, 1, 6, 7, 30, 0, 0, time.UTC)
++			for _, agent := range []string{&quot;alice&quot;, &quot;bob&quot;} {
++				s.Require().NoError(conn.Exec(s.T().Context(), `INSERT INTO conversation_d (conversation_id, agent_user_id, conversation_start_time, update_time) VALUES (&#x27;shared&#x27;, ?, ?, ?)`, agent, start, start))
++				s.Require().NoError(conn.Exec(s.T().Context(), `INSERT INTO message (message_id, conversation_id, agent_user_id, conversation_start_time, handle_time_secs) VALUES (?, &#x27;shared&#x27;, ?, ?, 20)`, uuid.NewString(), agent, start))
++			}
++			for i, value := range []string{&quot;wanted&quot;, &quot;other&quot;} {
++				s.Require().NoError(conn.Exec(s.T().Context(), `INSERT INTO moment_annotation (moment_annotation_id, conversation_id, agent_user_id, conversation_start_time, moment_template_id, moment_type, metadata_string_value, create_time) VALUES (?, &#x27;shared&#x27;, &#x27;alice&#x27;, ?, &#x27;team&#x27;, ?, ?, ?)`, uuid.NewString(), start, int32(momentpb.Moment_CONVERSATION_METADATA), value, start.Add(time.Duration(i)*time.Hour)))
++			}
++			inputs := conversationPopulationInputs{
++				timeRange:                        &amp;analyticspb.TimeRange{StartTimestamp: timestamppb.New(start), EndTimestamp: timestamppb.New(start.Add(24 * time.Hour))},
++				attribute:                        &amp;analyticspb.Attribute{MomentGroups: []*analyticspb.MomentGroup{{Moments: []*momentpb.Moment{{Name: &quot;customers/population/profiles/profile/moments/team&quot;, Type: momentpb.Moment_CONVERSATION_METADATA}}, MetadataValueAttributes: []*analyticspb.MetadataValueAttribute{{MetadataValue: &amp;commonpb.MetadataValue{Value: &amp;commonpb.MetadataValue_StringValue{StringValue: &quot;wanted&quot;}}}}}}},
++				allowMatchingStaleMetadataValues: allowStale,
++			}
++
++			// When
++			population, err := buildConversationPopulationQuery(s.T().Context(), inputs)
++			var agents []struct {
++				Agent string `ch:&quot;agent_user_id&quot;`
++			}
++			if err == nil {
++				err = conn.Select(s.T().Context(), &amp;agents, &quot;SELECT agent_user_id FROM (&quot;+population.query+&quot;) ORDER BY agent_user_id&quot;, population.args...)
++			}
++
++			// Then
++			s.Require().NoError(err)
++			if allowStale {
++				s.Require().Len(agents, 2)
++				s.Equal(&quot;alice&quot;, agents[0].Agent)
++				s.Equal(&quot;bob&quot;, agents[1].Agent)
++			} else {
++				s.Empty(agents)
++			}
++		})
++	}
++}
++
++func TestConversationPopulationCH(t *testing.T) { suite.Run(t, new(ConversationPopulationCHTestSuite)) }
++
++func (s *ConversationPopulationCHTestSuite) TestAgentAssistAndSourcePolicies() {
++	// Given
++	conn := s.GetConversationConnection(&quot;population&quot;, uuid.NewString())
++	start := time.Date(2021, 1, 6, 7, 30, 0, 0, time.UTC)
++	for _, fixture := range []struct {
++		id                                                             string
++		conversationSource, messageSource, conversationDev, messageDev int
++		assisted                                                       bool
++	}{
++		{id: &quot;unassisted&quot;},
++		{id: &quot;assisted&quot;, assisted: true},
++		{id: &quot;bot&quot;, conversationSource: 7, messageSource: 7, assisted: true},
++		{id: &quot;conversation-dev&quot;, conversationDev: 1, assisted: true},
++		{id: &quot;conversation-source&quot;, conversationSource: 9, assisted: true},
++		{id: &quot;message-dev&quot;, messageDev: 1, assisted: true},
++		{id: &quot;message-source&quot;, messageSource: 9, assisted: true},
++	} {
++		s.Require().NoError(conn.Exec(s.T().Context(), `INSERT INTO conversation_d (conversation_id, agent_user_id, conversation_start_time, conversation_source, is_dev_user, update_time) VALUES (?, &#x27;alice&#x27;, ?, ?, ?, ?)`, fixture.id, start, fixture.conversationSource, fixture.conversationDev, start))
++		s.Require().NoError(conn.Exec(s.T().Context(), `INSERT INTO message (message_id, conversation_id, agent_user_id, conversation_start_time, conversation_source, is_dev_user) VALUES (?, ?, &#x27;alice&#x27;, ?, ?, ?)`, uuid.NewString(), fixture.id, start, fixture.messageSource, fixture.messageDev))
++		if fixture.assisted {
++			for _, assisted := range []bool{false, true} {
++				s.Require().NoError(conn.Exec(s.T().Context(), `INSERT INTO conversation_with_labels (conversation_id, agent_user_id, conversation_start_time, has_agent_assistance, message_id, update_time) VALUES (?, &#x27;alice&#x27;, ?, ?, ?, ?)`, fixture.id, start, assisted, uuid.NewString(), start))
++			}
++		}
++	}
++	for _, scenario := range []struct {
++		name     string
++		state    analyticspb.Attribute_AgentAssistFilter_AgentAssistStateType
++		bots     bool
++		expected []string
++	}{
++		{name: &quot;Default&quot;, expected: []string{&quot;assisted&quot;, &quot;unassisted&quot;}},
++		{name: &quot;DefaultWithBots&quot;, bots: true, expected: []string{&quot;assisted&quot;, &quot;bot&quot;, &quot;unassisted&quot;}},
++		{name: &quot;On&quot;, state: analyticspb.Attribute_AgentAssistFilter_AGENT_ASSIST_STATE_TYPE_ON, expected: []string{&quot;assisted&quot;, &quot;conversation-dev&quot;, &quot;conversation-source&quot;}},
++		{name: &quot;OnWithBots&quot;, state: analyticspb.Attribute_AgentAssistFilter_AGENT_ASSIST_STATE_TYPE_ON, bots: true, expected: []string{&quot;assisted&quot;, &quot;bot&quot;, &quot;conversation-dev&quot;, &quot;conversation-source&quot;}},
++		{name: &quot;Off&quot;, state: analyticspb.Attribute_AgentAssistFilter_AGENT_ASSIST_STATE_TYPE_OFF, expected: []string{&quot;unassisted&quot;}},
++	} {
++		s.Run(scenario.name, func() {
++			// Given
++			inputs := conversationPopulationInputs{timeRange: &amp;analyticspb.TimeRange{StartTimestamp: timestamppb.New(start), EndTimestamp: timestamppb.New(start.Add(time.Hour))}, includeBotConversations: scenario.bots}
++			if scenario.state != analyticspb.Attribute_AgentAssistFilter_AGENT_ASSIST_STATE_TYPE_UNSPECIFIED {
++				inputs.attribute = &amp;analyticspb.Attribute{AgentAssistFilters: []*analyticspb.Attribute_AgentAssistFilter{{AgentAssistUsed: scenario.state}}}
++			}
++
++			// When
++			population, err := buildConversationPopulationQuery(s.T().Context(), inputs)
++			var got []struct {
++				Conversation string `ch:&quot;conversation_id&quot;`
++			}
++			if err == nil {
++				err = conn.Select(s.T().Context(), &amp;got, &quot;SELECT conversation_id FROM (&quot;+population.query+&quot;) ORDER BY conversation_id&quot;, population.args...)
++			}
++
++			// Then
++			s.Require().NoError(err)
++			expected := make([]struct {
++				Conversation string `ch:&quot;conversation_id&quot;`
++			}, len(scenario.expected))
++			for i, id := range scenario.expected {
++				expected[i].Conversation = id
++			}
++			s.Equal(expected, got)
++		})
++	}
++}
++
++func (s *ConversationPopulationCHTestSuite) TestMetadataSelectedMissingAndExcluded() {
++	// Given
++	conn := s.GetConversationConnection(&quot;population&quot;, uuid.NewString())
++	start := time.Date(2021, 1, 6, 7, 30, 0, 0, time.UTC)
++	for _, conversation := range []string{&quot;wanted&quot;, &quot;other&quot;, &quot;missing&quot;} {
++		s.Require().NoError(conn.Exec(s.T().Context(), `INSERT INTO conversation_d (conversation_id, agent_user_id, conversation_start_time, update_time) VALUES (?, &#x27;alice&#x27;, ?, ?)`, conversation, start, start))
++		s.Require().NoError(conn.Exec(s.T().Context(), `INSERT INTO message (message_id, conversation_id, agent_user_id, conversation_start_time) VALUES (?, ?, &#x27;alice&#x27;, ?)`, uuid.NewString(), conversation, start))
++		if conversation != &quot;missing&quot; {
++			s.Require().NoError(conn.Exec(s.T().Context(), `INSERT INTO moment_annotation (moment_annotation_id, conversation_id, agent_user_id, conversation_start_time, moment_template_id, moment_type, metadata_string_value, create_time) VALUES (?, ?, &#x27;alice&#x27;, ?, &#x27;team&#x27;, ?, ?, ?)`, uuid.NewString(), conversation, start, int32(momentpb.Moment_CONVERSATION_METADATA), conversation, start))
++		}
++	}
++	for _, scenario := range []struct {
++		name              string
++		selected, missing bool
++		expected          []string
++	}{
++		{name: &quot;Selected&quot;, selected: true, expected: []string{&quot;wanted&quot;}},
++		{name: &quot;Missing&quot;, missing: true, expected: []string{&quot;missing&quot;}},
++		{name: &quot;SelectedOrMissing&quot;, selected: true, missing: true, expected: []string{&quot;missing&quot;, &quot;wanted&quot;}},
++	} {
++		s.Run(scenario.name, func() {
++			// Given
++			moment := &amp;momentpb.Moment{Name: &quot;customers/population/profiles/profile/moments/team&quot;, Type: momentpb.Moment_CONVERSATION_METADATA}
++			group := &amp;analyticspb.MomentGroup{}
++			if scenario.selected {
++				group.Moments = []*momentpb.Moment{moment}
++				group.MetadataValueAttributes = []*analyticspb.MetadataValueAttribute{{MetadataValue: &amp;commonpb.MetadataValue{Value: &amp;commonpb.MetadataValue_StringValue{StringValue: &quot;wanted&quot;}}}}
++			}
++			if scenario.missing {
++				group.ExcludedMoments = []*momentpb.Moment{moment}
++			}
++			inputs := conversationPopulationInputs{timeRange: &amp;analyticspb.TimeRange{StartTimestamp: timestamppb.New(start), EndTimestamp: timestamppb.New(start.Add(time.Hour))}, attribute: &amp;analyticspb.Attribute{MomentGroups: []*analyticspb.MomentGroup{group}}}
++
++			// When
++			population, err := buildConversationPopulationQuery(s.T().Context(), inputs)
++			var got []struct {
++				Conversation string `ch:&quot;conversation_id&quot;`
++			}
++			if err == nil {
++				err = conn.Select(s.T().Context(), &amp;got, &quot;SELECT conversation_id FROM (&quot;+population.query+&quot;) ORDER BY conversation_id&quot;, population.args...)
++			}
++
++			// Then
++			s.Require().NoError(err)
++			expected := make([]struct {
++				Conversation string `ch:&quot;conversation_id&quot;`
++			}, len(scenario.expected))
++			for i, id := range scenario.expected {
++				expected[i].Conversation = id
++			}
++			s.Equal(expected, got)
++		})
++	}
++}
+--- base/insights-server/internal/analyticsimpl/retrieve_conversation_stats_test.go
++++ working-tree/insights-server/internal/analyticsimpl/retrieve_conversation_stats_test.go
+@@ -646,7 +646,7 @@
+ 	}
+ 
+ 	// When
+-	remainingAttribute, valueOrMissingFilters, err := parseConversationStatsValueOrMissingFilters(
++	remainingAttribute, valueOrMissingFilters, err := parseConversationPopulationValueOrMissingFilters(
+ 		timeRange,
+ 		attribute,
+ 		conversationStartTimeColumn,
+@@ -654,7 +654,7 @@
+ 
+ 	// Then
+ 	if err != nil {
+-		t.Fatalf(&quot;parseConversationStatsValueOrMissingFilters() failed: %v&quot;, err)
++		t.Fatalf(&quot;parseConversationPopulationValueOrMissingFilters() failed: %v&quot;, err)
+ 	}
+ 	if len(valueOrMissingFilters) != 1 {
+ 		t.Fatalf(&quot;got %d value-or-missing filters, want 1&quot;, len(valueOrMissingFilters))
+@@ -679,14 +679,12 @@
+ 
+ 	for _, allowStale := range []bool{false, true} {
+ 		t.Run(map[bool]string{false: &quot;latest_value&quot;, true: &quot;allow_stale_value&quot;}[allowStale], func(t *testing.T) {
+-			service := AnalyticsServiceImpl{}
+-			query, args := service.conversationStatsClickhouseQueryWithMoment(
++			query, args := buildConversationPopulationSelect(
+ 				conditionsAndArgs,
+ 				nil,
+ 				nil,
+ 				valueOrMissingFilters,
+-				nil,
+-				map[ClickhouseTable][]string{},
++				conversationStartTimeColumn,
+ 				&quot;conv_with_aa AS (SELECT &#x27;&#x27; AS agent_user_id, &#x27;&#x27; AS conversation_id, now() AS conversation_start_time)&quot;,
+ 				nil,
+ 				&quot;conversation_source IN (0, 8)&quot;,
+</pre></details></section><section><h2>Contract and source trail</h2><ul><li><a href="convi-7777-backend-step-one-contract.md">Approved Step 1 contract</a></li><li><a href="convi-7777-protobuf-construction-review.html">Preserved protobuf report</a></li><li><a href="https://github.com/cresta/go-servers/blob/40faeac75f2d55b06a4e3e29ac64fe782b8abd99/insights-server/internal/analyticsimpl/retrieve_conversation_stats_clickhouse.go">Pinned base: retrieve_conversation_stats_clickhouse.go</a></li><li><a href="https://github.com/cresta/go-servers/blob/40faeac75f2d55b06a4e3e29ac64fe782b8abd99/insights-server/internal/analyticsimpl/retrieve_conversation_stats_conversation_version_integration_test.go">Pinned base: retrieve_conversation_stats_conversation_version_integration_test.go</a></li><li><a href="https://github.com/cresta/go-servers/blob/40faeac75f2d55b06a4e3e29ac64fe782b8abd99/insights-server/internal/analyticsimpl/retrieve_conversation_stats.go">Pinned base: retrieve_conversation_stats.go</a></li><li><a href="https://github.com/cresta/go-servers/blob/40faeac75f2d55b06a4e3e29ac64fe782b8abd99/insights-server/internal/analyticsimpl/common_user_filter.go">Pinned base: common_user_filter.go</a></li><li><a href="https://github.com/cresta/go-servers/blob/40faeac75f2d55b06a4e3e29ac64fe782b8abd99/insights-server/internal/analyticsimpl/common_clickhouse.go">Pinned base: common_clickhouse.go</a></li></ul><p class="muted">Working-tree source: /Users/xuanyu.wang/repos/go-servers-convi-7777-assistance-usage/insights-server/internal/analyticsimpl/. Branch preparation is outside the construction sequence. Old draft preserved in stash 4dc871101b1a0c6ba4d19ffab69c2be652abb321. No AWS/Okta/Azure/SSH credential or profile was explicitly selected or read; git/Bazel used their normal authentication.</p></section></main><script>const topics=[{"title": "1. Add input/result types", "before": "Population inputs and execution artifacts were local variables inside the ConversationStats reader.", "problem": "Another caller had no RPC-independent contract for constructing and executing the same selection.", "change": "Create common_conversation_population_clickhouse.go. Add conversationPopulationInputs and conversationPopulationQuery; include the external-user-table option and document the caller\u2019s resolved-ACL prerequisite.", "why": "The shared boundary must carry SQL, placeholder values and required external tables together. An empty attribute user list means unrestricted users, so ACL-empty handling remains a caller prerequisite.", "after": "Both RPCs can describe population selection without passing a RetrieveConversationStatsRequest. Only ConversationStats is wired in Step 1.", "snapshot": "ACTUAL NEW TYPES AND CONTRACT\n// Callers resolve ACLs and return early for an empty authorized user selection\n// before constructing these inputs. An empty attribute user list means all users.\ntype conversationPopulationInputs struct {\n\ttimeRange                        *analyticspb.TimeRange\n\tattribute                        *analyticspb.Attribute\n\ttimeRangeField                   analyticspb.RetrieveClosedConversationsRequest_TargetFieldForTimeRange\n\tincludeBotConversations          bool\n\tallowMatchingStaleMetadataValues bool\n\tuseExternalUserTable             bool\n}\n\n// query is a complete SELECT with one row per eligible conversation/agent pair:\n// conversation_id, agent_user_id, conversation_time, and matching-message aht_sec.\n// Keep its bind arguments and external tables when embedding it in another query.\ntype conversationPopulationQuery struct {\n\tquery          string\n\targs           []any\n\texternalTables []*ext.Table\n}\n", "diff": "--- base: no population contract\n+++ common_conversation_population_clickhouse.go:15\n@@ -0,0 +1,19 @@\n+// Callers resolve ACLs and return early for an empty authorized user selection\n+// before constructing these inputs. An empty attribute user list means all users.\n+type conversationPopulationInputs struct {\n+\ttimeRange                        *analyticspb.TimeRange\n+\tattribute                        *analyticspb.Attribute\n+\ttimeRangeField                   analyticspb.RetrieveClosedConversationsRequest_TargetFieldForTimeRange\n+\tincludeBotConversations          bool\n+\tallowMatchingStaleMetadataValues bool\n+\tuseExternalUserTable             bool\n+}\n+\n+// query is a complete SELECT with one row per eligible conversation/agent pair:\n+// conversation_id, agent_user_id, conversation_time, and matching-message aht_sec.\n+// Keep its bind arguments and external tables when embedding it in another query.\n+type conversationPopulationQuery struct {\n+\tquery          string\n+\targs           []any\n+\texternalTables []*ext.Table\n+}\n", "source": "common_conversation_population_clickhouse.go:15\u201333"}, {"title": "2. Move AA selection", "before": "buildAgentAssistFiltersSubQuery lived in the ConversationStats query file.", "problem": "ConversationStats owned the default/ON/OFF conversation-selection rules even though they define shared membership.", "change": "Move buildAgentAssistFiltersSubQuery into the shared population file with its function name and body unchanged. Keep existing CTE-name constants where they are; this is the same Go package.", "why": "Preserve filter-before-deduplication, max(has_agent_assistance), the OFF anti-join and repeated argument order. The branches have intentional source/developer differences.", "after": "The shared builder can obtain conversation/label keys and selected time using exactly the existing AA branches.", "snapshot": "ACTUAL MOVED FUNCTION \u2014 unchanged from pinned base\nfunc buildAgentAssistFiltersSubQuery(\n\tagentAssistFilters []*analyticspb.Attribute_AgentAssistFilter,\n\tconversationCondAndArgs map[ClickhouseTable][]conditionAndArg,\n\tconversationSourceCondition string,\n\tconversationTimeColumn string,\n) (string, []any) {\n\tconds, args := concatConditionsAndArgs(conversationCondAndArgs[conversationLabelTable])\n\t// in default, use all conversation IDs when there is no AA filter\n\tconvWithAASubQuery := fmt.Sprintf(`\n\t\t%s AS (\n\t\t\tSELECT\n\t\t\t\tagent_user_id, conversation_id, %s\n\t\t\tFROM\n\t\t\t\tconversation_d\n\t\t\tWHERE TRUE\n\t\t\t\tAND %s\n\t\t\t\tAND is_dev_user = 0\n\t\t\t\tAND agent_user_id <> ''\n\t\t\t \tAND %s\n\t\t\tORDER BY update_time DESC\n\t\t\tLIMIT 1 BY agent_user_id, conversation_id\n\t\t)`, ConvWithAa, conversationTimeColumn, conversationSourceCondition, conds)\n\tif len(agentAssistFilters) == 0 {\n\t\treturn convWithAASubQuery, args\n\t}\n\n\tagentAssistState := agentAssistFilters[0].AgentAssistUsed\n\tswitch agentAssistState {\n\tcase analyticspb.Attribute_AgentAssistFilter_AGENT_ASSIST_STATE_TYPE_ON:\n\t\t// Filter conversations by their conversation time range (not message time), because\n\t\t// the question is \"did this conversation have agent assistance?\" \u2014 not \"did assistance\n\t\t// happen at a specific message time?\". max(has_agent_assistance) handles backward\n\t\t// compatibility: old per-conversation rows (message_id='') and new per-message rows\n\t\t// (message_id=uuid) coexist; if any row is true, the conversation is assisted.\n\t\t// The value true is hardcoded (not a placeholder) so args stays unchanged.\n\t\t// Rows of one conversation can carry different conversation times, such as the\n\t\t// placeholder end (end = start) and the real end, so the time comes from the\n\t\t// newest row, keeping one row per agent and conversation like the other\n\t\t// variants. The alias differs from the column so that conds reads the column.\n\t\tconvWithAASubQuery = fmt.Sprintf(`\n\t\t%s AS (\n\t\t\t\tSELECT\n\t\t\t\t\tagent_user_id, conversation_id, latest_conversation_time AS %s\n\t\t\t\tFROM (\n\t\t\t\t\tSELECT\n\t\t\t\t\t\tagent_user_id, conversation_id,\n\t\t\t\t\t\targMax(%s, update_time) AS latest_conversation_time,\n\t\t\t\t\t\tmax(has_agent_assistance) AS max_has_assistance\n\t\t\t\t\tFROM\n\t\t\t\t\t\tconversation_with_labels_d\n\t\t\t\t\tWHERE\n\t\t\t\t\t\tagent_user_id <> ''\n\t\t\t\t\t\tAND %s\n\t\t\t\t\tGROUP BY agent_user_id, conversation_id\n\t\t\t\t)\n\t\t\t\tWHERE max_has_assistance = true\n\t\t\t)`, ConvWithAa, conversationTimeColumn, conversationTimeColumn, conds)\n\n\tcase analyticspb.Attribute_AgentAssistFilter_AGENT_ASSIST_STATE_TYPE_OFF:\n\t\t// For conversations WITHOUT assistance: start from conversation_d and anti-join\n\t\t// against any true row in conversation_with_labels_d. Scoped by conversation time\n\t\t// (not message time) for the same reason as the ON case. Backward compatible:\n\t\t// - Old data (message_id=''): false rows only \u2192 no true row \u2192 correctly included.\n\t\t// - New data: unassisted conversations have no rows \u2192 no true row \u2192 included.\n\t\t// - Mixed (old false + new true): true row exists \u2192 excluded correctly.\n\t\t// conds appears twice so args are duplicated: first for the anti-join subquery,\n\t\t// then for the outer WHERE on conversation_d.\n\t\targs = append(append([]any{}, args...), args...)\n\t\tconvWithAASubQuery = fmt.Sprintf(`\n\t\t%s AS (\n\t\t\t\tSELECT\n\t\t\t\t\tagent_user_id, conversation_id, %s\n\t\t\t\tFROM conversation_d\n\t\t\t\tGLOBAL LEFT ANTI JOIN (\n\t\t\t\t\tSELECT DISTINCT conversation_id, agent_user_id\n\t\t\t\t\tFROM conversation_with_labels_d\n\t\t\t\t\tWHERE has_agent_assistance = true\n\t\t\t\t\tAND %s\n\t\t\t\t) AS assisted USING (conversation_id, agent_user_id)\n\t\t\t\tWHERE TRUE\n\t\t\t\t\tAND %s\n\t\t\t\t\tAND is_dev_user = 0\n\t\t\t\t\tAND agent_user_id <> ''\n\t\t\t\t\tAND %s\n\t\t\t\tORDER BY update_time DESC\n\t\t\t\tLIMIT 1 BY agent_user_id, conversation_id\n\t\t\t)`, ConvWithAa, conversationTimeColumn, conds, conversationSourceCondition, conds)\n\t}\n\treturn convWithAASubQuery, args\n}\n", "diff": "MOVE retrieve_conversation_stats_clickhouse.go:63 \u2192 common_conversation_population_clickhouse.go:73\nNo text changes: this function moves to the shared file unchanged.\n", "source": "common_conversation_population_clickhouse.go:73\u2013162; body compared byte-for-byte with pinned base"}, {"title": "3. Move metadata helpers", "before": "ConversationStats-named helpers built metadata membership and parsed selected-or-missing groups.", "problem": "Duplicating only ordinary table conditions would still duplicate stale/latest selection and conversation-scoped joins.", "change": "Move both helpers. Rename them to buildConversationPopulationMomentFilterQuery and parseConversationPopulationValueOrMissingFilters. Retarget SQL joins from conversation_stats_per_conversation to conversation_population_per_pair.", "why": "The metadata relation must filter eligible pairs before either caller aggregates. Its join key remains conversation_id; adding agent_user_id would change membership.", "after": "Latest/stale and selected-or-missing parsing belong to the population builder; include/exclude joins retain their existing meanings.", "snapshot": "ACTUAL SHARED METADATA HELPERS\nfunc buildConversationPopulationMomentFilterQuery(\n\tfilter momentAnnotationFilter,\n\tindex int,\n\tjoinType string,\n\tallowMatchingStaleMetadataValues bool,\n) (string, string, []any) {\n\tconditions, args := concatConditionsAndArgs(filter.conditions)\n\tresultConversationID := fmt.Sprintf(\"conversation_id_%d\", index)\n\tif allowMatchingStaleMetadataValues {\n\t\treturn fmt.Sprintf(`\n\t\t\tmoment_annotation_filter_%d AS (\n\t\t\t\tSELECT DISTINCT\n\t\t\t\t\tconversation_id AS %s\n\t\t\t\tFROM\n\t\t\t\t\t%s\n\t\t\t\tWHERE\n\t\t\t\t\t%s\n\t\t\t),\n\t\t`, index, resultConversationID, filter.source.tableName(), conditions), fmt.Sprintf(`\n\t\t\t%s moment_annotation_filter_%d ON\n\t\t\t\tconversation_population_per_pair.conversation_id = moment_annotation_filter_%d.%s\n\t\t`, joinType, index, index, resultConversationID), args\n\t}\n\n\tconditionsNoMetadataValue, argsNoMetadataValue := concatConditionsAndArgsWithPredicate(filter.conditions, func(caa conditionAndArg) bool {\n\t\tfor _, keyword := range momentAnnotationValueConditionKeywords() {\n\t\t\tif strings.Contains(caa.condition, keyword) {\n\t\t\t\treturn true\n\t\t\t}\n\t\t}\n\t\treturn false\n\t}, true /* concatWithAnd */)\n\tlatestTimeColumn := filter.source.latestTimeColumn()\n\treturn fmt.Sprintf(`\n\t\t\tt1_moment_annotation_filter_%d AS (\n\t\t\t\tSELECT\n\t\t\t\t\t-- Rename the column to avoid ambiguous column issue.\n\t\t\t\t\tconversation_id,\n\t\t\t\t\tMAX(%s) AS latest_create_time\n\t\t\t\tFROM\n\t\t\t\t\t%s\n\t\t\t\tWHERE\n\t\t\t\t\t%s\n\t\t\t\tGROUP BY conversation_id\n\t\t\t),\n\t\t\tt2_moment_annotation_filter_%d AS (\n\t\t\t\tSELECT\n\t\t\t\t\tconversation_id,\n\t\t\t\t\t%s\n\t\t\t\tFROM\n\t\t\t\t\t%s\n\t\t\t\tWHERE\n\t\t\t\t\t%s\n\t\t\t),\n\t\t\tmoment_annotation_filter_%d AS (\n\t\t\t\tSELECT DISTINCT\n\t\t\t\t\tt1.conversation_id AS %s\n\t\t\t\tFROM\n\t\t\t\t\tt1_moment_annotation_filter_%d AS t1\n\t\t\t\tJOIN t2_moment_annotation_filter_%d AS t2 ON t1.conversation_id = t2.conversation_id AND t1.latest_create_time = t2.%s\n\t\t\t),\n\t\t`, index, latestTimeColumn, filter.source.tableName(), conditionsNoMetadataValue,\n\t\t\tindex, latestTimeColumn, filter.source.tableName(), conditions,\n\t\t\tindex, resultConversationID, index, index, latestTimeColumn), fmt.Sprintf(`\n\t\t\t%s moment_annotation_filter_%d ON\n\t\t\t\tconversation_population_per_pair.conversation_id = moment_annotation_filter_%d.%s\n\t\t`, joinType, index, index, resultConversationID), append(argsNoMetadataValue, args...)\n}\n\nfunc parseConversationPopulationValueOrMissingFilters(\n\ttimeRange *analyticspb.TimeRange,\n\tattribute *analyticspb.Attribute,\n\ttimeColumn string,\n) (*analyticspb.Attribute, []qaMomentValueOrMissingFilter, error) {\n\tif !*enableExcludedMoments || attribute == nil {\n\t\treturn attribute, nil, nil\n\t}\n\tstartTime, endTime, err := shared.ParseFilterByTimeRange(timeRange)\n\tif err != nil {\n\t\treturn nil, nil, err\n\t}\n\n\tremainingAttribute := proto.Clone(attribute).(*analyticspb.Attribute)\n\tremainingAttribute.MomentGroups = nil\n\tvalueOrMissingFilters := []qaMomentValueOrMissingFilter{}\n\tfor _, momentGroup := range attribute.MomentGroups {\n\t\tvalueOrMissingFilter, err := parseValueOrMissingMetadataMomentGroup(\n\t\t\tmomentGroup,\n\t\t\tstartTime,\n\t\t\tendTime,\n\t\t\tfalse, /* fetchFromMetadataView */\n\t\t\ttimeColumn,\n\t\t)\n\t\tif err != nil {\n\t\t\treturn nil, nil, err\n\t\t}\n\t\tif valueOrMissingFilter != nil {\n\t\t\tvalueOrMissingFilters = append(valueOrMissingFilters, *valueOrMissingFilter)\n\t\t\tcontinue\n\t\t}\n\t\tremainingAttribute.MomentGroups = append(remainingAttribute.MomentGroups, momentGroup)\n\t}\n\treturn remainingAttribute, valueOrMissingFilters, nil\n}\n", "diff": "--- retrieve_conversation_stats_clickhouse.go:211,280\n+++ common_conversation_population_clickhouse.go:164,233\n@@ -1,5 +1,5 @@\n-func buildConversationStatsMomentFilterQuery(\n+func buildConversationPopulationMomentFilterQuery(\n \tfilter momentAnnotationFilter,\n \tindex int,\n \tjoinType string,\n \tallowMatchingStaleMetadataValues bool,\n@@ -17,9 +17,9 @@\n \t\t\t\t\t%s\n \t\t\t),\n \t\t`, index, resultConversationID, filter.source.tableName(), conditions), fmt.Sprintf(`\n \t\t\t%s moment_annotation_filter_%d ON\n-\t\t\t\tconversation_stats_per_conversation.conversation_id = moment_annotation_filter_%d.%s\n+\t\t\t\tconversation_population_per_pair.conversation_id = moment_annotation_filter_%d.%s\n \t\t`, joinType, index, index, resultConversationID), args\n \t}\n \n \tconditionsNoMetadataValue, argsNoMetadataValue := concatConditionsAndArgsWithPredicate(filter.conditions, func(caa conditionAndArg) bool {\n@@ -62,13 +62,13 @@\n \t\t`, index, latestTimeColumn, filter.source.tableName(), conditionsNoMetadataValue,\n \t\t\tindex, latestTimeColumn, filter.source.tableName(), conditions,\n \t\t\tindex, resultConversationID, index, index, latestTimeColumn), fmt.Sprintf(`\n \t\t\t%s moment_annotation_filter_%d ON\n-\t\t\t\tconversation_stats_per_conversation.conversation_id = moment_annotation_filter_%d.%s\n+\t\t\t\tconversation_population_per_pair.conversation_id = moment_annotation_filter_%d.%s\n \t\t`, joinType, index, index, resultConversationID), append(argsNoMetadataValue, args...)\n }\n \n-func parseConversationStatsValueOrMissingFilters(\n+func parseConversationPopulationValueOrMissingFilters(\n \ttimeRange *analyticspb.TimeRange,\n \tattribute *analyticspb.Attribute,\n \ttimeColumn string,\n ) (*analyticspb.Attribute, []qaMomentValueOrMissingFilter, error) {\n", "source": "common_conversation_population_clickhouse.go:164\u2013267"}, {"title": "4. Return population rows", "before": "The ordinary and metadata query paths ended with COUNT/SUM and optional GROUP BY. The metadata message branch also used user_id as its agent alias.", "problem": "Final aggregation discarded conversation/agent identities. Two separate population paths made reuse harder.", "change": "Adapt the metadata-capable builder into buildConversationPopulationSelect and use it for ordinary filters too. Remove grouping inputs and final aggregates; use agent_user_id consistently; project selected time as conversation_time.", "why": "Empty metadata lists naturally emit no metadata CTEs or joins. Keep MAX(handle_time_secs) in the matching-message CTE and retain the full conversation/message pair join.", "after": "The complete SELECT returns conversation_id, agent_user_id, conversation_time and aht_sec. Conversation time is selected from conversation/label rows, not message copies.", "snapshot": "ACTUAL NEW SIGNATURE\nfunc buildConversationPopulationSelect(\n\tconditionsAndArgs map[ClickhouseTable][]conditionAndArg,\n\tmomentConditionsAndArgsList, excludedMomentConditionsAndArgsList [][]conditionAndArg,\n\tvalueOrMissingFilters []qaMomentValueOrMissingFilter,\n\ttimeColumn string,\n\tagentAssistFiltersSubQuery string,\n\tagentAssistFiltersSubArgs []any,\n\tconversationSourceCondition string,\n\tallowMatchingStaleMetadataValues bool,\n) (string, []any) {\n\tallArgs := []any{}\n\nACTUAL SQL TAIL \u2014 metadata construction above is omitted here\n\t// Build conditions and args for conversation_stats query on `message_d` table.\n\tmessageCondition, messageArgs := concatConditionsAndArgs(conditionsAndArgs[messageTable])\n\tallArgs = append(allArgs, agentAssistFiltersSubArgs...)\n\tallArgs = append(allArgs, messageArgs...)\n\t// Bucket time must come from the selected conversation/label row. Message\n\t// copies can have placeholder end times from before the conversation closed.\n\treturn fmt.Sprintf(`\n\t\tWITH\n\t\t%s\n\t\t%s\n\t\t%s,\n        %s AS (\n\t\t\tSELECT\n\t\t\t\tagent_user_id,\n\t\t\t\tconversation_id,\n\t\t\t\tMAX(handle_time_secs) AS aht_sec\n\t\t\tFROM\n\t\t\t\tmessage_d\n\t\t\tWHERE TRUE\n\t\t\t\tAND %s\n\t\t\t\tAND is_dev_user = 0\n\t\t\t\tAND agent_user_id <> ''\n\t\t\t\tAND %s\t-- Additional filters\n\t\t\tGROUP BY agent_user_id, conversation_id\n\t\t),\n\t\tconversation_population_per_pair AS (\n\t\t\tSELECT *\n\t\t\tFROM %s JOIN %s ON %s.conversation_id = %s.conversation_id\n\t\t\t\tAND %s.agent_user_id = %s.agent_user_id\n\t\t)\n\t\tSELECT \n\t\t\tconversation_id, agent_user_id, %s AS conversation_time, aht_sec\n\t\tFROM\n\t\t\tconversation_population_per_pair\n\t\t\t\t%s\n\t\t\t\t%s\n\t\t-- WHERE is optional.\n\t\t%s`,\n\t\t\tmomentSubQueries,\n\t\t\texcludedMomentSubQueries,\n\t\t\tagentAssistFiltersSubQuery,\n\t\t\t// group-by-conv cte\n\t\t\tConvWithAht,\n\t\t\tconversationSourceCondition, messageCondition,\n\t\t\t// conversation_population_per_pair\n\t\t\tConvWithAht, ConvWithAa,\n\t\t\tConvWithAht, ConvWithAa,\n\t\t\tConvWithAht, ConvWithAa,\n\t\t\t// main query\n\t\t\t// select\n\t\t\ttimeColumn,\n\t\t\t// from\n\t\t\tmomentJoinQueries, excludedMomentJoinQueries,\n\t\t\t// where\n\t\t\texcludedMomentWhereQueries),\n\t\tallArgs\n}\n", "diff": "--- retrieve_conversation_stats_clickhouse.go:316 conversationStatsClickhouseQueryWithMoment\n+++ common_conversation_population_clickhouse.go:269 buildConversationPopulationSelect\n@@ -1,10 +1,9 @@\n-func (a AnalyticsServiceImpl) conversationStatsClickhouseQueryWithMoment(\n+func buildConversationPopulationSelect(\n \tconditionsAndArgs map[ClickhouseTable][]conditionAndArg,\n \tmomentConditionsAndArgsList, excludedMomentConditionsAndArgsList [][]conditionAndArg,\n \tvalueOrMissingFilters []qaMomentValueOrMissingFilter,\n-\tgroupByKeys []string,\n-\tgroupByQueries map[ClickhouseTable][]string,\n+\ttimeColumn string,\n \tagentAssistFiltersSubQuery string,\n \tagentAssistFiltersSubArgs []any,\n \tconversationSourceCondition string,\n \tallowMatchingStaleMetadataValues bool,\n@@ -16,9 +15,9 @@\n \tmomentJoinQueryList := []string{}\n \tmomentIndex := 0\n \tfor _, momentConditionsAndArgs := range momentConditionsAndArgsList {\n \t\tfilter := momentAnnotationFilter{conditions: momentConditionsAndArgs, source: momentAnnotationFilterSourceRaw}\n-\t\tsubQuery, joinQuery, args := buildConversationStatsMomentFilterQuery(\n+\t\tsubQuery, joinQuery, args := buildConversationPopulationMomentFilterQuery(\n \t\t\tfilter,\n \t\t\tmomentIndex,\n \t\t\t\"INNER JOIN\",\n \t\t\tallowMatchingStaleMetadataValues,\n@@ -31,9 +30,9 @@\n \n \tselectedValueIndices := make([]int, len(valueOrMissingFilters))\n \tfor filterIndex, filter := range valueOrMissingFilters {\n \t\tselectedValueIndices[filterIndex] = momentIndex\n-\t\tsubQuery, joinQuery, args := buildConversationStatsMomentFilterQuery(\n+\t\tsubQuery, joinQuery, args := buildConversationPopulationMomentFilterQuery(\n \t\t\tfilter.selectedValueFilter,\n \t\t\tmomentIndex,\n \t\t\t\"LEFT JOIN\",\n \t\t\tallowMatchingStaleMetadataValues,\n@@ -65,9 +64,9 @@\n \t\t`, i, i, conditions))\n \t\tallArgs = append(allArgs, args...)\n \t\texcludedMomentJoinQueryList = append(excludedMomentJoinQueryList, fmt.Sprintf(`\n \t\t\tLEFT JOIN moment_annotation_exclude_filter_%d ON\n-\t\t\t\tconversation_stats_per_conversation.conversation_id = moment_annotation_exclude_filter_%d.conversation_id_exclude_%d\n+\t\t\t\tconversation_population_per_pair.conversation_id = moment_annotation_exclude_filter_%d.conversation_id_exclude_%d\n \t\t`, i, i, i))\n \t\texcludedMomentWhereQueryList = append(excludedMomentWhereQueryList, fmt.Sprintf(`\n \t\t\tAND moment_annotation_exclude_filter_%d.conversation_id_exclude_%d = ''\n \t\t`, i, i))\n@@ -89,9 +88,9 @@\n \t\t`, missingIndex, missingIndex, filter.existenceFilter.source.tableName(), conditions))\n \t\tallArgs = append(allArgs, args...)\n \t\texcludedMomentJoinQueryList = append(excludedMomentJoinQueryList, fmt.Sprintf(`\n \t\t\tLEFT JOIN moment_annotation_exclude_filter_%d ON\n-\t\t\t\tconversation_stats_per_conversation.conversation_id = moment_annotation_exclude_filter_%d.conversation_id_exclude_%d\n+\t\t\t\tconversation_population_per_pair.conversation_id = moment_annotation_exclude_filter_%d.conversation_id_exclude_%d\n \t\t`, missingIndex, missingIndex, missingIndex))\n \n \t\tselectedValueIndex := selectedValueIndices[filterIndex]\n \t\tvalueOrMissingWhereQueryList = append(valueOrMissingWhereQueryList, fmt.Sprintf(`\n@@ -111,31 +110,21 @@\n \t\texcludedMomentWhereQueries = \"WHERE TRUE \" + strings.Join(whereQueryList, \"\\n\")\n \t}\n \n \t// Build conditions and args for conversation_stats query on `message_d` table.\n-\tmessageGroupByQueries := concatQueries(groupByQueries[messageTable])\n \tmessageCondition, messageArgs := concatConditionsAndArgs(conditionsAndArgs[messageTable])\n \tallArgs = append(allArgs, agentAssistFiltersSubArgs...)\n \tallArgs = append(allArgs, messageArgs...)\n-\toptionalGroupBy := \"\"\n-\tif len(groupByKeys) > 0 {\n-\t\toptionalGroupBy = fmt.Sprintf(\"GROUP BY %s\", concatKeys(groupByKeys))\n-\t}\n-\n-\t// The time bucket comes from conv_with_aa, which keeps one row per agent and\n-\t// conversation, as in conversationStatsClickhouseQuery. Bucketing in conv_with_aht\n-\t// would read each message_d row's own copy of the conversation time, and rows\n-\t// written before and after a conversation's time changed, such as the\n-\t// placeholder end (end = start) and the real end, can fall in different buckets.\n-\t// The conversation would then count once per bucket and add its aht_sec to each.\n+\t// Bucket time must come from the selected conversation/label row. Message\n+\t// copies can have placeholder end times from before the conversation closed.\n \treturn fmt.Sprintf(`\n \t\tWITH\n \t\t%s\n \t\t%s\n \t\t%s,\n         %s AS (\n \t\t\tSELECT\n-\t\t\t\tagent_user_id AS user_id,\n+\t\t\t\tagent_user_id,\n \t\t\t\tconversation_id,\n \t\t\t\tMAX(handle_time_secs) AS aht_sec\n \t\t\tFROM\n \t\t\t\tmessage_d\n@@ -143,45 +132,38 @@\n \t\t\t\tAND %s\n \t\t\t\tAND is_dev_user = 0\n \t\t\t\tAND agent_user_id <> ''\n \t\t\t\tAND %s\t-- Additional filters\n-\t\t\tGROUP BY user_id, conversation_id\n+\t\t\tGROUP BY agent_user_id, conversation_id\n \t\t),\n-\t\tconversation_stats_per_conversation AS (\n+\t\tconversation_population_per_pair AS (\n \t\t\tSELECT *\n \t\t\tFROM %s JOIN %s ON %s.conversation_id = %s.conversation_id\n-\t\t\t\tAND %s.user_id = %s.agent_user_id\n+\t\t\t\tAND %s.agent_user_id = %s.agent_user_id\n \t\t)\n \t\tSELECT \n-\t\t\t%s\n-\t\t\tCOUNT(DISTINCT conversation_id) AS convo_count,\n-\t\t\tCOUNT(DISTINCT user_id) AS user_count,\n-\t\t\tSUM(aht_sec) AS aht_sec\n+\t\t\tconversation_id, agent_user_id, %s AS conversation_time, aht_sec\n \t\tFROM\n-\t\t\tconversation_stats_per_conversation\n+\t\t\tconversation_population_per_pair\n \t\t\t\t%s\n \t\t\t\t%s\n \t\t-- WHERE is optional.\n-\t\t%s\n-\t\t-- GROUP BY is optional.\n \t\t%s`,\n \t\t\tmomentSubQueries,\n \t\t\texcludedMomentSubQueries,\n \t\t\tagentAssistFiltersSubQuery,\n \t\t\t// group-by-conv cte\n \t\t\tConvWithAht,\n \t\t\tconversationSourceCondition, messageCondition,\n-\t\t\t// conversation_stats_per_conversation\n+\t\t\t// conversation_population_per_pair\n \t\t\tConvWithAht, ConvWithAa,\n \t\t\tConvWithAht, ConvWithAa,\n \t\t\tConvWithAht, ConvWithAa,\n \t\t\t// main query\n \t\t\t// select\n-\t\t\tmessageGroupByQueries,\n+\t\t\ttimeColumn,\n \t\t\t// from\n \t\t\tmomentJoinQueries, excludedMomentJoinQueries,\n \t\t\t// where\n-\t\t\texcludedMomentWhereQueries,\n-\t\t\t// group by\n-\t\t\toptionalGroupBy),\n+\t\t\texcludedMomentWhereQueries),\n \t\tallArgs\n }\n", "source": "common_conversation_population_clickhouse.go:269\u2013437; old simple aggregate path is replaced by the wrapper in edit 6"}, {"title": "5. Assemble the shared query", "before": "readConversationStatsFromClickhouse parsed message filters, built conversation conditions, selected source policy and assembled query arguments.", "problem": "The population SQL could not be reused without repeating this preparation and external-table handling.", "change": "Add buildConversationPopulationQuery. Move population-only setup from the reader: time-column selection, metadata parsing, message conditions, conversation time/user conditions, bot policy, AA selection and SELECT construction.", "why": "One entry point packages every artifact needed to execute or embed the population query. Frequency, group mapping, user/ACL resolution and tenant connection selection remain outside it.", "after": "The builder returns a complete query with ordered arguments and an optional external user table; nil attributes are accessed through protobuf getters.", "snapshot": "ACTUAL BUILDER\nfunc buildConversationPopulationQuery(ctx context.Context, inputs conversationPopulationInputs) (conversationPopulationQuery, error) {\n\ttimeColumn := getConversationTimeRangeColumn(getConversationQueryOptions(WithTimeRangeType(inputs.timeRangeField)))\n\tattribute, valueOrMissingFilters, err := parseConversationPopulationValueOrMissingFilters(inputs.timeRange, inputs.attribute, timeColumn)\n\tif err != nil {\n\t\treturn conversationPopulationQuery{}, err\n\t}\n\tconditions, moments, excludedMoments, usersTable, err := parseClickhouseFilter(ctx, inputs.timeRange, attribute, []ClickhouseTable{messageTable}, inputs.useExternalUserTable, WithTimeRangeType(inputs.timeRangeField))\n\tif err != nil {\n\t\treturn conversationPopulationQuery{}, err\n\t}\n\tconversationTables := []ClickhouseTable{conversationLabelTable, conversationTable}\n\tconversationConditions, err := buildTimeRangeConditionAndArgs(inputs.timeRange, conversationTables, timeColumn)\n\tif err != nil {\n\t\treturn conversationPopulationQuery{}, err\n\t}\n\tif inputs.attribute != nil {\n\t\tuserConditions, conversationUsersTable, err := buildUsersConditionAndArgs(inputs.attribute.GetUsers(), conversationTables, inputs.useExternalUserTable)\n\t\tif err != nil {\n\t\t\treturn conversationPopulationQuery{}, err\n\t\t}\n\t\tif usersTable == nil {\n\t\t\tusersTable = conversationUsersTable\n\t\t}\n\t\tconversationConditions = mergeTableConditionsAndArgs(conversationConditions, userConditions)\n\t}\n\tsourceCondition := \"conversation_source IN (0, 8)\"\n\tif inputs.includeBotConversations {\n\t\tsourceCondition = \"conversation_source IN (0, 7, 8)\"\n\t}\n\tconversationQuery, conversationArgs := buildAgentAssistFiltersSubQuery(inputs.attribute.GetAgentAssistFilters(), conversationConditions, sourceCondition, timeColumn)\n\tquery, args := buildConversationPopulationSelect(conditions, moments, excludedMoments, valueOrMissingFilters, timeColumn, conversationQuery, conversationArgs, sourceCondition, inputs.allowMatchingStaleMetadataValues)\n\tresult := conversationPopulationQuery{query: query, args: args}\n\tif usersTable != nil {\n\t\tresult.externalTables = []*ext.Table{usersTable}\n\t}\n\treturn result, nil\n}\n", "diff": "--- base: setup in reader\n+++ common_conversation_population_clickhouse.go:35\n@@ -0,0 +1,37 @@\n+func buildConversationPopulationQuery(ctx context.Context, inputs conversationPopulationInputs) (conversationPopulationQuery, error) {\n+\ttimeColumn := getConversationTimeRangeColumn(getConversationQueryOptions(WithTimeRangeType(inputs.timeRangeField)))\n+\tattribute, valueOrMissingFilters, err := parseConversationPopulationValueOrMissingFilters(inputs.timeRange, inputs.attribute, timeColumn)\n+\tif err != nil {\n+\t\treturn conversationPopulationQuery{}, err\n+\t}\n+\tconditions, moments, excludedMoments, usersTable, err := parseClickhouseFilter(ctx, inputs.timeRange, attribute, []ClickhouseTable{messageTable}, inputs.useExternalUserTable, WithTimeRangeType(inputs.timeRangeField))\n+\tif err != nil {\n+\t\treturn conversationPopulationQuery{}, err\n+\t}\n+\tconversationTables := []ClickhouseTable{conversationLabelTable, conversationTable}\n+\tconversationConditions, err := buildTimeRangeConditionAndArgs(inputs.timeRange, conversationTables, timeColumn)\n+\tif err != nil {\n+\t\treturn conversationPopulationQuery{}, err\n+\t}\n+\tif inputs.attribute != nil {\n+\t\tuserConditions, conversationUsersTable, err := buildUsersConditionAndArgs(inputs.attribute.GetUsers(), conversationTables, inputs.useExternalUserTable)\n+\t\tif err != nil {\n+\t\t\treturn conversationPopulationQuery{}, err\n+\t\t}\n+\t\tif usersTable == nil {\n+\t\t\tusersTable = conversationUsersTable\n+\t\t}\n+\t\tconversationConditions = mergeTableConditionsAndArgs(conversationConditions, userConditions)\n+\t}\n+\tsourceCondition := \"conversation_source IN (0, 8)\"\n+\tif inputs.includeBotConversations {\n+\t\tsourceCondition = \"conversation_source IN (0, 7, 8)\"\n+\t}\n+\tconversationQuery, conversationArgs := buildAgentAssistFiltersSubQuery(inputs.attribute.GetAgentAssistFilters(), conversationConditions, sourceCondition, timeColumn)\n+\tquery, args := buildConversationPopulationSelect(conditions, moments, excludedMoments, valueOrMissingFilters, timeColumn, conversationQuery, conversationArgs, sourceCondition, inputs.allowMatchingStaleMetadataValues)\n+\tresult := conversationPopulationQuery{query: query, args: args}\n+\tif usersTable != nil {\n+\t\tresult.externalTables = []*ext.Table{usersTable}\n+\t}\n+\treturn result, nil\n+}\n", "source": "common_conversation_population_clickhouse.go:35\u201371; reuses existing common_clickhouse.go parsers"}, {"title": "6. Restore the existing aggregate", "before": "ConversationStats calculated counts and handle-time sums inside its population query functions.", "problem": "Extracting row selection requires an explicit owner for the existing aggregate and bucket projection.", "change": "Add conversationStatsPopulationAggregate in retrieve_conversation_stats_clickhouse.go. Embed the shared SELECT as eligible_population and apply existing distinct conversation/user counts, AHT sum and GROUP BY.", "why": "Replace the selected physical time-column name in the existing group projection with conversation_time, retaining the existing frequency/timezone/week expression.", "after": "ConversationStats still receives its original aggregate columns. The shared builder contains no frequency or Agent/Team aggregation.", "snapshot": "ACTUAL AGGREGATE WRAPPER\nfunc conversationStatsPopulationAggregate(populationQuery string, groupByKeys, groupByQueries []string, timeColumn string) string {\n\toptionalGroupBy := \"\"\n\tif len(groupByKeys) > 0 {\n\t\toptionalGroupBy = \"GROUP BY \" + concatKeys(groupByKeys)\n\t}\n\tgroupProjection := strings.ReplaceAll(concatQueries(groupByQueries), timeColumn, \"conversation_time\")\n\treturn fmt.Sprintf(`WITH eligible_population AS (%s)\n SELECT %s\n COUNT(DISTINCT conversation_id) AS convo_count,\n COUNT(DISTINCT agent_user_id) AS user_count,\n SUM(aht_sec) AS aht_sec\n FROM eligible_population\n %s`, populationQuery, groupProjection, optionalGroupBy)\n}\n", "diff": "--- retrieve_conversation_stats_clickhouse.go:154 old combined simple query\n+++ retrieve_conversation_stats_clickhouse.go:62 new aggregate wrapper\n@@ -1,56 +1,14 @@\n-func conversationStatsClickhouseQuery(\n-\tconditionsAndArgs map[ClickhouseTable][]conditionAndArg,\n-\tgroupByKeys []string,\n-\tgroupByQueries map[ClickhouseTable][]string,\n-\tagentAssistFiltersSubQuery string,\n-\tagentAssistFiltersSubQueryArgs []any,\n-\tconversationSourceCondition string,\n-) (string, []any) {\n-\tmessageGroupByQueries := concatQueries(groupByQueries[messageTable])\n-\tmessageCondition, messageArgs := concatConditionsAndArgs(conditionsAndArgs[messageTable])\n+func conversationStatsPopulationAggregate(populationQuery string, groupByKeys, groupByQueries []string, timeColumn string) string {\n \toptionalGroupBy := \"\"\n \tif len(groupByKeys) > 0 {\n-\t\toptionalGroupBy = fmt.Sprintf(\"GROUP BY %s\", concatKeys(groupByKeys))\n+\t\toptionalGroupBy = \"GROUP BY \" + concatKeys(groupByKeys)\n \t}\n-\tconvWithStatsQuery := fmt.Sprintf(`\n-        WITH %s,\n-        %s AS (\n-\t\t\tSELECT\n-\t\t\t\tconversation_id, agent_user_id,\n-\t\t\t\tMAX(handle_time_secs) AS aht_sec\n-\t\t\tFROM\n-\t\t\t\tmessage_d\n-\t\t\tWHERE TRUE\n-\t\t\t\tAND %s\n-\t\t\t\tAND is_dev_user = 0\n-\t\t\t\tAND agent_user_id <> ''\n-\t\t\t\tAND %s\t-- Additional filters\n-\t\t\tGROUP BY\n-\t\t\t\tconversation_id, agent_user_id\n-\t\t)\n-\t\tSELECT\n-\t\t\t%s\n-\t\t\tCOUNT(DISTINCT conversation_id) AS convo_count,\n-\t\t\tCOUNT(DISTINCT agent_user_id) AS user_count,\n-\t\t\tSUM(aht_sec) AS aht_sec\n-\t\tFROM\n-\t\t\t%s JOIN %s USING (conversation_id, agent_user_id)\n-\t\t-- GROUP BY is optional.\n-\t\t%s`,\n-\t\tagentAssistFiltersSubQuery,\n-\t\t// group-by-conv cte\n-\t\tConvWithAht,\n-\t\tconversationSourceCondition,\n-\t\tmessageCondition,\n-\t\t// main query\n-\t\t// select\n-\t\tmessageGroupByQueries,\n-\t\t// from\n-\t\tConvWithAht,\n-\t\tConvWithAa,\n-\t\t// group by\n-\t\toptionalGroupBy,\n-\t)\n-\tmessageArgs = append(agentAssistFiltersSubQueryArgs, messageArgs...)\n-\treturn convWithStatsQuery, messageArgs\n+\tgroupProjection := strings.ReplaceAll(concatQueries(groupByQueries), timeColumn, \"conversation_time\")\n+\treturn fmt.Sprintf(`WITH eligible_population AS (%s)\n+ SELECT %s\n+ COUNT(DISTINCT conversation_id) AS convo_count,\n+ COUNT(DISTINCT agent_user_id) AS user_count,\n+ SUM(aht_sec) AS aht_sec\n+ FROM eligible_population\n+ %s`, populationQuery, groupProjection, optionalGroupBy)\n }\n", "source": "retrieve_conversation_stats_clickhouse.go:62\u201375"}, {"title": "7. Wire the current reader", "before": "The reader selected ordinary versus metadata query functions and managed local SQL arguments and a user table.", "problem": "The new population contract has to replace the production read path, including execution artifacts, rather than remain unused.", "change": "Call buildConversationPopulationQuery with request filter/time settings. Keep parseClickhouseGroupBy and unsupported-key validation. Build the outer aggregate, attach population.externalTables and execute with population.args.", "why": "This changes query ownership while preserving scoped connection selection, row scanning and response conversion. It also removes the reader\u2019s ordinary-versus-metadata branch.", "after": "ConversationStats consumes the shared relation in production code. The public handler, cache, ACL-empty guard and Team conversion remain outside this edit.", "snapshot": "ACTUAL READER INTEGRATION \u2014 unchanged scanning/conversion below omitted\nfunc (a AnalyticsServiceImpl) readConversationStatsFromClickhouse(\n\tctx context.Context,\n\treq *analyticspb.RetrieveConversationStatsRequest,\n\tusers []*userpb.User,\n\tincludeBotConversations bool,\n\tallowMatchingStaleMetadataValues bool,\n) (*analyticspb.RetrieveConversationStatsResponse, error) {\n\tparent, err := shared.ParseCustomerProfile(req.Parent)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tpopulation, err := buildConversationPopulationQuery(ctx, conversationPopulationInputs{\n\t\ttimeRange:                        req.FilterByTimeRange,\n\t\tattribute:                        req.FilterByAttribute,\n\t\ttimeRangeField:                   req.ConversationTimeRangeField,\n\t\tincludeBotConversations:          includeBotConversations,\n\t\tallowMatchingStaleMetadataValues: allowMatchingStaleMetadataValues,\n\t\tuseExternalUserTable:             a.enableExtTableForUserFilter,\n\t})\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\ttargetTables := []ClickhouseTable{messageTable}\n\tgroupByKeys, groupByQueries, err := parseClickhouseGroupBy(\n\t\t&req.Frequency,\n\t\treq.GroupByAttributeTypes,\n\t\treq.Metadata,\n\t\ttargetTables,\n\t\tWithTimeRangeType(req.ConversationTimeRangeField),\n\t)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tif v := unsupportedGroupByKeys(groupByKeys, []string{agentUserIDColumn, truncatedTimeColumn}); len(v) > 0 {\n\t\treturn nil, fmt.Errorf(\"group_by keys %v are not supported\", v)\n\t}\n\n\tchQuery := conversationStatsPopulationAggregate(population.query, groupByKeys, groupByQueries[messageTable], getConversationTimeRangeColumn(getConversationQueryOptions(WithTimeRangeType(req.ConversationTimeRangeField))))\n\ta.logger.Infof(ctx, \"clickhouse query: %v\", chQuery)\n\n\tconn, err := a.getConversationsClickhouseConn(ctx, parent.CustomerID, parent.ProfileID)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tctx = attachExtTablesToContext(ctx, population.externalTables...)\n\tstartT := time.Now()\n\trows, err := clickhouseshared.QueryWithRetry(ctx, conn, chQuery, population.args...)\n\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"querying clickhouse: %w\", err)\n\t}\n\tdefer rows.Close()\n", "diff": "--- retrieve_conversation_stats_clickhouse.go at pinned base\n+++ retrieve_conversation_stats_clickhouse.go working tree\n@@ -8,28 +8,20 @@\n \tparent, err := shared.ParseCustomerProfile(req.Parent)\n \tif err != nil {\n \t\treturn nil, err\n \t}\n-\ttargetTables := []ClickhouseTable{\n-\t\tmessageTable,\n-\t}\n-\tfilterByAttribute, valueOrMissingFilters, err := parseConversationStatsValueOrMissingFilters(\n-\t\treq.FilterByTimeRange,\n-\t\treq.FilterByAttribute,\n-\t\tgetConversationTimeRangeColumn(getConversationQueryOptions(WithTimeRangeType(req.ConversationTimeRangeField))),\n-\t)\n+\tpopulation, err := buildConversationPopulationQuery(ctx, conversationPopulationInputs{\n+\t\ttimeRange:                        req.FilterByTimeRange,\n+\t\tattribute:                        req.FilterByAttribute,\n+\t\ttimeRangeField:                   req.ConversationTimeRangeField,\n+\t\tincludeBotConversations:          includeBotConversations,\n+\t\tallowMatchingStaleMetadataValues: allowMatchingStaleMetadataValues,\n+\t\tuseExternalUserTable:             a.enableExtTableForUserFilter,\n+\t})\n \tif err != nil {\n \t\treturn nil, err\n \t}\n-\tconditionsAndArgs, momentConditionsAndArgsList, excludedMomentConditionsAndArgsList, usersExtTable, err := parseClickhouseFilter(ctx, req.FilterByTimeRange,\n-\t\tfilterByAttribute,\n-\t\ttargetTables,\n-\t\ta.enableExtTableForUserFilter,\n-\t\tWithTimeRangeType(req.ConversationTimeRangeField),\n-\t)\n-\tif err != nil {\n-\t\treturn nil, err\n-\t}\n+\ttargetTables := []ClickhouseTable{messageTable}\n \tgroupByKeys, groupByQueries, err := parseClickhouseGroupBy(\n \t\t&req.Frequency,\n \t\treq.GroupByAttributeTypes,\n \t\treq.Metadata,\n@@ -42,60 +34,19 @@\n \tif v := unsupportedGroupByKeys(groupByKeys, []string{agentUserIDColumn, truncatedTimeColumn}); len(v) > 0 {\n \t\treturn nil, fmt.Errorf(\"group_by keys %v are not supported\", v)\n \t}\n \n-\ttimeColumn := conversationStartTimeColumn\n-\tif req.ConversationTimeRangeField == analyticspb.RetrieveClosedConversationsRequest_TARGET_FIELD_FOR_TIME_RANGE_CONVERSATION_ENDED_AT {\n-\t\ttimeColumn = conversationEndTimeColumn\n-\t}\n-\n-\tconversationTables := []ClickhouseTable{conversationLabelTable, conversationTable}\n-\tconversationConditionsAndArgs, err := buildTimeRangeConditionAndArgs(req.FilterByTimeRange, conversationTables, timeColumn)\n-\tif err != nil {\n-\t\treturn nil, err\n-\t}\n-\tif req.FilterByAttribute != nil {\n-\t\tusersConditionsAndArgs, convUsersExtTable, err := buildUsersConditionAndArgs(req.FilterByAttribute.Users, conversationTables, a.enableExtTableForUserFilter)\n-\t\tif err != nil {\n-\t\t\treturn nil, err\n-\t\t}\n-\t\tif usersExtTable == nil {\n-\t\t\tusersExtTable = convUsersExtTable\n-\t\t}\n-\t\tconversationConditionsAndArgs = mergeTableConditionsAndArgs(conversationConditionsAndArgs, usersConditionsAndArgs)\n-\t}\n-\n-\t// Whether to enable CONVERSATION_SOURCE_BOT for conversation stats.\n-\t// Currently we only have few customers (e.g. Brinks VA) enabling this.\n-\t// However, previously chatbot customers (e.g. Intuit, Snap) not enabling this.\n-\tconversationSourceCondition := \"conversation_source IN (0, 8)\"\n-\tif includeBotConversations {\n-\t\tconversationSourceCondition = \"conversation_source IN (0, 7, 8)\"\n-\t}\n-\n-\tagentAssistFiltersSubQuery, agentAssistFiltersSubQueryArgs := buildAgentAssistFiltersSubQuery(\n-\t\treq.FilterByAttribute.AgentAssistFilters,\n-\t\tconversationConditionsAndArgs,\n-\t\tconversationSourceCondition,\n-\t\ttimeColumn,\n-\t)\n-\tvar chQuery string\n-\tvar chArgs []any\n-\tif len(momentConditionsAndArgsList) == 0 && len(excludedMomentConditionsAndArgsList) == 0 && len(valueOrMissingFilters) == 0 {\n-\t\tchQuery, chArgs = conversationStatsClickhouseQuery(conditionsAndArgs, groupByKeys, groupByQueries, agentAssistFiltersSubQuery, agentAssistFiltersSubQueryArgs, conversationSourceCondition)\n-\t} else {\n-\t\tchQuery, chArgs = a.conversationStatsClickhouseQueryWithMoment(conditionsAndArgs, momentConditionsAndArgsList, excludedMomentConditionsAndArgsList, valueOrMissingFilters, groupByKeys, groupByQueries, agentAssistFiltersSubQuery, agentAssistFiltersSubQueryArgs, conversationSourceCondition, allowMatchingStaleMetadataValues)\n-\t}\n+\tchQuery := conversationStatsPopulationAggregate(population.query, groupByKeys, groupByQueries[messageTable], getConversationTimeRangeColumn(getConversationQueryOptions(WithTimeRangeType(req.ConversationTimeRangeField))))\n \ta.logger.Infof(ctx, \"clickhouse query: %v\", chQuery)\n \n \tconn, err := a.getConversationsClickhouseConn(ctx, parent.CustomerID, parent.ProfileID)\n \tif err != nil {\n \t\treturn nil, err\n \t}\n \n-\tctx = attachExtTablesToContext(ctx, usersExtTable)\n+\tctx = attachExtTablesToContext(ctx, population.externalTables...)\n \tstartT := time.Now()\n-\trows, err := clickhouseshared.QueryWithRetry(ctx, conn, chQuery, chArgs...)\n+\trows, err := clickhouseshared.QueryWithRetry(ctx, conn, chQuery, population.args...)\n \tif err != nil {\n \t\treturn nil, fmt.Errorf(\"querying clickhouse: %w\", err)\n \t}\n \tdefer rows.Close()\n", "source": "retrieve_conversation_stats_clickhouse.go:77\u2013128; unchanged handler: retrieve_conversation_stats.go"}, {"title": "8. Verify rows and aggregates", "before": "Existing SQL/response snapshots and end-time version tests cover the legacy aggregate but do not expose population rows.", "problem": "A SQL-only check can miss wrong pair membership, lost user scope, changed MAX inputs or metadata attribution.", "change": "Add ConversationPopulationCHTestSuite with real ClickHouse cases for pair identity/MAX, conversation-scoped metadata, AA/source rules, and selected/missing/excluded metadata. Run both the shared SELECT and its aggregate wrapper.", "why": "Alice has matching handle times 10/20 and excluded voicemail 90; Bob shares the conversation with AHT 15; Charlie is otherwise eligible but outside the user selection. Expected pairs are Alice/Bob and aggregate 1 conversation, 2 users, sum 35.", "after": "The tests exercise inline/external user tables, time boundaries, latest matching rows, no-message/message-only exclusions and existing policy branches. Historical run results remain in the scenario table; this report edit does not rerun backend tests.", "snapshot": "ACTUAL EXECUTION AND ASSERTIONS \u2014 fixture setup above omitted\n\n\t\t\t// When\n\t\t\tpopulation, err := buildConversationPopulationQuery(s.T().Context(), inputs)\n\t\t\tvar got []struct {\n\t\t\t\tConversation string    `ch:\"conversation_id\"`\n\t\t\t\tAgent        string    `ch:\"agent_user_id\"`\n\t\t\t\tTime         time.Time `ch:\"conversation_time\"`\n\t\t\t\tAHT          int32     `ch:\"aht_sec\"`\n\t\t\t}\n\t\t\tif err == nil {\n\t\t\t\terr = conn.Select(attachExtTablesToContext(s.T().Context(), population.externalTables...), &got, population.query, population.args...)\n\t\t\t}\n\t\t\tvar aggregate []struct {\n\t\t\t\tConversations uint64 `ch:\"convo_count\"`\n\t\t\t\tUsers         uint64 `ch:\"user_count\"`\n\t\t\t\tHandleTime    int64  `ch:\"aht_sec\"`\n\t\t\t}\n\t\t\tif err == nil {\n\t\t\t\tquery := conversationStatsPopulationAggregate(population.query, nil /* groupByKeys */, nil /* groupByQueries */, conversationStartTimeColumn)\n\t\t\t\terr = conn.Select(attachExtTablesToContext(s.T().Context(), population.externalTables...), &aggregate, query, population.args...)\n\t\t\t}\n\n\t\t\t// Then\n\t\t\ts.Require().NoError(err)\n\t\t\ts.Require().Len(got, 2)\n\t\t\tbyAgent := map[string]int32{}\n\t\t\tfor _, row := range got {\n\t\t\t\ts.Equal(\"shared\", row.Conversation)\n\t\t\t\ts.Equal(start, row.Time)\n\t\t\t\tbyAgent[row.Agent] = row.AHT\n\t\t\t}\n\t\t\ts.Equal(map[string]int32{\"alice\": 20, \"bob\": 15}, byAgent)\n\t\t\ts.Require().Len(aggregate, 1)\n\t\t\ts.Equal(uint64(1), aggregate[0].Conversations)\n\t\t\ts.Equal(uint64(2), aggregate[0].Users)\n\t\t\ts.Equal(int64(35), aggregate[0].HandleTime)\n\t\t\tif externalUsers {\n\t\t\t\ts.Require().Len(population.externalTables, 1)\n\t\t\t}\n\t\t})\n\t}\n", "diff": "--- base: no direct population suite\n+++ common_conversation_population_clickhouse_test.go:58\n@@ -0,0 +1,41 @@\n+\n+\t\t\t// When\n+\t\t\tpopulation, err := buildConversationPopulationQuery(s.T().Context(), inputs)\n+\t\t\tvar got []struct {\n+\t\t\t\tConversation string    `ch:\"conversation_id\"`\n+\t\t\t\tAgent        string    `ch:\"agent_user_id\"`\n+\t\t\t\tTime         time.Time `ch:\"conversation_time\"`\n+\t\t\t\tAHT          int32     `ch:\"aht_sec\"`\n+\t\t\t}\n+\t\t\tif err == nil {\n+\t\t\t\terr = conn.Select(attachExtTablesToContext(s.T().Context(), population.externalTables...), &got, population.query, population.args...)\n+\t\t\t}\n+\t\t\tvar aggregate []struct {\n+\t\t\t\tConversations uint64 `ch:\"convo_count\"`\n+\t\t\t\tUsers         uint64 `ch:\"user_count\"`\n+\t\t\t\tHandleTime    int64  `ch:\"aht_sec\"`\n+\t\t\t}\n+\t\t\tif err == nil {\n+\t\t\t\tquery := conversationStatsPopulationAggregate(population.query, nil /* groupByKeys */, nil /* groupByQueries */, conversationStartTimeColumn)\n+\t\t\t\terr = conn.Select(attachExtTablesToContext(s.T().Context(), population.externalTables...), &aggregate, query, population.args...)\n+\t\t\t}\n+\n+\t\t\t// Then\n+\t\t\ts.Require().NoError(err)\n+\t\t\ts.Require().Len(got, 2)\n+\t\t\tbyAgent := map[string]int32{}\n+\t\t\tfor _, row := range got {\n+\t\t\t\ts.Equal(\"shared\", row.Conversation)\n+\t\t\t\ts.Equal(start, row.Time)\n+\t\t\t\tbyAgent[row.Agent] = row.AHT\n+\t\t\t}\n+\t\t\ts.Equal(map[string]int32{\"alice\": 20, \"bob\": 15}, byAgent)\n+\t\t\ts.Require().Len(aggregate, 1)\n+\t\t\ts.Equal(uint64(1), aggregate[0].Conversations)\n+\t\t\ts.Equal(uint64(2), aggregate[0].Users)\n+\t\t\ts.Equal(int64(35), aggregate[0].HandleTime)\n+\t\t\tif externalUsers {\n+\t\t\t\ts.Require().Len(population.externalTables, 1)\n+\t\t\t}\n+\t\t})\n+\t}\n\nADDED TEST METHODS\nTestEligiblePairsAndMatchingHandleTime\nTestMetadataEligibilityIsConversationScoped\nTestAgentAssistAndSourcePolicies\nTestMetadataSelectedMissingAndExcluded", "source": "common_conversation_population_clickhouse_test.go:30,101,144,210; existing version integration suite retained"}, {"title": "9. Update callers and fixtures", "before": "The metadata parser unit test called ConversationStats-specific helper names; SQL goldens represented the prior combined query shape.", "problem": "Tests and Bazel source/test registration must follow the extraction while response expectations continue to check compatibility.", "change": "Retarget the parser test to the shared helper names/signature. Update 12 SQL golden files for eligible_population plus the outer aggregate. Include Gazelle-generated production source registration and the focused test target.", "why": "Snapshot differences should explain the new query structure and bind order; existing aggregate response assertions remain. BUILD.bazel is generated, not a manual implementation step.", "after": "Step 1 consists of two new Go files, the modified reader/parser test, 12 SQL snapshots and generated BUILD changes. Feature queries and the new public RPC remain later work.", "snapshot": "ACTUAL TEST-CALLER AND GENERATED BUILD DIFF\ndiff --git a/insights-server/internal/analyticsimpl/BUILD.bazel b/insights-server/internal/analyticsimpl/BUILD.bazel\nindex 44ac5d4b00..c7f6648fa7 100644\n--- a/insights-server/internal/analyticsimpl/BUILD.bazel\n+++ b/insights-server/internal/analyticsimpl/BUILD.bazel\n@@ -12,6 +12,7 @@ go_library(\n         \"clickhouse_connect.go\",\n         \"common.go\",\n         \"common_clickhouse.go\",\n+        \"common_conversation_population_clickhouse.go\",\n         \"common_customer_insights.go\",\n         \"common_insights_topic.go\",\n         \"common_moment_traversal.go\",\n@@ -3434,3 +3435,20 @@ go_test(\n         \"@org_golang_google_protobuf//types/known/timestamppb\",\n     ],\n )\n+\n+go_test(\n+    name = \"common_conversation_population_clickhouse_test\",\n+    srcs = [\"common_conversation_population_clickhouse_test.go\"],\n+    data = glob([\"testdata/**\"]),\n+    embed = [\":analyticsimpl\"],\n+    deps = [\n+        \"//shared/clickhouse/testing\",\n+        \"@com_github_cresta_cresta_proto_v2//cresta/v1/analytics\",\n+        \"@com_github_cresta_cresta_proto_v2//cresta/v1/common/metadata\",\n+        \"@com_github_cresta_cresta_proto_v2//cresta/v1/moment\",\n+        \"@com_github_cresta_cresta_proto_v2//cresta/v1/user\",\n+        \"@com_github_google_uuid//:uuid\",\n+        \"@com_github_stretchr_testify//suite\",\n+        \"@org_golang_google_protobuf//types/known/timestamppb\",\n+    ],\n+)\ndiff --git a/insights-server/internal/analyticsimpl/retrieve_conversation_stats_test.go b/insights-server/internal/analyticsimpl/retrieve_conversation_stats_test.go\nindex 8c2a353b75..151240facf 100644\n--- a/insights-server/internal/analyticsimpl/retrieve_conversation_stats_test.go\n+++ b/insights-server/internal/analyticsimpl/retrieve_conversation_stats_test.go\n@@ -646,7 +646,7 @@ func TestRetrieveConversationStatsValueOrMissingMetadataFilter(t *testing.T) {\n \t}\n \n \t// When\n-\tremainingAttribute, valueOrMissingFilters, err := parseConversationStatsValueOrMissingFilters(\n+\tremainingAttribute, valueOrMissingFilters, err := parseConversationPopulationValueOrMissingFilters(\n \t\ttimeRange,\n \t\tattribute,\n \t\tconversationStartTimeColumn,\n@@ -654,7 +654,7 @@ func TestRetrieveConversationStatsValueOrMissingMetadataFilter(t *testing.T) {\n \n \t// Then\n \tif err != nil {\n-\t\tt.Fatalf(\"parseConversationStatsValueOrMissingFilters() failed: %v\", err)\n+\t\tt.Fatalf(\"parseConversationPopulationValueOrMissingFilters() failed: %v\", err)\n \t}\n \tif len(valueOrMissingFilters) != 1 {\n \t\tt.Fatalf(\"got %d value-or-missing filters, want 1\", len(valueOrMissingFilters))\n@@ -679,14 +679,12 @@ func TestRetrieveConversationStatsValueOrMissingMetadataFilter(t *testing.T) {\n \n \tfor _, allowStale := range []bool{false, true} {\n \t\tt.Run(map[bool]string{false: \"latest_value\", true: \"allow_stale_value\"}[allowStale], func(t *testing.T) {\n-\t\t\tservice := AnalyticsServiceImpl{}\n-\t\t\tquery, args := service.conversationStatsClickhouseQueryWithMoment(\n+\t\t\tquery, args := buildConversationPopulationSelect(\n \t\t\t\tconditionsAndArgs,\n \t\t\t\tnil,\n \t\t\t\tnil,\n \t\t\t\tvalueOrMissingFilters,\n-\t\t\t\tnil,\n-\t\t\t\tmap[ClickhouseTable][]string{},\n+\t\t\t\tconversationStartTimeColumn,\n \t\t\t\t\"conv_with_aa AS (SELECT '' AS agent_user_id, '' AS conversation_id, now() AS conversation_start_time)\",\n \t\t\t\tnil,\n \t\t\t\t\"conversation_source IN (0, 8)\",\n", "diff": "ACTUAL REPRESENTATIVE SQL GOLDEN DIFF\n--- base/testdata/clickhouse_RetrieveConversationStats_FilterByAgent_GroupByAgent_WithoutAgentAssistFilter_request.sql\n+++ working-tree/testdata/clickhouse_RetrieveConversationStats_FilterByAgent_GroupByAgent_WithoutAgentAssistFilter_request.sql\n@@ -1,45 +1,78 @@\n-WITH conv_with_aa AS (\n-  SELECT agent_user_id,\n-    conversation_id,\n-    conversation_start_time\n-  FROM conversation_d\n-  WHERE TRUE\n-    AND conversation_source IN (0, 7, 8)\n-    AND is_dev_user = 0\n-    AND agent_user_id <> ''\n-    AND (\n-      (conversation_start_time >= '2021-01-01 00:00:00')\n-      AND (conversation_start_time < '2021-01-10 00:00:00')\n-      AND (agent_user_id IN ('2'))\n-    )\n-  ORDER BY update_time DESC\n-  LIMIT 1 BY agent_user_id, conversation_id\n-),\n-conv_with_aht AS (\n-  SELECT conversation_id, agent_user_id,\n-    MAX(handle_time_secs) AS aht_sec\n-  FROM message_d\n-  WHERE TRUE\n-    AND conversation_source IN (0, 7, 8)\n-    AND is_dev_user = 0\n-    AND agent_user_id <> ''\n-    AND (\n-      (conversation_start_time >= '2021-01-01 00:00:00')\n-      AND (conversation_start_time < '2021-01-10 00:00:00')\n-      AND (agent_user_id IN ('2'))\n-      AND (is_voice_mail <> 1)\n-    ) -- Additional filters\n-  GROUP BY conversation_id, agent_user_id\n-)\n-SELECT DATE_TRUNC(\n+WITH\n+  eligible_population AS (\n+    WITH\n+      conv_with_aa AS (\n+        SELECT\n+          agent_user_id,\n+          conversation_id,\n+          conversation_start_time\n+        FROM\n+          conversation_d\n+        WHERE\n+          TRUE\n+          AND conversation_source IN (0, 7, 8)\n+          AND is_dev_user = 0\n+          AND agent_user_id <> ''\n+          AND (\n+            (conversation_start_time >= '2021-01-01 00:00:00')\n+            AND (conversation_start_time < '2021-01-10 00:00:00')\n+            AND (agent_user_id IN ('2'))\n+          )\n+        ORDER BY\n+          update_time DESC\n+        LIMIT\n+          1 BY agent_user_id, conversation_id\n+      ),\n+      conv_with_aht AS (\n+        SELECT\n+          agent_user_id,\n+          conversation_id,\n+          MAX(handle_time_secs) AS aht_sec\n+        FROM\n+          message_d\n+        WHERE\n+          TRUE\n+          AND conversation_source IN (0, 7, 8)\n+          AND is_dev_user = 0\n+          AND agent_user_id <> ''\n+          AND (\n+            (conversation_start_time >= '2021-01-01 00:00:00')\n+            AND (conversation_start_time < '2021-01-10 00:00:00')\n+            AND (agent_user_id IN ('2'))\n+            AND (is_voice_mail <> 1)\n+          ) -- Additional filters\n+        GROUP BY\n+          agent_user_id,\n+          conversation_id\n+      ),\n+      conversation_population_per_pair AS (\n+        SELECT\n+          *\n+        FROM\n+          conv_with_aht\n+          JOIN conv_with_aa ON conv_with_aht.conversation_id = conv_with_aa.conversation_id\n+          AND conv_with_aht.agent_user_id = conv_with_aa.agent_user_id\n+      )\n+    SELECT\n+      conversation_id,\n+      agent_user_id,\n+      conversation_start_time AS conversation_time,\n+      aht_sec\n+    FROM\n+      conversation_population_per_pair\n+      -- WHERE is optional.\n+  )\n+SELECT\n+  DATE_TRUNC(\n     'day',\n-    conversation_start_time + toIntervalDay(0) + toIntervalHour(-10)\n+    conversation_time + toIntervalDay(0) + toIntervalHour(-10)\n   ) - toIntervalDay(0) - toIntervalHour(-10) AS truncated_time,\n   agent_user_id,\n   COUNT(DISTINCT conversation_id) AS convo_count,\n   COUNT(DISTINCT agent_user_id) AS user_count,\n   SUM(aht_sec) AS aht_sec\n-FROM conv_with_aht\n-  JOIN conv_with_aa USING (conversation_id, agent_user_id) -- GROUP BY is optional.\n-GROUP BY truncated_time,\n-  agent_user_id+FROM\n+  eligible_population\n+GROUP BY\n+  truncated_time,\n+  agent_user_id\n", "source": "retrieve_conversation_stats_test.go:649,682; BUILD.bazel; testdata/clickhouse_RetrieveConversationStats_*_request.sql"}];let index=0,view='snapshot';const byId=id=>document.getElementById(id);function render(){const t=topics[index];byId('nav').replaceChildren();topics.forEach((item,i)=>{const b=document.createElement('button');b.textContent=item.title;b.setAttribute('aria-current',i===index?'step':'false');b.onclick=()=>{index=i;render()};byId('nav').append(b)});byId('topic').textContent=t.title;byId('cards').replaceChildren();[['Current state',t.before],['Problem',t.problem],['Change',t.change],['Why',t.why],['Resulting state',t.after]].forEach(([title,body])=>{const c=document.createElement('div');c.className='card';const h=document.createElement('strong');h.textContent=title;const p=document.createElement('p');p.textContent=body;c.append(h,p);byId('cards').append(c)});byId('code').textContent=t[view];byId('source').textContent='Source: '+t.source+'. Working tree: xw/convi-7777-step-1-population; base: 40faeac75f. Excerpts are labeled where surrounding code is omitted.';byId('snapshot').setAttribute('aria-pressed',String(view==='snapshot'));byId('diff').setAttribute('aria-pressed',String(view==='diff'));byId('prev').disabled=index===0;byId('next').disabled=index===topics.length-1}byId('snapshot').onclick=()=>{view='snapshot';render()};byId('diff').onclick=()=>{view='diff';render()};byId('prev').onclick=()=>{if(index>0){index--;render()}};byId('next').onclick=()=>{if(index<topics.length-1){index++;render()}};render();</script></body></html>

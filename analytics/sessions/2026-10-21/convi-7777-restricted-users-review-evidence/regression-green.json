@@ -1,0 +1,55 @@
+[
+  {
+    "Time": "2026-10-21T15:44:45.487148-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithExternalTableFlagDisabled/AgentsOnly",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-21T15:44:45.494865-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithExternalTableFlagDisabled/ActiveOnly",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-21T15:44:45.519097-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithExternalTableFlagDisabled/AgentsOnlyLargeDirectory",
+    "Elapsed": 0.02
+  },
+  {
+    "Time": "2026-10-21T15:44:45.543209-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithExternalTableFlagDisabled/ActiveOnlyLargeDirectory",
+    "Elapsed": 0.02
+  },
+  {
+    "Time": "2026-10-21T15:44:45.543448-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithExternalTableFlagDisabled/NoEligibleAgents",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T15:44:45.54356-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithExternalTableFlagDisabled/NoActiveUsers",
+    "Elapsed": 0
+  },
+  {
+    "Time": "2026-10-21T15:44:45.543584-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithExternalTableFlagDisabled",
+    "Elapsed": 0.07
+  },
+  {
+    "Time": "2026-10-21T15:44:51.807318-04:00",
+    "Action": "pass",
+    "Test": "TestConversationAssistanceUsagePopulationCH",
+    "Elapsed": 16.41
+  },
+  {
+    "Time": "2026-10-21T15:44:51.809626-04:00",
+    "Action": "pass",
+    "Elapsed": 17.925
+  }
+]

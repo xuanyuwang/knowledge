@@ -1,0 +1,19 @@
+{
+  "originalBase": "cd7b46d052c694ec6cd689b8f6ab9f01e9690104",
+  "preparation": {
+    "commit": "e5b95d2a8e5552ec843ca5714628285e213842be",
+    "branch": "xw/convi-7777-assistance-usage-preparation",
+    "base": "main",
+    "draft": true,
+    "url": "https://github.com/cresta/director/pull/24019"
+  },
+  "column": {
+    "commit": "5f5fb98147ef0b8cd79abc19bf073e827a05e6e2",
+    "branch": "xw/convi-7777-assistance-usage",
+    "base": "xw/convi-7777-assistance-usage-preparation",
+    "draft": true,
+    "url": "https://github.com/cresta/director/pull/24020"
+  },
+  "originalImplementationFilesPreserved": 15,
+  "featureFlag": "Deferred by user; amend preparation PR later"
+}

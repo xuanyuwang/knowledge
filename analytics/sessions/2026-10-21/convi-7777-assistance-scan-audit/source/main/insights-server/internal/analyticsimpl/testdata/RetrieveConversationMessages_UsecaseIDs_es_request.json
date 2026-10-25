@@ -1,0 +1,119 @@
+{
+    "highlight": {
+        "fields":{
+            "message_text":{
+               "number_of_fragments":0
+            },
+            "message_text_whitespace":{
+               "number_of_fragments":0
+            },
+            "message_text_with_custom_analyzer.english":{
+               "number_of_fragments":0
+            },
+            "message_text_with_custom_analyzer.spanish":{
+               "number_of_fragments":0
+            },
+            "message_text_with_custom_analyzer.french":{
+               "number_of_fragments":0
+            },
+            "message_text_with_custom_analyzer.italian":{
+               "number_of_fragments":0
+            },
+            "message_text_with_custom_analyzer.german":{
+               "number_of_fragments":0
+            },
+            "message_text_with_custom_analyzer.dutch":{
+               "number_of_fragments":0
+            },
+            "message_text_with_custom_analyzer.portuguese":{
+               "number_of_fragments":0
+            },
+            "message_text_with_custom_analyzer.russian":{
+               "number_of_fragments":0
+            },
+            "message_text_with_custom_analyzer.thai":{
+               "number_of_fragments":0
+            }
+         },
+        "post_tags": [
+            "\u003c/mark\u003e"
+        ],
+        "pre_tags": [
+            "\u003cmark\u003e"
+        ]
+    },
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": ["message", "message_group"]
+                    }
+                },
+                {
+                    "range": {
+                        "conversation_started_at": {
+                            "gte": "2022-04-13T00:00:00Z",
+                            "lt": "2022-07-13T00:00:00Z",
+                            "time_zone": "-10:00"
+                        }
+                    }
+                },
+                {
+                    "terms": {
+                        "agent_user_id.keyword": [
+                            "user-id1"
+                        ]
+                    }
+                },
+                {
+                    "bool": {
+                        "should": [
+                            {
+                                "terms": {
+                                    "conversation_source": [
+                                        0,
+                                        7,
+                                        8
+                                    ]
+                                }
+                            },
+                            {
+                                "bool": {
+                                    "must_not": [
+                                        {
+                                            "exists": {
+                                                "field": "conversation_source"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "usecase_id.keyword": [
+                            "usecase_id_1"
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    "sort": [
+        {
+            "conversation_ended_at": {
+                "format": "strict_date_optional_time_nanos",
+                "order": "desc"
+            }
+        },
+        {
+           "created_at": {
+           "format": "strict_date_optional_time_nanos",
+           "order": "asc"
+           }
+        }
+    ]
+}

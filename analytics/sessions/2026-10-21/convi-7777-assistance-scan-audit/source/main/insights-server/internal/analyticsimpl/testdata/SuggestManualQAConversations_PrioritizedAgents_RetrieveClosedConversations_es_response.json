@@ -1,0 +1,33 @@
+{
+    "took": 43,
+    "timed_out": false,
+    "_shards": {
+        "total": 12,
+        "successful": 12,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 3,
+            "relation": "eq"
+        },
+        "max_score": null,
+        "hits": [
+            {
+                "_index": "customer_id-profile_id-conversations-v2",
+                "_id": "1",
+                "_source": {
+                    "conversation_id": "convo_id_6"
+                }
+            },
+            {
+                "_index": "customer_id-profile_id-conversations-v2",
+                "_id": "1",
+                "_source": {
+                    "conversation_id": "convo_id_7"
+                }
+            }
+        ]
+    }
+}

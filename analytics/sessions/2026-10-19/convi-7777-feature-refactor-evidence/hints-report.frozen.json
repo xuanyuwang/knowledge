@@ -1,0 +1,18 @@
+{
+  "tests_commit": "3dab1f940dd30546b802b449915645225703566d",
+  "refactor_commit": "77a9aec2bdaba22ff3e362b6c9964415b69d06f7",
+  "test_file": "insights-server/internal/analyticsimpl/retrieve_hint_stats_test.go",
+  "test_sha256": "c2b7032c62b61b0ee987ad41a0c443f8b1771130314dd6759c5987d0d7deb519",
+  "baseline_log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.consolidated-before.jsonl",
+  "baseline_sha256": "f99df51184bb15927f0b113b618661221e8a2fb0292ae55b848200e4cb94e6b7",
+  "after_log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.consolidated-after.jsonl",
+  "after_sha256": "e748465f9a15b90a1765a9e825c30879348cafb2883c4f1af4894075e07733e9",
+  "same_named_pass_nodes": true,
+  "named_test_pass_nodes": 82,
+  "package_pass_nodes": 1,
+  "total_pass_nodes": 83,
+  "production_sha256": {
+    "insights-server/internal/analyticsimpl/common_hint_usage_clickhouse.go": "76c74a6c90d4c42c25048b0bd181c4c9d0e71bbf50066f62724e860c7a5b87e5",
+    "insights-server/internal/analyticsimpl/retrieve_hint_stats_clickhouse.go": "8e6cd21eb36c430750c5d76ee1eabc84c5d4b8d023bb814ca0779e7dd5085b30"
+  }
+}

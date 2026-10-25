@@ -1,0 +1,227 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "range": {
+                        "conversation_started_at": {
+                            "gte": "2025-12-24T10:00:00Z",
+                            "lt": "2026-03-25T10:00:00Z",
+                            "time_zone": "-10:00"
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "should": [
+                            {
+                                "terms": {
+                                    "conversation_source": [
+                                        0,
+                                        7,
+                                        8
+                                    ]
+                                }
+                            },
+                            {
+                                "bool": {
+                                    "must_not": {
+                                        "exists": {
+                                            "field": "conversation_source"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "usecase_id.keyword": [
+                            "initial"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "conversation"
+                        ]
+                    }
+                },
+                {
+                    "range": {
+                        "message_count": {
+                            "gt": 0
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "time_ranges": {
+            "date_histogram": {
+                "field": "conversation_started_at",
+                "time_zone": "-10:00",
+                "calendar_interval": "day"
+            },
+            "aggs": {
+                "moments": {
+                    "filters": {
+                        "filters": [
+                            {
+                                "bool": {
+                                    "filter": [
+                                        {
+                                            "has_child": {
+                                                "type": "message",
+                                                "query": {
+                                                    "bool": {
+                                                        "should": [
+                                                            {
+                                                                "bool": {
+                                                                    "must_not": [
+                                                                        {
+                                                                            "bool": {
+                                                                                "should": [
+                                                                                    {
+                                                                                        "multi_match": {
+                                                                                            "query": "Create an account in the CVS Pharmacy app or at CVS dot com",
+                                                                                            "type": "phrase",
+                                                                                            "fields": [
+                                                                                                "message_text"
+                                                                                            ]
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "multi_match": {
+                                                                                            "query": "Did you know that you can go online to refill a mail order prescription get an order status, check medication costs, get other pharmacy benefit information at Aetna Medicare dot com",
+                                                                                            "type": "phrase",
+                                                                                            "fields": [
+                                                                                                "message_text"
+                                                                                            ]
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "multi_match": {
+                                                                                            "query": "To hear this again, say repeat",
+                                                                                            "type": "phrase",
+                                                                                            "fields": [
+                                                                                                "message_text"
+                                                                                            ]
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "minimum_should_match": 1,
+                                                                    "should": [
+                                                                        {
+                                                                            "bool": {
+                                                                                "filter": [
+                                                                                    {
+                                                                                        "terms": {
+                                                                                            "conversation_to_message_join": [
+                                                                                                "message"
+                                                                                            ]
+                                                                                        }
+                                                                                    }
+                                                                                ],
+                                                                                "should": [
+                                                                                    {
+                                                                                        "multi_match": {
+                                                                                            "query": "transfer my prescription",
+                                                                                            "type": "phrase",
+                                                                                            "fields": [
+                                                                                                "message_text_with_custom_analyzer.dutch",
+                                                                                                "message_text_with_custom_analyzer.english",
+                                                                                                "message_text_with_custom_analyzer.french",
+                                                                                                "message_text_with_custom_analyzer.german",
+                                                                                                "message_text_with_custom_analyzer.italian",
+                                                                                                "message_text_with_custom_analyzer.portuguese",
+                                                                                                "message_text_with_custom_analyzer.russian",
+                                                                                                "message_text_with_custom_analyzer.spanish",
+                                                                                                "message_text_with_custom_analyzer.thai"
+                                                                                            ],
+                                                                                            "slop": 5
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "multi_match": {
+                                                                                            "query": "send it to another pharmacy",
+                                                                                            "type": "phrase",
+                                                                                            "fields": [
+                                                                                                "message_text_with_custom_analyzer.dutch",
+                                                                                                "message_text_with_custom_analyzer.english",
+                                                                                                "message_text_with_custom_analyzer.french",
+                                                                                                "message_text_with_custom_analyzer.german",
+                                                                                                "message_text_with_custom_analyzer.italian",
+                                                                                                "message_text_with_custom_analyzer.portuguese",
+                                                                                                "message_text_with_custom_analyzer.russian",
+                                                                                                "message_text_with_custom_analyzer.spanish",
+                                                                                                "message_text_with_custom_analyzer.thai"
+                                                                                            ],
+                                                                                            "slop": 5
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "multi_match": {
+                                                                                            "query": "move my meds",
+                                                                                            "type": "phrase",
+                                                                                            "fields": [
+                                                                                                "message_text_with_custom_analyzer.dutch",
+                                                                                                "message_text_with_custom_analyzer.english",
+                                                                                                "message_text_with_custom_analyzer.french",
+                                                                                                "message_text_with_custom_analyzer.german",
+                                                                                                "message_text_with_custom_analyzer.italian",
+                                                                                                "message_text_with_custom_analyzer.portuguese",
+                                                                                                "message_text_with_custom_analyzer.russian",
+                                                                                                "message_text_with_custom_analyzer.spanish",
+                                                                                                "message_text_with_custom_analyzer.thai"
+                                                                                            ],
+                                                                                            "slop": 5
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "multi_match": {
+                                                                                            "query": "switch pharmacies",
+                                                                                            "type": "phrase",
+                                                                                            "fields": [
+                                                                                                "message_text_with_custom_analyzer.dutch",
+                                                                                                "message_text_with_custom_analyzer.english",
+                                                                                                "message_text_with_custom_analyzer.french",
+                                                                                                "message_text_with_custom_analyzer.german",
+                                                                                                "message_text_with_custom_analyzer.italian",
+                                                                                                "message_text_with_custom_analyzer.portuguese",
+                                                                                                "message_text_with_custom_analyzer.russian",
+                                                                                                "message_text_with_custom_analyzer.spanish",
+                                                                                                "message_text_with_custom_analyzer.thai"
+                                                                                            ],
+                                                                                            "slop": 5
+                                                                                        }
+                                                                                    }
+                                                                                ],
+                                                                                "minimum_should_match": 1
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ],
+                                                        "minimum_should_match": 1
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

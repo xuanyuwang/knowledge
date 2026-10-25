@@ -1,0 +1,151 @@
+{
+    "aggs": {
+        "bucket_aggs": {
+            "date_histogram": {
+                "calendar_interval": "day",
+                "field": "conversation_started_at",
+                "min_doc_count": 0,
+                "time_zone": "+00:00"
+            }
+        }
+    },
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "conversation"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "range": {
+                        "message_count": {
+                            "gt": 0
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "minimum_should_match": 1,
+                                "should": [
+                                    {
+                                        "has_child": {
+                                            "query": {
+                                                "bool": {
+                                                    "minimum_should_match": 1,
+                                                    "should": [
+                                                        {
+                                                            "bool": {
+                                                                "minimum_should_match": 1,
+                                                                "should": [
+                                                                    {
+                                                                        "bool": {
+                                                                            "filter": [
+                                                                                {
+                                                                                    "terms": {
+                                                                                        "conversation_to_message_join": [
+                                                                                            "message"
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            ],
+                                                                            "minimum_should_match": 1,
+                                                                            "should": [
+                                                                                {
+                                                                                    "multi_match": {
+                                                                                        "fields": [
+                                                                                            "message_text"
+                                                                                        ],
+                                                                                        "query": "keyword1",
+                                                                                        "type": "phrase"
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "type": "message"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "minimum_should_match": 1,
+                                "should": [
+                                    {
+                                        "has_child": {
+                                            "query": {
+                                                "bool": {
+                                                    "minimum_should_match": 1,
+                                                    "should": [
+                                                        {
+                                                            "bool": {
+                                                                "minimum_should_match": 1,
+                                                                "should": [
+                                                                    {
+                                                                        "bool": {
+                                                                            "filter": [
+                                                                                {
+                                                                                    "terms": {
+                                                                                        "conversation_to_message_join": [
+                                                                                            "message"
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            ],
+                                                                            "minimum_should_match": 1,
+                                                                            "should": [
+                                                                                {
+                                                                                    "multi_match": {
+                                                                                        "fields": [
+                                                                                            "message_text"
+                                                                                        ],
+                                                                                        "query": "keyword2",
+                                                                                        "type": "phrase"
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "type": "message"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

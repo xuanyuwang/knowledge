@@ -1,0 +1,61 @@
+{
+  "took": 2578,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "moments": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "es-MX",
+          "doc_count": 901352,
+          "total_conversation_message_count": {
+            "value": 900934
+          },
+          "total_conversation_count": {
+            "value": 902393
+          },
+          "total_conversation_handle_time_secs_sum": {
+            "value": 0
+          }
+        },
+        {
+          "key": "en-US",
+          "doc_count": 371584,
+          "total_conversation_message_count": {
+            "value": 371486
+          },
+          "total_conversation_count": {
+            "value": 372354
+          },
+          "total_conversation_handle_time_secs_sum": {
+            "value": 0
+          }
+        }
+      ]
+    },
+    "total_conversation_message_count": {
+      "value": 1272686
+    },
+    "total_conversation_count": {
+      "value": 1273652
+    },
+    "total_conversation_handle_time_secs_sum": {
+      "value": 0
+    }
+  }
+}

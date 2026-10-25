@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "es_field_existence_lib",
+    srcs = ["es_field_existence.go"],
+    importpath = "github.com/cresta/go-servers/insights-server/internal/analyticsimpl/tools/es_field_existence",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_elastic_go_elasticsearch_v8//:go-elasticsearch",
+        "@com_github_elastic_go_elasticsearch_v8//esapi",
+    ],
+)
+
+go_binary(
+    name = "es_field_existence",
+    embed = [":es-field-existence_lib"],
+    visibility = ["//insights-server:__subpackages__"],
+)
+
+go_library(
+    name = "es-field-existence_lib",
+    srcs = ["es_field_existence.go"],
+    importpath = "github.com/cresta/go-servers/insights-server/internal/analyticsimpl/tools/es-field-existence",
+    visibility = ["//visibility:private"],
+    deps = ["@com_github_elastic_go_elasticsearch_v8//:go-elasticsearch"],
+)
+
+go_test(
+    name = "es-field-existence_test",
+    srcs = ["es_field_existence_test.go"],
+    embed = [":es-field-existence_lib"],
+)

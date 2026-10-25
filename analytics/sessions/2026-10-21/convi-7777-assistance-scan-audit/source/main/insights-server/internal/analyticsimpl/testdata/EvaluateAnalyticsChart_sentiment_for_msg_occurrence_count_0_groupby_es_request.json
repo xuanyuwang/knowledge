@@ -1,0 +1,93 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "message"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "sentiment-1",
+                                                                    "sentiment-2"
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "sentiment-1"
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "metrics_conversation_message_count": {
+            "cardinality": {
+                "script": {
+                    "source": "return [doc['conversation_id.keyword'] + '-' + doc['conversation_message_id.keyword']]"
+                },
+                "precision_threshold": 40000
+            }
+        }
+    }
+}

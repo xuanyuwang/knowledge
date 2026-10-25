@@ -1,0 +1,81 @@
+{
+  "took": 10,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "buckets": [
+        {
+          "key": 1746057600000,
+          "doc_count": 14957,
+          "bucket_aggs": {
+            "doc_count": 830817,
+            "bucket_aggs": {
+              "doc_count": 14957,
+              "bucket_aggs": {
+                "doc_count": 59715,
+                "bucket_aggs": {
+                  "doc_count": 14957,
+                  "metrics_agg_on_numeric_field": {
+                    "value": 0.11
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "key": 1748736000000,
+          "doc_count": 15218,
+          "bucket_aggs": {
+            "doc_count": 893750,
+            "bucket_aggs": {
+              "doc_count": 15218,
+              "bucket_aggs": {
+                "doc_count": 60662,
+                "bucket_aggs": {
+                  "doc_count": 15218,
+                  "metrics_agg_on_numeric_field": {
+                    "value": 0.22
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "key": 1751328000000,
+          "doc_count": 15218,
+          "bucket_aggs": {
+            "doc_count": 893750,
+            "bucket_aggs": {
+              "doc_count": 15218,
+              "bucket_aggs": {
+                "doc_count": 60662,
+                "bucket_aggs": {
+                  "doc_count": 15218,
+                  "metrics_agg_on_numeric_field": {
+                    "value": 0.33
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

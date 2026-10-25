@@ -1,0 +1,172 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "has_parent": {
+                        "parent_type": "conversation",
+                        "query": {
+                            "bool": {
+                                "filter": [
+                                    {
+                                        "range": {
+                                            "conversation_started_at": {
+                                                "gte": "2022-04-13T00:00:00Z",
+                                                "lt": "2022-07-13T00:00:00Z",
+                                                "time_zone": "-10:00"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "bool": {
+                                            "should": [
+                                                {
+                                                    "terms": {
+                                                        "conversation_source": [
+                                                            0,
+                                                            7,
+                                                            8
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "bool": {
+                                                        "must_not": {
+                                                            "exists": {
+                                                                "field": "conversation_source"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "bool": {
+                                            "should": [
+                                                {
+                                                    "has_child": {
+                                                        "type": "message",
+                                                        "query": {
+                                                            "bool": {
+                                                                "filter": [
+                                                                    {
+                                                                        "bool": {
+                                                                            "minimum_should_match": 1,
+                                                                            "should": [
+                                                                                {
+                                                                                    "bool": {
+                                                                                        "filter": [
+                                                                                            {
+                                                                                                "terms": {
+                                                                                                    "conversation_to_message_join": [
+                                                                                                        "message"
+                                                                                                    ]
+                                                                                                }
+                                                                                            }
+                                                                                        ],
+                                                                                        "must": [
+                                                                                            {
+                                                                                                "regexp": {
+                                                                                                    "message_text.keyword": {
+                                                                                                        "value": ".*([0-9]{5}).*",
+                                                                                                        "case_insensitive": true
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "should": [
+                            {
+                                "bool": {
+                                    "must_not": [
+                                        {
+                                            "bool": {
+                                                "must": [
+                                                    {
+                                                        "regexp": {
+                                                            "message_text.keyword": {
+                                                                "value": ".*(not[^\n]this).*",
+                                                                "case_insensitive": true
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "minimum_should_match": 1,
+                                    "should": [
+                                        {
+                                            "bool": {
+                                                "filter": [
+                                                    {
+                                                        "terms": {
+                                                            "conversation_to_message_join": [
+                                                                "message"
+                                                            ]
+                                                        }
+                                                    }
+                                                ],
+                                                "must": [
+                                                    {
+                                                        "regexp": {
+                                                            "message_text.keyword": {
+                                                                "value": ".*(hello|world).*",
+                                                                "case_insensitive": true
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "total_conversation_count": {
+            "cardinality": {
+                "field": "conversation_id.keyword",
+                "precision_threshold": 40000
+            }
+        },
+        "total_conversation_message_count": {
+            "cardinality": {
+                "script": {
+                    "source": "return [doc['conversation_id.keyword'] + '-' + doc['conversation_message_id.keyword']]"
+                },
+                "precision_threshold": 40000
+            }
+        },
+        "total_conversation_handle_time_secs_sum": {
+            "sum": {
+                "field": "handle_time_secs"
+            }
+        }
+    }
+}

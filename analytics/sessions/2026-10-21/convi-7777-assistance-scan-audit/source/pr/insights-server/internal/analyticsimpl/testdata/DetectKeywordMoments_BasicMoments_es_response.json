@@ -1,0 +1,25 @@
+{
+   "took": 5,
+   "timed_out": false,
+   "_shards": {
+     "total": 12,
+     "successful": 12,
+     "skipped": 0,
+     "failed": 0
+   },
+   "aggregations": {
+     "moments": {
+       "buckets": [
+         {
+           "doc_count": 1
+         },
+         {
+           "doc_count": 0
+         },
+         {
+           "doc_count": 1
+         }
+       ]
+     }
+   }
+ }

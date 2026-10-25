@@ -1,0 +1,73 @@
+{
+    "query": {
+        "bool": {
+            "should": [
+                {
+                    "bool": {
+                        "filter": [
+                            {
+                                "terms": {
+                                    "conversation_id.keyword": [
+                                        "4aa51fe7-f744-4775-98b6-57ec1e6b3837"
+                                    ]
+                                }
+                            },
+                            {
+                                "range": {
+                                    "message_forward_position": {
+                                        "gte": 0,
+                                        "lte": 3
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": [
+                            {
+                                "terms": {
+                                    "conversation_id.keyword": [
+                                        "9609e7ab-8947-4dd6-9120-1673ea399a34"
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "message"
+                        ]
+                    }
+                }
+            ],
+            "must_not": {
+                "terms": {
+                    "translation_info.translated": [
+                        true
+                    ]
+                }
+            },
+            "minimum_should_match": 1
+        }
+    },
+    "sort": [
+        {
+            "conversation_ended_at": {
+                "format": "strict_date_optional_time_nanos",
+                "order": "desc"
+            }
+        },
+        {
+            "created_at": {
+                "format": "strict_date_optional_time_nanos",
+                "order": "asc"
+            }
+        }
+    ]
+}

@@ -1,0 +1,111 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "conversation"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "range": {
+                        "message_count": {
+                            "gt": 0
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "range": {
+                                            "conversation_started_at": {
+                                                "gte": "2024-07-01T00:00:00Z",
+                                                "lt": "2024-10-01T00:00:00Z",
+                                                "time_zone": "+00:00"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "bucket_aggs": {
+            "nested": {
+                "path": "moment_annotations"
+            },
+            "aggs": {
+                "bucket_aggs": {
+                    "filter": {
+                        "terms": {
+                            "moment_annotations.moment_template_id.keyword": [
+                                "metadata-moment-id"
+                            ]
+                        }
+                    },
+                    "aggs": {
+                        "bucket_aggs": {
+                            "terms": {
+                                "field": "moment_annotations.payload.conversationMetadataPayload.values.stringValue.keyword",
+                                "size": 1000,
+                                "order": {
+                                    "bucket_aggs\u003emetrics_agg_on_numeric_field": "desc"
+                                }
+                            },
+                            "aggs": {
+                                "bucket_aggs": {
+                                    "reverse_nested": {},
+                                    "aggs": {
+                                        "bucket_aggs": {
+                                            "date_histogram": {
+                                                "field": "conversation_started_at",
+                                                "time_zone": "+00:00",
+                                                "calendar_interval": "month",
+                                                "min_doc_count": 0,
+                                                "extended_bounds": {
+                                                    "min": "2024-07-01T00:00:00Z",
+                                                    "max": "2024-10-01T00:00:00Z"
+                                                }
+                                            },
+                                            "aggs": {
+                                                "metrics_agg_on_numeric_field": {
+                                                    "avg": {
+                                                        "field": "conversation_duration_secs"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "metrics_agg_on_numeric_field": {
+                                            "avg": {
+                                                "field": "conversation_duration_secs"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

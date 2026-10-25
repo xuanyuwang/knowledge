@@ -1,0 +1,127 @@
+{
+   "_source": {
+      "includes": [
+         "conversation_id",
+         "moment_annotations",
+         "message_count"
+      ]
+   },
+   "query": {
+      "bool": {
+         "filter": [
+            {
+               "range": {
+                  "conversation_ended_at": {
+                     "gte": "2022-04-13T00:00:00Z",
+                     "lt": "2022-07-13T00:00:00Z",
+                     "time_zone": "-10:00"
+                  }
+               }
+            },
+            {
+               "bool": {
+                  "should": [
+                     {
+                        "terms": {
+                           "conversation_source": [
+                              0,
+                              7,
+                              8
+                           ]
+                        }
+                     },
+                     {
+                        "bool": {
+                           "must_not": {
+                              "exists": {
+                                 "field": "conversation_source"
+                              }
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {
+               "bool": {
+                  "should": [
+                     {
+                        "terms": {
+                           "agent_user_id.keyword": [
+                              "2f540f161f3a452c",
+                              "35636a572d7ec364",
+                              "d072a51a8359fe51"
+                           ]
+                        }
+                     },
+                     {
+                        "nested": {
+                           "path": "attendees",
+                           "query": {
+                              "bool": {
+                                 "filter": [
+                                    {
+                                       "terms": {
+                                          "attendees.role.keyword": [
+                                             "agent"
+                                          ]
+                                       }
+                                    },
+                                    {
+                                       "terms": {
+                                          "attendees.platform_attendee_id.keyword": [
+                                             "2f540f161f3a452c",
+                                             "35636a572d7ec364",
+                                             "d072a51a8359fe51"
+                                          ]
+                                       }
+                                    }
+                                 ]
+                              }
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {
+               "terms": {
+                  "effective_language.keyword": [
+                     "en-US"
+                  ]
+               }
+            },
+            {
+               "terms": {
+                  "conversation_to_message_join": [
+                     "conversation"
+                  ]
+               }
+            },
+            {
+               "range": {
+                  "message_count": {
+                     "gt": 0
+                  }
+               }
+            }
+         ]
+      }
+   },
+   "search_after": [
+      "sort-key-for-convo_ended_at","sort-key-for-convo_id"
+   ],
+   "sort": [
+      {
+         "conversation_ended_at": {
+            "format": "strict_date_optional_time_nanos",
+            "order": "desc"
+         }
+      },
+      {
+         "conversation_id.keyword": {
+            "order": "asc"
+         }
+      }
+   ]
+}

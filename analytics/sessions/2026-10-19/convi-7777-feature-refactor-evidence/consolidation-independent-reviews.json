@@ -1,0 +1,23 @@
+[
+  {
+    "group": "kb-search/chat-suggestions",
+    "reviewer": "summary_genai",
+    "verdict": "No blocker. Frozen reader bodies retained. Full-RPC user/team/metadata/time cases meaningfully replace mocked coverage. Multi-day result-average gap was found and resolved; Suggestions now asserts positive email counters at bucket, result and response levels.",
+    "evidence": "/tmp/convi7777-kb-suggestions-merged-review.md"
+  },
+  {
+    "group": "summary-genai",
+    "reviewer": "notes_workflow",
+    "verdict": "No blocker. All eight deleted SQL scenarios have seeded full-RPC replacements. Complete protos asserted; only result ordering sorted. Reader methods unchanged after receiver rename. New seeded responses replace older synthetic mocked values; they do not preserve those values byte-for-byte."
+  },
+  {
+    "group": "notes-workflow/hints",
+    "reviewer": "root",
+    "verdict": "No blocker in source inspection. Existing suites own moved characterization methods and seeded RPC cases. Notes keeps shared non-runnable fixture; Hints covers both delivery modes and complete payloads. Original production and extraction equivalence is verified separately by frozen test hashes and byte-for-byte production comparisons."
+  },
+  {
+    "group": "summary-genai explicit projection fix",
+    "reviewer": "root",
+    "verdict": "Minimal approved child-only fix for a failed unchanged real-RPC case. Canonical ID/time/agent/type/session projections retain raw row multiplicity and all predicates/arguments. The caller rejects grouping beyond agent/time, so all required aggregate columns remain available. Focused and full runtime validation recorded by group commands."
+  }
+]

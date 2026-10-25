@@ -1,0 +1,256 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "conversation"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "range": {
+                        "message_count": {
+                            "gt": 0
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "has_child": {
+                                            "type": "message",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "nested": {
+                                                                "path": "moment_annotations",
+                                                                "query": {
+                                                                    "bool": {
+                                                                        "filter": [
+                                                                            {
+                                                                                "terms": {
+                                                                                    "moment_annotations.moment_template_id.keyword": [
+                                                                                        "sentiment-1",
+                                                                                        "sentiment-2"
+                                                                                    ]
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "terms": {
+                                            "usecase_id.keyword": [
+                                                "usecase-1",
+                                                "usecase-2"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "should": [
+                            {
+                                "has_child": {
+                                    "type": "message",
+                                    "query": {
+                                        "bool": {
+                                            "should": [
+                                                {
+                                                    "bool": {
+                                                        "must_not": [
+                                                            {
+                                                                "bool": {
+                                                                    "should": [
+                                                                        {
+                                                                            "multi_match": {
+                                                                                "query": "excluded keyword1",
+                                                                                "type": "phrase",
+                                                                                "fields": [
+                                                                                    "message_text"
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "multi_match": {
+                                                                                "query": "excluded keyword2",
+                                                                                "type": "phrase",
+                                                                                "fields": [
+                                                                                    "message_text"
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ],
+                                                        "minimum_should_match": 1,
+                                                        "should": [
+                                                            {
+                                                                "bool": {
+                                                                    "filter": [
+                                                                        {
+                                                                            "terms": {
+                                                                                "conversation_to_message_join": [
+                                                                                    "message"
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "should": [
+                                                                        {
+                                                                            "multi_match": {
+                                                                                "query": "included keyword1",
+                                                                                "type": "phrase",
+                                                                                "fields": [
+                                                                                    "message_text"
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "multi_match": {
+                                                                                "query": "included keyword2",
+                                                                                "type": "phrase",
+                                                                                "fields": [
+                                                                                    "message_text"
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "minimum_should_match": 1
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "minimum_should_match": 1
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "has_child": {
+                                    "type": "message_group",
+                                    "query": {
+                                        "bool": {
+                                            "should": [
+                                                {
+                                                    "bool": {
+                                                        "must_not": [
+                                                            {
+                                                                "bool": {
+                                                                    "should": [
+                                                                        {
+                                                                            "multi_match": {
+                                                                                "query": "excluded keyword1",
+                                                                                "type": "phrase",
+                                                                                "fields": [
+                                                                                    "message_text"
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "multi_match": {
+                                                                                "query": "excluded keyword2",
+                                                                                "type": "phrase",
+                                                                                "fields": [
+                                                                                    "message_text"
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ],
+                                                        "minimum_should_match": 1,
+                                                        "should": [
+                                                            {
+                                                                "nested": {
+                                                                    "path": "moment_annotations",
+                                                                    "query": {
+                                                                        "bool": {
+                                                                            "filter": [
+                                                                                {
+                                                                                    "terms": {
+                                                                                        "moment_annotations.moment_template_id.keyword": [
+                                                                                            "cluster1", "cluster2"
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "minimum_should_match": 1
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+            ]
+        }
+    },
+    "sort": [
+        {
+            "conversation_ended_at": {
+                "format": "strict_date_optional_time_nanos",
+                "order": "desc"
+            }
+        }
+    ],
+    "_source": {
+        "excludes": [
+            "moment_annotations",
+            "action_annotations",
+            "conversation_events",
+            "scorecards"
+        ]
+    }
+}

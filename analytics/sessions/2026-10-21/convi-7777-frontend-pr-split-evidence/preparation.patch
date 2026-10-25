@@ -1,0 +1,371 @@
+diff --git a/packages/director-api/src/hooks/queryUtils.ts b/packages/director-api/src/hooks/queryUtils.ts
+index 89dcfdba7e..59a8ccc203 100644
+--- a/packages/director-api/src/hooks/queryUtils.ts
++++ b/packages/director-api/src/hooks/queryUtils.ts
+@@ -505,6 +505,7 @@ export enum DirectorQueryKey {
+   USE_LIST_WEBHOOK_INVOCATIONS = 'useListWebhookInvocations',
+   USE_GET_RECENT_COACHING_ACTIVITIES = 'useGetRecentCoachingActivities',
+   USE_RETRIEVE_CONVERSATION_STATS = 'useRetrieveConversationStats',
++  USE_RETRIEVE_CONVERSATION_ASSISTANCE_USAGE_STATS = 'useRetrieveConversationAssistanceUsageStats',
+   USE_QA_SCORE_STATS = 'useQAScoreStats',
+   USE_USER_OUTCOME_STATS = 'useUserOutcomeStats',
+   USE_COACHING_COMMENTS = 'useCoachingComments',
+diff --git a/packages/director-api/src/services/cresta-api/insights/apiTypes.ts b/packages/director-api/src/services/cresta-api/insights/apiTypes.ts
+index b72d9d23c3..792743f8a2 100644
+--- a/packages/director-api/src/services/cresta-api/insights/apiTypes.ts
++++ b/packages/director-api/src/services/cresta-api/insights/apiTypes.ts
+@@ -4,6 +4,7 @@ import type {
+   AdherenceType,
+   AgentTier,
+   AnalyticsResult,
++  Attribute as ApiAttribute,
+   ChatBotAttribute,
+   CoachingEfficiencyStats as CrestaV1RetrieveCoachingEfficiencyStatsResponse,
+   EvaluationPeriodProgressStatus,
+@@ -85,6 +86,26 @@ export interface LlmAnnotationValuesResponse {
+   values: LlmAnnotationValue[];
+ }
+ 
++export interface ConversationAssistanceUsageStatsGroupResult {
++  groupedByAttributes: Attribute;
++  totalConversationCount: number;
++  conversationsWithAssistanceUsedCount: number;
++  conversationsWithAssistanceUsedPercent?: number;
++}
++
++export interface ConversationAssistanceUsageStatsResponse {
++  resultGroups: ConversationAssistanceUsageStatsGroupResult[];
++}
++
++// The dedicated RPC is not yet included in the published web client.
++export interface ConversationAssistanceUsageStatsApiResponse {
++  conversationAssistanceUsageStatsResults?: {
++    attribute?: ApiAttribute;
++    totalConversationCount?: number;
++    conversationsWithAssistanceUsedCount?: number;
++  }[];
++}
++
+ export interface ConversationStatsEntry {
+   averageHandleTime: number;
+   totalConversationCount: number;
+diff --git a/packages/director-api/src/services/cresta-api/insights/conversationAssistanceUsage.test.ts b/packages/director-api/src/services/cresta-api/insights/conversationAssistanceUsage.test.ts
+new file mode 100644
+index 0000000000..e89db13879
+--- /dev/null
++++ b/packages/director-api/src/services/cresta-api/insights/conversationAssistanceUsage.test.ts
+@@ -0,0 +1,138 @@
++import dayjs from 'dayjs';
++import timezone from 'dayjs/plugin/timezone';
++import utc from 'dayjs/plugin/utc';
++import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
++
++import { AttributeType, Frequency, MetadataDayOfWeek } from '@cresta/web-client';
++
++import { initClientVersionHeaders } from '../../shared';
++
++import { InsightsApi } from './insightsApi';
++import type { InsightsRequestParams } from './types';
++
++dayjs.extend(utc);
++dayjs.extend(timezone);
++
++function setup(response: object): { api: InsightsApi; fetch: ReturnType<typeof vi.fn>; params: InsightsRequestParams } {
++  const fetch = vi.fn().mockResolvedValue(new Response(JSON.stringify(response)));
++  vi.stubGlobal('fetch', fetch);
++  const api = new InsightsApi();
++  api.setCustomerId('acme');
++  api.setProfileId('sales');
++  api.setStreamingApiEnabled(false);
++  api.setAuth('token');
++  api.setTimezone('America/Toronto');
++  return {
++    api,
++    fetch,
++    params: {
++      dateRange: [dayjs.tz('2026-10-01', 'America/Toronto'), dayjs.tz('2026-10-20', 'America/Toronto')],
++      filterByAttribute: { users: [{ name: 'customers/acme/users/agent-1' }] },
++      groupByAttributeTypes: [{ attributeType: AttributeType.ATTRIBUTE_TYPE_AGENT }],
++      frequency: Frequency.FREQUENCY_UNSPECIFIED,
++      metadata: { startDayOfWeek: MetadataDayOfWeek.MONDAY },
++      includePeerUserStats: true,
++      filterToAgentsOnly: true,
++    },
++  };
++}
++
++describe('InsightsApi.retrieveConversationAssistanceUsageStats', () => {
++  beforeEach(() => {
++    process.env.REACT_APP_TESTING_DOMAIN = 'director-test.cresta.ai';
++    initClientVersionHeaders({ clientName: 'director-app', clientVersion: 'main_test' });
++  });
++
++  afterEach(() => {
++    delete process.env.REACT_APP_TESTING_DOMAIN;
++    vi.unstubAllGlobals();
++  });
++
++  it.each([AttributeType.ATTRIBUTE_TYPE_AGENT, AttributeType.ATTRIBUTE_TYPE_GROUP])(
++    'sends the dedicated API the selected cohort, timezone, role filters, and single grouping %s',
++    async (attributeType) => {
++      const { api, fetch, params } = setup({});
++      await api.retrieveConversationAssistanceUsageStats({
++        ...params,
++        groupByAttributeTypes: [{ attributeType }],
++      }).promise;
++
++      const [url, init] = fetch.mock.calls[0] as [string, RequestInit];
++      expect(url).toBe(
++        'https://api-director-test.cresta.ai/v1/customers/acme/profiles/sales/conversationAssistanceUsageStats:retrieve'
++      );
++      expect(init.method).toBe('POST');
++      expect(init.headers).toMatchObject({ Authorization: 'Bearer token' });
++      if (typeof init.body !== 'string') {
++        throw new Error('Expected a JSON request body');
++      }
++      expect(JSON.parse(init.body)).toEqual({
++        parent: 'customers/acme/profiles/sales',
++        filterByAttribute: params.filterByAttribute,
++        filterByTimeRange: {
++          startTimestamp: '2026-10-01T04:00:00.000Z',
++          endTimestamp: '2026-10-20T04:00:00.000Z',
++        },
++        groupByAttributeTypes: [attributeType],
++        frequency: Frequency.FREQUENCY_UNSPECIFIED,
++        metadata: { timeZoneId: 'America/Toronto', startDayOfWeek: MetadataDayOfWeek.MONDAY },
++        includePeerUserStats: true,
++        filterToAgentsOnly: true,
++      });
++    }
++  );
++
++  it('uses each dedicated result denominator and resolves agent/team row identity', async () => {
++    const { api, params } = setup({
++      totalConversationCount: 100,
++      conversationsWithAssistanceUsedCount: 90,
++      conversationAssistanceUsageStatsResults: [
++        {
++          attribute: { users: [{ name: 'customers/acme/users/agent-1', fullName: 'Agent One' }] },
++          totalConversationCount: 4,
++          conversationsWithAssistanceUsedCount: 1,
++        },
++        {
++          attribute: { groups: [{ name: 'customers/acme/groups/team-1', displayName: 'Team One' }] },
++          totalConversationCount: 10,
++          conversationsWithAssistanceUsedCount: 7,
++        },
++      ],
++    });
++    const result = await api.retrieveConversationAssistanceUsageStats(params).promise;
++    expect(result?.resultGroups[0]).toMatchObject({
++      groupedByAttributes: { user: { name: 'customers/acme/users/agent-1' } },
++      totalConversationCount: 4,
++      conversationsWithAssistanceUsedCount: 1,
++      conversationsWithAssistanceUsedPercent: 25,
++    });
++    expect(result?.resultGroups[1]).toMatchObject({
++      groupedByAttributes: { group: { name: 'customers/acme/groups/team-1' } },
++      conversationsWithAssistanceUsedPercent: 70,
++    });
++  });
++
++  it('preserves a computed zero when protobuf JSON omits the zero numerator', async () => {
++    const { api, params } = setup({ conversationAssistanceUsageStatsResults: [{ totalConversationCount: 5 }] });
++    const result = await api.retrieveConversationAssistanceUsageStats(params).promise;
++    expect(result?.resultGroups[0]?.conversationsWithAssistanceUsedPercent).toBe(0);
++  });
++
++  it('leaves a zero-denominator percentage unavailable', async () => {
++    const { api, params } = setup({ conversationAssistanceUsageStatsResults: [{}] });
++    const result = await api.retrieveConversationAssistanceUsageStats(params).promise;
++    expect(result?.resultGroups[0]?.conversationsWithAssistanceUsedPercent).toBeUndefined();
++  });
++
++  it('does not create measured zero rows from a population-only response', async () => {
++    const { api, params } = setup({ totalConversationCount: 100 });
++    const result = await api.retrieveConversationAssistanceUsageStats(params).promise;
++    expect(result?.resultGroups).toEqual([]);
++  });
++
++  it('surfaces an unavailable endpoint as an error rather than a zero result', async () => {
++    const { api, fetch, params } = setup({});
++    fetch.mockResolvedValue(new Response(JSON.stringify({ code: 12, message: 'Unimplemented' }), { status: 501 }));
++    await expect(api.retrieveConversationAssistanceUsageStats(params).promise).rejects.toThrow();
++  });
++});
+diff --git a/packages/director-api/src/services/cresta-api/insights/insightsApi.ts b/packages/director-api/src/services/cresta-api/insights/insightsApi.ts
+index 5b5d7a7dd0..2545da76e2 100644
+--- a/packages/director-api/src/services/cresta-api/insights/insightsApi.ts
++++ b/packages/director-api/src/services/cresta-api/insights/insightsApi.ts
+@@ -49,7 +49,7 @@ import type {
+   SearchKeywordsMessagesResponse,
+   SuggestManualQAConversationsRequest,
+ } from '@cresta/web-client';
+-import { AnalyticsService, AttributeType, KeywordsService } from '@cresta/web-client';
++import { AnalyticsService, AttributeType, fetchReq, KeywordsService, replacer } from '@cresta/web-client';
+ import type {
+   RetrieveLlmAnnotationValuesRequest as CrestaV1RetrieveLlmAnnotationValuesRequest,
+   RetrieveCustomerSnapshotStatsRequest,
+@@ -91,6 +91,8 @@ import type {
+   ClosedConversationsResponse,
+   CoachingSessionStatsResponse,
+   CommentStatsResponse,
++  ConversationAssistanceUsageStatsApiResponse,
++  ConversationAssistanceUsageStatsResponse,
+   ConversationDurationBucketsResponse,
+   ConversationMessageStatsResponse,
+   ConversationMessagesResponse,
+@@ -132,6 +134,7 @@ import {
+   transformCoachingEfficiencyStatsResponse,
+   transformCoachingSessionStats,
+   transformCommentStats,
++  transformConversationAssistanceUsageStatsResponse,
+   transformConversationBucketListResponse,
+   transformConversationMessageStats,
+   transformConversationMessages,
+@@ -315,6 +318,30 @@ export class InsightsApi extends CrestaApiBaseService {
+     );
+   }
+ 
++  public retrieveConversationAssistanceUsageStats(
++    requestParams: InsightsRequestParams
++  ): CancellableFetch<ConversationAssistanceUsageStatsResponse> {
++    const { parent, filterByTimeRange, metadata } = this.getCommonPayload(requestParams);
++    const payload = {
++      parent,
++      filterByTimeRange,
++      metadata,
++      filterByAttribute: requestParams.filterByAttribute,
++      frequency: requestParams.frequency,
++      groupByAttributeTypes: requestParams.groupByAttributeTypes.map(({ attributeType }) => attributeType),
++      includePeerUserStats: requestParams.includePeerUserStats,
++      filterToAgentsOnly: requestParams.filterToAgentsOnly,
++    };
++    return this.wrapRequest(
++      (init) =>
++        fetchReq<typeof payload, ConversationAssistanceUsageStatsApiResponse>(
++          `/v1/${parent}/conversationAssistanceUsageStats:retrieve`,
++          { ...init, method: 'POST', body: JSON.stringify(payload, replacer) }
++        ),
++      transformConversationAssistanceUsageStatsResponse
++    );
++  }
++
+   public retrieveAgentStats(payloadParams: InsightsRequestParams): CancellableFetch<AgentStatsResponse> {
+     const payload = this.getRequestPayload(payloadParams);
+     payload.parent = this.buildCustomerResourceName();
+diff --git a/packages/director-api/src/services/cresta-api/insights/transformers.ts b/packages/director-api/src/services/cresta-api/insights/transformers.ts
+index a3f88936e0..a3979567e6 100644
+--- a/packages/director-api/src/services/cresta-api/insights/transformers.ts
++++ b/packages/director-api/src/services/cresta-api/insights/transformers.ts
+@@ -122,6 +122,8 @@ import type {
+   CommentStatsEntry,
+   CommentStatsGroupResult,
+   CommentStatsResponse,
++  ConversationAssistanceUsageStatsApiResponse,
++  ConversationAssistanceUsageStatsResponse,
+   ConversationDurationBucket,
+   ConversationDurationBucketsResponse,
+   ConversationMessageResult,
+@@ -209,6 +211,25 @@ function transformConversationStatsEntry(entry: CrestaV1ConversationStats): Conv
+   };
+ }
+ 
++export function transformConversationAssistanceUsageStatsResponse(
++  response: ConversationAssistanceUsageStatsApiResponse
++): ConversationAssistanceUsageStatsResponse {
++  return {
++    resultGroups: (response.conversationAssistanceUsageStatsResults || []).map((result) => {
++      const totalConversationCount = result.totalConversationCount || 0;
++      const conversationsWithAssistanceUsedCount = result.conversationsWithAssistanceUsedCount || 0;
++      return {
++        groupedByAttributes: transformAttributes(result.attribute),
++        totalConversationCount,
++        conversationsWithAssistanceUsedCount,
++        conversationsWithAssistanceUsedPercent: totalConversationCount
++          ? (conversationsWithAssistanceUsedCount / totalConversationCount) * 100
++          : undefined,
++      };
++    }),
++  };
++}
++
+ export function transformConversationStatsResponse(
+   response: CrestaV1RetrieveConversationStatsResponse
+ ): ConversationStatsResponse {
+diff --git a/packages/director-app/locales/en-US/director-app-insights.json b/packages/director-app/locales/en-US/director-app-insights.json
+index 46b8141af1..5c77fa383d 100644
+--- a/packages/director-app/locales/en-US/director-app-insights.json
++++ b/packages/director-app/locales/en-US/director-app-insights.json
+@@ -1098,6 +1098,9 @@
+         "tooltip": "Overall engagement % includes all types of hints (except for reminder hints), summary, Gen AI answers"
+       }
+     },
++    "conversation-assistance-usage": {
++      "load-error": "Failed to load conversation assistance usage."
++    },
+     "customer-snapshot-leaderboard": {
+       "aria-label": "Leaderboard - by overall display time",
+       "download-tooltip": "Download Customer Snapshot leaderboard",
+diff --git a/packages/director-app/src/features/insights/assistance/LazyAssistanceInsights.tsx b/packages/director-app/src/features/insights/assistance/LazyAssistanceInsights.tsx
+index 8ca2fb2136..b88da9cddc 100644
+--- a/packages/director-app/src/features/insights/assistance/LazyAssistanceInsights.tsx
++++ b/packages/director-app/src/features/insights/assistance/LazyAssistanceInsights.tsx
+@@ -3,11 +3,9 @@ import { lazy, memo, Suspense } from 'react';
+ 
+ import { LoadingSpinner } from '@cresta/director-components';
+ 
+-import type { AssistanceInsightsProps } from './AssistanceInsights';
++import type { AssistanceInsightsProps } from './';
+ 
+-const AssistanceInsights = lazy(() =>
+-  import('./AssistanceInsights').then((mod) => ({ default: mod.AssistanceInsights }))
+-);
++const AssistanceInsights = lazy(() => import('./').then((mod) => ({ default: mod.AssistanceInsights })));
+ 
+ export const LazyAssistanceInsights = memo(function LazyAssistanceInsights(
+   props: AssistanceInsightsProps
+diff --git a/packages/director-app/src/features/insights/assistance/api/conversationAssistanceUsageStatsQuery.ts b/packages/director-app/src/features/insights/assistance/api/conversationAssistanceUsageStatsQuery.ts
+new file mode 100644
+index 0000000000..359c99840f
+--- /dev/null
++++ b/packages/director-app/src/features/insights/assistance/api/conversationAssistanceUsageStatsQuery.ts
+@@ -0,0 +1,22 @@
++import type { ConversationAssistanceUsageStatsResponse, InsightsRequestParams } from '@cresta/director-api';
++import { CrestaAPI, ErrorHandlerType } from '@cresta/director-api';
++import { getI18n } from '@cresta/director-utils';
++
++import type { QueryOptions } from '@/shared/api';
++import { cancellableQueryOptions, DirectorQueryKey, directorQueryKey } from '@/shared/api';
++
++export function conversationAssistanceUsageStatsQuery(
++  requestParams: InsightsRequestParams
++): QueryOptions<ConversationAssistanceUsageStatsResponse> {
++  const i18n = getI18n();
++  const t = i18n.getFixedT(null, 'director-app-insights', 'assistance.conversation-assistance-usage');
++
++  return cancellableQueryOptions({
++    queryKey: directorQueryKey(DirectorQueryKey.USE_RETRIEVE_CONVERSATION_ASSISTANCE_USAGE_STATS, requestParams),
++    queryFn: () => CrestaAPI.insights.retrieveConversationAssistanceUsageStats(requestParams),
++    meta: {
++      errorMessage: t('load-error', 'Failed to load conversation assistance usage.'),
++      errorHandlerType: ErrorHandlerType.Toast,
++    },
++  });
++}
+diff --git a/packages/director-app/src/features/insights/assistance/api/index.ts b/packages/director-app/src/features/insights/assistance/api/index.ts
+new file mode 100644
+index 0000000000..501468664c
+--- /dev/null
++++ b/packages/director-app/src/features/insights/assistance/api/index.ts
+@@ -0,0 +1 @@
++export { conversationAssistanceUsageStatsQuery } from './conversationAssistanceUsageStatsQuery';
+diff --git a/packages/director-app/src/features/insights/assistance/index.ts b/packages/director-app/src/features/insights/assistance/index.ts
+new file mode 100644
+index 0000000000..64d9be3740
+--- /dev/null
++++ b/packages/director-app/src/features/insights/assistance/index.ts
+@@ -0,0 +1,3 @@
++export type { AssistanceInsightsProps } from './AssistanceInsights';
++export { AssistanceInsights } from './AssistanceInsights';
++export { conversationAssistanceUsageStatsQuery } from './api';

@@ -1,0 +1,39 @@
+{
+  "took": 5,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 150,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "metrics_conversation_count": {
+      "value": 150
+    },
+    "bucket_aggs": {
+      "buckets": [
+        {
+          "doc_count": 100,
+          "metrics_conversation_count": {
+            "value": 100
+          }
+        },
+        {
+          "doc_count": 50,
+          "metrics_conversation_count": {
+            "value": 50
+          }
+        }
+      ]
+    }
+  }
+}

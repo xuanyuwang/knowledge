@@ -1,0 +1,10 @@
+{
+  "reports": 5,
+  "html": "pass",
+  "javascript": "pass",
+  "controls": "pass",
+  "local_links": "pass",
+  "visual": "unverified: browser blocks file URL protocol",
+  "ci_failures": [],
+  "ci_pending": 60
+}

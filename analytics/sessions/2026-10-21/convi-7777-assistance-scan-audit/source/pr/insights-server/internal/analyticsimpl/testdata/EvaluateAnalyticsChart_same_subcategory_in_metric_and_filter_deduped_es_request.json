@@ -1,0 +1,102 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "message"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "bool": {
+                                            "must_not": [
+                                                {
+                                                    "bool": {
+                                                        "should": [
+                                                            {
+                                                                "multi_match": {
+                                                                    "query": "moment_1_keyword_excluded_1",
+                                                                    "type": "phrase",
+                                                                    "fields": [
+                                                                        "message_text"
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "minimum_should_match": 1,
+                                            "should": [
+                                                {
+                                                    "bool": {
+                                                        "filter": [
+                                                            {
+                                                                "terms": {
+                                                                    "conversation_to_message_join": [
+                                                                        "message"
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ],
+                                                        "should": [
+                                                            {
+                                                                "multi_match": {
+                                                                    "query": "moment_1_keyword_included_2",
+                                                                    "type": "phrase",
+                                                                    "fields": [
+                                                                        "message_text"
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ],
+                                                        "minimum_should_match": 1
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "bucket_aggs": {
+            "date_histogram": {
+                "field": "conversation_started_at",
+                "time_zone": "+00:00",
+                "calendar_interval": "day",
+                "min_doc_count": 0
+            },
+            "aggs": {
+                "metrics_conversation_count": {
+                    "cardinality": {
+                        "field": "conversation_id.keyword",
+                        "precision_threshold": 40000
+                    }
+                }
+            }
+        }
+    }
+}

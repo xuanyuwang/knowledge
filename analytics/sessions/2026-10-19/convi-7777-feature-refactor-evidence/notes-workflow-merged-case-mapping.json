@@ -1,0 +1,259 @@
+{
+  "snapshot_replacements": [
+    {
+      "existing_case": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestCases/Test_DailyFilterAndGroupByAgent",
+      "replacement_case": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestCases/Test_DailyFilterAndGroupByAgent",
+      "proof": "Real seeded ClickHouse through full RPC with complete response comparison",
+      "obsolete_sql_snapshot": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_FilterAndGroupByAgent_request.sql"
+    },
+    {
+      "existing_case": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestCases/Test_BasicFilterAndGroupByAgent",
+      "replacement_case": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestCases/Test_BasicFilterAndGroupByAgent",
+      "proof": "Real seeded ClickHouse through full RPC with complete response comparison",
+      "obsolete_sql_snapshot": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_BasicFilterAndGroupByAgent_request.sql"
+    },
+    {
+      "existing_case": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestCases/Test_DailyFilterAndGroupByGroup",
+      "replacement_case": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestCases/Test_DailyFilterAndGroupByGroup",
+      "proof": "Real seeded ClickHouse through full RPC with complete response comparison",
+      "obsolete_sql_snapshot": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_FilterAndGroupByGroups_request.sql"
+    },
+    {
+      "existing_case": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestCases/Test_WeeklyGroupByAgent",
+      "replacement_case": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestCases/Test_WeeklyGroupByAgent",
+      "proof": "Real seeded ClickHouse through full RPC with complete response comparison",
+      "obsolete_sql_snapshot": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_WeeklyGroupByAgent_request.sql"
+    },
+    {
+      "existing_case": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestCases/Test_FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+      "replacement_case": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestCases/Test_FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+      "proof": "Real seeded ClickHouse through full RPC with complete response comparison",
+      "obsolete_sql_snapshot": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql"
+    },
+    {
+      "existing_case": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestCases/Test_DailyFilterAndGroupByAgent",
+      "replacement_case": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestCases/Test_DailyFilterAndGroupByAgent",
+      "proof": "Real seeded ClickHouse through full RPC with complete response comparison",
+      "obsolete_sql_snapshot": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_FilterAndGroupByAgent_request.sql"
+    },
+    {
+      "existing_case": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestCases/Test_BasicFilterAndGroupByAgent",
+      "replacement_case": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestCases/Test_BasicFilterAndGroupByAgent",
+      "proof": "Real seeded ClickHouse through full RPC with complete response comparison",
+      "obsolete_sql_snapshot": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_BasicFilterAndGroupByAgent_request.sql"
+    },
+    {
+      "existing_case": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestCases/Test_DailyFilterAndGroupByGroup",
+      "replacement_case": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestCases/Test_DailyFilterAndGroupByGroup",
+      "proof": "Real seeded ClickHouse through full RPC with complete response comparison",
+      "obsolete_sql_snapshot": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_FilterAndGroupByGroups_request.sql"
+    },
+    {
+      "existing_case": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestCases/Test_WeeklyGroupByAgent",
+      "replacement_case": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestCases/Test_WeeklyGroupByAgent",
+      "proof": "Real seeded ClickHouse through full RPC with complete response comparison",
+      "obsolete_sql_snapshot": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_WeeklyGroupByAgent_request.sql"
+    },
+    {
+      "existing_case": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestCases/Test_DailyGroupByGuidedWorkflow",
+      "replacement_case": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestCases/Test_DailyGroupByGuidedWorkflow",
+      "proof": "Real seeded ClickHouse through full RPC with complete response comparison",
+      "obsolete_sql_snapshot": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_DailyGroupByGuidedWorkflow_request.sql"
+    },
+    {
+      "existing_case": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestCases/Test_FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+      "replacement_case": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestCases/Test_FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+      "proof": "Real seeded ClickHouse through full RPC with complete response comparison",
+      "obsolete_sql_snapshot": "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql"
+    }
+  ],
+  "characterization_moves": [
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_note_taking_usage_integration_test.go::request",
+      "to": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::request",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "4aa4f5da078e317a3fda59f1fa1c60b0997bb6ffbc9b3840240475a42bc97a31"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_note_taking_usage_integration_test.go::expected",
+      "to": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::expected",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "dab8af055dc0073e9823b3d78da66d67ae7d7a70d526767b414a90745547c87e"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_note_taking_usage_integration_test.go::equalResponse",
+      "to": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::equalResponse",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "1bae0d590cfc726a861e9700b734ab1ebe6f53cb7bbee64c75c5b22279b2b03a"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_note_taking_usage_integration_test.go::TestCopyEntityGateDistinctEventIDsAndJoinedDenominators",
+      "to": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestCopyEntityGateDistinctEventIDsAndJoinedDenominators",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "a4d6a941adbec9161cd3242ce2171b9b7817054f9568ac729886dca76f24c4b7"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_note_taking_usage_integration_test.go::TestMetadataUsesTypedCopyEntityGate",
+      "to": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestMetadataUsesTypedCopyEntityGate",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "c7babadc11ee3344bcda676fdb1ecbc58e61030a4914d8a5842cccc3ed876a3d"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_note_taking_usage_integration_test.go::TestInlineAndExternalUserFilters",
+      "to": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestInlineAndExternalUserFilters",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "94fed10d6cfd38c4ae2df6b12293ae5e50939777bb933df7802d319ab2d3e16c"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_note_taking_usage_integration_test.go::TestMetadataLatestIncludeAndExclude",
+      "to": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestMetadataLatestIncludeAndExclude",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "7b100fea448e7b49645b7a0fdbba8befa4a472974591846fe95a36939807d99c"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_note_taking_usage_integration_test.go::TestNoMatchingDataAndNoEventConversation",
+      "to": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestNoMatchingDataAndNoEventConversation",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "4b58652f48193986977594fb04a6892d9eed582b60596eccaeea31a1ad661d01"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_note_taking_usage_integration_test.go::TestTimeBoundsAndTimezoneGrouping",
+      "to": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestTimeBoundsAndTimezoneGrouping",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "8889dc83df355a5ea490dbcafe991fc332f37dca2b2af2eb2c919742a2f06c92"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_note_taking_usage_integration_test.go::TestSameConversationMultipleAgentsGroupedAndOverall",
+      "to": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestSameConversationMultipleAgentsGroupedAndOverall",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "77029d2ca9e0c603ddc2182246205493b36ba29227027cb4c7fabcd91f7e1bcb"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_note_taking_usage_integration_test.go::TestConversationAndEventTimeFiltersApplyBeforeJoin",
+      "to": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go::TestConversationAndEventTimeFiltersApplyBeforeJoin",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "114c3c883e36b26bc1592fd611c37a61173c5fe81bdfdd722f6ee075de585807"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::request",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::request",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "23143165e56104f6e84a4b9afeca22db3e2ec966a27ef18901a8c4a4bcd48cdd"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::expected",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::expected",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "a77d11f4eeb6b25b5a23ce11133622ea586aa25fbe159e2df7e925f1f2b7bb51"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::equalResponse",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::equalResponse",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "03d13ef59cd0c73452785db0a664838a99cceb9d06c85d01a2ff788da27b086e"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::TestDocumentPayloadGates",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestDocumentPayloadGates",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "b2fc2778a454c15eb627bb7e057995a2870848395dcf879cb4855c85fdbe783e"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::TestDistinctSessionsAcrossEventsDocumentsAndConversations",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestDistinctSessionsAcrossEventsDocumentsAndConversations",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "5fd1ba726ff1b54b007c761878669058bb0da88b983b412903227e518daf1cfd"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::TestMetadataTypedDocumentGatesAndEmptySession",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestMetadataTypedDocumentGatesAndEmptySession",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "4b4a118cbd8d01d5c6eac43d19c06a842697b7bf3f45476ce805455880c4825f"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::TestInlineAndExternalUserFilters",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestInlineAndExternalUserFilters",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "942e22b77cc93d93fec16fa2b84d3b7db611d1118bd9927888dc4e9dab14623b"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::TestMetadataLatestIncludeAndExclude",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestMetadataLatestIncludeAndExclude",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "c755470e2c54cd3017efe7008ec64f2a154014abd893ff6bae5a3e77b591db6a"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::TestNoMatchingDataAndNoEventConversation",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestNoMatchingDataAndNoEventConversation",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "75cfd0b3c616401f688afb922ef8b7ff893b201b5c0aae04a99bde1b57b0aac2"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::TestTimeBoundsAndTimezoneGrouping",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestTimeBoundsAndTimezoneGrouping",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "7306bda1e1dbc81941507c316365c9241e6ed032737953802964d275bc32169a"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::TestSameConversationMultipleAgentsGroupedAndOverall",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestSameConversationMultipleAgentsGroupedAndOverall",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "ad09fc9f2314fd53eef69fa5fd147b3e707ba4824674f2e06f9a1019ee1a80f1"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::TestGroupingByDocumentCountsSessionWithinEachDocument",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestGroupingByDocumentCountsSessionWithinEachDocument",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "6ed5e05a859f765319624b842425a3717e5062fddc4e2bdfe18c3c740ac69e07"
+    },
+    {
+      "from": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_usage_integration_test.go::TestConversationAndEventTimeFiltersApplyBeforeJoin",
+      "to": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go::TestConversationAndEventTimeFiltersApplyBeforeJoin",
+      "unchanged_after_receiver_rename": true,
+      "sha256": "031544d0b41c7caff3c2967378f9a95b25f6c4614c03e7c90eab10c09f35e59a"
+    }
+  ],
+  "legacy_response_tests": [
+    {
+      "method": "Test_BasicRequestAndResponse",
+      "file": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go",
+      "expected_response_and_assertions_unchanged": true,
+      "sha256": "9ac64199a53df564dde24806fb2b78a9441998b4d271dfd1bab40e689617ca01"
+    },
+    {
+      "method": "Test_BasicRequestAndResponse",
+      "file": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go",
+      "expected_response_and_assertions_unchanged": true,
+      "sha256": "701f0a78ed4991ab1975c72feb7d0ba474461388dad22f8de47edccd27489648"
+    },
+    {
+      "method": "Test_BasicRequestAndResponse_GroupByGuidedWorkflowName",
+      "file": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go",
+      "expected_response_and_assertions_unchanged": true,
+      "sha256": "2065775e1f516ec8725af592489c7d5b712690a4b4f74895b77a9a2b657a226d"
+    }
+  ],
+  "obsolete_sql_snapshots": [
+    "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_FilterAndGroupByAgent_request.sql",
+    "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_BasicFilterAndGroupByAgent_request.sql",
+    "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_FilterAndGroupByGroups_request.sql",
+    "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_WeeklyGroupByAgent_request.sql",
+    "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+    "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_FilterAndGroupByAgent_request.sql",
+    "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_BasicFilterAndGroupByAgent_request.sql",
+    "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_FilterAndGroupByGroups_request.sql",
+    "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_WeeklyGroupByAgent_request.sql",
+    "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_DailyGroupByGuidedWorkflow_request.sql",
+    "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql"
+  ],
+  "removed_runnable_suites": [
+    "TestNoteTakingUsageCH",
+    "TestGuidedWorkflowUsageCH",
+    "TestRetrieveGuidedWorkflowStatsFromClickHouse"
+  ],
+  "remaining_runnable_suites": [
+    "TestRetrieveNoteTakingStats",
+    "TestRetrieveGuidedWorkflowStats"
+  ],
+  "shared_fixture_has_no_runnable_suite": true
+}

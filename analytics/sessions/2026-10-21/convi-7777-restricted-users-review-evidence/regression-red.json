@@ -1,0 +1,71 @@
+[
+  {
+    "Action": "output",
+    "Test": "TestConversationAssistanceUsagePopulationCH",
+    "Output": "    conn.go:66: [clickhouse][conn=1][127.0.0.1:33430] [exception] code: 62, message: Syntax error: failed at position 262123 (''00000000-0000-0000-0000-000000006542'') (line 15, col 261819): '00000000-0000-0000-0000-000000006542', '00000000-0000-0000-0000-000000006543', '00000000-0000-0000-0000-000000006544', '00000000-0000-0000-0000-000000006545', . Max query size exceeded: ''00000000-0000-0000-0000-000000006542''\n"
+  },
+  {
+    "Action": "output",
+    "Test": "TestConversationAssistanceUsagePopulationCH",
+    "Output": "    conn.go:66: [clickhouse][conn=1][127.0.0.1:33430] [query] first block error: code: 62, message: Syntax error: failed at position 262123 (''00000000-0000-0000-0000-000000006542'') (line 15, col 261819): '00000000-0000-0000-0000-000000006542', '00000000-0000-0000-0000-000000006543', '00000000-0000-0000-0000-000000006544', '00000000-0000-0000-0000-000000006545', . Max query size exceeded: ''00000000-0000-0000-0000-000000006542''\n"
+  },
+  {
+    "Action": "output",
+    "Test": "TestConversationAssistanceUsagePopulationCH",
+    "Output": "(''00000000-0000-0000-0000-000000006542'') (line 15, col 261819): '00000000-0000-0000-0000-000000006542', '00000000-0000-0000-0000-000000006543', '00000000-0000-0000-0000-000000006544', '00000000-0000-0000-0000-000000006545', . Max query size exceeded: ''00000000-0000-0000-0000-000000006542''\",\"stacktrace\":\"github.com/cresta/go-servers/shared/clickhouse/shared.onRunCompletion\\n\\t/Users/xuanyu.wang/repos/go-servers-convi-7777-assistance-usage/shared/clickhouse/shared/common.go:454\\ngithub.com/cresta/go-servers/shared/clickhouse/shared.runWithRetry\\n\\t/Users/xuanyu.wang/repos/go-servers-convi-7777-assistance-usage/shared/clickhouse/shared/common.go:312\\ngithub.com/cresta/go-servers/shared/clickhouse/shared.QueryWithRetry\\n\\t/Users/xuanyu.wang/repos/go-servers-convi-7777-assistance-usage/shared/clickhouse/shared/common.go:221\\ngithub.com/cresta/go-servers/insights-server/internal/analyticsimpl.AnalyticsServiceImpl.readConversationAssistanceUsagePopulation\\n\\t/Users/xuanyu.wang/repos/go-servers-convi-7777-assista"
+  },
+  {
+    "Action": "output",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithExternalTableFlagDisabled/AgentsOnlyLargeDirectory",
+    "Output": "        \t            \tquery assistance usage population: code: 62, message: Syntax error: failed at position 262123 (''00000000-0000-0000-0000-000000006542'') (line 15, col 261819): '00000000-0000-0000-0000-000000006542', '00000000-0000-0000-0000-000000006543', '00000000-0000-0000-0000-000000006544', '00000000-0000-0000-0000-000000006545', . Max query size exceeded: ''00000000-0000-0000-0000-000000006542''\n"
+  },
+  {
+    "Time": "2026-10-21T15:43:16.47528-04:00",
+    "Action": "fail",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithExternalTableFlagDisabled/AgentsOnlyLargeDirectory",
+    "Elapsed": 0.03
+  },
+  {
+    "Action": "output",
+    "Test": "TestConversationAssistanceUsagePopulationCH",
+    "Output": "    conn.go:66: [clickhouse][conn=2][127.0.0.1:33430] [exception] code: 62, message: Syntax error: failed at position 262123 (''00000000-0000-0000-0000-000000006542'') (line 15, col 261819): '00000000-0000-0000-0000-000000006542', '00000000-0000-0000-0000-000000006543', '00000000-0000-0000-0000-000000006544', '00000000-0000-0000-0000-000000006545', . Max query size exceeded: ''00000000-0000-0000-0000-000000006542''\n"
+  },
+  {
+    "Action": "output",
+    "Test": "TestConversationAssistanceUsagePopulationCH",
+    "Output": "    conn.go:66: [clickhouse][conn=2][127.0.0.1:33430] [query] first block error: code: 62, message: Syntax error: failed at position 262123 (''00000000-0000-0000-0000-000000006542'') (line 15, col 261819): '00000000-0000-0000-0000-000000006542', '00000000-0000-0000-0000-000000006543', '00000000-0000-0000-0000-000000006544', '00000000-0000-0000-0000-000000006545', . Max query size exceeded: ''00000000-0000-0000-0000-000000006542''\n"
+  },
+  {
+    "Action": "output",
+    "Test": "TestConversationAssistanceUsagePopulationCH",
+    "Output": "(''00000000-0000-0000-0000-000000006542'') (line 15, col 261819): '00000000-0000-0000-0000-000000006542', '00000000-0000-0000-0000-000000006543', '00000000-0000-0000-0000-000000006544', '00000000-0000-0000-0000-000000006545', . Max query size exceeded: ''00000000-0000-0000-0000-000000006542''\",\"stacktrace\":\"github.com/cresta/go-servers/shared/clickhouse/shared.onRunCompletion\\n\\t/Users/xuanyu.wang/repos/go-servers-convi-7777-assistance-usage/shared/clickhouse/shared/common.go:454\\ngithub.com/cresta/go-servers/shared/clickhouse/shared.runWithRetry\\n\\t/Users/xuanyu.wang/repos/go-servers-convi-7777-assistance-usage/shared/clickhouse/shared/common.go:312\\ngithub.com/cresta/go-servers/shared/clickhouse/shared.QueryWithRetry\\n\\t/Users/xuanyu.wang/repos/go-servers-convi-7777-assistance-usage/shared/clickhouse/shared/common.go:221\\ngithub.com/cresta/go-servers/insights-server/internal/analyticsimpl.AnalyticsServiceImpl.readConversationAssistanceUsagePopulation\\n\\t/Users/xuanyu.wang/repos/go-servers-convi-7777-assista"
+  },
+  {
+    "Action": "output",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithExternalTableFlagDisabled/ActiveOnlyLargeDirectory",
+    "Output": "        \t            \tquery assistance usage population: code: 62, message: Syntax error: failed at position 262123 (''00000000-0000-0000-0000-000000006542'') (line 15, col 261819): '00000000-0000-0000-0000-000000006542', '00000000-0000-0000-0000-000000006543', '00000000-0000-0000-0000-000000006544', '00000000-0000-0000-0000-000000006545', . Max query size exceeded: ''00000000-0000-0000-0000-000000006542''\n"
+  },
+  {
+    "Time": "2026-10-21T15:43:16.502695-04:00",
+    "Action": "fail",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithExternalTableFlagDisabled/ActiveOnlyLargeDirectory",
+    "Elapsed": 0.03
+  },
+  {
+    "Time": "2026-10-21T15:43:16.50272-04:00",
+    "Action": "fail",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestUserRestrictionsWithExternalTableFlagDisabled",
+    "Elapsed": 0.06
+  },
+  {
+    "Time": "2026-10-21T15:43:22.865597-04:00",
+    "Action": "fail",
+    "Test": "TestConversationAssistanceUsagePopulationCH",
+    "Elapsed": 16.41
+  },
+  {
+    "Time": "2026-10-21T15:43:22.86659-04:00",
+    "Action": "fail",
+    "Elapsed": 18
+  }
+]

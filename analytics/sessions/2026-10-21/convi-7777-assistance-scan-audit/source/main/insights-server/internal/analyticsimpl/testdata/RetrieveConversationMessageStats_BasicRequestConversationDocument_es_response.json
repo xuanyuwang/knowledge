@@ -1,0 +1,114 @@
+{
+    "took": 11,
+    "timed_out": false,
+    "_shards": {
+      "total": 12,
+      "successful": 12,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 10,
+        "relation": "eq"
+      },
+      "max_score": null,
+      "hits": []
+    },
+    "aggregations": {
+      "moments": {
+        "meta": {},
+        "buckets": [
+          {
+            "doc_count": 80,
+            "annotation_hit": {
+              "hits": {
+                "total": {
+                  "value": 80,
+                  "relation": "eq"
+                },
+                "max_score": null,
+                "hits": [
+                  {
+                    "_index": "customer_id-profile_id-v2",
+                    "_id": "802174054804932444-419541",
+                    "_score": 0,
+                    "_routing": "802174054804932444",
+                    "_source": {
+                      "moment_annotations": [
+                        {
+                          "moment_annotation_id": "eb74093e-506d-4bfd-9aae-66c6f8a9e163",
+                          "moment_template_id": "f0a590e0-ccc7-4981-9634-4cfaf67c782c",
+                          "payload": {
+                            "metadata": {}
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "total_conversation_message_count": {
+              "value": 80
+            },
+            "total_conversation_count": {
+              "value": 8
+            },
+            "total_conversation_handle_time_secs_sum": {
+              "value": 0
+            }
+          },
+          {
+            "doc_count": 20,
+            "annotation_hit": {
+              "hits": {
+                "total": {
+                  "value": 20,
+                  "relation": "eq"
+                },
+                "max_score": null,
+                "hits": [
+                  {
+                    "_index": "customer_id-profile_id-v2",
+                    "_id": "802174054804932444-419541",
+                    "_score": 0,
+                    "_routing": "802174054804932444",
+                    "_source": {
+                      "moment_annotations": [
+                        {
+                          "moment_annotation_id": "eb74093e-506d-4bfd-9aae-66c6f8a9e163",
+                          "moment_template_id": "f0a590e0-ccc7-4981-9634-4cfaf67c782c",
+                          "payload": {
+                            "metadata": {}
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "total_conversation_message_count": {
+              "value": 20
+            },
+            "total_conversation_count": {
+              "value": 2
+            },
+            "total_conversation_handle_time_secs_sum": {
+              "value": 0
+            }
+          }
+        ]
+      },
+      "total_conversation_message_count": {
+        "value": 100
+      },
+      "total_conversation_count": {
+        "value": 10
+      },
+      "total_conversation_handle_time_secs_sum": {
+        "value": 0
+      }
+    }
+  }

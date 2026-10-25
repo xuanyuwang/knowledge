@@ -1,0 +1,20 @@
+[
+  {
+    "method": "Test_BasicRequestAndResponse",
+    "file": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go",
+    "expected_response_and_assertions_unchanged": true,
+    "sha256": "9ac64199a53df564dde24806fb2b78a9441998b4d271dfd1bab40e689617ca01"
+  },
+  {
+    "method": "Test_BasicRequestAndResponse",
+    "file": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go",
+    "expected_response_and_assertions_unchanged": true,
+    "sha256": "701f0a78ed4991ab1975c72feb7d0ba474461388dad22f8de47edccd27489648"
+  },
+  {
+    "method": "Test_BasicRequestAndResponse_GroupByGuidedWorkflowName",
+    "file": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go",
+    "expected_response_and_assertions_unchanged": true,
+    "sha256": "2065775e1f516ec8725af592489c7d5b712690a4b4f74895b77a9a2b657a226d"
+  }
+]

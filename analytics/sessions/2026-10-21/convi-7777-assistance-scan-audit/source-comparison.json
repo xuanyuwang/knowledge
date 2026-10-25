@@ -1,0 +1,98 @@
+[
+  {
+    "file": "common_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": true
+  },
+  {
+    "file": "retrieve_knowledge_base_stats_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": true
+  },
+  {
+    "file": "retrieve_suggestion_stats_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": true
+  },
+  {
+    "file": "retrieve_note_taking_stats_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": true
+  },
+  {
+    "file": "retrieve_guided_workflow_stats_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": true
+  },
+  {
+    "file": "retrieve_knowledge_assist_stats_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": false
+  },
+  {
+    "file": "retrieve_summarization_stats_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": false
+  },
+  {
+    "file": "retrieve_hint_stats_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": true
+  },
+  {
+    "file": "retrieve_smart_compose_stats_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": true
+  },
+  {
+    "file": "common_guided_workflow_usage_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": true
+  },
+  {
+    "file": "common_knowledge_assist_usage_clickhouse.go",
+    "main_exists": false,
+    "pr_exists": true,
+    "identical": false
+  },
+  {
+    "file": "common_summarization_usage_clickhouse.go",
+    "main_exists": false,
+    "pr_exists": true,
+    "identical": false
+  },
+  {
+    "file": "common_knowledge_base_usage_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": true
+  },
+  {
+    "file": "common_note_taking_usage_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": true
+  },
+  {
+    "file": "common_suggestion_usage_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": true
+  },
+  {
+    "file": "common_hint_usage_clickhouse.go",
+    "main_exists": true,
+    "pr_exists": true,
+    "identical": true
+  }
+]

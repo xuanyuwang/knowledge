@@ -1,0 +1,2 @@
+Post-rebase GitHub CI hit proxy.golang.org dependency download/TLS timeouts in Detect affected services (run39508790631). Failed jobs were rerun; CI retry is pending. Local regression passes remain valid, but this is not a green-CI or merge-readiness claim.
+https://github.com/cresta/go-servers/actions/runs/39508790631

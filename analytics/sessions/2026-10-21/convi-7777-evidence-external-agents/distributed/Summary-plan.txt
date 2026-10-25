@@ -1,0 +1,17 @@
+Expression ((Projection + Before ORDER BY))
+  Join (JOIN FillRightFirst)
+    Expression ((Before JOIN + (Projection + Before ORDER BY)))
+      Aggregating
+        Expression ((Before GROUP BY + Projection))
+          Distinct
+            Distinct (Preliminary DISTINCT)
+              Expression (Before ORDER BY)
+                Join (JOIN FillRightFirst)
+                  Expression ((Before JOIN + Projection))
+                    Distinct
+                      ReadFromRemote (Read from remote replica)
+                  Expression ((Joined actions + (Rename joined columns + Projection)))
+                    Distinct
+                      ReadFromRemote (Read from remote replica)
+    Expression ((Joined actions + (Rename joined columns + (Projection + Before ORDER BY))))
+      ReadFromMemoryStorage

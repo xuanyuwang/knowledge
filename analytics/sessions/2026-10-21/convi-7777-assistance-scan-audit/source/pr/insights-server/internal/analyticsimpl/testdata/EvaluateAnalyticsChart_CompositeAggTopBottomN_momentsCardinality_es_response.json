@@ -1,0 +1,16 @@
+{
+  "hits": {
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "doc_count": 100,
+      "bucket_aggs": {
+        "doc_count": 50,
+        "metrics_bucket_field_cardinality": {
+          "value": 10
+        }
+      }
+    }
+  }
+}

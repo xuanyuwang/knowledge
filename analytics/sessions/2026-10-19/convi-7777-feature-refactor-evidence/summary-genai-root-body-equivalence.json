@@ -1,0 +1,18 @@
+[
+  {
+    "file": "retrieve_knowledge_assist_stats_test.go",
+    "result": "pass",
+    "methods": [
+      "TestReaderContracts",
+      "TestTimeGroupingDenominatorsAcrossDays"
+    ]
+  },
+  {
+    "file": "retrieve_summarization_stats_test.go",
+    "result": "pass",
+    "methods": [
+      "TestReaderContracts",
+      "TestTimeGroupingDenominatorsAcrossDays"
+    ]
+  }
+]

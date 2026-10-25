@@ -1,0 +1,172 @@
+{
+    "took": 6,
+    "timed_out": false,
+    "_shards": {
+        "total": 12,
+        "successful": 12,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 7,
+            "relation": "eq"
+        },
+        "max_score": null,
+        "hits": [
+            {
+                "_index": "customer_id-profile_id-conversations-v0",
+                "_id": "dummy-id-1",
+                "_score": null,
+                "_routing": "dummy-routing-id-1",
+                "_source": {
+                    "customer_id": "dummy-customer-id-1",
+                    "profile_id": "dummy-profile-id-1",
+                    "usecase_id": "chat",
+                    "agent": 1104158,
+                    "agent_user_id": "dummy-user-id-1",
+                    "agent_name": "dummy-agent-name-1",
+                    "agent_is_dev_user": false,
+                    "agent_type": 0,
+                    "chat_id": 490680,
+                    "message_id": 2051748,
+                    "conversation_id": "dummy-convo-id",
+                    "conversation_message_id": "dummy-msg-id-1",
+                    "platform_conversation_id": "dummy-platform-convo-id-1",
+                    "platform_account_id": "dummy-platform-account-id-1",
+                    "effective_language": "en-US",
+                    "conversation_to_message_join": {
+                        "name": "message",
+                        "parent": "dummy-parent-id-1"
+                    },
+                    "message_text": "Thank you for calling. My name is John. How can I assist you today?",
+                    "message_text_whitespace": "Thank you for calling. My name is John. How can I assist you today?",
+                    "message_text_with_custom_analyzer": {
+                        "english": "Thank you for calling. My name is John. How can I assist you today?"
+                    },
+                    "speaker_role": "agent",
+                    "conversation_created_at": "2024-09-02T06:16:40.631076Z",
+                    "conversation_started_at": "2024-09-02T06:16:40.631076Z",
+                    "conversation_ended_at": "2024-09-02T06:17:18.823654Z",
+                    "conversation_source": 0,
+                    "created_at": "2024-09-02T06:16:42.027574Z",
+                    "updated_at": "2024-09-02T06:17:35.061238Z",
+                    "platform_timestamp": "2024-09-02T06:16:40.801Z",
+                    "message_count": 6,
+                    "message_forward_position": 0,
+                    "message_backward_position": 5,
+                    "action_annotations": [
+                        {
+                            "type": 9,
+                            "adherence_type": 0,
+                            "action_annotation_id": "dummy-action-id-1"
+                        }
+                    ],
+                    "handle_time_secs": 0
+                },
+                "sort": [
+                    "2024-09-02T06:17:18.823Z",
+                    "2024-09-02T06:16:42.027Z"
+                ]
+            },
+            {
+                "_index": "customer_id-profile_id-conversations-v0",
+                "_id": "dummy-id-2",
+                "_score": null,
+                "_routing": "dummy-routing-id-2",
+                "_source": {
+                    "customer_id": "dummy-customer-id-2",
+                    "profile_id": "dummy-profile-id-2",
+                    "usecase_id": "chat",
+                    "agent": 1104158,
+                    "agent_user_id": "dummy-user-id-2",
+                    "agent_name": "dummy-agent-name-2",
+                    "agent_is_dev_user": false,
+                    "agent_type": 0,
+                    "chat_id": 490680,
+                    "message_id": 2051749,
+                    "conversation_id": "dummy-convo-id",
+                    "conversation_message_id": "dummy-msg-id-2",
+                    "platform_conversation_id": "dummy-platform-convo-id-2",
+                    "platform_account_id": "dummy-platform-account-id-2",
+                    "effective_language": "en-US",
+                    "conversation_to_message_join": {
+                        "name": "message",
+                        "parent": "dummy-parent-id-2"
+                    },
+                    "message_text": "Hi, John. I'm Jane. I have a problem with my latest bill. It seems higher than usual.",
+                    "message_text_whitespace": "Hi, John. I'm Jane. I have a problem with my latest bill. It seems higher than usual.",
+                    "message_text_with_custom_analyzer": {
+                        "english": "Hi, John. I'm Jane. I have a problem with my latest bill. It seems higher than usual."
+                    },
+                    "speaker_role": "visitor",
+                    "conversation_created_at": "2024-09-02T06:16:40.631076Z",
+                    "conversation_started_at": "2024-09-02T06:16:40.631076Z",
+                    "conversation_ended_at": "2024-09-02T06:17:18.823654Z",
+                    "conversation_source": 0,
+                    "created_at": "2024-09-02T06:16:48.901088Z",
+                    "updated_at": "2024-09-02T06:17:35.061238Z",
+                    "platform_timestamp": "2024-09-02T06:16:46.780Z",
+                    "message_count": 6,
+                    "message_forward_position": 1,
+                    "message_backward_position": 4,
+                    "moment_annotations": [
+                        {
+                            "moment_template_id": "dummy-moment-id-1",
+                            "display_name": "Neutral",
+                            "type": 6,
+                            "taxonomy": "sentiment.neutral",
+                            "adherence_type": 0,
+                            "moment_annotation_id": "dummy-annotation-id-1",
+                            "payload": {
+                                "sentiment": {
+                                    "confidence": 0.76204896,
+                                    "sentiment": "NEUTRAL"
+                                },
+                                "metadata": {}
+                            }
+                        },
+                        {
+                            "moment_template_id": "dummy-moment-id-2",
+                            "display_name": "Neutral",
+                            "type": 21,
+                            "taxonomy": "emotion.neutral",
+                            "adherence_type": 0,
+                            "moment_annotation_id": "dummy-annotation-id-2",
+                            "payload": {
+                                "emotion": {
+                                    "confidence": 0.9913605,
+                                    "emotion": "NEUTRAL"
+                                },
+                                "metadata": {}
+                            }
+                        },
+                        {
+                            "moment_template_id": "dummy-moment-id-3",
+                            "display_name": "Conversation Reasons Prerequirements",
+                            "type": 8,
+                            "taxonomy": "pre_topic.conversation_reasons",
+                            "adherence_type": 0,
+                            "moment_annotation_id": "dummy-annotation-id-3",
+                            "payload": {
+                                "metadata": {}
+                            }
+                        }
+                    ],
+                    "action_annotations": [
+                        {
+                            "type": 9,
+                            "adherence_type": 0,
+                            "action_annotation_id": "dummy-action-id-2"
+                        }
+                    ],
+                    "handle_time_secs": 0
+                },
+                "sort": [
+                    "2024-09-02T06:17:18.823Z",
+                    "2024-09-02T06:16:48.901Z"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,64 @@
+[
+  {
+    "Time": "2026-10-21T15:51:51.567031-04:00",
+    "Action": "output",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestReviewEvidenceBoundaries/LargeAgentList",
+    "Output": "    zz_review_5604982557_diagnostic_test.go:45: REVIEW_RESULT LargeAgentList: query feature rows: code: 62, message: Syntax error: failed at position 262128 (''00000000-0000-0000-0000-000000006543'') (line 11, col 261750): '00000000-0000-0000-0000-000000006543', '00000000-0000-0000-0000-000000006544', '00000000-0000-0000-0000-000000006545', '00000000-0000-0000-0000-000000006546', . Max query size exceeded: ''00000000-0000-0000-0000-000000006543''\n"
+  },
+  {
+    "Time": "2026-10-21T15:51:51.567159-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestReviewEvidenceBoundaries/LargeAgentList",
+    "Elapsed": 10.1
+  },
+  {
+    "Time": "2026-10-21T15:51:51.587089-04:00",
+    "Action": "output",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestReviewEvidenceBoundaries/CopiedTimeFourteenDaysEarlier",
+    "Output": "    zz_review_5604982557_diagnostic_test.go:49: REVIEW_RESULT CopiedTimeFourteenDaysEarlier: eligible pair qualifies with copied time -336h0m0s from population start\n"
+  },
+  {
+    "Time": "2026-10-21T15:51:51.587144-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestReviewEvidenceBoundaries/CopiedTimeFourteenDaysEarlier",
+    "Elapsed": 0.02
+  },
+  {
+    "Time": "2026-10-21T15:51:51.596375-04:00",
+    "Action": "output",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestReviewEvidenceBoundaries/CopiedTimeFourteenDaysLater",
+    "Output": "    zz_review_5604982557_diagnostic_test.go:49: REVIEW_RESULT CopiedTimeFourteenDaysLater: eligible pair qualifies with copied time 336h0m0s from population start\n"
+  },
+  {
+    "Time": "2026-10-21T15:51:51.596413-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestReviewEvidenceBoundaries/CopiedTimeFourteenDaysLater",
+    "Elapsed": 0.01
+  },
+  {
+    "Time": "2026-10-21T15:51:51.596451-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageEvidenceCH/TestReviewEvidenceBoundaries",
+    "Elapsed": 10.13
+  },
+  {
+    "Time": "2026-10-21T15:51:57.816592-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsageEvidenceCH",
+    "Elapsed": 16.35
+  },
+  {
+    "Time": "2026-10-21T15:51:57.825607-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Elapsed": 17.875
+  }
+]

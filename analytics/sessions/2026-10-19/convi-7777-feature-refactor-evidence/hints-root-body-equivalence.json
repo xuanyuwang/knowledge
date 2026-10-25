@@ -1,0 +1,21 @@
+{
+  "result": "pass",
+  "methods": [
+    "TestBehavioralDeliveryModesAndDuplicateAnnotations",
+    "TestDeliveredRowsOwnAgentAndTimeAttribution",
+    "TestSourcesDevelopmentUsersAndPolicyGates",
+    "TestKnowledgeFollowsAreDistinctActionsIncludingMissingID",
+    "TestMixedBranchesRetainMaximumDenominators",
+    "TestSameConversationCountsForEachAgent",
+    "TestUserFilterInlineAndExternalForBothDeliveryModes",
+    "TestConversationStartBoundsAndTimezoneBuckets",
+    "TestNoFrequencyKeepsTotalsAndRemovesBuckets",
+    "TestBehaviorGroupingAndFilterUseMomentRows",
+    "TestPolicyGroupingRetainsSourceColumnMapping",
+    "TestHintTypeBranches",
+    "TestMetadataIncludesUseLatestUpdateAndExcludesMissing",
+    "TestMetadataExclusionAndCombinedFilters",
+    "TestEmptyProfile",
+    "TestMomentAndEventEligibilityGuards"
+  ]
+}

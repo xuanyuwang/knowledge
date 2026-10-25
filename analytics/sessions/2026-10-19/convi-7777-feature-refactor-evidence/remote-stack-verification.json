@@ -1,0 +1,2683 @@
+[
+  {
+    "group": "kb-search",
+    "kind": "tests",
+    "url": "https://github.com/cresta/go-servers/pull/34031",
+    "result": "pass",
+    "base": "main",
+    "head": "e2392e8254f1b74259a7b286933f63c5e29b0120",
+    "files": [
+      "insights-server/internal/analyticsimpl/BUILD.bazel",
+      "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeBaseStats_BasicFilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeBaseStats_FilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeBaseStats_FilterAndGroupByGroups_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeBaseStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeBaseStats_WeeklyGroupByAgent_request.sql"
+    ],
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:51:48Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289131286/job/118184867474",
+        "name": "scan-and-fix / Scan PR with Opengrep",
+        "startedAt": "2026-10-19T16:51:49Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:53:03Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289130621/job/118184861717",
+        "name": "check-go-type-comments",
+        "startedAt": "2026-10-19T16:51:57Z",
+        "status": "COMPLETED",
+        "workflowName": "Check go_type Comments"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:52:37Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289131398/job/118184870248",
+        "name": "feature-flags-lint / Lint feature flag names",
+        "startedAt": "2026-10-19T16:51:59Z",
+        "status": "COMPLETED",
+        "workflowName": "Feature Flags Lint"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:53:09Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289130789/job/118184862713",
+        "name": "Lint Bazel BUILD files",
+        "startedAt": "2026-10-19T16:52:08Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:52:06Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289130547/job/118184865720",
+        "name": "triage",
+        "startedAt": "2026-10-19T16:51:58Z",
+        "status": "COMPLETED",
+        "workflowName": "Pull Request Automatic Label"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:40Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118186025453",
+        "name": "Detect affected services",
+        "startedAt": "2026-10-19T16:54:18Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:41Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188370758",
+        "name": "${{ matrix.service }} / go (required)",
+        "startedAt": "2026-10-19T16:58:41Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:52:28Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289130789/job/118184862501",
+        "name": "Custom lints",
+        "startedAt": "2026-10-19T16:52:05Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:53:15Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289131286/job/118184864870",
+        "name": "scan-and-fix / Scan PR for potential credential leaks",
+        "startedAt": "2026-10-19T16:51:57Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:41Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188371760",
+        "name": "${{ matrix.service }} / go (optional)",
+        "startedAt": "2026-10-19T16:58:41Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:42Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188371696",
+        "name": "insights-server / bazel (required) / Plan build and test jobs",
+        "startedAt": "2026-10-19T16:59:32Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:04:23Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188371642",
+        "name": "insights-server / bazel (required) / Run go lints",
+        "startedAt": "2026-10-19T16:59:17Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:10Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188881999",
+        "name": "insights-server / bazel (required) / Bazel build checks: insights-server",
+        "startedAt": "2026-10-19T17:01:00Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:03:30Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188881978",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 1/5)",
+        "startedAt": "2026-10-19T17:01:00Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:03:22Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188882013",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 2/5)",
+        "startedAt": "2026-10-19T17:00:57Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:03:25Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188882086",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 3/5)",
+        "startedAt": "2026-10-19T17:01:00Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:23Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188881946",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 4/5)",
+        "startedAt": "2026-10-19T17:01:00Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:03:28Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188882076",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 5/5)",
+        "startedAt": "2026-10-19T17:00:58Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:24Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118191752339",
+        "name": "insights-server / bazel (required) / Build and publish image",
+        "startedAt": "2026-10-19T17:05:24Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:41Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188371787",
+        "name": "${{ matrix.service }} / bazel (optional)",
+        "startedAt": "2026-10-19T16:58:41Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:41Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188371198",
+        "name": "${{ matrix.service }} / helm (required)",
+        "startedAt": "2026-10-19T16:58:41Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:41Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188370797",
+        "name": "${{ matrix.service }} / helm (optional)",
+        "startedAt": "2026-10-19T16:58:41Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:41Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188371969",
+        "name": "${{ matrix.service }} / proto (required)",
+        "startedAt": "2026-10-19T16:58:41Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:41Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188371737",
+        "name": "${{ matrix.service }} / proto (optional)",
+        "startedAt": "2026-10-19T16:58:41Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:41Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188371753",
+        "name": "ai-receptionist-rfb-validation-tests / optional",
+        "startedAt": "2026-10-19T16:58:41Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:41Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188371838",
+        "name": "ai-receptionist-schema-gate / required",
+        "startedAt": "2026-10-19T16:58:41Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:41Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188371911",
+        "name": "apiserver / required",
+        "startedAt": "2026-10-19T16:58:41Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:41Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118188371768",
+        "name": "model-deployment-mcp / required",
+        "startedAt": "2026-10-19T16:58:41Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:42Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289132046/job/118191754420",
+        "name": "required",
+        "startedAt": "2026-10-19T17:05:35Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Codeowner check",
+        "startedAt": "2026-10-19T16:51:44Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "donotmerge",
+        "startedAt": "2026-10-19T16:51:38Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "CodeRabbit",
+        "startedAt": "2026-10-19T17:02:42Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:03:13Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 1/5)",
+        "startedAt": "2026-10-19T17:03:13Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:03:08Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 2/5)",
+        "startedAt": "2026-10-19T17:03:07Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:03:12Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 3/5)",
+        "startedAt": "2026-10-19T17:03:11Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:07Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 4/5)",
+        "startedAt": "2026-10-19T17:05:07Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:03:15Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 5/5)",
+        "startedAt": "2026-10-19T17:03:14Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "linear-ticket",
+        "startedAt": "2026-10-19T16:51:39Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      }
+    ]
+  },
+  {
+    "group": "kb-search",
+    "kind": "refactor",
+    "url": "https://github.com/cresta/go-servers/pull/34032",
+    "result": "pass",
+    "base": "xw/convi-7777-kb-search-tests",
+    "head": "782f12c88aa815ae3ce63655b5545352bc80a1f9",
+    "files": [
+      "insights-server/internal/analyticsimpl/BUILD.bazel",
+      "insights-server/internal/analyticsimpl/common_knowledge_base_usage_clickhouse.go",
+      "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_clickhouse.go"
+    ],
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:51:57Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148097/job/118184943232",
+        "name": "scan-and-fix / Scan PR with Opengrep",
+        "startedAt": "2026-10-19T16:51:57Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:52:47Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148030/job/118184923948",
+        "name": "feature-flags-lint / Lint feature flag names",
+        "startedAt": "2026-10-19T16:52:08Z",
+        "status": "COMPLETED",
+        "workflowName": "Feature Flags Lint"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:53:12Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289147103/job/118184921157",
+        "name": "Lint Bazel BUILD files",
+        "startedAt": "2026-10-19T16:52:10Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:52:17Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289147487/job/118184922310",
+        "name": "triage",
+        "startedAt": "2026-10-19T16:52:08Z",
+        "status": "COMPLETED",
+        "workflowName": "Pull Request Automatic Label"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:24Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118186508650",
+        "name": "Detect affected services",
+        "startedAt": "2026-10-19T16:55:07Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:25Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188739071",
+        "name": "${{ matrix.service }} / go (required)",
+        "startedAt": "2026-10-19T16:59:26Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:52:39Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289147103/job/118184922197",
+        "name": "Custom lints",
+        "startedAt": "2026-10-19T16:52:15Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:53:31Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148097/job/118184941043",
+        "name": "scan-and-fix / Scan PR for potential credential leaks",
+        "startedAt": "2026-10-19T16:52:10Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:25Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188735517",
+        "name": "${{ matrix.service }} / go (optional)",
+        "startedAt": "2026-10-19T16:59:25Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:01:15Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188736609",
+        "name": "insights-server / bazel (required) / Plan build and test jobs",
+        "startedAt": "2026-10-19T17:01:05Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:50Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188736367",
+        "name": "insights-server / bazel (required) / Run go lints",
+        "startedAt": "2026-10-19T17:00:56Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:06:55Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118189665408",
+        "name": "insights-server / bazel (required) / Bazel build checks: insights-server",
+        "startedAt": "2026-10-19T17:02:47Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:35Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118189665605",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 1/5)",
+        "startedAt": "2026-10-19T17:03:02Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:47Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118189665719",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 2/5)",
+        "startedAt": "2026-10-19T17:03:18Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:20Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118189665492",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 3/5)",
+        "startedAt": "2026-10-19T17:02:57Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:07:05Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118189665788",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 4/5)",
+        "startedAt": "2026-10-19T17:03:17Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:19Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118189665478",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 5/5)",
+        "startedAt": "2026-10-19T17:02:52Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:07:05Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118192594121",
+        "name": "insights-server / bazel (required) / Build and publish image",
+        "startedAt": "2026-10-19T17:07:05Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:25Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188735477",
+        "name": "${{ matrix.service }} / bazel (optional)",
+        "startedAt": "2026-10-19T16:59:25Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:25Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188735640",
+        "name": "${{ matrix.service }} / helm (required)",
+        "startedAt": "2026-10-19T16:59:25Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:25Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188736192",
+        "name": "${{ matrix.service }} / helm (optional)",
+        "startedAt": "2026-10-19T16:59:25Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:25Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188735981",
+        "name": "${{ matrix.service }} / proto (required)",
+        "startedAt": "2026-10-19T16:59:25Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:25Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188735960",
+        "name": "${{ matrix.service }} / proto (optional)",
+        "startedAt": "2026-10-19T16:59:25Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:25Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188735970",
+        "name": "ai-receptionist-rfb-validation-tests / optional",
+        "startedAt": "2026-10-19T16:59:25Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:25Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188736360",
+        "name": "ai-receptionist-schema-gate / required",
+        "startedAt": "2026-10-19T16:59:25Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:25Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188736410",
+        "name": "apiserver / required",
+        "startedAt": "2026-10-19T16:59:25Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:25Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118188739100",
+        "name": "model-deployment-mcp / required",
+        "startedAt": "2026-10-19T16:59:26Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:07:24Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289148445/job/118192595511",
+        "name": "required",
+        "startedAt": "2026-10-19T17:07:18Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Codeowner check",
+        "startedAt": "2026-10-19T16:51:48Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "donotmerge",
+        "startedAt": "2026-10-19T16:51:42Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "CodeRabbit",
+        "startedAt": "2026-10-19T17:00:56Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:21Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 1/5)",
+        "startedAt": "2026-10-19T17:05:20Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:33Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 2/5)",
+        "startedAt": "2026-10-19T17:05:32Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:07Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 3/5)",
+        "startedAt": "2026-10-19T17:05:06Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:06:53Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 4/5)",
+        "startedAt": "2026-10-19T17:06:53Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:07Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 5/5)",
+        "startedAt": "2026-10-19T17:05:06Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "linear-ticket",
+        "startedAt": "2026-10-19T16:51:43Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      }
+    ]
+  },
+  {
+    "group": "chat-suggestions",
+    "kind": "tests",
+    "url": "https://github.com/cresta/go-servers/pull/34034",
+    "result": "pass",
+    "base": "main",
+    "head": "0bd131241563868283e743592863d6ba169950fb",
+    "files": [
+      "insights-server/internal/analyticsimpl/BUILD.bazel",
+      "insights-server/internal/analyticsimpl/retrieve_suggestion_stats_test.go",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSuggestionStats_BasicFilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSuggestionStats_FilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSuggestionStats_FilterAndGroupByGroups_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSuggestionStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSuggestionStats_WeeklyGroupByAgent_request.sql"
+    ],
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292548708/job/118196640365",
+        "name": "Lint Bazel BUILD files",
+        "startedAt": "2026-10-19T17:15:26Z",
+        "status": "QUEUED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292549900/job/118196645522",
+        "name": "Detect affected services",
+        "startedAt": "2026-10-19T17:15:26Z",
+        "status": "QUEUED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292548610/job/118196639682",
+        "name": "check-go-type-comments",
+        "startedAt": "2026-10-19T17:15:43Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "Check go_type Comments"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292548934/job/118196643341",
+        "name": "feature-flags-lint / Lint feature flag names",
+        "startedAt": "2026-10-19T17:15:42Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "Feature Flags Lint"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292548390/job/118196638758",
+        "name": "triage",
+        "startedAt": "2026-10-19T17:15:42Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "Pull Request Automatic Label"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:26Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292548984/job/118196645476",
+        "name": "scan-and-fix / Scan PR with Opengrep",
+        "startedAt": "2026-10-19T17:15:26Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292548708/job/118196640622",
+        "name": "Custom lints",
+        "startedAt": "2026-10-19T17:15:26Z",
+        "status": "QUEUED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292548984/job/118196643806",
+        "name": "scan-and-fix / Scan PR for potential credential leaks",
+        "startedAt": "2026-10-19T17:15:26Z",
+        "status": "QUEUED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Codeowner check",
+        "startedAt": "2026-10-19T17:15:27Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "donotmerge",
+        "startedAt": "2026-10-19T17:15:22Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "linear-ticket",
+        "startedAt": "2026-10-19T17:15:23Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      }
+    ]
+  },
+  {
+    "group": "chat-suggestions",
+    "kind": "refactor",
+    "url": "https://github.com/cresta/go-servers/pull/34035",
+    "result": "pass",
+    "base": "xw/convi-7777-chat-suggestions-tests",
+    "head": "abf41dca4dd6e7d59c9a37117d7f01c88a482547",
+    "files": [
+      "insights-server/internal/analyticsimpl/BUILD.bazel",
+      "insights-server/internal/analyticsimpl/common_suggestion_usage_clickhouse.go",
+      "insights-server/internal/analyticsimpl/retrieve_suggestion_stats_clickhouse.go"
+    ],
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292553207/job/118196655781",
+        "name": "feature-flags-lint / Lint feature flag names",
+        "startedAt": "2026-10-19T17:15:28Z",
+        "status": "QUEUED",
+        "workflowName": "Feature Flags Lint"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292551345/job/118196649439",
+        "name": "Lint Bazel BUILD files",
+        "startedAt": "2026-10-19T17:15:27Z",
+        "status": "QUEUED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292551210/job/118196647965",
+        "name": "triage",
+        "startedAt": "2026-10-19T17:15:27Z",
+        "status": "QUEUED",
+        "workflowName": "Pull Request Automatic Label"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292552503/job/118196656449",
+        "name": "Detect affected services",
+        "startedAt": "2026-10-19T17:15:28Z",
+        "status": "QUEUED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:27Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292551995/job/118196655221",
+        "name": "scan-and-fix / Scan PR with Opengrep",
+        "startedAt": "2026-10-19T17:15:28Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292551345/job/118196650071",
+        "name": "Custom lints",
+        "startedAt": "2026-10-19T17:15:27Z",
+        "status": "QUEUED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292551995/job/118196652601",
+        "name": "scan-and-fix / Scan PR for potential credential leaks",
+        "startedAt": "2026-10-19T17:15:27Z",
+        "status": "QUEUED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Codeowner check",
+        "startedAt": "2026-10-19T17:15:30Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "donotmerge",
+        "startedAt": "2026-10-19T17:15:25Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "linear-ticket",
+        "startedAt": "2026-10-19T17:15:26Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      }
+    ]
+  },
+  {
+    "group": "notes-workflow",
+    "kind": "tests",
+    "url": "https://github.com/cresta/go-servers/pull/34040",
+    "result": "pass",
+    "base": "main",
+    "head": "4481c7fe36944ed28d89b9c2845b8dfd34264142",
+    "files": [
+      "insights-server/internal/analyticsimpl/BUILD.bazel",
+      "insights-server/internal/analyticsimpl/common_notes_workflow_usage_test.go",
+      "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go",
+      "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_BasicFilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_DailyGroupByGuidedWorkflow_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_FilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_FilterAndGroupByGroups_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveGuidedWorkflowStats_WeeklyGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_BasicFilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_FilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_FilterAndGroupByGroups_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveNoteTakingStats_WeeklyGroupByAgent_request.sql"
+    ],
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:06:22Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272062/job/118192236755",
+        "name": "scan-and-fix / Scan PR with Opengrep",
+        "startedAt": "2026-10-19T17:06:22Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:07:23Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291271308/job/118192227002",
+        "name": "check-go-type-comments",
+        "startedAt": "2026-10-19T17:06:24Z",
+        "status": "COMPLETED",
+        "workflowName": "Check go_type Comments"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:07:21Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291271958/job/118192228726",
+        "name": "feature-flags-lint / Lint feature flag names",
+        "startedAt": "2026-10-19T17:06:25Z",
+        "status": "COMPLETED",
+        "workflowName": "Feature Flags Lint"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:07:37Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291271439/job/118192228092",
+        "name": "Lint Bazel BUILD files",
+        "startedAt": "2026-10-19T17:06:37Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:06:39Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291271348/job/118192228572",
+        "name": "triage",
+        "startedAt": "2026-10-19T17:06:30Z",
+        "status": "COMPLETED",
+        "workflowName": "Pull Request Automatic Label"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:12Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118192232921",
+        "name": "Detect affected services",
+        "startedAt": "2026-10-19T17:06:32Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194619595",
+        "name": "${{ matrix.service }} / go (required)",
+        "startedAt": "2026-10-19T17:11:13Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:07:05Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291271439/job/118192228330",
+        "name": "Custom lints",
+        "startedAt": "2026-10-19T17:06:42Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:08:07Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272062/job/118192234397",
+        "name": "scan-and-fix / Scan PR for potential credential leaks",
+        "startedAt": "2026-10-19T17:06:33Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194619612",
+        "name": "${{ matrix.service }} / go (optional)",
+        "startedAt": "2026-10-19T17:11:13Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:36Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194620310",
+        "name": "insights-server / bazel (required) / Plan build and test jobs",
+        "startedAt": "2026-10-19T17:11:26Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194620535",
+        "name": "insights-server / bazel (required) / Run go lints",
+        "startedAt": "2026-10-19T17:11:32Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194806607",
+        "name": "insights-server / bazel (required) / Bazel build checks: insights-server",
+        "startedAt": "2026-10-19T17:11:53Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:18Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194806411",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 1/5)",
+        "startedAt": "2026-10-19T17:11:53Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:45Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194806541",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 2/5)",
+        "startedAt": "2026-10-19T17:12:00Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:10Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194806702",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 3/5)",
+        "startedAt": "2026-10-19T17:11:56Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:59Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194806528",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 4/5)",
+        "startedAt": "2026-10-19T17:11:55Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:26Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194806645",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 5/5)",
+        "startedAt": "2026-10-19T17:11:55Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194620758",
+        "name": "${{ matrix.service }} / bazel (optional)",
+        "startedAt": "2026-10-19T17:11:13Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194619303",
+        "name": "${{ matrix.service }} / helm (required)",
+        "startedAt": "2026-10-19T17:11:13Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194619993",
+        "name": "${{ matrix.service }} / helm (optional)",
+        "startedAt": "2026-10-19T17:11:13Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194620218",
+        "name": "${{ matrix.service }} / proto (required)",
+        "startedAt": "2026-10-19T17:11:13Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194619985",
+        "name": "${{ matrix.service }} / proto (optional)",
+        "startedAt": "2026-10-19T17:11:13Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194620083",
+        "name": "ai-receptionist-rfb-validation-tests / optional",
+        "startedAt": "2026-10-19T17:11:13Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194620294",
+        "name": "ai-receptionist-schema-gate / required",
+        "startedAt": "2026-10-19T17:11:13Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194619611",
+        "name": "apiserver / required",
+        "startedAt": "2026-10-19T17:11:13Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291272379/job/118194620174",
+        "name": "model-deployment-mcp / required",
+        "startedAt": "2026-10-19T17:11:13Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Codeowner check",
+        "startedAt": "2026-10-19T17:06:23Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "donotmerge",
+        "startedAt": "2026-10-19T17:06:17Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:04Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 1/5)",
+        "startedAt": "2026-10-19T17:15:03Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:32Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 2/5)",
+        "startedAt": "2026-10-19T17:15:31Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:58Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 3/5)",
+        "startedAt": "2026-10-19T17:14:57Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:45Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 4/5)",
+        "startedAt": "2026-10-19T17:14:44Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:14Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 5/5)",
+        "startedAt": "2026-10-19T17:14:13Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "linear-ticket",
+        "startedAt": "2026-10-19T17:06:19Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      }
+    ]
+  },
+  {
+    "group": "notes-workflow",
+    "kind": "refactor",
+    "url": "https://github.com/cresta/go-servers/pull/34041",
+    "result": "pass",
+    "base": "xw/convi-7777-notes-workflow-tests",
+    "head": "b721a5086e6bbe09b41bd842645bf10d0d7c7bb7",
+    "files": [
+      "insights-server/internal/analyticsimpl/BUILD.bazel",
+      "insights-server/internal/analyticsimpl/common_guided_workflow_usage_clickhouse.go",
+      "insights-server/internal/analyticsimpl/common_note_taking_usage_clickhouse.go",
+      "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_clickhouse.go",
+      "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_clickhouse.go"
+    ],
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:06:23Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275748/job/118192249964",
+        "name": "scan-and-fix / Scan PR with Opengrep",
+        "startedAt": "2026-10-19T17:06:24Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:07:30Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275310/job/118192239363",
+        "name": "feature-flags-lint / Lint feature flag names",
+        "startedAt": "2026-10-19T17:06:32Z",
+        "status": "COMPLETED",
+        "workflowName": "Feature Flags Lint"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:08:57Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291274718/job/118192240215",
+        "name": "Lint Bazel BUILD files",
+        "startedAt": "2026-10-19T17:06:43Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:06:44Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291274644/job/118192237083",
+        "name": "triage",
+        "startedAt": "2026-10-19T17:06:35Z",
+        "status": "COMPLETED",
+        "workflowName": "Pull Request Automatic Label"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:26Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118192242900",
+        "name": "Detect affected services",
+        "startedAt": "2026-10-19T17:06:36Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:28Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194735695",
+        "name": "${{ matrix.service }} / go (required)",
+        "startedAt": "2026-10-19T17:11:28Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:07:10Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291274718/job/118192240656",
+        "name": "Custom lints",
+        "startedAt": "2026-10-19T17:06:43Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:07:52Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275748/job/118192247267",
+        "name": "scan-and-fix / Scan PR for potential credential leaks",
+        "startedAt": "2026-10-19T17:06:37Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:28Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194735498",
+        "name": "${{ matrix.service }} / go (optional)",
+        "startedAt": "2026-10-19T17:11:28Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:48Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194754645",
+        "name": "insights-server / bazel (required) / Plan build and test jobs",
+        "startedAt": "2026-10-19T17:11:38Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194754571",
+        "name": "insights-server / bazel (required) / Run go lints",
+        "startedAt": "2026-10-19T17:11:54Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194874604",
+        "name": "insights-server / bazel (required) / Bazel build checks: insights-server",
+        "startedAt": "2026-10-19T17:12:09Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:10Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194874356",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 1/5)",
+        "startedAt": "2026-10-19T17:12:04Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194874350",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 2/5)",
+        "startedAt": "2026-10-19T17:12:05Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194874483",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 3/5)",
+        "startedAt": "2026-10-19T17:12:08Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:44Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194874348",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 4/5)",
+        "startedAt": "2026-10-19T17:12:03Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:59Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194874602",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 5/5)",
+        "startedAt": "2026-10-19T17:12:09Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:28Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194735843",
+        "name": "${{ matrix.service }} / bazel (optional)",
+        "startedAt": "2026-10-19T17:11:28Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:28Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194736078",
+        "name": "${{ matrix.service }} / helm (required)",
+        "startedAt": "2026-10-19T17:11:28Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:28Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194735747",
+        "name": "${{ matrix.service }} / helm (optional)",
+        "startedAt": "2026-10-19T17:11:28Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:28Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194735704",
+        "name": "${{ matrix.service }} / proto (required)",
+        "startedAt": "2026-10-19T17:11:28Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:28Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194735516",
+        "name": "${{ matrix.service }} / proto (optional)",
+        "startedAt": "2026-10-19T17:11:28Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:28Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194736367",
+        "name": "ai-receptionist-rfb-validation-tests / optional",
+        "startedAt": "2026-10-19T17:11:28Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:28Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194736769",
+        "name": "ai-receptionist-schema-gate / required",
+        "startedAt": "2026-10-19T17:11:28Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:28Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194735769",
+        "name": "apiserver / required",
+        "startedAt": "2026-10-19T17:11:28Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:11:28Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39291275532/job/118194736410",
+        "name": "model-deployment-mcp / required",
+        "startedAt": "2026-10-19T17:11:28Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Codeowner check",
+        "startedAt": "2026-10-19T17:06:26Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "donotmerge",
+        "startedAt": "2026-10-19T17:06:20Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:57Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 1/5)",
+        "startedAt": "2026-10-19T17:14:56Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:30Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 4/5)",
+        "startedAt": "2026-10-19T17:15:30Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:45Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 5/5)",
+        "startedAt": "2026-10-19T17:14:44Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "linear-ticket",
+        "startedAt": "2026-10-19T17:06:22Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      }
+    ]
+  },
+  {
+    "group": "hints",
+    "kind": "tests",
+    "url": "https://github.com/cresta/go-servers/pull/34037",
+    "result": "pass",
+    "base": "main",
+    "head": "3dab1f940dd30546b802b449915645225703566d",
+    "files": [
+      "insights-server/internal/analyticsimpl/BUILD.bazel",
+      "insights-server/internal/analyticsimpl/retrieve_hint_stats_test.go",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveHintStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_UseActionAnnotation_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveHintStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveHintStats_GroupAndFilterByBehavior_UseActionAnnotation_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveHintStats_GroupAndFilterByBehavior_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveHintStats_GroupByAgentAndGroup_UseActionAnnotation_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveHintStats_GroupByAgentAndGroup_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveHintStats_GroupByAgentGroupPolicy_NotGroupByTime_UseActionAnnotation_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveHintStats_GroupByAgentGroupPolicy_NotGroupByTime_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveHintStats_GroupByGroup_UseActionAnnotation_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveHintStats_GroupByGroup_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveHintStats_includeBotConversations_UseActionAnnotation_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveHintStats_includeBotConversations_request.sql"
+    ],
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:54:29Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289531870/job/118186251735",
+        "name": "scan-and-fix / Scan PR with Opengrep",
+        "startedAt": "2026-10-19T16:54:29Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:55:46Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289531117/job/118186304978",
+        "name": "check-go-type-comments",
+        "startedAt": "2026-10-19T16:54:54Z",
+        "status": "COMPLETED",
+        "workflowName": "Check go_type Comments"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:55:42Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532668/job/118186251961",
+        "name": "feature-flags-lint / Lint feature flag names",
+        "startedAt": "2026-10-19T16:54:46Z",
+        "status": "COMPLETED",
+        "workflowName": "Feature Flags Lint"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:55:50Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289531278/job/118186247967",
+        "name": "Lint Bazel BUILD files",
+        "startedAt": "2026-10-19T16:54:48Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:54:53Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289531311/job/118186248724",
+        "name": "triage",
+        "startedAt": "2026-10-19T16:54:41Z",
+        "status": "COMPLETED",
+        "workflowName": "Pull Request Automatic Label"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:58Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118186257145",
+        "name": "Detect affected services",
+        "startedAt": "2026-10-19T16:54:47Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:58Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188515894",
+        "name": "${{ matrix.service }} / go (required)",
+        "startedAt": "2026-10-19T16:58:59Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:55:19Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289531278/job/118186247874",
+        "name": "Custom lints",
+        "startedAt": "2026-10-19T16:54:50Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:56:01Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289531870/job/118186250073",
+        "name": "scan-and-fix / Scan PR for potential credential leaks",
+        "startedAt": "2026-10-19T16:54:45Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:58Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188516350",
+        "name": "${{ matrix.service }} / go (optional)",
+        "startedAt": "2026-10-19T16:58:59Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:48Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188515994",
+        "name": "insights-server / bazel (required) / Plan build and test jobs",
+        "startedAt": "2026-10-19T16:59:38Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:30Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188515979",
+        "name": "insights-server / bazel (required) / Run go lints",
+        "startedAt": "2026-10-19T17:00:31Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:24Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188930296",
+        "name": "insights-server / bazel (required) / Bazel build checks: insights-server",
+        "startedAt": "2026-10-19T17:01:28Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:09:14Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188930250",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 1/5)",
+        "startedAt": "2026-10-19T17:01:01Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:04:55Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188930299",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 2/5)",
+        "startedAt": "2026-10-19T17:01:02Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:04:31Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188930295",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 3/5)",
+        "startedAt": "2026-10-19T17:01:24Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:04:45Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188930612",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 4/5)",
+        "startedAt": "2026-10-19T17:01:29Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:04:02Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188930272",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 5/5)",
+        "startedAt": "2026-10-19T17:01:26Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:09:14Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118193653728",
+        "name": "insights-server / bazel (required) / Build and publish image",
+        "startedAt": "2026-10-19T17:09:15Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:58Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188516997",
+        "name": "${{ matrix.service }} / bazel (optional)",
+        "startedAt": "2026-10-19T16:58:59Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:59Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188516596",
+        "name": "${{ matrix.service }} / helm (required)",
+        "startedAt": "2026-10-19T16:58:59Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:58Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188516165",
+        "name": "${{ matrix.service }} / helm (optional)",
+        "startedAt": "2026-10-19T16:58:59Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:58Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188517103",
+        "name": "${{ matrix.service }} / proto (required)",
+        "startedAt": "2026-10-19T16:58:59Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:59Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188517341",
+        "name": "${{ matrix.service }} / proto (optional)",
+        "startedAt": "2026-10-19T16:58:59Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:58Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188517059",
+        "name": "ai-receptionist-rfb-validation-tests / optional",
+        "startedAt": "2026-10-19T16:58:59Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:58Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188516804",
+        "name": "ai-receptionist-schema-gate / required",
+        "startedAt": "2026-10-19T16:58:59Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:59Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188516783",
+        "name": "apiserver / required",
+        "startedAt": "2026-10-19T16:58:59Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:58:58Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118188516389",
+        "name": "model-deployment-mcp / required",
+        "startedAt": "2026-10-19T16:58:59Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:09:32Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289532653/job/118193653852",
+        "name": "required",
+        "startedAt": "2026-10-19T17:09:25Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Codeowner check",
+        "startedAt": "2026-10-19T16:54:30Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "donotmerge",
+        "startedAt": "2026-10-19T16:54:25Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "CodeRabbit",
+        "startedAt": "2026-10-19T17:04:19Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:08:59Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 1/5)",
+        "startedAt": "2026-10-19T17:08:58Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:04:42Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 2/5)",
+        "startedAt": "2026-10-19T17:04:41Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:04:18Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 3/5)",
+        "startedAt": "2026-10-19T17:04:17Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:04:31Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 4/5)",
+        "startedAt": "2026-10-19T17:04:30Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:03:48Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 5/5)",
+        "startedAt": "2026-10-19T17:03:47Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "linear-ticket",
+        "startedAt": "2026-10-19T16:54:26Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      }
+    ]
+  },
+  {
+    "group": "hints",
+    "kind": "refactor",
+    "url": "https://github.com/cresta/go-servers/pull/34038",
+    "result": "pass",
+    "base": "xw/convi-7777-hints-tests",
+    "head": "77a9aec2bdaba22ff3e362b6c9964415b69d06f7",
+    "files": [
+      "insights-server/internal/analyticsimpl/BUILD.bazel",
+      "insights-server/internal/analyticsimpl/common_hint_usage_clickhouse.go",
+      "insights-server/internal/analyticsimpl/retrieve_hint_stats_clickhouse.go"
+    ],
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:54:31Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537135/job/118186272396",
+        "name": "scan-and-fix / Scan PR with Opengrep",
+        "startedAt": "2026-10-19T16:54:31Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:55:42Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537498/job/118186269513",
+        "name": "feature-flags-lint / Lint feature flag names",
+        "startedAt": "2026-10-19T16:54:48Z",
+        "status": "COMPLETED",
+        "workflowName": "Feature Flags Lint"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:55:53Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289536119/job/118186263753",
+        "name": "Lint Bazel BUILD files",
+        "startedAt": "2026-10-19T16:54:50Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:54:57Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289536088/job/118186263958",
+        "name": "triage",
+        "startedAt": "2026-10-19T16:54:47Z",
+        "status": "COMPLETED",
+        "workflowName": "Pull Request Automatic Label"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:13Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118186270019",
+        "name": "Detect affected services",
+        "startedAt": "2026-10-19T16:54:47Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188639889",
+        "name": "${{ matrix.service }} / go (required)",
+        "startedAt": "2026-10-19T16:59:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:55:26Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289536119/job/118186264391",
+        "name": "Custom lints",
+        "startedAt": "2026-10-19T16:54:53Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:56:03Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537135/job/118186271063",
+        "name": "scan-and-fix / Scan PR for potential credential leaks",
+        "startedAt": "2026-10-19T16:54:48Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188639886",
+        "name": "${{ matrix.service }} / go (optional)",
+        "startedAt": "2026-10-19T16:59:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:00:17Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188639766",
+        "name": "insights-server / bazel (required) / Plan build and test jobs",
+        "startedAt": "2026-10-19T17:00:07Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:55Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188639978",
+        "name": "insights-server / bazel (required) / Run go lints",
+        "startedAt": "2026-10-19T17:00:53Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:44Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118189172419",
+        "name": "insights-server / bazel (required) / Bazel build checks: insights-server",
+        "startedAt": "2026-10-19T17:01:31Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:10:03Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118189172418",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 1/5)",
+        "startedAt": "2026-10-19T17:01:30Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:58Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118189172508",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 2/5)",
+        "startedAt": "2026-10-19T17:01:30Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:42Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118189172584",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 3/5)",
+        "startedAt": "2026-10-19T17:02:09Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:10Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118189172679",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 4/5)",
+        "startedAt": "2026-10-19T17:01:43Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:04:32Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118189172607",
+        "name": "insights-server / bazel (required) / Bazel tests: insights-server (shard 5/5)",
+        "startedAt": "2026-10-19T17:01:40Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:10:03Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118194052925",
+        "name": "insights-server / bazel (required) / Build and publish image",
+        "startedAt": "2026-10-19T17:10:04Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188639959",
+        "name": "${{ matrix.service }} / bazel (optional)",
+        "startedAt": "2026-10-19T16:59:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188640360",
+        "name": "${{ matrix.service }} / helm (required)",
+        "startedAt": "2026-10-19T16:59:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188639757",
+        "name": "${{ matrix.service }} / helm (optional)",
+        "startedAt": "2026-10-19T16:59:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188641842",
+        "name": "${{ matrix.service }} / proto (required)",
+        "startedAt": "2026-10-19T16:59:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188641396",
+        "name": "${{ matrix.service }} / proto (optional)",
+        "startedAt": "2026-10-19T16:59:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188640345",
+        "name": "ai-receptionist-rfb-validation-tests / optional",
+        "startedAt": "2026-10-19T16:59:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188641157",
+        "name": "ai-receptionist-schema-gate / required",
+        "startedAt": "2026-10-19T16:59:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188640583",
+        "name": "apiserver / required",
+        "startedAt": "2026-10-19T16:59:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T16:59:13Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118188640651",
+        "name": "model-deployment-mcp / required",
+        "startedAt": "2026-10-19T16:59:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:10:21Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39289537312/job/118194050652",
+        "name": "required",
+        "startedAt": "2026-10-19T17:10:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Codeowner check",
+        "startedAt": "2026-10-19T16:54:34Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "donotmerge",
+        "startedAt": "2026-10-19T16:54:28Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "CodeRabbit",
+        "startedAt": "2026-10-19T17:04:23Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:09:49Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 1/5)",
+        "startedAt": "2026-10-19T17:09:48Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:43Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 2/5)",
+        "startedAt": "2026-10-19T17:05:43Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:05:29Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 3/5)",
+        "startedAt": "2026-10-19T17:05:28Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:04:56Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 4/5)",
+        "startedAt": "2026-10-19T17:04:56Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:04:19Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/gitops-autobot",
+        "name": "insights-server bazel tests (shard 5/5)",
+        "startedAt": "2026-10-19T17:04:18Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "linear-ticket",
+        "startedAt": "2026-10-19T16:54:29Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      }
+    ]
+  },
+  {
+    "group": "summary-genai",
+    "kind": "tests",
+    "url": "https://github.com/cresta/go-servers/pull/34043",
+    "result": "pass",
+    "base": "main",
+    "head": "5c6b94f02361a78a5c27fa3242f7ebf76328d6b8",
+    "files": [
+      "insights-server/internal/analyticsimpl/BUILD.bazel",
+      "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+      "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_AgentOnly_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_Basic_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_BasicFilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_FilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_FilterAndGroupByGroups_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_WeeklyGroupByAgent_request.sql"
+    ],
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292363512/job/118196018793",
+        "name": "Detect affected services",
+        "startedAt": "2026-10-19T17:14:26Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:09Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292363297/job/118196017940",
+        "name": "scan-and-fix / Scan PR with Opengrep",
+        "startedAt": "2026-10-19T17:14:09Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:16Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292362109/job/118196009990",
+        "name": "check-go-type-comments",
+        "startedAt": "2026-10-19T17:14:23Z",
+        "status": "COMPLETED",
+        "workflowName": "Check go_type Comments"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:16Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292363401/job/118196014892",
+        "name": "feature-flags-lint / Lint feature flag names",
+        "startedAt": "2026-10-19T17:14:24Z",
+        "status": "COMPLETED",
+        "workflowName": "Feature Flags Lint"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:29Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292362149/job/118196010210",
+        "name": "Lint Bazel BUILD files",
+        "startedAt": "2026-10-19T17:14:24Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:33Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292362386/job/118196011689",
+        "name": "triage",
+        "startedAt": "2026-10-19T17:14:24Z",
+        "status": "COMPLETED",
+        "workflowName": "Pull Request Automatic Label"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:48Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292362149/job/118196010859",
+        "name": "Custom lints",
+        "startedAt": "2026-10-19T17:14:24Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:46Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292363297/job/118196015866",
+        "name": "scan-and-fix / Scan PR for potential credential leaks",
+        "startedAt": "2026-10-19T17:14:24Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Codeowner check",
+        "startedAt": "2026-10-19T17:14:10Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "donotmerge",
+        "startedAt": "2026-10-19T17:14:04Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "linear-ticket",
+        "startedAt": "2026-10-19T17:14:06Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      }
+    ]
+  },
+  {
+    "group": "summary-genai",
+    "kind": "refactor",
+    "url": "https://github.com/cresta/go-servers/pull/34044",
+    "result": "pass",
+    "base": "xw/convi-7777-summary-genai-tests",
+    "head": "00fd23587abc3f229e562d77d9b798006de77693",
+    "files": [
+      "insights-server/internal/analyticsimpl/BUILD.bazel",
+      "insights-server/internal/analyticsimpl/common_knowledge_assist_usage_clickhouse.go",
+      "insights-server/internal/analyticsimpl/common_summarization_usage_clickhouse.go",
+      "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_clickhouse.go",
+      "insights-server/internal/analyticsimpl/retrieve_summarization_stats_clickhouse.go"
+    ],
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292364518/job/118196021181",
+        "name": "Detect affected services",
+        "startedAt": "2026-10-19T17:14:25Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:10Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292364691/job/118196024107",
+        "name": "scan-and-fix / Scan PR with Opengrep",
+        "startedAt": "2026-10-19T17:14:10Z",
+        "status": "COMPLETED",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:11Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292364046/job/118196016646",
+        "name": "feature-flags-lint / Lint feature flag names",
+        "startedAt": "2026-10-19T17:14:25Z",
+        "status": "COMPLETED",
+        "workflowName": "Feature Flags Lint"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:15:27Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292363474/job/118196014951",
+        "name": "Lint Bazel BUILD files",
+        "startedAt": "2026-10-19T17:14:28Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:30Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292363417/job/118196014351",
+        "name": "triage",
+        "startedAt": "2026-10-19T17:14:22Z",
+        "status": "COMPLETED",
+        "workflowName": "Pull Request Automatic Label"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292364691/job/118196021557",
+        "name": "scan-and-fix / Scan PR for potential credential leaks",
+        "startedAt": "2026-10-19T17:14:27Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "SAST Scan PR"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-19T17:14:52Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cresta/go-servers/actions/runs/39292363474/job/118196014498",
+        "name": "Custom lints",
+        "startedAt": "2026-10-19T17:14:28Z",
+        "status": "COMPLETED",
+        "workflowName": "Other Lints"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Codeowner check",
+        "startedAt": "2026-10-19T17:14:13Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "donotmerge",
+        "startedAt": "2026-10-19T17:14:07Z",
+        "state": "PENDING",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "linear-ticket",
+        "startedAt": "2026-10-19T17:14:08Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      }
+    ]
+  }
+]

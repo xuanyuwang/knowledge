@@ -1,0 +1,21 @@
+{
+  "base": "45e60762a15a85d9fb233349c5027b4d187fe289",
+  "files": [
+    {
+      "path": "insights-server/internal/analyticsimpl/common_notes_workflow_usage_test.go",
+      "sha256": "c34ae44465de43c2ecde84f0a24bf6dd4d155620949549bcc9e48bc943fb9620"
+    },
+    {
+      "path": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_test.go",
+      "sha256": "3b59601489966cee0a796851ef6e67533354e9d98b0405d24a1de3dfdd242d85"
+    },
+    {
+      "path": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_test.go",
+      "sha256": "b9956ca12ccabda8ff5bbbd41b5f12ad8aedeafc45cec4de471e695c73aabb2a"
+    }
+  ],
+  "complete_test_files_frozen": true,
+  "tests_commit": "4481c7fe36944ed28d89b9c2845b8dfd34264142",
+  "refactor_commit": "b721a5086e6bbe09b41bd842645bf10d0d7c7bb7",
+  "identical_in_both_worktrees": true
+}

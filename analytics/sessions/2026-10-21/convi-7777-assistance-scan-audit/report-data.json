@@ -1,0 +1,470 @@
+{
+  "main": "b6a2c65bdb6ba679a3bdf955b266cfd22f1a9ceb",
+  "head": "0d1b75da684ee0a9237020d6d500e117db6f7b4e",
+  "features": [
+    [
+      "KB Search",
+      "RetrieveKnowledgeBaseStats",
+      "Conversations: conversation_event_d",
+      "Copied conversation start",
+      "Exact [S,E)",
+      "No time bounds; final pair intersection",
+      "Evidence copied outside the request can disappear in legacy; raw usage/event units differ from distinct conversation use."
+    ],
+    [
+      "Chat and email Suggestions",
+      "RetrieveSuggestionStats",
+      "Conversations: conversation_event_d",
+      "Copied conversation start",
+      "Exact [S,E)",
+      "No time bounds; V1 uses types 4/5/10 only",
+      "Email types 25/27 share this bounded reader but remain excluded from the new V1 union."
+    ],
+    [
+      "Notes",
+      "RetrieveNoteTakingStats",
+      "Events normally; Conversations with metadata",
+      "Copied conversation start on both conversation and event",
+      "Exact [S,E) on both sources and metadata",
+      "Events only; both sources unbounded",
+      "A missing Events conversation copy suppresses valid events; adding matching metadata can switch legacy results back on."
+    ],
+    [
+      "Guided Workflow",
+      "RetrieveGuidedWorkflowStats",
+      "Events normally; Conversations with metadata",
+      "Copied conversation start on both conversation and event",
+      "Exact [S,E) on both sources and metadata",
+      "Events only; both sources unbounded",
+      "Same dual-copy/cluster issue as Notes. Sessions and document payloads remain feature-specific."
+    ],
+    [
+      "GenAI",
+      "RetrieveKnowledgeAssistStats",
+      "Conversations: message, action and moment annotations",
+      "Copied conversation start on all three",
+      "Exact [S,E) on all three and metadata",
+      "Only qualifying use moments; unbounded",
+      "Legacy usage is anchored to message group/bucket, not conversation ID; usage-only buckets disappear."
+    ],
+    [
+      "Summary",
+      "RetrieveSummarizationStats",
+      "Conversations: conversation, generation action, use event",
+      "Copied conversation start on all three",
+      "Exact [S,E) on all three and metadata",
+      "Generation + copy sources unbounded",
+      "Exact timestamp equality is still required inside the feature; legacy result also anchors on conversation buckets."
+    ],
+    [
+      "Behavioral/Checklist/KB/Workflow hints",
+      "RetrieveHintStats",
+      "Conversations: moments, actions, events",
+      "Copied conversation start on all branches",
+      "Exact [S,E), including nested action-mode moment subquery",
+      "Followed moments + hint-use events unbounded",
+      "Both sent implementations are bounded; sent/followed rows can still use different copied buckets or agents."
+    ],
+    [
+      "Chat Smart Compose (P2)",
+      "RetrieveSmartComposeStats",
+      "Events: conversation_d + analytics_event_d",
+      "Conversation copy uses start; analytics event uses actual event_time",
+      "Both clocks use exact [S,E)",
+      "Excluded from V1",
+      "Agent/hour intersection misses later-hour insertion unless that agent starts another qualifying conversation in that hour; it does not prove conversation attribution."
+    ],
+    [
+      "Legacy combined assistance",
+      "RetrieveAssistanceStats",
+      "Conversations: messages, moments, events",
+      "Copied conversation start",
+      "Exact [S,E) on all sources and metadata",
+      "Separate legacy endpoint",
+      "Message aggregate anchors output; a profile deprecation flag may skip the API entirely."
+    ],
+    [
+      "Adherence / related hint views",
+      "RetrieveAdherences",
+      "Conversations: moment_annotation_d, scanned twice",
+      "Copied conversation start",
+      "Exact [S,E); parsed metadata lists are discarded",
+      "Separate adjacent API",
+      "Nonmatching metadata does not narrow the reproduced result. Positive behavior adherence alone does not prove a delivered assistance use."
+    ],
+    [
+      "Conversation population",
+      "RetrieveConversationStats shared builder / new API denominator",
+      "Conversations: conversation/message, optional labels and metadata",
+      "Copied conversation start for this new API",
+      "Exact [S,E)",
+      "The final cohort also gates all seven evidence queries",
+      "No message means no eligible pair. Filtering before latest-row selection can retain an old in-range version after a newer version moved outside."
+    ]
+  ],
+  "findings": [
+    {
+      "id": "T1",
+      "title": "Seven new evidence families scan historical data before eligibility intersection",
+      "classification": "Confirmed scan behavior; production cost unknown",
+      "priority": "Address in CONVI-7777 before broad rollout",
+      "trigger": "One-day request, one eligible conversation/agent, months of feature history for the same agent.",
+      "trace": "The evidence constructor supplies only an agent predicate. Feature rows are reduced to pairs before the ordinary join with assistance_usage_population. The final join excludes other conversations from the answer but cannot be assumed to prune all preceding work.",
+      "observed": "A single-node synthetic MergeTree with 180,000 history rows returned the identical eligible pair with unbounded read_rows=180,002 and exact request bounds=2,050. Counts include the two tiny lookup tables.",
+      "impact": "More history can increase source reads, pair reduction, memory and transfer even for a short request. This is demonstrated locally, not a measured production regression.",
+      "fix": "Apply the requested [S,E) interval consistently to every physical evidence source, following the existing assistance APIs, and retain the final eligible-pair intersection. Audit copied timestamps and internal matching separately from source-scan alignment.",
+      "regression": "Seed selected-agent history far outside the request, in-range evidence, out-of-cohort pairs and skewed copied timestamps. Assert exact results and inspect each physical read/remote plan; benchmark representative deployed data."
+    },
+    {
+      "id": "T2",
+      "title": "Copied timestamps can disagree under the same requested interval",
+      "classification": "Verified existing time-semantics difference; prevalence unknown",
+      "priority": "Track separately from requested-range scan alignment",
+      "trigger": "Conversation start changes after an evidence row copied the earlier value, or independent projections are refreshed at different times.",
+      "trace": "Events and Conversations writers copy the conversation start field, independently of event creation/ingestion time. The upsert-message path can move StartedAt earlier based on a message timestamp. No maximum correction delta is enforced in that inspected loop.",
+      "observed": "Synthetic evidence with copied start outside [S,E) is excluded by existing APIs but retained by the current new pair-based lookup when its cohort pair is supplied. Late arrival with an unchanged in-range copied start remains included in both.",
+      "impact": "Late arrival and copied-time disagreement are different states. Applying the same request interval aligns source bounds but does not make independently copied timestamps agree. The current unbounded new lookup and existing bounded APIs can therefore return different evidence.",
+      "fix": "Use the existing requested-range behavior as the scan baseline. Document and investigate timestamp-copy, correction and reindex behavior as a separate correctness question; no fixed-day expansion is proposed.",
+      "regression": "Test copied timestamps before/inside/at the end of the request, unchanged copied time with late creation, and a conversation moved into/out of the request. Keep synthetic cases distinct from observed production data."
+    },
+    {
+      "id": "T3",
+      "title": "Summary still loses use on an internal exact timestamp join",
+      "classification": "Reproduced on main reader and PR reader; inherited behavior",
+      "priority": "Resolve explicitly; a wider scan alone cannot fix it",
+      "trigger": "Generation action at copied start October 1 00:00 and a qualifying copy at October 1 01:00, with the same conversation/agent. Both timestamps are inside the request.",
+      "trace": "The feature joins valid generation to use USING (conversation_id, conversation_start_time, agent_user_id), before the new API can apply its pair intersection.",
+      "observed": "Legacy used_summarization_count=0; new Summary evidence returns no pair. Generation count remains 1. Expanding source ranges cannot make unequal join keys equal.",
+      "impact": "A conversation can lose Summary-use credit despite having both qualifying records. Aligning source bounds cannot resolve unequal internal join keys.",
+      "fix": "Choose whether timestamp equality is an intended feature contract. If it is removed, preserve conversation/agent identity and decide whether generation-to-copy linkage needs a stronger annotation/session key. Keep any legacy behavior correction separate from a scan-only change.",
+      "regression": "Same pair, differing copied times inside or outside the interval; unrelated generation/copy; wrong agent and duplicate generations."
+    },
+    {
+      "id": "T4",
+      "title": "Time-bucket anchors can hide usage even when both source scans cover it",
+      "classification": "Reproduced on main and PR legacy readers; new evidence lookup differs",
+      "priority": "Cross-API parity decision and regression coverage",
+      "trigger": "Two-day request. Conversation/message copy is October 1; usage annotation or generation/copy pair is October 2; no message/conversation aggregate exists for that agent on October 2.",
+      "trace": "GenAI left-joins usage aggregates to message aggregates by agent/time bucket. Summary left-joins summary aggregates to conversation aggregates. Neither join proves conversation identity across those buckets.",
+      "observed": "Legacy daily GenAI use is 0 and Summary use is 0, even with a two-day source interval that contains all rows. The new GenAI and Summary evidence queries return the eligible pair; new output buckets use population time. Notes/Workflow instead emit their event-copy day.",
+      "impact": "Identical source scan ranges do not guarantee matching totals or trend placement. The legacy combined assistance API has the same message-bucket anchoring pattern.",
+      "fix": "State whether the product groups adoption by population conversation start or feature-source copy. For conversation adoption, carry the pair plus chosen population time through aggregation; do not borrow legacy aggregate totals as the numerator.",
+      "regression": "Same pair copied across midnight; UTC and non-UTC day/week boundaries; missing anchor bucket; include/exclude metadata; Agent and Team totals."
+    },
+    {
+      "id": "T5",
+      "title": "Notes and Workflow depend on cluster choice and a second conversation copy",
+      "classification": "Reproduced existing dependency and cross-API parity gap",
+      "priority": "Include source coverage in CONVI-7777 validation",
+      "trigger": "Conversations contains the eligible conversation and matching typed evidence. Events has the JSON usage event but lacks its conversation row; matching metadata is also available.",
+      "trace": "Without metadata, legacy Notes/Workflow read Events and inner-join events to Events conversation_d by conversation ID. With metadata, legacy switches to Conversations. New Notes/Workflow always use the Events branch, even when the cohort was filtered with metadata in Conversations.",
+      "observed": "Legacy no-metadata and new evidence queries return no Notes/Workflow usage. Adding a matching metadata filter causes both legacy endpoints to return 1 via Conversations.",
+      "impact": "The same date range can cover different stored histories and return different usage merely because the selected source changes. Padding timestamps cannot restore a missing Events conversation row.",
+      "fix": "Verify historical coverage, ingestion/retention/reindex behavior for both projections. Decide whether the new endpoint should require a second Events conversation record after cohort eligibility is already established. If removing that join, review source/agent/metadata gates explicitly.",
+      "regression": "One cluster missing conversation or event; copied times disagree; matching metadata changes source; wrong-agent conversation rows; typed versus JSON payloads."
+    },
+    {
+      "id": "T6",
+      "title": "The eligible population still filters copies before selecting the latest version",
+      "classification": "Reproduced inherited population behavior; not a new evidence-query bug",
+      "priority": "Track separately from source-scan optimization",
+      "trigger": "An older conversation row starts October 1; a newer row for the same pair starts October 3; request is October 1. An in-range message copy remains.",
+      "trace": "The population applies exact time bounds in the conversation source WHERE, then ORDER BY update_time DESC LIMIT 1 BY pair. The newer out-of-range row is removed before version selection. Message copies are also independently range-filtered.",
+      "observed": "The population still returns the October 1 pair. A separate missing-message probe returns no population despite feature evidence.",
+      "impact": "Calling this cohort globally current would overstate its contract. Widening only feature scans cannot recover a pair excluded by a stale message copy or correct an old version retained by prefiltering.",
+      "fix": "Keep this separate from CONVI-7777 scan-only changes unless latest-state semantics are explicitly required. Define bounded candidate discovery versus global latest-state selection and preserve frozen ConversationStats behavior until reviewed.",
+      "regression": "Newest version moves outside/inside the range; message and conversation disagree; same pair with multiple versions; new agent assignment; labels ON/OFF paths."
+    },
+    {
+      "id": "T7",
+      "title": "Whole-second SQL formatting changes fractional request boundaries",
+      "classification": "Reproduced shared boundary behavior",
+      "priority": "Separate shared filter correction",
+      "trigger": "Requested interval is [October 1 00:00:00.500, 00:00:01.500).",
+      "trace": "The common timestampFormat is 2006-01-02 15:04:05. Both request endpoints are formatted without fractions before source conditions are built.",
+      "observed": "A KB event at 00:00:00.250 is included although it precedes the request; one at 00:00:01.250 is excluded although it is inside. The query uses [00:00:00,00:00:01).",
+      "impact": "Exact DateTime64 membership at API boundaries is not preserved. Normal whole-day UI requests do not trigger this specific case; direct fractional requests can.",
+      "fix": "Use typed timestamp arguments or a format retaining required precision consistently across source and metadata filters. Do not fold this shared behavior correction into an unreviewed window change.",
+      "regression": "Fractional lower/upper endpoints, zero-width ranges, microsecond-before/at end, and equivalent metadata-filter requests."
+    },
+    {
+      "id": "T8",
+      "title": "Adjacent APIs have different attribution and filter contracts",
+      "classification": "Smart Compose source-observed; adherence metadata gap reproduced",
+      "priority": "Document exceptions and track separate corrections",
+      "trigger": "A Smart Compose insert occurs in a later hour than conversation start, or an adherence request contains nonmatching metadata.",
+      "trace": "Smart Compose filters analytics_event.event_time and joins to agent/hour of conversation starts. RetrieveAdherences discards the parsed metadata inclusion/exclusion lists.",
+      "observed": "All inspected scans remain time-bounded. Smart Compose attribution cannot be equated to conversation-level membership from these joins. The adherence fixture survives a nonmatching metadata filter with the same response as no filter.",
+      "impact": "A uniform historical scan range cannot make event-time metrics, conversation-start metrics and metadata semantics equivalent. Silence/Hold or P2 features need explicit contracts before admission into the new union.",
+      "fix": "Keep Smart Compose and email additions outside V1 as scoped. When revisiting them, require conversation-linked actual-use evidence and explicit filters. Define whether adherence metadata should be honored or rejected, then address that API separately.",
+      "regression": "Long conversation with later-hour insert; another conversation in that hour; same text twice; nonmatching metadata for adherence; missing delivered-action linkage."
+    }
+  ],
+  "steps": [
+    {
+      "title": "Existing feature APIs",
+      "status": "Observed baseline on pinned main",
+      "problem": "Bound scan cost using the requested interval, but apply that interval independently to each copied source timestamp.",
+      "why": "Feature APIs build their own source predicates and aggregate at different grains.",
+      "change": "Every inspected source read receives exact bounds. Some feature joins require timestamp equality or anchor on an aggregate bucket.",
+      "remaining": "Copied timestamps, source coverage and aggregation can disagree even when the SQL bounds match.",
+      "code": "for each physical feature source:\n    WHERE copied_conversation_start >= S\n      AND copied_conversation_start < E\naggregate using that feature's existing joins/buckets",
+      "diff": "Baseline: independently bounded feature-source scans."
+    },
+    {
+      "title": "New API in PR #33993",
+      "status": "Observed implementation at 0d1b75da68",
+      "problem": "Count distinct eligible conversation/agent pairs with any qualifying assistance use.",
+      "why": "Legacy totals count events, actions or sessions and do not provide one shared adoption population.",
+      "change": "Resolve the filtered population; scan selected-agent feature history; reduce and intersect pairs; use population time for buckets.",
+      "remaining": "Historical work is unbounded. Summary internal timestamp equality, Events copy dependencies and population limitations remain.",
+      "code": "population = existingConversationEligibility(S, E, filters)\nfor feature in sevenFamilies:\n    pairs = DISTINCT featureRows(agent IN population.agents)\n    used += pairs JOIN population ON (conversation_id, agent_user_id)\naggregate(used, bucketTime=population.conversation_time)",
+      "diff": "- exact source bounds in feature predicates\n+ eligible-agent source filter\n+ shared pair intersection after source reduction\n+ population time for adoption buckets"
+    },
+    {
+      "title": "Align scans with existing APIs",
+      "status": "User-directed baseline; implementation pending",
+      "problem": "Bound source history consistently with the other assistance APIs for the same requested time range.",
+      "why": "Existing feature APIs apply [S,E) to their source clocks; the seven new evidence families currently omit those bounds.",
+      "change": "Pass the requested start and end to every participating physical evidence source and retain exact population eligibility plus the final conversation/agent intersection.",
+      "remaining": "Copied-time disagreement, Summary linkage, cluster-copy coverage and bucket attribution remain separate correctness questions. Production performance remains unmeasured.",
+      "code": "eligibility = existingPopulation(S, E, filters)\nfor physicalSource in featureSources:\n    rows = read(source, startInclusive=S, endExclusive=E,\n                agents=eligibility.agents)\nused = featurePredicate(rows) JOIN eligibility ON pair\n# Match existing API source bounds; review timestamp-copy issues separately.",
+      "diff": "+ requested [S,E) bounds on every participating evidence source\n= exact population eligibility and final pair intersection\n? timestamp-copy, source-coverage and join corrections tracked separately"
+    }
+  ],
+  "sources": [
+    {
+      "label": "Shared interval bounds",
+      "url": "https://github.com/cresta/go-servers/blob/b6a2c65bdb6ba679a3bdf955b266cfd22f1a9ceb/insights-server/internal/analyticsimpl/common_clickhouse.go#L320",
+      "description": "The default source interval is start-inclusive and end-exclusive. The formatter at line 37 keeps whole seconds."
+    },
+    {
+      "label": "All seven new evidence queries",
+      "url": "https://github.com/cresta/go-servers/blob/0d1b75da684ee0a9237020d6d500e117db6f7b4e/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats_clickhouse.go#L27",
+      "description": "Only eligible agents are applied inside feature sources; eligible pairs are joined after feature reduction. No source timestamp bounds are supplied."
+    },
+    {
+      "label": "Notes cluster switch",
+      "url": "https://github.com/cresta/go-servers/blob/b6a2c65bdb6ba679a3bdf955b266cfd22f1a9ceb/insights-server/internal/analyticsimpl/retrieve_note_taking_stats_clickhouse.go#L91",
+      "description": "Metadata requests switch from Events to Conversations, including a different payload projection."
+    },
+    {
+      "label": "Workflow cluster switch",
+      "url": "https://github.com/cresta/go-servers/blob/b6a2c65bdb6ba679a3bdf955b266cfd22f1a9ceb/insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_clickhouse.go#L82",
+      "description": "Metadata requests switch from Events to Conversations."
+    },
+    {
+      "label": "Summary exact timestamp join",
+      "url": "https://github.com/cresta/go-servers/blob/0d1b75da684ee0a9237020d6d500e117db6f7b4e/insights-server/internal/analyticsimpl/common_summarization_usage_clickhouse.go#L5",
+      "description": "Generation and use must agree on conversation, agent and copied start time. This is preserved from main."
+    },
+    {
+      "label": "GenAI aggregate joins",
+      "url": "https://github.com/cresta/go-servers/blob/0d1b75da684ee0a9237020d6d500e117db6f7b4e/insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_clickhouse.go#L48",
+      "description": "Usage joins message aggregates by requested grouping keys, including time buckets when requested."
+    },
+    {
+      "label": "Population source and version selection",
+      "url": "https://github.com/cresta/go-servers/blob/0d1b75da684ee0a9237020d6d500e117db6f7b4e/insights-server/internal/analyticsimpl/common_conversation_population_clickhouse.go#L35",
+      "description": "Both message and conversation copies receive exact bounds. Conversation time filtering occurs before latest-row selection at lines 79-94."
+    },
+    {
+      "label": "Smart Compose hour matching",
+      "url": "https://github.com/cresta/go-servers/blob/b6a2c65bdb6ba679a3bdf955b266cfd22f1a9ceb/insights-server/internal/analyticsimpl/retrieve_smart_compose_stats_clickhouse.go#L38",
+      "description": "Actual event time is filtered; attribution uses agent/hour instead of a conversation ID."
+    },
+    {
+      "label": "Adherence metadata discarded",
+      "url": "https://github.com/cresta/go-servers/blob/b6a2c65bdb6ba679a3bdf955b266cfd22f1a9ceb/insights-server/internal/analyticsimpl/retrieve_adherences_clickhouse.go#L83",
+      "description": "The reader discards parsed include/exclude metadata lists. Source timestamps still have bounds."
+    },
+    {
+      "label": "Earlier messages can change start time",
+      "url": "https://github.com/cresta/go-servers/blob/b6a2c65bdb6ba679a3bdf955b266cfd22f1a9ceb/apiserver/internal/conversation/action_batch_upsert_conversation_messages.go#L1954",
+      "description": "The inspected loop moves start time to an earlier message timestamp without a local maximum-delta guard."
+    },
+    {
+      "label": "Events copy conversation start",
+      "url": "https://github.com/cresta/go-servers/blob/b6a2c65bdb6ba679a3bdf955b266cfd22f1a9ceb/shared/clickhouse/events/event.go#L540",
+      "description": "ConversationStartTime comes from the supplied conversation, while CreateTime is ingestion wall clock."
+    },
+    {
+      "label": "Conversations projection copies start",
+      "url": "https://github.com/cresta/go-servers/blob/b6a2c65bdb6ba679a3bdf955b266cfd22f1a9ceb/shared/clickhouse/conversations/conversation.go#L2505",
+      "description": "Annotations and events copy conversation.StartedAt; their own creation time is a different column."
+    },
+    {
+      "label": "Legacy combined API",
+      "url": "https://github.com/cresta/go-servers/blob/b6a2c65bdb6ba679a3bdf955b266cfd22f1a9ceb/insights-server/internal/analyticsimpl/retrieve_assistance_stats_clickhouse.go#L217",
+      "description": "Message, moment and event scans receive time bounds; results are anchored on message aggregates."
+    },
+    {
+      "label": "Conversation source sort key",
+      "url": "https://github.com/cresta/go-servers/blob/b6a2c65bdb6ba679a3bdf955b266cfd22f1a9ceb/shared/clickhouse/testing/schemas/ch_conv_schema.sql#L27",
+      "description": "Base source tables are time-led. Do not assume every base table has monthly partitions; several by-conversation/metadata views do."
+    },
+    {
+      "label": "Events source sort key",
+      "url": "https://github.com/cresta/go-servers/blob/b6a2c65bdb6ba679a3bdf955b266cfd22f1a9ceb/shared/clickhouse/testing/schemas/ch_events_schema.sql#L18",
+      "description": "Events source keys begin with copied conversation start time; analytics_event uses event_time instead."
+    }
+  ],
+  "verification": {
+    "sql_executions": 381,
+    "checks_passed": 107,
+    "checks": [
+      "all captured SQL probes execute without errors",
+      "Aligned: new KB search preserves eligible pair",
+      "Aligned: new Chat Suggestions preserves eligible pair",
+      "Aligned: new GenAI preserves eligible pair",
+      "Aligned: new Summary preserves eligible pair",
+      "Aligned: new Hints preserves eligible pair",
+      "Aligned: new Notes preserves eligible pair",
+      "Aligned: new Guided Workflow preserves eligible pair",
+      "BeforeStartMicrosecond: new KB search preserves eligible pair",
+      "BeforeStartMicrosecond: new Chat Suggestions preserves eligible pair",
+      "BeforeStartMicrosecond: new GenAI preserves eligible pair",
+      "BeforeStartMicrosecond: new Summary preserves eligible pair",
+      "BeforeStartMicrosecond: new Hints preserves eligible pair",
+      "BeforeStartMicrosecond: new Notes preserves eligible pair",
+      "BeforeStartMicrosecond: new Guided Workflow preserves eligible pair",
+      "BeforeEndMicrosecond: new KB search preserves eligible pair",
+      "BeforeEndMicrosecond: new Chat Suggestions preserves eligible pair",
+      "BeforeEndMicrosecond: new GenAI preserves eligible pair",
+      "BeforeEndMicrosecond: new Summary preserves eligible pair",
+      "BeforeEndMicrosecond: new Hints preserves eligible pair",
+      "BeforeEndMicrosecond: new Notes preserves eligible pair",
+      "BeforeEndMicrosecond: new Guided Workflow preserves eligible pair",
+      "AtEnd: new KB search preserves eligible pair",
+      "AtEnd: new Chat Suggestions preserves eligible pair",
+      "AtEnd: new GenAI preserves eligible pair",
+      "AtEnd: new Summary preserves eligible pair",
+      "AtEnd: new Hints preserves eligible pair",
+      "AtEnd: new Notes preserves eligible pair",
+      "AtEnd: new Guided Workflow preserves eligible pair",
+      "CopiedTimePlusSevenDays: new KB search preserves eligible pair",
+      "CopiedTimePlusSevenDays: new Chat Suggestions preserves eligible pair",
+      "CopiedTimePlusSevenDays: new GenAI preserves eligible pair",
+      "CopiedTimePlusSevenDays: new Summary preserves eligible pair",
+      "CopiedTimePlusSevenDays: new Hints preserves eligible pair",
+      "CopiedTimePlusSevenDays: new Notes preserves eligible pair",
+      "CopiedTimePlusSevenDays: new Guided Workflow preserves eligible pair",
+      "CopiedTimeMinusFourteenDays: new KB search preserves eligible pair",
+      "CopiedTimeMinusFourteenDays: new Chat Suggestions preserves eligible pair",
+      "CopiedTimeMinusFourteenDays: new GenAI preserves eligible pair",
+      "CopiedTimeMinusFourteenDays: new Summary preserves eligible pair",
+      "CopiedTimeMinusFourteenDays: new Hints preserves eligible pair",
+      "CopiedTimeMinusFourteenDays: new Notes preserves eligible pair",
+      "CopiedTimeMinusFourteenDays: new Guided Workflow preserves eligible pair",
+      "ArrivalFourteenDaysLater: new KB search preserves eligible pair",
+      "ArrivalFourteenDaysLater: new Chat Suggestions preserves eligible pair",
+      "ArrivalFourteenDaysLater: new GenAI preserves eligible pair",
+      "ArrivalFourteenDaysLater: new Summary preserves eligible pair",
+      "ArrivalFourteenDaysLater: new Hints preserves eligible pair",
+      "ArrivalFourteenDaysLater: new Notes preserves eligible pair",
+      "ArrivalFourteenDaysLater: new Guided Workflow preserves eligible pair",
+      "BeforeStartMicrosecond: legacy KB filters copied start outside range",
+      "BeforeStartMicrosecond: legacy Suggestions filters copied start outside range",
+      "BeforeStartMicrosecond: legacy Notes filters copied start outside range",
+      "BeforeStartMicrosecond: legacy Workflow filters copied start outside range",
+      "BeforeStartMicrosecond: legacy GenAI filters copied start outside range",
+      "BeforeStartMicrosecond: legacy Summary filters copied start outside range",
+      "AtEnd: legacy KB filters copied start outside range",
+      "AtEnd: legacy Suggestions filters copied start outside range",
+      "AtEnd: legacy Notes filters copied start outside range",
+      "AtEnd: legacy Workflow filters copied start outside range",
+      "AtEnd: legacy GenAI filters copied start outside range",
+      "AtEnd: legacy Summary filters copied start outside range",
+      "CopiedTimePlusSevenDays: legacy KB filters copied start outside range",
+      "CopiedTimePlusSevenDays: legacy Suggestions filters copied start outside range",
+      "CopiedTimePlusSevenDays: legacy Notes filters copied start outside range",
+      "CopiedTimePlusSevenDays: legacy Workflow filters copied start outside range",
+      "CopiedTimePlusSevenDays: legacy GenAI filters copied start outside range",
+      "CopiedTimePlusSevenDays: legacy Summary filters copied start outside range",
+      "CopiedTimeMinusFourteenDays: legacy KB filters copied start outside range",
+      "CopiedTimeMinusFourteenDays: legacy Suggestions filters copied start outside range",
+      "CopiedTimeMinusFourteenDays: legacy Notes filters copied start outside range",
+      "CopiedTimeMinusFourteenDays: legacy Workflow filters copied start outside range",
+      "CopiedTimeMinusFourteenDays: legacy GenAI filters copied start outside range",
+      "CopiedTimeMinusFourteenDays: legacy Summary filters copied start outside range",
+      "Summary exact-time internal join loses mismatched copy in legacy",
+      "Summary exact-time internal join loses mismatched copy in new API",
+      "GenAI usage day without message bucket disappears despite two-day scan",
+      "Notes legacy bucket comes from evidence copy rather than population",
+      "Summary usage day without conversation bucket disappears",
+      "Notes new depends on Events conversation copy",
+      "Notes unfiltered legacy depends on Events conversation copy",
+      "Notes matching metadata switches to Conversations and recovers row",
+      "Guided Workflow new depends on Events conversation copy",
+      "Guided Workflow unfiltered legacy depends on Events conversation copy",
+      "Guided Workflow matching metadata switches to Conversations and recovers row",
+      "Population remains message-anchored",
+      "Population prefilters before newest-row selection and retains older in-range version",
+      "Fractional lower bound floors and admits too-early evidence",
+      "Fractional upper bound floors and drops still-eligible evidence",
+      "Aligned: GenAI none main reader matches PR reader",
+      "Aligned: GenAI daily main reader matches PR reader",
+      "Aligned: GenAI two-day-daily main reader matches PR reader",
+      "Aligned: Summary none main reader matches PR reader",
+      "Aligned: Summary daily main reader matches PR reader",
+      "Aligned: Summary two-day-daily main reader matches PR reader",
+      "SummarySplitTimes: GenAI none main reader matches PR reader",
+      "SummarySplitTimes: Summary none main reader matches PR reader",
+      "CrossDayCopies: GenAI none main reader matches PR reader",
+      "CrossDayCopies: GenAI daily main reader matches PR reader",
+      "CrossDayCopies: GenAI two-day-daily main reader matches PR reader",
+      "CrossDayCopies: Summary none main reader matches PR reader",
+      "CrossDayCopies: Summary daily main reader matches PR reader",
+      "CrossDayCopies: Summary two-day-daily main reader matches PR reader",
+      "Adherences result survives nonmatching metadata request",
+      "Adherences discards parsed metadata predicates",
+      "scan pruning experiment retains exactly the same eligible pair in all variants",
+      "local read volume: unbounded exceeds padded exceeds exact"
+    ]
+  },
+  "pruning": {
+    "version": "24.2.3.70",
+    "row_count": 180000,
+    "engine": "single-node MergeTree synthetic fixture",
+    "records": [
+      {
+        "variant": "new-unbounded",
+        "query_id": "scan-audit-a3fdf260911a485a8d181eebe721c2c7",
+        "rows": [
+          {
+            "conversation_id": "153000",
+            "agent_user_id": "1"
+          }
+        ],
+        "local_metrics": [
+          {
+            "read_rows": "180002",
+            "read_bytes": "5108925",
+            "result_rows": "1",
+            "memory_usage": "18612206",
+            "query_duration_ms": "16"
+          }
+        ]
+      },
+      {
+        "variant": "same-cohort-exact-bounds",
+        "query_id": "scan-audit-a7a3e68a2d6f492ab98b0eba846a7808",
+        "rows": [
+          {
+            "conversation_id": "153000",
+            "agent_user_id": "1"
+          }
+        ],
+        "local_metrics": [
+          {
+            "read_rows": "2050",
+            "read_bytes": "56461",
+            "result_rows": "1",
+            "memory_usage": "4266692",
+            "query_duration_ms": "2"
+          }
+        ]
+      }
+    ]
+  }
+}

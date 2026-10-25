@@ -1,0 +1,307 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "conversation"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "range": {
+                        "message_count": {
+                            "gt": 0
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "numeric-metadata-with-value"
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.payload_with_explicit_mapping.metadata_number_value": [
+                                                                    1.1,
+                                                                    2.2
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "numeric-metadata-with-value"
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.payload_with_explicit_mapping.metadata_number_value": [
+                                                                    1.1,
+                                                                    2.2
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "numeric-metadata-with-value"
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "cresta-modelled-outcome"
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.payload_with_explicit_mapping.outcome_number_value": [
+                                                                    1.1,
+                                                                    2.2
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "numeric-metadata-with-bin"
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "bool": {
+                                                                "should": [
+                                                                    {
+                                                                        "range": {
+                                                                            "moment_annotations.payload_with_explicit_mapping.metadata_number_value": {
+                                                                                "gte": 0.10000000149011612,
+                                                                                "lt": 100
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "range": {
+                                                                            "moment_annotations.payload_with_explicit_mapping.metadata_number_value": {
+                                                                                "gte": 100.0999984741211,
+                                                                                "lt": 1000.0999755859375
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                ],
+                                                                "minimum_should_match": 1
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "string-metadata"
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.payload.conversationMetadataPayload.values.stringValue.keyword": [
+                                                                    "string-value-1",
+                                                                    "string-value-2"
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "boolean-metadata"
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.payload.conversationMetadataPayload.values.booleanValue": [
+                                                                    true,
+                                                                    false
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "bucket_aggs": {
+            "date_histogram": {
+                "field": "conversation_started_at",
+                "time_zone": "+00:00",
+                "calendar_interval": "day",
+                "min_doc_count": 0
+            }
+        }
+    }
+}

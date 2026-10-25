@@ -1,0 +1,16 @@
+[3,779 / 3,781] Testing //insights-server/internal/analyticsimpl:retrieve_knowledge_assist_stats_test; 11s darwin-sandbox ... (2 actions running)
+[3,779 / 3,781] Testing //insights-server/internal/analyticsimpl:retrieve_knowledge_assist_stats_test; 41s darwin-sandbox ... (2 actions running)
+[3,779 / 3,781] Testing //insights-server/internal/analyticsimpl:retrieve_knowledge_assist_stats_test; 101s darwin-sandbox ... (2 actions running)
+[3,779 / 3,781] Testing //insights-server/internal/analyticsimpl:retrieve_knowledge_assist_stats_test; 161s darwin-sandbox ... (2 actions running)
+[3,779 / 3,781] Testing //insights-server/internal/analyticsimpl:retrieve_knowledge_assist_stats_test; 222s darwin-sandbox ... (2 actions running)
+[3,779 / 3,781] 1 / 2 tests; Testing //insights-server/internal/analyticsimpl:retrieve_knowledge_assist_stats_test; 267s darwin-sandbox ... (2 actions running)
+[3,780 / 3,781] 1 / 2 tests; Testing //insights-server/internal/analyticsimpl:retrieve_knowledge_assist_stats_test; 269s darwin-sandbox
+[3,780 / 3,781] 2 / 2 tests; Testing //insights-server/internal/analyticsimpl:retrieve_knowledge_assist_stats_test; 272s darwin-sandbox
+INFO: Found 2 test targets...
+INFO: Elapsed time: 752.139s, Critical Path: 490.30s
+INFO: 3769 processes: 12 action cache hit, 655 internal, 3114 darwin-sandbox.
+INFO: Build completed successfully, 3769 total actions
+//insights-server/internal/analyticsimpl:retrieve_knowledge_assist_stats_test PASSED in 272.8s
+//insights-server/internal/analyticsimpl:retrieve_summarization_stats_test PASSED in 267.3s
+
+Executed 2 out of 2 tests: 2 tests pass.

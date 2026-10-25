@@ -1,0 +1,232 @@
+{
+    "size": 0,
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "range": {
+                        "conversation_started_at": {
+                            "gte": "2022-04-13T00:00:00Z",
+                            "lt": "2022-07-13T00:00:00Z",
+                            "time_zone": "UTC"
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "should": [
+                            {
+                                "terms": {
+                                    "conversation_source": [
+                                        0,
+                                        7,
+                                        8
+                                    ]
+                                }
+                            },
+                            {
+                                "bool": {
+                                    "must_not": {
+                                        "exists": {
+                                            "field": "conversation_source"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "has_child": {
+                        "type": "message",
+                        "query": {
+                            "bool": {
+                                "filter": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "should": [
+                                                        {
+                                                          "bool": {
+                                                            "filter": [
+                                                              {
+                                                                "terms": {
+                                                                  "moment_annotations.behavior_id.keyword": [
+                                                                    "behavior1"
+                                                                  ]
+                                                                }
+                                                              },
+                                                              {
+                                                                "terms": {
+                                                                  "moment_annotations.adherence_type": [
+                                                                    1
+                                                                  ]
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                    ],
+                                                    "minimum_should_match": 1
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+					"terms":{
+						"conversation_to_message_join":["conversation"]
+					}
+				}
+            ]
+        }
+    },
+    "aggs": {
+        "moments": {
+            "filters": {
+                "filters": [
+                    {
+                        "has_child": {
+                            "type": "message",
+                            "query": {
+                                "bool": {
+                                    "filter": [
+                                        {
+                                            "nested": {
+                                                "path": "moment_annotations",
+                                                "query": {
+                                                    "bool": {
+                                                        "filter": [
+                                                            {
+                                                                "terms": {
+                                                                    "moment_annotations.behavior_id.keyword": [
+                                                                        "behavior1"
+                                                                    ]
+                                                                }
+                                                            },
+                                                            {
+                                                                "terms": {
+                                                                    "moment_annotations.adherence_type": [
+                                                                        2
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "bool": {
+                            "must_not": [
+                                {
+                                    "has_child": {
+                                        "type": "message",
+                                        "query": {
+                                            "bool": {
+                                                "filter": [
+                                                    {
+                                                        "nested": {
+                                                            "path": "moment_annotations",
+                                                            "query": {
+                                                                "bool": {
+                                                                    "filter": [
+                                                                        {
+                                                                            "terms": {
+                                                                                "moment_annotations.behavior_id.keyword": [
+                                                                                    "behavior1"
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "terms": {
+                                                                                "moment_annotations.adherence_type": [
+                                                                                    2
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "aggs": {
+                "outcomes": {
+                    "nested": {
+                        "path": "moment_annotations"
+                    },
+                    "aggs": {
+                        "outcomes": {
+                            "filters": {
+                                "filters": [
+                                    {
+                                        "bool": {
+                                            "filter": [
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.payload.conversationMetadataPayload.values.stringValue.keyword": [
+                                                            "PRE_SALE",
+                                                            "DIY_SALE"
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.moment_template_id.keyword": [
+                                                            "outcome"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "bool": {
+                                            "filter": [
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.payload.conversationMetadataPayload.values.stringValue.keyword": [
+                                                            "NO_SALE"
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.moment_template_id.keyword": [
+                                                            "outcome"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

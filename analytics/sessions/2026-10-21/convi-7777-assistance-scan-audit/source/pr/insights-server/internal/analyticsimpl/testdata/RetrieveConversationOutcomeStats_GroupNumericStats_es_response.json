@@ -1,0 +1,65 @@
+{
+    "took": 152,
+    "timed_out": false,
+    "_shards": {
+        "total": 12,
+        "successful": 12,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 10000,
+            "relation": "gte"
+        },
+        "max_score": null,
+        "hits": []
+    },
+    "aggregations": {
+        "agents": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+                {
+                    "key": "user1",
+                    "doc_count": 1000,
+                    "outcomes": {
+                        "doc_count": 5692,
+                        "outcomes": {
+                            "doc_count": 600,
+                            "avg_outcomes": {
+                                "value": 0.1
+                            }
+                        }
+                    }
+                },
+                {
+                    "key": "user2",
+                    "doc_count": 800,
+                    "outcomes": {
+                        "doc_count": 4837,
+                        "outcomes": {
+                            "doc_count": 400,
+                            "avg_outcomes": {
+                                "value": 0.2
+                            }
+                        }
+                    }
+                },
+                {
+                    "key": "user3",
+                    "doc_count": 1000,
+                    "outcomes": {
+                        "doc_count": 0,
+                        "outcomes": {
+                            "doc_count": 0,
+                            "avg_outcomes": {
+                                "value": null
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

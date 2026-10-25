@@ -1,0 +1,145 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "message"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "emotion-1",
+                                                                    "emotion-2"
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "numeric-metadata-with-value"
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.payload_with_explicit_mapping.metadata_number_value": [
+                                                                    1.1
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+    "bucket_aggs": {
+      "filters": {
+        "filters": [
+          {
+            "nested": {
+              "path": "moment_annotations",
+              "query": {
+                "bool": {
+                  "filter": [
+                    {
+                      "terms": {
+                        "moment_annotations.moment_template_id.keyword": [
+                          "emotion-1"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "nested": {
+              "path": "moment_annotations",
+              "query": {
+                "bool": {
+                  "filter": [
+                    {
+                      "terms": {
+                        "moment_annotations.moment_template_id.keyword": [
+                          "emotion-2"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "aggs": {
+        "bucket_aggs": {
+          "date_histogram": {
+            "field": "conversation_started_at",
+            "time_zone": "+00:00",
+            "calendar_interval": "day",
+            "min_doc_count": 0
+          }
+        }
+      }
+    }
+  }
+}
+

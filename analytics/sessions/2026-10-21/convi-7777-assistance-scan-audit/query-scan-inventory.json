@@ -1,0 +1,952 @@
+[
+  {
+    "feature": "KB",
+    "mode": "none",
+    "source_tables": [
+      "conversation_event_d"
+    ],
+    "start_bounds": 1,
+    "end_bounds": 1,
+    "arg_count": 2
+  },
+  {
+    "feature": "Suggestions",
+    "mode": "none",
+    "source_tables": [
+      "conversation_event_d"
+    ],
+    "start_bounds": 1,
+    "end_bounds": 1,
+    "arg_count": 2
+  },
+  {
+    "feature": "Notes",
+    "mode": "none",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "Workflow",
+    "mode": "none",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "GenAI",
+    "mode": "none",
+    "source_tables": [
+      "action_annotation_d",
+      "message_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "Summary",
+    "mode": "none",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "HintsMoment",
+    "mode": "none",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 4,
+    "end_bounds": 4,
+    "arg_count": 8
+  },
+  {
+    "feature": "HintsAction",
+    "mode": "none",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 5,
+    "end_bounds": 5,
+    "arg_count": 10
+  },
+  {
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "source_tables": [
+      "conversation_event_d",
+      "message_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "Adherences",
+    "mode": "none",
+    "source_tables": [
+      "moment_annotation_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "SmartCompose",
+    "mode": "none",
+    "source_tables": [
+      "analytics_event_d",
+      "conversation_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "KB",
+    "mode": "include",
+    "source_tables": [
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 9
+  },
+  {
+    "feature": "Suggestions",
+    "mode": "include",
+    "source_tables": [
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 9
+  },
+  {
+    "feature": "Notes",
+    "mode": "include",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 4,
+    "end_bounds": 4,
+    "arg_count": 11
+  },
+  {
+    "feature": "Workflow",
+    "mode": "include",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 4,
+    "end_bounds": 4,
+    "arg_count": 11
+  },
+  {
+    "feature": "GenAI",
+    "mode": "include",
+    "source_tables": [
+      "action_annotation_d",
+      "message_d",
+      "moment_annotation_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 5,
+    "end_bounds": 5,
+    "arg_count": 13
+  },
+  {
+    "feature": "Summary",
+    "mode": "include",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_d",
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 5,
+    "end_bounds": 5,
+    "arg_count": 13
+  },
+  {
+    "feature": "HintsMoment",
+    "mode": "include",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 6,
+    "end_bounds": 6,
+    "arg_count": 15
+  },
+  {
+    "feature": "HintsAction",
+    "mode": "include",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 7,
+    "end_bounds": 7,
+    "arg_count": 17
+  },
+  {
+    "feature": "LegacyAssistance",
+    "mode": "include",
+    "source_tables": [
+      "conversation_event_d",
+      "message_d",
+      "moment_annotation_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 5,
+    "end_bounds": 5,
+    "arg_count": 13
+  },
+  {
+    "feature": "Adherences",
+    "mode": "include",
+    "source_tables": [
+      "moment_annotation_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "KB",
+    "mode": "exclude",
+    "source_tables": [
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 5
+  },
+  {
+    "feature": "Suggestions",
+    "mode": "exclude",
+    "source_tables": [
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 5
+  },
+  {
+    "feature": "Notes",
+    "mode": "exclude",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 7
+  },
+  {
+    "feature": "Workflow",
+    "mode": "exclude",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 7
+  },
+  {
+    "feature": "GenAI",
+    "mode": "exclude",
+    "source_tables": [
+      "action_annotation_d",
+      "message_d",
+      "moment_annotation_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 4,
+    "end_bounds": 4,
+    "arg_count": 9
+  },
+  {
+    "feature": "Summary",
+    "mode": "exclude",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_d",
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 4,
+    "end_bounds": 4,
+    "arg_count": 9
+  },
+  {
+    "feature": "HintsMoment",
+    "mode": "exclude",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 5,
+    "end_bounds": 5,
+    "arg_count": 11
+  },
+  {
+    "feature": "HintsAction",
+    "mode": "exclude",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 6,
+    "end_bounds": 6,
+    "arg_count": 13
+  },
+  {
+    "feature": "LegacyAssistance",
+    "mode": "exclude",
+    "source_tables": [
+      "conversation_event_d",
+      "message_d",
+      "moment_annotation_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 4,
+    "end_bounds": 4,
+    "arg_count": 9
+  },
+  {
+    "feature": "Adherences",
+    "mode": "exclude",
+    "source_tables": [
+      "moment_annotation_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "KB",
+    "mode": "both",
+    "source_tables": [
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 4,
+    "end_bounds": 4,
+    "arg_count": 12
+  },
+  {
+    "feature": "Suggestions",
+    "mode": "both",
+    "source_tables": [
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 4,
+    "end_bounds": 4,
+    "arg_count": 12
+  },
+  {
+    "feature": "Notes",
+    "mode": "both",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 5,
+    "end_bounds": 5,
+    "arg_count": 14
+  },
+  {
+    "feature": "Workflow",
+    "mode": "both",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 5,
+    "end_bounds": 5,
+    "arg_count": 14
+  },
+  {
+    "feature": "GenAI",
+    "mode": "both",
+    "source_tables": [
+      "action_annotation_d",
+      "message_d",
+      "moment_annotation_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 6,
+    "end_bounds": 6,
+    "arg_count": 16
+  },
+  {
+    "feature": "Summary",
+    "mode": "both",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_d",
+      "conversation_event_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 6,
+    "end_bounds": 6,
+    "arg_count": 16
+  },
+  {
+    "feature": "HintsMoment",
+    "mode": "both",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 7,
+    "end_bounds": 7,
+    "arg_count": 18
+  },
+  {
+    "feature": "HintsAction",
+    "mode": "both",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 8,
+    "end_bounds": 8,
+    "arg_count": 20
+  },
+  {
+    "feature": "LegacyAssistance",
+    "mode": "both",
+    "source_tables": [
+      "conversation_event_d",
+      "message_d",
+      "moment_annotation_d",
+      "moment_annotation_mv_by_metadata_d"
+    ],
+    "start_bounds": 6,
+    "end_bounds": 6,
+    "arg_count": 16
+  },
+  {
+    "feature": "Adherences",
+    "mode": "both",
+    "source_tables": [
+      "moment_annotation_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "KB",
+    "mode": "daily",
+    "source_tables": [
+      "conversation_event_d"
+    ],
+    "start_bounds": 1,
+    "end_bounds": 1,
+    "arg_count": 2
+  },
+  {
+    "feature": "Suggestions",
+    "mode": "daily",
+    "source_tables": [
+      "conversation_event_d"
+    ],
+    "start_bounds": 1,
+    "end_bounds": 1,
+    "arg_count": 2
+  },
+  {
+    "feature": "Notes",
+    "mode": "daily",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "Workflow",
+    "mode": "daily",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "GenAI",
+    "mode": "daily",
+    "source_tables": [
+      "action_annotation_d",
+      "message_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "Summary",
+    "mode": "daily",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "HintsMoment",
+    "mode": "daily",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 4,
+    "end_bounds": 4,
+    "arg_count": 8
+  },
+  {
+    "feature": "HintsAction",
+    "mode": "daily",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 5,
+    "end_bounds": 5,
+    "arg_count": 10
+  },
+  {
+    "feature": "LegacyAssistance",
+    "mode": "daily",
+    "source_tables": [
+      "conversation_event_d",
+      "message_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "Adherences",
+    "mode": "daily",
+    "source_tables": [
+      "moment_annotation_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "SmartCompose",
+    "mode": "daily",
+    "source_tables": [
+      "analytics_event_d",
+      "conversation_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "KB",
+    "mode": "weekly",
+    "source_tables": [
+      "conversation_event_d"
+    ],
+    "start_bounds": 1,
+    "end_bounds": 1,
+    "arg_count": 2
+  },
+  {
+    "feature": "Suggestions",
+    "mode": "weekly",
+    "source_tables": [
+      "conversation_event_d"
+    ],
+    "start_bounds": 1,
+    "end_bounds": 1,
+    "arg_count": 2
+  },
+  {
+    "feature": "Notes",
+    "mode": "weekly",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "Workflow",
+    "mode": "weekly",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "GenAI",
+    "mode": "weekly",
+    "source_tables": [
+      "action_annotation_d",
+      "message_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "Summary",
+    "mode": "weekly",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "HintsMoment",
+    "mode": "weekly",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 4,
+    "end_bounds": 4,
+    "arg_count": 8
+  },
+  {
+    "feature": "HintsAction",
+    "mode": "weekly",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 5,
+    "end_bounds": 5,
+    "arg_count": 10
+  },
+  {
+    "feature": "LegacyAssistance",
+    "mode": "weekly",
+    "source_tables": [
+      "conversation_event_d",
+      "message_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "Adherences",
+    "mode": "weekly",
+    "source_tables": [
+      "moment_annotation_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "SmartCompose",
+    "mode": "weekly",
+    "source_tables": [
+      "analytics_event_d",
+      "conversation_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "KB",
+    "mode": "two-day-daily",
+    "source_tables": [
+      "conversation_event_d"
+    ],
+    "start_bounds": 1,
+    "end_bounds": 1,
+    "arg_count": 2
+  },
+  {
+    "feature": "Suggestions",
+    "mode": "two-day-daily",
+    "source_tables": [
+      "conversation_event_d"
+    ],
+    "start_bounds": 1,
+    "end_bounds": 1,
+    "arg_count": 2
+  },
+  {
+    "feature": "Notes",
+    "mode": "two-day-daily",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "Workflow",
+    "mode": "two-day-daily",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "GenAI",
+    "mode": "two-day-daily",
+    "source_tables": [
+      "action_annotation_d",
+      "message_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "Summary",
+    "mode": "two-day-daily",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "HintsMoment",
+    "mode": "two-day-daily",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 4,
+    "end_bounds": 4,
+    "arg_count": 8
+  },
+  {
+    "feature": "HintsAction",
+    "mode": "two-day-daily",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 5,
+    "end_bounds": 5,
+    "arg_count": 10
+  },
+  {
+    "feature": "LegacyAssistance",
+    "mode": "two-day-daily",
+    "source_tables": [
+      "conversation_event_d",
+      "message_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "Adherences",
+    "mode": "two-day-daily",
+    "source_tables": [
+      "moment_annotation_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "SmartCompose",
+    "mode": "two-day-daily",
+    "source_tables": [
+      "analytics_event_d",
+      "conversation_d"
+    ],
+    "start_bounds": 3,
+    "end_bounds": 3,
+    "arg_count": 6
+  },
+  {
+    "feature": "KB search",
+    "mode": "new",
+    "source_tables": [
+      "conversation_event_d"
+    ],
+    "start_bounds": 0,
+    "end_bounds": 0,
+    "arg_count": 0
+  },
+  {
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "source_tables": [
+      "conversation_event_d"
+    ],
+    "start_bounds": 0,
+    "end_bounds": 0,
+    "arg_count": 0
+  },
+  {
+    "feature": "GenAI",
+    "mode": "new",
+    "source_tables": [
+      "moment_annotation_d"
+    ],
+    "start_bounds": 0,
+    "end_bounds": 0,
+    "arg_count": 0
+  },
+  {
+    "feature": "Summary",
+    "mode": "new",
+    "source_tables": [
+      "action_annotation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 0,
+    "end_bounds": 0,
+    "arg_count": 0
+  },
+  {
+    "feature": "Hints",
+    "mode": "new",
+    "source_tables": [
+      "conversation_event_d",
+      "moment_annotation_d"
+    ],
+    "start_bounds": 0,
+    "end_bounds": 0,
+    "arg_count": 0
+  },
+  {
+    "feature": "Notes",
+    "mode": "new",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 0,
+    "end_bounds": 0,
+    "arg_count": 0
+  },
+  {
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "source_tables": [
+      "conversation_d",
+      "conversation_event_d"
+    ],
+    "start_bounds": 0,
+    "end_bounds": 0,
+    "arg_count": 0
+  },
+  {
+    "feature": "Population",
+    "mode": "new",
+    "source_tables": [
+      "conversation_d",
+      "message_d"
+    ],
+    "start_bounds": 2,
+    "end_bounds": 2,
+    "arg_count": 4
+  },
+  {
+    "feature": "KB",
+    "mode": "fractional",
+    "source_tables": [
+      "conversation_event_d"
+    ],
+    "start_bounds": 1,
+    "end_bounds": 1,
+    "arg_count": 2
+  }
+]

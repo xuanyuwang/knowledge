@@ -1,0 +1,8 @@
+{
+  "file": "insights-server/internal/analyticsimpl/retrieve_hint_stats_test.go",
+  "sha256": "c2b7032c62b61b0ee987ad41a0c443f8b1771130314dd6759c5987d0d7deb519",
+  "baseline_log_sha256": "f99df51184bb15927f0b113b618661221e8a2fb0292ae55b848200e4cb94e6b7",
+  "passed_nodes": 83,
+  "elapsed": 389.661,
+  "tests_commit": "3dab1f940dd30546b802b449915645225703566d"
+}

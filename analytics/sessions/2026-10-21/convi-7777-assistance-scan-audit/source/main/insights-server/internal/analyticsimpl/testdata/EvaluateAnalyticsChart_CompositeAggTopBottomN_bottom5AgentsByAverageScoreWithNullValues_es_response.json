@@ -1,0 +1,159 @@
+{
+    "took": 45,
+    "timed_out": false,
+    "_shards": {
+      "total": 24,
+      "successful": 24,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 2030,
+        "relation": "eq"
+      },
+      "max_score": null,
+      "hits": []
+    },
+    "aggregations": {
+      "bucket_aggs": {
+        "buckets": [
+          {
+            "key": {
+              "bucket_aggs": "11a5bd23e583567"
+            },
+            "doc_count": 5,
+            "bucket_aggs": {
+              "doc_count": 973,
+              "bucket_aggs": {
+                "doc_count": 5,
+                "metrics_agg_on_numeric_field": {
+                  "value": 20
+                }
+              }
+            }
+          },
+          {
+            "key": {
+              "bucket_aggs": "2988548d03900891"
+            },
+            "doc_count": 250,
+            "bucket_aggs": {
+              "doc_count": 48718,
+              "bucket_aggs": {
+                "doc_count": 250,
+                "metrics_agg_on_numeric_field": {
+                  "value": 13
+                }
+              }
+            }
+          },
+          {
+            "key": {
+              "bucket_aggs": "3377c4e50e4199ef"
+            },
+            "doc_count": 84,
+            "bucket_aggs": {
+              "doc_count": 16368,
+              "bucket_aggs": {
+                "doc_count": 84,
+                "metrics_agg_on_numeric_field": {
+                  "value": null
+                }
+              }
+            }
+          },
+          {
+            "key": {
+              "bucket_aggs": "3c9080ba22ca6b6c"
+            },
+            "doc_count": 332,
+            "bucket_aggs": {
+              "doc_count": 64694,
+              "bucket_aggs": {
+                "doc_count": 332,
+                "metrics_agg_on_numeric_field": {
+                  "value": 50
+                }
+              }
+            }
+          },
+          {
+            "key": {
+              "bucket_aggs": "4156c783db0aa865"
+            },
+            "doc_count": 1,
+            "bucket_aggs": {
+              "doc_count": 197,
+              "bucket_aggs": {
+                "doc_count": 1,
+                "metrics_agg_on_numeric_field": {
+                  "value": null
+                }
+              }
+            }
+          },
+          {
+            "key": {
+              "bucket_aggs": "5051d39d5bab6ae3"
+            },
+            "doc_count": 2,
+            "bucket_aggs": {
+              "doc_count": 390,
+              "bucket_aggs": {
+                "doc_count": 2,
+                "metrics_agg_on_numeric_field": {
+                  "value": 46
+                }
+              }
+            }
+          },
+          {
+            "key": {
+              "bucket_aggs": "80b1978ffb5adbb5"
+            },
+            "doc_count": 13,
+            "bucket_aggs": {
+              "doc_count": 2535,
+              "bucket_aggs": {
+                "doc_count": 80,
+                "metrics_agg_on_numeric_field": {
+                  "value": null
+                }
+              }
+            }
+          },
+          {
+            "key": {
+              "bucket_aggs": "a0719c8f7b51d234"
+            },
+            "doc_count": 250,
+            "bucket_aggs": {
+              "doc_count": 48718,
+              "bucket_aggs": {
+                "doc_count": 250,
+                "metrics_agg_on_numeric_field": {
+                  "value": 32
+                }
+              }
+            }
+          },
+          {
+            "key": {
+              "bucket_aggs": "b051297855b5ad007"
+            },
+            "doc_count": 13,
+            "bucket_aggs": {
+              "doc_count": 2535,
+              "bucket_aggs": {
+                "doc_count": 80,
+                "metrics_agg_on_numeric_field": {
+                  "value": 80
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }

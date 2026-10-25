@@ -1,0 +1,176 @@
+{
+  "took": 386,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "doc_count_error_upper_bound": 220,
+      "sum_other_doc_count": 13458,
+      "buckets": [
+        {
+          "key": "agent-id-1",
+          "doc_count": 4062,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 1536,
+                "bucket_aggs": {
+                  "doc_count": 5729,
+                  "bucket_aggs": {
+                    "doc_count": 11,
+                    "metrics_conversation_message_count": {
+                      "value": 11
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 1120,
+                "bucket_aggs": {
+                  "doc_count": 4191,
+                  "bucket_aggs": {
+                    "doc_count": 12,
+                    "metrics_conversation_message_count": {
+                      "value": 12
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-09-01T00:00:00.000Z",
+                "key": 1725148800000,
+                "doc_count": 1406,
+                "bucket_aggs": {
+                  "doc_count": 5261,
+                  "bucket_aggs": {
+                    "doc_count": 13,
+                    "metrics_conversation_message_count": {
+                      "value": 13
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key": "agent-id-2",
+          "doc_count": 3022,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 1145,
+                "bucket_aggs": {
+                  "doc_count": 4550,
+                  "bucket_aggs": {
+                    "doc_count": 21,
+                    "metrics_conversation_message_count": {
+                      "value": 21
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 827,
+                "bucket_aggs": {
+                  "doc_count": 3313,
+                  "bucket_aggs": {
+                    "doc_count": 22,
+                    "metrics_conversation_message_count": {
+                      "value": 22
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-09-01T00:00:00.000Z",
+                "key": 1725148800000,
+                "doc_count": 1050,
+                "bucket_aggs": {
+                  "doc_count": 4205,
+                  "bucket_aggs": {
+                    "doc_count": 23,
+                    "metrics_conversation_message_count": {
+                      "value": 23
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key": "agent-id-3",
+          "doc_count": 2392,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 784,
+                "bucket_aggs": {
+                  "doc_count": 1568,
+                  "bucket_aggs": {
+                    "doc_count": 31,
+                    "metrics_conversation_message_count": {
+                      "value": 31
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 586,
+                "bucket_aggs": {
+                  "doc_count": 4628,
+                  "bucket_aggs": {
+                    "doc_count": 32,
+                    "metrics_conversation_message_count": {
+                      "value": 32
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-09-01T00:00:00.000Z",
+                "key": 1725148800000,
+                "doc_count": 1022,
+                "bucket_aggs": {
+                  "doc_count": 57232,
+                  "bucket_aggs": {
+                    "doc_count": 33,
+                    "metrics_conversation_message_count": {
+                      "value": 33
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

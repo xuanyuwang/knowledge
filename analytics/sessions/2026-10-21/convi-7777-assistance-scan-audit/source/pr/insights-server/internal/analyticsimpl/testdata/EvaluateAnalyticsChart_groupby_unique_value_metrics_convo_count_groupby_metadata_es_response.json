@@ -1,0 +1,82 @@
+{
+  "took": 7,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "doc_count": 848354,
+      "bucket_aggs": {
+        "doc_count": 4143,
+        "bucket_aggs": {
+          "doc_count_error_upper_bound": 0,
+          "sum_other_doc_count": 4004,
+          "buckets": [
+            {
+              "key": "metadata-value1",
+              "doc_count": 1,
+              "bucket_aggs": {
+                "doc_count": 1,
+                "metrics_agg_on_numeric_field": {
+                  "value": 9
+                }
+              }
+            },
+            {
+              "key": "metadata-value2",
+              "doc_count": 104,
+              "bucket_aggs": {
+                "doc_count": 104,
+                "metrics_agg_on_numeric_field": {
+                  "value": 8
+                }
+              }
+            },
+            {
+              "key": "metadata-value3",
+              "doc_count": 4,
+              "bucket_aggs": {
+                "doc_count": 4,
+                "metrics_agg_on_numeric_field": {
+                  "value": 7
+                }
+              }
+            },
+            {
+              "key": "metadata-value4",
+              "doc_count": 28,
+              "bucket_aggs": {
+                "doc_count": 28,
+                "metrics_agg_on_numeric_field": {
+                  "value": 6
+                }
+              }
+            },
+            {
+              "key": "metadata-value5",
+              "doc_count": 28,
+              "bucket_aggs": {
+                "doc_count": 28,
+                "metrics_agg_on_numeric_field": {
+                  "value": 5
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

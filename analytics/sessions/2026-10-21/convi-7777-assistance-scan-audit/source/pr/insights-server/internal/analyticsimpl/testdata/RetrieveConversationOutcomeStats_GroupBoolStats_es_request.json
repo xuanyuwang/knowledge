@@ -1,0 +1,117 @@
+{
+    "size": 0,
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "range": {
+                        "conversation_started_at": {
+                            "gte": "2022-04-13T00:00:00Z",
+                            "lt": "2022-07-13T00:00:00Z",
+                            "time_zone": "UTC"
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "should": [
+                            {
+                                "terms": {
+                                    "conversation_source": [
+                                        0,
+                                        7,
+                                        8
+                                    ]
+                                }
+                            },
+                            {
+                                "bool": {
+                                    "must_not": {
+                                        "exists": {
+                                            "field": "conversation_source"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+					"terms":{
+						"conversation_to_message_join":["conversation"]
+					}
+				},
+                {
+					"range":{
+                        "message_count":{
+                            "gt":0
+                        }
+                    }
+				}
+            ]
+        }
+    },
+    "aggs": {
+        "agents": {
+            "terms": {
+                "field": "agent_user_id.keyword",
+                "size": 1500
+            },
+            "aggs": {
+                "outcomes": {
+                    "nested": {
+                        "path": "moment_annotations"
+                    },
+                    "aggs": {
+                        "outcomes": {
+                            "filters": {
+                                "filters": [
+                                    {
+                                        "bool": {
+                                            "filter": [
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.payload.conversationOutcome.booleanValue": [
+                                                            true
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.moment_template_id.keyword": [
+                                                            "outcome"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "bool": {
+                                            "filter": [
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.payload.conversationOutcome.booleanValue": [
+                                                            false
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "terms": {
+                                                        "moment_annotations.moment_template_id.keyword": [
+                                                            "outcome"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

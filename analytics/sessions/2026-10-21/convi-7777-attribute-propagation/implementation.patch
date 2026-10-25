@@ -1,0 +1,591 @@
+diff --git a/insights-server/internal/analyticsimpl/BUILD.bazel b/insights-server/internal/analyticsimpl/BUILD.bazel
+index bfb0802cd7..6fef07abfe 100644
+--- a/insights-server/internal/analyticsimpl/BUILD.bazel
++++ b/insights-server/internal/analyticsimpl/BUILD.bazel
+@@ -4248,6 +4248,7 @@ go_test(
+     deps = [
+         "//config/shared/grpcclient/config",
+         "//config/shared/grpcclient/config/mock_config",
++        "//insights-server/internal/shared",
+         "//shared/auth",
+         "//shared/auth/mocks",
+         "//shared/clickhouse/conversations/testing",
+@@ -4258,8 +4259,11 @@ go_test(
+         "@com_github_cresta_cresta_proto_v2//cresta/nonpublic/config",
+         "@com_github_cresta_cresta_proto_v2//cresta/nonpublic/user",
+         "@com_github_cresta_cresta_proto_v2//cresta/v1/analytics",
++        "@com_github_cresta_cresta_proto_v2//cresta/v1/behavior",
++        "@com_github_cresta_cresta_proto_v2//cresta/v1/common/metadata",
+         "@com_github_cresta_cresta_proto_v2//cresta/v1/config",
+         "@com_github_cresta_cresta_proto_v2//cresta/v1/config/features",
++        "@com_github_cresta_cresta_proto_v2//cresta/v1/moment",
+         "@com_github_cresta_cresta_proto_v2//cresta/v1/user",
+         "@com_github_cresta_cresta_proto_v2//gen/gomock2/cresta/nonpublic/user",
+         "@com_github_cresta_cresta_proto_v2//gen/gomock2/cresta/v1/user",
+@@ -4272,6 +4276,7 @@ go_test(
+         "@org_golang_google_grpc//codes",
+         "@org_golang_google_grpc//status",
+         "@org_golang_google_protobuf//proto",
++        "@org_golang_google_protobuf//types/known/durationpb",
+         "@org_golang_google_protobuf//types/known/timestamppb",
+     ],
+ )
+diff --git a/insights-server/internal/analyticsimpl/CLAUDE.md b/insights-server/internal/analyticsimpl/CLAUDE.md
+index 677a217f63..605cbdcad0 100644
+--- a/insights-server/internal/analyticsimpl/CLAUDE.md
++++ b/insights-server/internal/analyticsimpl/CLAUDE.md
+@@ -17,7 +17,7 @@ Each RPC method lives in its own file named after the method:
+ - `retrieve_conversation_messages.go` — `RetrieveConversationMessages`
+ - `evaluate_analytics_chart.go` — `EvaluateAnalyticsChart`
+ - `retrieve_agent_stats.go` — `RetrieveAgentStats`
+-- `action_retrieve_conversation_assistance_usage_stats.go` — `RetrieveConversationAssistanceUsageStats` resolves the shared eligible population and user ACLs. `action_retrieve_conversation_assistance_usage_stats_clickhouse.go` reuses seven feature-family row queries, filters sources by eligible agents and joins reduced feature pairs to the external eligible-pair table without GLOBAL IN, bounds concurrency to three and fails the request on required-evidence errors. The action file validates requests and intersects conversation/agent pairs, returns distinct overall/Agent counts, summed-agent Team counts and start-time DAILY/WEEKLY buckets. Population selection owns metadata filters; Notes and Guided Workflow evidence use the events-cluster predicates. Opt-in conversation usage details return Unimplemented in this phase.
++- `action_retrieve_conversation_assistance_usage_stats.go` — `RetrieveConversationAssistanceUsageStats` resolves the shared eligible population and user ACLs. `action_retrieve_conversation_assistance_usage_stats_clickhouse.go` reuses seven feature-family row queries, filters sources by eligible agents and joins reduced feature pairs to the external eligible-pair table without GLOBAL IN, bounds concurrency to three and fails the request on required-evidence errors. The action file validates requests and intersects conversation/agent pairs, returns distinct overall/Agent counts, summed-agent Team counts and start-time DAILY/WEEKLY buckets. Population selection owns metadata and resolved user/ACL filters; evidence sources use the requested start/end bounds and shared attribute predicates. Events-only Notes/Workflow reads apply language and voicemail eligibility through their conversation subquery because those fields are absent from the Events event table. Notes and Guided Workflow use Events without metadata filters and Conversations typed payloads with metadata filters, matching the legacy source selection. Opt-in conversation usage details return Unimplemented in this phase.
+ 
+ **Typical RPC flow:** validate request -> parse parent (customer/profile) -> apply ACL filtering -> build query (ES/ClickHouse/Postgres) -> execute -> transform response -> return.
+ 
+diff --git a/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats.go b/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats.go
+index 81bffc3b09..e36eb4f493 100644
+--- a/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats.go
++++ b/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats.go
+@@ -40,7 +40,7 @@ func (a AnalyticsServiceImpl) RetrieveConversationAssistanceUsageStats(
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-	evidence, err := a.readConversationAssistanceUsageEvidence(ctx, req.Parent, input.population, input.includeBotConversations)
++	evidence, err := a.readConversationAssistanceUsageEvidence(ctx, req, input.population, input.includeBotConversations)
+ 	if err != nil {
+ 		return nil, err
+ 	}
+diff --git a/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats_clickhouse.go b/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats_clickhouse.go
+index 1855325db3..b832d4843c 100644
+--- a/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats_clickhouse.go
++++ b/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats_clickhouse.go
+@@ -6,8 +6,11 @@ import (
+ 	"strings"
+ 
+ 	"github.com/ClickHouse/clickhouse-go/v2/ext"
++	analyticspb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/analytics"
++	momentpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/moment"
+ 	"github.com/cresta/shared-go/container/set"
+ 	"github.com/cresta/shared-go/util/errgroup"
++	"google.golang.org/protobuf/proto"
+ 
+ 	"github.com/cresta/go-servers/insights-server/internal/shared"
+ 	clickhouseshared "github.com/cresta/go-servers/shared/clickhouse/shared"
+@@ -24,21 +27,58 @@ type assistanceUsageEvidenceQuery struct {
+ 	eventsCluster bool
+ }
+ 
+-// Population membership owns request filters and time selection. Evidence rows
+-// can carry stale conversation times, so population membership uses only their
+-// conversation/agent keys. Feature-internal matching retains its existing keys.
+-func conversationAssistanceUsageEvidenceQueries(includeBotConversations bool) []assistanceUsageEvidenceQuery {
+-	conditions := map[ClickhouseTable][]conditionAndArg{}
+-	for _, table := range []ClickhouseTable{conversationTable, conversationEventTable, eventConversationEventTable, actionAnnotationTable, momentAnnotationTable} {
+-		conditions[table] = []conditionAndArg{{condition: "agent_user_id IN (SELECT user_id FROM assistance_usage_agents)"}}
++// Feature sources use the shared attribute parser; population membership owns
++// authorization and metadata eligibility. Internal feature matching keeps its keys.
++func conversationAssistanceUsageEvidenceQueries(ctx context.Context, includeBotConversations bool, req *analyticspb.RetrieveConversationAssistanceUsageStatsRequest) ([]assistanceUsageEvidenceQuery, error) {
++	tables := []ClickhouseTable{conversationTable, conversationEventTable, eventConversationEventTable, actionAnnotationTable, momentAnnotationTable}
++	attribute := &analyticspb.Attribute{}
++	if req.FilterByAttribute != nil {
++		attribute = proto.Clone(req.FilterByAttribute).(*analyticspb.Attribute)
++	}
++	// Eligible pairs already contain the resolved user/ACL and metadata selection.
++	// Reapplying the original users would also duplicate large inline user lists.
++	attribute.Users, attribute.Groups = nil, nil
++	if excludeVoiceMail(attribute.MomentGroups, attribute.ConversationCriterions) {
++		attribute.ConversationCriterions = append(attribute.ConversationCriterions, analyticspb.ConversationCriterion_EXCLUDE_VOICE_MAIL)
++	}
++	attribute.MomentGroups = nil
++	conditions, _, _, _, err := parseClickhouseFilter(ctx, req.FilterByTimeRange, attribute, tables, false /* useExtTable */)
++	if err != nil {
++		return nil, err
++	}
++	useConversationsProjection := false
++	for _, group := range req.FilterByAttribute.GetMomentGroups() {
++		includesMetadata := len(group.GetMoments()) == 1 && group.Moments[0].GetType() == momentpb.Moment_CONVERSATION_METADATA && len(group.GetMetadataValueAttributes()) > 0
++		excludesMetadata := *enableExcludedMoments && len(group.GetExcludedMoments()) == 1 && group.ExcludedMoments[0].GetType() == momentpb.Moment_CONVERSATION_METADATA
++		useConversationsProjection = useConversationsProjection || includesMetadata || excludesMetadata
++	}
++	if !useConversationsProjection {
++		// The Events event table lacks language and voicemail columns. The shared
++		// Notes/Workflow conversation subquery still enforces these predicates.
++		eventAttribute := proto.Clone(attribute).(*analyticspb.Attribute)
++		eventAttribute.LanguageCodes, eventAttribute.ConversationCriterions = nil, nil
++		eventConditions, _, _, _, err := parseClickhouseFilter(ctx, req.FilterByTimeRange, eventAttribute, []ClickhouseTable{eventConversationEventTable}, false /* useExtTable */)
++		if err != nil {
++			return nil, err
++		}
++		conditions[eventConversationEventTable] = eventConditions[eventConversationEventTable]
++	}
++	for _, table := range tables {
++		conditions[table] = append(conditions[table], conditionAndArg{condition: "agent_user_id IN (SELECT user_id FROM assistance_usage_agents)"})
++	}
++	// Metadata membership is already enforced by the population. This switch
++	// selects the same cluster and payload projection as the legacy readers.
++	notesPredicate := "event_type = 5 AND event_name = 'VoiceAgentAssist.NoteTaking.Click.CopyEntity'"
++	if useConversationsProjection {
++		notesPredicate = "event_type = 5 AND note_taking_data_type = 1"
+ 	}
+ 	project := func(query, predicate string) string {
+ 		return fmt.Sprintf("SELECT DISTINCT conversation_id, agent_user_id FROM (%s) WHERE %s", query, predicate)
+ 	}
+ 	kb, kbArgs := buildKnowledgeBaseEventRowsQuery(conditions, nil, nil)
+ 	suggestions, suggestionArgs := buildSuggestionEventRowsQuery(conditions, nil, nil)
+-	notes, noteArgs := buildNoteTakingUsageRowsQuery(conditions, nil, nil, false /* hasMetadataFiltering */)
+-	workflow, workflowArgs := buildGuidedWorkflowUsageRowsQuery(conditions, nil, nil)
++	notes, noteArgs := buildNoteTakingUsageRowsQuery(conditions, nil, nil, useConversationsProjection)
++	workflow, workflowArgs := buildGuidedWorkflowUsageRowsQuery(conditions, nil, nil, useConversationsProjection)
+ 	genAI, genAIArgs := buildKnowledgeAssistUsageRowsQuery(momentAnnotationTable, conditions[momentAnnotationTable], MetadataFilterResult{}, false /* hasMetadataFiltering */)
+ 	summaryCTEs, _, summaryArgs := buildSummarizationUsageRowsQuery(conditions, MetadataFilterResult{}, false /* hasMetadataFiltering */)
+ 	summary := fmt.Sprintf(`WITH %s
+@@ -56,8 +96,8 @@ USING (conversation_id, conversation_start_time, agent_user_id)`, strings.TrimSu
+ 		{name: "GenAI", query: project(genAI, "true"), args: genAIArgs},
+ 		{name: "Summary", query: summary, args: summaryArgs},
+ 		{name: "Hints", query: hintQuery, args: append(behavioralArgs, knowledgeArgs...)},
+-		{name: "Notes", query: project(notes, "event_type = 5 AND event_name = 'VoiceAgentAssist.NoteTaking.Click.CopyEntity'"), args: noteArgs, eventsCluster: true},
+-		{name: "Guided Workflow", query: project(workflow, "event_type = 4 AND doc_type = '2' AND guided_workflow_name <> ''"), args: workflowArgs, eventsCluster: true},
++		{name: "Notes", query: project(notes, notesPredicate), args: noteArgs, eventsCluster: !useConversationsProjection},
++		{name: "Guided Workflow", query: project(workflow, "event_type = 4 AND doc_type = '2' AND guided_workflow_name <> ''"), args: workflowArgs, eventsCluster: !useConversationsProjection},
+ 	}
+ 	for i := range queries {
+ 		// Reduce distributed feature rows before joining the eligible cohort.
+@@ -70,15 +110,15 @@ SELECT conversation_id, agent_user_id
+ FROM assistance_usage_evidence
+ INNER JOIN assistance_usage_population USING (conversation_id, agent_user_id)`, queries[i].query)
+ 	}
+-	return queries
++	return queries, nil
+ }
+ 
+-func (a AnalyticsServiceImpl) readConversationAssistanceUsageEvidence(ctx context.Context, parentName string, population []conversationAssistanceUsagePopulationRow, includeBotConversations bool) (set.Set[assistanceUsagePair], error) {
++func (a AnalyticsServiceImpl) readConversationAssistanceUsageEvidence(ctx context.Context, req *analyticspb.RetrieveConversationAssistanceUsageStatsRequest, population []conversationAssistanceUsagePopulationRow, includeBotConversations bool) (set.Set[assistanceUsagePair], error) {
+ 	evidence := set.New[assistanceUsagePair]()
+ 	if len(population) == 0 {
+ 		return evidence, nil
+ 	}
+-	parent, err := shared.ParseCustomerProfile(parentName)
++	parent, err := shared.ParseCustomerProfile(req.Parent)
+ 	if err != nil {
+ 		return nil, err
+ 	}
+@@ -87,7 +127,10 @@ func (a AnalyticsServiceImpl) readConversationAssistanceUsageEvidence(ctx contex
+ 		agentUserIDs.Add(row.agentUserID)
+ 	}
+ 	selectedAgentUserIDs := agentUserIDs.Slice()
+-	queries := conversationAssistanceUsageEvidenceQueries(includeBotConversations)
++	queries, err := conversationAssistanceUsageEvidenceQueries(ctx, includeBotConversations, req)
++	if err != nil {
++		return nil, fmt.Errorf("build assistance usage evidence queries: %w", err)
++	}
+ 	results := make([][]assistanceUsagePair, len(queries))
+ 	group, queryContext := errgroup.WithContext(ctx, errgroup.WithLimit(3 /* n */))
+ 	for i, query := range queries {
+diff --git a/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats_test.go b/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats_test.go
+index 367bb66273..49b809784b 100644
+--- a/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats_test.go
++++ b/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats_test.go
+@@ -10,8 +10,11 @@ import (
+ 	nonpubconfigpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/nonpublic/config"
+ 	internaluserpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/nonpublic/user"
+ 	analyticspb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/analytics"
++	behaviorpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/behavior"
++	metadatapb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/common/metadata"
+ 	configpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/config"
+ 	featurespb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/config/features"
++	momentpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/moment"
+ 	userpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/user"
+ 	internalusermock "github.com/cresta/cresta-proto/v2/gen/gomock2/cresta/nonpublic/user"
+ 	usermock "github.com/cresta/cresta-proto/v2/gen/gomock2/cresta/v1/user"
+@@ -24,10 +27,12 @@ import (
+ 	"google.golang.org/grpc/codes"
+ 	"google.golang.org/grpc/status"
+ 	"google.golang.org/protobuf/proto"
++	"google.golang.org/protobuf/types/known/durationpb"
+ 	"google.golang.org/protobuf/types/known/timestamppb"
+ 
+ 	"github.com/cresta/go-servers/config/shared/grpcclient/config"
+ 	mockconfig "github.com/cresta/go-servers/config/shared/grpcclient/config/mock_config"
++	"github.com/cresta/go-servers/insights-server/internal/shared"
+ 	"github.com/cresta/go-servers/shared/auth"
+ 	authmock "github.com/cresta/go-servers/shared/auth/mocks"
+ 	clickhousetesting "github.com/cresta/go-servers/shared/clickhouse/conversations/testing"
+@@ -454,7 +459,7 @@ func (s *ConversationAssistanceUsageTestSuite) TestRPCUsesEvidenceUnion() {
+ 			{"shared", "2", request.FilterByTimeRange.StartTimestamp.AsTime()},
+ 			{"unused", "1", request.FilterByTimeRange.StartTimestamp.AsTime()},
+ 		}), nil).Once()
+-	for _, query := range conversationAssistanceUsageEvidenceQueries(true /* includeBotConversations */) {
++	for _, query := range assistanceUsageQueriesForTest(s.T(), nil /* req */, true /* includeBotConversations */) {
+ 		s.convoMockConn.On("Query", mock.Anything, query.query, mock.Anything).
+ 			Return(clickhousetesting.NewMockRows([][]any{{"shared", "1"}, {"shared", "1"}, {"unused", "ineligible"}}), nil).Once()
+ 	}
+@@ -588,7 +593,7 @@ func (s *ConversationAssistanceUsageEvidenceCHTestSuite) TestFeaturePredicatesAn
+ 		name string
+ 		want int32
+ 	}{
+-		{"KBSearch", 1}, {"LateEvidence", 1}, {"Suggestion", 1}, {"HintSuggestion", 1}, {"SearchSuggestion", 1}, {"GenAI", 1}, {"GenAIWithoutSession", 0}, {"GenAIBotSource", 0},
++		{"KBSearch", 1}, {"LateEvidence", 0}, {"Suggestion", 1}, {"HintSuggestion", 1}, {"SearchSuggestion", 1}, {"GenAI", 1}, {"GenAIWithoutSession", 0}, {"GenAIBotSource", 0},
+ 		{"SummaryCopy", 1}, {"SummaryEditType2", 1}, {"SummaryWithoutCopy", 0}, {"SummaryMismatchedTime", 0}, {"SummaryWithoutGeneration", 0}, {"SummarySingleNoteType3", 0},
+ 		{"BehavioralHint", 1}, {"ChecklistHint", 1}, {"UnfollowedHint", 0}, {"RegularHint", 0}, {"KBHint", 1}, {"WorkflowHint", 1},
+ 		{"NotesCopy", 1}, {"NotesEdit", 0}, {"WorkflowDocument", 1}, {"OrdinaryDocument", 0}, {"WrongAgent", 0}, {"OfferedOnly", 0}, {"MultipleFeatures", 1},
+@@ -702,7 +707,7 @@ func (s *ConversationAssistanceUsageEvidenceCHTestSuite) TestFeaturePredicatesAn
+ }
+ 
+ func (s *ConversationAssistanceUsageTestSuite) TestRequiredEvidenceFailuresDiscardResults() {
+-	for _, query := range conversationAssistanceUsageEvidenceQueries(true /* includeBotConversations */) {
++	for _, query := range assistanceUsageQueriesForTest(s.T(), nil /* req */, true /* includeBotConversations */) {
+ 		for _, operation := range []string{"Query", "Scan", "Iteration"} {
+ 			s.Run(query.name+"_"+operation, func() {
+ 				// Given
+@@ -741,7 +746,7 @@ func (s *ConversationAssistanceUsageValidationTestSuite) TestEvidenceQueriesAvoi
+ 	for _, includeBots := range []bool{false, true} {
+ 		s.Run(fmt.Sprintf("IncludeBots_%t", includeBots), func() {
+ 			// When
+-			queries := conversationAssistanceUsageEvidenceQueries(includeBots)
++			queries := assistanceUsageQueriesForTest(s.T(), nil /* req */, includeBots)
+ 
+ 			// Then
+ 			for _, query := range queries {
+@@ -769,7 +774,7 @@ func (s *ConversationAssistanceUsageEvidenceCHTestSuite) TestLargeAgentPopulatio
+ 	}
+ 
+ 	// When
+-	actual, err := s.server.readConversationAssistanceUsageEvidence(s.T().Context(), s.profileResourceName, population, true /* includeBotConversations */)
++	actual, err := s.server.readConversationAssistanceUsageEvidence(s.T().Context(), &analyticspb.RetrieveConversationAssistanceUsageStatsRequest{Parent: s.profileResourceName, FilterByTimeRange: &analyticspb.TimeRange{StartTimestamp: timestamppb.New(time.Unix(0, 0)), EndTimestamp: timestamppb.New(time.Unix(86400, 0))}}, population, true /* includeBotConversations */)
+ 
+ 	// Then
+ 	s.Require().NoError(err)
+@@ -793,9 +798,301 @@ func (s *ConversationAssistanceUsageEvidenceCHTestSuite) TestMultipleEligibleAge
+ 	}
+ 
+ 	// When
+-	actual, err := s.server.readConversationAssistanceUsageEvidence(s.T().Context(), s.profileResourceName, population, true /* includeBotConversations */)
++	actual, err := s.server.readConversationAssistanceUsageEvidence(s.T().Context(), &analyticspb.RetrieveConversationAssistanceUsageStatsRequest{Parent: s.profileResourceName, FilterByTimeRange: &analyticspb.TimeRange{StartTimestamp: timestamppb.New(time.Unix(0, 0)), EndTimestamp: timestamppb.New(time.Unix(86400, 0))}}, population, true /* includeBotConversations */)
+ 
+ 	// Then
+ 	s.Require().NoError(err)
+ 	s.ElementsMatch([]assistanceUsagePair{{conversationID, "1"}, {conversationID, "2"}}, actual.Slice())
+ }
++
++func (s *ConversationAssistanceUsageEvidenceCHTestSuite) TestRequestedEvidenceBoundsAcrossFamilies() {
++	fixtureIndex := 0
++	for _, feature := range []string{"KB", "Suggestions", "GenAI", "Summary", "Hints", "Notes", "Workflow"} {
++		for _, boundary := range []struct {
++			name   string
++			offset time.Duration
++			want   int32
++		}{
++			{"BeforeStart", -time.Microsecond, 0}, {"AtStart", 0, 1},
++			{"BeforeEnd", time.Hour - time.Microsecond, 1}, {"AtEnd", time.Hour, 0},
++		} {
++			s.Run(feature+"_"+boundary.name, func() {
++				// Given
++				start := time.Date(2021, 6, 1, 0, 0, 0, 0, time.UTC).Add(time.Duration(fixtureIndex) * 24 * time.Hour)
++				fixtureIndex++
++				evidenceTime := start.Add(boundary.offset)
++				conversationID := uuid.NewString()
++				conv := s.GetConversationConnection(s.customerID, s.profileID)
++				events := s.GetEventsConnection(s.customerID, s.profileID)
++				s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO conversation_d (conversation_id,agent_user_id,conversation_start_time,update_time) VALUES (?,'1',?,?)`, conversationID, start, start))
++				s.Require().NoError(events.Exec(s.T().Context(), `INSERT INTO conversation_d (conversation_id,agent_user_id,conversation_start_time,update_time) VALUES (?,'1',?,?)`, conversationID, start, start))
++				s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO message (message_id,conversation_id,agent_user_id,conversation_start_time) VALUES (?,?,'1',?)`, uuid.NewString(), conversationID, start))
++				switch feature {
++				case "KB", "Suggestions", "Hints":
++					eventType, actionType := int32(13), int32(0)
++					if feature == "Suggestions" {
++						eventType = 4
++					}
++					if feature == "Hints" {
++						eventType, actionType = 9, 14
++					}
++					s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO conversation_event_d (event_id,conversation_id,agent_user_id,conversation_start_time,event_type,action_type,action_policy_source_type,action_annotation_id) VALUES (?,?,'1',?,?,?,1,?)`, uuid.NewString(), conversationID, evidenceTime, eventType, actionType, uuid.NewString()))
++				case "GenAI":
++					s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO moment_annotation_d (moment_annotation_id,conversation_id,agent_user_id,conversation_start_time,moment_type,knowledge_payload_knowledge_session_id) VALUES (?,?,'1',?,38,'session')`, uuid.NewString(), conversationID, evidenceTime))
++				case "Summary":
++					s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO action_annotation_d (action_annotation_id,conversation_id,agent_user_id,conversation_start_time,summarization_payload_is_valid_summary) VALUES (?,?,'1',?,1)`, uuid.NewString(), conversationID, evidenceTime))
++					s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO conversation_event_d (event_id,conversation_id,agent_user_id,conversation_start_time,event_type,summarization_payload_data_type) VALUES (?,?,'1',?,16,1)`, uuid.NewString(), conversationID, evidenceTime))
++				case "Notes":
++					s.Require().NoError(events.Exec(s.T().Context(), `INSERT INTO conversation_event_d (event_id,conversation_id,agent_user_id,conversation_start_time,event_type,event_name,event_payload) VALUES (?,?,'1',?,5,'VoiceAgentAssist.NoteTaking.Click.CopyEntity','{}')`, uuid.NewString(), conversationID, evidenceTime))
++				case "Workflow":
++					s.Require().NoError(events.Exec(s.T().Context(), `INSERT INTO conversation_event_d (event_id,conversation_id,agent_user_id,conversation_start_time,event_type,event_payload) VALUES (?,?,'1',?,4,?)`, uuid.NewString(), conversationID, evidenceTime, `{"usedKbDocument":{"document":"doc","docType":"2","sessionMetadata":{"sessionId":"session"}}}`))
++				}
++				request := &analyticspb.RetrieveConversationAssistanceUsageStatsRequest{Parent: s.profileResourceName, FilterByTimeRange: &analyticspb.TimeRange{StartTimestamp: timestamppb.New(start), EndTimestamp: timestamppb.New(start.Add(time.Hour))}}
++
++				// When
++				response, err := s.server.RetrieveConversationAssistanceUsageStats(s.T().Context(), request)
++
++				// Then
++				s.Require().NoError(err)
++				s.Equal(int32(1), response.TotalConversationCount)
++				s.Equal(boundary.want, response.ConversationsWithAssistanceUsedCount)
++			})
++		}
++	}
++}
++
++func (s *ConversationAssistanceUsageEvidenceCHTestSuite) TestNotesWorkflowSelectLegacySource() {
++	fixtureIndex := 0
++	for _, feature := range []string{"Notes", "Workflow"} {
++		for _, metadataMode := range []string{"None", "Include", "Exclude", "ValueOrMissing"} {
++			metadata := metadataMode != "None"
++			for _, conversationsSource := range []bool{false, true} {
++				s.Run(fmt.Sprintf("%s_Metadata_%s_ConversationsSource_%t", feature, metadataMode, conversationsSource), func() {
++					// Given
++					start := time.Date(2021, 7, 1, 0, 0, 0, 0, time.UTC).Add(time.Duration(fixtureIndex) * 24 * time.Hour)
++					fixtureIndex++
++					conversationID := uuid.NewString()
++					conv := s.GetConversationConnection(s.customerID, s.profileID)
++					events := s.GetEventsConnection(s.customerID, s.profileID)
++					s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO conversation_d (conversation_id,agent_user_id,conversation_start_time,update_time) VALUES (?,'1',?,?)`, conversationID, start, start))
++					s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO message (message_id,conversation_id,agent_user_id,conversation_start_time) VALUES (?,?,'1',?)`, uuid.NewString(), conversationID, start))
++					s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO moment_annotation_d (moment_annotation_id,conversation_id,agent_user_id,conversation_start_time,moment_type,moment_template_id,metadata_string_value) VALUES (?,?,'1',?,19,'source','selected')`, uuid.NewString(), conversationID, start))
++					if conversationsSource {
++						if feature == "Notes" {
++							s.Require().NoError(conv.Exec(s.T().Context(), "INSERT INTO conversation_event_d (event_id,conversation_id,agent_user_id,conversation_start_time,event_type,`payload.used_note_taking.data_type`) VALUES (?,?,'1',?,5,1)", uuid.NewString(), conversationID, start))
++						} else {
++							s.Require().NoError(conv.Exec(s.T().Context(), "INSERT INTO conversation_event_d (event_id,conversation_id,agent_user_id,conversation_start_time,event_type,`payload.used_kb_document.doc_id`,`payload.used_kb_document.doc_type`,`payload.used_kb_document.session_id`) VALUES (?,?,'1',?,4,'doc',2,'session')", uuid.NewString(), conversationID, start))
++						}
++					} else {
++						s.Require().NoError(events.Exec(s.T().Context(), `INSERT INTO conversation_d (conversation_id,agent_user_id,conversation_start_time,update_time) VALUES (?,'1',?,?)`, conversationID, start, start))
++						if feature == "Notes" {
++							s.Require().NoError(events.Exec(s.T().Context(), `INSERT INTO conversation_event_d (event_id,conversation_id,agent_user_id,conversation_start_time,event_type,event_name,event_payload) VALUES (?,?,'1',?,5,'VoiceAgentAssist.NoteTaking.Click.CopyEntity','{}')`, uuid.NewString(), conversationID, start))
++						} else {
++							s.Require().NoError(events.Exec(s.T().Context(), `INSERT INTO conversation_event_d (event_id,conversation_id,agent_user_id,conversation_start_time,event_type,event_payload) VALUES (?,?,'1',?,4,?)`, uuid.NewString(), conversationID, start, `{"usedKbDocument":{"document":"doc","docType":"2","sessionMetadata":{"sessionId":"session"}}}`))
++						}
++					}
++					attribute := &analyticspb.Attribute{}
++					if metadata {
++						attribute.MomentGroups = []*analyticspb.MomentGroup{{Moments: []*momentpb.Moment{{Name: s.profileResourceName + "/moments/source", Type: momentpb.Moment_CONVERSATION_METADATA}}, MetadataValueAttributes: []*analyticspb.MetadataValueAttribute{{MetadataValue: &metadatapb.MetadataValue{Value: &metadatapb.MetadataValue_StringValue{StringValue: "selected"}}}}}}
++					}
++					if metadataMode == "Exclude" {
++						attribute.MomentGroups = []*analyticspb.MomentGroup{{ExcludedMoments: []*momentpb.Moment{{Name: s.profileResourceName + "/moments/absent", Type: momentpb.Moment_CONVERSATION_METADATA}}}}
++					}
++					if metadataMode == "ValueOrMissing" {
++						attribute.MomentGroups[0].ExcludedMoments = attribute.MomentGroups[0].Moments
++					}
++					request := &analyticspb.RetrieveConversationAssistanceUsageStatsRequest{Parent: s.profileResourceName, FilterByTimeRange: &analyticspb.TimeRange{StartTimestamp: timestamppb.New(start), EndTimestamp: timestamppb.New(start.Add(time.Hour))}, FilterByAttribute: attribute}
++					want := int32(0)
++					if metadata == conversationsSource {
++						want = 1
++					}
++
++					queries := assistanceUsageQueriesForTest(s.T(), request, true /* includeBotConversations */)
++					featureName := feature
++					if feature == "Workflow" {
++						featureName = "Guided Workflow"
++					}
++					var selected assistanceUsageEvidenceQuery
++					for _, query := range queries {
++						if query.name == featureName {
++							selected = query
++						}
++					}
++					population := []conversationAssistanceUsagePopulationRow{{conversationID: conversationID, agentUserID: "1"}}
++					parent := &shared.CustomerProfile{CustomerID: s.customerID, ProfileID: s.profileID}
++
++					// When
++					pairs, err := s.server.readConversationAssistanceUsageFeature(s.T().Context(), parent, population, []string{"1"}, selected)
++
++					// Then
++					s.Require().NoError(err)
++					s.Len(pairs, int(want))
++				})
++			}
++		}
++	}
++}
++
++func (s *ConversationAssistanceUsageEvidenceCHTestSuite) TestFeatureAttributeFilters() {
++	for _, feature := range []string{"KB search", "Chat Suggestions", "GenAI", "Summary", "Hints", "Notes", "Guided Workflow"} {
++		for _, filter := range []string{"Language", "Usecase", "Duration", "Voicemail", "Combined"} {
++			s.Run(feature+"_"+filter, func() {
++				// Given
++				start := time.Date(2021, 9, 1, 0, 0, 0, 0, time.UTC)
++				attribute := &analyticspb.Attribute{}
++				if filter == "Language" || filter == "Combined" {
++					attribute.LanguageCodes = []string{"en-US"}
++				}
++				if filter == "Usecase" || filter == "Combined" {
++					attribute.UsecaseNames = []string{s.profileResourceName + "/usecases/sales"}
++				}
++				if filter == "Duration" || filter == "Combined" {
++					attribute.ConversationDurationRange = &analyticspb.DurationRange{MinDuration: durationpb.New(60 * time.Second)}
++				}
++				if filter == "Voicemail" || filter == "Combined" {
++					attribute.ConversationCriterions = []analyticspb.ConversationCriterion{analyticspb.ConversationCriterion_EXCLUDE_VOICE_MAIL}
++				}
++				matching := s.seedAssistanceUsageAttributeFeature(feature, start, true /* matches */)
++				nonmatching := s.seedAssistanceUsageAttributeFeature(feature, start, false /* matches */)
++				population := []conversationAssistanceUsagePopulationRow{matching, nonmatching}
++				request := &analyticspb.RetrieveConversationAssistanceUsageStatsRequest{Parent: s.profileResourceName, FilterByTimeRange: &analyticspb.TimeRange{StartTimestamp: timestamppb.New(start), EndTimestamp: timestamppb.New(start.Add(time.Hour))}, FilterByAttribute: attribute}
++
++				// When
++				pairs, err := s.readAssistanceUsageFeatureForTest(request, population, feature)
++
++				// Then
++				s.Require().NoError(err)
++				s.Equal([]assistanceUsagePair{{matching.conversationID, "1"}}, pairs)
++			})
++		}
++	}
++}
++
++func (s *ConversationAssistanceUsageEvidenceCHTestSuite) seedAssistanceUsageAttributeFeature(feature string, start time.Time, matches bool) conversationAssistanceUsagePopulationRow {
++	s.T().Helper()
++	conversationID := uuid.NewString()
++	language, usecase, duration, voicemail := "en-US", "sales", 90, false
++	if !matches {
++		language, usecase, duration, voicemail = "fr", "support", 30, true
++	}
++	conv := s.GetConversationConnection(s.customerID, s.profileID)
++	events := s.GetEventsConnection(s.customerID, s.profileID)
++	args := []any{conversationID, start, language, usecase, duration, voicemail}
++	s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO conversation_d (conversation_id,agent_user_id,conversation_start_time,language_code,usecase_id,conversation_duration_secs,is_voice_mail) VALUES (?,'1',?,?,?,?,?)`, args...))
++	switch feature {
++	case "KB search", "Chat Suggestions":
++		eventType := 13
++		if feature == "Chat Suggestions" {
++			eventType = 4
++		}
++		s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO conversation_event_d (conversation_id,agent_user_id,conversation_start_time,language_code,usecase_id,conversation_duration_secs,is_voice_mail,event_id,event_type) VALUES (?,'1',?,?,?,?,?,?,?)`, append(args, uuid.NewString(), eventType)...))
++	case "GenAI":
++		s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO moment_annotation_d (conversation_id,agent_user_id,conversation_start_time,language_code,usecase_id,conversation_duration_secs,is_voice_mail,moment_annotation_id,moment_type,knowledge_payload_knowledge_session_id) VALUES (?,'1',?,?,?,?,?,?,38,'session')`, append(args, uuid.NewString())...))
++	case "Summary":
++		s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO action_annotation_d (conversation_id,agent_user_id,conversation_start_time,language_code,usecase_id,conversation_duration_secs,is_voice_mail,action_annotation_id,summarization_payload_is_valid_summary) VALUES (?,'1',?,?,?,?,?,?,1)`, append(args, uuid.NewString())...))
++		s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO conversation_event_d (conversation_id,agent_user_id,conversation_start_time,language_code,usecase_id,conversation_duration_secs,is_voice_mail,event_id,event_type,summarization_payload_data_type) VALUES (?,'1',?,?,?,?,?,?,16,1)`, append(args, uuid.NewString())...))
++	case "Hints":
++		s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO moment_annotation_d (conversation_id,agent_user_id,conversation_start_time,language_code,usecase_id,conversation_duration_secs,is_voice_mail,moment_annotation_id,adherence_action_annotation_id,adherence_type,adherence_action_type,adherence_action_adherence_type,adherence_action_policy_source_type) VALUES (?,'1',?,?,?,?,?,?,?,2,1,1,1)`, append(args, uuid.NewString(), uuid.NewString())...))
++	case "Notes", "Guided Workflow":
++		s.Require().NoError(events.Exec(s.T().Context(), `INSERT INTO conversation_d (conversation_id,agent_user_id,conversation_start_time,language_code,usecase_id,conversation_duration_secs,is_voice_mail) VALUES (?,'1',?,?,?,?,?)`, args...))
++		eventType, eventName, payload := 5, "VoiceAgentAssist.NoteTaking.Click.CopyEntity", "{}"
++		if feature == "Guided Workflow" {
++			eventType, eventName, payload = 4, "", `{"usedKbDocument":{"document":"doc","docType":"2","sessionMetadata":{"sessionId":"session"}}}`
++		}
++		s.Require().NoError(events.Exec(s.T().Context(), `INSERT INTO conversation_event_d (conversation_id,agent_user_id,conversation_start_time,usecase_id,event_id,event_type,event_name,event_payload) VALUES (?,'1',?,?,?,?,?,?)`, conversationID, start, usecase, uuid.NewString(), eventType, eventName, payload))
++	}
++	return conversationAssistanceUsagePopulationRow{conversationID: conversationID, agentUserID: "1", conversationTime: start}
++}
++
++func (s *ConversationAssistanceUsageEvidenceCHTestSuite) TestRPCFiltersFeatureRowsWithinEligiblePopulation() {
++	for featureIndex, feature := range []string{"KB search", "Chat Suggestions", "GenAI", "Summary", "Hints", "Notes", "Guided Workflow"} {
++		s.Run(feature, func() {
++			// Given
++			start := time.Date(2021, 10, 1, 0, 0, 0, 0, time.UTC).Add(time.Duration(featureIndex) * 24 * time.Hour)
++			matching := s.seedAssistanceUsageAttributeFeature(feature, start, true /* matches */)
++			nonmatching := s.seedAssistanceUsageAttributeFeature(feature, start, false /* matches */)
++			conv := s.GetConversationConnection(s.customerID, s.profileID)
++			for _, pair := range []conversationAssistanceUsagePopulationRow{matching, nonmatching} {
++				s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO conversation_d (conversation_id,agent_user_id,conversation_start_time,update_time,usecase_id) VALUES (?,'1',?,?,'sales')`, pair.conversationID, start, start))
++				s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO message_d (message_id,conversation_id,agent_user_id,conversation_start_time,usecase_id) VALUES (?,?,'1',?,'sales')`, uuid.NewString(), pair.conversationID, start))
++			}
++			request := &analyticspb.RetrieveConversationAssistanceUsageStatsRequest{Parent: s.profileResourceName, FilterByTimeRange: &analyticspb.TimeRange{StartTimestamp: timestamppb.New(start), EndTimestamp: timestamppb.New(start.Add(time.Hour))}, FilterByAttribute: &analyticspb.Attribute{UsecaseNames: []string{s.profileResourceName + "/usecases/sales"}, Users: []*userpb.User{{Name: s.customerResourceName + "/users/1"}}}}
++			original := proto.Clone(request)
++			expected := &analyticspb.RetrieveConversationAssistanceUsageStatsResponse{TotalConversationCount: 2, ConversationsWithAssistanceUsedCount: 1, ConversationAssistanceUsageStatsResults: []*analyticspb.ConversationAssistanceUsageStatsResult{{TotalConversationCount: 2, ConversationsWithAssistanceUsedCount: 1}}}
++
++			// When
++			actual, err := s.server.RetrieveConversationAssistanceUsageStats(s.T().Context(), request)
++
++			// Then
++			s.Require().NoError(err)
++			sharedassert.CmpEquals(s.T(), expected, actual)
++			sharedassert.CmpEquals(s.T(), original, request)
++		})
++	}
++}
++
++func (s *ConversationAssistanceUsageEvidenceCHTestSuite) TestHintAttributeSelectors() {
++	for _, selector := range []string{"Behavior", "Policy", "Moment", "HintType"} {
++		s.Run(selector, func() {
++			// Given
++			start := time.Date(2021, 11, 1, 0, 0, 0, 0, time.UTC)
++			attribute := &analyticspb.Attribute{}
++			switch selector {
++			case "Behavior":
++				attribute.Behaviors = []*behaviorpb.Behavior{{Name: s.profileResourceName + "/behaviors/selected"}}
++			case "Policy":
++				attribute.AttributePolicies = []*analyticspb.Attribute_AttributePolicy{{Name: s.profileResourceName + "/policies/selected"}}
++			case "Moment":
++				attribute.Moments = []*momentpb.Moment{{Name: s.profileResourceName + "/moments/selected"}}
++			case "HintType":
++				attribute.HintType = analyticspb.Attribute_BEHAVIOR_HINT
++			}
++			conv := s.GetConversationConnection(s.customerID, s.profileID)
++			population := []conversationAssistanceUsagePopulationRow{}
++			matchingID := uuid.NewString()
++			for _, fixture := range []struct {
++				id, value  string
++				actionType int
++			}{{matchingID, "selected", 1}, {uuid.NewString(), "other", 21}} {
++				s.Require().NoError(conv.Exec(s.T().Context(), `INSERT INTO moment_annotation_d (moment_annotation_id,conversation_id,agent_user_id,conversation_start_time,behavior_id,policy_id,moment_template_id,adherence_action_annotation_id,adherence_type,adherence_action_type,adherence_action_adherence_type,adherence_action_policy_source_type) VALUES (?,?,'1',?,?,?,?,?,2,?,1,1)`, uuid.NewString(), fixture.id, start, fixture.value, fixture.value, fixture.value, uuid.NewString(), fixture.actionType))
++				population = append(population, conversationAssistanceUsagePopulationRow{conversationID: fixture.id, agentUserID: "1", conversationTime: start})
++			}
++			request := &analyticspb.RetrieveConversationAssistanceUsageStatsRequest{Parent: s.profileResourceName, FilterByTimeRange: &analyticspb.TimeRange{StartTimestamp: timestamppb.New(start), EndTimestamp: timestamppb.New(start.Add(time.Hour))}, FilterByAttribute: attribute}
++
++			// When
++			pairs, err := s.readAssistanceUsageFeatureForTest(request, population, "Hints")
++
++			// Then
++			s.Require().NoError(err)
++			s.Equal([]assistanceUsagePair{{matchingID, "1"}}, pairs)
++		})
++	}
++}
++
++func (s *ConversationAssistanceUsageEvidenceCHTestSuite) readAssistanceUsageFeatureForTest(request *analyticspb.RetrieveConversationAssistanceUsageStatsRequest, population []conversationAssistanceUsagePopulationRow, feature string) ([]assistanceUsagePair, error) {
++	s.T().Helper()
++	queries, err := conversationAssistanceUsageEvidenceQueries(s.T().Context(), true /* includeBots */, request)
++	if err != nil {
++		return nil, err
++	}
++	for _, query := range queries {
++		if query.name != feature {
++			continue
++		}
++		return s.server.readConversationAssistanceUsageFeature(s.T().Context(), &shared.CustomerProfile{CustomerID: s.customerID, ProfileID: s.profileID}, population, []string{"1"}, query)
++	}
++	return nil, fmt.Errorf("missing assistance feature %s", feature)
++}
++
++func assistanceUsageQueriesForTest(t *testing.T, req *analyticspb.RetrieveConversationAssistanceUsageStatsRequest, includeBots bool) []assistanceUsageEvidenceQuery {
++	t.Helper()
++	if req == nil {
++		start := time.Date(2021, 1, 6, 7, 30, 0, 0, time.UTC)
++		req = &analyticspb.RetrieveConversationAssistanceUsageStatsRequest{FilterByTimeRange: &analyticspb.TimeRange{StartTimestamp: timestamppb.New(start), EndTimestamp: timestamppb.New(start.Add(24 * time.Hour))}}
++	}
++	queries, err := conversationAssistanceUsageEvidenceQueries(t.Context(), includeBots, req)
++	if err != nil {
++		t.Fatal(err)
++	}
++	return queries
++}
+diff --git a/insights-server/internal/analyticsimpl/common_guided_workflow_usage_clickhouse.go b/insights-server/internal/analyticsimpl/common_guided_workflow_usage_clickhouse.go
+index 026efcdcad..8712608703 100644
+--- a/insights-server/internal/analyticsimpl/common_guided_workflow_usage_clickhouse.go
++++ b/insights-server/internal/analyticsimpl/common_guided_workflow_usage_clickhouse.go
+@@ -8,11 +8,10 @@ func buildGuidedWorkflowUsageRowsQuery(
+ 	conditionsAndArgs map[ClickhouseTable][]conditionAndArg,
+ 	momentConditionsAndArgsList [][]conditionAndArg,
+ 	excludedMomentConditionsAndArgs [][]conditionAndArg,
++	hasMetadataFiltering bool,
+ ) (string, []any) {
+ 	allArgs := []any{}
+ 
+-	hasMetadataFiltering := len(momentConditionsAndArgsList) > 0 || len(excludedMomentConditionsAndArgs) > 0
+-
+ 	aliasDict := map[string]string{
+ 		"conversation":      "conversation_d",
+ 		"conversationEvent": "conversation_event_d",
+diff --git a/insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_clickhouse.go b/insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_clickhouse.go
+index 7059d5060c..e8c0af7089 100644
+--- a/insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_clickhouse.go
++++ b/insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_clickhouse.go
+@@ -32,7 +32,7 @@ func guidedWorkflowStatsClickhouseQuery(
+ 		optionalGroupBy = fmt.Sprintf("GROUP BY %s", concatKeys(groupByKeys))
+ 	}
+ 
+-	rowsQuery, args := buildGuidedWorkflowUsageRowsQuery(conditionsAndArgs, momentConditionsAndArgsList, excludedMomentConditionsAndArgs)
++	rowsQuery, args := buildGuidedWorkflowUsageRowsQuery(conditionsAndArgs, momentConditionsAndArgsList, excludedMomentConditionsAndArgs, len(momentConditionsAndArgsList) > 0 || len(excludedMomentConditionsAndArgs) > 0)
+ 	return fmt.Sprintf(`
+ 			WITH usage_rows AS (%s)
+ 			SELECT

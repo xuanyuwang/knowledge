@@ -1,0 +1,11 @@
+{
+  "result": {
+    "Time": "2026-10-21T22:13:24.191853-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Elapsed": 42.545
+  },
+  "passed_test_nodes": 193,
+  "failed_test_nodes": 0,
+  "skipped_test_nodes": 0
+}

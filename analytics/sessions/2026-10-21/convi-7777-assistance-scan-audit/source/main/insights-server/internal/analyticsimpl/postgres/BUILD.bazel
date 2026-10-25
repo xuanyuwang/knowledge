@@ -1,0 +1,34 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "postgres",
+    srcs = [
+        "common.go",
+        "enum_flag.go",
+        "query_helpers.go",
+    ],
+    importpath = "github.com/cresta/go-servers/insights-server/internal/analyticsimpl/postgres",
+    visibility = ["//insights-server:__subpackages__"],
+    deps = [
+        "//apiserver/sql-schema/gen/dao",
+        "//apiserver/sql-schema/gen/model",
+        "//insights-server/internal/shared",
+        "//shared/conversation/converter",
+        "//shared/db/condition",
+        "//shared/db/query",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/action",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/analytics",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/behavior",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/common/labels",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/conversation",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/intent",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/moment",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/policy",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/user",
+        "@com_github_cresta_shared_go//fn",
+        "@io_gorm_gorm//:gorm",
+        "@io_gorm_gorm//clause",
+        "@org_golang_google_grpc//codes",
+        "@org_golang_google_grpc//status",
+    ],
+)

@@ -1,0 +1,130 @@
+{
+  "took": 11,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "doc_count_error_upper_bound": -1,
+      "sum_other_doc_count": 539587,
+      "buckets": [
+        {
+          "doc_count": 7,
+          "metrics_agg_on_numeric_field": {
+            "value": 4
+          },
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 11,
+                "metrics_agg_on_numeric_field": {
+                  "value": 11
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 12,
+                "metrics_agg_on_numeric_field": {
+                  "value": 12
+                }
+              }
+            ]
+          }
+        },
+        {
+          "doc_count": 7,
+          "metrics_agg_on_numeric_field": {
+            "value": 2
+          },
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 21,
+                "metrics_agg_on_numeric_field": {
+                  "value": 21
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 22,
+                "metrics_agg_on_numeric_field": {
+                  "value": 22
+                }
+              }
+            ]
+          }
+        },
+        {
+          "doc_count": 3,
+          "metrics_agg_on_numeric_field": {
+            "value": 3
+          },
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 31,
+                "metrics_agg_on_numeric_field": {
+                  "value": 31
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 32,
+                "metrics_agg_on_numeric_field": {
+                  "value": 32
+                }
+              }
+            ]
+          }
+        },
+        {
+          "doc_count": 7,
+          "metrics_agg_on_numeric_field": {
+            "value": 1
+          },
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 31,
+                "metrics_agg_on_numeric_field": {
+                  "value": 41
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 32,
+                "metrics_agg_on_numeric_field": {
+                  "value": 42
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

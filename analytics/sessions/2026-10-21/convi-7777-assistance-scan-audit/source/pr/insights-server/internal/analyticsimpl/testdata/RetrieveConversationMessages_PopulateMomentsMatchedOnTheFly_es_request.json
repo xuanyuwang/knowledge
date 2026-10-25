@@ -1,0 +1,498 @@
+{
+  "highlight": {
+    "pre_tags": [
+      "\u003cmark\u003e"
+    ],
+    "post_tags": [
+      "\u003c/mark\u003e"
+    ],
+    "fields": {
+      "message_text": {
+        "number_of_fragments": 0
+      },
+      "message_text_whitespace": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.english": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.spanish": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.french": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.italian": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.german": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.dutch": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.portuguese": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.russian": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.thai": {
+        "number_of_fragments": 0
+      }
+    }
+  },
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "terms": {
+            "conversation_to_message_join": [
+              "message",
+              "message_group"
+            ]
+          }
+        },
+        {
+          "range": {
+            "conversation_started_at": {
+              "gte": "2022-04-13T00:00:00Z",
+              "lt": "2022-07-13T00:00:00Z",
+              "time_zone": "-10:00"
+            }
+          }
+        },
+        {
+          "terms": {
+            "agent_user_id.keyword": [
+              "user-id1"
+            ]
+          }
+        },
+        {
+          "bool": {
+            "should": [
+              {
+                "terms": {
+                  "conversation_source": [
+                    0,
+                    7,
+                    8
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "must_not": [
+                    {
+                      "exists": {
+                        "field": "conversation_source"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bool": {
+            "should": [
+              {
+                "bool": {
+                  "must_not": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "multi_match": {
+                              "query": "moment1 excluded keyword1",
+                              "type": "phrase",
+                              "fields": [
+                                "message_text"
+                              ]
+                            }
+                          },
+                          {
+                            "multi_match": {
+                              "query": "moment1 excluded keyword1",
+                              "type": "phrase",
+                              "fields": [
+                                "message_text"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1,
+                  "should": [
+                    {
+                      "bool": {
+                        "filter": [
+                          {
+                            "terms": {
+                              "conversation_to_message_join": [
+                                "message"
+                              ]
+                            }
+                          }
+                        ],
+                        "should": [
+                          {
+                            "multi_match": {
+                              "query": "moment1 included keyword",
+                              "type": "phrase",
+                              "fields": [
+                                "message_text"
+                              ]
+                            }
+                          }
+                        ],
+                        "minimum_should_match": 1
+                      }
+                    },
+                    {
+                      "nested": {
+                        "path": "moment_annotations",
+                        "query": {
+                          "bool": {
+                            "filter": [
+                              {
+                                "terms": {
+                                  "moment_annotations.moment_template_id.keyword": [
+                                    "moment_1_cluster_1",
+                                    "moment_1_cluster_2"
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "filter": [
+                    {
+                      "terms": {
+                        "speaker_role": [
+                          "speaker_roles_of_parent1"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "must_not": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "multi_match": {
+                              "query": "moment2 excluded keyword",
+                              "type": "phrase",
+                              "fields": [
+                                "message_text"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1,
+                  "should": [
+                    {
+                      "bool": {
+                        "filter": [
+                          {
+                            "terms": {
+                              "conversation_to_message_join": [
+                                "message"
+                              ]
+                            }
+                          }
+                        ],
+                        "should": [
+                          {
+                            "multi_match": {
+                              "query": "moment2 included keyword",
+                              "type": "phrase",
+                              "fields": [
+                                "message_text"
+                              ]
+                            }
+                          }
+                        ],
+                        "minimum_should_match": 1
+                      }
+                    },
+                    {
+                      "nested": {
+                        "path": "moment_annotations",
+                        "query": {
+                          "bool": {
+                            "filter": [
+                              {
+                                "terms": {
+                                  "moment_annotations.moment_template_id.keyword": [
+                                    "moment_2_cluster_1",
+                                    "moment_2_cluster_2"
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "filter": [
+                    {
+                      "terms": {
+                        "speaker_role": [
+                          "speaker_roles_of_parent2"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    {
+      "conversation_ended_at": {
+        "format": "strict_date_optional_time_nanos",
+        "order": "desc"
+      }
+    },
+    {
+      "created_at": {
+        "format": "strict_date_optional_time_nanos",
+        "order": "asc"
+      }
+    }
+  ],
+  "aggs": {
+    "total_conversation_count": {
+      "cardinality": {
+        "field": "conversation_id.keyword",
+        "precision_threshold": 40000
+      }
+    },
+    "total_conversation_message_count": {
+      "cardinality": {
+        "script": {
+          "source": "return [doc['conversation_id.keyword'] + '-' + doc['conversation_message_id.keyword']]"
+        },
+        "precision_threshold": 40000
+      }
+    },
+    "moments": {
+      "filters": {
+        "filters": [
+          {
+            "bool": {
+              "must_not": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "multi_match": {
+                          "query": "moment1 excluded keyword1",
+                          "type": "phrase",
+                          "fields": [
+                            "message_text"
+                          ]
+                        }
+                      },
+                      {
+                        "multi_match": {
+                          "query": "moment1 excluded keyword1",
+                          "type": "phrase",
+                          "fields": [
+                            "message_text"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "minimum_should_match": 1,
+              "should": [
+                {
+                  "bool": {
+                    "filter": [
+                      {
+                        "terms": {
+                          "conversation_to_message_join": [
+                            "message"
+                          ]
+                        }
+                      }
+                    ],
+                    "should": [
+                      {
+                        "multi_match": {
+                          "query": "moment1 included keyword",
+                          "type": "phrase",
+                          "fields": [
+                            "message_text"
+                          ]
+                        }
+                      }
+                    ],
+                    "minimum_should_match": 1
+                  }
+                },
+                {
+                  "nested": {
+                    "path": "moment_annotations",
+                    "query": {
+                      "bool": {
+                        "filter": [
+                          {
+                            "terms": {
+                              "moment_annotations.moment_template_id.keyword": [
+                                "moment_1_cluster_1",
+                                "moment_1_cluster_2"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              ],
+              "filter": [
+                {
+                  "terms": {
+                    "speaker_role": [
+                      "speaker_roles_of_parent1"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bool": {
+              "must_not": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "multi_match": {
+                          "query": "moment2 excluded keyword",
+                          "type": "phrase",
+                          "fields": [
+                            "message_text"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "minimum_should_match": 1,
+              "should": [
+                {
+                  "bool": {
+                    "filter": [
+                      {
+                        "terms": {
+                          "conversation_to_message_join": [
+                            "message"
+                          ]
+                        }
+                      }
+                    ],
+                    "should": [
+                      {
+                        "multi_match": {
+                          "query": "moment2 included keyword",
+                          "type": "phrase",
+                          "fields": [
+                            "message_text"
+                          ]
+                        }
+                      }
+                    ],
+                    "minimum_should_match": 1
+                  }
+                },
+                {
+                  "nested": {
+                    "path": "moment_annotations",
+                    "query": {
+                      "bool": {
+                        "filter": [
+                          {
+                            "terms": {
+                              "moment_annotations.moment_template_id.keyword": [
+                                "moment_2_cluster_1",
+                                "moment_2_cluster_2"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              ],
+              "filter": [
+                {
+                  "terms": {
+                    "speaker_role": [
+                      "speaker_roles_of_parent2"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "aggs": {
+        "total_conversation_count": {
+          "cardinality": {
+            "field": "conversation_id.keyword",
+            "precision_threshold": 40000
+          }
+        },
+        "total_conversation_message_count": {
+          "cardinality": {
+            "script": {
+              "source": "return [doc['conversation_id.keyword'] + '-' + doc['conversation_message_id.keyword']]"
+            },
+            "precision_threshold": 40000
+          }
+        },
+        "annotation_hit": {
+          "top_hits": {
+            "size": 50,
+            "_source": {
+              "includes": [
+                "moment_annotations",
+                "conversation_id",
+                "conversation_message_id",
+                "message_text"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

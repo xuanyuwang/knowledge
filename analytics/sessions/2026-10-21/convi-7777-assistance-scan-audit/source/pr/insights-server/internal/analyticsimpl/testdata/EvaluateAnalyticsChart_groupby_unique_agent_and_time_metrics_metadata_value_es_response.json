@@ -1,0 +1,161 @@
+{
+  "took": 51,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 6333,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "doc_count_error_upper_bound": -1,
+      "sum_other_doc_count": 6133,
+      "buckets": [
+        {
+          "key": "agent-id-1",
+          "doc_count": 185,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 4,
+                "bucket_aggs": {
+                  "doc_count": 31,
+                  "bucket_aggs": {
+                    "doc_count": 4,
+                    "metrics_agg_on_numeric_field": {
+                      "value": 31
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 181,
+                "bucket_aggs": {
+                  "doc_count": 261,
+                  "bucket_aggs": {
+                    "doc_count": 181,
+                    "metrics_agg_on_numeric_field": {
+                      "value": 32
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "bucket_aggs_for_order_by_metrics": {
+            "doc_count": 292,
+            "bucket_aggs": {
+              "doc_count": 0,
+              "metrics_agg_on_numeric_field": {
+                "value": 31.5
+              }
+            }
+          }
+        },
+        {
+          "key": "agent-id-2",
+          "doc_count": 185,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 4,
+                "bucket_aggs": {
+                  "doc_count": 31,
+                  "bucket_aggs": {
+                    "doc_count": 4,
+                    "metrics_agg_on_numeric_field": {
+                      "value": 21
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 181,
+                "bucket_aggs": {
+                  "doc_count": 261,
+                  "bucket_aggs": {
+                    "doc_count": 181,
+                    "metrics_agg_on_numeric_field": {
+                      "value": 22
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "bucket_aggs_for_order_by_metrics": {
+            "doc_count": 292,
+            "bucket_aggs": {
+              "doc_count": 0,
+              "metrics_agg_on_numeric_field": {
+                "value": 21.5
+              }
+            }
+          }
+        },
+        {
+          "key": "agent-id-3",
+          "doc_count": 185,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 4,
+                "bucket_aggs": {
+                  "doc_count": 31,
+                  "bucket_aggs": {
+                    "doc_count": 4,
+                    "metrics_agg_on_numeric_field": {
+                      "value": 11
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 181,
+                "bucket_aggs": {
+                  "doc_count": 261,
+                  "bucket_aggs": {
+                    "doc_count": 181,
+                    "metrics_agg_on_numeric_field": {
+                      "value": 12
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "bucket_aggs_for_order_by_metrics": {
+            "doc_count": 292,
+            "bucket_aggs": {
+              "doc_count": 0,
+              "metrics_agg_on_numeric_field": {
+                "value": 11.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

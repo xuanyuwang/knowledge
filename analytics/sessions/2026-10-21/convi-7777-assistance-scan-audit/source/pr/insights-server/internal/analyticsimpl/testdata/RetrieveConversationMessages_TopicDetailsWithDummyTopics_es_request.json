@@ -1,0 +1,913 @@
+{
+  "highlight": {
+    "pre_tags": [
+      "\u003cmark\u003e"
+    ],
+    "post_tags": [
+      "\u003c/mark\u003e"
+    ],
+    "fields": {
+      "message_text": {
+        "number_of_fragments": 0
+      },
+      "message_text_whitespace": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.english": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.spanish": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.french": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.italian": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.german": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.dutch": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.portuguese": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.russian": {
+        "number_of_fragments": 0
+      },
+      "message_text_with_custom_analyzer.thai": {
+        "number_of_fragments": 0
+      }
+    }
+  },
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "has_parent": {
+            "parent_type": "conversation",
+            "query": {
+              "bool": {
+                "filter": [
+                  {
+                    "range": {
+                      "conversation_started_at": {
+                        "gte": "2022-04-13T00:00:00Z",
+                        "lt": "2022-07-13T00:00:00Z",
+                        "time_zone": "-10:00"
+                      }
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "terms": {
+                            "conversation_source": [
+                              0,
+                              7,
+                              8
+                            ]
+                          }
+                        },
+                        {
+                          "bool": {
+                            "must_not": {
+                              "exists": {
+                                "field": "conversation_source"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "terms": {
+                      "agent_user_id.keyword": [
+                        "user-id1"
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "has_child": {
+                            "type": "message",
+                            "query": {
+                              "bool": {
+                                "filter": [
+                                  {
+                                    "bool": {
+                                      "must_not": [
+                                        {
+                                          "bool": {
+                                            "should": [
+                                              {
+                                                "multi_match": {
+                                                  "query": "moment_1_keyword_excluded_1",
+                                                  "type": "phrase",
+                                                  "fields": [
+                                                    "message_text"
+                                                  ]
+                                                }
+                                              },
+                                              {
+                                                "multi_match": {
+                                                  "query": "moment_1_keyword_excluded_2",
+                                                  "type": "phrase",
+                                                  "fields": [
+                                                    "message_text"
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "minimum_should_match": 1,
+                                      "should": [
+                                        {
+                                          "bool": {
+                                            "filter": [
+                                              {
+                                                "terms": {
+                                                  "conversation_to_message_join": [
+                                                    "message"
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            "should": [
+                                              {
+                                                "multi_match": {
+                                                  "query": "moment_1_keyword_included_2",
+                                                  "type": "phrase",
+                                                  "fields": [
+                                                    "message_text"
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            "minimum_should_match": 1
+                                          }
+                                        }
+                                      ],
+                                      "filter": [
+                                        {
+                                          "terms": {
+                                            "speaker_role": [
+                                              "speaker_roles_of_parent1"
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "range": {
+                                            "message_forward_position": {
+                                              "lte": 10
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "range": {
+                                            "message_forward_position_in_secs": {
+                                              "lte": 120
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "has_child": {
+                            "type": "message",
+                            "query": {
+                              "bool": {
+                                "filter": [
+                                  {
+                                    "bool": {
+                                      "minimum_should_match": 1,
+                                      "should": [
+                                        {
+                                          "bool": {
+                                            "filter": [
+                                              {
+                                                "terms": {
+                                                  "conversation_to_message_join": [
+                                                    "message"
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            "should": [
+                                              {
+                                                "multi_match": {
+                                                  "query": "moment_2_keyword_included_1",
+                                                  "type": "phrase",
+                                                  "fields": [
+                                                    "message_text"
+                                                  ]
+                                                }
+                                              },
+                                              {
+                                                "multi_match": {
+                                                  "query": "flexible keyword",
+                                                  "type": "phrase",
+                                                  "fields": [
+                                                    "message_text_with_custom_analyzer.dutch",
+                                                    "message_text_with_custom_analyzer.english",
+                                                    "message_text_with_custom_analyzer.french",
+                                                    "message_text_with_custom_analyzer.german",
+                                                    "message_text_with_custom_analyzer.italian",
+                                                    "message_text_with_custom_analyzer.portuguese",
+                                                    "message_text_with_custom_analyzer.russian",
+                                                    "message_text_with_custom_analyzer.spanish",
+                                                    "message_text_with_custom_analyzer.thai"
+                                                  ],
+                                                  "slop": 5
+                                                }
+                                              }
+                                            ],
+                                            "minimum_should_match": 1
+                                          }
+                                        }
+                                      ],
+                                      "filter": [
+                                        {
+                                          "terms": {
+                                            "speaker_role": [
+                                              "speaker_roles_of_parent1"
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "range": {
+                                            "message_forward_position": {
+                                              "lte": 10
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "range": {
+                                            "message_forward_position_in_secs": {
+                                              "lte": 120
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "has_child": {
+                            "type": "message_group",
+                            "query": {
+                              "bool": {
+                                "filter": [
+                                  {
+                                    "bool": {
+                                      "must_not": [
+                                        {
+                                          "bool": {
+                                            "should": [
+                                              {
+                                                "multi_match": {
+                                                  "query": "moment_1_keyword_excluded_1",
+                                                  "type": "phrase",
+                                                  "fields": [
+                                                    "message_text"
+                                                  ]
+                                                }
+                                              },
+                                              {
+                                                "multi_match": {
+                                                  "query": "moment_1_keyword_excluded_2",
+                                                  "type": "phrase",
+                                                  "fields": [
+                                                    "message_text"
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "minimum_should_match": 1,
+                                      "should": [
+                                        {
+                                          "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                              "bool": {
+                                                "filter": [
+                                                  {
+                                                    "terms": {
+                                                      "moment_annotations.moment_template_id.keyword": [
+                                                        "moment_1_cluster_1",
+                                                        "moment_1_cluster_2"
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "filter": [
+                                        {
+                                          "terms": {
+                                            "speaker_role": [
+                                              "speaker_roles_of_parent1"
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "range": {
+                                            "message_forward_position": {
+                                              "lte": 10
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "range": {
+                                            "message_forward_position_in_secs": {
+                                              "lte": 120
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "has_child": {
+                            "type": "message_group",
+                            "query": {
+                              "bool": {
+                                "filter": [
+                                  {
+                                    "bool": {
+                                      "minimum_should_match": 1,
+                                      "should": [
+                                        {
+                                          "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                              "bool": {
+                                                "filter": [
+                                                  {
+                                                    "terms": {
+                                                      "moment_annotations.moment_template_id.keyword": [
+                                                        "moment_2_cluster_1",
+                                                        "moment_2_cluster_2"
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "filter": [
+                                        {
+                                          "terms": {
+                                            "speaker_role": [
+                                              "speaker_roles_of_parent1"
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "range": {
+                                            "message_forward_position": {
+                                              "lte": 10
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "range": {
+                                            "message_forward_position_in_secs": {
+                                              "lte": 120
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "has_child": {
+                            "type": "message",
+                            "query": {
+                              "bool": {
+                                "filter": [
+                                  {
+                                    "bool": {
+                                      "minimum_should_match": 1,
+                                      "should": [
+                                        {
+                                          "bool": {
+                                            "filter": [
+                                              {
+                                                "terms": {
+                                                  "conversation_to_message_join": [
+                                                    "message"
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            "should": [
+                                              {
+                                                "multi_match": {
+                                                  "query": "moment_3_keyword_included_1",
+                                                  "type": "phrase",
+                                                  "fields": [
+                                                    "message_text"
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            "minimum_should_match": 1
+                                          }
+                                        }
+                                      ],
+                                      "filter": [
+                                        {
+                                          "terms": {
+                                            "speaker_role": [
+                                              "speaker_roles_of_parent2"
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "has_child": {
+                            "type": "message_group",
+                            "query": {
+                              "bool": {
+                                "filter": [
+                                  {
+                                    "bool": {
+                                      "minimum_should_match": 1,
+                                      "should": [
+                                        {
+                                          "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                              "bool": {
+                                                "filter": [
+                                                  {
+                                                    "terms": {
+                                                      "moment_annotations.moment_template_id.keyword": [
+                                                        "moment_3_cluster_1",
+                                                        "moment_3_cluster_2"
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "filter": [
+                                        {
+                                          "terms": {
+                                            "speaker_role": [
+                                              "speaker_roles_of_parent2"
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "has_child": {
+                      "type": "message",
+                      "query": {
+                        "bool": {
+                          "filter": [
+                            {
+                              "terms": {
+                                "speaker_role": [
+                                  "agent",
+                                  "visitor"
+                                ]
+                              }
+                            }
+                          ],
+                          "should": [
+                            {
+                              "multi_match": {
+                                "query": "convo_level_search_keyword1",
+                                "type": "phrase",
+                                "fields": [
+                                  "message_text_with_custom_analyzer.dutch",
+                                  "message_text_with_custom_analyzer.english",
+                                  "message_text_with_custom_analyzer.french",
+                                  "message_text_with_custom_analyzer.german",
+                                  "message_text_with_custom_analyzer.italian",
+                                  "message_text_with_custom_analyzer.portuguese",
+                                  "message_text_with_custom_analyzer.russian",
+                                  "message_text_with_custom_analyzer.spanish",
+                                  "message_text_with_custom_analyzer.thai"
+                                ]
+                              }
+                            },
+                            {
+                              "multi_match": {
+                                "query": "convo_level_search_keyword2",
+                                "type": "phrase",
+                                "fields": [
+                                  "message_text_with_custom_analyzer.dutch",
+                                  "message_text_with_custom_analyzer.english",
+                                  "message_text_with_custom_analyzer.french",
+                                  "message_text_with_custom_analyzer.german",
+                                  "message_text_with_custom_analyzer.italian",
+                                  "message_text_with_custom_analyzer.portuguese",
+                                  "message_text_with_custom_analyzer.russian",
+                                  "message_text_with_custom_analyzer.spanish",
+                                  "message_text_with_custom_analyzer.thai"
+                                ]
+                              }
+                            }
+                          ],
+                          "minimum_should_match": 1
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "bool": {
+            "should": [
+              {
+                "bool": {
+                  "must_not": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "multi_match": {
+                              "query": "moment_1_keyword_excluded_1",
+                              "type": "phrase",
+                              "fields": [
+                                "message_text"
+                              ]
+                            }
+                          },
+                          {
+                            "multi_match": {
+                              "query": "moment_1_keyword_excluded_2",
+                              "type": "phrase",
+                              "fields": [
+                                "message_text"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1,
+                  "should": [
+                    {
+                      "bool": {
+                        "filter": [
+                          {
+                            "terms": {
+                              "conversation_to_message_join": [
+                                "message"
+                              ]
+                            }
+                          }
+                        ],
+                        "should": [
+                          {
+                            "multi_match": {
+                              "query": "moment_1_keyword_included_2",
+                              "type": "phrase",
+                              "fields": [
+                                "message_text"
+                              ]
+                            }
+                          }
+                        ],
+                        "minimum_should_match": 1
+                      }
+                    },
+                    {
+                      "nested": {
+                        "path": "moment_annotations",
+                        "query": {
+                          "bool": {
+                            "filter": [
+                              {
+                                "terms": {
+                                  "moment_annotations.moment_template_id.keyword": [
+                                    "moment_1_cluster_1",
+                                    "moment_1_cluster_2"
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "filter": [
+                    {
+                      "terms": {
+                        "speaker_role": [
+                          "speaker_roles_of_parent1"
+                        ]
+                      }
+                    },
+                    {
+                      "range": {
+                        "message_forward_position": {
+                          "lte": 10
+                        }
+                      }
+                    },
+                    {
+                      "range": {
+                        "message_forward_position_in_secs": {
+                          "lte": 120
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "minimum_should_match": 1,
+                  "should": [
+                    {
+                      "bool": {
+                        "filter": [
+                          {
+                            "terms": {
+                              "conversation_to_message_join": [
+                                "message"
+                              ]
+                            }
+                          }
+                        ],
+                        "should": [
+                          {
+                            "multi_match": {
+                              "query": "moment_2_keyword_included_1",
+                              "type": "phrase",
+                              "fields": [
+                                "message_text"
+                              ]
+                            }
+                          },
+                          {
+                            "multi_match": {
+                              "query": "flexible keyword",
+                              "type": "phrase",
+                              "fields": [
+                                "message_text_with_custom_analyzer.dutch",
+                                "message_text_with_custom_analyzer.english",
+                                "message_text_with_custom_analyzer.french",
+                                "message_text_with_custom_analyzer.german",
+                                "message_text_with_custom_analyzer.italian",
+                                "message_text_with_custom_analyzer.portuguese",
+                                "message_text_with_custom_analyzer.russian",
+                                "message_text_with_custom_analyzer.spanish",
+                                "message_text_with_custom_analyzer.thai"
+                              ],
+                              "slop": 5
+                            }
+                          }
+                        ],
+                        "minimum_should_match": 1
+                      }
+                    },
+                    {
+                      "nested": {
+                        "path": "moment_annotations",
+                        "query": {
+                          "bool": {
+                            "filter": [
+                              {
+                                "terms": {
+                                  "moment_annotations.moment_template_id.keyword": [
+                                    "moment_2_cluster_1",
+                                    "moment_2_cluster_2"
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "filter": [
+                    {
+                      "terms": {
+                        "speaker_role": [
+                          "speaker_roles_of_parent1"
+                        ]
+                      }
+                    },
+                    {
+                      "range": {
+                        "message_forward_position": {
+                          "lte": 10
+                        }
+                      }
+                    },
+                    {
+                      "range": {
+                        "message_forward_position_in_secs": {
+                          "lte": 120
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bool": {
+            "should": [
+              {
+                "bool": {
+                  "minimum_should_match": 1,
+                  "should": [
+                    {
+                      "bool": {
+                        "filter": [
+                          {
+                            "terms": {
+                              "conversation_to_message_join": [
+                                "message"
+                              ]
+                            }
+                          }
+                        ],
+                        "should": [
+                          {
+                            "multi_match": {
+                              "query": "moment_3_keyword_included_1",
+                              "type": "phrase",
+                              "fields": [
+                                "message_text"
+                              ]
+                            }
+                          }
+                        ],
+                        "minimum_should_match": 1
+                      }
+                    },
+                    {
+                      "nested": {
+                        "path": "moment_annotations",
+                        "query": {
+                          "bool": {
+                            "filter": [
+                              {
+                                "terms": {
+                                  "moment_annotations.moment_template_id.keyword": [
+                                    "moment_3_cluster_1",
+                                    "moment_3_cluster_2"
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "filter": [
+                    {
+                      "terms": {
+                        "speaker_role": [
+                          "speaker_roles_of_parent2"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "terms": {
+            "speaker_role": [
+              "agent",
+              "visitor"
+            ]
+          }
+        }
+      ],
+      "should": [
+        {
+          "multi_match": {
+            "query": "message_level_search_keyword1",
+            "type": "phrase",
+            "fields": [
+              "message_text_with_custom_analyzer.dutch",
+              "message_text_with_custom_analyzer.english",
+              "message_text_with_custom_analyzer.french",
+              "message_text_with_custom_analyzer.german",
+              "message_text_with_custom_analyzer.italian",
+              "message_text_with_custom_analyzer.portuguese",
+              "message_text_with_custom_analyzer.russian",
+              "message_text_with_custom_analyzer.spanish",
+              "message_text_with_custom_analyzer.thai"
+            ]
+          }
+        },
+        {
+          "multi_match": {
+            "query": "message_level_search_keyword2",
+            "type": "phrase",
+            "fields": [
+              "message_text_with_custom_analyzer.dutch",
+              "message_text_with_custom_analyzer.english",
+              "message_text_with_custom_analyzer.french",
+              "message_text_with_custom_analyzer.german",
+              "message_text_with_custom_analyzer.italian",
+              "message_text_with_custom_analyzer.portuguese",
+              "message_text_with_custom_analyzer.russian",
+              "message_text_with_custom_analyzer.spanish",
+              "message_text_with_custom_analyzer.thai"
+            ]
+          }
+        }
+      ],
+      "minimum_should_match": 1
+    }
+  },
+  "sort": [
+    {
+      "conversation_ended_at": {
+        "format": "strict_date_optional_time_nanos",
+        "order": "desc"
+      }
+    },
+    {
+      "created_at": {
+        "format": "strict_date_optional_time_nanos",
+        "order": "asc"
+      }
+    }
+  ]
+}

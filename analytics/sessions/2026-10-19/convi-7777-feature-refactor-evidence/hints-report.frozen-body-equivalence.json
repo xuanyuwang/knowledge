@@ -1,0 +1,66 @@
+{
+  "TestBehavioralDeliveryModesAndDuplicateAnnotations": {
+    "sha256": "61ec1cfee1af258b920e122590734214a4a99fdbdeb7f66432ebb3f5e73eb354",
+    "unchanged": true
+  },
+  "TestDeliveredRowsOwnAgentAndTimeAttribution": {
+    "sha256": "0f725eb60e4518234cf82c43d6425ae3999b900c5f4a646ddd86252260297809",
+    "unchanged": true
+  },
+  "TestSourcesDevelopmentUsersAndPolicyGates": {
+    "sha256": "042bea325f24e61a019dd91ed2cb744cf84e32d02129eee2e383813f70469bff",
+    "unchanged": true
+  },
+  "TestKnowledgeFollowsAreDistinctActionsIncludingMissingID": {
+    "sha256": "97b5ebe56942c983bbe5d49395b7209d4fe40132871eda1fd562e0c16496e7fe",
+    "unchanged": true
+  },
+  "TestMixedBranchesRetainMaximumDenominators": {
+    "sha256": "8dc1701cf79eed28708c7c359482f43c885a5489961594a2b58f7e93b0cfc66c",
+    "unchanged": true
+  },
+  "TestSameConversationCountsForEachAgent": {
+    "sha256": "460f8e05434f5db6d366d4a4d689c0f559f0c94449dbc7442dc01275753b037f",
+    "unchanged": true
+  },
+  "TestUserFilterInlineAndExternalForBothDeliveryModes": {
+    "sha256": "fe13902e8dbbd0c0e554d5a81a1b946ec7554396c03a4d6dac4ae709f458483f",
+    "unchanged": true
+  },
+  "TestConversationStartBoundsAndTimezoneBuckets": {
+    "sha256": "1e6f0b600a2515670a7b23e717dc57f3c896e6e828e407c077666c04e0f81cd1",
+    "unchanged": true
+  },
+  "TestNoFrequencyKeepsTotalsAndRemovesBuckets": {
+    "sha256": "dbcc80c65fd864f246b5c0edf0b0573206195482784e94315cf2f553dae2c3bc",
+    "unchanged": true
+  },
+  "TestBehaviorGroupingAndFilterUseMomentRows": {
+    "sha256": "04212a86b787611c56ce229ea3b8121c4f2ae3b120e1de6452899d1fd07be631",
+    "unchanged": true
+  },
+  "TestPolicyGroupingRetainsSourceColumnMapping": {
+    "sha256": "f983ebeed90df048cdbc66786c5bc8e128f7e2bdce8fddbd45ba54911b022bc6",
+    "unchanged": true
+  },
+  "TestHintTypeBranches": {
+    "sha256": "713f6f56b1c3f82daabebf18e6ef4dd1243107ecca5b1e0b46785c64fe725a5c",
+    "unchanged": true
+  },
+  "TestMetadataIncludesUseLatestUpdateAndExcludesMissing": {
+    "sha256": "825d928de7cddd4fa12728761df93e15e0d0a7bfc79b24540e00081895304c63",
+    "unchanged": true
+  },
+  "TestMetadataExclusionAndCombinedFilters": {
+    "sha256": "364687951f4270f9e77a96b934462ccc41e5d43d72b81ff933000f9f8131d6d8",
+    "unchanged": true
+  },
+  "TestEmptyProfile": {
+    "sha256": "adb8a5ccf4886c505bc5f414ef9d105b67a2e8d65742864806680e73bf32a050",
+    "unchanged": true
+  },
+  "TestMomentAndEventEligibilityGuards": {
+    "sha256": "d451cf491875edb6a5712db6c2e08d9088b41b5e0e3c52637299d375b02124b3",
+    "unchanged": true
+  }
+}

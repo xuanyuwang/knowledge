@@ -1,0 +1,195 @@
+{
+    "_source": {
+        "excludes": [
+            "moment_annotations",
+            "action_annotations",
+            "conversation_events",
+            "scorecards"
+        ]
+    },
+    "highlight": {
+        "fields": {
+            "message_text": {
+                "number_of_fragments": 0
+            },
+            "message_text_whitespace": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.english": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.spanish": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.french": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.italian": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.german": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.dutch": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.portuguese": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.russian": {
+                "number_of_fragments": 0
+            },
+            "message_text_with_custom_analyzer.thai": {
+                "number_of_fragments": 0
+            }
+        },
+        "post_tags": [
+            "\u003c/mark\u003e"
+        ],
+        "pre_tags": [
+            "\u003cmark\u003e"
+        ]
+    },
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "message"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "sentiment-1",
+                                                                    "sentiment-2"
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "terms": {
+                                            "usecase_id.keyword": [
+                                                "usecase-1",
+                                                "usecase-2"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "moment_annotations",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "moment_annotations.moment_template_id.keyword": [
+                                                                    "sentiment-1"
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "range": {
+                                            "conversation_started_at": {
+                                                "gte": "2024-07-01T00:00:00Z",
+                                                "lt": "2024-07-02T00:00:00Z",
+                                                "time_zone": "+00:00"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "sort": [
+        {
+            "conversation_ended_at": {
+                "format": "strict_date_optional_time_nanos",
+                "order": "desc"
+            }
+        },
+        {
+            "created_at": {
+                "format": "strict_date_optional_time_nanos",
+                "order": "asc"
+            }
+        }
+    ],
+    "aggs": {
+        "metrics_conversation_count": {
+            "cardinality": {
+                "field": "conversation_id.keyword",
+                "precision_threshold": 40000
+            }
+        }
+    }
+}

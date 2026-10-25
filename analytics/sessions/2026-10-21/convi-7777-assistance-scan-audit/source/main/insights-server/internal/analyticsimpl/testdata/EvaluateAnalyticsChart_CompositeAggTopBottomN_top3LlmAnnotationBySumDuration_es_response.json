@@ -1,0 +1,78 @@
+{
+  "took": 10,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 120,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "doc_count": 120,
+      "bucket_aggs": {
+        "doc_count": 120,
+        "bucket_aggs": {
+          "buckets": [
+            {
+              "key": {
+                "bucket_aggs": "high_priority"
+              },
+              "doc_count": 10,
+              "bucket_aggs": {
+                "doc_count": 10,
+                "metrics_agg_on_numeric_field": {
+                  "value": 50
+                }
+              }
+            },
+            {
+              "key": {
+                "bucket_aggs": "medium_priority"
+              },
+              "doc_count": 10,
+              "bucket_aggs": {
+                "doc_count": 10,
+                "metrics_agg_on_numeric_field": {
+                  "value": 30
+                }
+              }
+            },
+            {
+              "key": {
+                "bucket_aggs": "low_priority"
+              },
+              "doc_count": 10,
+              "bucket_aggs": {
+                "doc_count": 10,
+                "metrics_agg_on_numeric_field": {
+                  "value": 20
+                }
+              }
+            },
+            {
+              "key": {
+                "bucket_aggs": "other_priority"
+              },
+              "doc_count": 10,
+              "bucket_aggs": {
+                "doc_count": 10,
+                "metrics_agg_on_numeric_field": {
+                  "value": 10
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PR 33223 · A constructed code review</title>
+  <style>
+    :root { color-scheme: light dark; --bg:#f5f4ef; --paper:#fffefa; --ink:#182129; --soft:#52616a; --line:#d8dedb; --accent:#146d68; --accent-soft:#e2f2ed; --warn:#aa5521; --warn-soft:#fff0e4; --code:#17262d; --code-ink:#ecf4f2; --add:#224e42; --del:#603b3a; --shadow:0 12px 34px rgba(20,38,41,.07); }
+    @media (prefers-color-scheme: dark) { :root { --bg:#10191e; --paper:#19272d; --ink:#eaf2ef; --soft:#b4c3c1; --line:#34474c; --accent:#65c9b4; --accent-soft:#1e403d; --warn:#ffc28c; --warn-soft:#4b3428; --code:#0b1216; --code-ink:#eff6f3; --add:#1c493c; --del:#593432; --shadow:0 12px 34px rgba(0,0,0,.18); } }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    a { color:var(--accent); text-underline-offset:3px; }
+    button { font:inherit; cursor:pointer; }
+    button:focus-visible, a:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+    .shell { max-width:1160px; margin:auto; padding:24px 24px 72px; }
+    .mast { display:flex; justify-content:space-between; gap:20px; align-items:center; padding:0 0 18px; border-bottom:1px solid var(--line); }
+    .brand { font-weight:750; letter-spacing:.08em; font-size:.75rem; text-transform:uppercase; }
+    .nav { display:flex; flex-wrap:wrap; gap:8px 18px; font-size:.9rem; }
+    .nav a { color:var(--soft); text-decoration:none; }
+    .nav a:hover { color:var(--accent); }
+    .hero { padding:52px 0 28px; max-width:900px; }
+    .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.11em; font-size:.74rem; font-weight:750; }
+    h1 { font-size:clamp(2.2rem,5vw,4.4rem); letter-spacing:-.055em; line-height:1.04; margin:10px 0 18px; }
+    h2 { font-size:clamp(1.55rem,3vw,2.25rem); letter-spacing:-.04em; line-height:1.15; margin:0 0 12px; }
+    h3 { font-size:1.06rem; margin:0 0 8px; }
+    p { margin:0 0 14px; }
+    .lead { color:var(--soft); font-size:1.15rem; max-width:760px; }
+    .meta { display:flex; flex-wrap:wrap; gap:8px; margin:23px 0 0; }
+    .chip { border:1px solid var(--line); border-radius:99px; padding:5px 11px; font-size:.79rem; color:var(--soft); background:var(--paper); }
+    .chip.strong { background:var(--accent-soft); color:var(--accent); border-color:transparent; font-weight:700; }
+    .overview { margin-top:28px; background:var(--paper); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:14px; padding:20px 23px; box-shadow:var(--shadow); }
+    .overview h2 { font-size:1.3rem; margin:0 0 10px; letter-spacing:-.025em; }
+    .overview p { margin-bottom:10px; }
+    .overview p:last-child { margin-bottom:0; color:var(--soft); }
+    .overview-flow { display:flex; flex-wrap:wrap; gap:7px; align-items:center; margin:14px 0; font-size:.86rem; font-weight:700; }
+    .overview-flow span { background:var(--accent-soft); color:var(--accent); border-radius:8px; padding:6px 9px; }
+    .overview-flow b { color:var(--soft); }
+    section { margin-top:62px; }
+    .section-head { max-width:780px; margin-bottom:22px; }
+    .section-head p { color:var(--soft); }
+    .contract { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+    .contract article { background:var(--paper); border:1px solid var(--line); border-radius:15px; padding:18px; box-shadow:var(--shadow); min-width:0; }
+    .contract .label { color:var(--soft); text-transform:uppercase; letter-spacing:.08em; font-size:.73rem; font-weight:750; margin-bottom:8px; }
+    .contract strong { display:block; font-size:1.02rem; line-height:1.32; }
+    .contract small { display:block; margin-top:8px; color:var(--soft); font-size:.86rem; }
+    .scope-note { margin-top:14px; border-left:4px solid var(--accent); padding:9px 0 9px 16px; color:var(--soft); }
+    .workflow { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:10px; align-items:stretch; }
+    .flow-node { position:relative; min-height:122px; border:1px solid var(--line); border-radius:14px; padding:15px 13px; background:var(--paper); transition:background .2s,border-color .2s,transform .2s; }
+    .flow-node:not(:last-child)::after { content:"→"; position:absolute; right:-16px; top:42%; z-index:2; color:var(--accent); font-weight:800; background:var(--bg); padding:0 2px; }
+    .flow-node.active { background:var(--accent-soft); border-color:var(--accent); transform:translateY(-3px); }
+    .flow-node .num { display:block; font-size:.72rem; color:var(--accent); font-weight:750; margin-bottom:8px; }
+    .flow-node strong { display:block; line-height:1.2; }
+    .flow-node small { display:block; color:var(--soft); margin-top:8px; line-height:1.35; }
+    .connections { margin-top:18px; }
+    .connections h3 { margin-bottom:8px; }
+    .connections ul { margin:0; padding-left:20px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px 22px; color:var(--soft); font-size:.88rem; }
+    .connections strong { color:var(--ink); }
+    .construction { display:grid; grid-template-columns:240px minmax(0,1fr); gap:24px; align-items:start; }
+    .steps { display:grid; gap:8px; }
+    .step { text-align:left; width:100%; border:1px solid var(--line); background:var(--paper); color:var(--ink); border-radius:12px; padding:12px 14px; transition:border-color .2s,background .2s; }
+    .step[aria-current="step"] { background:var(--accent-soft); border-color:var(--accent); }
+    .step .step-no { color:var(--accent); font-weight:800; font-size:.76rem; display:block; margin-bottom:3px; }
+    .step .step-title { display:block; font-weight:700; line-height:1.25; }
+    .step .step-kind { display:block; color:var(--soft); font-size:.78rem; margin-top:3px; }
+    .stage { min-width:0; background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:25px; box-shadow:var(--shadow); }
+    .stage-kicker { color:var(--accent); font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; font-weight:750; }
+    .stage h3 { font-size:1.6rem; letter-spacing:-.03em; margin:6px 0 12px; }
+    .stage-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px 22px; margin:18px 0 24px; }
+    .stage-grid div { border-left:3px solid var(--line); padding-left:12px; }
+    .stage-grid .remaining { border-color:var(--warn); }
+    .mini-label { display:block; font-size:.73rem; font-weight:750; text-transform:uppercase; letter-spacing:.07em; color:var(--soft); margin-bottom:5px; }
+    .stage-grid p { margin:0; font-size:.91rem; }
+    .code-head { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; }
+    .code-head strong { font-size:.93rem; }
+    .code-tabs { display:flex; gap:4px; padding:3px; border-radius:9px; background:var(--bg); }
+    .code-tabs button { border:0; background:transparent; color:var(--soft); padding:6px 11px; border-radius:7px; font-size:.78rem; }
+    .code-tabs button[aria-pressed="true"] { background:var(--paper); color:var(--ink); box-shadow:0 1px 5px rgba(0,0,0,.12); }
+    pre { margin:0; background:var(--code); color:var(--code-ink); border-radius:12px; padding:17px 0; overflow-x:auto; font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; tab-size:2; }
+    .code-line { display:block; white-space:pre; padding:0 18px; }
+    .code-line.add { background:var(--add); }
+    .code-line.del { background:var(--del); text-decoration:line-through; opacity:.85; }
+    .code-line .mark { display:inline-block; width:2ch; opacity:.75; }
+    .code-caption { color:var(--soft); font-size:.82rem; margin:10px 0 0; }
+    .stage-bottom { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; margin-top:20px; }
+    .stage-bottom .links { font-size:.83rem; }
+    .buttons { display:flex; gap:8px; }
+    .buttons button { border:1px solid var(--line); background:var(--paper); color:var(--ink); border-radius:9px; padding:8px 12px; }
+    .buttons button.primary { background:var(--accent); color:var(--bg); border-color:var(--accent); }
+    .buttons button:disabled { opacity:.45; cursor:default; }
+    .impact { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .impact article { border-top:3px solid var(--accent); padding:15px 3px 0; }
+    .impact article:nth-child(2) { border-color:var(--warn); }
+    .impact article:nth-child(3) { border-color:var(--soft); }
+    .impact h3 { margin-bottom:5px; }
+    .impact p { color:var(--soft); font-size:.9rem; }
+    .polish-list { display:grid; gap:12px; padding:0; margin:0; list-style:none; counter-reset:polish; }
+    .polish-list li { counter-increment:polish; display:grid; grid-template-columns:34px minmax(0,1fr); gap:12px; border-top:1px solid var(--line); padding:14px 0 0; }
+    .polish-list li::before { content:counter(polish,decimal-leading-zero); color:var(--accent); font-weight:800; font-size:.8rem; padding-top:3px; }
+    .polish-list strong { display:block; margin-bottom:3px; }
+    .polish-list p { color:var(--soft); margin:0; font-size:.91rem; }
+    .matrix-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--paper); }
+    table { width:100%; border-collapse:collapse; min-width:650px; }
+    th, td { padding:12px 15px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line); font-size:.88rem; }
+    tr:last-child td { border-bottom:0; }
+    th { color:var(--soft); font-size:.72rem; text-transform:uppercase; letter-spacing:.07em; background:var(--accent-soft); }
+    td:first-child { font-weight:700; width:24%; }
+    .status { display:inline-block; border-radius:6px; padding:2px 7px; font-weight:700; font-size:.77rem; white-space:nowrap; }
+    .status.ok { color:var(--accent); background:var(--accent-soft); }
+    .status.risk { color:var(--warn); background:var(--warn-soft); }
+    .review-bottom { display:grid; grid-template-columns:1.2fr .8fr; gap:16px; }
+    .review-bottom article { border:1px solid var(--line); border-radius:14px; background:var(--paper); padding:20px; }
+    .review-bottom ul { padding-left:20px; margin:8px 0 0; }
+    .review-bottom li { margin:8px 0; }
+    .source-list { display:flex; flex-wrap:wrap; gap:8px 18px; font-size:.83rem; }
+    .footer { margin-top:60px; padding-top:18px; border-top:1px solid var(--line); font-size:.8rem; color:var(--soft); }
+    @media (max-width:850px) { .contract { grid-template-columns:repeat(2,1fr); } .workflow { grid-template-columns:repeat(3,1fr); } .flow-node:nth-child(3)::after { display:none; } .construction { grid-template-columns:1fr; } .steps { grid-template-columns:repeat(3,1fr); } }
+    @media (max-width:580px) { .shell { padding:18px 14px 45px; } .mast { align-items:flex-start; flex-direction:column; } .hero { padding-top:36px; } .contract, .impact, .review-bottom, .stage-grid, .connections ul { grid-template-columns:1fr; } .workflow { grid-template-columns:repeat(2,1fr); } .flow-node:nth-child(3)::after { display:block; } .flow-node:nth-child(even)::after { display:none; } .steps { grid-template-columns:repeat(2,1fr); } .stage { padding:16px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .flow-node, .step { transition:none; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="mast">
+      <div class="brand">Code review / case study 01</div>
+      <nav class="nav" aria-label="Page sections"><a href="#purpose">Purpose</a><a href="#workflow">Workflow</a><a href="#construction">Construction</a><a href="#polish">Polish</a><a href="#review">Review judgment</a></nav>
+    </header>
+    <main>
+      <div class="hero">
+        <div class="eyebrow">Go servers · PR #33223 · CONVI-7767</div>
+        <h1>How an override preview grows into a safe evaluation path</h1>
+        <p class="lead">This PR computes an on-demand grade preview for an existing Training Simulator attempt after a manager proposes criterion overrides. The preview is returned without saving it.</p>
+        <div class="meta"><span class="chip strong">Read-only review</span><span class="chip">Part 2 of 3</span><span class="chip">Base 24706da3f3</span><span class="chip">Head 68f22ba24f</span></div>
+        <div class="overview" aria-labelledby="overview-title">
+          <h2 id="overview-title">Your interpretation: yes, with one qualification</h2>
+          <p>The handler loads the named run's saved criterion results and historical module rules, applies only the proposed verdict changes, then recalculates score and pass/fail for the response. That is an on-the-fly preview of how this <em>saved attempt's grade</em> would look with the overrides.</p>
+          <div class="overview-flow" aria-label="Saved attempt plus proposed verdicts produces a recalculated preview"><span>Saved attempt</span><b>+</b><span>Proposed verdicts</span><b>→</b><span>Recalculated preview</span></div>
+          <p>It does not rerun the AI model or modify the run. It does re-evaluate stored moment annotations to check that the saved AI result was complete; those annotations do not replace the saved verdicts being previewed. The separate module-preview mode cannot be combined with criterion overrides. <a href="https://github.com/cresta/go-servers/blob/68f22ba24fa3d9ed8a43dec8c2d90934e05cadc5/apiserver/internal/trainingsimulator/action_evaluate_training_conversation.go#L125-L240">See the override path</a>.</p>
+        </div>
+      </div>
+
+      <section id="purpose" aria-labelledby="purpose-title">
+        <div class="section-head"><div class="eyebrow">01 / Contract</div><h2 id="purpose-title">What this PR is trying to accomplish</h2><p>Define success before judging the implementation. This is the part-2 contract; the actual write belongs to part 3.</p></div>
+        <div class="contract">
+          <article><div class="label">Actor</div><strong>An authorized manager of the trainee</strong><small>Same tenant and ACL access; self-grading denied.</small></article>
+          <article><div class="label">Input</div><strong>A saved attempt + sparse criterion verdict changes</strong><small>Task run, conversation, and criterion IDs must agree.</small></article>
+          <article><div class="label">Output</div><strong>Effective results and a recomputed grade</strong><small>Use the attempt's historical rules and preserve unmodified results.</small></article>
+          <article><div class="label">Boundary</div><strong>Return a preview; write nothing</strong><small>Manual save is the following PR, #33224.</small></article>
+        </div>
+        <p class="scope-note">The review starts from merged <a href="https://github.com/cresta/go-servers/pull/33222">part 1</a>. Tests, BUILD files, and minor configuration are outside this explanatory pass. The code snapshots below are teaching sketches, not exact commits or compile-ready patches.</p>
+      </section>
+
+      <section id="workflow" aria-labelledby="workflow-title">
+        <div class="section-head"><div class="eyebrow">02 / System path</div><h2 id="workflow-title">Follow the result through the system</h2><p>Select a construction step below to highlight the components it changes.</p></div>
+        <div class="workflow" role="img" aria-label="Override request passes through identity and authorization, historical rules, saved results, completion check, merging and scoring, then a read-only response">
+          <div class="flow-node" data-flow="request"><span class="num">01 · API</span><strong>Override request</strong><small>Conversation, run, sparse verdicts</small></div>
+          <div class="flow-node" data-flow="access"><span class="num">02 · Gate</span><strong>Identity + access</strong><small>Customer, profile, manager ACL</small></div>
+          <div class="flow-node" data-flow="history"><span class="num">03 · Rules</span><strong>Historical revision</strong><small>Criterion IDs, weights, threshold</small></div>
+          <div class="flow-node" data-flow="saved"><span class="num">04 · Storage</span><strong>Saved result</strong><small>Verdicts, evidence, originals</small></div>
+          <div class="flow-node" data-flow="complete"><span class="num">05 · Gate</span><strong>Completion check</strong><small>Re-evaluate stored annotations</small></div>
+          <div class="flow-node" data-flow="score"><span class="num">06 · Output</span><strong>Merge + score</strong><small>Read-only COMPLETE response</small></div>
+        </div>
+        <div class="connections"><h3>Connections beyond the preview flow</h3><ul><li><strong>Stored annotations:</strong> the completion check reads them to decide whether the saved AI result was finished.</li><li><strong>Normal evaluation:</strong> its scoring calculation now uses the same helper as the override preview.</li><li><strong>Manual save:</strong> this PR returns a preview; PR #33224 handles a later request to save it.</li></ul></div>
+      </section>
+
+      <section id="construction" aria-labelledby="construction-title">
+        <div class="section-head"><div class="eyebrow">03 / Interactive reconstruction</div><h2 id="construction-title">Watch the code evolve</h2><p>Each step begins with a problem in the preceding design and explains its cause. The code snapshot shows one possible response; the change view shows what it adds and removes.</p></div>
+        <div class="construction">
+          <div class="steps" id="step-list" aria-label="Construction steps"></div>
+          <article class="stage" aria-live="polite">
+            <div class="stage-kicker" id="stage-kicker"></div><h3 id="stage-title"></h3><p id="stage-summary"></p>
+            <div class="stage-grid"><div><span class="mini-label">Problem this step addresses</span><p id="stage-problem"></p></div><div><span class="mini-label">Why the problem exists</span><p id="stage-cause"></p></div><div><span class="mini-label">What this step changes</span><p id="stage-change"></p></div><div class="remaining"><span class="mini-label">What remains unresolved</span><p id="stage-remaining"></p></div></div>
+            <div class="code-head"><strong id="code-title">Code snapshot at this step</strong><div class="code-tabs" role="group" aria-label="Code display"><button type="button" id="view-snapshot" aria-pressed="true">Code snapshot</button><button type="button" id="view-change" aria-pressed="false">Change from previous</button></div></div>
+            <pre id="code" aria-label="Illustrative Go code"></pre><p class="code-caption">Illustrative Go-like code. Helper names compress real implementation details; inspect linked source for exact behavior.</p>
+            <div class="stage-bottom"><div class="links" id="stage-source"></div><div class="buttons"><button type="button" id="prev">← Previous</button><button type="button" id="next" class="primary">Next →</button></div></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="scenarios" aria-labelledby="review-title">
+        <div class="section-head"><div class="eyebrow">04 / Review judgment</div><h2 id="review-title">Does the final path meet the purpose?</h2><p>Source-level conclusion at the pinned head. The scenarios below mark direct code behavior and remaining questions separately.</p></div>
+        <div class="matrix-wrap"><table><thead><tr><th>Scenario</th><th>What the final code does</th><th>Review reading</th></tr></thead><tbody>
+          <tr><td>Historical rules missing</td><td>Returns FailedPrecondition; no fallback to current rules.</td><td><span class="status ok">Purpose met</span> Historical grading is protected.</td></tr>
+          <tr><td>Saved N/A, current criterion applicable</td><td>Rejects the preview as an unfinished saved AI verdict.</td><td><span class="status ok">Guard added</span> Prevents a common timeout snapshot from being graded as complete.</td></tr>
+          <tr><td>Policy archived after evaluation</td><td>Completion reads stored annotations directly, bypassing the list API's archived-policy filter.</td><td><span class="status ok">Path corrected</span> Retired policy does not hide its existing evidence from this check.</td></tr>
+          <tr><td>All criteria genuinely N/A</td><td>Returns score 0, passed false, not applicable true when completion check passes.</td><td><span class="status ok">Explicit result</span> No positive applicable weight remains.</td></tr>
+          <tr><td>Timeout snapshot later appears N/A</td><td>Saved N/A and currently N/A are indistinguishable to the check.</td><td><span class="status risk">Open semantic limit</span> Storage does not record whether saved N/A was pending.</td></tr>
+          <tr><td>Preview followed by manual save</td><td>This PR writes nothing; part 3 handles the later update.</td><td><span class="status risk">Cross-PR boundary</span> Recheck concurrency and stale-edit behavior in #33224.</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section aria-labelledby="effects-title">
+        <div class="section-head"><div class="eyebrow">05 / Outside the diff</div><h2 id="effects-title">Three side-effect paths worth tracing</h2></div>
+        <div class="impact">
+          <article><h3>Normal AI evaluation</h3><p>The new shared scorer also replaces the old normal-path calculation. A bounded 43,275-case comparison over N/A, pass, weights, auto-fail, and thresholds matched the old algorithm; this is analytical evidence, not a runtime test.</p></article>
+          <article><h3>Annotation lifecycle</h3><p>The completion check depends on the annotations stored now. The direct DB read fixes retired-policy filtering, while the saved pending/N/A encoding still limits what can be proven about the original save.</p></article>
+          <article><h3>Save handoff</h3><p>Part 1 protects a committed manual override from delayed automatic writes. Part 2 previews. Part 3 must verify and commit under its own locking rules; preview alone provides no reservation.</p></article>
+        </div>
+      </section>
+
+      <section id="polish" aria-labelledby="polish-title">
+        <div class="section-head"><div class="eyebrow">06 / Maintainability</div><h2 id="polish-title">Small improvements before or after merge</h2><p>These are review nits, not correctness findings. They can be handled without changing the override behavior.</p></div>
+        <ol class="polish-list">
+          <li><div><strong>Correct the override-path comment</strong><p><a href="https://github.com/cresta/go-servers/blob/68f22ba24fa3d9ed8a43dec8c2d90934e05cadc5/apiserver/internal/trainingsimulator/action_evaluate_training_conversation.go#L125-L128">The comment</a> says no annotations are fetched. The final path calls <code>finishedAIEvaluation</code>, which reads stored annotations for the completion check. State that distinction explicitly.</p></div></li>
+          <li><div><strong>Consider a separate file for the override orchestration</strong><p><a href="https://github.com/cresta/go-servers/blob/68f22ba24fa3d9ed8a43dec8c2d90934e05cadc5/apiserver/internal/trainingsimulator/action_evaluate_training_conversation.go#L129-L241"><code>evaluateCriterionOverrides</code></a> is about 110 lines inside a roughly 490-line file that also implements the normal evaluator. A dedicated <code>action_evaluate_training_conversation_override.go</code> would let the current handler retain only the branch and keep each flow easier to scan. The shared scoring and historical-module helpers are already in suitable files.</p></div></li>
+          <li><div><strong>Name the completion check for what it can prove</strong><p><a href="https://github.com/cresta/go-servers/blob/68f22ba24fa3d9ed8a43dec8c2d90934e05cadc5/apiserver/internal/trainingsimulator/grade_override.go#L140-L158"><code>requireSavedAIVerdictsFinished</code></a> rejects a saved AI N/A that is now applicable; it cannot always prove the saved snapshot finished, because pending and genuine N/A share an encoding. A name such as <code>validateSavedAINAAgainstCurrentEvaluation</code> would describe its actual check. If the handler still feels dense after the file move, extracting its saved-result/criterion-ID validation is an optional next cleanup.</p></div></li>
+        </ol>
+      </section>
+
+      <section id="review" aria-labelledby="takeaway-title">
+        <div class="section-head"><div class="eyebrow">07 / Review outcome</div><h2 id="takeaway-title">What this case teaches the skill</h2></div>
+        <div class="review-bottom">
+          <article><h3>Merge recommendation</h3><p><strong>Near ready from a code review standpoint.</strong> I found no merge-blocking correctness defect in the production path at the pinned head. It validates identity and access, uses historical rules, checks for unfinished saved results, merges sparse verdicts, and recomputes the grade without writing. The required CI check and affected apiserver checks pass. As checked on 2026-10-06, GitHub still requires codeowner approval before merge.</p><p>The code comment at the override entry says no annotations are fetched, but the final path reads stored annotations for completion. Update that comment for accuracy; it is a review-clarity fix, not a demonstrated runtime blocker. The saved pending/N/A ambiguity remains a data-model limit, with no incorrect final grade established by this source review.</p></article>
+          <article><h3>Alternative to compare</h3><p>A durable completion marker would make the original state explicit and remove the need to infer it from current annotations. It requires a data-contract and migration decision beyond this PR. The review should state that tradeoff, not declare a universal best approach.</p></article>
+        </div>
+      </section>
+
+      <section aria-labelledby="sources-title">
+        <div class="section-head"><div class="eyebrow">Source trail</div><h2 id="sources-title">Pinned evidence</h2></div>
+        <div class="source-list"><a href="https://github.com/cresta/go-servers/pull/33223">PR #33223</a><a href="https://github.com/cresta/go-servers/pull/33222">Merged base #33222</a><a href="https://github.com/cresta/go-servers/pull/33224">Save path #33224</a><a href="https://github.com/cresta/go-servers/blob/68f22ba24fa3d9ed8a43dec8c2d90934e05cadc5/apiserver/internal/trainingsimulator/action_evaluate_training_conversation.go#L125-L240">Override branch</a><a href="https://github.com/cresta/go-servers/blob/68f22ba24fa3d9ed8a43dec8c2d90934e05cadc5/apiserver/internal/trainingsimulator/grade_override.go#L76-L157">Completion guard</a><a href="https://github.com/cresta/go-servers/blob/68f22ba24fa3d9ed8a43dec8c2d90934e05cadc5/apiserver/internal/trainingsimulator/conversation_scoring.go">Shared scorer</a></div>
+      </section>
+    </main>
+    <footer class="footer">Reviewed 2026-10-06 · Head 68f22ba24f · Source-level analysis only · Construction snapshots are explanatory simulations, not deployable intermediates.</footer>
+  </div>
+  <script>
+    const normal = `func EvaluateTrainingConversation(req Request) Response {
+  module := loadCurrentModule(req.ConversationName)
+  annotations := ListMomentAnnotations(req.ConversationName,
+    module.EvaluationConfig.Criteria)
+  return evaluateCriteria(module.EvaluationConfig, annotations)
+}`;
+    const branch = `func EvaluateTrainingConversation(req Request) Response {
+  if len(req.CriterionOverrides) > 0 {
+    run := findTaskRun(req.TaskRunName)
+    saved := findConversationScore(run)
+    requireManagerOf(saved.AgentUserID)
+    rules := loadHistoricalRevision(run)
+    return previewOverride(req, saved, rules)
+  }
+  module := loadCurrentModule(req.ConversationName)
+  annotations := ListMomentAnnotations(req.ConversationName,
+    module.EvaluationConfig.Criteria)
+  return evaluateCriteria(module.EvaluationConfig, annotations)
+}
+
+func previewOverride(req Request, saved Score, rules Config) Response {
+  return savedAsEvaluation(saved) // placeholder, not sufficient
+}`;
+    const merge = `func EvaluateTrainingConversation(req Request) Response {
+  if len(req.CriterionOverrides) > 0 {
+    run := findTaskRun(req.TaskRunName)
+    saved := findConversationScore(run)
+    requireManagerOf(saved.AgentUserID)
+    rules := loadHistoricalRevision(run)
+    return previewOverride(req, saved, rules)
+  }
+  module := loadCurrentModule(req.ConversationName)
+  annotations := ListMomentAnnotations(req.ConversationName,
+    module.EvaluationConfig.Criteria)
+  return evaluateCriteriaWithSharedScorer(module.EvaluationConfig, annotations)
+}
+
+func previewOverride(req Request, saved Score, rules Config) Response {
+  requireMatchingCriterionIDs(saved, rules, req.CriterionOverrides)
+  merged := cloneSavedResults(saved) // retains metadata + originals
+  for _, change := range req.CriterionOverrides {
+    setVerdict(merged[change.CriterionID], change)
+  }
+  score, passed, na := scoreConversation(merged, rules)
+  return completePreview(merged, score, passed, na)
+}`;
+    const presence = `func EvaluateTrainingConversation(req Request) Response {
+  if len(req.CriterionOverrides) > 0 {
+    run := findTaskRun(req.TaskRunName)
+    saved := findConversationScore(run)
+    requireManagerOf(saved.AgentUserID)
+    rules := loadHistoricalRevision(run)
+    return previewOverride(req, saved, rules)
+  }
+  module := loadCurrentModule(req.ConversationName)
+  annotations := ListMomentAnnotations(req.ConversationName,
+    module.EvaluationConfig.Criteria)
+  return evaluateCriteriaWithSharedScorer(module.EvaluationConfig, annotations)
+}
+
+func previewOverride(req Request, saved Score, rules Config) Response {
+  requireMatchingCriterionIDs(saved, rules, req.CriterionOverrides)
+  if !saved.Score.Valid || !saved.Passed.Valid {
+    return FailedPrecondition("evaluation not complete")
+  }
+  merged := cloneSavedResults(saved)
+  for _, change := range req.CriterionOverrides {
+    setVerdict(merged[change.CriterionID], change)
+  }
+  score, passed, na := scoreConversation(merged, rules)
+  return completePreview(merged, score, passed, na)
+}`;
+    const reevaluate = `func EvaluateTrainingConversation(req Request) Response {
+  if len(req.CriterionOverrides) > 0 {
+    run := findTaskRun(req.TaskRunName)
+    saved := findConversationScore(run)
+    requireManagerOf(saved.AgentUserID)
+    rules := loadHistoricalRevision(run)
+    return previewOverride(req, saved, rules)
+  }
+  module := loadCurrentModule(req.ConversationName)
+  annotations := ListMomentAnnotations(req.ConversationName,
+    module.EvaluationConfig.Criteria)
+  return evaluateCriteriaWithSharedScorer(module.EvaluationConfig, annotations)
+}
+
+func previewOverride(req Request, saved Score, rules Config) Response {
+  requireMatchingCriterionIDs(saved, rules, req.CriterionOverrides)
+  annotations := ListMomentAnnotations(req.ConversationName, rules.Criteria)
+  ai := evaluateCriteria(rules, annotations) // no AI rerun
+  requireComplete(ai.Status)
+  rejectSavedNAIfNowApplicable(saved, ai)
+  merged := cloneSavedResults(saved)
+  for _, change := range req.CriterionOverrides {
+    setVerdict(merged[change.CriterionID], change)
+  }
+  score, passed, na := scoreConversation(merged, rules)
+  return completePreview(merged, score, passed, na)
+}`;
+    const final = `func EvaluateTrainingConversation(req Request) Response {
+  if len(req.CriterionOverrides) > 0 {
+    run := findTaskRun(req.TaskRunName)
+    saved := findConversationScore(run)
+    requireManagerOf(saved.AgentUserID)
+    rules := loadHistoricalRevision(run)
+    return previewOverride(req, saved, rules)
+  }
+  module := loadCurrentModule(req.ConversationName)
+  annotations := ListMomentAnnotations(req.ConversationName,
+    module.EvaluationConfig.Criteria)
+  return evaluateCriteriaWithSharedScorer(module.EvaluationConfig, annotations)
+}
+
+func previewOverride(req Request, saved Score, rules Config) Response {
+  requireMatchingCriterionIDs(saved, rules, req.CriterionOverrides)
+  annotations := loadStoredMomentAnnotations(req.ConversationName,
+    rules.Criteria) // scoped DB read; retains retired-policy evidence
+  ai := evaluateCriteria(rules, annotations) // no AI rerun
+  requireComplete(ai.Status)
+  rejectSavedNAIfNowApplicable(saved, ai)
+  merged := cloneSavedResults(saved)
+  for _, change := range req.CriterionOverrides {
+    setVerdict(merged[change.CriterionID], change)
+  }
+  score, passed, na := scoreConversation(merged, rules)
+  return completePreview(merged, score, passed, na)
+}`;
+    const stages = [
+      {title:"Existing evaluator",kind:"Starting state",summary:"Start with the existing conversation evaluator before manager overrides are introduced.",problem:"The product needs an automatic grade while a conversation's annotations arrive.",cause:"Evaluation is a polling operation: it loads the module currently named by the run and reads annotations available at that moment.",change:"This snapshot establishes the baseline path: current module rules, moment-service annotations, then criterion evaluation.",remaining:"A manager cannot preview a change to a saved attempt. Reusing this path would also pick up current rules instead of the attempt's historical revision.",flows:["request","score"],source:"Base: <a href='https://github.com/cresta/go-servers/blob/24706da3f3e9c2b97f7d3e0e59701c39b63696ad/apiserver/internal/trainingsimulator/action_evaluate_training_conversation.go'>part-1 evaluator</a>",code:normal},
+      {title:"Branch on override intent",kind:"Add a path",summary:"Add a separate route for previewing a saved attempt, while leaving normal evaluation available.",problem:"The existing evaluator has no input for a saved manager-edited verdict and cannot identify the exact attempt to regrade.",cause:"It resolves the module by conversation and reads live annotations; neither operation ties the grade to the saved score row or its captured module revision.",change:"The new branch looks up the named run and score, checks manager access, and loads the module revision recorded on the run.",remaining:"The illustrative preview still returns saved results unchanged. It has not applied sparse verdict edits or recomputed the grade.",flows:["request","access","history","saved"],source:"Introduced in <a href='https://github.com/cresta/go-servers/commit/7552b84d54b9739c978201ec6d10321ba2be9cf2'>initial override commit</a>",code:branch},
+      {title:"Merge, then share scoring",kind:"Grow the feature",summary:"Make the preview reflect only the manager's requested verdict changes.",problem:"A manager may change one criterion while all other saved results, evidence, and original verdicts must remain intact.",cause:"The request is sparse, and the overall grade depends on historical weights, N/A exclusion, auto-fail, and the pass threshold. Copying the old total would be wrong; a second scoring formula could drift from normal evaluation.",change:"Clone saved results, apply the supplied verdicts by criterion ID, and call a scoring helper shared with the normal AI path.",remaining:"The saved result may be a timeout snapshot. A plausible score does not show whether every AI criterion finished.",flows:["saved","score"],source:"See <a href='https://github.com/cresta/go-servers/commit/7552b84d54b9739c978201ec6d10321ba2be9cf2'>initial override commit</a> and <a href='https://github.com/cresta/go-servers/blob/68f22ba24fa3d9ed8a43dec8c2d90934e05cadc5/apiserver/internal/trainingsimulator/conversation_scoring.go'>final scorer</a>",code:merge},
+      {title:"Try a saved-field guard",kind:"A plausible wrong turn",summary:"Try to reject unfinished saved results before applying the override.",problem:"The merge step could turn an incomplete AI result into a COMPLETE manager preview with an apparently valid score.",cause:"The frontend can save its last PENDING or IN_PROGRESS evaluation when polling times out. Pending criteria are serialized as N/A, and the saved row has no separate completion state.",change:"This intermediate attempt requires saved score and pass fields. It is shown because it explains the next correction, not because it solves the problem.",remaining:"Timeout snapshots may have populated score and pass fields and a full criterion list. This check can still accept an unfinished result.",flows:["saved","complete"],source:"Present in <a href='https://github.com/cresta/go-servers/commit/7552b84d54b9739c978201ec6d10321ba2be9cf2'>initial override commit</a>; replaced by <a href='https://github.com/cresta/go-servers/commit/cae2f7b066b15528f7d58817238971f660caf6f2'>completion fix</a>",code:presence},
+      {title:"Re-evaluate completion",kind:"Replace the guard",summary:"Replace saved-field presence with a check against available annotation results.",problem:"The saved-field guard accepts some timeout snapshots because presence is not the same as completion.",cause:"A pending criterion and a genuine N/A share the saved N/A representation; the row alone cannot recover the evaluation status at save time.",change:"Evaluate available annotations with the historical rules. Require COMPLETE, then reject a criterion saved as AI N/A if it is now applicable.",remaining:"This snapshot uses ListMomentAnnotations. That API filters annotations for archived or deleted policies, so an old completed attempt can look unfinished.",flows:["history","complete","saved"],source:"Implemented in <a href='https://github.com/cresta/go-servers/commit/cae2f7b066b15528f7d58817238971f660caf6f2'>completion fix</a>",code:reevaluate},
+      {title:"Read stored annotations",kind:"Replace the source",summary:"Keep the completion check but change where it obtains historical evidence.",problem:"A completed attempt can fail the new completion check after its behavior policy is retired.",cause:"ListMomentAnnotations intentionally omits annotations attached to archived or deleted policies. That current-policy filter is unsuitable for checking an old attempt's completion.",change:"Read stored criterion-behavior annotations directly, scoped to customer, profile, conversation, and behavior IDs. Re-evaluate those rows under historical rules without rerunning AI.",remaining:"If a saved pending criterion and the current annotations both say N/A, the stored row still cannot reveal whether the saved N/A was genuine. A durable completion marker needs broader contract work.",flows:["history","saved","complete","score"],source:"Implemented in <a href='https://github.com/cresta/go-servers/commit/df513a92bf3e4a05108cb907ef15508f7ee71b54'>stored-annotation fix</a>",code:final}
+    ];
+    let current = 0;
+    let mode = "snapshot";
+    const $ = id => document.getElementById(id);
+    function escapeHTML(s) { return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function diffLines(before, after) {
+      const a=before.split('\n'), b=after.split('\n'), n=a.length, m=b.length;
+      const dp=Array.from({length:n+1},()=>Array(m+1).fill(0));
+      for(let i=n-1;i>=0;i--) for(let j=m-1;j>=0;j--) dp[i][j]=a[i]===b[j]?1+dp[i+1][j+1]:Math.max(dp[i+1][j],dp[i][j+1]);
+      let i=0,j=0,out=[];
+      while(i<n||j<m){
+        if(i<n&&j<m&&a[i]===b[j]) { out.push(['same',a[i]]); i++; j++; }
+        else if(i<n&&(j===m||dp[i+1][j]>=dp[i][j+1])) { out.push(['del',a[i++]]); }
+        else { out.push(['add',b[j++]]); }
+      }
+      return out;
+    }
+    function codeHTML() {
+      const lines=mode==='snapshot'?stages[current].code.split('\n').map(x=>['same',x]):diffLines(stages[current-1]?.code||'',stages[current].code);
+      return lines.map(([kind,line])=>`<span class="code-line ${kind}"><span class="mark">${kind==='add'?'+':kind==='del'?'−':' '}</span>${escapeHTML(line)||' '}</span>`).join('');
+    }
+    function render() {
+      const s=stages[current];
+      document.querySelectorAll('.step').forEach((el,i)=>el.setAttribute('aria-current',i===current?'step':'false'));
+      document.querySelectorAll('.flow-node').forEach(el=>el.classList.toggle('active',s.flows.includes(el.dataset.flow)));
+      $('stage-kicker').textContent=`Step ${current} of ${stages.length-1} · ${s.kind}`;
+      $('stage-title').textContent=s.title;
+      $('stage-summary').textContent=s.summary;
+      $('stage-problem').textContent=s.problem;
+      $('stage-cause').textContent=s.cause;
+      $('stage-change').textContent=s.change;
+      $('stage-remaining').textContent=s.remaining;
+      $('stage-source').innerHTML=s.source;
+      $('view-snapshot').setAttribute('aria-pressed',mode==='snapshot');
+      $('view-change').setAttribute('aria-pressed',mode==='change');
+      $('view-change').disabled=current===0;
+      $('code-title').textContent=mode==='snapshot'?'Code snapshot at this step':'Change from previous step';
+      $('code').innerHTML=codeHTML();
+      $('prev').disabled=current===0; $('next').disabled=current===stages.length-1;
+    }
+    $('step-list').innerHTML=stages.map((s,i)=>`<button class="step" type="button" data-step="${i}" aria-current="false"><span class="step-no">STEP ${i}</span><span class="step-title">${escapeHTML(s.title)}</span><span class="step-kind">${escapeHTML(s.kind)}</span></button>`).join('');
+    $('step-list').addEventListener('click',e=>{const btn=e.target.closest('[data-step]');if(!btn)return;current=Number(btn.dataset.step);if(current===0)mode='snapshot';render();});
+    $('prev').addEventListener('click',()=>{if(current>0){current--;if(current===0)mode='snapshot';render();}});
+    $('next').addEventListener('click',()=>{if(current<stages.length-1){current++;render();}});
+    $('view-snapshot').addEventListener('click',()=>{mode='snapshot';render();});
+    $('view-change').addEventListener('click',()=>{if(current>0){mode='change';render();}});
+    render();
+  </script>
+</body>
+</html>

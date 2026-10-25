@@ -1,0 +1,78 @@
+{
+  "took": 23,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "doc_count_error_upper_bound": -1,
+      "sum_other_doc_count": 49532,
+      "buckets": [
+        {
+          "key": "agent-id-1",
+          "doc_count": 122,
+          "bucket_aggs": {
+            "doc_count": 4013,
+            "bucket_aggs": {
+              "doc_count": 0,
+              "metrics_agg_on_numeric_field": {
+                "value": 0.44
+              }
+            }
+          }
+        },
+        {
+          "key": "agent-id-2",
+          "doc_count": 405,
+          "bucket_aggs": {
+            "doc_count": 13365,
+            "bucket_aggs": {
+              "doc_count": 0,
+              "metrics_agg_on_numeric_field": {
+                "value": 0.33
+              }
+            }
+          }
+        },
+        {
+          "key": "agent-id-3",
+          "doc_count": 88,
+          "bucket_aggs": {
+            "doc_count": 2900,
+            "bucket_aggs": {
+              "doc_count": 0,
+              "metrics_agg_on_numeric_field": {
+                "value": 0.22
+              }
+            }
+          }
+        },
+        {
+          "key": "agent-id-4",
+          "doc_count": 3,
+          "bucket_aggs": {
+            "doc_count": 99,
+            "bucket_aggs": {
+              "doc_count": 0,
+              "metrics_agg_on_numeric_field": {
+                "value": 0.11
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

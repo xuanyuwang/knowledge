@@ -1,0 +1,5 @@
+# CONVI-7777 other-filter source audit
+
+October 21, 2026, America/Toronto. Read-only follow-up to requested time/source parity. Used go-servers-api-design to trace handler eligibility, shared parser, per-feature row guards, existing test coverage and Director inputs. [Filter comparison](../../deliverables/convi-7777-other-filter-follow-up.md) records exact coverage and limits. No product change or new test run. No AWS, Okta, Azure or SSH credential/profile was used.
+
+Result: normal page filters flow through the shared ConversationStats population and exact feature-pair intersection. Strict legacy feature-filter parity is not proven. Found an unguarded generic-attribute support gap for behavior/policy/direct moment/hint selectors: message-table predicate columns are missing in the checked-in schema. Source/schema inspection only; runtime reproduction and explicit contract handling remain pending. User accepted bucket differences from inconsistent copied timestamps; do not add special handling for them.

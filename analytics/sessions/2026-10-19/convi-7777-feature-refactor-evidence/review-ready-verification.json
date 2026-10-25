@@ -1,0 +1,92 @@
+[
+  {
+    "baseRefName": "main",
+    "headRefName": "xw/convi-7777-kb-search-tests",
+    "headRefOid": "e2392e8254f1b74259a7b286933f63c5e29b0120",
+    "isDraft": false,
+    "number": 34031,
+    "state": "OPEN",
+    "url": "https://github.com/cresta/go-servers/pull/34031"
+  },
+  {
+    "baseRefName": "xw/convi-7777-kb-search-tests",
+    "headRefName": "xw/convi-7777-kb-search-refactor",
+    "headRefOid": "782f12c88aa815ae3ce63655b5545352bc80a1f9",
+    "isDraft": false,
+    "number": 34032,
+    "state": "OPEN",
+    "url": "https://github.com/cresta/go-servers/pull/34032"
+  },
+  {
+    "baseRefName": "main",
+    "headRefName": "xw/convi-7777-chat-suggestions-tests",
+    "headRefOid": "0bd131241563868283e743592863d6ba169950fb",
+    "isDraft": false,
+    "number": 34034,
+    "state": "OPEN",
+    "url": "https://github.com/cresta/go-servers/pull/34034"
+  },
+  {
+    "baseRefName": "xw/convi-7777-chat-suggestions-tests",
+    "headRefName": "xw/convi-7777-chat-suggestions-refactor",
+    "headRefOid": "abf41dca4dd6e7d59c9a37117d7f01c88a482547",
+    "isDraft": false,
+    "number": 34035,
+    "state": "OPEN",
+    "url": "https://github.com/cresta/go-servers/pull/34035"
+  },
+  {
+    "baseRefName": "main",
+    "headRefName": "xw/convi-7777-hints-tests",
+    "headRefOid": "3dab1f940dd30546b802b449915645225703566d",
+    "isDraft": false,
+    "number": 34037,
+    "state": "OPEN",
+    "url": "https://github.com/cresta/go-servers/pull/34037"
+  },
+  {
+    "baseRefName": "xw/convi-7777-hints-tests",
+    "headRefName": "xw/convi-7777-hints-refactor",
+    "headRefOid": "77a9aec2bdaba22ff3e362b6c9964415b69d06f7",
+    "isDraft": false,
+    "number": 34038,
+    "state": "OPEN",
+    "url": "https://github.com/cresta/go-servers/pull/34038"
+  },
+  {
+    "baseRefName": "main",
+    "headRefName": "xw/convi-7777-notes-workflow-tests",
+    "headRefOid": "4481c7fe36944ed28d89b9c2845b8dfd34264142",
+    "isDraft": false,
+    "number": 34040,
+    "state": "OPEN",
+    "url": "https://github.com/cresta/go-servers/pull/34040"
+  },
+  {
+    "baseRefName": "xw/convi-7777-notes-workflow-tests",
+    "headRefName": "xw/convi-7777-notes-workflow-refactor",
+    "headRefOid": "b721a5086e6bbe09b41bd842645bf10d0d7c7bb7",
+    "isDraft": false,
+    "number": 34041,
+    "state": "OPEN",
+    "url": "https://github.com/cresta/go-servers/pull/34041"
+  },
+  {
+    "baseRefName": "main",
+    "headRefName": "xw/convi-7777-summary-genai-tests",
+    "headRefOid": "5c6b94f02361a78a5c27fa3242f7ebf76328d6b8",
+    "isDraft": false,
+    "number": 34043,
+    "state": "OPEN",
+    "url": "https://github.com/cresta/go-servers/pull/34043"
+  },
+  {
+    "baseRefName": "xw/convi-7777-summary-genai-tests",
+    "headRefName": "xw/convi-7777-summary-genai-refactor",
+    "headRefOid": "00fd23587abc3f229e562d77d9b798006de77693",
+    "isDraft": false,
+    "number": 34044,
+    "state": "OPEN",
+    "url": "https://github.com/cresta/go-servers/pull/34044"
+  }
+]

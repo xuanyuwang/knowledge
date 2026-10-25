@@ -1,0 +1,27 @@
+[
+  {
+    "group": "kb-search",
+    "removed_sql_snapshots": 5,
+    "dangling_go_references": []
+  },
+  {
+    "group": "chat-suggestions",
+    "removed_sql_snapshots": 5,
+    "dangling_go_references": []
+  },
+  {
+    "group": "notes-workflow",
+    "removed_sql_snapshots": 11,
+    "dangling_go_references": []
+  },
+  {
+    "group": "summary-genai",
+    "removed_sql_snapshots": 8,
+    "dangling_go_references": []
+  },
+  {
+    "group": "hints",
+    "removed_sql_snapshots": 12,
+    "dangling_go_references": []
+  }
+]

@@ -1,0 +1,63 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "shared",
+    srcs = [
+        "chart_validation.go",
+        "common.go",
+        "confidence_interval.go",
+        "lambda.go",
+        "list_groups_for_analytics.go",
+        "list_users_cache.go",
+        "suggested_convo_cache.go",
+    ],
+    importpath = "github.com/cresta/go-servers/insights-server/internal/shared",
+    visibility = [
+        "//insights-server:__subpackages__",
+        "//studio-server:__subpackages__",
+    ],
+    deps = [
+        "//config/shared/grpcclient/config",
+        "//shared/auth",
+        "//shared/consts",
+        "//shared/conversation",
+        "//shared/fnutils",
+        "@com_github_cresta_cresta_proto_v2//cresta/nonpublic/user",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/analytics",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/behavior",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/common/time",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/conversation",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/customer",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/dashboarding",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/user",
+        "@com_github_cresta_shared_go//container/cache",
+        "@com_github_cresta_shared_go//container/set",
+        "@com_github_cresta_shared_go//fn",
+        "@com_github_cresta_shared_go//framework/client/grpc/registry",
+        "@com_github_cresta_shared_go//framework/stats",
+        "@com_github_cresta_shared_go//util/envflag",
+        "@com_github_google_go_cmp//cmp",
+        "@com_github_google_go_cmp//cmp/cmpopts",
+        "@org_golang_google_grpc//codes",
+        "@org_golang_google_grpc//status",
+        "@org_golang_google_protobuf//types/known/durationpb",
+        "@org_golang_google_protobuf//types/known/timestamppb",
+    ],
+)
+
+go_test(
+    name = "confidence_interval_test",
+    srcs = ["confidence_interval_test.go"],
+    embed = ["shared"],
+    deps = [
+        "//shared/db/testing",
+        "@org_golang_google_grpc//status",
+    ],
+)
+
+go_test(
+    name = "shared_test",
+    srcs = ["confidence_interval_test.go"],
+    embed = [":shared"],
+    deps = ["@org_golang_google_grpc//status"],
+)

@@ -1,0 +1,107 @@
+{
+  "aggregations": {
+    "time_ranges": {
+      "buckets": [
+        {
+          "key": 1656633600000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 10
+              }
+            ]
+          }
+        },
+        {
+          "key": 1656720000000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 11
+              }
+            ]
+          }
+        },
+        {
+          "key": 1656806400000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 12
+              }
+            ]
+          }
+        },
+        {
+          "key": 1656892800000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 13
+              }
+            ]
+          }
+        },
+        {
+          "key": 1656979200000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 14
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657065600000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 15
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657152000000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 16
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657238400000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 17
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657324800000,
+          "doc_count": 100,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 18
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

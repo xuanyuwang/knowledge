@@ -1,0 +1,22 @@
+{
+  "kb-search": {
+    "tests": "e2392e8254f1b74259a7b286933f63c5e29b0120",
+    "refactor": "782f12c88aa815ae3ce63655b5545352bc80a1f9"
+  },
+  "hints": {
+    "tests": "3dab1f940dd30546b802b449915645225703566d",
+    "refactor": "77a9aec2bdaba22ff3e362b6c9964415b69d06f7"
+  },
+  "notes-workflow": {
+    "tests": "4481c7fe36944ed28d89b9c2845b8dfd34264142",
+    "refactor": "b721a5086e6bbe09b41bd842645bf10d0d7c7bb7"
+  },
+  "summary-genai": {
+    "tests": "5c6b94f02361a78a5c27fa3242f7ebf76328d6b8",
+    "refactor": "00fd23587abc3f229e562d77d9b798006de77693"
+  },
+  "chat-suggestions": {
+    "tests": "0bd131241563868283e743592863d6ba169950fb",
+    "refactor": "abf41dca4dd6e7d59c9a37117d7f01c88a482547"
+  }
+}

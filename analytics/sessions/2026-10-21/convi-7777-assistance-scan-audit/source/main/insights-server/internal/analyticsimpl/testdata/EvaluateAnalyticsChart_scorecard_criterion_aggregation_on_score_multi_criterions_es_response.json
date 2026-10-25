@@ -1,0 +1,45 @@
+{
+  "took": 13,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 1970,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "doc_count": 97857,
+      "bucket_aggs": {
+        "doc_count": 1879,
+        "bucket_aggs": {
+          "doc_count": 5713,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "doc_count": 1879,
+                "metrics_agg_on_numeric_field": {
+                  "value": 0.11
+                }
+              },
+              {
+                "doc_count": 1879,
+                "metrics_agg_on_numeric_field": {
+                  "value": 0.22
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

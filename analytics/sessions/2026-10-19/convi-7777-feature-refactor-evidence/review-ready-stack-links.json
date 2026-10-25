@@ -1,0 +1,27 @@
+[
+  {
+    "group": "kb-search",
+    "result": "pass",
+    "output": "Checking existing stacks...\nLooking up PRs for 2 branches...\n\u2713 Marked PR #34031 (https://github.com/cresta/go-servers/pull/34031) as ready for review\n\u2713 Marked PR #34032 (https://github.com/cresta/go-servers/pull/34032) as ready for review\n\u2713 Stack with 2 PRs is already up to date\n"
+  },
+  {
+    "group": "chat-suggestions",
+    "result": "pass",
+    "output": "Checking existing stacks...\nLooking up PRs for 2 branches...\n\u2713 Marked PR #34034 (https://github.com/cresta/go-servers/pull/34034) as ready for review\n\u2713 Marked PR #34035 (https://github.com/cresta/go-servers/pull/34035) as ready for review\n\u2713 Stack with 2 PRs is already up to date\n"
+  },
+  {
+    "group": "hints",
+    "result": "pass",
+    "output": "Checking existing stacks...\nLooking up PRs for 2 branches...\n\u2713 Marked PR #34037 (https://github.com/cresta/go-servers/pull/34037) as ready for review\n\u2713 Marked PR #34038 (https://github.com/cresta/go-servers/pull/34038) as ready for review\n\u2713 Stack with 2 PRs is already up to date\n"
+  },
+  {
+    "group": "notes-workflow",
+    "result": "pass",
+    "output": "Checking existing stacks...\nLooking up PRs for 2 branches...\n\u2713 Marked PR #34040 (https://github.com/cresta/go-servers/pull/34040) as ready for review\n\u2713 Marked PR #34041 (https://github.com/cresta/go-servers/pull/34041) as ready for review\n\u2713 Stack with 2 PRs is already up to date\n"
+  },
+  {
+    "group": "summary-genai",
+    "result": "pass",
+    "output": "Checking existing stacks...\nLooking up PRs for 2 branches...\n\u2713 Marked PR #34043 (https://github.com/cresta/go-servers/pull/34043) as ready for review\n\u2713 Marked PR #34044 (https://github.com/cresta/go-servers/pull/34044) as ready for review\n\u2713 Stack with 2 PRs is already up to date\n"
+  }
+]

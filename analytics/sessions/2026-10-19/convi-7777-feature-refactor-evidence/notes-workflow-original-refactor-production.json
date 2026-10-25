@@ -1,0 +1,21 @@
+{
+  "commit": "0546e0ba5e31f445f201ef50f6269f2c1caf62fd",
+  "files": [
+    {
+      "path": "insights-server/internal/analyticsimpl/common_note_taking_usage_clickhouse.go",
+      "sha256": "5720884130071b7a66e53008534dbac74a80751f00912789b9a8ce9af23747f9"
+    },
+    {
+      "path": "insights-server/internal/analyticsimpl/common_guided_workflow_usage_clickhouse.go",
+      "sha256": "7f9bf7dc0450f64fba92ed2cf29e956af67065c1b58416bdd939914bc4766725"
+    },
+    {
+      "path": "insights-server/internal/analyticsimpl/retrieve_note_taking_stats_clickhouse.go",
+      "sha256": "18b28073c813ab62b2ac2f20a9877e8a613b877b955b036000c1b355340f5db8"
+    },
+    {
+      "path": "insights-server/internal/analyticsimpl/retrieve_guided_workflow_stats_clickhouse.go",
+      "sha256": "f1a3a4552ca869ad3a635de2272e736aed873e371d627092f6d772032130f56c"
+    }
+  ]
+}

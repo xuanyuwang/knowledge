@@ -1,0 +1,116 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "conversation"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "range": {
+                        "message_count": {
+                            "gt": 0
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "has_child": {
+                                            "type": "message",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "nested": {
+                                                                "path": "moment_annotations",
+                                                                "query": {
+                                                                    "bool": {
+                                                                        "should": [
+                                                                            {
+                                                                                "bool": {
+                                                                                    "filter": [
+                                                                                        {
+                                                                                            "terms": {
+                                                                                                "moment_annotations.behavior_id.keyword": [
+                                                                                                    "behavior-1"
+                                                                                                ]
+                                                                                            }
+                                                                                        },
+                                                                                        {
+                                                                                            "terms": {
+                                                                                                "moment_annotations.adherence_type": [
+                                                                                                    2,
+                                                                                                    3
+                                                                                                ]
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "bool": {
+                                                                                    "filter": [
+                                                                                        {
+                                                                                            "terms": {
+                                                                                                "moment_annotations.behavior_id.keyword": [
+                                                                                                    "behavior-2"
+                                                                                                ]
+                                                                                            }
+                                                                                        },
+                                                                                        {
+                                                                                            "terms": {
+                                                                                                "moment_annotations.adherence_type": [
+                                                                                                    1
+                                                                                                ]
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            }
+                                                                        ],
+                                                                        "minimum_should_match": 1
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "bucket_aggs": {
+            "date_histogram": {
+                "field": "conversation_started_at",
+                "time_zone": "+00:00",
+                "calendar_interval": "day",
+                "min_doc_count": 0
+            }
+        }
+    }
+}

@@ -1,0 +1,725 @@
+{
+  "date": "2026-10-19",
+  "files": [
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/convi-7777-chat-suggestions-construction-review.html",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/deliverables/convi-7777-chat-suggestions-construction-review.html",
+      "original_sha256": "c79e333c4b5b923e543e31084d9948257f515bb5e1794b866a26db08ab86f671",
+      "destination_sha256": "a2e2986bfa264c8b8b1ba9a4e084dc396489bc2007023ac3e7b75c7910583540"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/convi-7777-chat-suggestions-report.js",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/deliverables/convi-7777-chat-suggestions-report.js",
+      "original_sha256": "bea790e01a9bd83c47339642216a0f388dfbbe470f57e3d4479058b88df43c35",
+      "destination_sha256": "460e755656dd6bfe626c52d367daf08c0a5fb9e0570672123dc906b62f4284c3"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/convi-7777-feature-refactors.html",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/deliverables/convi-7777-feature-refactors.html",
+      "original_sha256": "a7b954eb54c196acf1dfb678f56bfd15623f5ebe8a333433d6b64e78356c4d6e",
+      "destination_sha256": "a7c962b166f8372d4859365fa8e48b51dccb29658a515051e76587b5a06e78b9"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/convi-7777-hints-construction-review.html",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/deliverables/convi-7777-hints-construction-review.html",
+      "original_sha256": "8c1e1645a9be3884557e56d4d549d6144340bfe57d9414553de5d44fcf77b043",
+      "destination_sha256": "e4dbb794394af52db8932467262b201c3c195b8ce865e0b8a37faa1699e104bb"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/convi-7777-hints-report.js",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/deliverables/convi-7777-hints-report.js",
+      "original_sha256": "417726abf24dc414e7ae27ac24ac8f895d31bdf181364232d1fdfb27cbac9244",
+      "destination_sha256": "9b798a9dbb0dec6b866e8d196a0194464f88a9935b1c6e4e393f13d2bfce66ae"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/convi-7777-kb-search-construction-review.html",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/deliverables/convi-7777-kb-search-construction-review.html",
+      "original_sha256": "f2dfe60e7a9642f1d88fcce5e12d281a5c13893b78218d278a80126a3bcd2f4e",
+      "destination_sha256": "97f1737b5334cf495899921fce85263c7f80489047da297ab9cd6361018e407c"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/convi-7777-kb-search-report.js",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/deliverables/convi-7777-kb-search-report.js",
+      "original_sha256": "078a86359288e6e417c657a1be44e9a334d16b30fc03aba49a5f003af7177aa5",
+      "destination_sha256": "d7c3444aa05c5eb9fe23574722d38c18f749735080c85ec623d1706eca496d7f"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/convi-7777-notes-workflow-construction-review.html",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/deliverables/convi-7777-notes-workflow-construction-review.html",
+      "original_sha256": "9cb389a38fcb6bbb0eeb197529bb435a53452bf9c7b263ff9b369dba0c7c778f",
+      "destination_sha256": "adadffa22c17a407c5fc11a063720877e58cd86d93413fda7b1b841f505a1a38"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/convi-7777-notes-workflow-report.js",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/deliverables/convi-7777-notes-workflow-report.js",
+      "original_sha256": "de67de2958cb18b0bf88a9c175815e194ea2e1e6ff2da72da1c8e899a83030e7",
+      "destination_sha256": "a55e5ca60ace33d1e422f728e3faad4e03bb12d93b6e3b2327bc73e7cae706f5"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/convi-7777-summary-genai-construction-review.html",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/deliverables/convi-7777-summary-genai-construction-review.html",
+      "original_sha256": "0383dc30043090340620bfcff5202691c1aa0e7e6d04129be9db29fc47253b64",
+      "destination_sha256": "0383dc30043090340620bfcff5202691c1aa0e7e6d04129be9db29fc47253b64"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/convi-7777-summary-genai-report.js",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/deliverables/convi-7777-summary-genai-report.js",
+      "original_sha256": "4702a42c12630d640bd9948c49d7341b7f1ce25e6474d1f7efcc195c9321a686",
+      "destination_sha256": "4702a42c12630d640bd9948c49d7341b7f1ce25e6474d1f7efcc195c9321a686"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/convi-7777-worktree-pairs.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/deliverables/convi-7777-worktree-pairs.json",
+      "original_sha256": "bf4db87ac22161fd7fe20d82c54ccfd63fc33868c06c28cd063b6f48bbc1e4ed",
+      "destination_sha256": "bf4db87ac22161fd7fe20d82c54ccfd63fc33868c06c28cd063b6f48bbc1e4ed"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/artifact-verification.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/artifact-verification.json",
+      "original_sha256": "8ca7fdcc27cbb9e940ab4753ae618cb9209b457b05793c38bd93286a91060e4f",
+      "destination_sha256": "8ca7fdcc27cbb9e940ab4753ae618cb9209b457b05793c38bd93286a91060e4f"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/bazel-validation.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/bazel-validation.json",
+      "original_sha256": "ba8c7a1fa2b25e1db661080001eebc6c614045c8c09840088f674ec5429376d7",
+      "destination_sha256": "ba8c7a1fa2b25e1db661080001eebc6c614045c8c09840088f674ec5429376d7"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/chat-suggestions-after.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/chat-suggestions-after.jsonl",
+      "original_sha256": "aac931c097e25a3f2b2e0e653e4f92ca3bfc653fa955d7c5da5de20a13c590bd",
+      "destination_sha256": "aac931c097e25a3f2b2e0e653e4f92ca3bfc653fa955d7c5da5de20a13c590bd"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/chat-suggestions-before.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/chat-suggestions-before.jsonl",
+      "original_sha256": "f951acdce8cf3bd8e5b421b5eecab68c28478792d51e881d898d4ef3d0e21f87",
+      "destination_sha256": "f951acdce8cf3bd8e5b421b5eecab68c28478792d51e881d898d4ef3d0e21f87"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/chat-suggestions-merged-after.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/chat-suggestions-merged-after.jsonl",
+      "original_sha256": "7f48c2349b8f8b2c2b3a3c2008a066678381f1e96d04a82cc3817d1d4a88ab3d",
+      "destination_sha256": "7f48c2349b8f8b2c2b3a3c2008a066678381f1e96d04a82cc3817d1d4a88ab3d"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/chat-suggestions-merged-before.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/chat-suggestions-merged-before.jsonl",
+      "original_sha256": "2cb929c0f05923091959b45aeea3bdf275114be71d4a8db50325cf79f4363a0a",
+      "destination_sha256": "2cb929c0f05923091959b45aeea3bdf275114be71d4a8db50325cf79f4363a0a"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/chat-suggestions-refactor-pr.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/chat-suggestions-refactor-pr.md",
+      "original_sha256": "202aa4ad035d935df7f00acea58d39efec40f7407e7ad48a4b2b42ecb85d6c91",
+      "destination_sha256": "202aa4ad035d935df7f00acea58d39efec40f7407e7ad48a4b2b42ecb85d6c91"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/chat-suggestions-report.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/chat-suggestions-report.json",
+      "original_sha256": "00a7c9cf6e97b42abc33d97899bf12f3d6eb80519869a202deaeb0fe7787b1f7",
+      "destination_sha256": "00a7c9cf6e97b42abc33d97899bf12f3d6eb80519869a202deaeb0fe7787b1f7"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/chat-suggestions-tests-pr.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/chat-suggestions-tests-pr.md",
+      "original_sha256": "8a94842c185d4ee7ea5623eccf29dde9bec30ec1a2ce6e66f1c3d4402c1d9659",
+      "destination_sha256": "8a94842c185d4ee7ea5623eccf29dde9bec30ec1a2ce6e66f1c3d4402c1d9659"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/combined-compile.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/combined-compile.json",
+      "original_sha256": "3a7f3c1ebc8eee855d0509f5743ef7eb1cf3ca9a1151ea8ef94667de10749f93",
+      "destination_sha256": "3a7f3c1ebc8eee855d0509f5743ef7eb1cf3ca9a1151ea8ef94667de10749f93"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/combined-compile.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/combined-compile.log",
+      "original_sha256": "17f6237f88513759e8b7ef582d954899984abd1cf7acdd23b894b36e780d6f5d",
+      "destination_sha256": "17f6237f88513759e8b7ef582d954899984abd1cf7acdd23b894b36e780d6f5d"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/consolidated-suggestions-bazel-build.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/consolidated-suggestions-bazel-build.log",
+      "original_sha256": "a5ce2f2ed05190ab4d059faad22cf99d693e0d702e6c8de2551a155cf502dea3",
+      "destination_sha256": "a5ce2f2ed05190ab4d059faad22cf99d693e0d702e6c8de2551a155cf502dea3"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/consolidation-approved-production-changes.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/consolidation-approved-production-changes.json",
+      "original_sha256": "2f48261dad73b553acb4c1785199b6dc4875c501841c769138e8cba5a14e8142",
+      "destination_sha256": "2f48261dad73b553acb4c1785199b6dc4875c501841c769138e8cba5a14e8142"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/consolidation-before-after-evidence.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/consolidation-before-after-evidence.json",
+      "original_sha256": "cf8f1c6d9b95a69b33ba49ec51ff80c65837d289f4b8fe38a3f8c82d8e29fcf8",
+      "destination_sha256": "cf8f1c6d9b95a69b33ba49ec51ff80c65837d289f4b8fe38a3f8c82d8e29fcf8"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/consolidation-deleted-snapshot-references.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/consolidation-deleted-snapshot-references.json",
+      "original_sha256": "26f4dbe58c60ddb9af7cb46ee86ffc5e127453fd806fdfe3c4f83d92eeb2c6ee",
+      "destination_sha256": "26f4dbe58c60ddb9af7cb46ee86ffc5e127453fd806fdfe3c4f83d92eeb2c6ee"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/consolidation-independent-reviews.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/consolidation-independent-reviews.json",
+      "original_sha256": "5f072085e150d54e2f427023b2a383ceb2d325303b31c8b0e6d97e7c91907c04",
+      "destination_sha256": "5f072085e150d54e2f427023b2a383ceb2d325303b31c8b0e6d97e7c91907c04"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/consolidation-invariants.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/consolidation-invariants.json",
+      "original_sha256": "ac23ab36307d82bc1d5129b3b68ada93a5ffa785908cf765a7553ce7593eed2d",
+      "destination_sha256": "ac23ab36307d82bc1d5129b3b68ada93a5ffa785908cf765a7553ce7593eed2d"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/consolidation-original-stacks.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/consolidation-original-stacks.json",
+      "original_sha256": "6c8ee834eae008eba860118734eb9fee46bd6b4bfd801097ac120ae7fc7fd614",
+      "destination_sha256": "6c8ee834eae008eba860118734eb9fee46bd6b4bfd801097ac120ae7fc7fd614"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/consolidation-published-heads.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/consolidation-published-heads.json",
+      "original_sha256": "75b0abfd853aa28efe40228daab6ee4a468c6ed333290ce39211733c4f4e2758",
+      "destination_sha256": "75b0abfd853aa28efe40228daab6ee4a468c6ed333290ce39211733c4f4e2758"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-chat-suggestions-refactor.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/convi7777-official-gazelle-chat-suggestions-refactor.log",
+      "original_sha256": "a3353eeccfe78a0ba7fbc26b8512ea2f1c089bad1768195b90731b9c03470a29",
+      "destination_sha256": "a3353eeccfe78a0ba7fbc26b8512ea2f1c089bad1768195b90731b9c03470a29"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-chat-suggestions-tests.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/convi7777-official-gazelle-chat-suggestions-tests.log",
+      "original_sha256": "ec5ab3c72b765085788d85d9f14c657bf273cb76dd3846ee6ba032e76d656391",
+      "destination_sha256": "ec5ab3c72b765085788d85d9f14c657bf273cb76dd3846ee6ba032e76d656391"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-feature-regressions.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/convi7777-official-gazelle-feature-regressions.log",
+      "original_sha256": "9aa55eaf8be13b0977a375210923bd7ba4136f89f44c5604c97a8f689470ff6c",
+      "destination_sha256": "9aa55eaf8be13b0977a375210923bd7ba4136f89f44c5604c97a8f689470ff6c"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-hints-refactor.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/convi7777-official-gazelle-hints-refactor.log",
+      "original_sha256": "6149eea2b480e96bfcc442480a36b7e1940988448163abe8143b826e8801e82e",
+      "destination_sha256": "6149eea2b480e96bfcc442480a36b7e1940988448163abe8143b826e8801e82e"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-hints-tests.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/convi7777-official-gazelle-hints-tests.log",
+      "original_sha256": "67d96c782c44382533a6f5a75e55d0a16f47647b3dac462e93fb16108f18befe",
+      "destination_sha256": "67d96c782c44382533a6f5a75e55d0a16f47647b3dac462e93fb16108f18befe"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-kb-search-refactor.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/convi7777-official-gazelle-kb-search-refactor.log",
+      "original_sha256": "8bc2d25d738f3304789d5f8ca0f00dd8853e7753ea80811abff63b9b0dead96b",
+      "destination_sha256": "8bc2d25d738f3304789d5f8ca0f00dd8853e7753ea80811abff63b9b0dead96b"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-notes-workflow-refactor.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/convi7777-official-gazelle-notes-workflow-refactor.log",
+      "original_sha256": "e8f0a4b6a6bfc865acfcdfa8112e6c1641c80d07e56665ed071fa6094601c144",
+      "destination_sha256": "e8f0a4b6a6bfc865acfcdfa8112e6c1641c80d07e56665ed071fa6094601c144"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-notes-workflow-tests.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/convi7777-official-gazelle-notes-workflow-tests.log",
+      "original_sha256": "7d1f5a3ff93d5d0d9091b6cd743fb8f77cecdbb76fa088497b3b70f952dfea01",
+      "destination_sha256": "7d1f5a3ff93d5d0d9091b6cd743fb8f77cecdbb76fa088497b3b70f952dfea01"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-summary-genai-refactor.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/convi7777-official-gazelle-summary-genai-refactor.log",
+      "original_sha256": "682b62d3bd15a5d7f3929cf16442813d8ceed9dd54f0b9e26fbe0e3d9e1ac893",
+      "destination_sha256": "682b62d3bd15a5d7f3929cf16442813d8ceed9dd54f0b9e26fbe0e3d9e1ac893"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/convi7777-official-gazelle-summary-genai-tests.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/convi7777-official-gazelle-summary-genai-tests.log",
+      "original_sha256": "0a3082e5af19d4682460df53f11b7f029001bffc89d54b5f6319d8fc21bb890f",
+      "destination_sha256": "0a3082e5af19d4682460df53f11b7f029001bffc89d54b5f6319d8fc21bb890f"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/genai-explicit-projection-fix.diff",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/genai-explicit-projection-fix.diff",
+      "original_sha256": "bdda5c761c14b6dbfc9f803969ce7c7ec44748ec9b607fde2243d2c21e39417c",
+      "destination_sha256": "bdda5c761c14b6dbfc9f803969ce7c7ec44748ec9b607fde2243d2c21e39417c"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-brief.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-brief.md",
+      "original_sha256": "c915e8920ea98750f443e7ebe075a65bf754745ee9e4bd3173eae7a1f404f642",
+      "destination_sha256": "563906a6b66643ffb8a0064c6be2d33b5e0efd8b61b309f06481f5afe0d86922"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-refactor-pr.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-refactor-pr.md",
+      "original_sha256": "4ac2036a179a68aa66dd1d8cda8d2fb412137fb6f06acea2d5612eafc7e7aed1",
+      "destination_sha256": "4ac2036a179a68aa66dd1d8cda8d2fb412137fb6f06acea2d5612eafc7e7aed1"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.after-initial.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.after-initial.jsonl",
+      "original_sha256": "9dcdfc36db11439a380f5e32b6645fc30d15fde46c12e8f3aa0571648cf56ac0",
+      "destination_sha256": "9dcdfc36db11439a380f5e32b6645fc30d15fde46c12e8f3aa0571648cf56ac0"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.after.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.after.jsonl",
+      "original_sha256": "60e97765290a9eb8e757e883a05c93d96c7ef9fd8d1616c1634087f47856f7e2",
+      "destination_sha256": "60e97765290a9eb8e757e883a05c93d96c7ef9fd8d1616c1634087f47856f7e2"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.before.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.before.jsonl",
+      "original_sha256": "daabbd31568a84ee14e5e3b377afb7e37ea1dc0b14692dd1e2612c9dec61c0a4",
+      "destination_sha256": "daabbd31568a84ee14e5e3b377afb7e37ea1dc0b14692dd1e2612c9dec61c0a4"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.consolidated-after.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.consolidated-after.jsonl",
+      "original_sha256": "e748465f9a15b90a1765a9e825c30879348cafb2883c4f1af4894075e07733e9",
+      "destination_sha256": "e748465f9a15b90a1765a9e825c30879348cafb2883c4f1af4894075e07733e9"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.consolidated-before.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.consolidated-before.jsonl",
+      "original_sha256": "f99df51184bb15927f0b113b618661221e8a2fb0292ae55b848200e4cb94e6b7",
+      "destination_sha256": "f99df51184bb15927f0b113b618661221e8a2fb0292ae55b848200e4cb94e6b7"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.consolidated-calibration.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.consolidated-calibration.jsonl",
+      "original_sha256": "916fb5aafbe12146b50f507d6480c219c6b38861bb86a20eb7859a003a76cbcf",
+      "destination_sha256": "916fb5aafbe12146b50f507d6480c219c6b38861bb86a20eb7859a003a76cbcf"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.consolidated-checkpoint.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.consolidated-checkpoint.json",
+      "original_sha256": "cd4a72c9dfe7332e0b8e2885c46211527c6f0bd351b80e5fc2abdcad7062dab4",
+      "destination_sha256": "cd4a72c9dfe7332e0b8e2885c46211527c6f0bd351b80e5fc2abdcad7062dab4"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.consolidated-gazelle-refactor.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.consolidated-gazelle-refactor.log",
+      "original_sha256": "272cfba57d60d0a87895a8121d7248bf7a65d801f14bcfcc6cea83a742c2bd15",
+      "destination_sha256": "272cfba57d60d0a87895a8121d7248bf7a65d801f14bcfcc6cea83a742c2bd15"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.consolidated-gazelle-tests.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.consolidated-gazelle-tests.log",
+      "original_sha256": "272cfba57d60d0a87895a8121d7248bf7a65d801f14bcfcc6cea83a742c2bd15",
+      "destination_sha256": "272cfba57d60d0a87895a8121d7248bf7a65d801f14bcfcc6cea83a742c2bd15"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.consolidated-oom.txt",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.consolidated-oom.txt",
+      "original_sha256": "e8d8ee587d2b5d7830677a6f5ba89422ee673ffab9d02d4b9506deb5dd138d44",
+      "destination_sha256": "e8d8ee587d2b5d7830677a6f5ba89422ee673ffab9d02d4b9506deb5dd138d44"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.frozen-body-equivalence.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.frozen-body-equivalence.json",
+      "original_sha256": "500b60c18b978bb4d0c8341279d6ee4f2e4570595741bc80b4c8862211083323",
+      "destination_sha256": "500b60c18b978bb4d0c8341279d6ee4f2e4570595741bc80b4c8862211083323"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.frozen.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.frozen.json",
+      "original_sha256": "fa084d0a88c1a6824c71ea76cda96465411069d720447a155756dfc979fbffbb",
+      "destination_sha256": "fa084d0a88c1a6824c71ea76cda96465411069d720447a155756dfc979fbffbb"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.json",
+      "original_sha256": "aced40ae120c1a14d8fc669ddc924a80cbc4e4dd614a691b3b63fcd93c725d19",
+      "destination_sha256": "aced40ae120c1a14d8fc669ddc924a80cbc4e4dd614a691b3b63fcd93c725d19"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.md",
+      "original_sha256": "9c0eb30f788f9b070f8e90703320ec000bd86735d479ca7bafa3b8d96caabd16",
+      "destination_sha256": "9c0eb30f788f9b070f8e90703320ec000bd86735d479ca7bafa3b8d96caabd16"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.pre-consolidation.frozen.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.pre-consolidation.frozen.json",
+      "original_sha256": "7491f03b2a188853897f83558d33cb3c4bb3a4fd9ca19985b9d58caf1bb808f0",
+      "destination_sha256": "7491f03b2a188853897f83558d33cb3c4bb3a4fd9ca19985b9d58caf1bb808f0"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.pre-consolidation.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.pre-consolidation.json",
+      "original_sha256": "01e36f45c6db85bf95579de002edcc66e34fcc81b09ddd09a682c1c2fd87d07a",
+      "destination_sha256": "01e36f45c6db85bf95579de002edcc66e34fcc81b09ddd09a682c1c2fd87d07a"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.pre-consolidation.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.pre-consolidation.md",
+      "original_sha256": "62bc89207b6798934f279a71bea9ee1846e17ec35318c6df9c8290d25598eb16",
+      "destination_sha256": "62bc89207b6798934f279a71bea9ee1846e17ec35318c6df9c8290d25598eb16"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.raw-smoke-initial.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.raw-smoke-initial.jsonl",
+      "original_sha256": "9111b41deba4700ce045dfa4a137555ea38b616229a8bfbd6e18797fad9bae18",
+      "destination_sha256": "9111b41deba4700ce045dfa4a137555ea38b616229a8bfbd6e18797fad9bae18"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.raw-smoke.go",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.raw-smoke.go",
+      "original_sha256": "744a1ed36a55e5c1fa9eeef828ede5382ba759db15a73445df86109b312fdaaf",
+      "destination_sha256": "744a1ed36a55e5c1fa9eeef828ede5382ba759db15a73445df86109b312fdaaf"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.raw-smoke.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-report.raw-smoke.jsonl",
+      "original_sha256": "9f497412c99b94c383afba7d8292810585b5b6a87f803b19399da296dd22f77d",
+      "destination_sha256": "9f497412c99b94c383afba7d8292810585b5b6a87f803b19399da296dd22f77d"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-root-body-equivalence.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-root-body-equivalence.json",
+      "original_sha256": "13515c9515ee0b8e76bc1bf3cb197b2f9c1b457ceda384d5addfd4b810ef77d8",
+      "destination_sha256": "13515c9515ee0b8e76bc1bf3cb197b2f9c1b457ceda384d5addfd4b810ef77d8"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-tests-pr.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/hints-tests-pr.md",
+      "original_sha256": "f0a0537a1d5fabef28f8c602f4d51e1f9c7fd034e081f15ef506350e1611b046",
+      "destination_sha256": "f0a0537a1d5fabef28f8c602f4d51e1f9c7fd034e081f15ef506350e1611b046"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/independent-reviews.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/independent-reviews.json",
+      "original_sha256": "e0b871955c75a6530111d303ebc9e2eaa9e89fbd3eb51fbf632824997089b7b3",
+      "destination_sha256": "e0b871955c75a6530111d303ebc9e2eaa9e89fbd3eb51fbf632824997089b7b3"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/kb-search-after.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/kb-search-after.jsonl",
+      "original_sha256": "b42e30df2810f656878398fe847a5b4d14427b943925fcc1ef082589392e4da4",
+      "destination_sha256": "b42e30df2810f656878398fe847a5b4d14427b943925fcc1ef082589392e4da4"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/kb-search-before.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/kb-search-before.jsonl",
+      "original_sha256": "91786d06bacb02987d2aa7072c489abae3f6e1e2b5950816834a94b03d4f562d",
+      "destination_sha256": "91786d06bacb02987d2aa7072c489abae3f6e1e2b5950816834a94b03d4f562d"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/kb-search-merged-after.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/kb-search-merged-after.jsonl",
+      "original_sha256": "f976025411630deb2be6e7c43d081728cdbeb7d5520b5156ff86707ceb9f5d92",
+      "destination_sha256": "f976025411630deb2be6e7c43d081728cdbeb7d5520b5156ff86707ceb9f5d92"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/kb-search-merged-before.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/kb-search-merged-before.jsonl",
+      "original_sha256": "a3f31644eabc80a7ab9bf567e5618df0870beafdc1eecf744163922b0bbbc651",
+      "destination_sha256": "a3f31644eabc80a7ab9bf567e5618df0870beafdc1eecf744163922b0bbbc651"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/kb-search-refactor-pr.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/kb-search-refactor-pr.md",
+      "original_sha256": "959b96fe7f057cdc76db097cbe866df5045f4bc697b3ad659b48c411851fef8b",
+      "destination_sha256": "959b96fe7f057cdc76db097cbe866df5045f4bc697b3ad659b48c411851fef8b"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/kb-search-report.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/kb-search-report.json",
+      "original_sha256": "a9a9d84681d233718345bc18a1323c7614e29ae5655d2a3d3d34e27999f1c335",
+      "destination_sha256": "a9a9d84681d233718345bc18a1323c7614e29ae5655d2a3d3d34e27999f1c335"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/kb-search-tests-pr.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/kb-search-tests-pr.md",
+      "original_sha256": "3184956adf7413c45e4f4776adf7a88e3d29bda525626f24694bc7595ec4079b",
+      "destination_sha256": "3184956adf7413c45e4f4776adf7a88e3d29bda525626f24694bc7595ec4079b"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-after.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-after.jsonl",
+      "original_sha256": "83b39a91b8680af871f477a63c5f3c2d7087099eaf2c0e8da4d6278c399b4fb6",
+      "destination_sha256": "83b39a91b8680af871f477a63c5f3c2d7087099eaf2c0e8da4d6278c399b4fb6"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-before.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-before.jsonl",
+      "original_sha256": "80f54df02179a82b563a219f2945d8fdbd49bfa1d68c419ae809bfff71871ede",
+      "destination_sha256": "80f54df02179a82b563a219f2945d8fdbd49bfa1d68c419ae809bfff71871ede"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-brief.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-brief.md",
+      "original_sha256": "f5ba3e672cb80e68fcad02719592adffae79cfce7ddd204ce1967b1a9418c9d9",
+      "destination_sha256": "361f89e5a15d0789eb233f7fb6f5a8ef9915905e31f7bd0b36b86da305ee2f67"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-cross-review.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-cross-review.json",
+      "original_sha256": "08165b4cb8863190d6d9563e580138b5e0f1af00b5523712385cf0dd59e1981e",
+      "destination_sha256": "08165b4cb8863190d6d9563e580138b5e0f1af00b5523712385cf0dd59e1981e"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-fixture-calibration.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-fixture-calibration.jsonl",
+      "original_sha256": "89262e71bd6de0caf160c8d7610e70224fd8d6dae89f6f53b181f4b8bd2e1925",
+      "destination_sha256": "89262e71bd6de0caf160c8d7610e70224fd8d6dae89f6f53b181f4b8bd2e1925"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-frozen-tests.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-frozen-tests.json",
+      "original_sha256": "19370263ff72a4cda05fe9aea70b3c8ab1dee4b66b7c2a754fca4200f64e4fc1",
+      "destination_sha256": "19370263ff72a4cda05fe9aea70b3c8ab1dee4b66b7c2a754fca4200f64e4fc1"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merge-plan.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-merge-plan.md",
+      "original_sha256": "de476daead1859e470dcbb1011a616c6f6f14b397683f7f1db9659f1f36e0f60",
+      "destination_sha256": "de476daead1859e470dcbb1011a616c6f6f14b397683f7f1db9659f1f36e0f60"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-after.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-merged-after.jsonl",
+      "original_sha256": "f6f06c4648af1debe94b5eabbc8823d257f3e110ae0f5ccc0b2773a890256dd5",
+      "destination_sha256": "f6f06c4648af1debe94b5eabbc8823d257f3e110ae0f5ccc0b2773a890256dd5"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-before.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-merged-before.jsonl",
+      "original_sha256": "47f0028cfa2e2d633e18d6d0aa16585abe7ae165a234f48de524f48578d2ad5e",
+      "destination_sha256": "47f0028cfa2e2d633e18d6d0aa16585abe7ae165a234f48de524f48578d2ad5e"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-body-equivalence.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-merged-body-equivalence.json",
+      "original_sha256": "e5643524c66c29f5e2776d9ec54b7c59036fb99bad1f920a4e2885e20640edba",
+      "destination_sha256": "e5643524c66c29f5e2776d9ec54b7c59036fb99bad1f920a4e2885e20640edba"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-calibration.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-merged-calibration.jsonl",
+      "original_sha256": "1e1064f73e73d002a21e371b0b461d0cf066e25c959c2857ceaa1a6a9263be03",
+      "destination_sha256": "1e1064f73e73d002a21e371b0b461d0cf066e25c959c2857ceaa1a6a9263be03"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-case-mapping.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-merged-case-mapping.json",
+      "original_sha256": "a3b0e7f967abd8f22d33186728fca248c0ab654d1f04026207eaae51445be5b5",
+      "destination_sha256": "a3b0e7f967abd8f22d33186728fca248c0ab654d1f04026207eaae51445be5b5"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-frozen-tests.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-merged-frozen-tests.json",
+      "original_sha256": "f915af74cf192bcafa9ab538337b817469e012c648d20f8d0bdd43f41a421b2f",
+      "destination_sha256": "f915af74cf192bcafa9ab538337b817469e012c648d20f8d0bdd43f41a421b2f"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-group-probe.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-merged-group-probe.jsonl",
+      "original_sha256": "18020fe62b6ab28ed14c5acaff7d48a3bd01ae90e060738f64071f331089c441",
+      "destination_sha256": "18020fe62b6ab28ed14c5acaff7d48a3bd01ae90e060738f64071f331089c441"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-legacy-response-equivalence.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-merged-legacy-response-equivalence.json",
+      "original_sha256": "7d4c903a89aad8416eb775b35094ca6cc831561585bd9fc458e2c59f52a2e5fc",
+      "destination_sha256": "7d4c903a89aad8416eb775b35094ca6cc831561585bd9fc458e2c59f52a2e5fc"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-membership-calibration.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-merged-membership-calibration.jsonl",
+      "original_sha256": "3f38a5ece8d1280a2800de8a1455a3bc27fefbde6811efcbf4d6a1e19672579c",
+      "destination_sha256": "3f38a5ece8d1280a2800de8a1455a3bc27fefbde6811efcbf4d6a1e19672579c"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-merged-rpc-calibration.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-merged-rpc-calibration.jsonl",
+      "original_sha256": "7d8adb56e80ea703e7c52db0ca8e60092634f48bf291360f2cf8cfebfda6dc22",
+      "destination_sha256": "7d8adb56e80ea703e7c52db0ca8e60092634f48bf291360f2cf8cfebfda6dc22"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-order-calibration.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-order-calibration.jsonl",
+      "original_sha256": "d0c6a235a0231a7ca3075dadad7eaaede64d253c5ba2543c29961ea2b77b70b2",
+      "destination_sha256": "d0c6a235a0231a7ca3075dadad7eaaede64d253c5ba2543c29961ea2b77b70b2"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-original-refactor-production.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-original-refactor-production.json",
+      "original_sha256": "53cbd4bc456814fd9deef0f578517e78e568b424a4ac4a5f60b8cc6e5e4b5409",
+      "destination_sha256": "53cbd4bc456814fd9deef0f578517e78e568b424a4ac4a5f60b8cc6e5e4b5409"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-pre-consolidation-report.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-pre-consolidation-report.json",
+      "original_sha256": "51556d2cbc688980f267fd3aad20e6dd7eba7aac09246fd87bb51cd0df991351",
+      "destination_sha256": "51556d2cbc688980f267fd3aad20e6dd7eba7aac09246fd87bb51cd0df991351"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-projection-calibration.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-projection-calibration.jsonl",
+      "original_sha256": "c6f898bda45f56b741fa2bec3edecd967924a12bde739bef3d6838e86aeed70b",
+      "destination_sha256": "c6f898bda45f56b741fa2bec3edecd967924a12bde739bef3d6838e86aeed70b"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-reader-equivalence.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-reader-equivalence.json",
+      "original_sha256": "a1b5d109f96481684f72e4b013d4433b2f9de55638ae267bbb1db2b9f8992afa",
+      "destination_sha256": "a1b5d109f96481684f72e4b013d4433b2f9de55638ae267bbb1db2b9f8992afa"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-refactor-pr.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-refactor-pr.md",
+      "original_sha256": "dfdedb67129b7c59f4eca2bbf18263d71b3910b590da78a41e03a2dc2226c5f5",
+      "destination_sha256": "dfdedb67129b7c59f4eca2bbf18263d71b3910b590da78a41e03a2dc2226c5f5"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-report.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-report.json",
+      "original_sha256": "cbd1360c2b1298e567b36739206d56ea70acb60b0c2a8c35590c06fd922a23b6",
+      "destination_sha256": "cbd1360c2b1298e567b36739206d56ea70acb60b0c2a8c35590c06fd922a23b6"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-report.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-report.md",
+      "original_sha256": "82bee90bb354d28ee691a5087dbeeff05b478c355d741570468a077925fa8605",
+      "destination_sha256": "82bee90bb354d28ee691a5087dbeeff05b478c355d741570468a077925fa8605"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-root-body-equivalence.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-root-body-equivalence.json",
+      "original_sha256": "b36878406bcb5e02ad416a3ebe408c3ebc79ec653bc68e1feaef290c5ebed9dc",
+      "destination_sha256": "b36878406bcb5e02ad416a3ebe408c3ebc79ec653bc68e1feaef290c5ebed9dc"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-sql-equivalence.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-sql-equivalence.json",
+      "original_sha256": "b61f57977557bf94e5d67fbee194c1a6e78a2a873c65764bf006bc95959d9740",
+      "destination_sha256": "b61f57977557bf94e5d67fbee194c1a6e78a2a873c65764bf006bc95959d9740"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-sql-format.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-sql-format.jsonl",
+      "original_sha256": "80f0820295a5ff6a224a9f4d98330318cc1642096ec138f360a166f176b1d00a",
+      "destination_sha256": "80f0820295a5ff6a224a9f4d98330318cc1642096ec138f360a166f176b1d00a"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/notes-workflow-tests-pr.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/notes-workflow-tests-pr.md",
+      "original_sha256": "c462ba7960d93a25d9c14ca2e9dd44ad116cd16d59d1b4e7f5cf549141cb3427",
+      "destination_sha256": "c462ba7960d93a25d9c14ca2e9dd44ad116cd16d59d1b4e7f5cf549141cb3427"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/official-gazelle.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/official-gazelle.json",
+      "original_sha256": "b61004f32aa47063121392b8778471ddb186740d10417e3096c67411d41c1f93",
+      "destination_sha256": "b61004f32aa47063121392b8778471ddb186740d10417e3096c67411d41c1f93"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/plan.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/plan.md",
+      "original_sha256": "e53d7d7df1f931098533c6391d71da04f44523a718c7a48b6505118ff5e929ba",
+      "destination_sha256": "e53d7d7df1f931098533c6391d71da04f44523a718c7a48b6505118ff5e929ba"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/progress.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/progress.md",
+      "original_sha256": "d7db03de3f73bffd5b1f9cbc8e8141a2453cc9240a120c2552db5809e7fdea73",
+      "destination_sha256": "d7db03de3f73bffd5b1f9cbc8e8141a2453cc9240a120c2552db5809e7fdea73"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/remote-stack-verification.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/remote-stack-verification.json",
+      "original_sha256": "dfd86c00e1970705c92e622e836c7a7ba5aa8d6e1831fbed4e9f1d09ab934732",
+      "destination_sha256": "dfd86c00e1970705c92e622e836c7a7ba5aa8d6e1831fbed4e9f1d09ab934732"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/report-controls.jsonl",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/report-controls.jsonl",
+      "original_sha256": "c20bbfaa8254c18fe2b70b0b49f21e690ff25b63eb70c9aca988809291c988eb",
+      "destination_sha256": "c20bbfaa8254c18fe2b70b0b49f21e690ff25b63eb70c9aca988809291c988eb"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/review-ready-preflight.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/review-ready-preflight.json",
+      "original_sha256": "5195dcb095b4fa5b1fa2fd20f3e4050b7bf9306763e08827db7371212670d4f6",
+      "destination_sha256": "5195dcb095b4fa5b1fa2fd20f3e4050b7bf9306763e08827db7371212670d4f6"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/review-ready-stack-links.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/review-ready-stack-links.json",
+      "original_sha256": "1b07060b1d2c56b232f3d07aa55b004f2893d6d356d357fd8d3b8e646a7d7c39",
+      "destination_sha256": "1b07060b1d2c56b232f3d07aa55b004f2893d6d356d357fd8d3b8e646a7d7c39"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/review-ready-verification.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/review-ready-verification.json",
+      "original_sha256": "b6e56413d459abf8e6735f20bfe1c2fbdf47a7f2314aced52313fca9efe700db",
+      "destination_sha256": "b6e56413d459abf8e6735f20bfe1c2fbdf47a7f2314aced52313fca9efe700db"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/root-consolidation-body-equivalence.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/root-consolidation-body-equivalence.json",
+      "original_sha256": "5237150ee2b3bd3bbe30769220257e1dda77e76178e35a9cbb7321cbf05af8cd",
+      "destination_sha256": "5237150ee2b3bd3bbe30769220257e1dda77e76178e35a9cbb7321cbf05af8cd"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/suggestions-bazel-build.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/suggestions-bazel-build.log",
+      "original_sha256": "95acd43d5006b957c7d46e21b685fa9694263fe7cf94b8a9982656bca4f4cb98",
+      "destination_sha256": "95acd43d5006b957c7d46e21b685fa9694263fe7cf94b8a9982656bca4f4cb98"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/suggestions-bazel-test.log",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/suggestions-bazel-test.log",
+      "original_sha256": "a411a82ec2a8695b275a40cc9a0564ed07f079c3386738b25bc9c6834e90cfb5",
+      "destination_sha256": "a411a82ec2a8695b275a40cc9a0564ed07f079c3386738b25bc9c6834e90cfb5"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/summary-genai-brief.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/summary-genai-brief.md",
+      "original_sha256": "b3f028c37a5a84c0d6aac45c20c38faa43a55fdcc24ccb84f7b751e9324493bb",
+      "destination_sha256": "fc8af4c8911a53c4664a2dfd09592816a0e7d175a7fc8c6c49643bfde752f611"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/summary-genai-refactor-pr.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/summary-genai-refactor-pr.md",
+      "original_sha256": "6a3682467e824eafed07d57ab4756165ebfc91f49236c1900f6d7b60410e2756",
+      "destination_sha256": "6a3682467e824eafed07d57ab4756165ebfc91f49236c1900f6d7b60410e2756"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/summary-genai-report.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/summary-genai-report.json",
+      "original_sha256": "2b7c6ac42bbd3596d9c0e2f169b5f08fe76d44786f7cf040b9db87761d5ca2ce",
+      "destination_sha256": "2b7c6ac42bbd3596d9c0e2f169b5f08fe76d44786f7cf040b9db87761d5ca2ce"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/summary-genai-report.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/summary-genai-report.md",
+      "original_sha256": "73e61b28733bcbf558f61746fb2ed9c311a0f2bf4ae9120e1515f015c0228f09",
+      "destination_sha256": "73e61b28733bcbf558f61746fb2ed9c311a0f2bf4ae9120e1515f015c0228f09"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/summary-genai-root-body-equivalence.json",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/summary-genai-root-body-equivalence.json",
+      "original_sha256": "30fa1ef68acfc6157568e715da22350b3665ada87e29eb830baf10498ad6a4b5",
+      "destination_sha256": "30fa1ef68acfc6157568e715da22350b3665ada87e29eb830baf10498ad6a4b5"
+    },
+    {
+      "original": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/summary-genai-tests-pr.md",
+      "destination": "/Users/xuanyu.wang/repos/knowledge/analytics/sessions/2026-10-19/convi-7777-feature-refactor-evidence/summary-genai-tests-pr.md",
+      "original_sha256": "0b020b24d3179b5be3d8196320f64133785968789eaf7a7d8799b7cf5ad11638",
+      "destination_sha256": "0b020b24d3179b5be3d8196320f64133785968789eaf7a7d8799b7cf5ad11638"
+    }
+  ]
+}

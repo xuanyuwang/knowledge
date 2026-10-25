@@ -1,0 +1,121 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "conversation"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "range": {
+                        "message_count": {
+                            "gt": 0
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "range": {
+                                            "conversation_started_at": {
+                                                "gte": "2026-07-07T00:00:00Z",
+                                                "lt": "2026-07-14T00:00:00Z",
+                                                "time_zone": "+00:00"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "nested": {
+                                            "path": "scorecards",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "terms": {
+                                                                "scorecards.template_id.keyword": [
+                                                                    "0199ba42-d3af-76b9-95db-5611ef8d15e3"
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "bucket_aggs": {
+            "composite": {
+                "sources": [
+                    {
+                        "bucket_aggs": {
+                            "terms": {
+                                "field": "agent_user_id.keyword"
+                            }
+                        }
+                    }
+                ],
+                "size": 1000
+            },
+            "aggs": {
+                "bucket_aggs": {
+                    "nested": {
+                        "path": "scorecards"
+                    },
+                    "aggs": {
+                        "bucket_aggs": {
+                            "filter": {
+                                "terms": {
+                                    "scorecards.template_id.keyword": [
+                                        "0199ba42-d3af-76b9-95db-5611ef8d15e3"
+                                    ]
+                                }
+                            },
+                            "aggs": {
+                                "metrics_agg_on_numeric_field": {
+                                    "avg": {
+                                        "field": "scorecards.percentage_score"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

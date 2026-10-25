@@ -1,0 +1,41 @@
+{
+  "aggregations": {
+    "time_ranges": {
+      "buckets": [
+        {
+          "key": 1735030800000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 100
+              }
+            ]
+          }
+        },
+        {
+          "key": 1735117200000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 110
+              }
+            ]
+          }
+        },
+        {
+          "key": 1735203600000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 120
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

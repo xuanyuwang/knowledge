@@ -1,0 +1,86 @@
+{
+    "took": 106,
+    "timed_out": false,
+    "_shards": {
+        "total": 12,
+        "successful": 12,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 10000,
+            "relation": "gte"
+        },
+        "max_score": null,
+        "hits": []
+    },
+    "aggregations": {
+        "moments": {
+            "buckets": [
+                {
+                    "doc_count": 2736,
+                    "outcomes": {
+                        "doc_count": 7920,
+                        "outcomes": {
+                            "doc_count": 2598,
+                            "stats": {
+                                "count": 2596,
+                                "min": 0,
+                                "max": 11.670000076293945,
+                                "avg": 0.38761170990463745,
+                                "sum": 1006.2399989124388,
+                                "sum_of_squares": 890.5629988992293,
+                                "variance": 0.1928091650024416,
+                                "variance_population": 0.1928091650024416,
+                                "variance_sampling": 0.19288346525870462,
+                                "std_deviation": 0.4391004042385313,
+                                "std_deviation_population": 0.4391004042385313,
+                                "std_deviation_sampling": 0.43918500117684417,
+                                "std_deviation_bounds": {
+                                    "upper": 1.2658125183817002,
+                                    "lower": -0.49058909857242516,
+                                    "upper_population": 1.2658125183817002,
+                                    "lower_population": -0.49058909857242516,
+                                    "upper_sampling": 1.2659817122583257,
+                                    "lower_sampling": -0.4907582924490509
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "doc_count": 34299,
+                    "outcomes": {
+                        "doc_count": 88588,
+                        "outcomes": {
+                            "doc_count": 28999,
+                            "stats": {
+                                "count": 28178,
+                                "min": 0,
+                                "max": 52.369998931884766,
+                                "avg": 0.013016182773803597,
+                                "sum": 366.76999820023775,
+                                "sum_of_squares": 3645.6361819866584,
+                                "variance": 0.12920939160529973,
+                                "variance_population": 0.12920939160529973,
+                                "variance_sampling": 0.12921397723867467,
+                                "std_deviation": 0.3594570789472642,
+                                "std_deviation_population": 0.3594570789472642,
+                                "std_deviation_sampling": 0.3594634574455026,
+                                "std_deviation_bounds": {
+                                    "upper": 0.731930340668332,
+                                    "lower": -0.7058979751207248,
+                                    "upper_population": 0.731930340668332,
+                                    "lower_population": -0.7058979751207248,
+                                    "upper_sampling": 0.7319430976648088,
+                                    "lower_sampling": -0.7059107321172017
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

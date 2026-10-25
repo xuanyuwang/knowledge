@@ -1,0 +1,28 @@
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "terms": {
+            "conversation_id.keyword": [
+              "convo-id-1"
+            ]
+          }
+        },
+				{
+					"terms":{
+						"conversation_to_message_join":["conversation"]
+					}
+				}
+      ]
+    }
+  },
+  "sort": [
+    {
+      "conversation_ended_at": {
+        "format": "strict_date_optional_time_nanos",
+        "order": "desc"
+      }
+    }
+  ]
+}

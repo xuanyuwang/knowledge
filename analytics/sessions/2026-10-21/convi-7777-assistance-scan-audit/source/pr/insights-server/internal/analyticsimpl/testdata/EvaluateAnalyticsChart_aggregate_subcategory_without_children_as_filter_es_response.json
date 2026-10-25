@@ -1,0 +1,29 @@
+{
+  "took": 50,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 0,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "buckets": [
+        {
+          "key_as_string": "2024-07-01T00:00:00.000Z",
+          "key": 1719792000000,
+          "doc_count": 0
+        }
+      ]
+    }
+  }
+}

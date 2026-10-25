@@ -1,0 +1,22 @@
+Expression ((Projection + Before ORDER BY))
+  Join (JOIN FillRightFirst)
+    Expression ((Before JOIN + (Projection + Before ORDER BY)))
+      Aggregating
+        Expression ((Before GROUP BY + Projection))
+          Distinct
+            Distinct (Preliminary DISTINCT)
+              Expression (Before ORDER BY)
+                CreatingSets (Create sets before main query execution)
+                  Filter ((WHERE + (Projection + Before ORDER BY)))
+                    Expression
+                      ReadFromMergeTree (assistance_scan_cost_b84a8527.conversation_event_d)
+                      Indexes:
+                        PrimaryKey
+                          Keys: 
+                            toStartOfHour(conversation_start_time)
+                            agent_user_id
+                          Condition: and(and((toStartOfHour(conversation_start_time) in (-Inf, 1790899200]), and((toStartOfHour(conversation_start_time) in [1790812800, +Inf)), (agent_user_id in 1-element set))), (agent_user_id not in [\'\', \'\']))
+                          Parts: 1/1
+                          Granules: 2/176
+    Expression ((Joined actions + (Rename joined columns + (Projection + Before ORDER BY))))
+      ReadFromMemoryStorage

@@ -1,0 +1,121 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "message"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "range": {
+                                            "conversation_started_at": {
+                                                "gte": "2024-07-01T22:20:00Z",
+                                                "lt": "2024-10-01T22:20:00Z",
+                                                "time_zone": "+00:00"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "bucket_aggs": {
+            "filters": {
+                "filters": [
+                    {
+                        "bool": {
+                            "filter": [
+                                {
+                                    "nested": {
+                                        "path": "action_annotations",
+                                        "query": {
+                                            "bool": {
+                                                "filter": [
+                                                    {
+                                                        "terms": {
+                                                            "action_annotations.action_id.keyword": [
+                                                                "dummy-action-id"
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "bool": {
+                            "filter": [
+                                {
+                                    "nested": {
+                                        "path": "moment_annotations",
+                                        "query": {
+                                            "bool": {
+                                                "filter": [
+                                                    {
+                                                        "terms": {
+                                                            "moment_annotations.adherence_action_id.keyword": [
+                                                                "dummy-action-id"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "terms": {
+                                                            "moment_annotations.adherence_type": [
+                                                                2
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "aggs": {
+                "bucket_aggs": {
+                    "date_histogram": {
+                        "field": "conversation_started_at",
+                        "time_zone": "+01:40",
+                        "calendar_interval": "day",
+                        "min_doc_count": 0,
+                        "extended_bounds": {
+                            "min": "2024-07-01T22:20:00Z",
+                            "max": "2024-10-01T22:20:00Z"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

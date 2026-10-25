@@ -1,0 +1,64 @@
+{
+  "version": "24.2.3.70",
+  "row_count": 180000,
+  "engine": "single-node MergeTree synthetic fixture",
+  "records": [
+    {
+      "variant": "new-unbounded",
+      "query_id": "scan-audit-a3fdf260911a485a8d181eebe721c2c7",
+      "rows": [
+        {
+          "conversation_id": "153000",
+          "agent_user_id": "1"
+        }
+      ],
+      "local_metrics": [
+        {
+          "read_rows": "180002",
+          "read_bytes": "5108925",
+          "result_rows": "1",
+          "memory_usage": "18612206",
+          "query_duration_ms": "16"
+        }
+      ]
+    },
+    {
+      "variant": "same-cohort-exact-bounds",
+      "query_id": "scan-audit-a7a3e68a2d6f492ab98b0eba846a7808",
+      "rows": [
+        {
+          "conversation_id": "153000",
+          "agent_user_id": "1"
+        }
+      ],
+      "local_metrics": [
+        {
+          "read_rows": "2050",
+          "read_bytes": "56461",
+          "result_rows": "1",
+          "memory_usage": "4266692",
+          "query_duration_ms": "2"
+        }
+      ]
+    },
+    {
+      "variant": "same-cohort-seven-day-padding",
+      "query_id": "scan-audit-707e79f7337d43d4a9ef0356ae4cfca0",
+      "rows": [
+        {
+          "conversation_id": "153000",
+          "agent_user_id": "1"
+        }
+      ],
+      "local_metrics": [
+        {
+          "read_rows": "16386",
+          "read_bytes": "606243",
+          "result_rows": "1",
+          "memory_usage": "3704237",
+          "query_duration_ms": "3"
+        }
+      ]
+    }
+  ]
+}

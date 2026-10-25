@@ -1,0 +1,5176 @@
+[
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_suggestions_count": "3",
+        "total_email_piecemeal_suggestions_count": "0",
+        "total_email_full_reply_suggestions_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_note_taking_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_gw_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_sent_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "1",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_suggestions_count": "3",
+        "total_email_piecemeal_suggestions_count": "0",
+        "total_email_full_reply_suggestions_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_note_taking_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_gw_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_sent_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "total_suggestions_count": "3",
+        "total_email_piecemeal_suggestions_count": "0",
+        "total_email_full_reply_suggestions_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "daily",
+    "cluster": "events",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "total_note_taking_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "daily",
+    "cluster": "events",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "total_gw_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.truncated_time": "2026-10-01 00:00:00",
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_sent_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "daily",
+    "cluster": "events",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "1",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "total_suggestions_count": "3",
+        "total_email_piecemeal_suggestions_count": "0",
+        "total_email_full_reply_suggestions_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "two-day-daily",
+    "cluster": "events",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "total_note_taking_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "two-day-daily",
+    "cluster": "events",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "total_gw_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.truncated_time": "2026-10-01 00:00:00",
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_sent_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "two-day-daily",
+    "cluster": "events",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "1",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "KB search",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Hints",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1",
+        "conversation_time": "2026-10-01 00:00:00.000000",
+        "aht_sec": 0
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "main",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "main",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "main",
+    "feature": "GenAI",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "main",
+    "feature": "Summary",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "main",
+    "feature": "GenAI",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.truncated_time": "2026-10-01 00:00:00",
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "main",
+    "feature": "Summary",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "main",
+    "feature": "GenAI",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.truncated_time": "2026-10-01 00:00:00",
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "Aligned",
+    "revision": "main",
+    "feature": "Summary",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_suggestions_count": "3",
+        "total_email_piecemeal_suggestions_count": "0",
+        "total_email_full_reply_suggestions_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_note_taking_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_gw_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_sent_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "1",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "KB search",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Hints",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MetadataDoesNotMatch",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1",
+        "conversation_time": "2026-10-01 00:00:00.000000",
+        "aht_sec": 0
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "0",
+        "gen_ai_answer_used_count": "0",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "0",
+        "used_summarization_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "0"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "0",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "KB search",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "Hints",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeStartMicrosecond",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1",
+        "conversation_time": "2026-10-01 00:00:00.000000",
+        "aht_sec": 0
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_suggestions_count": "3",
+        "total_email_piecemeal_suggestions_count": "0",
+        "total_email_full_reply_suggestions_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_note_taking_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_gw_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_sent_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "0",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "KB search",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "Hints",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "BeforeEndMicrosecond",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1",
+        "conversation_time": "2026-10-01 00:00:00.000000",
+        "aht_sec": 0
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "0",
+        "gen_ai_answer_used_count": "0",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "0",
+        "used_summarization_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "0"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "0",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "KB search",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "Hints",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "AtEnd",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1",
+        "conversation_time": "2026-10-01 00:00:00.000000",
+        "aht_sec": 0
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "0",
+        "gen_ai_answer_used_count": "0",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "0",
+        "used_summarization_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "0"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "0",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "KB search",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "Hints",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimePlusSevenDays",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1",
+        "conversation_time": "2026-10-01 00:00:00.000000",
+        "aht_sec": 0
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "0",
+        "gen_ai_answer_used_count": "0",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "0",
+        "used_summarization_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "0"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "0",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "KB search",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "Hints",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CopiedTimeMinusFourteenDays",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1",
+        "conversation_time": "2026-10-01 00:00:00.000000",
+        "aht_sec": 0
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_suggestions_count": "3",
+        "total_email_piecemeal_suggestions_count": "0",
+        "total_email_full_reply_suggestions_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_note_taking_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_gw_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_sent_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "1",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "KB search",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "Hints",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "ArrivalFourteenDaysLater",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1",
+        "conversation_time": "2026-10-01 00:00:00.000000",
+        "aht_sec": 0
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_suggestions_count": "3",
+        "total_email_piecemeal_suggestions_count": "0",
+        "total_email_full_reply_suggestions_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_note_taking_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_gw_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_sent_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "1",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "KB search",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "Hints",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1",
+        "conversation_time": "2026-10-01 00:00:00.000000",
+        "aht_sec": 0
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "main",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "SummarySplitTimes",
+    "revision": "main",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_suggestions_count": "3",
+        "total_email_piecemeal_suggestions_count": "0",
+        "total_email_full_reply_suggestions_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_sent_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_suggestions_count": "3",
+        "total_email_piecemeal_suggestions_count": "0",
+        "total_email_full_reply_suggestions_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_note_taking_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_gw_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "1",
+        "gen_ai_answer_used_count": "1",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_sent_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "include",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "exclude",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "both",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "KB search",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Hints",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingEventsConversation",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1",
+        "conversation_time": "2026-10-01 00:00:00.000000",
+        "aht_sec": 0
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_suggestions_count": "3",
+        "total_email_piecemeal_suggestions_count": "0",
+        "total_email_full_reply_suggestions_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_note_taking_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_gw_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "1",
+        "used_summarization_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_sent_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "1",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "KB search",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "Hints",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "MissingMessage",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "0",
+        "gen_ai_answer_used_count": "0",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "0",
+        "used_summarization_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "0"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "none",
+    "cluster": "events",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "0",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "daily",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "daily",
+    "cluster": "events",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.truncated_time": "2026-10-01 00:00:00",
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "0",
+        "gen_ai_answer_used_count": "0",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "generated_summarization_count": "0",
+        "used_summarization_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "0"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "daily",
+    "cluster": "events",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "0",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-02 00:00:00",
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Suggestions",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-02 00:00:00",
+        "agent_user_id": "1",
+        "total_suggestions_count": "3",
+        "total_email_piecemeal_suggestions_count": "0",
+        "total_email_full_reply_suggestions_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "two-day-daily",
+    "cluster": "events",
+    "rows": [
+      {
+        "truncated_time": "2026-10-02 00:00:00",
+        "agent_user_id": "1",
+        "total_note_taking_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Workflow",
+    "mode": "two-day-daily",
+    "cluster": "events",
+    "rows": [
+      {
+        "truncated_time": "2026-10-02 00:00:00",
+        "agent_user_id": "1",
+        "total_gw_used_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.truncated_time": "2026-10-01 00:00:00",
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "0",
+        "gen_ai_answer_used_count": "0",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "generated_summarization_count": "0",
+        "used_summarization_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "HintsMoment",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-02 00:00:00",
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_sent_count": "1",
+        "hint_followed_count": "2"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "HintsAction",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "LegacyAssistance",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "user_count": "1",
+        "hint_followed_count": "0"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Adherences",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-02 00:00:00",
+        "agent_user_id": "1",
+        "convo_count": "1",
+        "sdx_count": "1",
+        "ddx_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "SmartCompose",
+    "mode": "two-day-daily",
+    "cluster": "events",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "sum(total_smart_compose_used_count)": "0",
+        "max(convo_count)": "1",
+        "max(user_count)": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "KB search",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Chat Suggestions",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "GenAI",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Summary",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Hints",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Notes",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Guided Workflow",
+    "mode": "new",
+    "cluster": "events",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1",
+        "conversation_time": "2026-10-01 00:00:00.000000",
+        "aht_sec": 0
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "main",
+    "feature": "GenAI",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "0",
+        "gen_ai_answer_used_count": "0",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "main",
+    "feature": "Summary",
+    "mode": "none",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "generated_summarization_count": "0",
+        "used_summarization_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "main",
+    "feature": "GenAI",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.truncated_time": "2026-10-01 00:00:00",
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "0",
+        "gen_ai_answer_used_count": "0",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "main",
+    "feature": "Summary",
+    "mode": "daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "generated_summarization_count": "0",
+        "used_summarization_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "main",
+    "feature": "GenAI",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "messages.truncated_time": "2026-10-01 00:00:00",
+        "messages.agent_user_id": "1",
+        "gen_ai_answer_viewed_count": "0",
+        "gen_ai_answer_used_count": "0",
+        "knowledge_moments_detected_count": "0",
+        "messages.user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "CrossDayCopies",
+    "revision": "main",
+    "feature": "Summary",
+    "mode": "two-day-daily",
+    "cluster": "conv",
+    "rows": [
+      {
+        "truncated_time": "2026-10-01 00:00:00",
+        "agent_user_id": "1",
+        "generated_summarization_count": "0",
+        "used_summarization_count": "0",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "LatestConversationMovedOutside",
+    "revision": "pr",
+    "feature": "Population",
+    "mode": "new",
+    "cluster": "conv",
+    "rows": [
+      {
+        "conversation_id": "c",
+        "agent_user_id": "1",
+        "conversation_time": "2026-10-01 00:00:00.000000",
+        "aht_sec": 0
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "FractionalBeforeStart",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "fractional",
+    "cluster": "conv",
+    "rows": [
+      {
+        "agent_user_id": "1",
+        "total_kb_search_count": "1",
+        "convo_count": "1",
+        "user_count": "1"
+      }
+    ],
+    "error": null
+  },
+  {
+    "scenario": "FractionalBeforeEnd",
+    "revision": "pr",
+    "feature": "KB",
+    "mode": "fractional",
+    "cluster": "conv",
+    "rows": [],
+    "error": null
+  }
+]

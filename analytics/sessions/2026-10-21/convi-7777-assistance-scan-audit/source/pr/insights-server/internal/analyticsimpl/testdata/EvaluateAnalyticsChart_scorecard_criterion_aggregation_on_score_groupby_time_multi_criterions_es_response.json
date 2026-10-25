@@ -1,0 +1,114 @@
+{
+  "took": 16,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "buckets": [
+        {
+          "key_as_string": "2024-07-01T00:00:00.000Z",
+          "key": 1719792000000,
+          "doc_count": 9223,
+          "bucket_aggs": {
+            "doc_count": 269275,
+            "bucket_aggs": {
+              "doc_count": 0,
+              "bucket_aggs": {
+                "doc_count": 0,
+                "bucket_aggs": {
+                  "buckets": [
+                    {
+                      "doc_count": 0,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 0.11
+                      }
+                    },
+                    {
+                      "doc_count": 0,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 0.12
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "key_as_string": "2024-08-01T00:00:00.000Z",
+          "key": 1722470400000,
+          "doc_count": 10209,
+          "bucket_aggs": {
+            "doc_count": 303846,
+            "bucket_aggs": {
+              "doc_count": 0,
+              "bucket_aggs": {
+                "doc_count": 0,
+                "bucket_aggs": {
+                  "buckets": [
+                    {
+                      "doc_count": 0,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 0.21
+                      }
+                    },
+                    {
+                      "doc_count": 0,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 0.22
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "key_as_string": "2024-09-01T00:00:00.000Z",
+          "key": 1725148800000,
+          "doc_count": 12526,
+          "bucket_aggs": {
+            "doc_count": 401930,
+            "bucket_aggs": {
+              "doc_count": 0,
+              "bucket_aggs": {
+                "doc_count": 0,
+                "bucket_aggs": {
+                  "buckets": [
+                    {
+                      "doc_count": 0,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 0.31
+                      }
+                    },
+                    {
+                      "doc_count": 0,
+                      "metrics_agg_on_numeric_field": {
+                        "value": 0.32
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

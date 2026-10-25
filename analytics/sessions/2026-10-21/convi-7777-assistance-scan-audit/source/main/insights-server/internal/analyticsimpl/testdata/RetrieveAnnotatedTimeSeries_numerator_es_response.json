@@ -1,0 +1,603 @@
+{
+  "aggregations": {
+    "time_ranges": {
+      "buckets": [
+        {
+          "key": 1656633600000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 106
+              },
+              {
+                "doc_count": 226
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1656720000000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 107
+              },
+              {
+                "doc_count": 222
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1656806400000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 108
+              },
+              {
+                "doc_count": 218
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1656892800000,
+          "doc_count": 2,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 1
+              },
+              {
+                "doc_count": 1
+              },
+              {
+                "doc_count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": 1656979200000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 110
+              },
+              {
+                "doc_count": 210
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657065600000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 111
+              },
+              {
+                "doc_count": 206
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657152000000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 112
+              },
+              {
+                "doc_count": 202
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657238400000,
+          "doc_count": 2000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 113
+              },
+              {
+                "doc_count": 198
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657324800000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 114
+              },
+              {
+                "doc_count": 194
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657411200000,
+          "doc_count": 2000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 115
+              },
+              {
+                "doc_count": 190
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657497600000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 116
+              },
+              {
+                "doc_count": 186
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657584000000,
+          "doc_count": 2000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 117
+              },
+              {
+                "doc_count": 182
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657670400000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 118
+              },
+              {
+                "doc_count": 178
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657756800000,
+          "doc_count": 2000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 119
+              },
+              {
+                "doc_count": 174
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657843200000,
+          "doc_count": 5000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 120
+              },
+              {
+                "doc_count": 170
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1657929600000,
+          "doc_count": 5000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 125
+              },
+              {
+                "doc_count": 166
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1658016000000,
+          "doc_count": 5000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 130
+              },
+              {
+                "doc_count": 162
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1658102400000,
+          "doc_count": 5000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 135
+              },
+              {
+                "doc_count": 158
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1658188800000,
+          "doc_count": 5000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 140
+              },
+              {
+                "doc_count": 154
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1658275200000,
+          "doc_count": 5000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 145
+              },
+              {
+                "doc_count": 150
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1658361600000,
+          "doc_count": 5000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 150
+              },
+              {
+                "doc_count": 146
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1658448000000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 155
+              },
+              {
+                "doc_count": 142
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1658534400000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 160
+              },
+              {
+                "doc_count": 138
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1658620800000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 165
+              },
+              {
+                "doc_count": 134
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1658707200000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 170
+              },
+              {
+                "doc_count": 130
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1658793600000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 175
+              },
+              {
+                "doc_count": 126
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1658880000000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 180
+              },
+              {
+                "doc_count": 122
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1658966400000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 185
+              },
+              {
+                "doc_count": 118
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1659052800000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 190
+              },
+              {
+                "doc_count": 114
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1659139200000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 195
+              },
+              {
+                "doc_count": 110
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1659225600000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 200
+              },
+              {
+                "doc_count": 106
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1659312000000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 205
+              },
+              {
+                "doc_count": 102
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1659398400000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 210
+              },
+              {
+                "doc_count": 98
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1659484800000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 215
+              },
+              {
+                "doc_count": 94
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        },
+        {
+          "key": 1659571200000,
+          "doc_count": 1000,
+          "moments": {
+            "buckets": [
+              {
+                "doc_count": 220
+              },
+              {
+                "doc_count": 90
+              },
+              {
+                "doc_count": 150
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+[
+  "packages/director-api/src/hooks/queryUtils.ts",
+  "packages/director-api/src/services/cresta-api/insights/apiTypes.ts",
+  "packages/director-api/src/services/cresta-api/insights/insightsApi.ts",
+  "packages/director-api/src/services/cresta-api/insights/transformers.ts",
+  "packages/director-app/locales/en-US/director-app-insights.json",
+  "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/AssistanceUsedLeaderboardContainer.tsx",
+  "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/AssistanceUsedLeaderboard.tsx",
+  "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsedByAgentLeaderboard.tsx",
+  "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsedByTeamLeaderboard.tsx",
+  "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useVisibleColumnsForAssistanceUsedLeaderboards.tsx",
+  "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/types.ts",
+  "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/utils.tsx",
+  "packages/director-api/src/services/cresta-api/insights/conversationAssistanceUsage.test.ts",
+  "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsageColumn.test.tsx",
+  "packages/director-app/src/features/insights/assistance/api/conversationAssistanceUsageStatsQuery.ts"
+]

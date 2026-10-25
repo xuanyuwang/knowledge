@@ -1,0 +1,39 @@
+{
+  "_source": {
+    "includes": [
+      "conversation_id",
+      "moment_annotations",
+      "message_count"
+    ]
+  },
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "range": {
+            "conversation_started_at": {
+              "gte": "2022-04-13T00:00:00Z",
+              "lt": "2022-07-13T00:00:00Z",
+              "time_zone": "UTC"
+            }
+          }
+        },
+        {
+          "range": {
+            "message_count": {
+              "gt": 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    {
+      "conversation_ended_at": {
+        "format": "strict_date_optional_time_nanos",
+        "order": "desc"
+      }
+    }
+  ]
+} 

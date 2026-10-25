@@ -1,0 +1,32 @@
+{
+    "took": 165,
+    "timed_out": false,
+    "_shards": {
+        "total": 12,
+        "successful": 12,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 200,
+            "relation": "eq"
+        },
+        "max_score": null,
+        "hits": []
+    },
+    "aggregations": {
+        "agents": {
+            "buckets": [
+                {
+                    "key": "agent_id_1",
+                    "doc_count": 50
+                },
+                {
+                    "key": "agent_id_2",
+                    "doc_count": 150
+                }
+            ]
+        }
+    }
+}

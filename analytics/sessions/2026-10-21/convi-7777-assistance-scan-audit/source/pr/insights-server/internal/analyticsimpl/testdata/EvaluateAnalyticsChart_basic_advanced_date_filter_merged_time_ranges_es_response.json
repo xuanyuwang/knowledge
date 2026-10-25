@@ -1,0 +1,39 @@
+{
+  "took": 17,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 100,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "buckets": [
+        {
+          "key_as_string": "2024-06-30T00:00:00.000Z",
+          "key": 1719705600000,
+          "doc_count": 11
+        },
+        {
+          "key_as_string": "2024-07-07T00:00:00.000Z",
+          "key": 1720310400000,
+          "doc_count": 22
+        },
+        {
+          "key_as_string": "2024-07-14T00:00:00.000Z",
+          "key": 1720915200000,
+          "doc_count": 33
+        }
+      ]
+    }
+  }
+}

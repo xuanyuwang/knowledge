@@ -1,0 +1,40 @@
+{
+    "took": 133,
+    "timed_out": false,
+    "_shards": {
+        "total": 12,
+        "successful": 12,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 10000,
+            "relation": "gte"
+        },
+        "max_score": null,
+        "hits": []
+    },
+    "aggregations": {
+        "time_ranges": {
+            "buckets": [
+                {
+                    "key_as_string": "2022-06-05T00:00:00.000Z",
+                    "key": 1654387200000,
+                    "doc_count": 200,
+                    "ddx": {
+                        "doc_count": 20
+                    }
+                },
+                {
+                    "key_as_string": "2022-06-12T00:00:00.000Z",
+                    "key": 1654992000000,
+                    "doc_count": 100,
+                    "ddx": {
+                        "doc_count": 20
+                    }
+                }
+            ]
+        }
+    }
+}

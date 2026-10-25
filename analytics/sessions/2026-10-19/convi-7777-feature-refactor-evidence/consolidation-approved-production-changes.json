@@ -1,0 +1,10 @@
+{
+  "summary-genai": {
+    "paths": {
+      "insights-server/internal/analyticsimpl/common_knowledge_assist_usage_clickhouse.go": "af6a2cb63876a802139a3b9732c9216f338a5cfdb6e6ae794752fdfcb117d369"
+    },
+    "reason": "Frozen real-RPC metadata include/exclude test passed baseline and failed extracted wildcard projection. Explicit canonical projections restore outer aggregate column names; supported grouping guard permits only agent/time. No predicate, argument, row-grain or test change.",
+    "reviewer": "root",
+    "diff": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/genai-explicit-projection-fix.diff"
+  }
+}

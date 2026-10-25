@@ -1,0 +1,109 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "conversation"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "range": {
+                        "message_count": {
+                            "gt": 0
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "bool": {
+                                            "filter": [
+                                                {
+                                                    "range": {
+                                                        "conversation_started_at": {
+                                                            "gte": "2024-07-01T00:00:00Z",
+                                                            "lt": "2024-07-15T00:00:00Z",
+                                                            "time_zone": "+00:00"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "terms": {
+                                                        "truncated_day_of_week": [
+                                                            1,
+                                                            2,
+                                                            3
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "range": {
+                                                        "truncated_minute_of_day": {
+                                                            "gte": 540,
+                                                            "lt": 1020
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "bucket_aggs": {
+            "date_histogram": {
+                "field": "conversation_started_at",
+                "time_zone": "+00:00",
+                "offset": "-1d",
+                "calendar_interval": "week",
+                "min_doc_count": 0,
+                "extended_bounds": {
+                    "min": "2024-07-01T00:00:00Z",
+                    "max": "2024-07-15T00:00:00Z"
+                }
+            }
+        }
+    },
+    "runtime_mappings": {
+        "truncated_day_of_week": {
+            "type": "long",
+            "script": {
+                "source": "def z=params.tz; def id=(z.startsWith('+')||z.startsWith('-')) ? ZoneOffset.of(z) : ZoneId.of(z); def v=doc['conversation_started_at'].value.withZoneSameInstant(id); emit(v.getDayOfWeek().getValue())",
+                "params": {
+                    "tz": "UTC"
+                }
+            }
+        },
+        "truncated_minute_of_day": {
+            "type": "long",
+            "script": {
+                "source": "def z=params.tz; def id=(z.startsWith('+')||z.startsWith('-')) ? ZoneOffset.of(z) : ZoneId.of(z); def v=doc['conversation_started_at'].value.withZoneSameInstant(id); emit(v.getHour()*60 + v.getMinute())",
+                "params": {
+                    "tz": "UTC"
+                }
+            }
+        }
+    }
+}

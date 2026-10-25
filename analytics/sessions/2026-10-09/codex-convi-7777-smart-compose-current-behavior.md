@@ -1,0 +1,11 @@
+# CONVI-7777 Smart Compose conversation linkage
+
+**Question:** EA asks whether chat Smart Compose can currently be tied to a conversation and directs exclusion if not.
+
+**Source context:** `/Users/xuanyu.wang/repos/go-servers` `origin/main` `48d308822e90e17d2ca190987220601601ee9d97`; related `/Users/xuanyu.wang/repos/cresta-proto` `origin/main` `40941b12b272b98c6000b4d528b77e4150fa9f55`. Read-only source inspection; no production query.
+
+**Result:** `RetrieveSmartComposeStats` reads legacy `analytics_event_d` `ChatAgentAssist.SmartCompose.Insert.SmartComposeText` events and joins them to `conversation_d` using agent ID and the hour of event/conversation start (`retrieve_smart_compose_stats_clickhouse.go:39-99`). It cannot identify which of an agent's conversations used Smart Compose, and the source comment explicitly acknowledges the missing direct mapping. Separately, the public conversation event contract defines `USED_SMART_COMPOSE` with conversation linkage and `text_length`/`used_text_length` (`event.proto:333-339,1052-1065,1261-1273`). That newer event is not the basis of the current stats RPC; source inspection does not establish deployed coverage or historical completeness. The conversations-cluster projection drops `used_text_length` as documented in the earlier API audit.
+
+**Clarification after initial answer:** The newer events-cluster `ConversationEventRow` stores `conversation_id`, `agent_user_id`, `event_type`, and `event_payload`; the Smart Compose converter preserves `used_text_length` (`shared/clickhouse/events/event.go:102-115,525-554`; `converters.go:199-209`). Thus a new query can technically establish membership for conversations with recorded `USED_SMART_COMPOSE` events. Counting insertion needs event existence; a retained-text rule needs the payload. Current stats remain agent/hour based. Historical event coverage, filter parity against the denominator, and the product predicate are unverified.
+
+**Scope state:** EA's exclusion request was conditional on conversation linkage being impossible. Because newer stored events have that linkage, treat inclusion as deferred pending a corrected PM discussion. Existing SmartComposeStats may continue powering its separate page statistic; no product code changed.

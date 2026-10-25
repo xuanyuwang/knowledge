@@ -1,0 +1,33 @@
+{
+	"took": 91,
+	"timed_out": false,
+	"_shards": {
+		"total": 12,
+		"successful": 12,
+		"skipped": 0,
+		"failed": 0
+	},
+	"hits": {
+		"total": {
+			"value": 10000,
+			"relation": "gte"
+		},
+		"max_score": null,
+		"hits": []
+	},
+	"aggregations": {
+		"moments": {
+			"doc_count": 2,
+			"moment_annotations": {
+				"doc_count": 2,
+				"payload_value": {
+					"count": 2,
+					"min": 1.0,
+					"max": 2.0,
+					"avg": 1.5,
+					"sum": 3.0
+				}
+			}
+		}
+	}
+}

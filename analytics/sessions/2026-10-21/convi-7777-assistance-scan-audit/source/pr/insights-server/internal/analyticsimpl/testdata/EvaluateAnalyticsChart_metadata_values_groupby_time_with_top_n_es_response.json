@@ -1,0 +1,96 @@
+{
+  "took": 5,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 100,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "buckets": [
+        {
+          "key_as_string": "2026-04-26T00:00:00.000-04:00",
+          "key": 1745640000000,
+          "doc_count": 60,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "doc_count": 5
+              },
+              {
+                "doc_count": 10
+              },
+              {
+                "doc_count": 8
+              },
+              {
+                "doc_count": 6
+              },
+              {
+                "doc_count": 6
+              }
+            ]
+          }
+        },
+        {
+          "key_as_string": "2026-05-03T00:00:00.000-04:00",
+          "key": 1746244800000,
+          "doc_count": 40,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "doc_count": 3
+              },
+              {
+                "doc_count": 7
+              },
+              {
+                "doc_count": 5
+              },
+              {
+                "doc_count": 4
+              },
+              {
+                "doc_count": 4
+              }
+            ]
+          }
+        },
+        {
+          "key_as_string": "2026-05-10T00:00:00.000-04:00",
+          "key": 1746849600000,
+          "doc_count": 30,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "doc_count": 2
+              },
+              {
+                "doc_count": 5
+              },
+              {
+                "doc_count": 4
+              },
+              {
+                "doc_count": 3
+              },
+              {
+                "doc_count": 3
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

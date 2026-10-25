@@ -1,0 +1,102 @@
+{
+    "took": 133,
+    "timed_out": false,
+    "_shards": {
+        "total": 12,
+        "successful": 12,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 10000,
+            "relation": "gte"
+        },
+        "max_score": null,
+        "hits": []
+    },
+    "aggregations": {
+        "time_ranges": {
+            "buckets": [
+                {
+                    "key_as_string": "2022-06-05T00:00:00.000Z",
+                    "key": 1654387200000,
+                    "doc_count": 1844,
+                    "agents": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "key": "user1",
+                                "doc_count": 200,
+                                "ddx": {
+                                    "doc_count": 20
+                                }
+                            },
+                            {
+                                "key": "user2",
+                                "doc_count": 100,
+                                "ddx": {
+                                    "doc_count": 10
+                                }
+                            },
+                            {
+                                "key": "user3",
+                                "doc_count": 50,
+                                "ddx": {
+                                    "doc_count": 10
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "key_as_string": "2022-06-12T00:00:00.000Z",
+                    "key": 1654992000000,
+                    "doc_count": 2315,
+                    "agents": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "key": "user1",
+                                "doc_count": 100,
+                                "ddx": {
+                                    "doc_count": 20
+                                }
+                            },
+                            {
+                                "key": "user2",
+                                "doc_count": 100,
+                                "ddx": {
+                                    "doc_count": 30
+                                }
+                            },
+                            {
+                                "key": "user3",
+                                "doc_count": 40,
+                                "ddx": {
+                                    "doc_count": 10
+                                }
+                            },
+                            {
+                                "key": "user4",
+                                "doc_count": 60,
+                                "ddx": {
+                                    "doc_count": 40
+                                }
+                            },
+                            {
+                                "key": "user5",
+                                "doc_count": 88,
+                                "ddx": {
+                                    "doc_count": 66
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}

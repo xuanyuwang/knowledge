@@ -1,0 +1,153 @@
+{
+    "took": 1250,
+    "timed_out": false,
+    "_shards": {
+        "total": 12,
+        "successful": 12,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 10000,
+            "relation": "gte"
+        },
+        "max_score": 0
+    },
+    "aggregations": {
+        "moments": {
+            "buckets": [
+                {
+                    "doc_count": 48101,
+                    "annotation_hit": {
+                        "hits": {
+                            "total": {
+                                "value": 48101,
+                                "relation": "eq"
+                            },
+                            "max_score": 0,
+                            "hits": [
+                                {
+                                    "_index": "customer_id-profile_id-conversations-v2",
+                                    "_id": "c5687914-65eb-459a-b521-e5cfada062d0-b8bf54e2-b2a1-4e32-94ff-ebd1c39c8032",
+                                    "_score": 0,
+                                    "_routing": "c5687914-65eb-459a-b521-e5cfada062d0",
+                                    "_source": {
+                                        "moment_annotations": [
+                                            {
+                                                "moment_annotation_id": "d8d4c891-e989-4e24-83f4-33b3841032c4",
+                                                "moment_template_id": "manual_kpi_1",
+                                                "payload": {
+                                                    "conversationMetadataPayload": {
+                                                        "values": [
+                                                            {
+                                                                "numberValue": 0.31
+                                                            }
+                                                        ],
+                                                        "source": "CONVERSATION_METADATA_SOURCE_FILE",
+                                                        "metadataType": "METADATA_TYPE_CUSTOM_NUMBER"
+                                                    }
+                                                },
+                                                "taxonomy": "custom.outcome.kpi1_anbp_per_sec",
+                                                "display_name": "Manual KPI 1",
+                                                "type": 19
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "total_conversation_message_count": {
+                        "value": 48271
+                    },
+                    "total_conversation_count": {
+                        "value": 174
+                    },
+                    "total_conversation_handle_time_secs_sum": {
+                        "value": 1740
+                    }
+                },
+                {
+                    "doc_count": 764901,
+                    "annotation_hit": {
+                        "hits": {
+                            "total": {
+                                "value": 764901,
+                                "relation": "eq"
+                            },
+                            "max_score": 0,
+                            "hits": [
+                                {
+                                    "_index": "customer_id-profile_id-conversations-v2",
+                                    "_id": "fa7bc8ad-49a8-4b6f-86ac-38f30cdb5264-ef695eb3-ffd7-40bf-9e25-2fca5155a81b",
+                                    "_score": 0,
+                                    "_routing": "fa7bc8ad-49a8-4b6f-86ac-38f30cdb5264",
+                                    "_source": {
+                                        "moment_annotations": [
+                                            {
+                                                "moment_annotation_id": "f57bd804-92c5-4be2-91af-1519351445d1",
+                                                "moment_template_id": "manual_kpi_2",
+                                                "payload": {
+                                                    "metadata": {},
+                                                    "conversationMetadataPayload": {
+                                                        "values": [
+                                                            {
+                                                                "numberValue": 155.4
+                                                            }
+                                                        ],
+                                                        "source": "CONVERSATION_METADATA_SOURCE_FILE",
+                                                        "metadataType": "METADATA_TYPE_CUSTOM_NUMBER"
+                                                    }
+                                                },
+                                                "taxonomy": "custom.outcome.kpi2_anbp",
+                                                "display_name": "Manual KPI 2",
+                                                "type": 19
+                                            },
+                                            {
+                                                "moment_annotation_id": "73af76c0-7deb-4b04-b1ba-fe541c1fb85c",
+                                                "moment_template_id": "manual_kpi_1",
+                                                "payload": {
+                                                    "conversationMetadataPayload": {
+                                                        "values": [
+                                                            {
+                                                                "numberValue": 1.76
+                                                            }
+                                                        ],
+                                                        "source": "CONVERSATION_METADATA_SOURCE_FILE",
+                                                        "metadataType": "METADATA_TYPE_CUSTOM_NUMBER"
+                                                    }
+                                                },
+                                                "taxonomy": "custom.outcome.kpi1_anbp_per_sec",
+                                                "display_name": "Manual KPI 1",
+                                                "type": 19
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "total_conversation_message_count": {
+                        "value": 767432
+                    },
+                    "total_conversation_count": {
+                        "value": 2995
+                    },
+                    "total_conversation_handle_time_secs_sum": {
+                        "value": 29950
+                    }
+                }
+            ]
+        },
+        "total_conversation_message_count": {
+            "value": 815300
+        },
+        "total_conversation_count": {
+            "value": 3169
+        },
+        "total_conversation_handle_time_secs_sum": {
+            "value": 31690
+        }
+    }
+}

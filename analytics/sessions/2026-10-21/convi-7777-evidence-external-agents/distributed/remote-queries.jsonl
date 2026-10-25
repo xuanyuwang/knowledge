@@ -1,0 +1,49 @@
+{"query":"SELECT `conversation_event`.`conversation_id` AS `conversation_id`, `conversation_event`.`agent_user_id` AS `agent_user_id`, `event_type` FROM `convs`.`conversation_event` WHERE ((`agent_user_id` != '') AND (`agent_user_id` IN ((SELECT `user_id` FROM `assistance_usage_agents`) AS `_subquery16`))) AND (`event_type` = 13)"}
+{"query":"SELECT `conversation_event`.`conversation_id` AS `conversation_id`, `conversation_event`.`agent_user_id` AS `agent_user_id`, `event_type` FROM `convs`.`conversation_event` WHERE ((`agent_user_id` != '') AND (`agent_user_id` IN ((SELECT `user_id` FROM `assistance_usage_agents`) AS `_subquery32`))) AND (`event_type` IN (4, 5, 10))"}
+{"query":"SELECT `moment_annotation`.`conversation_id` AS `conversation_id`, `moment_annotation`.`agent_user_id` AS `agent_user_id` FROM `convs`.`moment_annotation` WHERE ((`conversation_source` IN (0, 8)) AND (`is_dev_user` = 0) AND (`agent_user_id` != '') AND ((`moment_annotation`.`knowledge_payload_knowledge_session_id` AS `knowledge_payload_knowledge_session_id`) != '') AND ((`moment_annotation`.`moment_type` AS `moment_type`) = 38) AND (`agent_user_id` IN ((SELECT `user_id` FROM `assistance_usage_agents`) AS `_subquery48`))) AND true"}
+{"query":"SELECT DISTINCT `conversation_id`, `conversation_start_time`, `agent_user_id` FROM `convs`.`conversation_event` WHERE (`agent_user_id` != '') AND (`event_type` = 16) AND (`summarization_payload_data_type` IN (1, 2)) AND (`agent_user_id` IN ((SELECT `user_id` FROM `assistance_usage_agents`) AS `_subquery73`))"}
+{"query":"SELECT DISTINCT `conversation_id`, `conversation_start_time`, `agent_user_id` FROM `convs`.`action_annotation` WHERE (`agent_user_id` != '') AND (`summarization_payload_is_valid_summary` = 1) AND (`agent_user_id` IN ((SELECT `user_id` FROM `assistance_usage_agents`) AS `_subquery74`))"}
+{"query":"SELECT `moment_annotation`.`conversation_id` AS `conversation_id`, `moment_annotation`.`agent_user_id` AS `agent_user_id`, `moment_annotation`.`adherence_action_type` AS `adherence_action_type`, `moment_annotation`.`adherence_action_adherence_type` AS `adherence_action_adherence_type` FROM `convs`.`moment_annotation` WHERE (((`moment_annotation`.`adherence_type` AS `adherence_type`) = 2) AND ((`moment_annotation`.`adherence_action_annotation_id` AS `adherence_action_annotation_id`) != '') AND ((`conversation_source` IN (0, 8, 7)) OR (`conversation_source` IS NULL)) AND (`adherence_action_policy_source_type` = 1) AND (`is_dev_user` = 0) AND (`agent_user_id` != '') AND (`agent_user_id` IN ((SELECT `user_id` FROM `assistance_usage_agents`) AS `_subquery109`))) AND (((`adherence_action_type` = 1) AND (`adherence_action_adherence_type` = 1)) OR (`adherence_action_type` = 21))"}
+{"query":"SELECT `conversation_event`.`conversation_id` AS `conversation_id`, `conversation_event`.`agent_user_id` AS `agent_user_id`, `conversation_event`.`action_type` AS `action_type` FROM `convs`.`conversation_event` WHERE (((`conversation_event`.`event_type` AS `event_type`) = 9) AND ((`conversation_source` IN (0, 8, 7)) OR (`conversation_source` IS NULL)) AND (`action_policy_source_type` = 1) AND (`is_dev_user` = 0) AND (`agent_user_id` != '') AND (`agent_user_id` IN ((SELECT `user_id` FROM `assistance_usage_agents`) AS `_subquery110`))) AND (`action_type` IN (13, 14))"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"SELECT DISTINCT `agent_user_id`, `conversation_id`, `conversation_start_time`, `event_type`, `event_name`, `event_id` FROM `events`.`conversation_event` WHERE ((`agent_user_id` != '') AND (`agent_user_id` IN ((SELECT `user_id` FROM `assistance_usage_agents`) AS `_subquery149`))) AND ((`event_type` = 5) AND (`event_name` = 'VoiceAgentAssist.NoteTaking.Click.CopyEntity'))"}
+{"query":"SELECT DISTINCT `conversation_id` FROM `events`.`conversation` WHERE (`agent_user_id` != '') AND (`agent_user_id` IN ((SELECT `user_id` FROM `assistance_usage_agents`) AS `_subquery150`))"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"DESC TABLE events.conversation_event"}
+{"query":"SELECT DISTINCT `agent_user_id`, `conversation_id`, `conversation_start_time`, `event_type`, `event_name`, JSONExtractString(JSONExtractString(toJSONString(`event_payload`), 'usedKbDocument'), 'document') AS `guided_workflow_name`, JSONExtractString(JSONExtractString(toJSONString(`event_payload`), 'usedKbDocument'), 'docType') AS `doc_type`, JSONExtractString(JSONExtractString(JSONExtractString(toJSONString(`event_payload`), 'usedKbDocument'), 'sessionMetadata'), 'sessionId') AS `session_metadata_id` FROM `events`.`conversation_event` WHERE ((`agent_user_id` != '') AND (`agent_user_id` IN ((SELECT `user_id` FROM `assistance_usage_agents`) AS `_subquery189`))) AND (((`doc_type` = '2') AND (`guided_workflow_name` != '')) AND (`event_type` = 4))"}
+{"query":"SELECT DISTINCT `conversation_id` FROM `events`.`conversation` WHERE (`agent_user_id` != '') AND (`agent_user_id` IN ((SELECT `user_id` FROM `assistance_usage_agents`) AS `_subquery190`))"}

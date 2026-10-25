@@ -1,0 +1,171 @@
+{
+  "took": 231,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 12345,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": [
+      {
+        "_index": "customer-profile-conversations-v2",
+        "_id": "conversation_id_1-message_id_1",
+        "_score": null,
+        "_routing": "conversation_id_1",
+        "_source": {
+          "customer_id": "customer",
+          "profile_id": "profile",
+          "usecase_id": "usecase-1",
+          "agent": 12345,
+          "agent_user_id": "12345",
+          "agent_name": "Test Agent",
+          "agent_is_dev_user": false,
+          "agent_type": 0,
+          "chat_id": 1,
+          "message_id": 1,
+          "conversation_id": "conversation_id_1",
+          "conversation_message_id": "message_id_1",
+          "platform_conversation_id": "plat_conversation_id_1",
+          "platform_account_id": "agent_id",
+          "conversation_correlation_id": "123123",
+          "effective_language": "en-US",
+          "conversation_to_message_join": {
+            "name": "message",
+            "parent": "conversation_id_1"
+          },
+          "message_text": "Awesome.",
+          "message_text_whitespace": "Awesome.",
+          "message_text_with_custom_analyzer": {
+            "english": "Awesome."
+          },
+          "speaker_role": "visitor",
+          "conversation_created_at": "2024-12-12T23:46:16.14928Z",
+          "conversation_started_at": "2024-12-12T23:46:16.14928Z",
+          "conversation_ended_at": "2024-12-12T23:54:22.72324Z",
+          "conversation_source": 0,
+          "created_at": "2024-12-12T23:53:43.675346Z",
+          "updated_at": "2024-12-12T23:54:36.471062Z",
+          "platform_timestamp": "2024-12-12T23:53:38.598Z",
+          "message_count": 78,
+          "message_forward_position": 67,
+          "message_backward_position": 10,
+          "handle_time_secs": 0
+        },
+        "sort": [
+          "2024-12-12T23:54:22.723Z",
+          "2024-12-12T23:53:43.675Z"
+        ]
+      },
+      {
+        "_index": "customer-profile-conversations-v2",
+        "_id": "conversation_id_1-message_id_2",
+        "_score": null,
+        "_routing": "conversation_id_1",
+        "_source": {
+          "customer_id": "customer",
+          "profile_id": "profile",
+          "usecase_id": "usecase-1",
+          "agent": 12345,
+          "agent_user_id": "12345",
+          "agent_name": "Test Agent",
+          "agent_is_dev_user": false,
+          "agent_type": 0,
+          "chat_id": 1,
+          "message_id": 1,
+          "conversation_id": "conversation_id_1",
+          "conversation_message_id": "message_id_2",
+          "platform_conversation_id": "plat_conversation_id_1",
+          "platform_account_id": "agent_id",
+          "conversation_correlation_id": "123123",
+          "effective_language": "en-US",
+          "conversation_to_message_join": {
+            "name": "message",
+            "parent": "conversation_id_1"
+          },
+          "message_text": "Cool.",
+          "message_text_whitespace": "Cool.",
+          "message_text_with_custom_analyzer": {
+            "english": "Cool."
+          },
+          "speaker_role": "visitor",
+          "conversation_created_at": "2024-12-12T23:46:16.14928Z",
+          "conversation_started_at": "2024-12-12T23:46:16.14928Z",
+          "conversation_ended_at": "2024-12-12T23:54:22.72324Z",
+          "conversation_source": 0,
+          "created_at": "2024-12-12T23:53:43.675346Z",
+          "updated_at": "2024-12-12T23:54:36.471062Z",
+          "platform_timestamp": "2024-12-12T23:53:38.598Z",
+          "message_count": 78,
+          "message_forward_position": 68,
+          "message_backward_position": 9,
+          "handle_time_secs": 0
+        },
+        "sort": [
+          "2024-12-12T23:54:22.723Z",
+          "2024-12-12T23:53:44.675Z"
+        ]
+      },
+      {
+        "_index": "customer-profile-conversations-v2",
+        "_id": "conversation_id_2-message_id_3",
+        "_score": null,
+        "_routing": "conversation_id_2",
+        "_source": {
+          "customer_id": "customer",
+          "profile_id": "profile",
+          "usecase_id": "usecase-1",
+          "agent": 12345,
+          "agent_user_id": "12345",
+          "agent_name": "Test Agent",
+          "agent_is_dev_user": false,
+          "agent_type": 0,
+          "chat_id": 1,
+          "message_id": 1,
+          "conversation_id": "conversation_id_2",
+          "conversation_message_id": "message_id_3",
+          "platform_conversation_id": "plat_conversation_id_2",
+          "platform_account_id": "agent_id",
+          "conversation_correlation_id": "123123",
+          "effective_language": "en-US",
+          "conversation_to_message_join": {
+            "name": "message",
+            "parent": "conversation_id_2"
+          },
+          "message_text": "Amazing.",
+          "message_text_whitespace": "Amazing.",
+          "message_text_with_custom_analyzer": {
+            "english": "Amazing."
+          },
+          "speaker_role": "visitor",
+          "conversation_created_at": "2024-12-12T23:46:16.14928Z",
+          "conversation_started_at": "2024-12-12T23:46:16.14928Z",
+          "conversation_ended_at": "2024-12-12T23:54:22.72324Z",
+          "conversation_source": 0,
+          "created_at": "2024-12-12T23:53:43.675346Z",
+          "updated_at": "2024-12-12T23:54:36.471062Z",
+          "platform_timestamp": "2024-12-12T23:53:38.598Z",
+          "message_count": 78,
+          "message_forward_position": 69,
+          "message_backward_position": 8,
+          "handle_time_secs": 0
+        },
+        "sort": [
+          "2024-12-12T23:54:21.723Z",
+          "2024-12-12T23:53:23.675Z"
+        ]
+      }
+    ]
+  },
+  "aggregations": {
+    "metrics_conversation_count": {
+      "value": 2
+    }
+  }
+}

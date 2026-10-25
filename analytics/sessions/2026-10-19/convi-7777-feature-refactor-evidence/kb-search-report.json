@@ -1,0 +1,135 @@
+{
+  "group": "kb-search",
+  "tests_worktree": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-feature-regressions/go-servers",
+  "refactor_worktree": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-kb-search-refactor/go-servers",
+  "base_commit": "6ba478ae4d7d7322e6f904dce2eb3f4ff2ea58c9",
+  "tests_commit": "e2392e8254f1b74259a7b286933f63c5e29b0120",
+  "refactor_commit": "782f12c88aa815ae3ce63655b5545352bc80a1f9",
+  "test_files": [
+    {
+      "path": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go",
+      "sha256": "17cb995d15b0954e43d2f0d9a2158e53644b7fba314dc0a0c4f647be90dd6ce2"
+    }
+  ],
+  "commands": [
+    {
+      "stage": "before",
+      "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^TestRetrieveKnowledgeBaseStats$' -count=1 -json",
+      "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/kb-search-merged-before.jsonl",
+      "result": "pass",
+      "elapsed": 186.292,
+      "passed_nodes": 39
+    },
+    {
+      "stage": "after",
+      "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^TestRetrieveKnowledgeBaseStats$' -count=1 -json",
+      "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/kb-search-merged-after.jsonl",
+      "result": "pass",
+      "elapsed": 186.539,
+      "passed_nodes": 39
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "Distinct event IDs",
+      "expected_behavior": "Duplicate physical events count once per event ID; separate event IDs remain separate uses.",
+      "evidence": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go"
+    },
+    {
+      "name": "Denominator-only rows",
+      "expected_behavior": "Unrelated event types contribute conversations and users even with zero feature use.",
+      "evidence": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go"
+    },
+    {
+      "name": "Shared conversation agents",
+      "expected_behavior": "Overall distinct conversations differ from totals produced by agent grouping; preserve both.",
+      "evidence": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go"
+    },
+    {
+      "name": "Selected users",
+      "expected_behavior": "Inline and external-table user filtering select identical covered rows.",
+      "evidence": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go"
+    },
+    {
+      "name": "Time selection and bucketing",
+      "expected_behavior": "Lower-bound inclusive, upper-bound exclusive; Honolulu day and Sunday week buckets remain unchanged.",
+      "evidence": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go"
+    },
+    {
+      "name": "Attribute filters",
+      "expected_behavior": "Language, usecase, duration and voicemail filters retain their original row selection.",
+      "evidence": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go"
+    },
+    {
+      "name": "Source and developer rows",
+      "expected_behavior": "Legacy feature reader accepts source 9 and developer evidence; population eligibility is a separate contract.",
+      "evidence": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go"
+    },
+    {
+      "name": "Latest metadata",
+      "expected_behavior": "Latest metadata value wins; metadata attaches by conversation rather than agent.",
+      "evidence": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go"
+    },
+    {
+      "name": "Excluded metadata join settings",
+      "expected_behavior": "Default join settings drop missing-exclusion rows; join_use_nulls=1 retains them.",
+      "evidence": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go"
+    },
+    {
+      "name": "Multi-day full RPC averages",
+      "expected_behavior": "One agent spans two days; result and response denominators differ.",
+      "evidence": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go"
+    },
+    {
+      "name": "Full RPC responses",
+      "expected_behavior": "Seeded real ClickHouse data exercises daily/weekly grouping, selected/external users, team and agent+team, user enrichment, latest metadata, exclusions and invalid requests.",
+      "evidence": "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_test.go"
+    }
+  ],
+  "extraction": [
+    {
+      "file": "insights-server/internal/analyticsimpl/common_knowledge_base_usage_clickhouse.go",
+      "boundary": "Raw event rows before legacy aggregate",
+      "why": "Select conversation ID, agent ID, conversation start, event ID and event type without filtering out denominator-only events.",
+      "invariants": [
+        "Metadata arguments precede event arguments",
+        "Nonempty agents only",
+        "Original metadata joins and predicates",
+        "All event types retained",
+        "Aggregation and response conversion stay in the old RPC"
+      ]
+    }
+  ],
+  "preserved_issues": [
+    {
+      "title": "Default LEFT JOIN exclusion drops nonmatching rows",
+      "trigger": "An eligible conversation has no excluded metadata row and join_use_nulls=0.",
+      "observed": "The joined String key defaults to empty string; IS NULL is false, so the row is dropped. The same fixture qualifies with join_use_nulls=1.",
+      "scope": "Preexisting metadata exclusion behavior. A correction belongs in shared metadata filter construction with a dedicated before-fix regression case."
+    },
+    {
+      "title": "Feature eligibility differs from conversation population",
+      "trigger": "An event belongs to source 9 or a developer user.",
+      "observed": "Legacy feature statistics retain it. Tests pin this behavior to avoid changing scope during extraction.",
+      "scope": "Future Assistance Usage API must choose its population contract separately."
+    }
+  ],
+  "risks": [
+    "Covered reader and full-RPC scenarios pass on real local ClickHouse; no production performance or exhaustive-state proof.",
+    "Non-ClickHouse config/auth/user clients remain mocked with explicit protobuf arguments.",
+    "Existing SQL snapshots and separate regression suites are replaced by the consolidated real-data suite."
+  ],
+  "source_files": [
+    "insights-server/internal/analyticsimpl/BUILD.bazel",
+    "insights-server/internal/analyticsimpl/common_knowledge_base_usage_clickhouse.go",
+    "insights-server/internal/analyticsimpl/retrieve_knowledge_base_stats_clickhouse.go"
+  ],
+  "prs": {
+    "tests": "https://github.com/cresta/go-servers/pull/34031",
+    "refactor": "https://github.com/cresta/go-servers/pull/34032"
+  },
+  "independent_review": {
+    "reviewer": "root",
+    "verdict": "Reader characterization bodies retain their original expectations after moving into the existing suite. Full-RPC seeded cases replace mocked ClickHouse responses. Production extraction remains byte-identical to the prior reviewed refactor."
+  }
+}

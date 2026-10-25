@@ -1,0 +1,1650 @@
+{
+  "group": "summary-genai",
+  "tests_worktree": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-summary-genai-tests/go-servers",
+  "refactor_worktree": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-summary-genai-refactor/go-servers",
+  "base_commit": "6ba478ae4d7d7322e6f904dce2eb3f4ff2ea58c9",
+  "tests_commit": "5c6b94f02361a78a5c27fa3242f7ebf76328d6b8",
+  "refactor_commit": "00fd23587abc3f229e562d77d9b798006de77693",
+  "test_files": [
+    {
+      "path": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+      "sha256": "618bab4893f0148ba6c6d1e6236b6aa8600f58dccd86832d6b75dd6ea4dc6914",
+      "refactor_sha256": "618bab4893f0148ba6c6d1e6236b6aa8600f58dccd86832d6b75dd6ea4dc6914"
+    },
+    {
+      "path": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+      "sha256": "967b7842bf1c80b54c935cbdde78932e7ce33267afad83b6138510a4de1619db",
+      "refactor_sha256": "967b7842bf1c80b54c935cbdde78932e7ce33267afad83b6138510a4de1619db"
+    }
+  ],
+  "commands": [
+    {
+      "stage": "before",
+      "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^(TestRetrieveSummarizationStats|TestRetrieveKnowledgeAssistStatsClickhouse)$' -count=1 -timeout 20m -json > /tmp/convi7777-summary-genai-merged-before.jsonl 2>&1",
+      "log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+      "result": "pass",
+      "elapsed": 471.971,
+      "passed_node_count": 95,
+      "passed_nodes": [
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCRequestValidation/MissingTimeRange",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCRequestValidation/InvalidParent",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCRequestValidation/TooManyGroupKeys",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCRequestValidation",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DailyAgents",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DailyAgentsExternal",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/SelectedUser",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/SelectedUserExternal",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/UnknownSelectedUser",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/WeeklyAgents",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/AgentOnly",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/TimeOnly",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DailyGroup",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DailyAgentAndGroup",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/RestrictedACL",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DeniedACL",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/MetadataInclude",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/MetadataIncludeAndExclude",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DurationRange",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/CombinedAttributeFilter",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/DistinctSessionsAndQuestionIDs",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/SessionDeduplicatesAcrossConversations",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/ViewedDoesNotMeanUsed",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/SentDoesNotMeanUsed",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/EmptySessionRejected",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/UseWithoutRetrieval",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/NoMessageDenominatorDropsUsage",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/MessageOnlyPreservesZeroDefaults",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/SameConversationTwoAgents",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/InlineUserFilter",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/ExternalUserFilter",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/ProductionSourceEightAllowed",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/OtherSourceExcluded",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/DevUserExcluded",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/EmptyAgentExcluded",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/LatestMetadataInclude",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/StaleMetadataRejected",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/ExcludedMetadata",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/MissingExcludedMetadataKeepsLegacyJoinDefaults",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/HalfOpenTimeBoundsAndTimezone",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/TimeOnlyDenominator",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/AgentOnlyGrouping",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/DurationFilterExcludesAllRows",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/UsecaseFilterExcludesAllRows",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/EmptyData",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestTimeGroupingDenominatorsAcrossDays",
+        "TestRetrieveKnowledgeAssistStatsClickhouse",
+        "TestRetrieveSummarizationStats/TestRPCRequestValidation/MissingTimeRange",
+        "TestRetrieveSummarizationStats/TestRPCRequestValidation/InvalidParent",
+        "TestRetrieveSummarizationStats/TestRPCRequestValidation/TooManyGroupKeys",
+        "TestRetrieveSummarizationStats/TestRPCRequestValidation",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/DailyAgents",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/DailyAgentsExternal",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/SelectedUser",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/SelectedUserExternal",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/UnknownSelectedUser",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/WeeklyAgents",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/AgentOnly",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/TimeOnly",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/DailyGroup",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/DailyAgentAndGroup",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/RestrictedACL",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/DeniedACL",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/MetadataInclude",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/MetadataIncludeAndExclude",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/DurationRange",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/CombinedAttributeFilter",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse",
+        "TestRetrieveSummarizationStats/TestReaderContracts/GeneratedAndCopyAll",
+        "TestRetrieveSummarizationStats/TestReaderContracts/CopySummary",
+        "TestRetrieveSummarizationStats/TestReaderContracts/GeneratedWithoutCopy",
+        "TestRetrieveSummarizationStats/TestReaderContracts/CopyWithoutValidGeneration",
+        "TestRetrieveSummarizationStats/TestReaderContracts/WrongEventAndCopyType",
+        "TestRetrieveSummarizationStats/TestReaderContracts/DuplicateGenerationAndCopies",
+        "TestRetrieveSummarizationStats/TestReaderContracts/CopyDifferentAgent",
+        "TestRetrieveSummarizationStats/TestReaderContracts/CopyDifferentStart",
+        "TestRetrieveSummarizationStats/TestReaderContracts/ConversationDenominatorWithoutActivity",
+        "TestRetrieveSummarizationStats/TestReaderContracts/SameConversationTwoAgents",
+        "TestRetrieveSummarizationStats/TestReaderContracts/InlineUserFilter",
+        "TestRetrieveSummarizationStats/TestReaderContracts/ExternalUserFilter",
+        "TestRetrieveSummarizationStats/TestReaderContracts/LatestMetadataInclude",
+        "TestRetrieveSummarizationStats/TestReaderContracts/StaleMetadataRejected",
+        "TestRetrieveSummarizationStats/TestReaderContracts/ExcludedMetadata",
+        "TestRetrieveSummarizationStats/TestReaderContracts/MissingExcludedMetadataKeepsLegacyJoinDefaults",
+        "TestRetrieveSummarizationStats/TestReaderContracts/SourceAndDevAreNotSummaryGates",
+        "TestRetrieveSummarizationStats/TestReaderContracts/EmptyAgentExcluded",
+        "TestRetrieveSummarizationStats/TestReaderContracts/HalfOpenTimeBoundsAndTimezone",
+        "TestRetrieveSummarizationStats/TestReaderContracts/DurationFilterExcludesAllRows",
+        "TestRetrieveSummarizationStats/TestReaderContracts/UsecaseFilterExcludesAllRows",
+        "TestRetrieveSummarizationStats/TestReaderContracts/EmptyData",
+        "TestRetrieveSummarizationStats/TestReaderContracts",
+        "TestRetrieveSummarizationStats/TestTimeGroupingDenominatorsAcrossDays",
+        "TestRetrieveSummarizationStats"
+      ],
+      "failed_nodes": [],
+      "log_sha256": "364c58e5661c0ef3ac24d301993943cb9b53cd7a4785e576a3da984f5c104563"
+    },
+    {
+      "stage": "after",
+      "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^(TestRetrieveSummarizationStats|TestRetrieveKnowledgeAssistStatsClickhouse)$' -count=1 -timeout 20m -json > /tmp/convi7777-summary-genai-merged-after.jsonl 2>&1",
+      "log": "/tmp/convi7777-summary-genai-merged-after.jsonl",
+      "result": "pass",
+      "elapsed": 473.421,
+      "passed_node_count": 95,
+      "passed_nodes": [
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCRequestValidation/MissingTimeRange",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCRequestValidation/InvalidParent",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCRequestValidation/TooManyGroupKeys",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCRequestValidation",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DailyAgents",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DailyAgentsExternal",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/SelectedUser",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/SelectedUserExternal",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/UnknownSelectedUser",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/WeeklyAgents",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/AgentOnly",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/TimeOnly",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DailyGroup",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DailyAgentAndGroup",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/RestrictedACL",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DeniedACL",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/MetadataInclude",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/MetadataIncludeAndExclude",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DurationRange",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/CombinedAttributeFilter",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/DistinctSessionsAndQuestionIDs",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/SessionDeduplicatesAcrossConversations",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/ViewedDoesNotMeanUsed",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/SentDoesNotMeanUsed",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/EmptySessionRejected",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/UseWithoutRetrieval",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/NoMessageDenominatorDropsUsage",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/MessageOnlyPreservesZeroDefaults",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/SameConversationTwoAgents",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/InlineUserFilter",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/ExternalUserFilter",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/ProductionSourceEightAllowed",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/OtherSourceExcluded",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/DevUserExcluded",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/EmptyAgentExcluded",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/LatestMetadataInclude",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/StaleMetadataRejected",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/ExcludedMetadata",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/MissingExcludedMetadataKeepsLegacyJoinDefaults",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/HalfOpenTimeBoundsAndTimezone",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/TimeOnlyDenominator",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/AgentOnlyGrouping",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/DurationFilterExcludesAllRows",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/UsecaseFilterExcludesAllRows",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/EmptyData",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts",
+        "TestRetrieveKnowledgeAssistStatsClickhouse/TestTimeGroupingDenominatorsAcrossDays",
+        "TestRetrieveKnowledgeAssistStatsClickhouse",
+        "TestRetrieveSummarizationStats/TestRPCRequestValidation/MissingTimeRange",
+        "TestRetrieveSummarizationStats/TestRPCRequestValidation/InvalidParent",
+        "TestRetrieveSummarizationStats/TestRPCRequestValidation/TooManyGroupKeys",
+        "TestRetrieveSummarizationStats/TestRPCRequestValidation",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/DailyAgents",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/DailyAgentsExternal",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/SelectedUser",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/SelectedUserExternal",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/UnknownSelectedUser",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/WeeklyAgents",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/AgentOnly",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/TimeOnly",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/DailyGroup",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/DailyAgentAndGroup",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/RestrictedACL",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/DeniedACL",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/MetadataInclude",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/MetadataIncludeAndExclude",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/DurationRange",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse/CombinedAttributeFilter",
+        "TestRetrieveSummarizationStats/TestRPCSeededResponse",
+        "TestRetrieveSummarizationStats/TestReaderContracts/GeneratedAndCopyAll",
+        "TestRetrieveSummarizationStats/TestReaderContracts/CopySummary",
+        "TestRetrieveSummarizationStats/TestReaderContracts/GeneratedWithoutCopy",
+        "TestRetrieveSummarizationStats/TestReaderContracts/CopyWithoutValidGeneration",
+        "TestRetrieveSummarizationStats/TestReaderContracts/WrongEventAndCopyType",
+        "TestRetrieveSummarizationStats/TestReaderContracts/DuplicateGenerationAndCopies",
+        "TestRetrieveSummarizationStats/TestReaderContracts/CopyDifferentAgent",
+        "TestRetrieveSummarizationStats/TestReaderContracts/CopyDifferentStart",
+        "TestRetrieveSummarizationStats/TestReaderContracts/ConversationDenominatorWithoutActivity",
+        "TestRetrieveSummarizationStats/TestReaderContracts/SameConversationTwoAgents",
+        "TestRetrieveSummarizationStats/TestReaderContracts/InlineUserFilter",
+        "TestRetrieveSummarizationStats/TestReaderContracts/ExternalUserFilter",
+        "TestRetrieveSummarizationStats/TestReaderContracts/LatestMetadataInclude",
+        "TestRetrieveSummarizationStats/TestReaderContracts/StaleMetadataRejected",
+        "TestRetrieveSummarizationStats/TestReaderContracts/ExcludedMetadata",
+        "TestRetrieveSummarizationStats/TestReaderContracts/MissingExcludedMetadataKeepsLegacyJoinDefaults",
+        "TestRetrieveSummarizationStats/TestReaderContracts/SourceAndDevAreNotSummaryGates",
+        "TestRetrieveSummarizationStats/TestReaderContracts/EmptyAgentExcluded",
+        "TestRetrieveSummarizationStats/TestReaderContracts/HalfOpenTimeBoundsAndTimezone",
+        "TestRetrieveSummarizationStats/TestReaderContracts/DurationFilterExcludesAllRows",
+        "TestRetrieveSummarizationStats/TestReaderContracts/UsecaseFilterExcludesAllRows",
+        "TestRetrieveSummarizationStats/TestReaderContracts/EmptyData",
+        "TestRetrieveSummarizationStats/TestReaderContracts",
+        "TestRetrieveSummarizationStats/TestTimeGroupingDenominatorsAcrossDays",
+        "TestRetrieveSummarizationStats"
+      ],
+      "failed_nodes": [],
+      "log_sha256": "e865025d6403696e6f7ed7ae28de97826c719ba22d23c82337147c20e9d82d54"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "Summary: GeneratedAndCopyAll",
+      "expected_behavior": "generated=1, used=1, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "copyall",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/GeneratedAndCopyAll",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: CopySummary",
+      "expected_behavior": "generated=1, used=1, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "copysummary",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/CopySummary",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: GeneratedWithoutCopy",
+      "expected_behavior": "generated=1, used=0, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "generated",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/GeneratedWithoutCopy",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: CopyWithoutValidGeneration",
+      "expected_behavior": "generated=0, used=0, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "invalid",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/CopyWithoutValidGeneration",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: WrongEventAndCopyType",
+      "expected_behavior": "generated=1, used=0, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "wrong",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/WrongEventAndCopyType",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: DuplicateGenerationAndCopies",
+      "expected_behavior": "generated=1, used=1, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "duplicates",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/DuplicateGenerationAndCopies",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: CopyDifferentAgent",
+      "expected_behavior": "generated=1, used=0, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "mismatchagent",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/CopyDifferentAgent",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: CopyDifferentStart",
+      "expected_behavior": "generated=1, used=0, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "mismatchstart",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/CopyDifferentStart",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: ConversationDenominatorWithoutActivity",
+      "expected_behavior": "generated=1, used=1, conversation denominator=2; exact complete protobuf response",
+      "fixture_kind": "denominator",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/ConversationDenominatorWithoutActivity",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: SameConversationTwoAgents",
+      "expected_behavior": "generated=2, used=2, conversation denominator=2; exact complete protobuf response",
+      "fixture_kind": "agents",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/SameConversationTwoAgents",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: InlineUserFilter",
+      "expected_behavior": "generated=1, used=1, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "inline",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/InlineUserFilter",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: ExternalUserFilter",
+      "expected_behavior": "generated=1, used=1, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "external",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/ExternalUserFilter",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: LatestMetadataInclude",
+      "expected_behavior": "generated=1, used=1, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "include",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/LatestMetadataInclude",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: StaleMetadataRejected",
+      "expected_behavior": "generated=0, used=0, conversation denominator=0; exact complete protobuf response",
+      "fixture_kind": "stale",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/StaleMetadataRejected",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: ExcludedMetadata",
+      "expected_behavior": "generated=0, used=0, conversation denominator=0; exact complete protobuf response",
+      "fixture_kind": "exclude",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/ExcludedMetadata",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: MissingExcludedMetadataKeepsLegacyJoinDefaults",
+      "expected_behavior": "generated=0, used=0, conversation denominator=0; exact complete protobuf response",
+      "fixture_kind": "excludemissing",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/MissingExcludedMetadataKeepsLegacyJoinDefaults",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: SourceAndDevAreNotSummaryGates",
+      "expected_behavior": "generated=1, used=1, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "source",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/SourceAndDevAreNotSummaryGates",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: EmptyAgentExcluded",
+      "expected_behavior": "generated=0, used=0, conversation denominator=0; exact complete protobuf response",
+      "fixture_kind": "emptyagent",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/EmptyAgentExcluded",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: HalfOpenTimeBoundsAndTimezone",
+      "expected_behavior": "generated=1, used=1, conversation denominator=1; exact complete protobuf response",
+      "fixture_kind": "bounds",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/HalfOpenTimeBoundsAndTimezone",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: DurationFilterExcludesAllRows",
+      "expected_behavior": "generated=0, used=0, conversation denominator=0; exact complete protobuf response",
+      "fixture_kind": "duration",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/DurationFilterExcludesAllRows",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: UsecaseFilterExcludesAllRows",
+      "expected_behavior": "generated=0, used=0, conversation denominator=0; exact complete protobuf response",
+      "fixture_kind": "usecase",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/UsecaseFilterExcludesAllRows",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: EmptyData",
+      "expected_behavior": "generated=0, used=0, conversation denominator=0; exact complete protobuf response",
+      "fixture_kind": "empty",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestReaderContracts/EmptyData",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: TimeGroupingDenominatorsAcrossDays",
+      "expected_behavior": "Two agents sharing one conversation in first day contribute one generated/used conversation and two users; second day one user; total generated=used=conversations=2; per-user averages first day .5, second day1, whole 2/3.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestTimeGroupingDenominatorsAcrossDays",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: DistinctSessionsAndQuestionIDs",
+      "expected_behavior": "viewed=1, used=1, knowledge moments=2, result groups=1; exact complete protobuf response",
+      "fixture_kind": "duplicates",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/DistinctSessionsAndQuestionIDs",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: SessionDeduplicatesAcrossConversations",
+      "expected_behavior": "viewed=1, used=1, knowledge moments=2, result groups=1; exact complete protobuf response",
+      "fixture_kind": "crossconversation",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/SessionDeduplicatesAcrossConversations",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: ViewedDoesNotMeanUsed",
+      "expected_behavior": "viewed=1, used=0, knowledge moments=1, result groups=1; exact complete protobuf response",
+      "fixture_kind": "viewed",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/ViewedDoesNotMeanUsed",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: SentDoesNotMeanUsed",
+      "expected_behavior": "viewed=1, used=0, knowledge moments=1, result groups=1; exact complete protobuf response",
+      "fixture_kind": "sent",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/SentDoesNotMeanUsed",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: EmptySessionRejected",
+      "expected_behavior": "viewed=0, used=0, knowledge moments=0, result groups=1; exact complete protobuf response",
+      "fixture_kind": "emptysession",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/EmptySessionRejected",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: UseWithoutRetrieval",
+      "expected_behavior": "viewed=0, used=1, knowledge moments=0, result groups=1; exact complete protobuf response",
+      "fixture_kind": "useonly",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/UseWithoutRetrieval",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: NoMessageDenominatorDropsUsage",
+      "expected_behavior": "viewed=0, used=0, knowledge moments=0, result groups=0; exact complete protobuf response",
+      "fixture_kind": "nomessage",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/NoMessageDenominatorDropsUsage",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: MessageOnlyPreservesZeroDefaults",
+      "expected_behavior": "viewed=0, used=0, knowledge moments=0, result groups=1; exact complete protobuf response",
+      "fixture_kind": "messageonly",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/MessageOnlyPreservesZeroDefaults",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: SameConversationTwoAgents",
+      "expected_behavior": "viewed=2, used=2, knowledge moments=2, result groups=2; exact complete protobuf response",
+      "fixture_kind": "agents",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/SameConversationTwoAgents",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: InlineUserFilter",
+      "expected_behavior": "viewed=1, used=1, knowledge moments=1, result groups=1; exact complete protobuf response",
+      "fixture_kind": "inline",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/InlineUserFilter",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: ExternalUserFilter",
+      "expected_behavior": "viewed=1, used=1, knowledge moments=1, result groups=1; exact complete protobuf response",
+      "fixture_kind": "external",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/ExternalUserFilter",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: ProductionSourceEightAllowed",
+      "expected_behavior": "viewed=1, used=1, knowledge moments=1, result groups=1; exact complete protobuf response",
+      "fixture_kind": "source8",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/ProductionSourceEightAllowed",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: OtherSourceExcluded",
+      "expected_behavior": "viewed=0, used=0, knowledge moments=0, result groups=0; exact complete protobuf response",
+      "fixture_kind": "source7",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/OtherSourceExcluded",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: DevUserExcluded",
+      "expected_behavior": "viewed=0, used=0, knowledge moments=0, result groups=0; exact complete protobuf response",
+      "fixture_kind": "dev",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/DevUserExcluded",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: EmptyAgentExcluded",
+      "expected_behavior": "viewed=0, used=0, knowledge moments=0, result groups=0; exact complete protobuf response",
+      "fixture_kind": "emptyagent",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/EmptyAgentExcluded",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: LatestMetadataInclude",
+      "expected_behavior": "viewed=1, used=1, knowledge moments=1, result groups=1; exact complete protobuf response",
+      "fixture_kind": "include",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/LatestMetadataInclude",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: StaleMetadataRejected",
+      "expected_behavior": "viewed=0, used=0, knowledge moments=0, result groups=0; exact complete protobuf response",
+      "fixture_kind": "stale",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/StaleMetadataRejected",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: ExcludedMetadata",
+      "expected_behavior": "viewed=0, used=0, knowledge moments=0, result groups=0; exact complete protobuf response",
+      "fixture_kind": "exclude",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/ExcludedMetadata",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: MissingExcludedMetadataKeepsLegacyJoinDefaults",
+      "expected_behavior": "viewed=0, used=0, knowledge moments=0, result groups=0; exact complete protobuf response",
+      "fixture_kind": "excludemissing",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/MissingExcludedMetadataKeepsLegacyJoinDefaults",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: HalfOpenTimeBoundsAndTimezone",
+      "expected_behavior": "viewed=1, used=1, knowledge moments=1, result groups=1; exact complete protobuf response",
+      "fixture_kind": "bounds",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/HalfOpenTimeBoundsAndTimezone",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: TimeOnlyDenominator",
+      "expected_behavior": "viewed=2, used=2, knowledge moments=2, result groups=1; exact complete protobuf response",
+      "fixture_kind": "timeonly",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/TimeOnlyDenominator",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: AgentOnlyGrouping",
+      "expected_behavior": "viewed=1, used=1, knowledge moments=1, result groups=1; exact complete protobuf response",
+      "fixture_kind": "agentonly",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/AgentOnlyGrouping",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: DurationFilterExcludesAllRows",
+      "expected_behavior": "viewed=0, used=0, knowledge moments=0, result groups=0; exact complete protobuf response",
+      "fixture_kind": "duration",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/DurationFilterExcludesAllRows",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: UsecaseFilterExcludesAllRows",
+      "expected_behavior": "viewed=0, used=0, knowledge moments=0, result groups=0; exact complete protobuf response",
+      "fixture_kind": "usecase",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/UsecaseFilterExcludesAllRows",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: EmptyData",
+      "expected_behavior": "viewed=0, used=0, knowledge moments=0, result groups=0; exact complete protobuf response",
+      "fixture_kind": "empty",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestReaderContracts/EmptyData",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: TimeGroupingDenominatorsAcrossDays",
+      "expected_behavior": "Shared session across two agents/conversations in first day counts once; second session next day; totals viewed=used=2 and question IDs=3; bucket averages .5,1; result average1; response average2.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestTimeGroupingDenominatorsAcrossDays",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC DailyAgents",
+      "expected_behavior": "Complete two-agent, two-day response; metadata enrichment and per-level averages.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/DailyAgents",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC DailyAgentsExternal",
+      "expected_behavior": "Same complete response via an external user table.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/DailyAgentsExternal",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC SelectedUser",
+      "expected_behavior": "Only selected agent b appears, with enriched user fields and exact totals.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/SelectedUser",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC SelectedUserExternal",
+      "expected_behavior": "Selected b response through external-table filtering.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/SelectedUserExternal",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC UnknownSelectedUser",
+      "expected_behavior": "Unknown selected user resolves to an empty audience and empty response.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/UnknownSelectedUser",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC WeeklyAgents",
+      "expected_behavior": "Two dates coalesce into the Honolulu week starting 2023-12-31T10:00:00Z; exact weekly denominators.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/WeeklyAgents",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC AgentOnly",
+      "expected_behavior": "No-frequency agent grouping uses the legacy zero timestamp and distinct counts over both dates.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/AgentOnly",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC TimeOnly",
+      "expected_behavior": "No-agent grouping keeps distinct users in each daily bucket and legacy response-level denominators.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/TimeOnly",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC DailyGroup",
+      "expected_behavior": "Selected TEAM filter resolves memberships, executes per-agent SQL, then merges exact per-team buckets and totals.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/DailyGroup",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC DailyAgentAndGroup",
+      "expected_behavior": "Selected TEAM filter retains enriched agents and appends the display-named group without members.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/DailyAgentAndGroup",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC RestrictedACL",
+      "expected_behavior": "ACL permits only b; a rows are excluded from the complete RPC response.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/RestrictedACL",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC DeniedACL",
+      "expected_behavior": "ACL permits no users; return an empty response rather than unrestricted data.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/DeniedACL",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC MetadataInclude",
+      "expected_behavior": "Only first/a matches latest tag=yes and contributes to exact counters.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/MetadataInclude",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC MetadataIncludeAndExclude",
+      "expected_behavior": "Combined include and missing-excluded-metadata keeps the characterized legacy empty response.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/MetadataIncludeAndExclude",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC DurationRange",
+      "expected_behavior": "All rows have 60-second duration and are excluded by min=61/max=100.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/DurationRange",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: RPC CombinedAttributeFilter",
+      "expected_behavior": "Selected a/b plus usecase=usage and duration=10..100 preserves the exact daily response.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCSeededResponse/CombinedAttributeFilter",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: validation MissingTimeRange",
+      "expected_behavior": "InvalidArgument with the actual direct-handler time-range error.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCRequestValidation/MissingTimeRange",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: validation InvalidParent",
+      "expected_behavior": "InvalidArgument for an invalid customer/profile resource name.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCRequestValidation/InvalidParent",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "Summary: validation TooManyGroupKeys",
+      "expected_behavior": "InvalidArgument before data access for frequency plus two group attributes.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+        "test_node": "TestRetrieveSummarizationStats/TestRPCRequestValidation/TooManyGroupKeys",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC DailyAgents",
+      "expected_behavior": "Complete two-agent, two-day response; metadata enrichment and per-level averages.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DailyAgents",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC DailyAgentsExternal",
+      "expected_behavior": "Same complete response via an external user table.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DailyAgentsExternal",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC SelectedUser",
+      "expected_behavior": "Only selected agent b appears, with enriched user fields and exact totals.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/SelectedUser",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC SelectedUserExternal",
+      "expected_behavior": "Selected b response through external-table filtering.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/SelectedUserExternal",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC UnknownSelectedUser",
+      "expected_behavior": "Unknown selected user resolves to an empty audience and empty response.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/UnknownSelectedUser",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC WeeklyAgents",
+      "expected_behavior": "Two dates coalesce into the Honolulu week starting 2023-12-31T10:00:00Z; exact weekly denominators.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/WeeklyAgents",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC AgentOnly",
+      "expected_behavior": "No-frequency agent grouping uses the legacy zero timestamp and distinct counts over both dates.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/AgentOnly",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC TimeOnly",
+      "expected_behavior": "No-agent grouping keeps distinct users in each daily bucket and legacy response-level denominators.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/TimeOnly",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC DailyGroup",
+      "expected_behavior": "Selected TEAM filter resolves memberships, executes per-agent SQL, then merges exact per-team buckets and totals.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DailyGroup",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC DailyAgentAndGroup",
+      "expected_behavior": "Selected TEAM filter retains enriched agents and appends the display-named group without members.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DailyAgentAndGroup",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC RestrictedACL",
+      "expected_behavior": "ACL permits only b; a rows are excluded from the complete RPC response.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/RestrictedACL",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC DeniedACL",
+      "expected_behavior": "ACL permits no users; return an empty response rather than unrestricted data.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DeniedACL",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC MetadataInclude",
+      "expected_behavior": "Only first/a matches latest tag=yes and contributes to exact counters.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/MetadataInclude",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC MetadataIncludeAndExclude",
+      "expected_behavior": "Combined include and missing-excluded-metadata keeps the characterized legacy empty response.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/MetadataIncludeAndExclude",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC DurationRange",
+      "expected_behavior": "All rows have 60-second duration and are excluded by min=61/max=100.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/DurationRange",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: RPC CombinedAttributeFilter",
+      "expected_behavior": "Selected a/b plus usecase=usage and duration=10..100 preserves the exact daily response.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCSeededResponse/CombinedAttributeFilter",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: validation MissingTimeRange",
+      "expected_behavior": "InvalidArgument with the actual direct-handler time-range error.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCRequestValidation/MissingTimeRange",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: validation InvalidParent",
+      "expected_behavior": "InvalidArgument for an invalid customer/profile resource name.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCRequestValidation/InvalidParent",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    },
+    {
+      "name": "GenAI: validation TooManyGroupKeys",
+      "expected_behavior": "InvalidArgument before data access for frequency plus two group attributes.",
+      "evidence": {
+        "file": "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+        "test_node": "TestRetrieveKnowledgeAssistStatsClickhouse/TestRPCRequestValidation/TooManyGroupKeys",
+        "before_log": "/tmp/convi7777-summary-genai-merged-before.jsonl",
+        "after_log": "/tmp/convi7777-summary-genai-merged-after.jsonl"
+      }
+    }
+  ],
+  "extraction": [
+    {
+      "file": "insights-server/internal/analyticsimpl/common_summarization_usage_clickhouse.go",
+      "boundary": "Valid generated-summary rows, eligible copy rows, and their LEFT JOIN relation; no metric aggregation or response conversion.",
+      "why": "The joined generation/copy relation can be consumed by another aggregate without copying feature eligibility and linkage SQL.",
+      "invariants": [
+        "distinct (conversation_id,conversation_start_time,agent_user_id) grain",
+        "payload validity and copy data type1/2 gate",
+        "LEFT JOIN on all three keys and original aliases",
+        "metadata filters and conversation/event/source conditions unchanged",
+        "outer metadata,conversation,action,event placeholder order"
+      ]
+    },
+    {
+      "file": "insights-server/internal/analyticsimpl/common_knowledge_assist_usage_clickhouse.go",
+      "boundary": "Raw message, retrieval action and used-moment row SELECT relations with metadata/attribute eligibility; outer RPC retains distinct counters and grouping.",
+      "why": "Consumers can use feature-qualified raw row relations and choose their own aggregation without prematurely deduplicating session IDs or changing current group grain.",
+      "invariants": [
+        "source0/8,nondev,nonempty agent",
+        "nonempty session and original action/moment predicates",
+        "canonical conversation/row/session columns preserve raw row grain and source aliases",
+        "distinct session counting remains at requested grouping",
+        "message-derived group/user denominator and existing LEFT JOIN default values",
+        "metadata,args,external-table context and response conversion unchanged"
+      ]
+    }
+  ],
+  "preserved_issues": [
+    {
+      "title": "Metadata exclusion drops rows with no excluded metadata under default joins",
+      "trigger": "A qualifying conversation/message group has no metadata row for an excluded moment.",
+      "observed": "Both Summary and GenAI return an empty response on the original code: LEFT JOIN fills the unmatched string key with its default and the existing IS NULL check does not pass.",
+      "scope": "Observed by dedicated real-reader cases before extraction. Preserve projection types and join behavior; correct separately."
+    },
+    {
+      "title": "GenAI denominator differs across response levels",
+      "trigger": "Time-only grouping with two users on first day and one user on second day.",
+      "observed": "Bucket averages .5/1; result average1; response average2.",
+      "scope": "Observed on original and required unchanged after extraction; correction is outside scope."
+    },
+    {
+      "title": "GenAI annotation-only groups are dropped",
+      "trigger": "Qualifying used moment/actions without a qualifying message group.",
+      "observed": "No result group, despite feature annotations existing.",
+      "scope": "Legacy message anchoring remains unchanged."
+    },
+    {
+      "title": "Summary eligibility differs from GenAI",
+      "trigger": "Valid generation plus matching copy with source7 and dev user.",
+      "observed": "Summary counts generated=used=1; GenAI separately rejects source7/dev evidence.",
+      "scope": "Do not add a source/dev or action-type gate in this extraction."
+    }
+  ],
+  "risks": [
+    "The local ClickHouse23.8 and PostgreSQL fixtures prove local readers and full-RPC behavior, not production deployment or performance.",
+    "User/config/ACL RPC dependencies are mocked with exact proto requests; ClickHouse results are seeded and queried, never mocked.",
+    "All 49 original reader scenario bodies/assertions are unchanged apart from receiver names. New full-RPC cases keep metric definitions and expectations unchanged; the child fixes one extraction-only projection regression.",
+    "Summary zero-group requests still have no dedicated seeded case; agent-only, time-only, per-group and agent+group full RPC paths are covered.",
+    "The same GenAI knowledge session repeated across different time buckets still has no dedicated fixture; within-bucket deduplication and separate-session multi-day grouping are covered.",
+    "Mixed-table source/dev eligibility combinations are not exhaustive.",
+    "Dedicated Bazel targets were generated with cached Gazelle but were not independently run by this worker; the focused Go command compiles the full package and runs both suites."
+  ],
+  "source_files": [
+    "insights-server/internal/analyticsimpl/retrieve_summarization_stats_clickhouse.go",
+    "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_clickhouse.go",
+    "insights-server/internal/analyticsimpl/common_clickhouse.go",
+    "insights-server/internal/analyticsimpl/base_test.go",
+    "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+    "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+    "insights-server/internal/analyticsimpl/common_knowledge_assist_usage_clickhouse.go",
+    "insights-server/internal/analyticsimpl/common_summarization_usage_clickhouse.go"
+  ],
+  "credentials": "No AWS, Okta, Azure, or SSH credentials were read or selected. Local ClickHouse uses repository fixture defaultTestUser with an empty password; DBTestSuite owns local PostgreSQL. Root owns pushing, publishing and PR metadata.",
+  "verification": {
+    "identical_passed_node_sets": true,
+    "frozen_manifest": "/tmp/convi7777-summary-genai-merged-frozen.json",
+    "rpc_reader_and_converter_equivalence_log": "/tmp/convi7777-summary-genai-merged-source-equivalence.log",
+    "characterization_body_equivalence_log": "/tmp/convi7777-summary-genai-merged-body-equivalence.json",
+    "tests_branch_changed_files": [
+      "insights-server/internal/analyticsimpl/BUILD.bazel",
+      "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_test.go",
+      "insights-server/internal/analyticsimpl/retrieve_summarization_stats_test.go",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_AgentOnly_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_Basic_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_BasicFilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_FilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_FilterAndGroupByGroups_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_WeeklyGroupByAgent_request.sql"
+    ],
+    "refactor_commit_changed_files": [
+      "insights-server/internal/analyticsimpl/BUILD.bazel",
+      "insights-server/internal/analyticsimpl/common_knowledge_assist_usage_clickhouse.go",
+      "insights-server/internal/analyticsimpl/common_summarization_usage_clickhouse.go",
+      "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_clickhouse.go",
+      "insights-server/internal/analyticsimpl/retrieve_summarization_stats_clickhouse.go"
+    ],
+    "tests_worktree_clean": true,
+    "refactor_worktree_clean": true,
+    "gazelle_generation": "python3 /tmp/convi7777-gazelle.py <worktree> retrieve_summarization_stats_test.go retrieve_knowledge_assist_stats_test.go; existing standalone targets large/long, stale deleted-source targets removed.",
+    "production_equivalence": "Every non-test Go source except common_knowledge_assist_usage_clickhouse.go exactly matches prior refactor 6c9cb487c8f55b0156a63e58645d4588b85488e3; that helper has the root-approved explicit canonical projection restoring baseline behavior. Parent production exactly matches base."
+  },
+  "diagnostic_runs": [
+    {
+      "log": "/tmp/convi7777-summary-genai-merged-compile.log",
+      "result": "failed_fixture_enum",
+      "scope": "One newly written validation fixture referenced an absent enum; corrected before final baseline."
+    },
+    {
+      "log": "/tmp/convi7777-summary-genai-merged-rpc-probe.jsonl",
+      "result": "failed_error_message_expectation",
+      "scope": "All 30 initial seeded full-RPC cases passed; both MissingTimeRange fixture messages differed from actual direct-handler behavior. Expectations corrected on original production before freezing."
+    },
+    {
+      "log": "/tmp/convi7777-summary-genai-merged-baseline-interrupted.jsonl",
+      "result": "intentionally_interrupted",
+      "scope": "Stopped only this group test process during startup after root observed Docker memory pressure. Restarted in a coordinated slot with timeout20m; no production or assertion changes for infrastructure."
+    },
+    {
+      "log": "/tmp/convi7777-summary-genai-merged-after-failed.jsonl",
+      "result": "failed_refactor_regression",
+      "scope": "Frozen combined metadata full-RPC case passed original and failed child with code47. Stopped this exact worker run, preserved log, and applied root-approved projection-only parity fix without test changes."
+    },
+    {
+      "log": "/tmp/convi7777-summary-genai-merged-fix-focused.jsonl",
+      "result": "pass",
+      "scope": "Identical frozen failing RPC passed after explicit canonical column projection; followed by complete unchanged suite."
+    }
+  ],
+  "independent_review": {
+    "reviewer": "notes_workflow (original extraction); root (canonical projection parity fix)",
+    "scope": "The original notes_workflow review covered the prior extraction. Root independently reviewed the one-file canonical projection parity fix after the expanded frozen suites exposed a combined-metadata regression. Consolidated existing-RPC suites were self-reviewed by this worker.",
+    "verdict": "Root approved the minimal GenAI parity fix: only selected columns/aliases changed, predicates and arguments are unchanged, IDs/type/session and physical duplicate rows remain. The caller only supports agent_user_id and truncated_time grouping, both covered by canonical columns. Summary retains its three-key LEFT JOIN; GenAI retains session grain, grouping and metadata. Current real ClickHouse full-RPC cases add agent-only, combined include/exclude, selected-user/group resolution, ACL and complete response conversion coverage. Remaining fixture gaps are Summary zero-group requests, one GenAI session crossing multiple time buckets, and exhaustive mixed-table source/dev combinations."
+  },
+  "prs": {
+    "tests": "https://github.com/cresta/go-servers/pull/34043",
+    "refactor": "https://github.com/cresta/go-servers/pull/34044"
+  },
+  "previous_stack_before_suite_consolidation": {
+    "tests_commit": "99276db4a0264d82a6c69abfcbd94a8412689592",
+    "refactor_commit": "6c9cb487c8f55b0156a63e58645d4588b85488e3",
+    "test_files": [
+      {
+        "path": "insights-server/internal/analyticsimpl/retrieve_summarization_usage_regression_clickhouse_test.go",
+        "sha256": "b662b95eefa07fca3a4ee2ae38a9d2ae7a79e428568669ca684d2c8c2dee97e7",
+        "refactor_sha256": "b662b95eefa07fca3a4ee2ae38a9d2ae7a79e428568669ca684d2c8c2dee97e7"
+      },
+      {
+        "path": "insights-server/internal/analyticsimpl/retrieve_genai_usage_regression_clickhouse_test.go",
+        "sha256": "09b97a9e1fb638ab363a9edb0743eaa6a1b64a20b7768dc706888ff1408e40a4",
+        "refactor_sha256": "09b97a9e1fb638ab363a9edb0743eaa6a1b64a20b7768dc706888ff1408e40a4"
+      }
+    ],
+    "commands": [
+      {
+        "stage": "before",
+        "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^(TestSummaryUsageRegressionCHSuite|TestGenAIUsageRegressionCHSuite|TestRetrieveSummarizationStats|TestRetrieveKnowledgeAssistStatsClickhouse)$' -count=1 -json > /tmp/convi7777-summary-genai-before.jsonl 2>&1",
+        "log": "/tmp/convi7777-summary-genai-before.jsonl",
+        "result": "pass",
+        "elapsed": 327.792,
+        "passed_node_count": 68,
+        "passed_nodes": [
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/DistinctSessionsAndQuestionIDs",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/SessionDeduplicatesAcrossConversations",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/ViewedDoesNotMeanUsed",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/SentDoesNotMeanUsed",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/EmptySessionRejected",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/UseWithoutRetrieval",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/NoMessageDenominatorDropsUsage",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/MessageOnlyPreservesZeroDefaults",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/SameConversationTwoAgents",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/InlineUserFilter",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/ExternalUserFilter",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/ProductionSourceEightAllowed",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/OtherSourceExcluded",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/DevUserExcluded",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/EmptyAgentExcluded",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/LatestMetadataInclude",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/StaleMetadataRejected",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/ExcludedMetadata",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/MissingExcludedMetadataKeepsLegacyJoinDefaults",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/HalfOpenTimeBoundsAndTimezone",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/TimeOnlyDenominator",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/AgentOnlyGrouping",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/DurationFilterExcludesAllRows",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/UsecaseFilterExcludesAllRows",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/EmptyData",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts",
+          "TestGenAIUsageRegressionCHSuite/TestTimeGroupingDenominatorsAcrossDays",
+          "TestGenAIUsageRegressionCHSuite",
+          "TestRetrieveKnowledgeAssistStatsClickhouse/TestCasesReadingFromClickhouse/Basic",
+          "TestRetrieveKnowledgeAssistStatsClickhouse/TestCasesReadingFromClickhouse/Test_FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+          "TestRetrieveKnowledgeAssistStatsClickhouse/TestCasesReadingFromClickhouse",
+          "TestRetrieveKnowledgeAssistStatsClickhouse/TestCasesWithoutTruncatedTime/Basic",
+          "TestRetrieveKnowledgeAssistStatsClickhouse/TestCasesWithoutTruncatedTime",
+          "TestRetrieveKnowledgeAssistStatsClickhouse",
+          "TestRetrieveSummarizationStats/TestRetrieveSummarizationStatsFromClickHouse/Test_DailyFilterAndGroupByAgent",
+          "TestRetrieveSummarizationStats/TestRetrieveSummarizationStatsFromClickHouse/Test_BasicFilterAndGroupByAgent",
+          "TestRetrieveSummarizationStats/TestRetrieveSummarizationStatsFromClickHouse/Test_DailyFilterAndGroupByGroup",
+          "TestRetrieveSummarizationStats/TestRetrieveSummarizationStatsFromClickHouse/Test_WeeklyGroupByAgent",
+          "TestRetrieveSummarizationStats/TestRetrieveSummarizationStatsFromClickHouse/Test_FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+          "TestRetrieveSummarizationStats/TestRetrieveSummarizationStatsFromClickHouse",
+          "TestRetrieveSummarizationStats/Test_BasicRequestAndResponse",
+          "TestRetrieveSummarizationStats/Test_InvalidRequestThrows",
+          "TestRetrieveSummarizationStats",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/GeneratedAndCopyAll",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/CopySummary",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/GeneratedWithoutCopy",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/CopyWithoutValidGeneration",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/WrongEventAndCopyType",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/DuplicateGenerationAndCopies",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/CopyDifferentAgent",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/CopyDifferentStart",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/ConversationDenominatorWithoutActivity",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/SameConversationTwoAgents",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/InlineUserFilter",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/ExternalUserFilter",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/LatestMetadataInclude",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/StaleMetadataRejected",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/ExcludedMetadata",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/MissingExcludedMetadataKeepsLegacyJoinDefaults",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/SourceAndDevAreNotSummaryGates",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/EmptyAgentExcluded",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/HalfOpenTimeBoundsAndTimezone",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/DurationFilterExcludesAllRows",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/UsecaseFilterExcludesAllRows",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/EmptyData",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts",
+          "TestSummaryUsageRegressionCHSuite/TestTimeGroupingDenominatorsAcrossDays",
+          "TestSummaryUsageRegressionCHSuite"
+        ],
+        "failed_nodes": [],
+        "log_sha256": "23a487364a4dc1d9c6ccf4b25532b9f096f3c3670fd97bc930e3e0d1d54b56d1"
+      },
+      {
+        "stage": "after",
+        "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^(TestSummaryUsageRegressionCHSuite|TestGenAIUsageRegressionCHSuite|TestRetrieveSummarizationStats|TestRetrieveKnowledgeAssistStatsClickhouse)$' -count=1 -json > /tmp/convi7777-summary-genai-after.jsonl 2>&1",
+        "log": "/tmp/convi7777-summary-genai-after.jsonl",
+        "result": "pass",
+        "elapsed": 319.286,
+        "passed_node_count": 68,
+        "passed_nodes": [
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/DistinctSessionsAndQuestionIDs",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/SessionDeduplicatesAcrossConversations",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/ViewedDoesNotMeanUsed",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/SentDoesNotMeanUsed",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/EmptySessionRejected",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/UseWithoutRetrieval",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/NoMessageDenominatorDropsUsage",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/MessageOnlyPreservesZeroDefaults",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/SameConversationTwoAgents",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/InlineUserFilter",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/ExternalUserFilter",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/ProductionSourceEightAllowed",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/OtherSourceExcluded",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/DevUserExcluded",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/EmptyAgentExcluded",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/LatestMetadataInclude",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/StaleMetadataRejected",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/ExcludedMetadata",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/MissingExcludedMetadataKeepsLegacyJoinDefaults",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/HalfOpenTimeBoundsAndTimezone",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/TimeOnlyDenominator",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/AgentOnlyGrouping",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/DurationFilterExcludesAllRows",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/UsecaseFilterExcludesAllRows",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts/EmptyData",
+          "TestGenAIUsageRegressionCHSuite/TestReaderContracts",
+          "TestGenAIUsageRegressionCHSuite/TestTimeGroupingDenominatorsAcrossDays",
+          "TestGenAIUsageRegressionCHSuite",
+          "TestRetrieveKnowledgeAssistStatsClickhouse/TestCasesReadingFromClickhouse/Basic",
+          "TestRetrieveKnowledgeAssistStatsClickhouse/TestCasesReadingFromClickhouse/Test_FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+          "TestRetrieveKnowledgeAssistStatsClickhouse/TestCasesReadingFromClickhouse",
+          "TestRetrieveKnowledgeAssistStatsClickhouse/TestCasesWithoutTruncatedTime/Basic",
+          "TestRetrieveKnowledgeAssistStatsClickhouse/TestCasesWithoutTruncatedTime",
+          "TestRetrieveKnowledgeAssistStatsClickhouse",
+          "TestRetrieveSummarizationStats/TestRetrieveSummarizationStatsFromClickHouse/Test_DailyFilterAndGroupByAgent",
+          "TestRetrieveSummarizationStats/TestRetrieveSummarizationStatsFromClickHouse/Test_BasicFilterAndGroupByAgent",
+          "TestRetrieveSummarizationStats/TestRetrieveSummarizationStatsFromClickHouse/Test_DailyFilterAndGroupByGroup",
+          "TestRetrieveSummarizationStats/TestRetrieveSummarizationStatsFromClickHouse/Test_WeeklyGroupByAgent",
+          "TestRetrieveSummarizationStats/TestRetrieveSummarizationStatsFromClickHouse/Test_FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+          "TestRetrieveSummarizationStats/TestRetrieveSummarizationStatsFromClickHouse",
+          "TestRetrieveSummarizationStats/Test_BasicRequestAndResponse",
+          "TestRetrieveSummarizationStats/Test_InvalidRequestThrows",
+          "TestRetrieveSummarizationStats",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/GeneratedAndCopyAll",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/CopySummary",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/GeneratedWithoutCopy",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/CopyWithoutValidGeneration",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/WrongEventAndCopyType",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/DuplicateGenerationAndCopies",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/CopyDifferentAgent",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/CopyDifferentStart",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/ConversationDenominatorWithoutActivity",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/SameConversationTwoAgents",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/InlineUserFilter",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/ExternalUserFilter",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/LatestMetadataInclude",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/StaleMetadataRejected",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/ExcludedMetadata",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/MissingExcludedMetadataKeepsLegacyJoinDefaults",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/SourceAndDevAreNotSummaryGates",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/EmptyAgentExcluded",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/HalfOpenTimeBoundsAndTimezone",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/DurationFilterExcludesAllRows",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/UsecaseFilterExcludesAllRows",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts/EmptyData",
+          "TestSummaryUsageRegressionCHSuite/TestReaderContracts",
+          "TestSummaryUsageRegressionCHSuite/TestTimeGroupingDenominatorsAcrossDays",
+          "TestSummaryUsageRegressionCHSuite"
+        ],
+        "failed_nodes": [],
+        "log_sha256": "973fd2a1996642c25d4c092855eeb90e01b840d7245a70a7c657d94fcce12ffe"
+      },
+      {
+        "stage": "gazelle-before",
+        "command": "python3 /tmp/convi7777-gazelle.py \"$PWD\" retrieve_summarization_usage_regression_clickhouse_test.go retrieve_genai_usage_regression_clickhouse_test.go --support base_test.go",
+        "log": "/tmp/convi7777-summary-genai-gazelle-before.log",
+        "result": "pass",
+        "elapsed": null,
+        "passed_nodes": []
+      },
+      {
+        "stage": "gazelle-after",
+        "command": "python3 /tmp/convi7777-gazelle.py \"$PWD\" retrieve_summarization_usage_regression_clickhouse_test.go retrieve_genai_usage_regression_clickhouse_test.go --support base_test.go",
+        "log": "/tmp/convi7777-summary-genai-gazelle-after.log",
+        "result": "pass",
+        "elapsed": null,
+        "passed_nodes": []
+      },
+      {
+        "stage": "raw-alias-probe",
+        "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock docker exec 29ba1bdcc5b0 clickhouse-client --user defaultTestUser --query 'SELECT agent_user_id FROM (SELECT message_d.* FROM (SELECT '\"'\"'a'\"'\"' AS agent_user_id, '\"'\"'c'\"'\"' AS conversation_id) AS message_d INNER JOIN (SELECT '\"'\"'c'\"'\"' AS conversation_id_0) AS metadata ON message_d.conversation_id=metadata.conversation_id_0) AS reusable_rows FORMAT JSONEachRow' > /tmp/convi7777-summary-genai-raw-alias-probe.log 2>&1",
+        "log": "/tmp/convi7777-summary-genai-raw-alias-probe.log",
+        "result": "pass",
+        "elapsed": null,
+        "passed_nodes": [],
+        "observed": "{\"agent_user_id\":\"a\"}",
+        "scope": "Read-only minimal reproduction on the running ClickHouse23.8 test container; actual selector metadata coverage is the full reader suites."
+      }
+    ],
+    "verification": {
+      "identical_passed_node_sets": true,
+      "frozen_manifest": "/tmp/convi7777-summary-genai-frozen.json",
+      "rpc_reader_and_converter_equivalence_log": "/tmp/convi7777-summary-genai-source-equivalence.log",
+      "tests_branch_changed_files": [
+        "insights-server/internal/analyticsimpl/BUILD.bazel",
+        "insights-server/internal/analyticsimpl/retrieve_genai_usage_regression_clickhouse_test.go",
+        "insights-server/internal/analyticsimpl/retrieve_summarization_usage_regression_clickhouse_test.go"
+      ],
+      "refactor_commit_changed_files": [
+        "insights-server/internal/analyticsimpl/BUILD.bazel",
+        "insights-server/internal/analyticsimpl/common_knowledge_assist_usage_clickhouse.go",
+        "insights-server/internal/analyticsimpl/common_summarization_usage_clickhouse.go",
+        "insights-server/internal/analyticsimpl/retrieve_knowledge_assist_stats_clickhouse.go",
+        "insights-server/internal/analyticsimpl/retrieve_summarization_stats_clickhouse.go",
+        "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_AgentOnly_request.sql",
+        "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_Basic_request.sql",
+        "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql"
+      ],
+      "tests_worktree_clean": true,
+      "refactor_worktree_clean": true,
+      "official_gazelle_root_confirmation": "Root confirmed running the official Gazelle command on both assigned worktrees with no unexpected BUILD diff.",
+      "cross_review_root_confirmation": "Root reported independent notes_workflow cross-review found no blocker and confirmed ON joins avoid the USING alias issue."
+    },
+    "risks": [
+      "Real-reader tests use local ClickHouse23.8 test schema and local PostgreSQL, not production data or deployment.",
+      "No new API integration, protobuf/schema change, metric correction or performance benchmark.",
+      "Source/dev cases seed the same eligibility on message and annotation tables, rather than every mixed-table Cartesian combination.",
+      "Existing SQL goldens cover additional request shapes, not live authorization.",
+      "Generated BUILD targets were not independently built with Bazel in this worker; full-package Go tests compiled both new test files.",
+      "Summary agent-only and zero-group requests have no dedicated new real-reader case; agent+time and time-only groupings are covered.",
+      "Combined metadata include+exclude has legacy SQL golden coverage but no dedicated new live ClickHouse fixture.",
+      "The same GenAI knowledge session repeated across different time buckets has no dedicated fixture; within-bucket cross-conversation/agent deduplication and separate-session multi-day grouping are covered."
+    ],
+    "diagnostic_runs": [
+      {
+        "log": "/tmp/convi7777-summary-genai-exploratory.jsonl",
+        "result": "failed_order_assumptions",
+        "scope": "Only two unordered grouped-result comparisons failed; fixtures corrected on original production."
+      },
+      {
+        "log": "/tmp/convi7777-summary-genai-before-final.jsonl",
+        "result": "pass",
+        "elapsed": 315.587,
+        "scope": "Exploratory expanded-suite run before the final sent and metadata-default fixture additions; not used for frozen equivalence."
+      },
+      {
+        "log": "/tmp/convi7777-summary-genai-baseline-refinement-interrupted.jsonl",
+        "result": "intentionally_interrupted",
+        "scope": "Stopped only this worker test process to add and probe the explicit missing-excluded-metadata case; no production extraction had started."
+      },
+      {
+        "log": "/tmp/convi7777-summary-genai-exclusion-probe.jsonl",
+        "result": "pass",
+        "elapsed": 46.125,
+        "scope": "Both actual readers on original production return empty response for no matching excluded metadata under default joins."
+      }
+    ],
+    "independent_review": {
+      "reviewer": "notes_workflow",
+      "verdict": "No demonstrated semantic blocker. Summary three-key LEFT JOIN and GenAI session grain, grouping, metadata and args retained. Extra combinations are covered by unchanged source/snapshots; new real-reader tests do not exhaust agent-only/zero-group Summary, combined include+exclude, or same GenAI session crossing time buckets."
+    }
+  },
+  "suite_consolidation": {
+    "pattern_commit": "77eb016897c59a286160c73f114f5d2f7a839f06",
+    "frozen_characterization_scenario_count": 49,
+    "seeded_full_rpc_scenario_count": 32,
+    "validation_scenario_count": 6,
+    "characterization_body_equivalence": [
+      {
+        "source": "retrieve_summarization_usage_regression_clickhouse_test.go",
+        "merged": "retrieve_summarization_stats_test.go",
+        "body_receiver_normalized_sha256": "9da969fe2037d2c0a727e2d8e2f63f7c10fadf8aeda68f9d7b017045ba5175ab",
+        "identical": true
+      },
+      {
+        "source": "retrieve_genai_usage_regression_clickhouse_test.go",
+        "merged": "retrieve_knowledge_assist_stats_test.go",
+        "body_receiver_normalized_sha256": "2d3ea932d617c28736100eb6b2b55d4bb1351f2590a0732c5757aa529939ca02",
+        "identical": true
+      }
+    ],
+    "separate_regression_files_removed": [
+      "retrieve_summarization_usage_regression_clickhouse_test.go",
+      "retrieve_genai_usage_regression_clickhouse_test.go"
+    ],
+    "removed_sql_snapshots": [
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_AgentOnly_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_Basic_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveKnowledgeAssistStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_BasicFilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_FilterAndGroupByAgent_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_FilterAndGroupByGroups_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_FilterByMetadataMomentGroups_IncludeAndExcludeMoments_request.sql",
+      "insights-server/internal/analyticsimpl/testdata/clickhouse_RetrieveSummarizationStats_WeeklyGroupByAgent_request.sql"
+    ],
+    "removed_case_coverage_map": [
+      {
+        "old": "Summary Test_DailyFilterAndGroupByAgent",
+        "replacement": "RPC DailyAgents / DailyAgentsExternal; exact real query, enrichment and complete response."
+      },
+      {
+        "old": "Summary Test_BasicFilterAndGroupByAgent",
+        "replacement": "RPC CombinedAttributeFilter and SelectedUser/SelectedUserExternal; frozen reader DurationFilterExcludesAllRows and UsecaseFilterExcludesAllRows."
+      },
+      {
+        "old": "Summary Test_DailyFilterAndGroupByGroup",
+        "replacement": "RPC DailyGroup and DailyAgentAndGroup use a selected TEAM with two seeded members and assert complete group conversions."
+      },
+      {
+        "old": "Summary Test_WeeklyGroupByAgent",
+        "replacement": "RPC WeeklyAgents uses real seeded rows and exact Honolulu week boundaries."
+      },
+      {
+        "old": "Summary and GenAI metadata include/exclude SQL cases",
+        "replacement": "RPC MetadataIncludeAndExclude plus frozen latest/stale/include/exclude/missing-excluded-metadata reader cases."
+      },
+      {
+        "old": "Summary Test_BasicRequestAndResponse",
+        "replacement": "RPC DailyAgents/WeeklyAgents/AgentOnly/TimeOnly compare complete conversion output from three real conversations. The old synthetic row claimed four distinct generated conversations inside one counted conversation; that impossible seed shape is replaced by feasible evidence, not encoded as a new contract."
+      },
+      {
+        "old": "Summary Test_InvalidRequestThrows",
+        "replacement": "RPCRequestValidation MissingTimeRange, InvalidParent and TooManyGroupKeys; direct-handler actual status/messages."
+      },
+      {
+        "old": "GenAI TestCasesReadingFromClickhouse/Basic",
+        "replacement": "RPC CombinedAttributeFilter, DailyAgents and SelectedUser; real source eligibility and positive/negative filters."
+      },
+      {
+        "old": "GenAI TestCasesWithoutTruncatedTime/Basic",
+        "replacement": "RPC AgentOnly plus frozen AgentOnlyGrouping reader case; exact zero timestamp and totals."
+      }
+    ]
+  },
+  "fixed_refactor_regressions": [
+    {
+      "title": "GenAI combined metadata joins hid outer grouping columns",
+      "trigger": "RetrieveKnowledgeAssistStats with both metadata inclusion and exclusion, agent/day grouping.",
+      "baseline": "The exact frozen MetadataIncludeAndExclude RPC returned an empty response on original production.",
+      "failure": "The prior raw-row wrapper SELECT table.* failed with ClickHouse code47, missing conversation_start_time and agent_user_id in the outer aggregate.",
+      "cause": "Qualified wildcard columns under combined metadata joins did not expose the canonical names required by the new outer subquery.",
+      "fix": "Only the GenAI raw-row helper projection changed to explicit table.field AS field columns: conversation identity/time/agent plus message ID, action ID/type/session or moment ID/type/session. Filters, joins, argument order, grouping and physical row multiplicity are unchanged.",
+      "failed_log": "/tmp/convi7777-summary-genai-merged-after-failed.jsonl",
+      "failed_log_sha256": "21d82934b7b77c40b2f1f81c9522300fb7724c1cdd4af7c0fd08dce790c0d972",
+      "focused_passing_log": "/tmp/convi7777-summary-genai-merged-fix-focused.jsonl",
+      "focused_passing_log_sha256": "f1058ca923f87327f26601e64671abb1c395bc63a3e876a81e87960710958e38",
+      "full_passing_log": "/tmp/convi7777-summary-genai-merged-after.jsonl",
+      "root_review": "Root independently checked the exact helper diff: predicates/args unchanged, IDs/type/session retained, no DISTINCT, physical duplicates preserved; supported outer group keys are agent_user_id and truncated_time.",
+      "test_expectations_changed": false,
+      "root_review_log": "/tmp/convi7777-summary-genai-projection-review.md"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+    "aggs": {
+        "bucket_aggs": {
+            "aggs": {
+                "bucket_aggs": {
+                    "date_histogram": {
+                        "calendar_interval": "month",
+                        "extended_bounds": {
+                            "max": "2024-10-01T00:00:00Z",
+                            "min": "2024-07-01T00:00:00Z"
+                        },
+                        "field": "conversation_started_at",
+                        "min_doc_count": 0,
+                        "time_zone": "+00:00"
+                    }
+                }
+            },
+            "filters": {
+                "filters": [
+                    {
+                        "terms": {
+                            "conversation_source": [
+                                0
+                            ]
+                        }
+                    },
+                    {
+                        "terms": {
+                            "conversation_source": [
+                                8
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "conversation"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "range": {
+                        "message_count": {
+                            "gt": 0
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "minimum_should_match": 1,
+                                "should": [
+                                    {
+                                        "range": {
+                                            "conversation_started_at": {
+                                                "gte": "2024-07-01T00:00:00Z",
+                                                "lt": "2024-10-01T00:00:00Z",
+                                                "time_zone": "+00:00"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

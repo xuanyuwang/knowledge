@@ -1,0 +1,230 @@
+{
+  "took": 52,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "doc_count_error_upper_bound": 1074,
+      "sum_other_doc_count": 26883,
+      "buckets": [
+        {
+          "key": "agent-id-1",
+          "doc_count": 6524,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 2093,
+                "bucket_aggs": {
+                  "doc_count": 109653,
+                  "bucket_aggs": {
+                    "doc_count": 0,
+                    "bucket_aggs": {
+                      "doc_count": 0,
+                      "bucket_aggs": {
+                        "doc_count": 0,
+                        "metrics_agg_on_numeric_field": {
+                          "value": 0.11
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 2209,
+                "bucket_aggs": {
+                  "doc_count": 122669,
+                  "bucket_aggs": {
+                    "doc_count": 0,
+                    "bucket_aggs": {
+                      "doc_count": 0,
+                      "bucket_aggs": {
+                        "doc_count": 0,
+                        "metrics_agg_on_numeric_field": {
+                          "value": 0.12
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-09-01T00:00:00.000Z",
+                "key": 1725148800000,
+                "doc_count": 2222,
+                "bucket_aggs": {
+                  "doc_count": 130346,
+                  "bucket_aggs": {
+                    "doc_count": 0,
+                    "bucket_aggs": {
+                      "doc_count": 0,
+                      "bucket_aggs": {
+                        "doc_count": 0,
+                        "metrics_agg_on_numeric_field": {
+                          "value": 0.13
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key": "agent-id-2",
+          "doc_count": 6416,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 1995,
+                "bucket_aggs": {
+                  "doc_count": 104564,
+                  "bucket_aggs": {
+                    "doc_count": 0,
+                    "bucket_aggs": {
+                      "doc_count": 0,
+                      "bucket_aggs": {
+                        "doc_count": 0,
+                        "metrics_agg_on_numeric_field": {
+                          "value": 0.21
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 2205,
+                "bucket_aggs": {
+                  "doc_count": 122455,
+                  "bucket_aggs": {
+                    "doc_count": 0,
+                    "bucket_aggs": {
+                      "doc_count": 0,
+                      "bucket_aggs": {
+                        "doc_count": 0,
+                        "metrics_agg_on_numeric_field": {
+                          "value": 0.22
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-09-01T00:00:00.000Z",
+                "key": 1725148800000,
+                "doc_count": 2216,
+                "bucket_aggs": {
+                  "doc_count": 129994,
+                  "bucket_aggs": {
+                    "doc_count": 0,
+                    "bucket_aggs": {
+                      "doc_count": 0,
+                      "bucket_aggs": {
+                        "doc_count": 0,
+                        "metrics_agg_on_numeric_field": {
+                          "value": 0.23
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key": "agent-id-3",
+          "doc_count": 4743,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 1567,
+                "bucket_aggs": {
+                  "doc_count": 82045,
+                  "bucket_aggs": {
+                    "doc_count": 0,
+                    "bucket_aggs": {
+                      "doc_count": 0,
+                      "bucket_aggs": {
+                        "doc_count": 0,
+                        "metrics_agg_on_numeric_field": {
+                          "value": 0.31
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 1621,
+                "bucket_aggs": {
+                  "doc_count": 89975,
+                  "bucket_aggs": {
+                    "doc_count": 0,
+                    "bucket_aggs": {
+                      "doc_count": 0,
+                      "bucket_aggs": {
+                        "doc_count": 0,
+                        "metrics_agg_on_numeric_field": {
+                          "value": 0.32
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "key_as_string": "2024-09-01T00:00:00.000Z",
+                "key": 1725148800000,
+                "doc_count": 1555,
+                "bucket_aggs": {
+                  "doc_count": 91230,
+                  "bucket_aggs": {
+                    "doc_count": 0,
+                    "bucket_aggs": {
+                      "doc_count": 0,
+                      "bucket_aggs": {
+                        "doc_count": 0,
+                        "metrics_agg_on_numeric_field": {
+                          "value": 0.33
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

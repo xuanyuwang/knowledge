@@ -1,0 +1,10 @@
+{
+  "hits": {
+    "hits": []
+  },
+  "aggregations": {
+    "metrics_bucket_field_cardinality": {
+      "value": 10
+    }
+  }
+}

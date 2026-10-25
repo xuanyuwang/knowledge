@@ -1,0 +1,16 @@
+INFO: From GoLink insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats_test_/action_retrieve_conversation_assistance_usage_stats_test:
+ld: warning: ignoring duplicate libraries: '-lm'
+ld: warning: object file (/private/var/folders/nj/b_bmsbyx05nbdq35q4jn_k900000gp/T/go-link-471722340/go.o) was built for newer 'macOS' version (13.0) than being linked (11.0)
+[3,768 / 3,769] [Prepa] Testing //insights-server/internal/analyticsimpl:action_retrieve_conversation_assistance_usage_stats_test
+[3,768 / 3,769] Testing //insights-server/internal/analyticsimpl:action_retrieve_conversation_assistance_usage_stats_test; 1s darwin-sandbox
+[3,768 / 3,769] Testing //insights-server/internal/analyticsimpl:action_retrieve_conversation_assistance_usage_stats_test; 11s darwin-sandbox
+[3,768 / 3,769] 1 / 1 tests; Testing //insights-server/internal/analyticsimpl:action_retrieve_conversation_assistance_usage_stats_test; 36s darwin-sandbox
+INFO: Found 1 test target...
+Target //insights-server/internal/analyticsimpl:action_retrieve_conversation_assistance_usage_stats_test up-to-date:
+  bazel-bin/insights-server/internal/analyticsimpl/action_retrieve_conversation_assistance_usage_stats_test_/action_retrieve_conversation_assistance_usage_stats_test
+INFO: Elapsed time: 50.628s, Critical Path: 47.91s
+INFO: 7 processes: 3772 action cache hit, 1 internal, 6 darwin-sandbox.
+INFO: Build completed successfully, 7 total actions
+//insights-server/internal/analyticsimpl:action_retrieve_conversation_assistance_usage_stats_test PASSED in 36.1s
+
+Executed 1 out of 1 test: 1 test passes.

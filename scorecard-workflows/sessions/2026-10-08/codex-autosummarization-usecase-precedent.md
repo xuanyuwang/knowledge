@@ -1,0 +1,29 @@
+# Auto Summarization precedent for multi-use-case scorecard templates
+
+Date: 2026-10-08. Primary source repo: `/Users/xuanyu.wang/repos/go-servers` (`main`, `435cb9047a`). Related source checkouts: `cresta-proto` (`main`, `a52824040e`) and `director` (`main`, `f47845f4f7`). This was read-only source and document research; no product change or design decision was made.
+
+## Source documents
+
+- [Improve Auto Summarization Self Service](https://docs.superhuman.com/d/_dql5sHRxpmX/_sumSKbol): use-case-level setup caused copies across as many as 30 use cases; product goal was global/local configuration, preview, and self service.
+- [Opera-integrated Summarization Eng Design](https://github.com/cresta/python-ai-services/blob/main/summarization-design/docs/summ-eng-design.md): multi-use-case template and topic visibility requirements; decisions to use new Opera moment types, keep one config plus N topic moments, and expose a wire wrapper materialized into the moments table. Its prose contains old TODOs; check current protos and code for implemented semantics.
+- [Omni Use Case QM / Coaching PRD](https://docs.google.com/document/d/1iEYDUg7NrYo5NjeTcr9nHyNqEbv_sWHrDHJeAkFJS9c): explicitly names Auto Summarization as the pattern for one template across use cases with field-level subsets.
+
+## Confirmed implementation pattern
+
+- `OperaSummarizationTemplate` is a wire wrapper, not a stored row: one config moment owns deployment status and links to topic moments through `associated_topic_moment_names`; topic moments reference their parent via `taxonomy_reference_id`. Source: [proto](https://github.com/cresta/cresta-proto/blob/main/cresta/v1/operasummarization/opera_summarization.proto).
+- Template scope is stored in both `config_moment.usecases` and per-use-case `usecase_match_conditions`. The backend upsert requires both to be nonempty and have equal sets. Each match condition can constrain metadata, language, duration, and audience. Runtime checks deployment, template use case, timing, and the matching use-case condition before generation. Source: [upsert validation](https://github.com/cresta/python-ai-services/blob/main/summarization-design/server/src/designtime/endpoints/upsert_opera_summarization_template.py), `go-servers/orchestrator/internal/nodes/summarization/predict_and_persist_opera_summarization_node.go:227-256,337-410`.
+- A topic has `visible_usecase_names`: empty means visible to all use cases in the template; a nonempty list restricts it. The Director topic control offers only the template-selected use cases and labels empty as “All use cases in this summary.” Source: `cresta-proto/cresta/v1/moment/moment.proto:2483-2488`, `director/packages/director-app/src/features/opera/components/summarization-template/build-step/topic-item/TopicUsecaseInput.tsx:18-43`.
+- Director selects use cases on the Define step, stores the per-use-case conditions, and writes both top-level `usecases` and payload `usecaseMatchConditions` when saving. Source: `director/packages/director-app/src/features/opera/components/summarization-template/define-step/DefineStep.tsx:99-114`, `utils/convertStoreToTemplate.ts:35-47`.
+- The authoring flow samples conversations across selected use cases for preview/calibration. A deployed-template overlap check compares trigger timing and shared use cases, refining by language; it is advisory, and metadata/audience differences still count as possible overlap. Source: [engineering design](https://github.com/cresta/python-ai-services/blob/main/summarization-design/docs/summ-eng-design.md), [overlap implementation](https://github.com/cresta/python-ai-services/blob/main/summarization-design/server/src/designtime/endpoints/check_overlapping_opera_templates.py).
+
+## Lessons for scorecards
+
+1. Reuse the authoring shape: choose template use cases first, then make each criterion's applicability visible and editable within that set. A per-use-case preview or validation sample would expose missing criterion coverage before publishing.
+2. Do **not** copy the empty-child-list encoding blindly. Summarization uses empty = ALL and has no child NONE. The scorecard design requires NONE, ALL, and SOME; its proposed `null`/`[]`/IDs encoding and presence-aware legacy normalization remain necessary.
+3. Keep one canonical template scope representation or validate equivalent fields together. [PR #15315](https://github.com/cresta/python-ai-services/pull/15315) documents a real failure: an update mask saved `usecase_match_conditions` but omitted top-level `usecases`, so runtime saw no eligible template. A scorecard `FieldMask` path must update template scope and criterion scopes atomically, including persisted JSON.
+4. Enforce child containment and per-use-case coverage on the backend. Current summarization upsert validates top-level scope equality and topic parent ownership, but its inspected `_validate_request` does not validate `visible_usecase_names` as a subset of config use cases. The Director dropdown only limits ordinary editor input; that is insufficient as the scorecard write contract.
+5. Keep summary-specific machinery out of the scorecard core model: trigger timings, metadata/audience gates, overlap warnings, moment taxonomy, and LLM calibration solve generation questions. Scorecards additionally require version-pinned evaluation, no score rows for inapplicable criteria, and reporting breakdowns, which the summarization precedent does not answer.
+
+## Follow-up
+
+Use this as a precedent for the scorecard authoring UX and cross-field write validation. Keep the existing scorecard plan's three-state criterion scope and versioned revision semantics. During implementation, explicitly test template use-case edits, full-template Commit payloads, and any masked update for parity across stored fields and runtime evaluation.

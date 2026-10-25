@@ -1,0 +1,24 @@
+# Historical `NULL` / empty template use-case behavior
+
+- Date: 2026-10-05
+- Source repo: `/Users/xuanyu.wang/repos/go-servers` (`main`, read-only)
+- Source checks: current tests and SQL, `git blame`/`git log -S`, GitHub PRs, and Linear issues. No code or database mutation.
+- Question: Do tests guard SQL NULL as all, and why do template readers include `usecase_ids IS NULL`?
+
+## Origins and tickets
+
+1. Commit `07cc289495` / [go-servers PR #8034](https://github.com/cresta/go-servers/pull/8034), 2023-05-05, linked from Linear [DIRP-3728](https://linear.app/cresta/issue/DIRP-3728/add-usecase-to-scorecard-templates-scorecard-coaching-plan-be), introduced the `ListCurrentScorecardTemplates` filter `usecase_ids IS NULL OR usecase_ids = '{}'` alongside use-case membership. The commit message explicitly says “Return templates with empty usecases” and “Allow empty usecase array in scorecard template usecase filtering.” Parent [DIRP-3726](https://linear.app/cresta/issue/DIRP-3726/scorecards-and-coaching-plans-by-use-case) describes showing templates for the selected use case plus all-use-case templates. The subissue has no description or comments explaining a particular NULL incident. The same commit added the non-nil empty-slice writer conversion.
+2. Commit `6372b040f6` / [PR #8301](https://github.com/cresta/go-servers/pull/8301), 2023-05-22, linked from [DIRP-3819](https://linear.app/cresta/issue/DIRP-3819/usecase-coaching-cleanup), tightened AutoQA use-case conditions after a backfill, while retaining “If the template has no usecases it is applicable to all usecases” in `shared/scoring/scorecard_template_dao.go`. The PR body says the earlier broad treatment was for a transition period and notes conversations without use cases in Oportun staging and “empty usecases in oportun prod.” That sentence is in the AutoQA/conversation context; it does not establish whether any **template** row was NULL or `{}`. The Linear issue has no description/comments with more detail.
+3. Commit `7afc7ba3dd` / [PR #16750](https://github.com/cresta/go-servers/pull/16750), linked to [CONVI-3567](https://linear.app/cresta/issue/CONVI-3567/fixit-create-shared-library-for-the-duration-filter-in), moved matching logic into `shared/qa/scorecard_template.go`. Commit `31fef8a8d3` / [PR #18729](https://github.com/cresta/go-servers/pull/18729) rewrote it with the condition builder in 2025. These carried the existing NULL/empty interpretation forward; their stated objectives were helper and condition-builder refactors.
+4. Commit `815b3018cb` / [PR #32862](https://github.com/cresta/go-servers/pull/32862), linked to [CONVI-7758](https://linear.app/cresta/issue/CONVI-7758/be-scorecard-export-follow-the-reporting-rule-for-submittedpublished), added the same `IS NULL OR = '{}'` to the scorecard export's publish-column decision in 2026. The PR says templates with no use case count for every exported use case; the ticket concerns publication columns, not a NULL incident.
+
+## Test coverage found
+
+- `apiserver/internal/coaching/action_list_current_scorecard_templates_test.go:TestUsecaseNamesFilter` came with PR #8034 and tests matching, nonmatching, combined, and omitted request filters. Its template fixtures have non-empty `UsecaseIds`; it does not seed a SQL NULL or `{}` template to assert those branches.
+- `shared/scoring/scorecard_template_dao_test.go:TestGetApplicableScorecardTemplatesForUsecase` came with PR #8119. Its suite inserts several `ScorecardTemplates` fixtures with `UsecaseIds` omitted (nil, which `lib/pq` writes as SQL NULL). The test expects two applicable templates even for an unknown or empty use-case ID. Thus it indirectly guards nil/NULL being universal in the Go `IsApplicable` path, though it has no explicit `IS NULL` assertion.
+- `apiserver/internal/coaching/action_export_scorecards_test.go` has new CONVI-7758 tests for matching and different finite use cases. The helper `createNewScorecardWithNewUsecase` sets a non-nil empty `UsecaseIds` when the scorecard has no use case; that exercises `{}`, not SQL NULL. No test was found that isolates the export SQL NULL branch.
+- No scorecard-template test with a literal `usecase_ids IS NULL` assertion or explicitly named NULL-template case was found in the searched coaching/QA/scoring suites. This does not rule out indirect coverage elsewhere.
+
+## Implication for NULL = none
+
+The SQL NULL/all branch originated as compatibility for the 2023 use-case transition and has been copied into later readers. The known test guard is in scoring and will need an explicit nil-versus-empty case when semantics change. The history does not establish past or current customer-wide template NULL counts; the `voice-sandbox-2` read-only check found zero NULL rows in both template tables. Reader-first rollout remains viable under a verified no-legacy-NULL premise.

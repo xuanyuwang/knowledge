@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "clickhouse_lib",
+    srcs = ["conversation_test_writer.go"],
+    importpath = "github.com/cresta/go-servers/insights-server/internal/analyticsimpl/tools/clickhouse/conversation",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_clickhouse_clickhouse_go_v2//:clickhouse-go",
+        "@com_github_clickhouse_clickhouse_go_v2//lib/driver",
+    ],
+)
+
+go_binary(
+    name = "clickhouse",
+    embed = [":clickhouse_lib"],
+    visibility = ["//insights-server:__subpackages__"],
+)

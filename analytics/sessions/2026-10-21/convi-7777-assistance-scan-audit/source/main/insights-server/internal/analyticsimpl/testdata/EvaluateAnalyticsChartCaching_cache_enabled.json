@@ -1,0 +1,83 @@
+{
+    "chartRequest": {
+      "parent": "customers/customer_id/profiles/profile_id",
+      "analyticsChart": {
+        "displayName": "display_name",
+        "dataConfig": {
+          "metrics": [
+            {
+              "forScorecardCriterion": {
+                "scorecardCriterions": [
+                  {
+                    "scorecardTemplateName": "customers/customer_id/profiles/profile_id/scorecardTemplates/scorecard_template_1@revision_id",
+                    "criterionId": "test-criterion-id1"
+                  },
+                  {
+                    "scorecardTemplateName": "customers/customer_id/profiles/profile_id/scorecardTemplates/scorecard_template_1@revision_id",
+                    "criterionId": "test-criterion-id2"
+                  }
+                ],
+                "statsType": {
+                  "commonStatsType": "COMMON_STATS_TYPE_CONVERSATION_COUNT"
+                }
+              }
+            }
+          ],
+          "filters": [
+            {
+              "operator": "IN",
+              "valueSet": {
+                "rangeValues": {
+                  "rangeValues": [
+                    {
+                      "fromValue": {
+                        "timestamp": "2024-07-01T00:00:00Z"
+                      },
+                      "toValue": {
+                        "timestamp": "2024-11-15T00:00:00Z"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "groupBy": [
+            {
+              "byProvidedValue": {
+                "valueSet": {
+                  "singleValues": {
+                    "attributeValues": [
+                      {
+                        "scorecardCriterionValue": {
+                          "scorecardTemplateName": "customers/customer_id/profiles/profile_id/scorecardTemplates/scorecard_template_1@revision_id",
+                          "criterionId": "test-criterion-id1"
+                        }
+                      },
+                      {
+                        "scorecardCriterionValue": {
+                          "scorecardTemplateName": "customers/customer_id/profiles/profile_id/scorecardTemplates/scorecard_template_1@revision_id",
+                          "criterionId": "test-criterion-id2"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "byTime": {
+                "interval": "MONTH"
+              }
+            }
+          ]
+        },
+        "audience": {},
+        "accessibility": "PERSONAL",
+        "renderingConfig": {
+          "chartDisplayType": "BAR_CHART"
+        }
+      }
+    },
+    "isAdmin": true
+  }

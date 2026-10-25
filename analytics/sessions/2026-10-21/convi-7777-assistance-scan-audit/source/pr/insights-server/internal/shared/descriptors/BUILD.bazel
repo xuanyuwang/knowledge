@@ -1,0 +1,11 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "descriptors",
+    srcs = ["scorecard_template_name.go"],
+    importpath = "github.com/cresta/go-servers/insights-server/internal/shared/descriptors",
+    visibility = ["//insights-server:__subpackages__"],
+    deps = [
+        "@com_github_cresta_protoc_gen_resourcename//runtime",
+    ],
+)

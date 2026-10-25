@@ -1,0 +1,22 @@
+{
+  "kb-search": {
+    "reviewer": "notes_workflow",
+    "verdict": "No demonstrated semantic blocker; event/metadata/denominator grain retained."
+  },
+  "chat-suggestions": {
+    "reviewer": "notes_workflow",
+    "verdict": "No demonstrated semantic blocker. Grouped email/frequency combined scenario relies on unchanged source and existing suites."
+  },
+  "notes-workflow": {
+    "reviewer": "hints",
+    "verdict": "No demonstrated semantic blocker. DISTINCT projections, prejoin filters, conversation-only joins, and usage gates preserved. Review covered final whitespace-only amended commit."
+  },
+  "hints": {
+    "reviewer": "root",
+    "verdict": "No demonstrated semantic blocker. Metadata predicate args shared once; relation predicates and aggregate projections/MAX retained. Raw projection canonical aliases verified independently."
+  },
+  "summary-genai": {
+    "reviewer": "notes_workflow",
+    "verdict": "No demonstrated semantic blocker. Summary three-key LEFT JOIN and GenAI session grain, grouping, metadata and args retained. Extra combinations are covered by unchanged source/snapshots; new real-reader tests do not exhaust agent-only/zero-group Summary, combined include+exclude, or same GenAI session crossing time buckets."
+  }
+}

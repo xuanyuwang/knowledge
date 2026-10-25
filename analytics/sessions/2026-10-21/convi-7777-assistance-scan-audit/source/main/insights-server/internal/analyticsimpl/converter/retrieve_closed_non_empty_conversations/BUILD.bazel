@@ -1,0 +1,33 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "retrieve_closed_non_empty_conversations",
+    srcs = [
+        "clickhouse_query_converter.go",
+        "clickhouse_response_converter.go",
+    ],
+    importpath = "github.com/cresta/go-servers/insights-server/internal/analyticsimpl/converter/retrieve_closed_non_empty_conversations",
+    visibility = ["//insights-server:__subpackages__"],
+    deps = [
+        "//insights-server/internal/shared",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/analytics",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/conversation",
+    ],
+)
+
+go_test(
+    name = "retrieve_closed_non_empty_conversations_test",
+    srcs = [
+        "clickhouse_query_converter_test.go",
+        "clickhouse_response_converter_test.go",
+    ],
+    embed = [":retrieve_closed_non_empty_conversations"],
+    deps = [
+        "//insights-server/internal/shared",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/analytics",
+        "@com_github_cresta_cresta_proto_v2//cresta/v1/conversation",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+        "@org_golang_google_protobuf//types/known/timestamppb",
+    ],
+)

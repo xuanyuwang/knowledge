@@ -1,0 +1,50 @@
+[
+  {
+    "Time": "2026-10-21T15:13:13.829297-04:00",
+    "Action": "output",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestReviewLargeRestrictedDirectory/ExternalUsers_false",
+    "Output": "    zz_review_33993_diagnostic_test.go:45: REVIEW_RESULT external=false: query assistance usage population: code: 62, message: Syntax error: failed at position 262123 (''00000000-0000-0000-0000-000000006542'') (line 15, col 261819): '00000000-0000-0000-0000-000000006542', '00000000-0000-0000-0000-000000006543', '00000000-0000-0000-0000-000000006544', '00000000-0000-0000-0000-000000006545', . Max query size exceeded: ''00000000-0000-0000-0000-000000006542''\n"
+  },
+  {
+    "Time": "2026-10-21T15:13:13.829326-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestReviewLargeRestrictedDirectory/ExternalUsers_false",
+    "Elapsed": 0.05
+  },
+  {
+    "Time": "2026-10-21T15:13:13.858259-04:00",
+    "Action": "output",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestReviewLargeRestrictedDirectory/ExternalUsers_true",
+    "Output": "    zz_review_33993_diagnostic_test.go:41: REVIEW_RESULT external=true: restricted population query succeeds with 8001 eligible users\n"
+  },
+  {
+    "Time": "2026-10-21T15:13:13.858298-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestReviewLargeRestrictedDirectory/ExternalUsers_true",
+    "Elapsed": 0.03
+  },
+  {
+    "Time": "2026-10-21T15:13:13.858418-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsagePopulationCH/TestReviewLargeRestrictedDirectory",
+    "Elapsed": 0.08
+  },
+  {
+    "Time": "2026-10-21T15:13:20.066983-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Test": "TestConversationAssistanceUsagePopulationCH",
+    "Elapsed": 16.44
+  },
+  {
+    "Time": "2026-10-21T15:13:20.069027-04:00",
+    "Action": "pass",
+    "Package": "github.com/cresta/go-servers/insights-server/internal/analyticsimpl",
+    "Elapsed": 18.11
+  }
+]

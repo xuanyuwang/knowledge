@@ -1,0 +1,535 @@
+{
+  "group": "hints",
+  "status": "verified",
+  "tests_worktree": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-hints-tests/go-servers",
+  "refactor_worktree": "/Users/xuanyu.wang/.codex/worktrees/convi-7777-hints-refactor/go-servers",
+  "base_commit": "6ba478ae4d7d7322e6f904dce2eb3f4ff2ea58c9",
+  "tests_commit": "0b494885bc574dfa5e99f54d833bfd76a43c077e",
+  "refactor_commit": "90ecd3488de2a7b7f214f743bbae8a6bb23855bd",
+  "test_files": [
+    {
+      "path": "insights-server/internal/analyticsimpl/retrieve_hint_stats_usage_integration_test.go",
+      "sha256": "5e85448324ce26726b2287dfe3d5bd0df2b732a1a9eb0c88bb56520f16a5e7ea",
+      "unchanged_in_refactor": true,
+      "frozen_sha256": "5e85448324ce26726b2287dfe3d5bd0df2b732a1a9eb0c88bb56520f16a5e7ea",
+      "matches_frozen": true
+    }
+  ],
+  "commands": [
+    {
+      "stage": "gazelle-refactor",
+      "command": "python3 /tmp/convi7777-gazelle.py \"$PWD\" retrieve_hint_stats_usage_integration_test.go --support base_test.go",
+      "log": "/tmp/convi7777-hints-gazelle-refactor.log",
+      "result": "pass",
+      "elapsed": null,
+      "passed_nodes": 0,
+      "sha256": "d15cda326afd62d9be81cdaed54aa170b7d60ac52d2fabbae51799b955314aae"
+    },
+    {
+      "stage": "gazelle-tests",
+      "command": "python3 /tmp/convi7777-gazelle.py \"$PWD\" retrieve_hint_stats_usage_integration_test.go --support base_test.go",
+      "log": "/tmp/convi7777-hints-gazelle-tests.log",
+      "result": "pass",
+      "elapsed": null,
+      "passed_nodes": 0,
+      "sha256": "d15cda326afd62d9be81cdaed54aa170b7d60ac52d2fabbae51799b955314aae"
+    },
+    {
+      "stage": "baseline",
+      "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^(TestHintStatsUsageIntegration|TestRetrieveHintStats|TestRetrieveHintStatsUseActionAnnotation|TestHintStatsClickhouseQueryCountsBehavioralFollowsByHintAction)$' -count=1 -json > /tmp/convi7777-hints-before.jsonl 2>&1",
+      "log": "/tmp/convi7777-hints-before.jsonl",
+      "sha256": "daabbd31568a84ee14e5e3b377afb7e37ea1dc0b14692dd1e2612c9dec61c0a4",
+      "result": "pass",
+      "elapsed": 225.989,
+      "passed_nodes": 68,
+      "failed_nodes": 0,
+      "passed_tests": [
+        "TestRetrieveHintStats/TestCases/GroupByAgentAndGroup",
+        "TestRetrieveHintStats/TestCases/GroupByGroup",
+        "TestRetrieveHintStats/TestCases/GroupAndFilterByBehavior",
+        "TestRetrieveHintStats/TestCases/GroupByAgentPolicy_NotGroupByTime",
+        "TestRetrieveHintStats/TestCases/GroupByGroupPolicy_NotGroupByTime",
+        "TestRetrieveHintStats/TestCases/GroupByAgentGroupPolicy_NotGroupByTime",
+        "TestRetrieveHintStats/TestCases/WithoutFilterByTimeRange_Throw",
+        "TestRetrieveHintStats/TestCases/TooManyGroupByAttrs_Throw",
+        "TestRetrieveHintStats/TestCases/TooManyGroupByAttrsWithTime_Throw",
+        "TestRetrieveHintStats/TestCases/IncludeBotConversations",
+        "TestRetrieveHintStats/TestCases/FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+        "TestRetrieveHintStats/TestCases",
+        "TestRetrieveHintStats",
+        "TestHintStatsClickhouseQueryCountsBehavioralFollowsByHintAction",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/GroupByAgentAndGroup",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/GroupByGroup",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/GroupAndFilterByBehavior",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/GroupByAgentGroupPolicy_NotGroupByTime",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/IncludeBotConversations",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases",
+        "TestRetrieveHintStatsUseActionAnnotation",
+        "TestHintStatsUsageIntegration/TestBehaviorGroupingAndFilterUseMomentRows/ActionModefalse",
+        "TestHintStatsUsageIntegration/TestBehaviorGroupingAndFilterUseMomentRows/ActionModetrue",
+        "TestHintStatsUsageIntegration/TestBehaviorGroupingAndFilterUseMomentRows",
+        "TestHintStatsUsageIntegration/TestBehavioralDeliveryModesAndDuplicateAnnotations/ActionModefalse",
+        "TestHintStatsUsageIntegration/TestBehavioralDeliveryModesAndDuplicateAnnotations/ActionModetrue",
+        "TestHintStatsUsageIntegration/TestBehavioralDeliveryModesAndDuplicateAnnotations",
+        "TestHintStatsUsageIntegration/TestConversationStartBoundsAndTimezoneBuckets",
+        "TestHintStatsUsageIntegration/TestDeliveredRowsOwnAgentAndTimeAttribution",
+        "TestHintStatsUsageIntegration/TestEmptyProfile",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_REGULAR_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_BEHAVIOR_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_CHECKLIST_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_KB_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_GW_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_REGULAR_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_BEHAVIOR_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_CHECKLIST_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_KB_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_GW_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches",
+        "TestHintStatsUsageIntegration/TestKnowledgeFollowsAreDistinctActionsIncludingMissingID",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters/Nullablefalse_Combinedfalse",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters/Nullablefalse_Combinedtrue",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters/Nullabletrue_Combinedfalse",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters/Nullabletrue_Combinedtrue",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters",
+        "TestHintStatsUsageIntegration/TestMetadataIncludesUseLatestUpdateAndExcludesMissing/ActionModefalse",
+        "TestHintStatsUsageIntegration/TestMetadataIncludesUseLatestUpdateAndExcludesMissing/ActionModetrue",
+        "TestHintStatsUsageIntegration/TestMetadataIncludesUseLatestUpdateAndExcludesMissing",
+        "TestHintStatsUsageIntegration/TestMixedBranchesRetainMaximumDenominators",
+        "TestHintStatsUsageIntegration/TestMomentAndEventEligibilityGuards/ActionModefalse",
+        "TestHintStatsUsageIntegration/TestMomentAndEventEligibilityGuards/ActionModetrue",
+        "TestHintStatsUsageIntegration/TestMomentAndEventEligibilityGuards",
+        "TestHintStatsUsageIntegration/TestNoFrequencyKeepsTotalsAndRemovesBuckets",
+        "TestHintStatsUsageIntegration/TestPolicyGroupingRetainsSourceColumnMapping",
+        "TestHintStatsUsageIntegration/TestSameConversationCountsForEachAgent",
+        "TestHintStatsUsageIntegration/TestSourcesDevelopmentUsersAndPolicyGates/IncludeBotfalse",
+        "TestHintStatsUsageIntegration/TestSourcesDevelopmentUsersAndPolicyGates/IncludeBottrue",
+        "TestHintStatsUsageIntegration/TestSourcesDevelopmentUsersAndPolicyGates",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes/Actionfalse_Externalfalse",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes/Actionfalse_Externaltrue",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes/Actiontrue_Externalfalse",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes/Actiontrue_Externaltrue",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes",
+        "TestHintStatsUsageIntegration"
+      ]
+    },
+    {
+      "stage": "after-initial",
+      "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^(TestHintStatsUsageIntegration|TestRetrieveHintStats|TestRetrieveHintStatsUseActionAnnotation|TestHintStatsClickhouseQueryCountsBehavioralFollowsByHintAction)$' -count=1 -json > /tmp/convi7777-hints-after.jsonl 2>&1",
+      "log": "/tmp/convi7777-hints-after-initial.jsonl",
+      "sha256": "9dcdfc36db11439a380f5e32b6645fc30d15fde46c12e8f3aa0571648cf56ac0",
+      "result": "pass",
+      "elapsed": 227.011,
+      "passed_nodes": 68,
+      "failed_nodes": 0,
+      "passed_tests": [
+        "TestRetrieveHintStats/TestCases/GroupByAgentAndGroup",
+        "TestRetrieveHintStats/TestCases/GroupByGroup",
+        "TestRetrieveHintStats/TestCases/GroupAndFilterByBehavior",
+        "TestRetrieveHintStats/TestCases/GroupByAgentPolicy_NotGroupByTime",
+        "TestRetrieveHintStats/TestCases/GroupByGroupPolicy_NotGroupByTime",
+        "TestRetrieveHintStats/TestCases/GroupByAgentGroupPolicy_NotGroupByTime",
+        "TestRetrieveHintStats/TestCases/WithoutFilterByTimeRange_Throw",
+        "TestRetrieveHintStats/TestCases/TooManyGroupByAttrs_Throw",
+        "TestRetrieveHintStats/TestCases/TooManyGroupByAttrsWithTime_Throw",
+        "TestRetrieveHintStats/TestCases/IncludeBotConversations",
+        "TestRetrieveHintStats/TestCases/FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+        "TestRetrieveHintStats/TestCases",
+        "TestRetrieveHintStats",
+        "TestHintStatsClickhouseQueryCountsBehavioralFollowsByHintAction",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/GroupByAgentAndGroup",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/GroupByGroup",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/GroupAndFilterByBehavior",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/GroupByAgentGroupPolicy_NotGroupByTime",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/IncludeBotConversations",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases",
+        "TestRetrieveHintStatsUseActionAnnotation",
+        "TestHintStatsUsageIntegration/TestBehaviorGroupingAndFilterUseMomentRows/ActionModefalse",
+        "TestHintStatsUsageIntegration/TestBehaviorGroupingAndFilterUseMomentRows/ActionModetrue",
+        "TestHintStatsUsageIntegration/TestBehaviorGroupingAndFilterUseMomentRows",
+        "TestHintStatsUsageIntegration/TestBehavioralDeliveryModesAndDuplicateAnnotations/ActionModefalse",
+        "TestHintStatsUsageIntegration/TestBehavioralDeliveryModesAndDuplicateAnnotations/ActionModetrue",
+        "TestHintStatsUsageIntegration/TestBehavioralDeliveryModesAndDuplicateAnnotations",
+        "TestHintStatsUsageIntegration/TestConversationStartBoundsAndTimezoneBuckets",
+        "TestHintStatsUsageIntegration/TestDeliveredRowsOwnAgentAndTimeAttribution",
+        "TestHintStatsUsageIntegration/TestEmptyProfile",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_REGULAR_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_BEHAVIOR_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_CHECKLIST_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_KB_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_GW_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_REGULAR_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_BEHAVIOR_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_CHECKLIST_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_KB_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_GW_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches",
+        "TestHintStatsUsageIntegration/TestKnowledgeFollowsAreDistinctActionsIncludingMissingID",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters/Nullablefalse_Combinedfalse",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters/Nullablefalse_Combinedtrue",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters/Nullabletrue_Combinedfalse",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters/Nullabletrue_Combinedtrue",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters",
+        "TestHintStatsUsageIntegration/TestMetadataIncludesUseLatestUpdateAndExcludesMissing/ActionModefalse",
+        "TestHintStatsUsageIntegration/TestMetadataIncludesUseLatestUpdateAndExcludesMissing/ActionModetrue",
+        "TestHintStatsUsageIntegration/TestMetadataIncludesUseLatestUpdateAndExcludesMissing",
+        "TestHintStatsUsageIntegration/TestMixedBranchesRetainMaximumDenominators",
+        "TestHintStatsUsageIntegration/TestMomentAndEventEligibilityGuards/ActionModefalse",
+        "TestHintStatsUsageIntegration/TestMomentAndEventEligibilityGuards/ActionModetrue",
+        "TestHintStatsUsageIntegration/TestMomentAndEventEligibilityGuards",
+        "TestHintStatsUsageIntegration/TestNoFrequencyKeepsTotalsAndRemovesBuckets",
+        "TestHintStatsUsageIntegration/TestPolicyGroupingRetainsSourceColumnMapping",
+        "TestHintStatsUsageIntegration/TestSameConversationCountsForEachAgent",
+        "TestHintStatsUsageIntegration/TestSourcesDevelopmentUsersAndPolicyGates/IncludeBotfalse",
+        "TestHintStatsUsageIntegration/TestSourcesDevelopmentUsersAndPolicyGates/IncludeBottrue",
+        "TestHintStatsUsageIntegration/TestSourcesDevelopmentUsersAndPolicyGates",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes/Actionfalse_Externalfalse",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes/Actionfalse_Externaltrue",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes/Actiontrue_Externalfalse",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes/Actiontrue_Externaltrue",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes",
+        "TestHintStatsUsageIntegration"
+      ]
+    },
+    {
+      "stage": "raw-smoke-initial",
+      "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^TestHintUsageRelationSmoke$/^TestRawRows$' -count=1 -json",
+      "log": "/tmp/convi7777-hints-raw-smoke-initial.jsonl",
+      "sha256": "9111b41deba4700ce045dfa4a137555ea38b616229a8bfbd6e18797fad9bae18",
+      "result": "fail",
+      "elapsed": 41.269,
+      "passed_nodes": 2,
+      "failed_nodes": 5,
+      "passed_tests": [
+        "TestHintUsageRelationSmoke/TestRawRows/Actionfalse_Metadatafalse",
+        "TestHintUsageRelationSmoke/TestRawRows/Actiontrue_Metadatafalse"
+      ]
+    },
+    {
+      "stage": "raw-smoke",
+      "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^TestHintUsageRelationSmoke$/^TestRawRows$' -count=1 -json",
+      "log": "/tmp/convi7777-hints-raw-smoke.jsonl",
+      "sha256": "9f497412c99b94c383afba7d8292810585b5b6a87f803b19399da296dd22f77d",
+      "result": "pass",
+      "elapsed": 46.612,
+      "passed_nodes": 7,
+      "failed_nodes": 0,
+      "passed_tests": [
+        "TestHintUsageRelationSmoke/TestRawRows/Actionfalse_Metadatafalse",
+        "TestHintUsageRelationSmoke/TestRawRows/Actionfalse_Metadatatrue",
+        "TestHintUsageRelationSmoke/TestRawRows/Actiontrue_Metadatafalse",
+        "TestHintUsageRelationSmoke/TestRawRows/Actiontrue_Metadatatrue",
+        "TestHintUsageRelationSmoke/TestRawRows",
+        "TestHintUsageRelationSmoke"
+      ]
+    },
+    {
+      "stage": "after-final",
+      "command": "DOCKER_HOST=unix:///Users/xuanyu.wang/.colima/default/docker.sock REUSABLE_CLICKHOUSE_CONTAINER_NAME= GOMAXPROCS=3 go test -p 2 ./insights-server/internal/analyticsimpl -run '^(TestHintStatsUsageIntegration|TestRetrieveHintStats|TestRetrieveHintStatsUseActionAnnotation|TestHintStatsClickhouseQueryCountsBehavioralFollowsByHintAction)$' -count=1 -json > /tmp/convi7777-hints-after.jsonl 2>&1",
+      "log": "/tmp/convi7777-hints-after.jsonl",
+      "sha256": "60e97765290a9eb8e757e883a05c93d96c7ef9fd8d1616c1634087f47856f7e2",
+      "result": "pass",
+      "elapsed": 237.526,
+      "passed_nodes": 68,
+      "failed_nodes": 0,
+      "passed_tests": [
+        "TestRetrieveHintStats/TestCases/GroupByAgentAndGroup",
+        "TestRetrieveHintStats/TestCases/GroupByGroup",
+        "TestRetrieveHintStats/TestCases/GroupAndFilterByBehavior",
+        "TestRetrieveHintStats/TestCases/GroupByAgentPolicy_NotGroupByTime",
+        "TestRetrieveHintStats/TestCases/GroupByGroupPolicy_NotGroupByTime",
+        "TestRetrieveHintStats/TestCases/GroupByAgentGroupPolicy_NotGroupByTime",
+        "TestRetrieveHintStats/TestCases/WithoutFilterByTimeRange_Throw",
+        "TestRetrieveHintStats/TestCases/TooManyGroupByAttrs_Throw",
+        "TestRetrieveHintStats/TestCases/TooManyGroupByAttrsWithTime_Throw",
+        "TestRetrieveHintStats/TestCases/IncludeBotConversations",
+        "TestRetrieveHintStats/TestCases/FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+        "TestRetrieveHintStats/TestCases",
+        "TestRetrieveHintStats",
+        "TestHintStatsClickhouseQueryCountsBehavioralFollowsByHintAction",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/GroupByAgentAndGroup",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/GroupByGroup",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/GroupAndFilterByBehavior",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/GroupByAgentGroupPolicy_NotGroupByTime",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/IncludeBotConversations",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases/FilterByMetadataMomentGroups_IncludeAndExcludeMoments",
+        "TestRetrieveHintStatsUseActionAnnotation/TestCases",
+        "TestRetrieveHintStatsUseActionAnnotation",
+        "TestHintStatsUsageIntegration/TestBehaviorGroupingAndFilterUseMomentRows/ActionModefalse",
+        "TestHintStatsUsageIntegration/TestBehaviorGroupingAndFilterUseMomentRows/ActionModetrue",
+        "TestHintStatsUsageIntegration/TestBehaviorGroupingAndFilterUseMomentRows",
+        "TestHintStatsUsageIntegration/TestBehavioralDeliveryModesAndDuplicateAnnotations/ActionModefalse",
+        "TestHintStatsUsageIntegration/TestBehavioralDeliveryModesAndDuplicateAnnotations/ActionModetrue",
+        "TestHintStatsUsageIntegration/TestBehavioralDeliveryModesAndDuplicateAnnotations",
+        "TestHintStatsUsageIntegration/TestConversationStartBoundsAndTimezoneBuckets",
+        "TestHintStatsUsageIntegration/TestDeliveredRowsOwnAgentAndTimeAttribution",
+        "TestHintStatsUsageIntegration/TestEmptyProfile",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_REGULAR_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_BEHAVIOR_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_CHECKLIST_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_KB_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actionfalse_GW_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_REGULAR_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_BEHAVIOR_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_CHECKLIST_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_KB_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches/Actiontrue_GW_HINT",
+        "TestHintStatsUsageIntegration/TestHintTypeBranches",
+        "TestHintStatsUsageIntegration/TestKnowledgeFollowsAreDistinctActionsIncludingMissingID",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters/Nullablefalse_Combinedfalse",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters/Nullablefalse_Combinedtrue",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters/Nullabletrue_Combinedfalse",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters/Nullabletrue_Combinedtrue",
+        "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters",
+        "TestHintStatsUsageIntegration/TestMetadataIncludesUseLatestUpdateAndExcludesMissing/ActionModefalse",
+        "TestHintStatsUsageIntegration/TestMetadataIncludesUseLatestUpdateAndExcludesMissing/ActionModetrue",
+        "TestHintStatsUsageIntegration/TestMetadataIncludesUseLatestUpdateAndExcludesMissing",
+        "TestHintStatsUsageIntegration/TestMixedBranchesRetainMaximumDenominators",
+        "TestHintStatsUsageIntegration/TestMomentAndEventEligibilityGuards/ActionModefalse",
+        "TestHintStatsUsageIntegration/TestMomentAndEventEligibilityGuards/ActionModetrue",
+        "TestHintStatsUsageIntegration/TestMomentAndEventEligibilityGuards",
+        "TestHintStatsUsageIntegration/TestNoFrequencyKeepsTotalsAndRemovesBuckets",
+        "TestHintStatsUsageIntegration/TestPolicyGroupingRetainsSourceColumnMapping",
+        "TestHintStatsUsageIntegration/TestSameConversationCountsForEachAgent",
+        "TestHintStatsUsageIntegration/TestSourcesDevelopmentUsersAndPolicyGates/IncludeBotfalse",
+        "TestHintStatsUsageIntegration/TestSourcesDevelopmentUsersAndPolicyGates/IncludeBottrue",
+        "TestHintStatsUsageIntegration/TestSourcesDevelopmentUsersAndPolicyGates",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes/Actionfalse_Externalfalse",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes/Actionfalse_Externaltrue",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes/Actiontrue_Externalfalse",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes/Actiontrue_Externaltrue",
+        "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes",
+        "TestHintStatsUsageIntegration"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "BehavioralDeliveryModesAndDuplicateAnnotations",
+      "expected_behavior": "Two positive annotations for one delivered action plus one positive annotation without a delivery count sent/followed 2/2 in moment mode, 1/2 in action mode; empty IDs and unsupported adherence are excluded.",
+      "evidence": "TestHintStatsUsageIntegration/TestBehavioralDeliveryModesAndDuplicateAnnotations"
+    },
+    {
+      "name": "DeliveredRowsOwnAgentAndTimeAttribution",
+      "expected_behavior": "A recipient action and detector annotation yield recipient sent=1/followed=0 in action mode; annotation-only detector group is absent.",
+      "evidence": "TestHintStatsUsageIntegration/TestDeliveredRowsOwnAgentAndTimeAttribution"
+    },
+    {
+      "name": "SourcesDevelopmentUsersAndPolicyGates",
+      "expected_behavior": "Only source0 and optional bot7, policy-source1, non-dev, nonempty-agent supported actions count; checklist21 without adherence does not enter the nonbehavior branch.",
+      "evidence": "TestHintStatsUsageIntegration/TestSourcesDevelopmentUsersAndPolicyGates"
+    },
+    {
+      "name": "MomentAndEventEligibilityGuards",
+      "expected_behavior": "With profile bot inclusion, sources0/8/7 survive all three tables; dev users, empty agents, source9 and policy-source2 do not. Sent=3, followed=6 in both action modes.",
+      "evidence": "TestHintStatsUsageIntegration/TestMomentAndEventEligibilityGuards"
+    },
+    {
+      "name": "KnowledgeFollowsAreDistinctActionsIncludingMissingID",
+      "expected_behavior": "Actions1/6/13/14 contribute sent=4; event9 counts distinct action IDs, including empty and unlinked IDs, so repeated event IDs across one action count once and followed=3.",
+      "evidence": "TestHintStatsUsageIntegration/TestKnowledgeFollowsAreDistinctActionsIncludingMissingID"
+    },
+    {
+      "name": "MixedBranchesRetainMaximumDenominators",
+      "expected_behavior": "Behavioral population2 conversations/2 agents and nonbehavioral3 conversations/1 agent produce sent=3, conversations=3, users=2, followed=2; a conversation_d row without hints contributes nothing.",
+      "evidence": "TestHintStatsUsageIntegration/TestMixedBranchesRetainMaximumDenominators"
+    },
+    {
+      "name": "SameConversationCountsForEachAgent",
+      "expected_behavior": "One conversation with two agent-specific actions produces two groups and response conversation total2.",
+      "evidence": "TestHintStatsUsageIntegration/TestSameConversationCountsForEachAgent"
+    },
+    {
+      "name": "UserFilterInlineAndExternalForBothDeliveryModes",
+      "expected_behavior": "Selected user survives both inline and external filters in both action modes, across all three tables. Sent=1/followed=2; excluded user is absent.",
+      "evidence": "TestHintStatsUsageIntegration/TestUserFilterInlineAndExternalForBothDeliveryModes"
+    },
+    {
+      "name": "ConversationStartBoundsAndTimezoneBuckets",
+      "expected_behavior": "Conversation start uses an inclusive start and exclusive end, independent of create time. Honolulu splits three included actions into Dec31 10UTC count1 and Jan1 10UTC count2.",
+      "evidence": "TestHintStatsUsageIntegration/TestConversationStartBoundsAndTimezoneBuckets"
+    },
+    {
+      "name": "NoFrequencyKeepsTotalsAndRemovesBuckets",
+      "expected_behavior": "No frequency with agent grouping preserves all totals/rates and returns no HintStats buckets.",
+      "evidence": "TestHintStatsUsageIntegration/TestNoFrequencyKeepsTotalsAndRemovesBuckets"
+    },
+    {
+      "name": "BehaviorGroupingAndFilterUseMomentRows",
+      "expected_behavior": "Behavior grouping/filter returns the moment-owned behavior in default mode; action mode returns empty because actions lack behavior and their parser condition is false.",
+      "evidence": "TestHintStatsUsageIntegration/TestBehaviorGroupingAndFilterUseMomentRows"
+    },
+    {
+      "name": "PolicyGroupingRetainsSourceColumnMapping",
+      "expected_behavior": "Policy filter/grouping resolves policy_id on actions and action_policy_id on conversation events to the same response policy; sent=1/followed=1.",
+      "evidence": "TestHintStatsUsageIntegration/TestPolicyGroupingRetainsSourceColumnMapping"
+    },
+    {
+      "name": "HintTypeBranches",
+      "expected_behavior": "Regular, behavior, checklist, KB and GW filters each return sent1 in both modes. Regular followed0; the others followed1.",
+      "evidence": "TestHintStatsUsageIntegration/TestHintTypeBranches"
+    },
+    {
+      "name": "MetadataIncludesUseLatestUpdateAndExcludesMissing",
+      "expected_behavior": "Latest MV update-time value selects one conversation while an older matching value and missing metadata do not count, in both action modes.",
+      "evidence": "TestHintStatsUsageIntegration/TestMetadataIncludesUseLatestUpdateAndExcludesMissing"
+    },
+    {
+      "name": "MetadataExclusionAndCombinedFilters",
+      "expected_behavior": "join_use_nulls=false yields empty for exclusion-only and combined filters. join_use_nulls=true yields two conversations for exclusion-only and one for include+exclude.",
+      "evidence": "TestHintStatsUsageIntegration/TestMetadataExclusionAndCombinedFilters"
+    },
+    {
+      "name": "EmptyProfile",
+      "expected_behavior": "An empty isolated profile returns the empty full response.",
+      "evidence": "TestHintStatsUsageIntegration/TestEmptyProfile"
+    }
+  ],
+  "extraction": [
+    {
+      "file": "insights-server/internal/analyticsimpl/common_hint_usage_clickhouse.go",
+      "boundary": "Four unaggregated source row relations with original FROM/JOIN/WHERE predicates, metadata CTEs and table-specific arguments. query(\"\", nil) selects explicit canonical raw columns and includes its metadata CTE/arguments; explicit projections let the existing aggregate reuse the same row selections.",
+      "why": "A future usage consumer can retain conversation/agent/action grain without copying the statistics aggregate or accepting its MAX denominator. Legacy query renders the original SQL shape.",
+      "invariants": [
+        "No source-row DISTINCT or GROUP BY in raw mode",
+        "Raw output fields explicitly alias canonical names after metadata joins",
+        "Original enum/source/user/adherence/time/metadata guards and delivered GLOBAL IN preserved",
+        "Argument order metadata then behavioral sent, nonbehavioral sent, behavioral followed, knowledge followed",
+        "Filtered external user table remains attached by the existing reader",
+        "Metadata aliases and latest-update semantics unchanged"
+      ],
+      "raw_columns": {
+        "moment_annotation_d": [
+          "moment_annotation_id",
+          "create_time",
+          "update_time",
+          "conversation_id",
+          "agent_user_id",
+          "conversation_start_time",
+          "behavior_id",
+          "policy_id",
+          "adherence_action_annotation_id",
+          "adherence_type",
+          "adherence_action_type",
+          "adherence_action_adherence_type",
+          "adherence_action_policy_id"
+        ],
+        "action_annotation_d": [
+          "create_time",
+          "update_time",
+          "conversation_id",
+          "agent_user_id",
+          "conversation_start_time",
+          "policy_id",
+          "action_annotation_id",
+          "action_type",
+          "adherence_type"
+        ],
+        "conversation_event_d": [
+          "event_id",
+          "create_time",
+          "update_time",
+          "conversation_id",
+          "agent_user_id",
+          "conversation_start_time",
+          "action_policy_id",
+          "action_annotation_id",
+          "event_type",
+          "action_type",
+          "action_adherence_type"
+        ]
+      }
+    },
+    {
+      "file": "insights-server/internal/analyticsimpl/retrieve_hint_stats_clickhouse.go",
+      "boundary": "RPC-specific distinct counts, grouping aliases, UNION ALL, MAX denominators, sent-anchored LEFT JOIN, followed SUM, conversion and postprocessing stay in the RPC implementation.",
+      "why": "Extraction shares row selection while keeping established response semantics and SQL snapshots.",
+      "invariants": [
+        "No SQL snapshot changes",
+        "No reader/converter/postprocessing edits",
+        "No proto/schema/new API integration"
+      ]
+    }
+  ],
+  "preserved_issues": [
+    {
+      "title": "Mixed sent populations use MAX",
+      "trigger": "Behavioral and nonbehavioral hints occupy different conversations/users",
+      "observed": "Sent/conversation/user denominators are independent branch MAX values, not summed or union-distinct populations.",
+      "scope": "Observed real baseline and refactor; preserved, not corrected."
+    },
+    {
+      "title": "Moment-based sent and followed can lack delivered actions",
+      "trigger": "Positive adherence annotation references a nonexistent action",
+      "observed": "Default sent includes it; both followed paths count it. Action mode excludes it only from sent.",
+      "scope": "Observed real baseline and refactor; no qualifying-use redefinition."
+    },
+    {
+      "title": "Knowledge follows accept empty and unlinked action IDs",
+      "trigger": "event_type9 has empty/unlinked action_annotation_id",
+      "observed": "COUNT DISTINCT includes the empty string and IDs with no matching sent action.",
+      "scope": "Observed baseline and refactor."
+    },
+    {
+      "title": "Metadata exclusion depends on nullable joins",
+      "trigger": "Exclusion LEFT JOIN uses IS NULL under join_use_nulls=false",
+      "observed": "Unmatched IDs are empty strings; both exclusion-only and combined filters return empty. Nullable joins yield intended filtered cohorts.",
+      "scope": "Observed with explicit settings0/1 on local CH23.8.16; production connection settings were not inspected."
+    },
+    {
+      "title": "Action mode loses behavior-filtered populations",
+      "trigger": "Behavior filter supplied with action-based sent calculation",
+      "observed": "Action table has no behavior column, so the existing false filter removes sent groups.",
+      "scope": "Observed baseline and refactor."
+    },
+    {
+      "title": "Agent attribution can separate sent from followed",
+      "trigger": "Delivered action agent differs from the adherence annotation agent",
+      "observed": "Action-mode recipient group has sent1/followed0; detector-only followed group is dropped by the sent-anchored LEFT JOIN.",
+      "scope": "Observed baseline and refactor."
+    },
+    {
+      "title": "Conversation totals retain grouping multiplicity",
+      "trigger": "One conversation has actions attributed to two agents",
+      "observed": "Each agent group counts the conversation once and the response sums to2.",
+      "scope": "Observed baseline and refactor."
+    }
+  ],
+  "risks": [
+    "Real-reader characterization and supplemental raw relation execution were observed locally on fresh CH23.8.16; no production deployment/configuration inspection or performance measurement.",
+    "No public API/ACL behavior changes; legacy mocked RPC suites plus real reader were executed.",
+    "Reusable rows preserve legacy offered/sent/followed populations; future AssistanceUsage must explicitly implement its approved qualification rules instead of treating every row as qualifying use.",
+    "New raw API is covered by a retained supplemental verifier artifact, not a committed test against unavailable pre-extraction symbols."
+  ],
+  "source_files": [
+    "insights-server/internal/analyticsimpl/retrieve_hint_stats_usage_integration_test.go",
+    "insights-server/internal/analyticsimpl/retrieve_hint_stats_clickhouse.go",
+    "insights-server/internal/analyticsimpl/common_hint_usage_clickhouse.go",
+    "insights-server/internal/analyticsimpl/BUILD.bazel",
+    "insights-server/internal/analyticsimpl/common_clickhouse.go",
+    "shared/clickhouse/conversations/conversation.go"
+  ],
+  "supplemental_evidence": {
+    "verifier": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.raw-smoke.go",
+    "log": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.raw-smoke.jsonl",
+    "initial_failure": "/Users/xuanyu.wang/.codex/visualizations/2026/10/19/01a15467-b60f-7ed3-bdbd-d22a88d4a87b/implementation/hints-report.raw-smoke-initial.jsonl",
+    "observed": "All4 relations executed with explicit raw projections, external users, both delivery modes and metadata include/exclude on/off. Raw behavioral annotations stay3 when two share an action; delivered raw sent=1; raw nonbehavioral=1; raw followed annotations=3; raw knowledge events=2. Explicit output aliases fixed a new raw-only missing-column error exposed by the first smoke run.",
+    "verifier_sha256": "744a1ed36a55e5c1fa9eeef828ede5382ba759db15a73445df86109b312fdaaf"
+  },
+  "development_notes": [
+    "Initial fixture run corrected an invalid behavior resource name and documented actual nonnullable exclusion output while production remained original.",
+    "Initial development run later hit clickhouse-client exit137 while bootstrapping a late profile. Full baseline retry passed; no global Docker/credential configuration changed.",
+    "Before committing both stages Gazelle wrapper ran with --support base_test.go to generate source/test BUILD targets and dependencies."
+  ],
+  "credentials": "No AWS, Okta, Azure or SSH credentials were read, selected or used. Only local Git operations; no pushes, PRs or external messages.",
+  "self_review": "Root directly reviewed final helper/RPC diff and found no semantic blocker; original predicate argument order, metadata sharing, gates, projections, grouping and MAX semantics were retained. Canonical raw aliases were reviewed.",
+  "prs": {
+    "tests": "https://github.com/cresta/go-servers/pull/34037",
+    "refactor": "https://github.com/cresta/go-servers/pull/34038"
+  },
+  "independent_review": {
+    "reviewer": "root",
+    "verdict": "No demonstrated semantic blocker. Metadata predicate args shared once; relation predicates and aggregate projections/MAX retained. Raw projection canonical aliases verified independently."
+  }
+}

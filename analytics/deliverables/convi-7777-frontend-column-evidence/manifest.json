@@ -1,0 +1,67 @@
+{
+  "base": "cd7b46d052c694ec6cd689b8f6ab9f01e9690104",
+  "capturedAt": "2026-10-21T13:53:38.385036+00:00",
+  "manifestSha256": "70756c9d7b27b94c81b0ba9a41bd804709f2735ef5a6d196da18b6e33245f34c",
+  "files": [
+    {
+      "path": "packages/director-api/src/hooks/queryUtils.ts",
+      "sha256": "15a78aa6f9bac8b4a2e3aef2ebcaf23a57adb22036216ffe3b904160a811fc77"
+    },
+    {
+      "path": "packages/director-api/src/services/cresta-api/insights/apiTypes.ts",
+      "sha256": "df31040217de3dfb72eaa3214b638a348c4045065366b48c70e393e5751759cb"
+    },
+    {
+      "path": "packages/director-api/src/services/cresta-api/insights/conversationAssistanceUsage.test.ts",
+      "sha256": "af94d2662e0d301631123f68e39c34b0fe18aad4894835c07341a9351da47da6"
+    },
+    {
+      "path": "packages/director-api/src/services/cresta-api/insights/insightsApi.ts",
+      "sha256": "72ce9170f609e44e88eec2c13cf958b115b50b1241d781da142ee658d2b0076e"
+    },
+    {
+      "path": "packages/director-api/src/services/cresta-api/insights/transformers.ts",
+      "sha256": "924bd65989da8ec7da532597eae1656b550fd48def58aaf37381480d82b4dc54"
+    },
+    {
+      "path": "packages/director-app/locales/en-US/director-app-insights.json",
+      "sha256": "f01e9726a70f08537bbca38735449093b53b2a4dd32a2976aecf739de59cbb84"
+    },
+    {
+      "path": "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/AssistanceUsedLeaderboardContainer.tsx",
+      "sha256": "a89213d0e697569e94dcd021888097ca68d94bcda641d692460b7e2cb3ad1d0f"
+    },
+    {
+      "path": "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/AssistanceUsedLeaderboard.tsx",
+      "sha256": "85b717aef43caa6b78e03547151948282dce59c73f7636da921c03a21bfb47a1"
+    },
+    {
+      "path": "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsageColumn.test.tsx",
+      "sha256": "8c04579daad362c189fb5f1b0497a3c66b2497c6b8b1e3dd7d3a52027c25475d"
+    },
+    {
+      "path": "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsedByAgentLeaderboard.tsx",
+      "sha256": "a8c35050b3045707f2286dd6578b137f9c959ec40cbf8959822016ae24e13039"
+    },
+    {
+      "path": "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useAssistanceUsedByTeamLeaderboard.tsx",
+      "sha256": "d50c3febdc50d645c259849b402effc83b6fffa664c62511a671e96e20d48f2e"
+    },
+    {
+      "path": "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/hooks/useVisibleColumnsForAssistanceUsedLeaderboards.tsx",
+      "sha256": "661f647faf19c69e0d038472170d4a176cb435c57b14773e0a698a8bc2045bcd"
+    },
+    {
+      "path": "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/types.ts",
+      "sha256": "c02212211f37b5dbcd062281d28fea6d89d5a9497205981254977788013a75d5"
+    },
+    {
+      "path": "packages/director-app/src/components/insights/assistance/assistance-insights-statistics/assistance-used-page/assistance-used-leaderboard/utils.tsx",
+      "sha256": "c4e6392871f3bc73b5e3f0730712c98d2dc130d52e40ab621c9373a2967bc08d"
+    },
+    {
+      "path": "packages/director-app/src/features/insights/assistance/api/conversationAssistanceUsageStatsQuery.ts",
+      "sha256": "5faae22e778f960a591f9a2ee56c3300b2de4425877367ac1e4960d2b43fcc56"
+    }
+  ]
+}

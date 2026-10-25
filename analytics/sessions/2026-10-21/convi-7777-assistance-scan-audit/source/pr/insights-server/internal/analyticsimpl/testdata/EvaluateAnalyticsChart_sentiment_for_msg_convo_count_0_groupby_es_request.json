@@ -1,0 +1,80 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "conversation_to_message_join": [
+                            "conversation"
+                        ]
+                    }
+                },
+                {
+                    "terms": {
+                        "conversation_source": [
+                            0,
+                            7,
+                            8
+                        ]
+                    }
+                },
+                {
+                    "range": {
+                        "message_count": {
+                            "gt": 0
+                        }
+                    }
+                },
+                {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [
+                                    {
+                                        "has_child": {
+                                            "type": "message",
+                                            "query": {
+                                                "bool": {
+                                                    "filter": [
+                                                        {
+                                                            "nested": {
+                                                                "path": "moment_annotations",
+                                                                "query": {
+                                                                    "bool": {
+                                                                        "filter": [
+                                                                            {
+                                                                                "terms": {
+                                                                                    "moment_annotations.moment_template_id.keyword": [
+                                                                                        "sentiment-1",
+                                                                                        "sentiment-2"
+                                                                                    ]
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "minimum_should_match": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "metrics_conversation_count": {
+            "cardinality": {
+                "field": "conversation_id.keyword",
+                "precision_threshold": 40000
+            }
+        }
+    }
+}

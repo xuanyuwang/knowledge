@@ -1,0 +1,118 @@
+{
+  "took": 231,
+  "timed_out": false,
+  "_shards": {
+    "total": 12,
+    "successful": 12,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "bucket_aggs": {
+      "buckets": [
+        {
+          "doc_count": 1500,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 100,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 200,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              },
+              {
+                "key_as_string": "2024-09-01T00:00:00.000Z",
+                "key": 1725148800000,
+                "doc_count": 300,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              },
+              {
+                "key_as_string": "2024-10-01T00:00:00.000Z",
+                "key": 1727740800000,
+                "doc_count": 400,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              },
+              {
+                "key_as_string": "2024-11-01T00:00:00.000Z",
+                "key": 1730419200000,
+                "doc_count": 500,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              }
+            ]
+          }
+        },
+        {
+          "doc_count": 1650,
+          "bucket_aggs": {
+            "buckets": [
+              {
+                "key_as_string": "2024-07-01T00:00:00.000Z",
+                "key": 1719792000000,
+                "doc_count": 150,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              },
+              {
+                "key_as_string": "2024-08-01T00:00:00.000Z",
+                "key": 1722470400000,
+                "doc_count": 250,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              },
+              {
+                "key_as_string": "2024-09-01T00:00:00.000Z",
+                "key": 1725148800000,
+                "doc_count": 350,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              },
+              {
+                "key_as_string": "2024-10-01T00:00:00.000Z",
+                "key": 1727740800000,
+                "doc_count": 450,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              },
+              {
+                "key_as_string": "2024-11-01T00:00:00.000Z",
+                "key": 1730419200000,
+                "doc_count": 550,
+                "metrics_conversation_count": {
+                  "value": 10
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

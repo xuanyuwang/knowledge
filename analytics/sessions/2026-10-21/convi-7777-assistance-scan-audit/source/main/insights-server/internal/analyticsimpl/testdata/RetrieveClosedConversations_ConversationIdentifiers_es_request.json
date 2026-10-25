@@ -1,0 +1,59 @@
+{
+  "_source": {
+    "includes": [
+      "conversation_id",
+      "moment_annotations",
+      "message_count"
+    ]
+  },
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "terms": {
+            "agent_user_id.keyword": [
+              "2f540f161f3a452c",
+              "35636a572d7ec364",
+              "d072a51a8359fe51",
+              "user-id4-deactivated"
+            ]
+          }
+        },
+        {
+          "terms": {
+            "conversation_id.keyword": [
+              "convo-id"
+            ]
+          }
+        },
+        {
+          "terms": {
+            "usecase_id.keyword": [
+              "use-case-id"
+            ]
+          }
+        },
+        {
+          "terms": {
+            "conversation_to_message_join": [
+              "conversation"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+      {
+         "conversation_ended_at": {
+            "format": "strict_date_optional_time_nanos",
+            "order": "desc"
+         }
+      },
+      {
+         "conversation_id.keyword": {
+            "order": "asc"
+         }
+      }
+  ]
+}
