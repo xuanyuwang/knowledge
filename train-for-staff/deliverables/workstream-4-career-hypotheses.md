@@ -1,13 +1,19 @@
 # Workstream 4: Career Hypotheses
 
 **Status:** First synthesis pass
-**Date:** 2026-09-03
+**Date:** 2026-09-03; preference update 2026-09-18
 
 ## Purpose
 
 Turn the recurring-strength and seniority assessments into distinct, testable descriptions of the engineer I could choose to emphasize next.
 
 These are positioning hypotheses, not permanent identities. Each should be tested against work I want to do, roles that actually exist, and feedback from hiring managers, recruiters, interviews, and future projects.
+
+## Current preference constraint
+
+The [governing career position](career-position.md) supersedes earlier assumptions that the next role should primarily expand organizational scope. These hypotheses describe technical value, not obligations to seek more influence. Evaluate each through the [work–life fit criteria](workstream-5-next-role-fit.md): meaningful financial improvement, family time, health, attention, technical learning, and supported autonomy.
+
+Backend/software infrastructure and deep technical, mathematical, or computational problems are explicit interests. Existing evidence supports the three hypotheses below; it does not limit future exploration to scorecards/data correctness or establish expertise in new mathematical specialties. Staff, management, and organizational transformation are optional, not the intended endpoint.
 
 ## Stable evidence underneath every hypothesis
 
@@ -56,7 +62,7 @@ I make distributed product data trustworthy when multiple systems can each look 
 - Product-semantic and cross-functional translation work
 - Reusable product-infrastructure design outside failure diagnosis
 - Three years of frontend experience
-- Emerging domain stewardship and team-leverage ambitions
+- Demonstrated domain stewardship and reusable engineering knowledge
 
 ### Main positioning risk
 
@@ -64,7 +70,7 @@ This can become a “production debugger” or “database consistency specialis
 
 ### Day-to-day fit hypothesis
 
-The repository shows strong capability and sustained investment in this work, but it does not prove that a role dominated by incidents and reconciliation is desirable. Test whether the appealing part is deep diagnosis and system design or whether repeated reactive correctness work would become too narrow.
+Deep reasoning, diagnosis, and system design fit the stated interests. Repeated reactive maintenance and firefighting are known sources of frustration when root-cause work lacks support. Pursue this hypothesis only with bounded on-call and funded preventive work; demonstrated debugging skill does not imply willingness to become a permanent incident responder.
 
 ## Candidate 2: Product infrastructure and data-platform builder
 
@@ -81,7 +87,7 @@ I build the backend and data foundations that let product engineers ship complex
 - External tables reframed a query-size failure into a general reference-data transport mechanism, with option analysis, generic helpers, broad caller adoption, feature flags, and staged rollout.
 - User-filter work created implementation-independent behavioral rules and tests for historically divergent semantics.
 - Provider boundaries, canonical filter direction, verification tools, repair playbooks, and domain references all aim to make future changes safer and cheaper.
-- The stated growth goal is to convert investigation judgment into assets other engineers can use without making me the critical path.
+- Reusable tools and knowledge can reduce repeated work and avoid making me the critical path. Their value does not require owning organization-wide adoption.
 
 ### Contradictory or limiting evidence
 
@@ -109,7 +115,7 @@ The hypothesis can sound more proven than it is. The safe claim is that I have b
 
 ### Day-to-day fit hypothesis
 
-This aligns most directly with the documented desire to turn recurring investigation knowledge into maintained tools, standards, and workflows used by others. Preference confidence is **medium**, not high, because the repository does not yet say whether sustained platform maintenance, internal-customer support, and adoption work are enjoyable.
+Building useful technical mechanisms fits the stated interests. Preference confidence remains **medium** at the role-family level: verify that deep engineering outweighs recurring support, platform maintenance, and organizational adoption work, with enough authority and time to fix root causes during normal hours.
 
 ## Candidate 3: Domain-oriented product systems engineer
 
@@ -154,7 +160,7 @@ I make technically complex product domains understandable and correct by connect
 
 ### Day-to-day fit hypothesis
 
-The growth goals support earlier customer and roadmap involvement, but the repository does not establish a preference for the meeting, negotiation, prioritization, and stakeholder load that comes with domain technical leadership. Preference confidence is **medium-low** until tested directly.
+Technical semantics and product understanding remain useful strengths. The earlier self-review wish for roadmap involvement is not a mandate for a stakeholder-heavy next job. Preference confidence is **medium-low**: pursue only when technical work remains central and negotiation, meetings, and political responsibility are bounded.
 
 ## Comparison
 
@@ -179,7 +185,7 @@ Why lead with this version:
 - It describes value beyond debugging by including reusable mechanisms and contracts.
 - It leaves room for customer-facing product context without claiming broad product leadership.
 - It targets a wider and likely better-fitting role set than “scorecard/analytics specialist” or generic “distributed systems engineer.”
-- It expresses the documented growth direction—make judgment reusable—without claiming that organization-wide leverage is already proven.
+- It preserves reusable technical work as an option without requiring responsibility for organizational transformation or proving broader influence.
 
 This is a testable working hypothesis, not a final selection. Candidate 1 should be used for reliability-heavy opportunities; Candidate 3 should be used for product-domain roles where semantic complexity and PM partnership are central.
 
@@ -201,7 +207,7 @@ For each candidate, collect five plausible job descriptions and record:
 - which required experiences are already proven;
 - which terms repeatedly produce false-positive roles;
 - whether the role offers ownership through rollout and follow-up;
-- whether it provides a credible path from strong Senior to broader Staff scope.
+- whether compensation, actual hours, attention demands, and supported technical autonomy improve the work–life exchange.
 
 ### Test the narrative
 
@@ -210,7 +216,7 @@ Use recruiter and hiring-manager conversations to learn:
 - which phrase makes the experience immediately legible;
 - whether “product infrastructure” needs more concrete explanation;
 - whether the scorecard-sync story is heard as architecture and ownership or only debugging;
-- which missing proof blocks Senior versus Staff consideration;
+- which missing proof matters for a desirable role, rather than pursuing Staff consideration for its own sake;
 - which two additional stories make the profile feel broad rather than repetitive.
 
 ### Test personal preference

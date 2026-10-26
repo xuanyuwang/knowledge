@@ -15,6 +15,12 @@ This assessment distinguishes:
 
 It is an evidence assessment, not a formal leveling or promotion decision. Company rubrics and the scope actually entrusted to the engineer still matter.
 
+## Interpretation update — 2026-09-18
+
+This is a capability/evidence assessment, not a prescription for desired responsibility. The [current career goal](career-position.md) prioritizes financial value and interesting technical work with protected family time, health, and attention. Recurring debugging, ownership, or influence demonstrate ability; they do not imply a preference for firefighting or organizational transformation.
+
+The user reports having influenced organizational change at IBM. This evidence inventory is mainly based on later technical project records and is not a comprehensive judgment of lifetime organizational capability. Recover the IBM specifics if needed for a relevant interview claim; do not require another organizational rescue project to prove capability. Missing documentation is not inability, and broader Staff evidence is not a prerequisite for a worthwhile next role.
+
 ## Overall assessment
 
 The evidence strongly supports an **established, high-performing Senior Engineer** calibration. It also supports repeated **Staff-like behavior within bounded backend, analytics, and data-correctness domains**, especially when the work requires problem reframing, cross-system diagnosis, explicit semantic contracts, consequential technical judgment, and production validation.
@@ -23,7 +29,7 @@ The evidence does **not yet strongly support a broad Staff Engineer claim**. The
 
 A concise current statement is:
 
-> I operate as a strong Senior Engineer who can take Staff-shaped ownership of ambiguous, cross-system correctness and product-infrastructure problems within a bounded domain. My next-level evidence must show that this judgment changes outcomes beyond projects I personally drive.
+> I operate as a strong Senior Engineer who can take Staff-shaped ownership of ambiguous, cross-system correctness and product-infrastructure problems within a bounded domain. A broader Staff claim would require additional evidence of outcomes beyond projects I personally drive; seeking that scope is optional.
 
 ## Dimension-by-dimension calibration
 
@@ -115,9 +121,9 @@ The strongest evidence clusters around analytics, scorecards, data semantics, an
 
 ## Implications
 
-### Internal growth
+### Optional broader-scope evidence
 
-The next step is not simply to take on harder implementation. It is to convert already-demonstrated judgment into wider outcomes:
+If a desirable role or voluntarily chosen growth goal calls for broader Staff scope, the following evidence could support that claim. These are not required next actions; use only supported opportunities within normal work boundaries:
 
 1. Own one cross-team outcome with named stakeholders, success metrics, and post-launch health.
 2. Make at least one standard, tool, or playbook the adopted default and measure who uses it and what it improves.
