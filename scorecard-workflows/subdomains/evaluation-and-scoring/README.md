@@ -27,13 +27,15 @@ Own how criteria are evaluated and transformed into criterion, chapter, and over
 
 ## Legacy Sources and Cases
 
-- `nascore/`
-- `convi-6672-achieve-behavior-na/`
-- `outcome/`
-- `convi-6709-reversed-scorecard/`
+- [na-score-representation-and-fallback](../../work-items/na-score-representation-and-fallback.md)
+- [achieve-excluded-criteria-na-investigation](../../work-items/achieve-excluded-criteria-na-investigation.md)
+- [opera-email-autoqa-outcome-semantics](../../work-items/opera-email-autoqa-outcome-semantics.md)
+- [nrg-option-value-display-mismatch](../../work-items/nrg-option-value-display-mismatch.md)
 - `alo/` (retained initiative; cross-link when its evaluation model is reused)
 
 ## Open Questions
 
 - Publish one authoritative score-field and denominator matrix.
 - Document parity requirements between manual and AutoQM evaluation.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

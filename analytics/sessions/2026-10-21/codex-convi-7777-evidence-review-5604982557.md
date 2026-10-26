@@ -26,7 +26,7 @@ The three diagnostic scenarios passed as expected in 17.875s on the repositoryâ€
 
 ## Approved external-agent transport follow-up
 
-Xuanyu agreed to always use an external agent table if the earlier research supported its cost. The [March design review](../../../large-user-id-clickhouse/design-review.md) records a local ClickHouse 24.2 benchmark with 10,000 seeded conversations and five iterations: five IDs cost 4.3 ms with external data versus 1.2 ms inline; 5,000 IDs cost 2.4 ms versus 6.5 ms. This supports avoiding a list-size threshold; it does not measure this API or production shard overhead. External tables are query-scoped data sent with the query, without persistent DDL or an extra create-table round trip.
+Xuanyu agreed to always use an external agent table if the earlier research supported its cost. The [March design review](../2026-10-25/large-user-id-clickhouse-legacy-evidence/design-review.md) records a local ClickHouse 24.2 benchmark with 10,000 seeded conversations and five iterations: five IDs cost 4.3 ms with external data versus 1.2 ms inline; 5,000 IDs cost 2.4 ms versus 6.5 ms. This supports avoiding a list-size threshold; it does not measure this API or production shard overhead. External tables are query-scoped data sent with the query, without persistent DDL or an extra create-table round trip.
 
 The adapter replaces columnIn expansion with agent_user_id IN (SELECT user_id FROM assistance_usage_agents), builds that table using buildUsersExtTable, and attaches an independent instance alongside each query's eligible-pair table. Agent IDs are deduplicated once per request. All seven source families retain their existing predicates and the outer exact pair join. Existing feature APIs and timestamp selection are unchanged.
 

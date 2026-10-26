@@ -1,0 +1,257 @@
+{
+  "date": "2026-10-25",
+  "original_tracked_files": 21,
+  "added_legacy_metadata_files": 4,
+  "files": [
+    {
+      "original_path": "convi-6192-conversation-source-config/README.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6192-legacy-evidence/README.md",
+      "original_sha256": "e0931b3a1c18305ddf0f9e1853fc5f0c1866f5e0e02dc7b957f0ca6595714c03",
+      "migrated_sha256": "ac64c6d1802aa2c94aa2c00353fa188053435c3ad885189bf7677fb6ce67be2c",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": [
+        {
+          "old": "../analytics/subdomains/active-days/README.md",
+          "new": "../../../subdomains/active-days/README.md"
+        }
+      ]
+    },
+    {
+      "original_path": "convi-6192-conversation-source-config/project.yaml",
+      "new_path": "analytics/sessions/2026-10-25/convi-6192-legacy-evidence/project.yaml",
+      "original_sha256": "226dd238f763ad55da07c831fae2ee024fcfa14ff3d49ad08e0fe92554c5f1eb",
+      "migrated_sha256": "226dd238f763ad55da07c831fae2ee024fcfa14ff3d49ad08e0fe92554c5f1eb",
+      "mode": "0o644",
+      "original_tracked_file": false,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6242-cron-label-conversations/README.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6242-legacy-evidence/README.md",
+      "original_sha256": "c7254c3a199c1107d96e3b01155397126c303ddbe7f55584e81a0ee895133eb8",
+      "migrated_sha256": "a32b3360b781dce046820f7489f9d70570fbba458580bfd7c00cc06056fe6b27",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": [
+        {
+          "old": "../analytics/subdomains/active-days/README.md",
+          "new": "../../../subdomains/active-days/README.md"
+        }
+      ]
+    },
+    {
+      "original_path": "convi-6242-cron-label-conversations/backfill-plan.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6242-legacy-evidence/backfill-plan.md",
+      "original_sha256": "b148a14ea95f1a876ad21ba4afc1a4d32f4e8bea47d1aad0d4de685b7cf769e1",
+      "migrated_sha256": "b148a14ea95f1a876ad21ba4afc1a4d32f4e8bea47d1aad0d4de685b7cf769e1",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6242-cron-label-conversations/backfill.sh",
+      "new_path": "analytics/sessions/2026-10-25/convi-6242-legacy-evidence/backfill.sh",
+      "original_sha256": "de318479e629c0066b3b19d590a7527b52cb6d011a25945d35c587c97c9aa01c",
+      "migrated_sha256": "de318479e629c0066b3b19d590a7527b52cb6d011a25945d35c587c97c9aa01c",
+      "mode": "0o755",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6242-cron-label-conversations/backfill_sequential.py",
+      "new_path": "analytics/sessions/2026-10-25/convi-6242-legacy-evidence/backfill_sequential.py",
+      "original_sha256": "9f56d1d4c52b64d4c96d15c8a7865447fce6e80fb91c3c94b59ecf7d787b2bc9",
+      "migrated_sha256": "9f56d1d4c52b64d4c96d15c8a7865447fce6e80fb91c3c94b59ecf7d787b2bc9",
+      "mode": "0o755",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6242-cron-label-conversations/data-analysis.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6242-legacy-evidence/data-analysis.md",
+      "original_sha256": "7adc958f1fa7194adfc71048a3fc14b9bbbe2ffbd570fb0621432d3de7add1e8",
+      "migrated_sha256": "7adc958f1fa7194adfc71048a3fc14b9bbbe2ffbd570fb0621432d3de7add1e8",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6242-cron-label-conversations/delete_existing.sh",
+      "new_path": "analytics/sessions/2026-10-25/convi-6242-legacy-evidence/delete_existing.sh",
+      "original_sha256": "4f8a760d2bdd3f5621418948a71bd603eb6e5ad9bcc7d198976e62214d5e700b",
+      "migrated_sha256": "4f8a760d2bdd3f5621418948a71bd603eb6e5ad9bcc7d198976e62214d5e700b",
+      "mode": "0o755",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6242-cron-label-conversations/log/2026-02-18.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6242-legacy-evidence/log/2026-02-18.md",
+      "original_sha256": "1755465f84acf6a811120739d7b92c3f8cf5bca4ac534d8d16214a53c1924ccf",
+      "migrated_sha256": "1755465f84acf6a811120739d7b92c3f8cf5bca4ac534d8d16214a53c1924ccf",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6242-cron-label-conversations/project.yaml",
+      "new_path": "analytics/sessions/2026-10-25/convi-6242-legacy-evidence/project.yaml",
+      "original_sha256": "b7c5dd318dcb04bd856c166292d5613bad3a62533e53435271adbaca80452119",
+      "migrated_sha256": "b7c5dd318dcb04bd856c166292d5613bad3a62533e53435271adbaca80452119",
+      "mode": "0o644",
+      "original_tracked_file": false,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6242-cron-label-conversations/verify.sh",
+      "new_path": "analytics/sessions/2026-10-25/convi-6242-legacy-evidence/verify.sh",
+      "original_sha256": "2197e54dcca6d2472b7d4bc2d4feb90545cdc149befb9535b9b0f8d6b3610e7e",
+      "migrated_sha256": "2197e54dcca6d2472b7d4bc2d4feb90545cdc149befb9535b9b0f8d6b3610e7e",
+      "mode": "0o755",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6260-team-leaderboard/README.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6260-legacy-evidence/README.md",
+      "original_sha256": "4b925ec8300c9257748f8305113ad223306ad60388ce2f66651819432335b7fb",
+      "migrated_sha256": "a1eafd196fef077c80a213c30935ad7559578664a17cda90ac4549b8e8576e7f",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": [
+        {
+          "old": "../analytics/subdomains/insights-user-filter/README.md",
+          "new": "../../../subdomains/insights-user-filter/README.md"
+        }
+      ]
+    },
+    {
+      "original_path": "convi-6260-team-leaderboard/investigation.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6260-legacy-evidence/investigation.md",
+      "original_sha256": "264af2fea51e4c34b0aef85a503989a980b11dfd3601b772c80bb669dc8688a1",
+      "migrated_sha256": "264af2fea51e4c34b0aef85a503989a980b11dfd3601b772c80bb669dc8688a1",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6260-team-leaderboard/log/2026-02-13.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6260-legacy-evidence/log/2026-02-13.md",
+      "original_sha256": "4c83251666cba542b50b36658418bd04df976278d9ae2455bbcbe9c427834eb9",
+      "migrated_sha256": "4c83251666cba542b50b36658418bd04df976278d9ae2455bbcbe9c427834eb9",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6260-team-leaderboard/log/2026-02-17.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6260-legacy-evidence/log/2026-02-17.md",
+      "original_sha256": "d4020621f259cfb398b2889480293288f9894e7c641261fec6094f5a80b7facf",
+      "migrated_sha256": "d4020621f259cfb398b2889480293288f9894e7c641261fec6094f5a80b7facf",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6260-team-leaderboard/pr-25733-review.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6260-legacy-evidence/pr-25733-review.md",
+      "original_sha256": "77f9f3ec4f818457fdcfebadcb6da5b75d58085f2368bb9b88537d07f0553e23",
+      "migrated_sha256": "77f9f3ec4f818457fdcfebadcb6da5b75d58085f2368bb9b88537d07f0553e23",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6260-team-leaderboard/project.yaml",
+      "new_path": "analytics/sessions/2026-10-25/convi-6260-legacy-evidence/project.yaml",
+      "original_sha256": "cb7ba27e0d57bf42adf27f9bf266b0f1394799b55873950d34774d5f9bd67168",
+      "migrated_sha256": "cb7ba27e0d57bf42adf27f9bf266b0f1394799b55873950d34774d5f9bd67168",
+      "mode": "0o644",
+      "original_tracked_file": false,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6494-raises-answered-zero/README.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6494-legacy-evidence/README.md",
+      "original_sha256": "70f7fd56375b94450c0d64d2a7543d5aa6cc90ae465bc053d7369667602a5b39",
+      "migrated_sha256": "5947f51b7f7523ad4cc269072170b14469f76d8c58c39b8abf3dc0e6178c7788",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": [
+        {
+          "old": "../analytics/subdomains/leaderboard/README.md",
+          "new": "../../../subdomains/leaderboard/README.md"
+        }
+      ]
+    },
+    {
+      "original_path": "convi-6494-raises-answered-zero/log/2026-03-24.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6494-legacy-evidence/log/2026-03-24.md",
+      "original_sha256": "04a3eecb5d583f8cf40ec0fda9fb9d16909383e2a3d03f979dbbb41519baf5bc",
+      "migrated_sha256": "04a3eecb5d583f8cf40ec0fda9fb9d16909383e2a3d03f979dbbb41519baf5bc",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6494-raises-answered-zero/log/2026-05-07.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6494-legacy-evidence/log/2026-05-07.md",
+      "original_sha256": "ad07161cebd3df0d5e231b8a4a4776c9c9fa5258f89cbb6222b67537f62a4225",
+      "migrated_sha256": "ad07161cebd3df0d5e231b8a4a4776c9c9fa5258f89cbb6222b67537f62a4225",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6494-raises-answered-zero/project.yaml",
+      "new_path": "analytics/sessions/2026-10-25/convi-6494-legacy-evidence/project.yaml",
+      "original_sha256": "ecd6127fa923a7aa0b429891faef3ca1434f30f094c052b5a52ae681e0bf7528",
+      "migrated_sha256": "ecd6127fa923a7aa0b429891faef3ca1434f30f094c052b5a52ae681e0bf7528",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6494-raises-answered-zero/sessions/2026-05-07/codex-day-end-wrapup.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6494-legacy-evidence/sessions/2026-05-07/codex-day-end-wrapup.md",
+      "original_sha256": "6eb01fbc9096e88d594a1790b624948bca494462043b1ceeb8e1f40886e14ac4",
+      "migrated_sha256": "6eb01fbc9096e88d594a1790b624948bca494462043b1ceeb8e1f40886e14ac4",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6753-weight-zero-pi-na/README.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6753-legacy-evidence/README.md",
+      "original_sha256": "af000f02a3b0f28623778816dd4afe6d02111aa2e35f046d3f2b84b13049ce32",
+      "migrated_sha256": "951d9b1fc56ac089d236eb207d5a60ca756f4480a6e6fd4bbd8bab13572e6176",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": [
+        {
+          "old": "../analytics/subdomains/qa-score/README.md",
+          "new": "../../../subdomains/qa-score/README.md"
+        }
+      ]
+    },
+    {
+      "original_path": "convi-6753-weight-zero-pi-na/log/2026-05-13.md",
+      "new_path": "analytics/sessions/2026-10-25/convi-6753-legacy-evidence/log/2026-05-13.md",
+      "original_sha256": "899a0f255890af801aad0a68acb615fc014286236d4b23ad5219d8ec5eaec4fe",
+      "migrated_sha256": "899a0f255890af801aad0a68acb615fc014286236d4b23ad5219d8ec5eaec4fe",
+      "mode": "0o644",
+      "original_tracked_file": true,
+      "markdown_link_rewrites": []
+    },
+    {
+      "original_path": "convi-6753-weight-zero-pi-na/project.yaml",
+      "new_path": "analytics/sessions/2026-10-25/convi-6753-legacy-evidence/project.yaml",
+      "original_sha256": "620b353fa2721f0a1fbab81e53cdfbdc90a1c0a46b3173701b12e7c9af979302",
+      "migrated_sha256": "620b353fa2721f0a1fbab81e53cdfbdc90a1c0a46b3173701b12e7c9af979302",
+      "mode": "0o644",
+      "original_tracked_file": false,
+      "markdown_link_rewrites": []
+    }
+  ]
+}

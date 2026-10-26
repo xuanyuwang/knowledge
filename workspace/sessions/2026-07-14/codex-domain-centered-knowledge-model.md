@@ -55,7 +55,7 @@ Prefer a small number of coherent projects rather than mechanically creating one
 - `performance-insights`: PI computation, filters, counts, scores, outcome integration, analytics semantics, and operational failure modes.
 - `scorecard-platform`: scorecard lifecycle and general backend concepts, with explicit sections for PG/CH data sync, processing/reindexing, templates/evaluation, submission/permissions, and consistency. If this becomes too broad, split `scorecard-data-sync` only after the content demonstrates a clear independent boundary.
 - `leaderboard-backend`: Assistant Insights/Leaderboard backend architecture, aggregation semantics, APIs, rollout/configuration, and operational behavior.
-- `review-workflows`: Appeals and Group Calibration as related post-evaluation review workflows. Preserve `group-calibration` as the likely seed and split later only if ownership or architecture diverges.
+- `review-workflows`: Appeals and Group Calibration as related post-evaluation review workflows. Preserve [group-calibration-csv-comment-parity](../../../scorecard-workflows/work-items/group-calibration-csv-comment-parity.md) as the likely seed and split later only if ownership or architecture diverges.
 - `notifications`: notification triggers, delivery paths, templates/configuration, retries/idempotency, observability, and ownership boundaries.
 
 `Scorecard General Issues` should be treated as an ownership/intake label, not necessarily as the name of a knowledge project. Its knowledge belongs in the more concrete scorecard architecture sections.

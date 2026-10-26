@@ -26,11 +26,13 @@ Own the policy that determines scorecard/template capabilities and which records
 
 ## Legacy Sources and Cases
 
-- `scorecard-permission-policy/`
-- `convi-6862-disable-editing-on-submitted-scorecard/`
-- `convi-7237/`
+- [scorecard-permission-evaluator-design-history](../../work-items/scorecard-permission-evaluator-design-history.md)
+- [submitted-scorecard-permission-history](../../work-items/submitted-scorecard-permission-history.md)
+- [scorecard-access-advanced-layout](../../work-items/scorecard-access-advanced-layout.md)
 
 ## Open Questions
 
 - Complete the centralized capability/visibility evaluator beyond submitted editing.
 - Define consistent enforcement for comments, exports, and notifications.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

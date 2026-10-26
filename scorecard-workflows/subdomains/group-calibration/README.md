@@ -26,12 +26,14 @@ Own answer-key and reviewer-response workflows, completion semantics, permission
 
 ## Legacy Sources and Cases
 
-- `group-calibration/`
-- `scorecard-template/deliverables/scorecard-export-paths.md`
-- `scorecard-permission-policy/`
+- [group-calibration-csv-comment-parity](../../work-items/group-calibration-csv-comment-parity.md)
+- `scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence/deliverables/scorecard-export-paths.md`
+- [scorecard-permission-evaluator-design-history](../../work-items/scorecard-permission-evaluator-design-history.md)
 - `work-items/CONVI-7682.md`
 
 ## Open Questions
 
 - Close numeric-label and other export parity gaps.
 - Publish completion and consistency formulas.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

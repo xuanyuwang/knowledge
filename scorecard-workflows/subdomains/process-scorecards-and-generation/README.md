@@ -27,11 +27,13 @@ Own whether process and generated scorecards should exist, how they are created,
 
 ## Legacy Sources and Cases
 
-- `auto-backfill-missing-scorecards/`
-- `scorecard-template/deliverables/empty-scorecards-workflow-and-api-analysis.md`
-- `convi-6841-process-scorecard-update-race/`
+- [opera-dependent-scorecard-generation](../../work-items/opera-dependent-scorecard-generation.md)
+- `scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence/deliverables/empty-scorecards-workflow-and-api-analysis.md`
+- [process-scorecard-create-autosave-race](../../work-items/process-scorecard-create-autosave-race.md)
 
 ## Open Questions
 
 - Publish an executable eligibility decision tree.
 - Define idempotency, throttling, monitoring, and rollback for every backfill mode.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

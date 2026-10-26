@@ -43,6 +43,7 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
+    - deliverables/inactive-legacy-project-consolidation-2026-10-25.md
     - decisions/2026-10-08-qm-task-inherits-template-usecase-scope.md
     - subdomains/template-authoring-and-versioning/README.md
     - subdomains/evaluation-and-scoring/README.md

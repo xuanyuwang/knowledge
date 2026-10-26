@@ -1,0 +1,26 @@
+title: "Historical convi-6672-achieve-behavior-na"
+project_type: initiative
+status: migrated
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+related_source_repos: []
+active_worktree_path: null
+branch: null
+domain_owners: []
+domain_scope: Historical legacy collection; canonical home is scorecard-workflows.
+subdomains: []
+related_ticket_ids: []
+active_work_items: []
+related_prs: []
+current_objective: Preserve the historical record; continue in scorecard-workflows/work-items/achieve-excluded-criteria-na-investigation.md.
+last_validated: 2026-10-25
+artifacts:
+  readme: README.md
+  subdomains_dir: subdomains/
+  work_items_dir: work-items/
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs: []
+notes: Metadata added for archival migration only. Legacy initiative classification records the former standalone organization, not a new initiative. Validation date covers document migration, not product or deployment state.

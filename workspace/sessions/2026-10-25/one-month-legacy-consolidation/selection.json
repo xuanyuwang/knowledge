@@ -1,0 +1,250 @@
+{
+  "cutoff": "2026-09-25",
+  "selection": [
+    {
+      "root": "active-days",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/active-days-legacy-evidence",
+      "canonical": "analytics/work-items/med-mutual-active-days-and-behavior-guides.md"
+    },
+    {
+      "root": "agent-quintiles-support",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/agent-quintiles-support-legacy-evidence",
+      "canonical": "analytics/work-items/agent-quintiles-and-directionality.md"
+    },
+    {
+      "root": "agent-stats-active-days-fix",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/agent-stats-active-days-fix-legacy-evidence",
+      "canonical": "analytics/work-items/active-days-join-and-stale-label-diagnostics.md"
+    },
+    {
+      "root": "agent-stats-analytics-behaviors",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/agent-stats-analytics-behaviors-legacy-evidence",
+      "canonical": "analytics/work-items/agent-stats-and-conversation-count-contracts.md"
+    },
+    {
+      "root": "bswift-wrong-team-mapping",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/bswift-wrong-team-mapping-legacy-evidence",
+      "canonical": "analytics/work-items/bswift-duplicate-user-team-attribution.md"
+    },
+    {
+      "root": "convi-6247-agent-only-filter",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/convi-6247-agent-only-filter-legacy-evidence",
+      "canonical": "analytics/work-items/CONVI-6247.md"
+    },
+    {
+      "root": "convi-6808-greenix-pi-scores",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/convi-6808-greenix-pi-scores-legacy-evidence",
+      "canonical": "analytics/work-items/CONVI-6808.md"
+    },
+    {
+      "root": "convi-6842-holiday-inn-pi-vs-closed-conversations",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/convi-6842-holiday-inn-pi-vs-closed-conversations-legacy-evidence",
+      "canonical": "analytics/work-items/CONVI-6842.md"
+    },
+    {
+      "root": "convi-6968-schwab-leaderboard-launch",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence",
+      "canonical": "analytics/work-items/CONVI-6968.md"
+    },
+    {
+      "root": "convi-7049-clo-filter",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/convi-7049-clo-filter-legacy-evidence",
+      "canonical": "analytics/work-items/clo-filter-query-optimization-and-rollout.md"
+    },
+    {
+      "root": "convi-7162-holidayinn-manager-scorecards-completed",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/convi-7162-holidayinn-manager-scorecards-completed-legacy-evidence",
+      "canonical": "analytics/work-items/CONVI-7162.md"
+    },
+    {
+      "root": "convi-7230-performance-insights-outcome-filters",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/convi-7230-performance-insights-outcome-filters-legacy-evidence",
+      "canonical": "analytics/work-items/CONVI-7230.md"
+    },
+    {
+      "root": "insights-user-filter",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/insights-user-filter-legacy-evidence",
+      "canonical": "analytics/work-items/insights-user-filter-historical-contracts.md"
+    },
+    {
+      "root": "large-user-id-clickhouse",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/large-user-id-clickhouse-legacy-evidence",
+      "canonical": "analytics/work-items/large-user-filter-external-tables.md"
+    },
+    {
+      "root": "qa-score-popover-fix",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/qa-score-popover-fix-legacy-evidence",
+      "canonical": "analytics/work-items/CONVI-5805.md"
+    },
+    {
+      "root": "hilton-coaching-discrepancy",
+      "domain": "analytics",
+      "evidence_root": "analytics/sessions/2026-10-25/hilton-coaching-discrepancy-legacy-evidence",
+      "canonical": "analytics/work-items/hilton-coaching-report-leaderboard-parity.md"
+    },
+    {
+      "root": "auto-backfill-missing-scorecards",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/auto-backfill-missing-scorecards-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/opera-dependent-scorecard-generation.md"
+    },
+    {
+      "root": "convi-6672-achieve-behavior-na",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/convi-6672-achieve-behavior-na-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/achieve-excluded-criteria-na-investigation.md"
+    },
+    {
+      "root": "convi-6709-reversed-scorecard",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/convi-6709-reversed-scorecard-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/nrg-option-value-display-mismatch.md"
+    },
+    {
+      "root": "convi-6841-process-scorecard-update-race",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/convi-6841-process-scorecard-update-race-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/process-scorecard-create-autosave-race.md"
+    },
+    {
+      "root": "convi-6862-disable-editing-on-submitted-scorecard",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/convi-6862-disable-editing-on-submitted-scorecard-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/submitted-scorecard-permission-history.md"
+    },
+    {
+      "root": "convi-7237",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/convi-7237-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/scorecard-access-advanced-layout.md"
+    },
+    {
+      "root": "convi-7379-pure-focus-criteria-display",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/convi-7379-pure-focus-criteria-display-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/CONVI-7379.md"
+    },
+    {
+      "root": "duplicate-template-across-usecase",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/duplicate-template-across-usecase-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/cross-usecase-template-duplication.md"
+    },
+    {
+      "root": "export-appeal-comments",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/export-appeal-comments-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/appeal-resolution-comments-export.md"
+    },
+    {
+      "root": "group-calibration",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/group-calibration-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/group-calibration-csv-comment-parity.md"
+    },
+    {
+      "root": "nascore",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/nascore-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/na-score-representation-and-fallback.md"
+    },
+    {
+      "root": "outcome",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/outcome-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/opera-email-autoqa-outcome-semantics.md"
+    },
+    {
+      "root": "scorecard-permission-policy",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/scorecard-permission-policy-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/scorecard-permission-evaluator-design-history.md"
+    },
+    {
+      "root": "template-schema-version-updater",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/template-schema-version-updater-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/template-schema-updater-proposal.md"
+    },
+    {
+      "root": "scorecard-template",
+      "domain": "scorecard-workflows",
+      "evidence_root": "scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence",
+      "canonical": "scorecard-workflows/work-items/scorecard-template-historical-reference.md"
+    },
+    {
+      "root": "backfill-scorecards",
+      "domain": "scorecard-data-sync",
+      "evidence_root": "scorecard-data-sync/sessions/2026-10-25/backfill-scorecards-legacy-evidence",
+      "canonical": "scorecard-data-sync/work-items/CONVI-6209.md"
+    },
+    {
+      "root": "convi-6298-reindex-process-scorecards",
+      "domain": "scorecard-data-sync",
+      "evidence_root": "scorecard-data-sync/sessions/2026-10-25/convi-6298-reindex-process-scorecards-legacy-evidence",
+      "canonical": "scorecard-data-sync/work-items/CONVI-6298.md"
+    },
+    {
+      "root": "convi-5565-scorecard-ch-pg-sync",
+      "domain": "scorecard-data-sync",
+      "evidence_root": "scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence",
+      "canonical": "scorecard-data-sync/work-items/CONVI-5565.md"
+    },
+    {
+      "root": "pg-ch-scorecard-sync-investigation",
+      "domain": "scorecard-data-sync",
+      "evidence_root": "scorecard-data-sync/sessions/2026-10-25/pg-ch-scorecard-sync-investigation-legacy-evidence",
+      "canonical": "scorecard-data-sync/work-items/ui-pg-ch-ordering.md"
+    },
+    {
+      "root": "team-enable",
+      "domain": "ai-skills",
+      "evidence_root": "ai-skills/sessions/2026-10-25/team-enable-legacy-evidence",
+      "canonical": "ai-skills/work-items/team-feature-flag-cleanup-plugin.md"
+    }
+  ],
+  "retained_exceptions": {
+    "user-filter-consolidation": "Meaningful September 29 parser design change.",
+    "configuration-management": "September 25 customer DB connection note; cutoff excludes content on or after September 25.",
+    "virtual-group-filter": "Known credential-shaped files; credential cleanup is separate.",
+    "historic-scorecard-missing": "Diagnostic Go module placement and historical connection material need separate resolution.",
+    "alo": "Independent coaching/outcome design; no complete current Coaching domain.",
+    "coaching-session-generation": "Independent coaching demo prototype.",
+    "multi-agent-coaching-assistant": "Independent coaching prototype and source handoff.",
+    "convi-6665-deactivated-coaching-plan-visibility": "Coaching-plan workflow has no established canonical Coaching domain."
+  },
+  "added_legacy_metadata": [
+    "active-days/project.yaml",
+    "agent-quintiles-support/project.yaml",
+    "agent-stats-active-days-fix/project.yaml",
+    "bswift-wrong-team-mapping/project.yaml",
+    "convi-6247-agent-only-filter/project.yaml",
+    "insights-user-filter/project.yaml",
+    "large-user-id-clickhouse/project.yaml",
+    "qa-score-popover-fix/project.yaml",
+    "hilton-coaching-discrepancy/project.yaml",
+    "convi-6672-achieve-behavior-na/project.yaml",
+    "convi-6709-reversed-scorecard/project.yaml",
+    "duplicate-template-across-usecase/project.yaml",
+    "export-appeal-comments/project.yaml",
+    "scorecard-permission-policy/project.yaml",
+    "backfill-scorecards/project.yaml",
+    "convi-6298-reindex-process-scorecards/project.yaml",
+    "convi-5565-scorecard-ch-pg-sync/project.yaml"
+  ]
+}

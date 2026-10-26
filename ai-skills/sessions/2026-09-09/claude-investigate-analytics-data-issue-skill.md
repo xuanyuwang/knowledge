@@ -27,7 +27,7 @@ Fan-out synthesis across three parallel reads of this repo:
 
 Also cross-checked for overlap against `.claude/skills/query-pg-coaching`,
 `.claude/skills/query-ch-insights`, and
-`pg-ch-scorecard-sync-investigation/deliverables/pg-ch-data-sync-investigator/SKILL.md`.
+`scorecard-data-sync/sessions/2026-10-25/pg-ch-scorecard-sync-investigation-legacy-evidence/deliverables/pg-ch-data-sync-investigator/SKILL.md`.
 
 ## Key design decisions
 

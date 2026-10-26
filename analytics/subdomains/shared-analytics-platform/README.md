@@ -23,9 +23,9 @@ Own the contracts shared by Performance Insights, Assistance Insights, and Leade
 
 ## Legacy Sources
 
-- `agent-stats-analytics-behaviors/`
-- `insights-user-filter/analytics-apis-list.md`
-- `insights-user-filter/fe-group-by-usage-patterns.md`
+- [agent-stats-and-conversation-count-contracts](../../work-items/agent-stats-and-conversation-count-contracts.md)
+- `analytics/sessions/2026-10-25/insights-user-filter-legacy-evidence/analytics-apis-list.md`
+- `analytics/sessions/2026-10-25/insights-user-filter-legacy-evidence/fe-group-by-usage-patterns.md`
 - `user-filter-consolidation/`
 
 ## API References
@@ -37,3 +37,5 @@ Own the contracts shared by Performance Insights, Assistance Insights, and Leade
 - Which API contracts and source tables are current versus legacy split-API paths?
 - Which shared time, identity, and denominator semantics need explicit invariant tests?
 - Which cross-page differences are intentional product semantics versus drift?
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

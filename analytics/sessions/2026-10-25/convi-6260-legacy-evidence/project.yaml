@@ -1,0 +1,26 @@
+title: "CONVI-6260: Descendant teams in Team Leaderboard"
+project_type: initiative
+status: migrated
+primary_source_repo: go-servers
+primary_repo_path: /Users/xuanyu.wang/repos/go-servers
+related_source_repos: [director, cresta-proto, clickhouse-schema, config]
+active_worktree_path: null
+branch: null
+domain_owners: []
+domain_scope: Historical ticket evidence, consolidated into the Analytics domain.
+subdomains: []
+related_ticket_ids: [CONVI-6260]
+active_work_items: []
+related_prs: []
+current_objective: Preserve historical evidence; canonical handoff is analytics/work-items/CONVI-6260.md.
+last_validated: 2026-02-17
+artifacts:
+  readme: README.md
+  subdomains_dir: subdomains/
+  work_items_dir: work-items/
+  log_dir: log/
+  session_dir: sessions/
+  decisions_dir: decisions/
+  deliverables_dir: deliverables/
+  key_docs: []
+notes: Metadata added during the 2026-10-25 migration. This is a legacy ticket project, not a new initiative. Dates describe the historical record; source branches, official ticket status, and deployments were not revalidated.

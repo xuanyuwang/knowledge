@@ -36,7 +36,7 @@ No subdomains are defined currently. The cross-workflow trigger-to-recipient-to-
 
 ## Current State
 
-The first migration is complete. Operational Slack/PagerDuty/GroundCover research from `oncall` and scorecard submit/publish recipient semantics from `scorecard-permission-policy` are synthesized here. Those source projects remain canonical for incident process and scorecard permission policy respectively; this domain owns the cross-workflow trigger-to-delivery view.
+The first migration is complete. Operational Slack/PagerDuty/GroundCover research from `oncall` and scorecard submit/publish recipient semantics from [scorecard-permission-evaluator-design-history](../scorecard-workflows/work-items/scorecard-permission-evaluator-design-history.md) are synthesized here. Those source projects remain canonical for incident process and scorecard permission policy respectively; this domain owns the cross-workflow trigger-to-delivery view.
 
 ## Reading Order
 

@@ -37,9 +37,9 @@ The [Superhuman engineering design](https://docs.superhuman.com/d/_dE0dCcz8Bub/_
 
 The final page was read back through Coda to verify the option headings, protobuf blocks, loading section, review notes, and absence of the deleted fragments.
 
-Terminology follow-up: `outcome` in this design meant the training-attempt result, not Conversation-Level Outcome (CLO). The canonical plans were updated to prefer `training result`, `attempt result`, or `evaluation result`; proposed identifiers were aligned to `TrainingSimulatorResultSummary`, `result_status_missing`, and `attemptResult`. A page-wide Coda replacement was started, but the connector remained locked afterward and did not return a completion result; the live terminology change therefore still requires read-back verification.
+Terminology follow-up: [opera-email-autoqa-outcome-semantics](../../../scorecard-workflows/work-items/opera-email-autoqa-outcome-semantics.md) in this design meant the training-attempt result, not Conversation-Level Outcome (CLO). The canonical plans were updated to prefer `training result`, `attempt result`, or `evaluation result`; proposed identifiers were aligned to `TrainingSimulatorResultSummary`, `result_status_missing`, and `attemptResult`. A page-wide Coda replacement was started, but the connector remained locked afterward and did not return a completion result; the live terminology change therefore still requires read-back verification.
 
-The Superhuman page was subsequently copied into `deliverables/superhuman-api-design-update-draft.md` as a full local working copy. Its Markdown heading hierarchy and protobuf fences were restored, and its ambiguous `outcome`/`cohort` wording was replaced contextually with training result, attempt result, evaluation status, selected users, or user group language.
+The Superhuman page was subsequently copied into `deliverables/superhuman-api-design-update-draft.md` as a full local working copy. Its Markdown heading hierarchy and protobuf fences were restored, and its ambiguous [opera-email-autoqa-outcome-semantics](../../../scorecard-workflows/work-items/opera-email-autoqa-outcome-semantics.md)/`cohort` wording was replaced contextually with training result, attempt result, evaluation status, selected users, or user group language.
 
 Scope review then simplified the correctness plan:
 

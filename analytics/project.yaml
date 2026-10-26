@@ -30,6 +30,11 @@ subdomains:
   - insights-user-filter
   - conversation-volume
 related_ticket_ids:
+  - CONVI-6192
+  - CONVI-6242
+  - CONVI-6260
+  - CONVI-6494
+  - CONVI-6753
   - CONVI-7879
   - CONVI-7807
   - CONVI-7777
@@ -99,6 +104,12 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
+    - deliverables/inactive-legacy-project-consolidation-2026-10-25.md
+    - work-items/CONVI-6192.md
+    - work-items/CONVI-6242.md
+    - work-items/CONVI-6260.md
+    - work-items/CONVI-6494.md
+    - work-items/CONVI-6753.md
     - deliverables/convi-7777-assistance-scan-audit.html
     - deliverables/convi-7777-assistance-scan-audit.md
     - deliverables/convi-7777-api-implementation-review.html

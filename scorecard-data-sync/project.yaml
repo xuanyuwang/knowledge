@@ -47,6 +47,7 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
+    - deliverables/inactive-legacy-project-consolidation-2026-10-25.md
     - deliverables/why-pg-updated-at-breaks-ch-cleanup.md
     - deliverables/ui-pg-ch-ordering-options.md
     - deliverables/architecture-and-invariants.md
@@ -58,4 +59,4 @@ artifacts:
     - cases/2026-08-us-east-distributed-backlog/README.md
     - deliverables/legacy-source-index.md
     - work-items/CONVI-7186.md
-notes: Whether a scorecard should exist is a workflow question; whether an existing scorecard is correctly projected to ClickHouse belongs here. The August 2026 us-east Distributed backlog is owned here as a scorecard-sync case while documenting that its infrastructure root cause affected broader ClickHouse ingestion. Historical execution code remains in legacy folders pending source-repo cleanup.
+notes: Whether a scorecard should exist is a workflow question; whether an existing scorecard is correctly projected to ClickHouse belongs here. The August 2026 us-east Distributed backlog is owned here as a scorecard-sync case while documenting that its infrastructure root cause affected broader ClickHouse ingestion. Historical execution code remains in dated domain session evidence; it was not run during consolidation.

@@ -48,9 +48,9 @@ Source: [go-servers PR #31265](https://github.com/cresta/go-servers/pull/31265) 
 
 ## Legacy Sources and Cases
 
-- `export-appeal-comments/`
-- `scorecard-template/deliverables/workflow-map.md`
-- `scorecard-permission-policy/`
+- [appeal-resolution-comments-export](../../work-items/appeal-resolution-comments-export.md)
+- `scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence/deliverables/workflow-map.md`
+- [scorecard-permission-evaluator-design-history](../../work-items/scorecard-permission-evaluator-design-history.md)
 
 ## Open Questions
 
@@ -58,3 +58,5 @@ Source: [go-servers PR #31265](https://github.com/cresta/go-servers/pull/31265) 
 - Document partial approval and repeated-appeal behavior.
 - Decide publish and agent-visibility semantics when an appeal resolve finalizes an unsubmitted original.
 - Decide whether appeal finalization should populate a missing original creator or deliberately retain the auto-score provenance.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

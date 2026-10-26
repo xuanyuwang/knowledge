@@ -10,7 +10,7 @@
 ## Inputs Reviewed
 
 - `workflow/ai-operating-model.md`, `workflow/domain-centered-knowledge-model.md`, `workflow/skills/weekly-summary/SKILL.md`, and `templates/weekly-summary.md`.
-- All in-range daily logs and session inventories found under `training-simulator`, `analytics`, `scorecard-workflows`, `scorecard-template`, `scorecard-data-sync`, `ai-skills`, `configuration-management`, and `oncall`.
+- All in-range daily logs and session inventories found under `training-simulator`, `analytics`, `scorecard-workflows`, [scorecard-template-historical-reference](../../../scorecard-workflows/work-items/scorecard-template-historical-reference.md), `scorecard-data-sync`, `ai-skills`, `configuration-management`, and `oncall`.
 - Current canonical work items for the week’s main tickets, especially CONVI-7281, CONVI-7707, CONVI-7747, CONVI-7715, CONVI-7744, and CONVI-7671.
 - The prior weekly summary for 2026-09-14 through 2026-09-20 to preserve structure and avoid repeating already-summarized work.
 

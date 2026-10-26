@@ -22,6 +22,10 @@ Daily capture is now a completion requirement for substantial work. Shared workf
 
 Migration progress as of 2026-07-15: all four initial domains have canonical synthesized artifacts and legacy source links. `analytics` is organized into eight product/metric/filter subdomains, and `scorecard-workflows` into seven workflow subdomains. Operating history remains at each parent domain so tickets spanning multiple subdomains retain one coherent record.
 
+On October 25, 2026, five inactive Analytics ticket folders (CONVI-6192, 6242, 6260, 6494, 6753) were consolidated into Analytics work items and preserved session evidence. The user approved removal of those old folders after file-preservation and link checks. See the [migration record](../analytics/sessions/2026-10-25/codex-five-legacy-project-consolidation.md).
+
+The October 25 follow-up consolidates 36 more projects with no meaningful content since September 25: 16 Analytics, 15 Scorecard Workflows, four Data Sync, and one Shared AI Skills. Canonical work items and preserved session evidence replace the top-level folders. See the [migration record](work-items/inactive-legacy-project-consolidation.md) for selection, exceptions and verification.
+
 ## Domain Catalog
 
 | Domain | Scope | Subdomains |

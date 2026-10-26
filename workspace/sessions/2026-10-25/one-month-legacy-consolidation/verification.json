@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "date": "2026-10-25",
+  "cutoff": "2026-09-25",
+  "removed_projects_by_domain": {
+    "analytics": 16,
+    "scorecard-workflows": 15,
+    "scorecard-data-sync": 4,
+    "ai-skills": 1
+  },
+  "preserved_files": 648,
+  "tracked_originals_accounted_for": 624,
+  "archive_markdown_links_checked": 641,
+  "current_markdown_links_checked": 1092,
+  "broken_local_links": 0,
+  "yaml_files_checked": 47,
+  "new_authored_whitespace_checks": 60,
+  "tracked_diff_whitespace_check": "passed",
+  "secret_scan_files": 823,
+  "secret_scan_findings": 0,
+  "sanitized_original_warnings": 4,
+  "sanitized_documents": 2,
+  "nested_canonical_ticket_homes": 9,
+  "ignored_runtime_directories_preserved": 3,
+  "old_roots_absent": true,
+  "orphan_root_sessions_removed": true,
+  "index_empty": true,
+  "committed": false,
+  "pushed": false,
+  "credentials_used": [],
+  "scope_notes": [
+    "Local Markdown file targets checked with code blocks excluded; historical source line anchors and remote URLs were not validated.",
+    "Archived product scripts and relocated runtime environments were not run.",
+    "Live ticket, PR, deployment and customer claims were not revalidated.",
+    "Sanitized documents preserve all original content except declared connection-value substitutions and link rewrites.",
+    "The previous five-project migration remains uncommitted."
+  ],
+  "evidence_reports": [
+    "selection.json",
+    "baseline.json",
+    "manifest.json",
+    "preservation-check.json",
+    "link-review.json",
+    "current-link-check.json",
+    "yaml-check.json",
+    "whitespace-check.json",
+    "secret-scan.json",
+    "directory-check.json",
+    "removed-roots.json",
+    "runtime-relocations.json",
+    "reference-rewrites.json"
+  ]
+}

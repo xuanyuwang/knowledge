@@ -1,0 +1,27 @@
+{
+  "original_files_preserved": 21,
+  "evidence_files_verified": 25,
+  "content_changes_in_archives": "Five README relative-link rewrites only; all other original bytes unchanged.",
+  "executable_modes_preserved": true,
+  "markdown_local_links_checked": 141,
+  "new_broken_links": [],
+  "preexisting_broken_links": [],
+  "yaml_files_parsed": 7,
+  "secret_scan_files": 49,
+  "secret_scan_findings": 0,
+  "removed_top_level_folders": [
+    "convi-6192-conversation-source-config",
+    "convi-6242-cron-label-conversations",
+    "convi-6260-team-leaderboard",
+    "convi-6494-raises-answered-zero",
+    "convi-6753-weight-zero-pi-na"
+  ],
+  "credentials_used": [],
+  "committed": false,
+  "pushed": false,
+  "whitespace_checks": "Tracked edits and all newly authored Markdown/YAML pass. Historical archived whitespace is preserved.",
+  "new_authored_whitespace_files_checked": 7,
+  "staged": false,
+  "original_files_byte_identical": 16,
+  "original_files_with_only_link_rewrites": 5
+}

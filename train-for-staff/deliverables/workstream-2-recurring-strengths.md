@@ -14,9 +14,9 @@ This is not yet the final career identity or seniority assessment. It is an evid
 The first pass prioritizes work with enough detail to evaluate problem context, personal contribution, judgment, execution, and outcome:
 
 1. [User Filter Consolidation](../../user-filter-consolidation/README.md)
-2. [ClickHouse External Tables for Reference Data Filtering](../../large-user-id-clickhouse/README.md)
-3. [Scorecard PostgreSQL-to-ClickHouse Consistency](../../convi-5565-scorecard-ch-pg-sync/README.md)
-4. [Schwab Leaderboard Metric Semantics and API Strategy](../../convi-6968-schwab-leaderboard-launch/README.md)
+2. [ClickHouse External Tables for Reference Data Filtering](../../analytics/work-items/large-user-filter-external-tables.md)
+3. [Scorecard PostgreSQL-to-ClickHouse Consistency](../../scorecard-data-sync/work-items/CONVI-5565.md)
+4. [Schwab Leaderboard Metric Semantics and API Strategy](../../analytics/work-items/CONVI-6968.md)
 5. [Analytics Domain](../../analytics/README.md), including mixed-revision and metric-semantic investigations
 6. [Scorecard Workflows Domain](../../scorecard-workflows/README.md)
 7. [Scorecard Data Sync Domain](../../scorecard-data-sync/README.md)
@@ -46,7 +46,7 @@ I repeatedly reconstruct failures across system boundaries, distinguish the visi
 
 **Supporting evidence**
 
-- **Scorecard PG/CH consistency:** The visible mismatch crossed API behavior, PostgreSQL transactions, GORM updates, asynchronous closures, and ClickHouse projection. The investigation showed that stale closure data—not merely timestamp choice—caused one failure and then uncovered a separate PostgreSQL lost-update race. The final evidence includes dedicated concurrency and cross-store verification tools, three fix attempts, and production checks across 2,996 comparable scorecards. [Evidence](../../convi-5565-scorecard-ch-pg-sync/investigation.md)
+- **Scorecard PG/CH consistency:** The visible mismatch crossed API behavior, PostgreSQL transactions, GORM updates, asynchronous closures, and ClickHouse projection. The investigation showed that stale closure data—not merely timestamp choice—caused one failure and then uncovered a separate PostgreSQL lost-update race. The final evidence includes dedicated concurrency and cross-store verification tools, three fix attempts, and production checks across 2,996 comparable scorecards. [Evidence](../../scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/investigation.md)
 - **Analytics discrepancies:** Recent work repeatedly decomposes plausible-but-different outputs into revision, eligibility, time-field, attribution, or aggregation semantics instead of assuming one surface is simply wrong. The analytics domain now links multiple customer cases through shared mixed-revision and metric-contract patterns. [Evidence](../../analytics/README.md)
 - **User-filter divergence:** The consolidation work compared historically separate implementations, identified semantic divergence such as union-versus-intersection behavior, and preserved later mixed active-state requirements as a shared contract question rather than a coaching-only exception. [Evidence](../../user-filter-consolidation/README.md)
 
@@ -70,7 +70,7 @@ I repeatedly turn ambiguous product behavior into explicit contracts that can gu
 **Supporting evidence**
 
 - **User filters:** The work distinguishes direct user selection, group expansion, ACL behavior, roles, active state, and empty-filter behavior rather than treating “selected users” as one undifferentiated list. [Evidence](../../analytics/subdomains/insights-user-filter/README.md)
-- **Leaderboard:** The API decision work separates agent attribution from submitter attribution, template grouping from filtering, aggregate from drill-down grain, and conversation time from submit time. It also updates the recommendation after backend capabilities change. [Evidence](../../convi-6968-schwab-leaderboard-launch/deliverables/api-decision-table.md)
+- **Leaderboard:** The API decision work separates agent attribution from submitter attribution, template grouping from filtering, aggregate from drill-down grain, and conversation time from submit time. It also updates the recommendation after backend capabilities change. [Evidence](../../analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/api-decision-table.md)
 - **Analytics correctness:** The domain standard traces a displayed value through UI interpretation, request fields, backend grouping, source tables, and time/identity attribution. Mixed-revision QA work treats N/A, option mapping, revision selection, and weighting as data-contract questions. [Evidence](../../analytics/README.md)
 - **Training Simulator reporting:** The design refuses to infer completion or N/A from ambiguous stored values, defines assignment-rooted denominators and latest-attempt policy, and makes unresolved lifecycle and historical-revision assumptions explicit before freezing the API. [Evidence](../../training-simulator/deliverables/lesson-module-statistics-eng-design.md)
 
@@ -93,8 +93,8 @@ I repeatedly design validation and rollout as part of the solution rather than t
 
 **Supporting evidence**
 
-- **Scorecard consistency:** Built a concurrent API load tester and PG/CH comparison tool, used feature-flagged rollout, quantified timing-dependent failures, verified zero score and submitter mismatches across 2,996 comparable production records, and documented the remaining 0.87% missing-submit-time limitation separately. [Evidence](../../convi-5565-scorecard-ch-pg-sync/README.md)
-- **External tables:** Evaluated ten options, benchmarked the chosen mechanism, kept a legacy path behind a feature flag, staged rollout across environments, and corrected `ShouldQueryAllUsers` and nil-argument interactions discovered during validation and production use. [Evidence](../../large-user-id-clickhouse/README.md)
+- **Scorecard consistency:** Built a concurrent API load tester and PG/CH comparison tool, used feature-flagged rollout, quantified timing-dependent failures, verified zero score and submitter mismatches across 2,996 comparable production records, and documented the remaining 0.87% missing-submit-time limitation separately. [Evidence](../../scorecard-data-sync/work-items/CONVI-5565.md)
+- **External tables:** Evaluated ten options, benchmarked the chosen mechanism, kept a legacy path behind a feature flag, staged rollout across environments, and corrected `ShouldQueryAllUsers` and nil-argument interactions discovered during validation and production use. [Evidence](../../analytics/work-items/large-user-filter-external-tables.md)
 - **Analytics remediation:** Customer cases preserve exact pre/post values, PostgreSQL and ClickHouse checks, backups, and UI read-back rather than stopping at a data mutation or code merge. [Evidence](../../analytics/README.md)
 
 **Why this demonstrates the strength**
@@ -116,7 +116,7 @@ I often identify a more durable problem boundary than the one implied by the ini
 
 **Supporting evidence**
 
-- **External tables:** Reframed “large user-ID lists exceed ClickHouse query size” into “analytics lacks a general mechanism for passing external reference data into ClickHouse.” The selected design works for reference types beyond user IDs without adding a synchronization pipeline. [Evidence](../../large-user-id-clickhouse/design-review.md)
+- **External tables:** Reframed “large user-ID lists exceed ClickHouse query size” into “analytics lacks a general mechanism for passing external reference data into ClickHouse.” The selected design works for reference types beyond user IDs without adding a synchronization pipeline. [Evidence](../../analytics/sessions/2026-10-25/large-user-id-clickhouse-legacy-evidence/design-review.md)
 - **Analytics mismatches:** Reframed apparent count or score discrepancies into explicit questions about eligibility, revision, attribution, and time semantics, allowing cases to be classified instead of patched surface by surface. [Evidence](../../analytics/README.md)
 - **Domain stewardship:** Reframed repeated scorecard and synchronization tickets into durable domain references, failure taxonomies, repair playbooks, and boundaries between business workflow and data projection. [Scorecard workflows](../../scorecard-workflows/README.md) and [data sync](../../scorecard-data-sync/README.md)
 
@@ -139,9 +139,9 @@ I make explicit tradeoffs among correctness, complexity, performance, delivery t
 
 **Supporting evidence**
 
-- **External tables:** Compared ten alternatives and accepted modest overhead for small lists in exchange for one consistent, general path and flat scaling at larger sizes. [Evidence](../../large-user-id-clickhouse/design-review.md)
-- **Scorecard consistency:** Distinguished source-of-truth correctness from projection convergence, quantified the remaining rapid-interaction failure mode, and documented why the bounded residual was accepted rather than claiming perfect consistency. [Evidence](../../convi-5565-scorecard-ch-pg-sync/investigation.md)
-- **Leaderboard:** Separated a shippable aggregate/detail API plan from an ideal future aggregate contract, used a provider boundary to contain source changes, and later revised the choice after submitter support landed. [Evidence](../../convi-6968-schwab-leaderboard-launch/deliverables/api-decision-table.md)
+- **External tables:** Compared ten alternatives and accepted modest overhead for small lists in exchange for one consistent, general path and flat scaling at larger sizes. [Evidence](../../analytics/sessions/2026-10-25/large-user-id-clickhouse-legacy-evidence/design-review.md)
+- **Scorecard consistency:** Distinguished source-of-truth correctness from projection convergence, quantified the remaining rapid-interaction failure mode, and documented why the bounded residual was accepted rather than claiming perfect consistency. [Evidence](../../scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/investigation.md)
+- **Leaderboard:** Separated a shippable aggregate/detail API plan from an ideal future aggregate contract, used a provider boundary to contain source changes, and later revised the choice after submitter support landed. [Evidence](../../analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/api-decision-table.md)
 - **Training Simulator:** Excluded quiz statistics and ambiguous N/A/completion reporting rather than returning plausible but semantically unreliable metrics. [Evidence](../../training-simulator/deliverables/lesson-module-statistics-eng-design.md)
 
 **Why this demonstrates the strength**
@@ -187,9 +187,9 @@ I can change or refine technical direction by making tradeoffs and contradictory
 
 **Supporting evidence**
 
-- **Scorecard consistency:** The first timestamp-based fix failed; the investigation and load testing redirected the solution toward atomic writes, fresh post-commit reads, and partial-update protection. [Evidence](../../convi-5565-scorecard-ch-pg-sync/investigation.md)
-- **Leaderboard:** The analysis distinguished missing backend semantics from frontend implementation choices; subsequent proto and backend work added an explicit scorecard-submitter axis, and the recommendation was updated accordingly. [Evidence](../../convi-6968-schwab-leaderboard-launch/README.md)
-- **External tables:** A structured comparison and benchmark supported a general-purpose mechanism over nine alternatives and defined a low-blast-radius adoption path. [Evidence](../../large-user-id-clickhouse/design-review.md)
+- **Scorecard consistency:** The first timestamp-based fix failed; the investigation and load testing redirected the solution toward atomic writes, fresh post-commit reads, and partial-update protection. [Evidence](../../scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/investigation.md)
+- **Leaderboard:** The analysis distinguished missing backend semantics from frontend implementation choices; subsequent proto and backend work added an explicit scorecard-submitter axis, and the recommendation was updated accordingly. [Evidence](../../analytics/work-items/CONVI-6968.md)
+- **External tables:** A structured comparison and benchmark supported a general-purpose mechanism over nine alternatives and defined a low-blast-radius adoption path. [Evidence](../../analytics/sessions/2026-10-25/large-user-id-clickhouse-legacy-evidence/design-review.md)
 
 **Why this demonstrates the strength**
 

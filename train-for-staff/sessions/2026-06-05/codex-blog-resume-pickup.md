@@ -10,12 +10,12 @@ User asked to pick up blogs and resume items for `train-for-staff`.
 - `train-for-staff/staff-project.md`
 - `train-for-staff/resume-snippets.md`
 - existing blog posts under `blog/`
-- `scorecard-template/README.md`
-- `template-schema-version-updater/README.md`
-- `convi-6968-schwab-leaderboard-launch/README.md`
-- `convi-6968-schwab-leaderboard-launch/deliverables/api-decision-table.md`
-- `convi-6968-schwab-leaderboard-launch/deliverables/BE plan.md`
-- `convi-6862-disable-editing-on-submitted-scorecard/deliverables/submitted-scorecard-edit-permission-fail-freeze-plan.md`
+- `scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence/README.md`
+- `scorecard-workflows/sessions/2026-10-25/template-schema-version-updater-legacy-evidence/README.md`
+- `analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/README.md`
+- `analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/api-decision-table.md`
+- `analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/BE plan.md`
+- `scorecard-workflows/sessions/2026-10-25/convi-6862-disable-editing-on-submitted-scorecard-legacy-evidence/deliverables/submitted-scorecard-edit-permission-fail-freeze-plan.md`
 
 ## Findings
 

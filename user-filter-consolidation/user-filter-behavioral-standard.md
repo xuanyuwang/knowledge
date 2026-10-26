@@ -260,7 +260,7 @@ Example:
   INTERSECTION (wrong):   []  ← alice not in sales-team, bob/charlie not in managed users
 ```
 
-This was discovered as a critical bug. The old code used intersection, which caused managed group members to silently disappear from results. See [insights-user-filter investigation](../insights-user-filter/) for full analysis.
+This was discovered as a critical bug. The old code used intersection, which caused managed group members to silently disappear from results. See [insights-user-filter investigation](../analytics/work-items/insights-user-filter-historical-contracts.md) for full analysis.
 
 > **Test evidence**: `UnionOfUsersAndGroupsFromACL` — agent1 only in ACL users, agent2 only in group expansion → both returned.
 > **Implementation evidence**: `applyResourceACL` in `common_user_filter.go:637` calls `expandGroupsToUsers` then `unionUsers`.
@@ -323,7 +323,7 @@ Base population approach (fetch all, then filter):
 The base population pattern provides a **safety guarantee**: no matter how many steps or external service calls happen downstream, only users in the base population can appear in the final result. Each step can only narrow the set, never widen it.
 
 > **Implementation evidence**: `ParseUserFilterForAnalytics` calls `listAllUsers()` at line 155 before any ACL or filter processing.
-> **Historical context**: See [insights-user-filter investigation](../insights-user-filter/) for the full bug analysis.
+> **Historical context**: See [insights-user-filter investigation](../analytics/work-items/insights-user-filter-historical-contracts.md) for the full bug analysis.
 
 ### B-BP-2: Base Population Determined by `ListUsersForAnalytics` Capabilities
 
@@ -393,7 +393,7 @@ User metadata (Username, FullName) should come from the base population fetch, n
 
 > **Test evidence**: `EnrichedCorrectly` — ACL returns user with Name only, base population has Username/FullName → result enriched from base population.
 > **Implementation evidence**: `updateGroundTruthUsers` at line 301 — `result[user.Name] = agentUser` uses base population version.
-> **Historical context**: See [insights-user-filter metadata-enrichment-fix-analysis](../insights-user-filter/metadata-enrichment-fix-analysis.md).
+> **Historical context**: See [insights-user-filter metadata-enrichment-fix-analysis](../analytics/sessions/2026-10-25/insights-user-filter-legacy-evidence/metadata-enrichment-fix-analysis.md).
 
 ---
 

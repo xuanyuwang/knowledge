@@ -51,6 +51,6 @@
 ## Follow-ups
 
 1. Review and approve the migration matrix and security-remediation queue.
-2. Pilot Analytics consolidation beginning with `agent-stats-analytics-behaviors`.
+2. Pilot Analytics consolidation beginning with [agent-stats-and-conversation-count-contracts](../../../analytics/work-items/agent-stats-and-conversation-count-contracts.md).
 3. Exercise `daily-capture` and `weekly-summary` on the pilot and refine the templates based on actual output.
 4. Create the 2026 annual evidence artifact when the first real weekly candidates are ready to promote.

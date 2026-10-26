@@ -81,13 +81,13 @@ I am strong at diagnosing correctness and architecture problems, but I want to g
 ## Internal Evidence and Calibration Notes
 
 - Operating Principles source: [Cresta Operating Principles](https://docs.superhuman.com/d/_dOdd8RvXUvm/_supg5MWW).
-- External tables evidence: `large-user-id-clickhouse/design-review.md`, `large-user-id-clickhouse/log/2026-03-11.md`.
+- External tables evidence: `analytics/sessions/2026-10-25/large-user-id-clickhouse-legacy-evidence/design-review.md`, `analytics/sessions/2026-10-25/large-user-id-clickhouse-legacy-evidence/log/2026-03-11.md`.
 - User-filter semantics evidence: `user-filter-consolidation/user-filter-behavioral-standard.md`, `user-filter-consolidation/phase1-review.md`.
-- Scorecard consistency evidence: `convi-5565-scorecard-ch-pg-sync/README.md`, `convi-5565-scorecard-ch-pg-sync/investigation.md`.
-- Scorecard monitor/auto-heal evidence: `weekly-summary/weekly-summary-2026-04-06-to-12.md`, `auto-backfill-missing-scorecards/auto-heal-design.md`, `auto-backfill-missing-scorecards/implementation-and-validation-summary.md`, `auto-backfill-missing-scorecards/rollout-plan.md`.
+- Scorecard consistency evidence: `scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/README.md`, `scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/investigation.md`.
+- Scorecard monitor/auto-heal evidence: `weekly-summary/weekly-summary-2026-04-06-to-12.md`, `scorecard-workflows/sessions/2026-10-25/auto-backfill-missing-scorecards-legacy-evidence/auto-heal-design.md`, `scorecard-workflows/sessions/2026-10-25/auto-backfill-missing-scorecards-legacy-evidence/implementation-and-validation-summary.md`, `scorecard-workflows/sessions/2026-10-25/auto-backfill-missing-scorecards-legacy-evidence/rollout-plan.md`.
 - Scorecard reliability operating model: `scorecard-data-sync/deliverables/monitoring-and-diagnosis.md`, `scorecard-data-sync/deliverables/repair-and-backfill-playbook.md`, `scorecard-data-sync/log/2026-07-22.md`.
 - Production cleanup/backfill evidence: `weekly-summary/weekly-summary-2026-02-21-to-23.md`, `weekly-summary/weekly-summary-2026-03-02-to-08.md`, `weekly-summary/weekly-summary-2026-03-23-to-28.md`.
-- Domain stewardship evidence: `train-for-staff/staff-project.md`, `scorecard-template/`, `analytics/`, `scorecard-workflows/`.
+- Domain stewardship evidence: `train-for-staff/staff-project.md`, [scorecard-template-historical-reference](../../scorecard-workflows/work-items/scorecard-template-historical-reference.md), `analytics/`, `scorecard-workflows/`.
 
 ### Claims deliberately kept bounded
 

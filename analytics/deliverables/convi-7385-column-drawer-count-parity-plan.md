@@ -278,7 +278,7 @@ Update these knowledge artifacts in the same implementing session (or immediatel
 
 ### Optional / only if product docs exist
 
-8. Any internal Leaderboard QA/scorecard runbook or FE engineering notes under `convi-6968-schwab-leaderboard-launch` that describe drawer APIs should note filter inheritance.
+8. Any internal Leaderboard QA/scorecard runbook or FE engineering notes under [CONVI-6968](../work-items/CONVI-6968.md) that describe drawer APIs should note filter inheritance.
 
 ---
 

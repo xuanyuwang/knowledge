@@ -25,10 +25,12 @@ Own the five-bucket ranking model used to compare agents and present relative QA
 
 ## Legacy Sources and Cases
 
-- `agent-quintiles-support/`
-- `agent-stats-analytics-behaviors/`
+- [agent-quintiles-and-directionality](../../work-items/agent-quintiles-and-directionality.md)
+- [agent-stats-and-conversation-count-contracts](../../work-items/agent-stats-and-conversation-count-contracts.md)
 
 ## Open Questions
 
 - Document the exact tie and remainder allocation algorithm.
 - Define minimum-volume and incomplete-window behavior for each consumer.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

@@ -1,0 +1,18 @@
+{
+  "manifest_files": 648,
+  "original_tracked_files": 624,
+  "hash_mode_baseline_errors": [],
+  "reverse_rewrite_mismatches": [],
+  "sanitized_files": [
+    {
+      "file": "scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/README.md",
+      "only_declared_redactions_and_link_changes": true,
+      "redactions": 1
+    },
+    {
+      "file": "analytics/sessions/2026-10-25/convi-7049-clo-filter-legacy-evidence/pr-29175-code-review-and-test-plan.md",
+      "only_declared_redactions_and_link_changes": true,
+      "redactions": 10
+    }
+  ]
+}

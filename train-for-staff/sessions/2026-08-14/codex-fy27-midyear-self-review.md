@@ -35,9 +35,9 @@ Draft Xuanyu Wang's FY27 H1 self-reflection in a senior/Staff engineer voice, an
 ## Additional Evidence for Reliability Framing
 
 - `weekly-summary/weekly-summary-2026-04-06-to-12.md`
-- `auto-backfill-missing-scorecards/auto-heal-design.md`
-- `auto-backfill-missing-scorecards/implementation-and-validation-summary.md`
-- `auto-backfill-missing-scorecards/rollout-plan.md`
+- `scorecard-workflows/sessions/2026-10-25/auto-backfill-missing-scorecards-legacy-evidence/auto-heal-design.md`
+- `scorecard-workflows/sessions/2026-10-25/auto-backfill-missing-scorecards-legacy-evidence/implementation-and-validation-summary.md`
+- `scorecard-workflows/sessions/2026-10-25/auto-backfill-missing-scorecards-legacy-evidence/rollout-plan.md`
 - `scorecard-data-sync/deliverables/monitoring-and-diagnosis.md`
 - `scorecard-data-sync/deliverables/repair-and-backfill-playbook.md`
 - `scorecard-data-sync/log/2026-07-22.md`

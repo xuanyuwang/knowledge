@@ -16,8 +16,8 @@
 
 - `oncall/sessions/2026-06-29/codex-team-slack-notification-research.md`
 - `oncall/README.md` and `project.yaml`
-- notification-related sections in `scorecard-permission-policy/`
-- notification searches in `group-calibration/` and `export-appeal-comments/`
+- notification-related sections in [scorecard-permission-evaluator-design-history](../../../scorecard-workflows/work-items/scorecard-permission-evaluator-design-history.md)
+- notification searches in [group-calibration-csv-comment-parity](../../../scorecard-workflows/work-items/group-calibration-csv-comment-parity.md) and [appeal-resolution-comments-export](../../../scorecard-workflows/work-items/appeal-resolution-comments-export.md)
 
 ## Findings
 

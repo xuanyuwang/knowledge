@@ -39,14 +39,18 @@ No subdomains are defined currently. Projection architecture, monitoring, diagno
 - [Legacy source index](deliverables/legacy-source-index.md)
 - [CONVI-7186 completed work item](work-items/CONVI-7186.md)
 
+## Inactive legacy consolidation — October 25, 2026
+
+4 legacy project folders with no meaningful content on or after September 25 are now consolidated here. [Canonical summaries and preserved evidence](deliverables/inactive-legacy-project-consolidation-2026-10-25.md) retain historical findings and unfinished work. Repair evidence must include per-customer exceptions: March 28 reindex phases each reached 275/276, with Brinks Care duplicate-criterion and Schwab image caveats. PostgreSQL lost updates and delayed projection require different remedies.
+
 ## Current State
 
 The first migration is complete. The domain artifacts above are now the canonical synthesis for PG/CH scorecard projection. Historical ticket folders remain as evidence and execution archives, with migration pointers back here.
 
 Two originally proposed sources were reclassified after review:
 
-- `convi-6841-process-scorecard-update-race` is a PostgreSQL read-after-write workflow issue, not a PG/CH projection failure.
-- `hilton-coaching-discrepancy` concerns coaching analytics/session semantics, not scorecard data synchronization.
+- [process-scorecard-create-autosave-race](../scorecard-workflows/work-items/process-scorecard-create-autosave-race.md) is a PostgreSQL read-after-write workflow issue, not a PG/CH projection failure.
+- [hilton-coaching-report-leaderboard-parity](../analytics/work-items/hilton-coaching-report-leaderboard-parity.md) concerns coaching analytics/session semantics, not scorecard data synchronization.
 - [CONVI-7378](https://linear.app/cresta/issue/CONVI-7378) (SCAN Consent to Call) was ruled out after PG/CH alignment; canonical evidence lives in `analytics`.
 
 On 2026-07-22, a production Slack ambiguity was confirmed: the displayed fraction counts only missing ClickHouse rows, while reindex workflows include both missing and timestamp-stale scorecards. A zero-missing line can therefore create a valid stale-row repair workflow; see `sessions/2026-07-22/codex-slack-missing-vs-reindex.md`.

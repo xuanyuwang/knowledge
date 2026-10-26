@@ -87,8 +87,8 @@ One canonical, well-tested, well-observed user-filter implementation with explic
 
 ## Project 2: ClickHouse External Tables for Reference Data Filtering
 
-**Design review:** [`large-user-id-clickhouse/design-review.md`](../large-user-id-clickhouse/design-review.md)
-**Full project docs:** [`large-user-id-clickhouse/`](../large-user-id-clickhouse/)
+**Design review:** [`analytics/sessions/2026-10-25/large-user-id-clickhouse-legacy-evidence/design-review.md`](../analytics/sessions/2026-10-25/large-user-id-clickhouse-legacy-evidence/design-review.md)
+**Full project docs:** [large-user-filter-external-tables](../analytics/work-items/large-user-filter-external-tables.md)
 
 ### Why this is a Staff-level project
 
@@ -96,7 +96,7 @@ This project demonstrates multiple Staff dimensions simultaneously:
 
 1. **Problem framing & strategy** — Identified that the immediate bug (user ID list exceeding ClickHouse max query size) was a symptom of a systemic gap: no general-purpose mechanism for passing reference data into ClickHouse queries. Reframed from "fix the user filter" to "build a reusable pattern for any external data."
 
-2. **Options analysis & principled decision-making** — Evaluated 10 candidate solutions across complexity, generalizability, performance, and blast radius. Wrote a structured comparison ([`solutions-comparison.md`](../large-user-id-clickhouse/solutions-comparison.md)) and chose `ext` external tables with clear rationale, not just the first thing that worked.
+2. **Options analysis & principled decision-making** — Evaluated 10 candidate solutions across complexity, generalizability, performance, and blast radius. Wrote a structured comparison ([`solutions-comparison.md`](../analytics/sessions/2026-10-25/large-user-id-clickhouse-legacy-evidence/solutions-comparison.md)) and chose `ext` external tables with clear rationale, not just the first thing that worked.
 
 3. **Architecture for leverage** — Designed the solution as two generic helper functions (`buildExtTable`, `attachExtTablesToContext`) that work for any data type, not just user IDs. Future use cases (scorecard IDs, conversation IDs) can reuse the same pattern with zero new infrastructure.
 
@@ -141,9 +141,9 @@ This project demonstrates multiple Staff dimensions simultaneously:
 
 ## Project 3: Scorecard PG↔ClickHouse Sync Fix (CONVI-5565)
 
-**Investigation doc:** [`convi-5565-scorecard-ch-pg-sync/investigation.md`](../convi-5565-scorecard-ch-pg-sync/investigation.md)
+**Investigation doc:** [`scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/investigation.md`](../scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/investigation.md)
 **Notion design doc:** [Scorecard Async Database Updates](https://www.notion.so/cresta/Scorecard-Async-Database-Updates-2974a587b06180f595c3c14492a96104)
-**Full project docs:** [`convi-5565-scorecard-ch-pg-sync/`](../convi-5565-scorecard-ch-pg-sync/)
+**Full project docs:** [CONVI-5565](../scorecard-data-sync/work-items/CONVI-5565.md)
 
 ### Why this is a Staff-level project
 
@@ -213,8 +213,8 @@ The core solution — **atomic transaction + async re-read from DB + feature-fla
 
 ## Project 4: Scorecard/Template Domain Stewardship
 
-**Working reference project:** [`scorecard-template/README.md`](../scorecard-template/README.md)  
-**Domain skeleton:** [`scorecard-template/deliverables/scorecard-template-domain-skeleton.md`](../scorecard-template/deliverables/scorecard-template-domain-skeleton.md)
+**Working reference project:** [Scorecard template](../scorecard-workflows/work-items/scorecard-template-historical-reference.md)
+**Domain skeleton:** [`scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence/deliverables/scorecard-template-domain-skeleton.md`](../scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence/deliverables/scorecard-template-domain-skeleton.md)
 
 ### Why this is a Staff-level growth project
 
@@ -294,10 +294,10 @@ Create a living working reference for scorecard/template in coaching service, an
 
 | Artifact | Location |
 |----------|----------|
-| Working-reference project home | `scorecard-template/README.md` |
-| Domain skeleton | `scorecard-template/deliverables/scorecard-template-domain-skeleton.md` |
-| Working-reference project brief | `scorecard-template/deliverables/scorecard-template-working-reference-project.md` |
-| Canonical system reference | `scorecard-template/deliverables/scorecard-template-system-reference.md` |
+| Working-reference project home | `scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence/README.md` |
+| Domain skeleton | `scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence/deliverables/scorecard-template-domain-skeleton.md` |
+| Working-reference project brief | `scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence/deliverables/scorecard-template-working-reference-project.md` |
+| Canonical system reference | `scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence/deliverables/scorecard-template-system-reference.md` |
 | Blog writeup | [`blog/2026-06-15-from-scorecard-apis-to-business-workflows.md`](../blog/2026-06-15-from-scorecard-apis-to-business-workflows.md) |
 | Blog draft | `train-for-staff/deliverables/from-scorecard-apis-to-business-workflows.md` |
 
@@ -320,9 +320,9 @@ Create a living working reference for scorecard/template in coaching service, an
 
 ## Project 5: Schwab Leaderboard Metric Semantics and API Strategy
 
-**Project docs:** [`convi-6968-schwab-leaderboard-launch/`](../convi-6968-schwab-leaderboard-launch/)
-**API decision table:** [`convi-6968-schwab-leaderboard-launch/deliverables/api-decision-table.md`](../convi-6968-schwab-leaderboard-launch/deliverables/api-decision-table.md)
-**Backend plan:** [`convi-6968-schwab-leaderboard-launch/deliverables/BE plan.md`](../convi-6968-schwab-leaderboard-launch/deliverables/BE%20plan.md)
+**Project docs:** [CONVI-6968](../analytics/work-items/CONVI-6968.md)
+**API decision table:** [`analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/api-decision-table.md`](../analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/api-decision-table.md)
+**Backend plan:** [`analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/BE plan.md`](../analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/BE plan.md)
 
 ### Why this is a Staff-level project
 
@@ -371,10 +371,10 @@ Leaderboard scorecard metrics should have explicit attribution and time-basis se
 
 | Artifact | Location |
 |----------|----------|
-| Project home | `convi-6968-schwab-leaderboard-launch/README.md` |
-| API decision table | `convi-6968-schwab-leaderboard-launch/deliverables/api-decision-table.md` |
-| Backend migration plan | `convi-6968-schwab-leaderboard-launch/deliverables/BE plan.md` |
-| FE implementation analysis | `convi-6968-schwab-leaderboard-launch/deliverables/fe-engineering-work.md` |
+| Project home | `analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/README.md` |
+| API decision table | `analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/api-decision-table.md` |
+| Backend migration plan | `analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/BE plan.md` |
+| FE implementation analysis | `analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/fe-engineering-work.md` |
 | Blog candidate | `train-for-staff/deliverables/blog-and-resume-candidates.md` |
 
 ### Key insight

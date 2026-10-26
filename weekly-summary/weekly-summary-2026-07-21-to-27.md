@@ -12,7 +12,7 @@
 - Added revision-mismatch regression tests; focused and full update/reset/evaluate coaching suites passed.
 - Opened and merged [go-servers #30336](https://github.com/cresta/go-servers/pull/30336).
 - **Status:** validating — Walter-dev manual verification pending.
-- **Evidence:** `convi-6862-disable-editing-on-submitted-scorecard/work-items/CONVI-7350.md`, `convi-6862-disable-editing-on-submitted-scorecard/log/2026-07-22.md`
+- **Evidence:** `scorecard-workflows/sessions/2026-10-25/convi-6862-disable-editing-on-submitted-scorecard-legacy-evidence/work-items/CONVI-7350.md`, `scorecard-workflows/sessions/2026-10-25/convi-6862-disable-editing-on-submitted-scorecard-legacy-evidence/log/2026-07-22.md`
 
 ### CONVI-7254: HCD monthly QA criterion shows 0%
 - Reproduced HCD's May near-zero monthly criterion score from production ClickHouse: 4,747 semantic weight-zero rows stored as `1e-13` dominate three failing unit-weight rows from a brief May 29 weight-1 window.
@@ -37,7 +37,7 @@
 - Identified mixed-filter risk: any CLO group switches all moment groups in the request, including existing metadata filters, back to the raw table.
 - Recommended per-group table routing and runtime validation with `EXPLAIN indexes = 1` and query-log metrics.
 - **Status:** review complete; implementation/validation not started.
-- **Evidence:** `convi-7049-clo-filter/log/2026-07-23.md`, `convi-7049-clo-filter/sessions/2026-07-23/codex-query-structure-performance.md`
+- **Evidence:** `analytics/sessions/2026-10-25/convi-7049-clo-filter-legacy-evidence/log/2026-07-23.md`, `analytics/sessions/2026-10-25/convi-7049-clo-filter-legacy-evidence/sessions/2026-07-23/codex-query-structure-performance.md`
 
 ### Scorecard Data Sync: Slack monitor reporting ambiguity
 - Explained why the Snap Finance monitor reported zero missing scorecards while dispatching a three-scorecard reindex workflow: Slack renders only missing-row statistics, but auto-heal candidates are the union of missing and existing-but-stale scorecards.
@@ -49,7 +49,7 @@
 - Rewrote the Agent Leaderboard Active Days behavior guide for non-engineering and engineering audiences.
 - Clarified message-based vs no-agent-message attribution rules and promoted heading levels for Superhuman paste compatibility.
 - **Status:** deliverable ready; manual paste into Superhuman doc pending.
-- **Evidence:** `active-days/log/2026-07-22.md`, `active-days/deliverables/agent-leaderboard-active-days-behavior-guide.md`
+- **Evidence:** `analytics/sessions/2026-10-25/active-days-legacy-evidence/log/2026-07-22.md`, `analytics/sessions/2026-10-25/active-days-legacy-evidence/deliverables/agent-leaderboard-active-days-behavior-guide.md`
 
 ### Knowledge repo: domain catalog metadata
 - Published the four-domain catalog, including eight Analytics and seven Scorecard Workflows subdomains, across the root README, canonical domain model, workspace metadata, and tool adapters.

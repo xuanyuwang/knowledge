@@ -1,0 +1,17 @@
+[
+  {
+    "original_path": "backfill-scorecards/.venv",
+    "preserved_at": "/Users/xuanyu.wang/Library/Caches/Codex/knowledge-legacy-2026-10-25/backfill-scorecards/.venv",
+    "reason": "Ignored local runtime/cache; moved without reading credentials or running it. Virtualenv absolute launcher paths are historical."
+  },
+  {
+    "original_path": "backfill-scorecards/__pycache__",
+    "preserved_at": "/Users/xuanyu.wang/Library/Caches/Codex/knowledge-legacy-2026-10-25/backfill-scorecards/__pycache__",
+    "reason": "Ignored local runtime/cache; moved without reading credentials or running it. Virtualenv absolute launcher paths are historical."
+  },
+  {
+    "original_path": "convi-5565-scorecard-ch-pg-sync/tools/.venv",
+    "preserved_at": "/Users/xuanyu.wang/Library/Caches/Codex/knowledge-legacy-2026-10-25/convi-5565-scorecard-ch-pg-sync/tools/.venv",
+    "reason": "Ignored local runtime/cache; moved without reading credentials or running it. Virtualenv absolute launcher paths are historical."
+  }
+]

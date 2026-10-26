@@ -11,7 +11,7 @@
 
 ## Sources Reviewed
 
-- `auto-backfill-missing-scorecards/implementation-and-validation-summary.md`
+- `scorecard-workflows/sessions/2026-10-25/auto-backfill-missing-scorecards-legacy-evidence/implementation-and-validation-summary.md`
 - `scorecard-data-sync/sessions/2026-08-03/codex-post-recovery-missing-rate.md`
 - `scorecard-data-sync/sessions/2026-08-01/codex-performance-insights-missing-data.md`
 - Current local scorecard-sync-monitor factory, task, and README.

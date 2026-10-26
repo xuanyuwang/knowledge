@@ -24,15 +24,17 @@ Explain every Performance Insights chart, metric card, heatmap, leaderboard tabl
 
 ## Legacy Sources and Cases
 
-- `convi-6753-weight-zero-pi-na/`
-- `convi-6808-greenix-pi-scores/`
-- `convi-6842-holiday-inn-pi-vs-closed-conversations/`
-- `convi-7049-clo-filter/`
-- `convi-7162-holidayinn-manager-scorecards-completed/`
-- `convi-7230-performance-insights-outcome-filters/`
-- `qa-score-popover-fix/`
+- [CONVI-6753](../../work-items/CONVI-6753.md)
+- [CONVI-6808](../../work-items/CONVI-6808.md)
+- [CONVI-6842](../../work-items/CONVI-6842.md)
+- [clo-filter-query-optimization-and-rollout](../../work-items/clo-filter-query-optimization-and-rollout.md)
+- [CONVI-7162](../../work-items/CONVI-7162.md)
+- [CONVI-7230](../../work-items/CONVI-7230.md)
+- [CONVI-5805](../../work-items/CONVI-5805.md)
 
 ## Open Questions
 
 - Complete the exact surface catalog with request fields, transformations, empty/N/A behavior, and validation query for every chart/table.
 - Separate intentional PI/Leaderboard filter differences from accidental drift.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

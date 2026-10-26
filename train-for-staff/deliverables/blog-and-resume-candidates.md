@@ -24,8 +24,8 @@ Do not return these topics to the active pool unless the proposed post has a cle
 Source projects:
 
 - `analytics/subdomains/conversation-volume/README.md`
-- `convi-6842-holiday-inn-pi-vs-closed-conversations/README.md`
-- `agent-stats-analytics-behaviors/deliverables/conversation-count-behavior-guide-2026-07.md`
+- `analytics/sessions/2026-10-25/convi-6842-holiday-inn-pi-vs-closed-conversations-legacy-evidence/README.md`
+- `analytics/sessions/2026-10-25/agent-stats-analytics-behaviors-legacy-evidence/deliverables/conversation-count-behavior-guide-2026-07.md`
 
 Core argument:
 
@@ -47,9 +47,9 @@ Resume angle:
 
 Source projects:
 
-- `convi-6968-schwab-leaderboard-launch/README.md`
-- `convi-6968-schwab-leaderboard-launch/deliverables/api-decision-table.md`
-- `convi-6968-schwab-leaderboard-launch/deliverables/BE plan.md`
+- `analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/README.md`
+- `analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/api-decision-table.md`
+- `analytics/sessions/2026-10-25/convi-6968-schwab-leaderboard-launch-legacy-evidence/deliverables/BE plan.md`
 
 Core argument:
 
@@ -73,7 +73,7 @@ Source projects:
 
 - `scorecard-workflows/subdomains/evaluation-and-scoring/README.md`
 - `analytics/subdomains/qa-score/README.md`
-- `nascore/README.md`
+- `scorecard-workflows/sessions/2026-10-25/nascore-legacy-evidence/README.md`
 
 Core argument:
 
@@ -97,7 +97,7 @@ Source projects:
 
 - `scorecard-workflows/subdomains/process-scorecards-and-generation/README.md`
 - `scorecard-data-sync/README.md`
-- `auto-backfill-missing-scorecards/README.md`
+- `scorecard-workflows/sessions/2026-10-25/auto-backfill-missing-scorecards-legacy-evidence/README.md`
 
 Core argument:
 
@@ -120,8 +120,8 @@ Resume angle:
 Source projects:
 
 - `scorecard-workflows/subdomains/group-calibration/README.md`
-- `scorecard-template/deliverables/scorecard-export-paths.md`
-- `group-calibration/deliverables/convi-7208-numeric-grade-csv-fix-plan.md`
+- `scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence/deliverables/scorecard-export-paths.md`
+- `scorecard-workflows/sessions/2026-10-25/group-calibration-legacy-evidence/deliverables/convi-7208-numeric-grade-csv-fix-plan.md`
 
 Core argument:
 

@@ -29,3 +29,5 @@ artifacts:
   readme: README.md
   log_dir: log/
   session_dir: sessions/
+  key_docs:
+    - work-items/team-feature-flag-cleanup-plugin.md

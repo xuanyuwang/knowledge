@@ -32,6 +32,10 @@ The canonical knowledge home for scorecard and template business workflows from 
 - [Group Calibration](subdomains/group-calibration/README.md): answer keys, responses, completion, permissions, reporting, and exports
 - [Process Scorecards and Generation](subdomains/process-scorecards-and-generation/README.md): process scorecards, existence rules, generation, repair, and backfill orchestration
 
+## Inactive legacy consolidation — October 25, 2026
+
+15 legacy project folders with no meaningful content on or after September 25 are now consolidated here. [Canonical summaries and preserved evidence](deliverables/inactive-legacy-project-consolidation-2026-10-25.md) retain historical findings and unfinished work. Option identity, mapped score and N/A representation are distinct. Submitted-edit permissions, template locks and reset authority require separate checks; scorecard generation is distinct from projection repair.
+
 ## Current State
 
 An [expanded P0 engineering sketch](deliverables/phase-1-p0-performance-insights-qm-sketch.md) begins with the template/criterion data model, then maps it to template config, Performance Insights, QM task, QM Task Home, and QM Report. Diagrams and tables show the scope inheritance, per-use-case score rows, and query changes. It includes the proposed derived QM task scope and open AutoQM/reporting decisions. It is a private review aid; the longer engineering plan and focused investigations retain supporting evidence.

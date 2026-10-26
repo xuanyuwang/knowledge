@@ -44,10 +44,10 @@ This ordering makes Candidate 2 from Workstream 4 legible while using Candidate 
 
 | Claim | Evidence | Calibration |
 |---|---|---|
-| Ten alternatives evaluated for external tables | `large-user-id-clickhouse/solutions-comparison.md`, `design-review.md` | Strong |
+| Ten alternatives evaluated for external tables | `analytics/sessions/2026-10-25/large-user-id-clickhouse-legacy-evidence/solutions-comparison.md`, `design-review.md` | Strong |
 | Generic path adopted across 17 caller files | `train-for-staff/staff-project.md`, FY27 self-review | Strong; describes implementation scope, not adoption by 17 teams |
-| 3.3× faster at 10,000 users | `large-user-id-clickhouse/design-review.md` | Strong; benchmark, not production latency |
-| Zero score and submitter mismatches across 2,996 comparable records | `convi-5565-scorecard-ch-pg-sync/README.md` | Strong; excludes records absent from one store and does not claim zero submission-time residual |
+| 3.3× faster at 10,000 users | `analytics/sessions/2026-10-25/large-user-id-clickhouse-legacy-evidence/design-review.md` | Strong; benchmark, not production latency |
+| Zero score and submitter mismatches across 2,996 comparable records | `scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/README.md` | Strong; excludes records absent from one store and does not claim zero submission-time residual |
 | Seven-cluster scorecard monitoring | FY27 self-review and linked monitoring evidence | Strong for monitor execution |
 | Safety-gated targeted repair | Auto-heal design and staging validation linked from FY27 self-review | Strong for implemented controls; do not claim unrestricted production auto-heal |
 | User-filter standard and 62 behavioral tests | FY27 self-review and user-filter artifacts | Strong |

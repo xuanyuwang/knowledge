@@ -26,8 +26,8 @@ Define the next-role fit implied by the working product-infrastructure hypothesi
 - `train-for-staff/staff-project.md`
 - `train-for-staff/deliverables/fy27-mid-year-self-review-draft.md`
 - `user-filter-consolidation/README.md` and dated evaluation evidence
-- `large-user-id-clickhouse/README.md` and `design-review.md`
-- `convi-5565-scorecard-ch-pg-sync/README.md`
+- `analytics/sessions/2026-10-25/large-user-id-clickhouse-legacy-evidence/README.md` and `design-review.md`
+- `scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/README.md`
 - annual-review and domain evidence for Group Calibration
 
 ## Findings

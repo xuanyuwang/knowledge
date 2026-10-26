@@ -26,11 +26,13 @@ Own the surface-specific definitions behind labels such as conversations, comple
 
 ## Legacy Sources and Cases
 
-- `agent-stats-analytics-behaviors/deliverables/conversation-count-behavior-guide-2026-07.md`
-- `convi-6842-holiday-inn-pi-vs-closed-conversations/`
-- `convi-7162-holidayinn-manager-scorecards-completed/`
+- `analytics/sessions/2026-10-25/agent-stats-analytics-behaviors-legacy-evidence/deliverables/conversation-count-behavior-guide-2026-07.md`
+- [CONVI-6842](../../work-items/CONVI-6842.md)
+- [CONVI-7162](../../work-items/CONVI-7162.md)
 
 ## Open Questions
 
 - Build a tested predicate matrix for every visible conversation/count label.
 - Document time-zone and time-attribution behavior per API.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

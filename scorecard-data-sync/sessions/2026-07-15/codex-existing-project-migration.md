@@ -14,13 +14,13 @@
 
 ## Inputs Reviewed
 
-- `pg-ch-scorecard-sync-investigation/`
-- `convi-5565-scorecard-ch-pg-sync/`
-- `convi-6298-reindex-process-scorecards/`
-- `backfill-scorecards/`
+- [ui-pg-ch-ordering](../../work-items/ui-pg-ch-ordering.md)
+- [CONVI-5565](../../work-items/CONVI-5565.md)
+- [CONVI-6298](../../work-items/CONVI-6298.md)
+- [CONVI-6209](../../work-items/CONVI-6209.md)
 - `historic-scorecard-missing/`
-- `convi-6841-process-scorecard-update-race/`
-- `hilton-coaching-discrepancy/`
+- [process-scorecard-create-autosave-race](../../../scorecard-workflows/work-items/process-scorecard-create-autosave-race.md)
+- [hilton-coaching-report-leaderboard-parity](../../../analytics/work-items/hilton-coaching-report-leaderboard-parity.md)
 
 ## Findings
 

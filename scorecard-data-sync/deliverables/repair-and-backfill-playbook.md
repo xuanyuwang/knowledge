@@ -75,8 +75,8 @@ For process scorecards, prefer the production scorecard reindex workflow over hi
 
 Detailed scripts, run logs, and exact historical results remain in:
 
-- `backfill-scorecards/`
-- `convi-6298-reindex-process-scorecards/`
-- `convi-5565-scorecard-ch-pg-sync/tools/`
+- [CONVI-6209](../work-items/CONVI-6209.md)
+- [CONVI-6298](../work-items/CONVI-6298.md)
+- `scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/tools`
 
 These are evidence and historical tooling, not automatically safe current runbooks. Revalidate code paths, configuration, access, and production safeguards before reuse.

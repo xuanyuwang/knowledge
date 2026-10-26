@@ -126,9 +126,9 @@ I used three levels of evidence: deterministic code-path reasoning, configurable
 
 ## Source artifacts
 
-- [`../../convi-5565-scorecard-ch-pg-sync/README.md`](../../convi-5565-scorecard-ch-pg-sync/README.md)
-- [`../../convi-5565-scorecard-ch-pg-sync/investigation.md`](../../convi-5565-scorecard-ch-pg-sync/investigation.md)
-- [`../../convi-5565-scorecard-ch-pg-sync/log/2026-03-11.md`](../../convi-5565-scorecard-ch-pg-sync/log/2026-03-11.md)
-- [`../../convi-5565-scorecard-ch-pg-sync/log/2026-03-12.md`](../../convi-5565-scorecard-ch-pg-sync/log/2026-03-12.md)
+- [`../../convi-5565-scorecard-ch-pg-sync/README.md`](../../scorecard-data-sync/work-items/CONVI-5565.md)
+- [`../../convi-5565-scorecard-ch-pg-sync/investigation.md`](../../scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/investigation.md)
+- [`../../convi-5565-scorecard-ch-pg-sync/log/2026-03-11.md`](../../scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/log/2026-03-11.md)
+- [`../../convi-5565-scorecard-ch-pg-sync/log/2026-03-12.md`](../../scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/log/2026-03-12.md)
 - [`../../scorecard-data-sync/deliverables/architecture-and-invariants.md`](../../scorecard-data-sync/deliverables/architecture-and-invariants.md)
 - [`../../blog/2026-03-13-debugging-dual-database-sync.md`](../../blog/2026-03-13-debugging-dual-database-sync.md)

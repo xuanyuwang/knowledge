@@ -20,14 +20,21 @@ Own Agent, Team, and Manager Leaderboard semantics, including ranking/grouping, 
 - Director `features/insights/leaderboard/manager-leaderboard/`
 - Analytics hooks and `insights-server/internal/analyticsimpl/`
 
+## Consolidated Historical Cases
+
+- [CONVI-6260](../../work-items/CONVI-6260.md): parent-team selection requires descendant row expansion independently of user membership filtering; the canonical investigation is in Insights User Filter.
+- [CONVI-6494](../../work-items/CONVI-6494.md): correlating raise and whisper events at manager-ID grain split the evidence because raise events lacked that ID. Agent and manager metrics need appropriate aggregation grains. The saved Brinks comparison supports the proposed split, while the last May audit still recorded fixture-only partial implementation.
+
 ## Legacy Sources and Cases
 
-- `convi-6260-team-leaderboard/`
-- `convi-6494-raises-answered-zero/`
-- `convi-6968-schwab-leaderboard-launch/`
-- `agent-quintiles-support/` (ranking cross-link)
+- [CONVI-6260](../../work-items/CONVI-6260.md)
+- [CONVI-6494](../../work-items/CONVI-6494.md)
+- [CONVI-6968](../../work-items/CONVI-6968.md)
+- [agent-quintiles-and-directionality](../../work-items/agent-quintiles-and-directionality.md) (ranking cross-link)
 
 ## Open Questions
 
 - Finish a metric-by-tab API/source/filter matrix.
 - Document sorting, ties, missing values, minimum-volume gates, and export parity.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

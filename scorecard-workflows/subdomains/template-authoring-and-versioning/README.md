@@ -26,11 +26,13 @@ Own how scorecard templates are modeled, authored, revised, duplicated, evolved,
 
 ## Legacy Sources and Cases
 
-- `scorecard-template/`
-- `duplicate-template-across-usecase/`
-- `template-schema-version-updater/`
+- [scorecard-template-historical-reference](../../work-items/scorecard-template-historical-reference.md)
+- [cross-usecase-template-duplication](../../work-items/cross-usecase-template-duplication.md)
+- [template-schema-updater-proposal](../../work-items/template-schema-updater-proposal.md)
 
 ## Open Questions
 
 - Choose the authority and rollout strategy for schema normalization.
 - Publish a complete duplication/remapping matrix.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

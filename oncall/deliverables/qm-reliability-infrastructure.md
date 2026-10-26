@@ -27,7 +27,7 @@ Propose a support-facing explanation for a specific requester and request: effec
 
 The explanation should use the same decision logic as the real request. Refactor only the first selected paths as needed to expose structured reasons; avoid a wholesale permission rewrite. Keep coaching capabilities and analytics eligibility distinct even if they share diagnostic vocabulary. Restrict detailed explanations to authorized operators and avoid disclosing inaccessible records to end users. Keep high-cardinality identity details in controlled traces/diagnostics rather than metric labels.
 
-Relevant foundations: [permission evaluator draft](../../scorecard-permission-policy/README.md), [Insights user-filter semantics](../../analytics/subdomains/insights-user-filter/README.md).
+Relevant foundations: [permission evaluator draft](../../scorecard-workflows/work-items/scorecard-permission-evaluator-design-history.md), [Insights user-filter semantics](../../analytics/subdomains/insights-user-filter/README.md).
 
 ## First dashboard and instrumentation
 
@@ -78,4 +78,4 @@ Query tuning follows the first measured bottleneck: rank by customer impact and 
 
 This is inspiration grounded in existing local design and incident notes, not a fresh audit of production, instrumentation, ticket frequency, or deployment state. The historical CONVI-7681 latency investigation is an example of why tail latency and request/query correlation matter; current symptoms and resolution were not checked. Local knowledge documents may also lag deployed behavior.
 
-Additional references: [shared analytics contracts](../../analytics/subdomains/shared-analytics-platform/README.md), [coaching oversized-response precedent](../../scorecard-template/README.md). No credentials or external services were used.
+Additional references: [shared analytics contracts](../../analytics/subdomains/shared-analytics-platform/README.md), [coaching oversized-response precedent](../../scorecard-workflows/work-items/scorecard-template-historical-reference.md). No credentials or external services were used.

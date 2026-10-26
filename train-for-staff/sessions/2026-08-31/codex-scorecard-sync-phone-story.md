@@ -11,7 +11,7 @@
 ## Inputs Reviewed
 
 - `train-for-staff/staff-project.md`, `resume-snippets.md`, `resume.typ`, and `senior-to-staff.md`.
-- `convi-5565-scorecard-ch-pg-sync/README.md`, `investigation.md`, and the March 11–12 production-verification logs.
+- `scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/README.md`, `investigation.md`, and the March 11–12 production-verification logs.
 - `scorecard-data-sync/README.md`, `deliverables/architecture-and-invariants.md`, and `deliverables/failure-modes-and-case-index.md`.
 - `blog/2026-03-13-debugging-dual-database-sync.md`.
 

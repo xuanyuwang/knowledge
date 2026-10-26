@@ -25,11 +25,13 @@ Own valid scorecard states and transitions from creation through editing, submis
 
 ## Legacy Sources and Cases
 
-- `scorecard-template/deliverables/scorecard-lifecycle.md`
-- `convi-6709-reversed-scorecard/`
-- `convi-6841-process-scorecard-update-race/`
+- `scorecard-workflows/sessions/2026-10-25/scorecard-template-legacy-evidence/deliverables/scorecard-lifecycle.md`
+- [nrg-option-value-display-mismatch](../../work-items/nrg-option-value-display-mismatch.md)
+- [process-scorecard-create-autosave-race](../../work-items/process-scorecard-create-autosave-race.md)
 
 ## Open Questions
 
 - Publish a state-transition matrix per scorecard type.
 - Define idempotency and concurrency guarantees for every mutation.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

@@ -32,17 +32,17 @@ The monitor is too coarse, too expensive, or unable to distinguish missing from 
 
 | Case | Class | Durable lesson | Evidence |
 |---|---|---|---|
-| CONVI-5565 / CONVI-6076 | Staleness plus separate PG lost update | Atomic PG writes and fresh source reads reduced failures, but CH write-time ordering still allowed a narrow rapid update→submit race | `convi-5565-scorecard-ch-pg-sync/` |
+| CONVI-5565 / CONVI-6076 | Staleness plus separate PG lost update | Atomic PG writes and fresh source reads reduced failures, but CH write-time ordering still allowed a narrow rapid update→submit race | [CONVI-5565](../work-items/CONVI-5565.md) |
 | Missing `historic.scorecard_scores` | Omission | Async historic writes could fail or be skipped; synchronous transactional historic writes prevent orphaned director state | `historic-scorecard-missing/investigation.md` |
-| Process-scorecard reindex (CONVI-6298) | Coverage gap | Conversation reindex cannot recover entities without conversation identity; scorecard-centric reindex is a separate first-class path | `convi-6298-reindex-process-scorecards/` |
-| Pack Rat stale submit metadata | Staleness/partial projection | ID-existence monitoring missed an existing stale row; targeted scorecard reindex repaired submit metadata and emitted score rows | `pg-ch-scorecard-sync-investigation/sessions/2026-06-08/codex-pack-rat-scorecard-sync.md` |
-| Appeal cleanup/backfill (CONVI-6209/6227) | Cleanup/delete mismatch | Changing filters does not remove legacy CH rows; delete from local tables on cluster, then re-backfill | `backfill-scorecards/README.md` |
+| Process-scorecard reindex (CONVI-6298) | Coverage gap | Conversation reindex cannot recover entities without conversation identity; scorecard-centric reindex is a separate first-class path | [CONVI-6298](../work-items/CONVI-6298.md) |
+| Pack Rat stale submit metadata | Staleness/partial projection | ID-existence monitoring missed an existing stale row; targeted scorecard reindex repaired submit metadata and emitted score rows | `scorecard-data-sync/sessions/2026-10-25/pg-ch-scorecard-sync-investigation-legacy-evidence/sessions/2026-06-08/codex-pack-rat-scorecard-sync.md` |
+| Appeal cleanup/backfill (CONVI-6209/6227) | Cleanup/delete mismatch | Changing filters does not remove legacy CH rows; delete from local tables on cluster, then re-backfill | `scorecard-data-sync/sessions/2026-10-25/backfill-scorecards-legacy-evidence/README.md` |
 | Sync monitor timeout / CONVI-7186 | Observability/performance | Correlated score-existence checks over huge unsubmitted shell populations made detection itself fail; filter missing unsubmitted IDs after CH comparison | `scorecard-data-sync/work-items/CONVI-7186.md` |
 
 ## Explicit Non-Cases
 
-- `convi-6841-process-scorecard-update-race` is a read-after-create failure caused by PG replica lag before `UpdateScorecard`; no CH divergence is required to trigger it. Primary domain: `scorecard-workflows`.
-- `hilton-coaching-discrepancy` covers coaching session/efficiency and user-filter semantics. It is not a scorecard PG/CH projection case.
+- [process-scorecard-create-autosave-race](../../scorecard-workflows/work-items/process-scorecard-create-autosave-race.md) is a read-after-create failure caused by PG replica lag before `UpdateScorecard`; no CH divergence is required to trigger it. Primary domain: `scorecard-workflows`.
+- [hilton-coaching-report-leaderboard-parity](../../analytics/work-items/hilton-coaching-report-leaderboard-parity.md) covers coaching session/efficiency and user-filter semantics. It is not a scorecard PG/CH projection case.
 - [CONVI-7378](https://linear.app/cresta/issue/CONVI-7378) (SCAN Consent to Call) was initially routed here while ruling out PG/CH misalignment. Postgres and ClickHouse were aligned; the reported mismatch is pinned-revision option-to-score semantics in Performance Insights and Closed Conversations. Primary domain: `analytics`. Evidence: `analytics/deliverables/convi-7378-scan-consent-qa-score-investigation.md`.
 
 Keeping these boundaries prevents every database-adjacent issue from being mislabeled as data sync.

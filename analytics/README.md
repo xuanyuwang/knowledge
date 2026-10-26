@@ -53,6 +53,10 @@ Canonical API references:
 
 - [RetrieveHintStats](subdomains/shared-analytics-platform/retrieve-hint-stats.md) — request/response contract, Director usage, ClickHouse query semantics, grouping, invariants, validation, and known defects
 
+## Inactive legacy consolidation — October 25, 2026
+
+16 legacy project folders with no meaningful content on or after September 25 are now consolidated here. [Canonical summaries and preserved evidence](deliverables/inactive-legacy-project-consolidation-2026-10-25.md) retain historical findings and unfinished work. Population, identity, time and visibility must be compared separately. The July Manager submit-time decision supersedes the June waiver; label evidence and user adoption remain different questions.
+
 ## Current State
 
 October 23 CONVI-7777 post-release check: the new backend image is running and Git production config includes chart 0.24.110, but the live ingress still lacks the route and public Assistance Usage POST returns HTTP 405/method-not-registered. Chart reconciliation remains to be verified; Director client code is present on main. [Verification](sessions/2026-10-23/codex-convi-7777-prod-api-verification.md).
@@ -105,6 +109,20 @@ PM/manager-ready reports:
 - [CONVI-7777 assistance analytics issue register](deliverables/convi-7777-assistance-analytics-issue-register.md) — 15 consolidated defects/contract questions for PM review; AA-01 reproduced with synthetic values on a production ClickHouse connection. Customer-report prevalence remains unverified.
 - [CONVI-7378 SCAN investigation](deliverables/convi-7378-scan-consent-qa-score-investigation.md) — initiative options and customer communication
 - [CONVI-7254 HCD investigation](deliverables/hcd-mixed-revision-qa-score-investigation.md) — aggregation evidence and open decision
+
+## Consolidated Historical Work
+
+Five inactive ticket projects were consolidated on October 25, 2026. Their original files, including dated logs and scripts, are preserved under the migration session; their old top-level folders have been retired. These summaries preserve historical outcomes and open questions without claiming current ticket or deployment status.
+
+| Work item | Primary subdomain | Last recorded state |
+|---|---|---|
+| [CONVI-6192](work-items/CONVI-6192.md) | Active Days | Source-exclusion proposal; rollout unverified |
+| [CONVI-6242](work-items/CONVI-6242.md) | Active Days | Alaska backfill completed in February; wider rollout unverified |
+| [CONVI-6260](work-items/CONVI-6260.md) | Insights User Filter | Child-team fix and review changes recorded in February |
+| [CONVI-6494](work-items/CONVI-6494.md) | Leaderboard | Fixture-only partial implementation in May |
+| [CONVI-6753](work-items/CONVI-6753.md) | QA Score | Compatibility fix recorded; PR and repair outcomes unverified |
+
+See the [migration session](sessions/2026-10-25/codex-five-legacy-project-consolidation.md) for provenance and verification.
 
 ## Source Context
 

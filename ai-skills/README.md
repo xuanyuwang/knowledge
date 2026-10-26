@@ -20,3 +20,7 @@ Durable context for the tool-agnostic skills maintained in `/Users/xuanyu.wang/r
 - Never print or persist bearer tokens, database credentials, refresh tokens, cookies, or credential-bearing URLs.
 - Use the narrowest cleared credentials and preserve read-only behavior for customer-data validation.
 - Reflection proves contract visibility, not handler deployment; confirm deployment with a valid RPC request.
+
+## Inactive legacy consolidation — October 25, 2026
+
+1 legacy project folders with no meaningful content on or after September 25 are now consolidated here. [Canonical summaries and preserved evidence](work-items/team-feature-flag-cleanup-plugin.md) retain historical findings and unfinished work. The team-enable feature-flag cleanup/plugin plan now has a Shared AI Skills work item; its proposal and adoption claims retain their original historical limits.

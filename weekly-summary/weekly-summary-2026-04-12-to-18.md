@@ -9,7 +9,7 @@
 - **Solution B implementation**: Implemented N/A score mapping by passing full criteria map to `MapToScores`, added `isNumericValueNAOption` helper, updated all outcome types (DETECTED, NOT_DETECTED, NOT_APPLICABLE). All tests pass
 - **PR review & CI fixes**: Addressed review feedback — removed type casts, inline styles, dead code, extracted callbacks. Merged main (114 commits behind) to fix CI yarn install failures
 - **Testing plan**: Created comprehensive testing plan covering 9 sections with all N/A score scenarios
-- **Research consolidation**: Moved 20 research documents from `director/.tmp/` to `nascore/research/`
+- **Research consolidation**: Moved 20 research documents from `director/.tmp/` to `scorecard-workflows/sessions/2026-10-25/nascore-legacy-evidence/research`
 
 ### export-appeal-comments (New Project)
 - **Investigation complete**: Identified how criterion comment columns are built in CSV export (`criterionScores[0].Comment.String`). Found `Score.comment` is overloaded — grader comment on regular scorecards, approval reason on appeal resolve scorecards

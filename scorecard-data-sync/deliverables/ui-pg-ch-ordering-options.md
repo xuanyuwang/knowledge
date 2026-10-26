@@ -49,7 +49,7 @@ This is the **conversation reindex plus offline cleanup** path, not automaticall
 
 - **Confirmed:** original change and revert, the cleanup contract in the exact original commit, the same mechanism in refreshed backend main, and an isolated ClickHouse mutation reproducing deletion of freshly indexed rows using old source timestamps.
 - **Not independently established here:** which production workflow run/tenant triggered the November incident, its actual flags, exact affected IDs, or whether cleanup was the sole reason for the revert. The fetched revert body only says it reverts #23999; the original ticket comments link a missing-scorecards incident channel but do not contain the full postmortem. This report establishes why the proposal is unsafe, without inventing the missing incident evidence.
-- **Correction:** the legacy `convi-5565-scorecard-ch-pg-sync/investigation.md` says stale captured data with an *earlier* timestamp overwrote the newer timestamp. That does not follow for the same replacement key when both versions use the intended source timestamp. Stale or internally inconsistent payloads remain real problems, but they need their own mechanism.
+- **Correction:** the legacy `scorecard-data-sync/sessions/2026-10-25/convi-5565-scorecard-ch-pg-sync-legacy-evidence/investigation.md` says stale captured data with an *earlier* timestamp overwrote the newer timestamp. That does not follow for the same replacement key when both versions use the intended source timestamp. Stale or internally inconsistent payloads remain real problems, but they need their own mechanism.
 
 ### Other problems a direct timestamp substitution leaves open
 
@@ -247,4 +247,4 @@ Backend main was verified against GitHub at `ab941601e66af653b19a7cf91777b793bde
 | Existing source-time read selection | [QA query builder](https://github.com/cresta/go-servers/blob/ab941601e66af653b19a7cf91777b793bdedb2c7/insights-server/internal/analyticsimpl/retrieve_qa_score_stats_clickhouse.go#L76) |
 | Historical official issue | [CONVI-5565](https://linear.app/cresta/issue/CONVI-5565/data-sync-between-ch-and-postgres); issue and all returned comments inspected read-only |
 
-Related domain context: [legacy theory archive](../../pg-ch-scorecard-sync-investigation/README.md), [architecture](architecture-and-invariants.md), [RCG PG inconsistency](../work-items/rcg-casino-dtq-score-mismatch.md), [Distributed-delivery incident](2026-08-us-east-distributed-backlog-incident.md).
+Related domain context: [legacy theory archive](../work-items/ui-pg-ch-ordering.md), [architecture](architecture-and-invariants.md), [RCG PG inconsistency](../work-items/rcg-casino-dtq-score-mismatch.md), [Distributed-delivery incident](2026-08-us-east-distributed-backlog-incident.md).

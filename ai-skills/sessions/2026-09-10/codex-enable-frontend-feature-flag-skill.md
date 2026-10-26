@@ -11,7 +11,7 @@ Create a reusable skill that lets a user describe a Director frontend-feature-fl
 ## Evidence reviewed
 
 - `configuration-management/sessions/2026-07-29/codex-global-frontend-feature-flag-rollout.md` for the Admin bulk editor, active-profile selection, Auto Inheritance, generated PR, and semantic coverage requirements.
-- `convi-7049-clo-filter/sessions/2026-08-21/codex-spruce-config-collision.md` and `sessions/2026-08-23/codex-remote-master-verification.md` for the forward/back-sync lifecycle and the prior failure where history and green workflow state did not match effective ConfigService/Admin state.
+- `analytics/sessions/2026-10-25/convi-7049-clo-filter-legacy-evidence/sessions/2026-08-21/codex-spruce-config-collision.md` and `sessions/2026-08-23/codex-remote-master-verification.md` for the forward/back-sync lifecycle and the prior failure where history and green workflow state did not match effective ConfigService/Admin state.
 - Current `config` workflows: `.github/workflows/sync_to_config_service_batch.yaml`, `.github/workflows/sync_from_config_service.yaml`, and `.github/workflows/update-featureflags.yaml`.
 - Current `config/src/CustomerConfig.ts` and generated `docs/enabled-feature-flags.csv` surfaces for flag-definition and profile-level read-back checks.
 

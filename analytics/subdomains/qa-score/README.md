@@ -28,13 +28,17 @@ Own QA score calculation and display semantics from template options and score r
 - For N/A symptoms, inspect `not_applicable`, raw/numeric value, percentage value, and weight together.
 - Confirm the historical template revision and option mapping before treating a displayed label or score as incorrect.
 
+## Consolidated Historical Cases
+
+- [CONVI-6753](../../work-items/CONVI-6753.md): a zero configured contribution weight is distinct from an inapplicable criterion. The May investigation linked criterion N/A to a zero denominator after direct ClickHouse writes bypassed a historic compatibility weight. Its `1e-13` substitution and backfill requirement are historical implementation notes, not a general rule for excluded criteria or proof of deployment. Verify the write path and criterion/overall denominators together when revisiting the case.
+
 ## Legacy Sources and Cases
 
-- `convi-6753-weight-zero-pi-na/`
-- `convi-6808-greenix-pi-scores/`
-- `qa-score-popover-fix/`
-- `convi-6672-achieve-behavior-na/`
-- `nascore/`
+- [CONVI-6753](../../work-items/CONVI-6753.md)
+- [CONVI-6808](../../work-items/CONVI-6808.md)
+- [CONVI-5805](../../work-items/CONVI-5805.md)
+- [achieve-excluded-criteria-na-investigation](../../../scorecard-workflows/work-items/achieve-excluded-criteria-na-investigation.md)
+- [na-score-representation-and-fallback](../../../scorecard-workflows/work-items/na-score-representation-and-fallback.md)
 - [Mixed-revision QA score semantics](../../deliverables/mixed-revision-qa-score-semantics.md)
 - [CONVI-7378 SCAN investigation](../../deliverables/convi-7378-scan-consent-qa-score-investigation.md)
 - [CONVI-7254 HCD mixed-revision investigation](../../deliverables/hcd-mixed-revision-qa-score-investigation.md)
@@ -43,3 +47,5 @@ Own QA score calculation and display semantics from template options and score r
 
 - Publish a field-by-field truth table for criterion, chapter, and overall score aggregation.
 - Catalog every frontend fallback for null, N/A, zero, and missing rows.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

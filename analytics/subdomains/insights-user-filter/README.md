@@ -15,7 +15,7 @@ Own how analytics requests resolve users, teams, groups, roles, hierarchy, acces
 ## Architecture and Source Map
 
 - **Frontend:** shared Insights user filter and page-specific filter adapters
-- **APIs:** the Analytics API cluster documented in `insights-user-filter/analytics-apis-list.md`
+- **APIs:** the Analytics API cluster documented in `analytics/sessions/2026-10-25/insights-user-filter-legacy-evidence/analytics-apis-list.md`
 - **Backend:** auth/ACL resolution, user hierarchy expansion, analytics request construction
 - **Storage:** user/team/group metadata plus ClickHouse external ID tables
 
@@ -31,15 +31,19 @@ Own how analytics requests resolve users, teams, groups, roles, hierarchy, acces
 
 - [CONVI-6719](../../work-items/CONVI-6719.md) — revalidated Phase 3 before implementation. The unified parser is not implemented; its design must explicitly preserve both analytics `AgentOnly` semantics and coaching/role-based `ListUsers` semantics.
 
+## Consolidated Historical Cases
+
+- [CONVI-6260](../../work-items/CONVI-6260.md): selecting a parent team and expanding the eligible users is insufficient for Team Leaderboard; descendant teams must also enter `groupsToAggregate`. The recorded fix restored child-team expansion and restricted team-row names to TEAM groups. Dynamic groups can filter users without becoming team rows. The February record's flag and deployment statements are historical, and its contradictory rollout wording is preserved in the evidence.
+
 ## Legacy Sources and Cases
 
-- `insights-user-filter/`
+- [insights-user-filter-historical-contracts](../../work-items/insights-user-filter-historical-contracts.md)
 - `user-filter-consolidation/`
-- `convi-7049-clo-filter/`
-- `convi-6260-team-leaderboard/`
-- `convi-6247-agent-only-filter/`
-- `large-user-id-clickhouse/`
-- `bswift-wrong-team-mapping/`
+- [clo-filter-query-optimization-and-rollout](../../work-items/clo-filter-query-optimization-and-rollout.md)
+- [CONVI-6260](../../work-items/CONVI-6260.md)
+- [CONVI-6247](../../work-items/CONVI-6247.md)
+- [large-user-filter-external-tables](../../work-items/large-user-filter-external-tables.md)
+- [bswift-duplicate-user-team-attribution](../../work-items/bswift-duplicate-user-team-attribution.md)
 - `virtual-group-filter/` (security review required; do not copy credentials)
 
 ## Open Questions
@@ -47,3 +51,5 @@ Own how analytics requests resolve users, teams, groups, roles, hierarchy, acces
 - Produce a canonical matrix for empty/root/explicit/virtual selections across every Analytics API.
 - Define deactivated-user and historical-membership behavior.
 - Decide how the unified parser selects or validates its analytics versus coaching population contract; do not silently combine `ListAgentOnly` with `Roles`/`GroupRoles`/`UserTypes`/`State`.
+
+See the [October 25 historical synthesis](../../deliverables/inactive-legacy-project-consolidation-2026-10-25.md) for consolidated cases, later superseding decisions, and their evidence limits.

@@ -43,7 +43,7 @@ When none of these hold, users interpret displayed Yes/No labels or current temp
 
 - Missing or stale ClickHouse `scorecard_d` / `score_d` rows → `scorecard-data-sync`
 - Scorecard should not exist, or chapter aggregate not recomputed on update → `scorecard-workflows` / API bug investigation
-- Template owner wants historical scorecards rescored after a config fix → `scorecard-template` / rescoring workflow
+- Template owner wants historical scorecards rescored after a config fix → [scorecard-template-historical-reference](../../scorecard-workflows/work-items/scorecard-template-historical-reference.md) / rescoring workflow
 
 ## Related Artifacts
 

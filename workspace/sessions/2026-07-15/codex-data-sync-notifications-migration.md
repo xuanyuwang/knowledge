@@ -33,7 +33,7 @@
 ## Safety
 
 - Pre-existing unrelated changes outside the requested migration remain unstaged.
-- The `pg-ch-scorecard-sync-investigation` July 8 changes were preserved and brought into scope because they are the latest migration evidence.
+- The [ui-pg-ch-ordering](../../../scorecard-data-sync/work-items/ui-pg-ch-ordering.md) July 8 changes were preserved and brought into scope because they are the latest migration evidence.
 - The redacted credential can still exist in Git history; rotation/history cleanup requires separate authorization.
 - Historical Go/scripts remain evidence, not endorsed current production tooling.
 
