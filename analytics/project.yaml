@@ -10,6 +10,7 @@ related_source_repos:
   - config
 active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7706
 related_worktrees:
+  - /Users/xuanyu.wang/repos/director-convi-7472
   - /Users/xuanyu.wang/repos/go-servers-convi-7879-conversation-tracing
   - /Users/xuanyu.wang/repos/director-convi-7879-conversation-tracing
   - /Users/xuanyu.wang/repos/go-servers-convi-7777-assistance-usage
@@ -30,6 +31,7 @@ subdomains:
   - insights-user-filter
   - conversation-volume
 related_ticket_ids:
+  - CONVI-7472
   - CONVI-6192
   - CONVI-6242
   - CONVI-6260
@@ -82,6 +84,7 @@ active_work_items:
   - CONVI-7674
   - CONVI-7681
 related_prs:
+  - https://github.com/cresta/director/pull/24302
   - https://github.com/cresta/go-servers/pull/34417
   - https://github.com/cresta/director/pull/24065
   - https://github.com/cresta/flux-deployments/pull/349836
@@ -104,6 +107,7 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
+    - deliverables/convi-7472-construction-report.html
     - deliverables/inactive-legacy-project-consolidation-2026-10-25.md
     - work-items/CONVI-6192.md
     - work-items/CONVI-6242.md

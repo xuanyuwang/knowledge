@@ -139,3 +139,7 @@ See the [migration session](sessions/2026-10-25/codex-five-legacy-project-consol
 - `deliverables/hcd-mixed-revision-qa-score-investigation.md`
 - `work-items/` when active tickets are migrated or created
 - `sessions/`, `decisions/`, and `deliverables/` as content is synthesized
+
+## GCC appeals chart — completed October 28, 2026
+
+[CONVI-7472](work-items/CONVI-7472.md) is Done in Linear. [Director PR #24302](https://github.com/cresta/director/pull/24302) merged as `97bdbe691989`, fixing Adjusted reading Resolved data. Three regression cases and all 59 QM report tests, app TypeScript and commit hooks passed before merge. Production API verification showed 10 resolved / 3 adjusted while the old chart showed 10 adjusted; deployment and a fixed-build GCC recheck remain unverified. [Construction report](deliverables/convi-7472-construction-report.html) and [closure record](sessions/2026-10-28/codex-convi-7472-close.md).

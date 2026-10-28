@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CONVI-7472 · Appeals chart construction report</title>
+<style>
+:root{--ink:#172b39;--muted:#526777;--line:#d7e1e7;--blue:#164b77;--orange:#b44c10;--green:#13705b}*{box-sizing:border-box}body{margin:0;background:#f2f5f6;color:var(--ink);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1120px;margin:auto;padding:40px 28px 70px}h1{font-size:clamp(30px,4vw,48px);line-height:1.15;letter-spacing:-1.5px;margin:15px 0}h2{font-size:25px;line-height:1.3;margin:0 0 18px}h3{font-size:18px;margin:0 0 7px}p{margin:8px 0 16px}a{color:#17558a;text-underline-offset:3px}code{font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}pre{background:#142632;color:#e5eff5;padding:22px;border-radius:10px;overflow:auto;white-space:pre;font:13px/1.65 ui-monospace,monospace;margin:12px 0}pre code{overflow-wrap:normal}.eyebrow{font-size:12px;font-weight:750;letter-spacing:1.8px;text-transform:uppercase;color:var(--blue)}.lede{font-size:20px;max-width:850px}.small,.muted{color:var(--muted);font-size:14px}.badge{display:inline-block;background:#e0f1e9;color:#135b47;padding:5px 12px;border-radius:30px;font-size:13px;font-weight:650}.badge.pending{background:#fff0d5;color:#785000}.meta{padding:15px 0 25px;overflow-wrap:anywhere}section{background:white;border:1px solid var(--line);border-radius:16px;padding:28px;margin:24px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.fact{border-left:3px solid var(--line);padding-left:16px}.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:24px 0}.numbers div{border:1px solid var(--line);border-radius:10px;padding:15px}.numbers strong{font-size:32px;display:block;line-height:1.2}.numbers .bad strong{color:var(--orange)}.numbers .good strong{color:var(--green)}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.node{border:1px solid var(--line);border-radius:10px;padding:16px;background:#f8fafb}.node.active{border-color:#3778a0;box-shadow:inset 0 3px #3778a0}.node strong{display:block}.node small{display:block;color:var(--muted);margin-top:7px}.steps{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}button,select{font:inherit;border:1px solid #aabcc8;border-radius:7px;background:white;color:var(--ink);padding:9px 14px;cursor:pointer}button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:white}button:disabled{opacity:.45;cursor:default}button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #cf8500;outline-offset:3px}.nav{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:18px}.views{display:flex;gap:8px;margin:18px 0 8px}.callout{padding:15px 18px;border-radius:10px;background:#edf5fb;border-left:4px solid #3778a0}.result{font-weight:700;color:var(--blue);margin-top:15px}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.5px}.sim{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}.bars{display:grid;gap:10px}.barrow{display:grid;grid-template-columns:80px 1fr 25px;align-items:center;gap:10px;font-size:13px}.track{height:20px;background:#edf1f3;border-radius:4px}.bar{height:100%;border-radius:4px;min-width:0;background:#7c91a0}.bar.resolved{background:#376fa4}.bar.adjusted{background:#cf6c2d}details{border-top:1px solid var(--line);padding:14px 0}summary{cursor:pointer;font-weight:600}footer{font-size:13px;color:var(--muted)}.source-list{padding-left:20px}.source-list li{margin-bottom:10px}.pill{font:12px ui-monospace,monospace;background:#eef2f5;border-radius:4px;padding:3px 6px}
+@media(max-width:680px){main{padding:22px 14px 40px}section{padding:20px 16px}.grid,.flow,.sim{grid-template-columns:1fr}.numbers{gap:6px}.numbers div{padding:10px}.numbers strong{font-size:26px}.steps button{width:100%;text-align:left}.views{flex-wrap:wrap}.nav{flex-wrap:wrap}h1{letter-spacing:-.6px}pre{padding:14px;font-size:12px}th,td{min-width:100px}}
+@media print{body{background:white}main{max-width:none}section{break-inside:avoid}button,select,.views{display:none}pre{white-space:pre-wrap}.flow{grid-template-columns:repeat(4,1fr)}}
+</style></head><body><main>
+<header><div class="eyebrow">Construction report · October 27, 2026 · closed October 28</div><h1>Adjusted appeals should follow<br>the adjusted count.</h1><p class="lede">CONVI-7472 corrects a chart assignment that made <strong>Adjusted</strong> repeat <strong>Resolved</strong>. The API already returns the distinct conversation counts; the fix connects the Adjusted series to the array calculated for it.</p><span class="badge">Merged · Linear Done</span> <span class="badge pending">Production recheck pending</span><div class="meta small">Director · <code>xw/convi-7472-adjusted-appeals</code><br>Base: <code>76f6b847418f7f287e9b598279348c1a7394c6e1</code><br>Reviewed head: <code>3620322dbc0584cb9ae35af630f965fb509b0a25</code><br><a href="https://github.com/cresta/director/pull/24302">Director PR #24302</a> merged as <code>97bdbe691989e15585a58f682ece90db33de8469</code>.<br>Linear Done verified October 28. Deployment unverified; source hashes captured below.</div></header>
+<div class="numbers"><div><span class="small">API adjusted · July bucket</span><strong>3</strong></div><div class="bad"><span class="small">Observed production chart</span><strong>10</strong></div><div class="good"><span class="small">Fixed local chart options</span><strong>3</strong></div></div>
+<section><h2>What the change must do</h2><div class="grid"><div class="fact"><h3>Trigger and input</h3><p>A user opens the QM Appeals report or changes its filters. The chart receives appeal statistics grouped by time range, including separate appealed, resolved and adjusted <strong>conversation</strong> counts.</p></div><div class="fact"><h3>Expected result</h3><p>Each Adjusted bar uses that bucket’s <code>adjustedConversationCount</code>. A zero or omitted count keeps the existing zero fallback. Appealed and Resolved keep their own counts.</p></div></div><p class="small">Here “adjusted” is the API’s conversation-level count for resolved appeals with an adjustment. The By Criteria overview measures criteria instead: its percentage uses adjusted criteria ÷ resolved criteria. These are different units.</p><p class="callout">One production line changes. API requests, date filtering, backend aggregation, table rows and the criteria overview retain their existing behavior. The separate requested adjusted-appeals ÷ all-evaluations ratio is outside this fix.</p></section>
+<section><h2>The data path</h2><div class="flow"><div class="node" data-node="request"><strong>1 · Report filters</strong><small>Date range, frequency, scorecard, reviewer and user/team/group selections become the request.</small></div><div class="node" data-node="api"><strong>2 · Appeal statistics</strong><small>The real query hook adds use-case context and retrieves time buckets from the API.</small></div><div class="node active" data-node="mapping"><strong>3 · Series mapping</strong><small>Convert bucket timestamps, keep visible dates and map each conversation count. Only the Adjusted array reference changes.</small></div><div class="node" data-node="tests"><strong>4 · Chart options</strong><small>HighchartsWithSpinner receives the three series. Tests observe these final options.</small></div></div><p class="small">This display path reads data. It does not write customer records. Server authorization is upstream and is not re-evaluated by this one-line frontend change.</p></section>
+<section id="construction"><h2>How the fix was constructed</h2><p class="small">These are explanatory steps, not separate commits. The red run used the same three count cases; the final test later separated the criteria count from the conversation count.</p><div class="steps" aria-label="Construction steps"><button data-step="0" aria-pressed="true">0 · Original chart wiring</button><button data-step="1" aria-pressed="false">1 · Capture the failure</button><button data-step="2" aria-pressed="false">2 · Connect the correct array</button></div><div id="step-detail" aria-live="polite"><h3 id="step-title"></h3><div class="grid"><div><strong>Problem this step addresses</strong><p id="step-problem"></p><strong>Why the problem exists</strong><p id="step-why"></p></div><div><strong>What this step changes</strong><p id="step-change"></p><strong>What remains unresolved</strong><p id="step-remaining"></p></div></div><div class="views" aria-label="Code view"><button id="snapshot" aria-pressed="true">Code snapshot</button><button id="changes" aria-pressed="false">Change from previous</button></div><p class="small" id="code-caption">Explanatory code; date filtering and presentation details omitted. Exact files are captured in Sources.</p><pre><code id="step-code"></code></pre><p class="result" id="step-result"></p><a href="#sources">See exact source and revision evidence ↓</a></div><div class="nav"><button id="previous">← Previous</button><span id="step-position" class="small"></span><button id="next">Next →</button></div></section>
+<section><h2>Explore the visible difference</h2><p>Keep Appealed and Resolved at 10 and choose the adjusted count returned by the API. The original chart copies 10; the fixed chart follows the selected count.</p><label for="adjusted-input">API adjusted conversation count </label><select id="adjusted-input"><option value="3">3 · distinct count</option><option value="0">0 · no adjustments</option><option value="undefined">Omitted · zero fallback</option></select><div class="sim"><div><h3>Original chart</h3><div id="before-bars" class="bars"></div></div><div><h3>Fixed chart</h3><div id="after-bars" class="bars"></div></div></div><p class="small">This is an explanatory model of series values, not a Highcharts renderer or a live API call.</p></section>
+<section><h2>Does the final change work?</h2><p><strong>Yes, for the reproduced mapping defect.</strong> Source tracing places the error at the final array assignment. The regression tests fail with the original mapping and pass with the corrected one.</p><div class="tablewrap"><table><thead><tr><th>Scenario</th><th>Original</th><th>Final</th><th>Evidence and limit</th></tr></thead><tbody><tr><td>Resolved 10, adjusted conversations 3</td><td>Adjusted 10</td><td>Adjusted 3</td><td>Component regression; matches the distinct values in the July production bucket.</td></tr><tr><td>Resolved 10, adjusted conversations 0</td><td>Adjusted 10</td><td>Adjusted 0</td><td>Component regression verifies a genuine zero.</td></tr><tr><td>Resolved 10, adjusted count omitted</td><td>Adjusted 10</td><td>Adjusted 0</td><td>Component regression preserves the existing <code>|| 0</code> fallback.</td></tr><tr><td>Adjusted criteria 7; adjusted conversations 3 / 0 / omitted</td><td>Resolved field copied</td><td>Conversation field used</td><td>Final fixture uses deliberately different criteria and conversation counts.</td></tr><tr><td>Other chart series</td><td>Appealed 10; Resolved 10</td><td>Appealed 10; Resolved 10</td><td>All three regression cases assert these series too.</td></tr><tr><td>Dates, missing timestamps, loading and errors</td><td>Existing behavior</td><td>Same source path</td><td>No code changes to these paths. New tests cover one matching monthly bucket, not every frequency or error state.</td></tr><tr><td>Deployed GCC report</td><td>Observed 10 / 10 / 10</td><td>Pending</td><td>Fixed source merged in PR #24302. No fixed build has been checked against production.</td></tr></tbody></table></div></section>
+<section><h2>Verification and production evidence</h2><div class="grid"><div><h3>Test before → test after</h3><p>The corrected regression fixture failed all three cases before the fix: Adjusted received 10 instead of 3, 0 or 0. After the fix, all three pass.</p><p>The API method is spied on, while the component and query hook run normally. The rendering wrapper is mocked to capture its options. This verifies chart data, not painted pixels.</p><p class="small">The test’s matching UTC timestamp/range fixture is synthetic; it is not an exact replay of the production request. Production used America/Toronto July boundaries.</p></div><div><h3>Completed checks</h3><ul><li>QM report suite: <strong>11 files, 59 tests passed</strong>.</li><li>Final focused regression rerun: <strong>3 tests passed</strong>.</li><li>Full Director app TypeScript: passed.</li><li>Changed-file ESLint and Biome: passed.</li><li>Diff whitespace checks: passed.</li><li>Read-only reviewer: no actionable correctness findings.</li></ul><p class="small">Node 24.11.1; repository Yarn 4.18.1. Existing SDK sourcemap warnings occurred. Results are from the implementation run on October 27, not a fresh test execution solely for this report.</p></div></div><details><summary>Read the observed GCC values</summary><p>October 27 browser verification, full July 2026 / Monthly / voice-care: the time-series API returned 10 appealed, 10 resolved and 3 adjusted conversations. The chart showed 10 / 10 / 10. The table had three adjusted rows; By Criteria was 25% = 3 / 12.</p><p>July 1–22 / Daily returned totals of 7 resolved and 1 adjusted conversation, with table and overview agreement. The ticket’s historical 6 / 1 example is not today’s full-month invariant. Recheck against current API data after deployment.</p></details></section>
+<section><h2>Effects beyond the changed line</h2><div class="grid"><div><h3>Request and shared hook</h3><p>The filter transformer, time grouping and use-case restriction remain intact. Other users of useRetrieveAppealStats receive the same response contract.</p><h3>Persisted data</h3><p>The fix chooses an existing response field for display. It adds no writes or repair job. The reproduced API response supplies the correct distinct adjusted count.</p></div><div><h3>Table and criteria overview</h3><p>They consume separate response fields and retain their behavior. In particular, the overview’s criteria percentage is not the chart’s conversation count.</p><h3>Historical charts and rollout</h3><p>The corrected mapping will use the adjusted field for historical buckets when that frontend build runs. This follows from source behavior; customer verification still requires deploying that build and reopening the report.</p></div></div></section>
+<section><h2>Findings and recommendation</h2><h3>Correctness</h3><p>No unresolved correctness issue demonstrated in the reviewed changes. The original defect is reproduced by distinct counts and fixed at the exact series assignment.</p><h3>Non-blocking maintainability</h3><p>No additional refactor is needed for this fix. Keeping the existing arrays avoids changes to date filtering and presentation. The reviewer’s fixture suggestion—different criteria and conversation counts—has been applied.</p><h3>Recommendation</h3><p><strong>Complete: merged and marked Done in Linear.</strong> Local verification supports the fix; GitHub merge and Linear Done were checked October 28. The fix is committed at <code>3620322dbc05</code> in <a href="https://github.com/cresta/director/pull/24302">PR #24302</a>, merged as <code>97bdbe691989</code>. Deployment remains unverified. After shipping, compare the GCC Adjusted bar with that request’s current adjustedConversationCount, and confirm table/overview agreement in their respective units.</p></section>
+<section id="sources"><h2>Sources and captured revision</h2><p>Baseline and final code are pinned to commits. The exact captured final contents below match commit <code>3620322dbc0584cb9ae35af630f965fb509b0a25</code> and retain their SHA-256 fingerprints.</p><ul class="source-list"><li><a href="https://github.com/cresta/director/pull/24302">Merged PR #24302</a> · <a href="https://github.com/cresta/director/commit/3620322dbc0584cb9ae35af630f965fb509b0a25">final commit 3620322dbc05</a></li><li><a href="https://linear.app/cresta/issue/CONVI-7472/qm-report-appeals-adjusted-count-inflated-to-total-submitted-count-gcc">CONVI-7472 · official ticket</a></li><li><a href="https://github.com/cresta/director/blob/76f6b847418f7f287e9b598279348c1a7394c6e1/packages/director-app/src/components/qa/report/appeals/appeal-trends-card/QAReportAppealTrendsCard.tsx#L77-L120">Baseline · adjustedData and incorrect series assignment</a></li><li><a href="https://github.com/cresta/director/blob/76f6b847418f7f287e9b598279348c1a7394c6e1/packages/director-app/src/hooks/qa/useRetrieveAppealStats.ts#L8-L38">Unchanged API hook · use-case context and query enablement</a></li><li><a href="https://github.com/cresta/director/blob/76f6b847418f7f287e9b598279348c1a7394c6e1/packages/director-app/src/components/qa/shared/transformers/appealTransformers.ts#L9-L17">Unchanged filter transformer</a></li><li><a href="https://github.com/cresta/director/blob/76f6b847418f7f287e9b598279348c1a7394c6e1/packages/director-app/src/components/qa/report/appeals/overview-card/OverviewCard.tsx#L27-L39">Unchanged overview · conversation totals and criteria ratio</a></li><li>Local worktree: <code>/Users/xuanyu.wang/repos/director-convi-7472</code><br>Changed production line: <code>QAReportAppealTrendsCard.tsx:115</code><br>Regression cases: <code>QAReportAppealTrendsCard.test.tsx:61</code></li><li>Evidence records: <code>analytics/sessions/2026-10-27/codex-convi-7472-live-api-check.md</code> and <code>codex-convi-7472-fix.md</code>, in the knowledge checkout.</li></ul><details><summary>QAReportAppealTrendsCard.tsx · captured local source</summary><p class="small">packages/director-app/src/components/qa/report/appeals/appeal-trends-card/QAReportAppealTrendsCard.tsx<br>SHA-256 <code>ae4063db2add98d7b9f2a2ecd139b42bf892192e915f635f9cc9275407db7969</code></p><pre><code>import type { ReactElement } from &#x27;react&#x27;;
+import { memo, useMemo } from &#x27;react&#x27;;
+import { Paper } from &#x27;@mantine/core&#x27;;
+import dayjs from &#x27;dayjs&#x27;;
+import type { SeriesColumnOptions } from &#x27;highcharts&#x27;;
+import { merge } from &#x27;lodash-es&#x27;;
+
+import type { DateRange } from &#x27;@cresta/director-api&#x27;;
+import { createDatesInRangeForFrequency } from &#x27;@cresta/director-utils&#x27;;
+import { QAAttributeType } from &#x27;@cresta/web-client&#x27;;
+
+import { HighchartsWithSpinner } from &#x27;@/components/spinners&#x27;;
+import { useRetrieveAppealStats } from &#x27;@/hooks/qa&#x27;;
+import { useTranslation } from &#x27;@/hooks/useTranslation&#x27;;
+import {
+  getDefaultDateTimeXAxisOptions,
+  getTickIntervalForMaxValue,
+  getTickIntervalForTimeRange,
+  mapDateToHighcharts,
+  notUndefined,
+} from &#x27;@/utils&#x27;;
+
+import { useDefaultQAChartOptions } from &#x27;../../../highchartsUtils&#x27;;
+import type { QAReportFiltersState } from &#x27;../../../hooks&#x27;;
+import { transformFilterStateToRetrieveAppealStatsRequest } from &#x27;../../../shared&#x27;;
+
+import styles from &#x27;./QAReportAppealTrendsCard.module.css&#x27;;
+
+const MAX_DATE_RANGES = 8;
+
+export const QAReportAppealTrendsCard = memo(function QAReportAppealTrendsCard(props: {
+  filterState: QAReportFiltersState;
+}): ReactElement {
+  const { t } = useTranslation(&#x27;director-app-qm&#x27;, { keyPrefix: &#x27;report.appeals.trend-chart&#x27; });
+  const appealStats = useRetrieveAppealStats({
+    ...transformFilterStateToRetrieveAppealStatsRequest(props.filterState),
+    groupByAttributes: [QAAttributeType.QA_ATTRIBUTE_TYPE_TIME_RANGE],
+  });
+
+  const defaultQAChartOptions = useDefaultQAChartOptions();
+
+  const chartOptions = useMemo((): Highcharts.Options =&gt; {
+    const dateRanges = createDatesInRangeForFrequency(
+      props.filterState.selectedDateRange.startDate,
+      props.filterState.selectedDateRange.endDate,
+      props.filterState.frequency
+    );
+    const startDate = dateRanges.slice(-MAX_DATE_RANGES)[0];
+    const endDate = dateRanges[dateRanges.length - 1];
+    if (!startDate || !endDate) {
+      return defaultQAChartOptions;
+    }
+    const dateRange = [dateRanges.slice(-MAX_DATE_RANGES)[0], dateRanges[dateRanges.length - 1]] as DateRange;
+    const lastNDates = new Set(dateRanges.slice(-MAX_DATE_RANGES).map(mapDateToHighcharts));
+
+    // Fill in the actual data
+    const appealedData = appealStats.data?.appealStats
+      ?.map((stat) =&gt; {
+        const highchartsDate = mapDateToHighcharts(dayjs(stat.attribute?.timeRange?.startTimestamp).tz());
+        if (!stat.attribute?.timeRange?.startTimestamp || !lastNDates.has(highchartsDate)) {
+          return;
+        }
+        return [highchartsDate, stat.appealedConversationCount || 0] as const;
+      })
+      .filter(notUndefined);
+
+    const resolvedData = appealStats.data?.appealStats
+      ?.map((stat) =&gt; {
+        const highchartsDate = mapDateToHighcharts(dayjs(stat.attribute?.timeRange?.startTimestamp).tz());
+        if (!stat.attribute?.timeRange?.startTimestamp || !lastNDates.has(highchartsDate)) {
+          return;
+        }
+        return [highchartsDate, stat.resolvedConversationCount || 0] as const;
+      })
+      .filter(notUndefined);
+
+    const adjustedData = appealStats.data?.appealStats
+      ?.map((stat) =&gt; {
+        const highchartsDate = mapDateToHighcharts(dayjs(stat.attribute?.timeRange?.startTimestamp).tz());
+        if (!stat.attribute?.timeRange?.startTimestamp || !lastNDates.has(highchartsDate)) {
+          return;
+        }
+        return [highchartsDate, stat.adjustedConversationCount || 0] as const;
+      })
+      .filter(notUndefined);
+
+    // Calculate max value for ticks
+    let maxYValue = 0;
+    appealedData?.forEach(([_, val]) =&gt; (maxYValue = Math.max(maxYValue, val)));
+    resolvedData?.forEach(([_, val]) =&gt; (maxYValue = Math.max(maxYValue, val)));
+    adjustedData?.forEach(([_, val]) =&gt; (maxYValue = Math.max(maxYValue, val)));
+
+    const tickInterval = getTickIntervalForTimeRange(dateRange, props.filterState.frequency);
+
+    const appealedSeries: SeriesColumnOptions = {
+      type: &#x27;column&#x27;,
+      data: appealedData,
+      color: &#x27;var(--border-default)&#x27;,
+      name: t(&#x27;series.appealed&#x27;, &#x27;Appealed&#x27;),
+      zoneAxis: &#x27;x&#x27;,
+      pointRange: tickInterval,
+    };
+
+    const resolvedSeries: SeriesColumnOptions = {
+      type: &#x27;column&#x27;,
+      data: resolvedData,
+      color: &#x27;var(--content-action)&#x27;,
+      name: t(&#x27;series.resolved&#x27;, &#x27;Resolved&#x27;),
+      zoneAxis: &#x27;x&#x27;,
+      pointRange: tickInterval,
+    };
+
+    const adjustedSeries: SeriesColumnOptions = {
+      type: &#x27;column&#x27;,
+      data: adjustedData,
+      color: &#x27;var(--extended-content-orange)&#x27;,
+      name: t(&#x27;series.adjusted&#x27;, &#x27;Adjusted&#x27;),
+      zoneAxis: &#x27;x&#x27;,
+      pointRange: tickInterval,
+    };
+
+    return merge({}, defaultQAChartOptions, {
+      title: {
+        text: `&lt;span style=&quot;font-size: 18px; font-weight: 500; font-family: &#x27;Inter&#x27;, sans-serif;&quot;&gt;${t(
+          &#x27;title&#x27;,
+          &#x27;Appeals Over Time&#x27;
+        )}&lt;/span&gt;`,
+      },
+      series: [appealedSeries, resolvedSeries, adjustedSeries],
+      xAxis: {
+        ...getDefaultDateTimeXAxisOptions(),
+        tickInterval: getTickIntervalForTimeRange(dateRange, props.filterState.frequency),
+      },
+      yAxis: {
+        max: maxYValue + 1,
+        tickInterval: getTickIntervalForMaxValue(maxYValue),
+        title: {
+          text: t(&#x27;axis.appeals&#x27;, &#x27;# of appeals&#x27;),
+        },
+      },
+      lang: {
+        noData: t(&#x27;no-data&#x27;, &#x27;No data to display&#x27;),
+      },
+    });
+  }, [
+    appealStats.data?.appealStats,
+    props.filterState.frequency,
+    props.filterState.selectedDateRange.endDate,
+    props.filterState.selectedDateRange.startDate,
+    defaultQAChartOptions,
+    t,
+  ]);
+
+  return (
+    &lt;Paper
+      data-testid=&quot;appeals-trends-chart&quot;
+      h={200}
+      radius=&quot;lg&quot;
+      shadow=&quot;subtle&quot;
+      p=&quot;lg&quot;
+      flex={1}
+      className={styles.cardShell}
+    &gt;
+      &lt;HighchartsWithSpinner
+        loading={appealStats.isLoading}
+        options={chartOptions}
+        chartDescription={t(
+          &#x27;description&#x27;,
+          &#x27;Interactive chart showing the number of appeals and evaluated conversations over time&#x27;
+        )}
+      /&gt;
+    &lt;/Paper&gt;
+  );
+});
+</code></pre></details><details><summary>QAReportAppealTrendsCard.test.tsx · captured local source</summary><p class="small">packages/director-app/src/components/qa/report/appeals/appeal-trends-card/QAReportAppealTrendsCard.test.tsx<br>SHA-256 <code>4c612e191bc2a90173568d7b2efaac4594fe4bb0c9657cbc2ee59ad7ab45db28</code></p><pre><code>import { waitFor } from &#x27;@testing-library/react&#x27;;
+import dayjs from &#x27;dayjs&#x27;;
+import { afterEach, describe, expect, it, vi } from &#x27;vitest&#x27;;
+
+import { CrestaAPI } from &#x27;@cresta/director-api&#x27;;
+import type { RetrieveAppealStatsResponse } from &#x27;@cresta/web-client&#x27;;
+
+import { HighchartsWithSpinner } from &#x27;@/components/spinners&#x27;;
+import { render } from &#x27;@/testing&#x27;;
+
+import type { QAReportFiltersState } from &#x27;../../../hooks&#x27;;
+
+import { QAReportAppealTrendsCard } from &#x27;./QAReportAppealTrendsCard&#x27;;
+
+vi.mock(&#x27;@/components/spinners&#x27;, () =&gt; ({ HighchartsWithSpinner: vi.fn(() =&gt; null) }));
+
+function setup(adjustedConversationCount: number | undefined): void {
+  const response: RetrieveAppealStatsResponse = {
+    appealStats: [
+      {
+        attribute: { timeRange: { startTimestamp: &#x27;2026-07-01T00:00:00Z&#x27; } },
+        appealedConversationCount: 10,
+        resolvedConversationCount: 10,
+        adjustedConversationCount,
+        appealedCriteriaCount: 12,
+        resolvedCriteriaCount: 12,
+        adjustedCriteriaCount: 7,
+        appealedConversations: [],
+      },
+    ],
+  };
+  vi.spyOn(CrestaAPI.insights, &#x27;retrieveAppealStats&#x27;).mockReturnValue({
+    promise: Promise.resolve(response),
+    cancel: vi.fn(),
+  });
+
+  const selectedDateRange = {
+    startDate: dayjs(&#x27;2026-07-01T00:00:00Z&#x27;).tz(),
+    endDate: dayjs(&#x27;2026-07-31T00:00:00Z&#x27;).tz(),
+  };
+  const filterState: QAReportFiltersState = {
+    scorecardTemplateResourceName: undefined,
+    selectedDateRange,
+    selectedDateRangeInternal: selectedDateRange,
+    frequency: &#x27;MONTHLY&#x27;,
+    evaluationPeriods: [],
+    useCustomDateRange: true,
+    useFlexibleDateRange: false,
+    usersTeamsGroups: { userNames: [], teamNames: [], groupNames: [] },
+  };
+
+  render(&lt;QAReportAppealTrendsCard filterState={filterState} /&gt;);
+}
+
+describe(&#x27;QAReportAppealTrendsCard&#x27;, () =&gt; {
+  afterEach(() =&gt; {
+    vi.restoreAllMocks();
+    vi.clearAllMocks();
+  });
+
+  it.each([
+    { adjustedConversationCount: 3, expectedAdjustedCount: 3 },
+    { adjustedConversationCount: 0, expectedAdjustedCount: 0 },
+    { adjustedConversationCount: undefined, expectedAdjustedCount: 0 },
+  ])(
+    &#x27;plots $expectedAdjustedCount adjusted appeals when the API returns $adjustedConversationCount&#x27;,
+    async ({ adjustedConversationCount, expectedAdjustedCount }) =&gt; {
+      setup(adjustedConversationCount);
+
+      await waitFor(() =&gt; {
+        expect(vi.mocked(HighchartsWithSpinner).mock.lastCall?.[0].options?.series).toEqual([
+          expect.objectContaining({ name: &#x27;Appealed&#x27;, data: [[expect.any(Number), 10]] }),
+          expect.objectContaining({ name: &#x27;Resolved&#x27;, data: [[expect.any(Number), 10]] }),
+          expect.objectContaining({ name: &#x27;Adjusted&#x27;, data: [[expect.any(Number), expectedAdjustedCount]] }),
+        ]);
+      });
+    }
+  );
+});
+</code></pre></details></section>
+<p class="small">Report checks: desktop rendering, all three construction steps, both code views, Previous/Next navigation, and all count examples were exercised. No browser console errors were recorded. The browser did not apply its narrow viewport override, so mobile rendering remains visually unverified.</p><footer>Self-contained report · no external scripts, fonts or data requests. Construction steps are explanatory snapshots, not commit history.</footer></main>
+<script>
+const steps = [{"title": "0 \u00b7 Original chart wiring", "problem": "Adjusted repeats Resolved even when the API returns a smaller adjusted count.", "why": "The correct adjustedData array is already calculated. The final series object points at resolvedData instead.", "change": "Baseline only: inspect the value path from API bucket to chart series.", "remaining": "The chart still shows 10 adjusted conversations for the July bucket whose API value is 3.", "snapshot": "// Explanatory snapshot of baseline; date filtering omitted.\nconst resolvedData = stats.map(stat =>\n  [date(stat), stat.resolvedConversationCount || 0]);\nconst adjustedData = stats.map(stat =>\n  [date(stat), stat.adjustedConversationCount || 0]);\n\nconst adjustedSeries = {\n  type: 'column',\n  data: resolvedData, // 10, despite adjustedData containing 3\n  name: 'Adjusted',\n};", "diff": "Baseline \u2014 no preceding construction step.", "result": "API 10 / 10 / 3 \u2192 chart 10 / 10 / 10", "focus": "mapping"}, {"title": "1 \u00b7 Capture the failure", "problem": "A test needs to detect the wrong series reference rather than merely confirm that a chart renders.", "why": "If Adjusted equals Resolved in the fixture, the original defect passes unnoticed.", "change": "Add a component test using the real query hook, an API-method spy, and a chart-wrapper mock to capture the resulting options.", "remaining": "Tests expose the original defect: all three cases receive 10 for Adjusted. The production mapping is still unchanged at this step.", "snapshot": "// Explanatory snapshot of the regression contract.\n// Real component + real useRetrieveAppealStats hook.\nspyOn(CrestaAPI.insights, 'retrieveAppealStats')\n  .mockReturnValue({ promise: Promise.resolve(response), cancel });\n\n// Appealed = 10; Resolved = 10.\n// Adjusted conversation inputs: 3, 0, undefined.\nrender(\u003cQAReportAppealTrendsCard filterState={filterState} />);\n\nexpect(chartOptions.series).toEqual([\n  series('Appealed', 10),\n  series('Resolved', 10),\n  series('Adjusted', expectedAdjustedCount), // 3, 0, 0\n]);", "diff": "+ Add QAReportAppealTrendsCard.test.tsx\n+ Spy on retrieveAppealStats; keep the real API hook.\n+ Capture options passed to HighchartsWithSpinner.\n+ Check conversation counts 3, 0, and undefined \u2192 3, 0, 0.\n  Production still has: data: resolvedData\n\nRecorded result before fix: 3 tests failed; Adjusted received 10.", "result": "Expected 3 / 0 / 0 \u2192 original code returns 10 / 10 / 10", "focus": "tests"}, {"title": "2 \u00b7 Connect the correct array", "problem": "The chart series selects the wrong precomputed array.", "why": "The API field, date filtering, fallback and adjustedData construction are already present; the incorrect selection is at the series assignment.", "change": "Replace resolvedData with adjustedData in adjustedSeries. In the final fixture, set adjustedCriteriaCount to 7 so the test also distinguishes criteria from conversations.", "remaining": "PR #24302 is merged and Linear is Done. Deployment and a GCC report check using current API data remain unverified.", "snapshot": "// Explanatory snapshot of final production behavior.\nconst adjustedData = stats.map(stat =>\n  [date(stat), stat.adjustedConversationCount || 0]);\n\nconst adjustedSeries = {\n  type: 'column',\n  data: adjustedData, // now follows adjustedConversationCount\n  name: 'Adjusted',\n};\n\n// Final test fixture deliberately separates the two units:\n// resolvedConversationCount = 10\n// adjustedConversationCount = 3 | 0 | undefined\n// adjustedCriteriaCount = 7\n// expected Adjusted series = 3 | 0 | 0", "diff": "  const adjustedSeries: SeriesColumnOptions = {\n    type: 'column',\n-   data: resolvedData,\n+   data: adjustedData,\n    color: 'var(--extended-content-orange)',\n    name: t('series.adjusted', 'Adjusted'),\n  };\n\n// Test fixture after review:\n- adjustedCriteriaCount: adjustedConversationCount,\n+ adjustedCriteriaCount: 7,", "result": "API 10 / 10 / 3 \u2192 final chart options 10 / 10 / 3", "focus": "mapping"}];
+let selected = 0;
+let view = 'snapshot';
+const byId = id => document.getElementById(id);
+function renderStep() {
+ const step = steps[selected];
+ for (const key of ['title','problem','why','change','remaining','result']) byId('step-'+key).textContent=step[key];
+ byId('step-code').textContent=step[view];
+ document.querySelectorAll('[data-step]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.step)===selected)));
+ byId('snapshot').setAttribute('aria-pressed',String(view==='snapshot'));
+ byId('changes').setAttribute('aria-pressed',String(view==='diff'));
+ byId('previous').disabled=selected===0;
+ byId('next').disabled=selected===steps.length-1;
+ byId('step-position').textContent=`Step ${selected} of ${steps.length-1}`;
+ document.querySelectorAll('[data-node]').forEach(node=>node.classList.toggle('active',node.dataset.node===step.focus));
+}
+document.querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>{selected=Number(button.dataset.step);renderStep()}));
+byId('previous').addEventListener('click',()=>{selected=Math.max(0,selected-1);renderStep()});
+byId('next').addEventListener('click',()=>{selected=Math.min(steps.length-1,selected+1);renderStep()});
+byId('snapshot').addEventListener('click',()=>{view='snapshot';renderStep()});
+byId('changes').addEventListener('click',()=>{view='diff';renderStep()});
+function drawBars(id,adjusted) {
+ const container=byId(id);container.replaceChildren();
+ [['Appealed',10,''],['Resolved',10,'resolved'],['Adjusted',adjusted,'adjusted']].forEach(([label,value,kind])=>{
+  const row=document.createElement('div');row.className='barrow';
+  const name=document.createElement('span');name.textContent=label;
+  const track=document.createElement('div');track.className='track';
+  const bar=document.createElement('div');bar.className='bar '+kind;bar.style.width=(value*10)+'%';track.append(bar);
+  const number=document.createElement('strong');number.textContent=value;row.append(name,track,number);container.append(row);
+ });
+}
+function renderExample(){drawBars('before-bars',10);drawBars('after-bars',Number(byId('adjusted-input').value)||0)}
+byId('adjusted-input').addEventListener('change',renderExample);
+renderStep();renderExample();
+</script></body></html>
