@@ -1,15 +1,17 @@
 # UI to PostgreSQL to ClickHouse scorecard ordering
 
-**Status:** investigation complete; implementation decision pending
+**Status:** investigation complete; explicit-version redesign preferred; implementation details pending
 **Primary domain:** scorecard-data-sync
 **Primary subdomain:** none
-**Last updated:** 2026-09-21
+**Last updated:** 2026-11-04
 
 ## Objective
 
 Explain why the original PG timestamp proposal was unsafe and compare low-cost mitigations through complete eventual-convergence designs, covering FE, source mutations, projection, delivery, deletion and reads.
 
 ## Current conclusion
+
+**November 4 update:** the [reviewed race/sync reference](../deliverables/scorecard-races-corrected-recommendations.md) records Xuanyu's preferred shared-mutation/explicit-version redesign. Do not use PG `updated_at` as the scorecard version. Field masks and correctly protected aggregate recomputation remain useful near-term fixes; primary reads need a capacity assessment. The earlier outbox recommendation remains separate technical analysis, since the Google Doc's sync-redesign section is empty.
 
 - `ReindexConversations` plus offline cleanup interprets CH `update_time` as indexing time. Assigning PG `updated_at` makes freshly rebuilt unchanged rows eligible for the `update_time < cutoff` deletion. Verified in the original #23999 commit, refreshed current source, and isolated ClickHouse execution. Exact historical production incident attribution remains unverified.
 - The main frontend form already serializes queued mutations. The concrete gap is pending debounce and successful-save dependency, plus callers outside the shared scope. This corrects earlier debounce-only descriptions.
@@ -29,9 +31,9 @@ Nine actual clickhouse-local checks and three installed TanStack Query schedule 
 
 ## Next actions
 
-1. Choose the first no-schema mitigation scope and create implementation tickets if desired.
-2. Audit all aggregate writers before selecting timestamp-token versus integer-revision contracts.
-3. Prototype revision-aware projection and outbox delivery on a bounded cohort; define baseline, tombstones, stable routing and visibility separately.
+1. Turn the corrected field-mask, aggregate-consistency and queue recommendations into concrete implementation work.
+2. Define the preferred explicit integer-version contract across all aggregate writers and caller conflict behavior; retain timestamp-token analysis as a historical alternative.
+3. Design revision-aware projection, migration, cleanup and deletes; evaluate the earlier outbox proposal separately for recoverable delivery. Define baseline, stable routing and visibility explicitly.
 4. Obtain the historical postmortem/workflow evidence if exact November incident attribution is required.
 
 ## Evidence
@@ -46,3 +48,5 @@ Nine actual clickhouse-local checks and three installed TanStack Query schedule 
 - 2026-09-19 — Recovered cleanup incompatibility, corrected frontend serialization assumption, compared seven solution families, and validated key counterexamples locally.
 - 2026-09-21 — Added a standalone explanation that starts with the conflicting contracts, then demonstrates out-of-order replacement, valid-row cleanup deletion, and mixed-version migration. Clarified enqueue-before-write versus independently scheduled cleanup. Documentation only; historical production attribution remains unverified.
 - 2026-09-21 — Added three Mermaid diagrams to the standalone explainer while retaining plain-Markdown explanations for viewers without diagram support.
+
+- 2026-11-04 — Integrated the reviewed Google Doc and eight indexed comments. Explicit versions are the preferred redesign; timestamp-token and outbox options are no longer presented as equally undecided or jointly endorsed.

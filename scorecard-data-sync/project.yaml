@@ -36,8 +36,8 @@ related_prs:
   - https://github.com/cresta/go-servers/pull/30911
   - https://github.com/cresta/flux-deployments/pull/312915
   - https://github.com/cresta/flux-deployments/pull/312923
-current_objective: Evaluate end-to-end scorecard ordering and durable projection options alongside ongoing auto-heal and repair work; implementation selection is pending.
-last_validated: 2026-09-19
+current_objective: Carry the accepted race investigation and comment-corrected recommendations into implementation planning; prefer shared mutations with explicit versions and optimistic conflict handling, while sync delivery and migration details remain open.
+last_validated: 2026-11-04
 artifacts:
   readme: README.md
   cases_dir: cases/
@@ -47,6 +47,7 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
+    - deliverables/scorecard-races-corrected-recommendations.md
     - deliverables/inactive-legacy-project-consolidation-2026-10-25.md
     - deliverables/why-pg-updated-at-breaks-ch-cleanup.md
     - deliverables/ui-pg-ch-ordering-options.md
@@ -59,4 +60,4 @@ artifacts:
     - cases/2026-08-us-east-distributed-backlog/README.md
     - deliverables/legacy-source-index.md
     - work-items/CONVI-7186.md
-notes: Whether a scorecard should exist is a workflow question; whether an existing scorecard is correctly projected to ClickHouse belongs here. The August 2026 us-east Distributed backlog is owned here as a scorecard-sync case while documenting that its infrastructure root cause affected broader ClickHouse ingestion. Historical execution code remains in dated domain session evidence; it was not run during consolidation.
+notes: The November 4 validation covers documentation and review direction, not refreshed source or runtime state. Whether a scorecard should exist is a workflow question; whether an existing scorecard is correctly projected to ClickHouse belongs here. The August 2026 us-east Distributed backlog is owned here as a scorecard-sync case while documenting that its infrastructure root cause affected broader ClickHouse ingestion. Historical execution code remains in dated domain session evidence; it was not run during consolidation.

@@ -1,6 +1,8 @@
 # Preserving scorecard action order from UI through PostgreSQL to ClickHouse
 
-Date: 2026-09-19 (America/Toronto). Status: investigated design options; no implementation or rollout selected.
+Date: 2026-09-19 (America/Toronto). Design-direction update: 2026-11-04. No implementation or rollout is claimed.
+
+The [November corrected recommendations](scorecard-races-corrected-recommendations.md) incorporate the reviewed Google Doc and Xuanyu's comments. The preferred source-concurrency design is now a shared mutation function with explicit integer versions and caller-specific optimistic conflict handling. PG `updated_at` must not be reused as the version. Section C below remains a historical alternative, not the selected direction. The outbox analysis remains a separate delivery proposal: the Google Doc leaves sync redesign unspecified. Source snapshots, test results and PR statuses below retain their September inspection dates; this update does not refresh them.
 
 For a focused explanation of the timestamp conflict, start with [Why assigning PG updated_at to CH update_time breaks reindex cleanup](why-pg-updated-at-breaks-ch-cleanup.md). It introduces the assumptions first, then walks through ordering and deletion examples.
 
@@ -121,7 +123,9 @@ For PG, serialize at the scorecard parent before reading/calculating. For projec
 
 This can be valuable without new tables, but a process-local mutex cannot coordinate pods. A lock around CH network I/O increases PG connection usage and couples write latency to CH availability. A lease can expire while its previous owner still writes; Temporal activity retries/timeouts can overlap in-flight external side effects. A sink-validated version/fencing token is needed for strict safety. Current wall clocks, backfill bypasses and the PG-commit-to-workflow-start gap remain concerns. Running only one worker is not a durable correctness proof.
 
-### C. Reuse the existing timestamp, with explicit new semantics
+### C. Historical alternative: reuse the existing timestamp, with explicit new semantics
+
+Not the preferred direction after the November review; use a dedicated version instead. The analysis is retained to explain the tradeoff.
 
 Use exact PG `updated_at` as an opaque `expected_update_time` token. Under the parent lock, check equality and assign a strictly greater value, for example `GREATEST(clock_timestamp(), previous_updated_at + interval '1 microsecond')`; suppress ORM rewrites of that value. Every parent/child/deletion-relevant writer must follow this rule and transport full precision. This is a logical revision encoded as time, not reliance on time accurately reflecting causal order. Assess effects on UI date displays, exports and monitor windows if logical timestamps drift ahead.
 

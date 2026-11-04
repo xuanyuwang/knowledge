@@ -45,6 +45,8 @@ No subdomains are defined currently. Projection architecture, monitoring, diagno
 
 ## Current State
 
+On November 4, the [race/sync investigation and corrected recommendations](deliverables/scorecard-races-corrected-recommendations.md) incorporated Bo Hua Tang's Google Doc and eight indexed comments from Xuanyu. The investigation is accepted as sufficient. The preferred redesign is shared mutation logic with explicit scorecard versions, optimistic conflicts and caller-specific recovery, with a separate version for CH replacement. Default READ COMMITTED alone does not protect read/merge/recompute, primary-read expansion needs a capacity assessment, and PG `updated_at` must not replace CH projection time. Process queues and submit flush are marked done by the source document; current deployment was not checked. Sync-delivery design and whole-conversation ES versioning remain open; audit history is optional. See [CONVI-7784](work-items/CONVI-7784.md).
+
 The first migration is complete. The domain artifacts above are now the canonical synthesis for PG/CH scorecard projection. Historical ticket folders remain as evidence and execution archives, with migration pointers back here.
 
 Two originally proposed sources were reclassified after review:
