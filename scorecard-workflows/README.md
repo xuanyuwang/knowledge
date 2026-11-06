@@ -2,6 +2,8 @@
 
 ## Purpose
 
+- 2026-11-05: [Cresta-security/ps oversized scorecard-list investigation](work-items/CONVI-7974.md) traced a one-scorecard request failure to an 18 MB auth user login-status response. Scorecard comments and population are small; remediation is pending.
+
 The canonical knowledge home for scorecard and template business workflows from authoring and evaluation through submission, permissions, reversal, appeals, group calibration, and related review behavior.
 
 ## Scope and Boundaries
