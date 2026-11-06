@@ -1,0 +1,76 @@
+[
+  {
+    "file": "performanceInsightCriteria-Ask for the Sale-overwritten.csv",
+    "bytes": 934,
+    "sha256": "241022d105f61edba909681e5657a23ad431e9b63e082f5401f85955416adad6",
+    "rows": 1
+  },
+  {
+    "file": "performance_progression.zip",
+    "bytes": 389,
+    "sha256": "abef5fa9e29789b3d2570730389b5e5cdc7bbe4b1afa4813467ea8adf3fbd2c3",
+    "entries": [
+      "performance_progression_by_agent.csv"
+    ],
+    "performance_progression_by_agent.csv": {
+      "rows": 1,
+      "columns": [
+        "Criterion",
+        "Agent",
+        "Username",
+        "Team",
+        "Start Date",
+        "End Date",
+        "Num Opportunities",
+        "Num Done",
+        "% Done"
+      ]
+    }
+  },
+  {
+    "file": "performance_progression (1).zip",
+    "bytes": 651,
+    "sha256": "cc46b27c5dc8361db92892824c66ddf21778c3047e7591bf04c00bd36110c772",
+    "entries": [
+      "performance_progression.csv",
+      "performance_progression_by_agent.csv"
+    ],
+    "performance_progression.csv": {
+      "rows": 1,
+      "columns": [
+        "Criterion",
+        "Start Date",
+        "End Date",
+        "Num Opportunities",
+        "Num Done",
+        "% Done"
+      ]
+    },
+    "performance_progression_by_agent.csv": {
+      "rows": 1,
+      "columns": [
+        "Criterion",
+        "Agent",
+        "Username",
+        "Team",
+        "Start Date",
+        "End Date",
+        "Num Opportunities",
+        "Num Done",
+        "% Done"
+      ]
+    }
+  },
+  {
+    "file": "Agent_leaderboard_by_criteria.csv",
+    "bytes": 376,
+    "sha256": "f3304b958d6e0dffc1e3296998719fcf48c136a7d150ea027c59490be476f995",
+    "rows": 1
+  },
+  {
+    "file": "Agent Leaderboard by Criterion.csv",
+    "bytes": 118,
+    "sha256": "a23ef05fc32e204d8ec4ceaa5165e6f3f0b55a43e21e32c907be32bad5bd5f3d",
+    "rows": 1
+  }
+]

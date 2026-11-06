@@ -59,6 +59,8 @@ Canonical API references:
 
 ## Current State
 
+- [CONVI-7941](work-items/CONVI-7941.md) — Fixed the progression ZIP race that intermittently omitted the summary CSV by awaiting both requests before packaging. [PR #24681](https://github.com/cresta/director/pull/24681) merged November 6 (`f158f92549`). Four controlled regression cases and two local Chrome exports against RCG passed, including after reload. Separate silent-error change was reverted; production rollout remains unverified.
+
 October 23 CONVI-7777 post-release check: the new backend image is running and Git production config includes chart 0.24.110, but the live ingress still lacks the route and public Assistance Usage POST returns HTTP 405/method-not-registered. Chart reconciliation remains to be verified; Director client code is present on main. [Verification](sessions/2026-10-23/codex-convi-7777-prod-api-verification.md).
 
 The first subdomain migration is complete. The subdomain references and [legacy source index](deliverables/legacy-source-index.md) are canonical navigation; historical ticket folders retain detailed evidence and current uncommitted work.

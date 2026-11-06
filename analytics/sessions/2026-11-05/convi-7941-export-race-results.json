@@ -1,0 +1,91 @@
+{
+  "sourceRevision": "6d5b707a21ab607378e4ed34d2a917d61f6f0efb",
+  "sourcePath": "packages/director-app/src/features/insights/performance/performance-progression/PerformanceProgression.tsx",
+  "method": "Actual callback extracted using TypeScript AST; real JSZip; controlled request promises; CSV formatter stubbed to isolate packaging",
+  "results": [
+    {
+      "scenario": "summary-first",
+      "entries": [
+        "performance_progression.csv",
+        "performance_progression_by_agent.csv"
+      ],
+      "downloads": 1,
+      "handledErrors": [],
+      "unhandledErrors": [],
+      "events": [
+        "request:summary",
+        "request:agent",
+        "add:performance_progression.csv",
+        "add:performance_progression_by_agent.csv",
+        "generate:performance_progression.csv,performance_progression_by_agent.csv",
+        "save:performance_progression.zip"
+      ]
+    },
+    {
+      "scenario": "agent-first-summary-late",
+      "entries": [
+        "performance_progression_by_agent.csv"
+      ],
+      "downloads": 1,
+      "handledErrors": [],
+      "unhandledErrors": [],
+      "events": [
+        "request:summary",
+        "request:agent",
+        "add:performance_progression_by_agent.csv",
+        "generate:performance_progression_by_agent.csv",
+        "save:performance_progression.zip",
+        "add:performance_progression.csv"
+      ]
+    },
+    {
+      "scenario": "agent-first-summary-before-save",
+      "entries": [
+        "performance_progression_by_agent.csv"
+      ],
+      "downloads": 1,
+      "handledErrors": [],
+      "unhandledErrors": [],
+      "events": [
+        "request:summary",
+        "request:agent",
+        "add:performance_progression_by_agent.csv",
+        "generate:performance_progression_by_agent.csv",
+        "add:performance_progression.csv",
+        "save:performance_progression.zip"
+      ]
+    },
+    {
+      "scenario": "summary-fails",
+      "entries": [
+        "performance_progression_by_agent.csv"
+      ],
+      "downloads": 1,
+      "handledErrors": [],
+      "unhandledErrors": [
+        "summary request failed"
+      ],
+      "events": [
+        "request:summary",
+        "request:agent",
+        "add:performance_progression_by_agent.csv",
+        "generate:performance_progression_by_agent.csv",
+        "save:performance_progression.zip"
+      ]
+    },
+    {
+      "scenario": "agent-fails",
+      "entries": [],
+      "downloads": 0,
+      "handledErrors": [],
+      "unhandledErrors": [
+        "agent request failed"
+      ],
+      "events": [
+        "request:summary",
+        "request:agent",
+        "add:performance_progression.csv"
+      ]
+    }
+  ]
+}

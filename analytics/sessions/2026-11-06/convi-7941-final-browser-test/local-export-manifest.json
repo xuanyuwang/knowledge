@@ -1,0 +1,24 @@
+[
+  {
+    "file": "local-first-export.zip",
+    "bytes": 651,
+    "sha256": "9304bafae7e6c0716219d3fe8012b88c3cc889dea29186823ed3833b70ea6666",
+    "entries": [
+      "performance_progression.csv",
+      "performance_progression_by_agent.csv"
+    ],
+    "rows_per_csv": 1,
+    "zip_crc_valid": true
+  },
+  {
+    "file": "local-after-reload.zip",
+    "bytes": 651,
+    "sha256": "d36ce014c3b584772e62349c7ec7754cef2840cecef4e1bb897279d2a1641cbb",
+    "entries": [
+      "performance_progression.csv",
+      "performance_progression_by_agent.csv"
+    ],
+    "rows_per_csv": 1,
+    "zip_crc_valid": true
+  }
+]
