@@ -1,6 +1,8 @@
 # Performance Insights + QM P0: engineering plan
 
-**Working draft for Xuanyu · 2026-10-08.** Covers the P0 requirements in the [Omni Use Case QM / Coaching PRD](https://docs.google.com/document/d/1iEYDUg7NrYo5NjeTcr9nHyNqEbv_sWHrDHJeAkFJS9c/edit?tab=t.0#heading=h.i4n1p4ads1o). The SQL below shows query shape, not copy-ready production SQL.
+**Historical P0 sketch for Xuanyu · 2026-10-08.** Covers the P0 requirements in the [Omni Use Case QM / Coaching PRD](https://docs.google.com/document/d/1iEYDUg7NrYo5NjeTcr9nHyNqEbv_sWHrDHJeAkFJS9c/edit?tab=t.0#heading=h.i4n1p4ads1o). The SQL below shows query shape, not copy-ready production SQL.
+
+> **November 4 update:** the [full company-format plan](omni-usecase-scorecard-eng-plan-draft.md) supersedes this sketch's implementation proposals. The [confirmed decisions](../decisions/2026-11-04-omni-usecase-autoqm-and-reporting.md) allow manual-only uncovered AutoQM, reject overlapping new rule mappings, use current Opera scope on new automatic runs, show filtered completion as N/A, and require confirmation for a finite-to-ALL reset. V3 and derived task scope are proposed engineering choices; the examples below retain their October context.
 
 ## Core change: one template, scoped criteria
 
@@ -59,7 +61,7 @@ type BaseCriterion struct { // typed model; existing fields omitted
 }
 ~~~
 
-The parser must check whether `UsecaseIDs` is absent **before** converting it to the typed field: absent means a legacy criterion inherits that revision's template scope; JSON `null` becomes a nil pointer (NONE); `[]` becomes a pointer to an empty slice (ALL within the template); explicit IDs become a pointer to that subset. A plain `*[]string` parser field would collapse absent and `null`. New serialization must retain the explicit field. Whether to increment the JSON version is still open.
+The parser must check whether `UsecaseIDs` is absent **before** converting it to the typed field: absent means a legacy criterion inherits that revision's template scope; JSON `null` becomes a nil pointer (NONE); `[]` becomes a pointer to an empty slice (ALL profile use cases; valid only under an ALL template); explicit IDs become a pointer to that subset. A plain `*[]string` parser field would collapse absent and `null`. New serialization must retain the explicit field. Whether to increment the JSON version is still open.
 
 In this example, a scorecard for a conversation of use case A writes only the quality score; a scorecard for a conversation of use case B writes both scores. An inapplicable criterion writes **no score row** and contributes no denominator weight. Existing scorecards keep their pinned template revision and scores. IDs A/B are illustrative.
 
@@ -148,6 +150,6 @@ GROUP BY sc.template_id, sc.usecase_id;
 
 For future Performance Insights tracing, record the normalized filters, named query shape, SQL fingerprint/ClickHouse query ID when available, and per-use-case weighted numerator/denominator. Keep sanitized query fixtures and reconciliation checks at each metric's true grain. The ClickHouse builder currently composes filter, CTE, metadata, and group-by strings; split **internal builders by supported page/query shape** while sharing latest-scorecard and dedup logic. A public API split by every combination would multiply contracts and callers; consider it only if measured semantics or performance require it. Implement against the newer backend head, which has additional conversation-version handling in the same builder.
 
-**Still to decide:** AutoQM uncovered-rule behavior and overlap precedence; filtered QM completion-rate denominator; group-by response versus bounded scoped requests for breakdowns.
+**Superseded open questions:** AutoQM uncovered-rule behavior, overlap, and filtered completion were settled November 4; see the decision above. The full plan recommends grouped responses, with the final API contract and performance review still pending.
 
 Source detail: [core design](omni-usecase-scorecard-eng-plan-draft.md), [Performance Insights query study](../sessions/2026-10-08/codex-performance-insights-clickhouse-feasibility.md), [QM Evaluations trace](../sessions/2026-10-08/codex-qm-report-evaluations-query-fit.md), [QM task model](../sessions/2026-10-08/codex-qm-task-template-usecase-relationship.md), [AutoQM mapping](../sessions/2026-10-08/codex-multi-usecase-autoqm-rule-mapping.md).

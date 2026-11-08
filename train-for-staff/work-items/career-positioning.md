@@ -4,7 +4,7 @@
 **Primary domain:** `train-for-staff`
 **Primary subdomain:** none
 **Official ticket:** none
-**Last updated:** 2026-09-18
+**Last updated:** 2026-11-05
 
 ## Objective and Impact
 
@@ -60,6 +60,8 @@ The evidence strongly supports an established, high-performing Senior Engineer c
 
 ## Next Actions
 
+Recruiter introduction draft: lead with product responsibility, explain technical decisions and production follow-through, and use projects as evidence. Full-service ownership and the page-rebuilding example still need clarification; see the [2026-11-05 draft](../sessions/2026-11-05/codex-recruiter-introduction.md).
+
 1. Apply the Workstream 5 scorecard to representative job descriptions and record false-positive role matches.
 2. Tailor the visually verified one-page resume only for roles that pass the fit screen.
 3. Rehearse the scorecard-consistency and external-table stories as short and deep versions.
@@ -68,6 +70,7 @@ The evidence strongly supports an established, high-performing Senior Engineer c
 
 ## Timeline
 
+- 2026-11-05 — Proposed a responsibility-first recruiter introduction using existing Group Calibration and scorecard-consistency evidence. Wording remains a draft; no new ownership or seniority claim confirmed. Evidence: [session](../sessions/2026-11-05/codex-recruiter-introduction.md).
 - 2026-09-02 — Recast `CAREER_POSITION.md` as the governing operating brief and completed the first recurring-strength synthesis. Evidence: `log/2026-09-02.md`, `sessions/2026-09-02/codex-career-positioning.md`, `sessions/2026-09-02/codex-workstream-2-recurring-strengths.md`.
 - 2026-09-03 — Completed the first Workstream 3 seniority calibration. Evidence: `deliverables/workstream-3-seniority-calibration.md`, `sessions/2026-09-03/codex-workstream-3-seniority-calibration.md`, `log/2026-09-03.md`.
 - 2026-09-03 — Built three distinct Workstream 4 career hypotheses and selected product infrastructure, anchored by data-correctness evidence, as the first working position to test. Evidence: `deliverables/workstream-4-career-hypotheses.md`, `sessions/2026-09-03/codex-workstream-4-career-hypotheses.md`, `log/2026-09-03.md`.

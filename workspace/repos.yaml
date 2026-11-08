@@ -160,6 +160,11 @@ repos:
       - knowledge
 
 named_worktrees:
+  - name: director-convi-7852
+    source_repo: director
+    path: /Users/xuanyu.wang/repos/director-convi-7852
+    branch: xw/convi-7852-agent-team
+    purpose: Prefer direct Agent-role teams in the Agent Leaderboard while preserving first-team fallback.
   - name: director-convi-7812
     source_repo: director
     path: /Users/xuanyu.wang/repos/director-convi-7812
@@ -374,3 +379,33 @@ named_worktrees:
     path: /Users/xuanyu.wang/repos/cresta-proto-milestone-2
     branch: codex/milestone-2-lesson-reporting
     purpose: Define the dedicated batched Training Simulator lesson-statistics contract for CONVI-7600, stacked on the CONVI-7601 module contract.
+
+  - name: go-servers-convi-7810-csv
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7810-csv
+    branch: xw/convi-7810-task-run-time-range
+    purpose: Filter task-run record creation times for CSV export (CONVI-7810).
+
+  - name: director-convi-7810-csv
+    source_repo: director
+    path: /Users/xuanyu.wang/repos/director-convi-7810-csv
+    branch: xw/convi-7810-training-results-csv
+    purpose: Session, lesson and module attempt CSV downloads with historical definitions (CONVI-7810).
+
+  - name: go-servers-convi-7852-auth-roles
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7852-auth-roles
+    branch: xw/convi-7852-auth-membership-roles
+    purpose: Populate direct membership roles in ListUsersForAnalytics (CONVI-7852, PR 35092).
+
+  - name: cresta-proto-convi-7852-membership-docs
+    source_repo: cresta-proto
+    path: /Users/xuanyu.wang/repos/cresta-proto-convi-7852-membership-roles
+    branch: xw/convi-7852-membership-docs
+    purpose: Document direct and indirect User group memberships (CONVI-7852, PR 10620); reused clean worktree from closed custom-role PR 10601.
+
+  - name: go-servers-convi-7852-analytics-roles
+    source_repo: go-servers
+    path: /Users/xuanyu.wang/repos/go-servers-convi-7852-analytics-roles
+    branch: xw/convi-7852-analytics-membership-roles
+    purpose: Carry direct team roles into eligible Agent conversation stats response users (CONVI-7852).

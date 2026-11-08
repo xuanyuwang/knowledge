@@ -1,0 +1,12 @@
+# ListUsersForAnalytics roles investigation
+
+Date: 2026-11-01 (America/Toronto).
+Primary source repo: `/Users/xuanyu.wang/repos/go-servers`, main, HEAD `35c364ff698e86e4d8eef77f4504eb85dc76c5cc`. Read-only investigation across auth, insights, cresta-proto and Director; existing Director worktree preserved.
+
+Reviewed the CONVI-7852 work item, investigation, local implementation and metadata-reuse notes; read workflow/domain instructions and API/data-access/testing skills. Fetched origin/main for go-servers, cresta-proto and Director without moving checkouts. Compared the relevant local files to remote main. Used Glean to retrieve current indexed Leaderboard and role documentation and historical projection/user-ID-filter PRs. No live customer queries or deployed observations.
+
+The [recommendation](../../deliverables/list-users-for-analytics-roles-recommendation.md) records concrete analytics use cases, role semantics, source pointers, proposed proto/handler/consumer/cache changes, tests and unanswered product questions. Main findings: global roles cannot select a team; the membership view has direct role arrays but explicitly empties indirect arrays; public ListUsers and ListUserGroupMemberships have different inheritance behavior; the insights public-User conversion and CH response builder both drop memberships. Team aggregation already credits all mapped teams and must not inherit the Agent display preference.
+
+Recommended direct-assignment roles and custom role resource names on internal memberships, deferred global role fields and effective inheritance, and proposed inline candidate membership metadata on public per-agent User responses. Fresh/cache-hit response decoration is required to remove the extra Director lookup safely. This is a proposal only; no product implementation started. Existing auth five-minute and optional stats four-hour caches need separate handling. Proposed tests include real DB view semantics, role/filter/ACL identity equality, mixed-version/cache behavior, unchanged Team counts and Agent tables/CSV.
+
+Used the daily-capture skill to update the canonical work item and daily log. Only knowledge files were written. No commits, push, PR, external messages or data changes. Git self-authentication and Glean connector identity only; no explicitly selected AWS, Okta, Azure or SSH credential. Source code tests were not run because source code was unchanged.

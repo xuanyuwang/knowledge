@@ -1,0 +1,69 @@
+Fetching latest config...
+Config:   origin/master:configv3/prod/oportun/config.yaml
+Provider: aws
+Account:  chat-prod
+Cluster:  auth-prod
+Database: oportun
+     user_id      | active_state | user_roles 
+------------------+--------------+------------
+ 111ebfe2caa0a569 |            1 | {1}
+ 14effd1af2e3e481 |            1 | {1,14}
+ 193901ee38498373 |            1 | {1}
+ 1cb2451c235825f3 |            1 | {1}
+ 24f976961a7f32b7 |            1 | {1}
+ 2d443d4563964d1a |            1 | {1}
+ 2f00f820b8d16c04 |            1 | {1,7,14}
+ 310ac4f6fc8c26d  |            1 | {1}
+ 3938ddbe59199baa |            1 | {1}
+ 39d5fbf78f67cad4 |            1 | {1}
+ 3aeaae5a0e88dd28 |            1 | {1}
+ 3afbb6e821c4d884 |            1 | {1}
+ 3c8dc94adc0b1e78 |            1 | {1}
+ 3cb360dd50ebdb2e |            1 | {1}
+ 3d58d6e8543b509e |            1 | {1}
+ 49ec9471b0aee4c7 |            1 | {1}
+ 4f889bce6909e1bd |            1 | {1}
+ 528c9a0060d6a7e3 |            1 | {1}
+ 5437980c4ffcfa4f |            1 | {1}
+ 5a5c1e2f74aaf38a |            1 | {1}
+ 603da5606d66508f |            1 | {1}
+ 62591afd496b7246 |            1 | {1}
+ 6265f6356640f7bd |            1 | {1}
+ 686ce9c4ada540d0 |            1 | {1}
+ 6a06bb7edacba899 |            1 | {1}
+ 7677d467aad1c6b2 |            1 | {1}
+ 7c63ca22fe41bb79 |            1 | {1,7,14}
+ 7e29c6a1077e721a |            1 | {1}
+ 7f015629087e274c |            1 | {1}
+ 7f6712b1a65973c  |            1 | {1}
+ 7f8ff7fb72b9eb47 |            1 | {1}
+ 8346e954837cf71a |            1 | {1}
+ 846dc70494440a71 |            1 | {1}
+ 95ad074ba08705cb |            1 | {1}
+ 9850d859dd10a911 |            1 | {1,7,14}
+ a35bce45d8968c7d |            1 | {1}
+ aae0b6e5224c0b0c |            1 | {1}
+ ba16a77edfbcf155 |            1 | {1,7,14}
+ bdb11b74a94a08cc |            1 | {1}
+ be15f7263d116d97 |            1 | {1}
+ c0c9f388aee30a50 |            1 | {1}
+ c4ab52a117bb80ad |            1 | {1}
+ c8ad1a0ba1432944 |            1 | {1}
+ c941871db39cdfdf |            1 | {1}
+ d15cbb0cc9fbadd9 |            1 | {1}
+ d26952e22585f4aa |            1 | {1}
+ d9be2e76ec9ba649 |            2 | {1}
+ d9d88f0aed9f4ee6 |            1 | {1}
+ ded1dbe017522376 |            1 | {1}
+ e1801e494dc02358 |            1 | {1}
+ e2944dae70d8cfb  |            1 | {1}
+ e47be010078f8973 |            1 | {1}
+ e48416c1af6b157f |            1 | {1}
+ edae817821427690 |            1 | {1}
+ eec2b1763384e3f8 |            1 | {1}
+ f3957524d5c0fea1 |            1 | {1}
+ f5f644f131c06b21 |            1 | {1}
+ f9768414d7e5343a |            1 | {1}
+ fce17153cf3ec02c |            1 | {1}
+(59 rows)
+

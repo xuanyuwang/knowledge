@@ -11,6 +11,7 @@ Own QA score calculation and display semantics from template options and score r
 - A zero-weight or excluded criterion can carry a raw value while contributing no percentage score.
 - Chapter and criterion aggregates have different denominators and must remain distinguishable.
 - Score rows retain percentage and weight values derived from their referenced template revision; a later template revision does not rewrite historical rows.
+- PI criterion queries match scorecard ID plus the parent's source update timestamp to avoid mixing scorecard versions. Unequal replication progress can temporarily exclude an affected card; ID-only matching can revive stale scores, including scores overwritten with N/A. See the [source trace and timing example](../../sessions/2026-11-03/codex-scorecard-version-join.md).
 - Criterion-level aggregation across revisions must not assume configured contribution weights are comparable observation weights.
 - Option-to-score mappings can change across revisions; a Yes/No label shown in UI is not sufficient to infer pass/fail percentage without the pinned revision's mapping.
 - Popovers and drill-downs may filter the contributing rows differently from the parent aggregate; their contract must be recorded explicitly.

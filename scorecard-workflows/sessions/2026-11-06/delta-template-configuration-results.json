@@ -1,0 +1,234 @@
+{
+  "latest_templates": [
+    {
+      "title": "Delta Care Template",
+      "revision": "6cc2062e",
+      "resource_id": "01a18389-c8f6-75e4-b05a-12ace3705645",
+      "usecase_ids": [
+        "voice-care"
+      ],
+      "non_uuid_ids": null,
+      "uuid_criteria": 12,
+      "criterion_count": 12,
+      "non_uuid_criteria": 0
+    },
+    {
+      "title": "Delta Care Template",
+      "revision": "8c969b78",
+      "resource_id": "01a1838a-5ebf-70f0-8abe-e192b0cfc7d1",
+      "usecase_ids": [
+        "synthetic-care"
+      ],
+      "non_uuid_ids": null,
+      "uuid_criteria": 20,
+      "criterion_count": 20,
+      "non_uuid_criteria": 0
+    },
+    {
+      "title": "POC Template",
+      "revision": "7508e489",
+      "resource_id": "01a1a9fc-4b07-70c7-ae85-ae2ded1a923a",
+      "usecase_ids": [],
+      "non_uuid_ids": [
+        "agent-advise-callback-criterion",
+        "agent-apologize-empathy-criterion",
+        "agent-confidence-ownership-criterion",
+        "agent-dot-disclosures-criterion",
+        "agent-fee-waiver-credit-criterion",
+        "agent-gather-travel-needs-criterion",
+        "agent-loyalty-acknowledgement-criterion",
+        "agent-offer-alternative-criterion",
+        "agent-offer-compensation-criterion",
+        "agent-present-itinerary-details-criterion",
+        "agent-recording-disclosure-criterion",
+        "agent-summarize-actions-criterion",
+        "agent-verify-identity-criterion"
+      ],
+      "uuid_criteria": 0,
+      "criterion_count": 13,
+      "non_uuid_criteria": 13
+    },
+    {
+      "title": "Customer Experience",
+      "revision": "7883b020",
+      "resource_id": "01a1a9fc-4dbe-72b4-9e5e-8bfea0f3e902",
+      "usecase_ids": [],
+      "non_uuid_ids": [
+        "visitor-demand-escalation-criterion",
+        "visitor-mentions-airspace-outage-criterion",
+        "visitor-mentions-competitors-criterion",
+        "visitor-threaten-dot-complaint-criterion",
+        "visitor-threaten-litigation-criterion"
+      ],
+      "uuid_criteria": 0,
+      "criterion_count": 5,
+      "non_uuid_criteria": 5
+    }
+  ],
+  "template_history": [
+    {
+      "resource_id": "01a18389-c8f6-75e4-b05a-12ace3705645",
+      "all_creators": [
+        "1722a4291580a19f"
+      ],
+      "first_creator": "1722a4291580a19f",
+      "revision_count": 6,
+      "last_created_at": "2026-10-29T21:04:54.072295+00:00",
+      "first_created_at": "2026-10-28T17:24:01.316055+00:00",
+      "max_uuid_criteria": 12,
+      "min_uuid_criteria": 2,
+      "empty_scope_revisions": 0,
+      "max_non_uuid_criteria": 0,
+      "min_non_uuid_criteria": 0
+    },
+    {
+      "resource_id": "01a1838a-5ebf-70f0-8abe-e192b0cfc7d1",
+      "all_creators": [
+        "1722a4291580a19f"
+      ],
+      "first_creator": "1722a4291580a19f",
+      "revision_count": 6,
+      "last_created_at": "2026-11-05T06:21:22.599998+00:00",
+      "first_created_at": "2026-10-28T17:24:23.376742+00:00",
+      "max_uuid_criteria": 20,
+      "min_uuid_criteria": 2,
+      "empty_scope_revisions": 0,
+      "max_non_uuid_criteria": 0,
+      "min_non_uuid_criteria": 0
+    },
+    {
+      "resource_id": "01a1a9fc-4b07-70c7-ae85-ae2ded1a923a",
+      "all_creators": [
+        "1722a4291580a19f",
+        "e2f03fc79f3250aa"
+      ],
+      "first_creator": "e2f03fc79f3250aa",
+      "revision_count": 3,
+      "last_created_at": "2026-11-05T20:34:22.611306+00:00",
+      "first_created_at": "2026-11-05T04:34:06.216123+00:00",
+      "max_uuid_criteria": 0,
+      "min_uuid_criteria": 0,
+      "empty_scope_revisions": 3,
+      "max_non_uuid_criteria": 13,
+      "min_non_uuid_criteria": 13
+    },
+    {
+      "resource_id": "01a1a9fc-4dbe-72b4-9e5e-8bfea0f3e902",
+      "all_creators": [
+        "e2f03fc79f3250aa"
+      ],
+      "first_creator": "e2f03fc79f3250aa",
+      "revision_count": 2,
+      "last_created_at": "2026-11-05T04:34:07.191588+00:00",
+      "first_created_at": "2026-11-05T04:34:06.911033+00:00",
+      "max_uuid_criteria": 0,
+      "min_uuid_criteria": 0,
+      "empty_scope_revisions": 2,
+      "max_non_uuid_criteria": 5,
+      "min_non_uuid_criteria": 5
+    }
+  ],
+  "empty_scope_revisions": [
+    {
+      "title": "Agent Adherence",
+      "creator": "e2f03fc79f3250aa",
+      "criteria": 13,
+      "revision": "2496e40f",
+      "created_at": "2026-11-05T04:34:06.216123+00:00",
+      "resource_id": "01a1a9fc-4b07-70c7-ae85-ae2ded1a923a",
+      "non_uuid_criteria": 13,
+      "template_json_md5": "8aa2062436868a2560ebace44e85d3d6"
+    },
+    {
+      "title": "Agent Adherence",
+      "creator": "e2f03fc79f3250aa",
+      "criteria": 13,
+      "revision": "a95546ec",
+      "created_at": "2026-11-05T04:34:06.536737+00:00",
+      "resource_id": "01a1a9fc-4b07-70c7-ae85-ae2ded1a923a",
+      "non_uuid_criteria": 13,
+      "template_json_md5": "384d90a408583ee202b74713642abd67"
+    },
+    {
+      "title": "Customer Experience",
+      "creator": "e2f03fc79f3250aa",
+      "criteria": 5,
+      "revision": "de100689",
+      "created_at": "2026-11-05T04:34:06.911033+00:00",
+      "resource_id": "01a1a9fc-4dbe-72b4-9e5e-8bfea0f3e902",
+      "non_uuid_criteria": 5,
+      "template_json_md5": "382c4beda1896dc9c9f8fbb7a142a877"
+    },
+    {
+      "title": "Customer Experience",
+      "creator": "e2f03fc79f3250aa",
+      "criteria": 5,
+      "revision": "7883b020",
+      "created_at": "2026-11-05T04:34:07.191588+00:00",
+      "resource_id": "01a1a9fc-4dbe-72b4-9e5e-8bfea0f3e902",
+      "non_uuid_criteria": 5,
+      "template_json_md5": "d4107292fec0e4c6dbb6e10772d697db"
+    },
+    {
+      "title": "POC Template",
+      "creator": "1722a4291580a19f",
+      "criteria": 13,
+      "revision": "7508e489",
+      "created_at": "2026-11-05T20:34:22.611306+00:00",
+      "resource_id": "01a1a9fc-4b07-70c7-ae85-ae2ded1a923a",
+      "non_uuid_criteria": 13,
+      "template_json_md5": "2c51d2759869cb20e04b3bb17958b7d2"
+    }
+  ],
+  "latest_pairwise_comparison": [
+    {
+      "title_a": "Delta Care Template",
+      "title_b": "Delta Care Template",
+      "template_a": "01a18389-c8f6-75e4-b05a-12ace3705645",
+      "template_b": "01a1838a-5ebf-70f0-8abe-e192b0cfc7d1",
+      "shared_criterion_ids": [],
+      "identical_template_json": false
+    },
+    {
+      "title_a": "Delta Care Template",
+      "title_b": "POC Template",
+      "template_a": "01a18389-c8f6-75e4-b05a-12ace3705645",
+      "template_b": "01a1a9fc-4b07-70c7-ae85-ae2ded1a923a",
+      "shared_criterion_ids": [],
+      "identical_template_json": false
+    },
+    {
+      "title_a": "Delta Care Template",
+      "title_b": "Customer Experience",
+      "template_a": "01a18389-c8f6-75e4-b05a-12ace3705645",
+      "template_b": "01a1a9fc-4dbe-72b4-9e5e-8bfea0f3e902",
+      "shared_criterion_ids": [],
+      "identical_template_json": false
+    },
+    {
+      "title_a": "Delta Care Template",
+      "title_b": "POC Template",
+      "template_a": "01a1838a-5ebf-70f0-8abe-e192b0cfc7d1",
+      "template_b": "01a1a9fc-4b07-70c7-ae85-ae2ded1a923a",
+      "shared_criterion_ids": [],
+      "identical_template_json": false
+    },
+    {
+      "title_a": "Delta Care Template",
+      "title_b": "Customer Experience",
+      "template_a": "01a1838a-5ebf-70f0-8abe-e192b0cfc7d1",
+      "template_b": "01a1a9fc-4dbe-72b4-9e5e-8bfea0f3e902",
+      "shared_criterion_ids": [],
+      "identical_template_json": false
+    },
+    {
+      "title_a": "POC Template",
+      "title_b": "Customer Experience",
+      "template_a": "01a1a9fc-4b07-70c7-ae85-ae2ded1a923a",
+      "template_b": "01a1a9fc-4dbe-72b4-9e5e-8bfea0f3e902",
+      "shared_criterion_ids": [],
+      "identical_template_json": false
+    }
+  ],
+  "poc_ids_shared_with_other_template_history": 0
+}

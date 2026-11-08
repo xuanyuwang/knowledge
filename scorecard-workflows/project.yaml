@@ -21,19 +21,23 @@ subdomains:
   - group-calibration
   - process-scorecards-and-generation
 related_ticket_ids:
+  - CONVI-7981
   - CONVI-7533
   - CONVI-7682
   - CONVI-7744
   - CONVI-7785
 active_work_items:
+  - work-items/CONVI-7981.md
   - work-items/CONVI-7744.md
   - work-items/CONVI-7785.md
   - work-items/qm-task-template-scope.md
+  - work-items/omni-usecase-scorecard-plan.md
 related_prs:
+  - https://github.com/cresta/go-servers/pull/35339
   - https://github.com/cresta/director/pull/23190
   - https://github.com/cresta/director/pull/23461
-current_objective: Complete and review CONVI-7744 so conversation scoring loads all existing scorecards across every API page.
-last_validated: 2026-09-24
+current_objective: Continue review of the omni-use-case plan and local PI/QM implementation drafts, while preserving the separately tracked workflow work.
+last_validated: 2026-11-07
 artifacts:
   readme: README.md
   subdomains_dir: subdomains/
@@ -43,6 +47,10 @@ artifacts:
   decisions_dir: decisions/
   deliverables_dir: deliverables/
   key_docs:
+    - deliverables/cross-usecase-pi-qm-change-inventory.md
+    - deliverables/cross-usecase-pi-qm-ticket-drafts.md
+    - deliverables/omni-usecase-scorecard-eng-plan-draft.md
+    - decisions/2026-11-04-omni-usecase-autoqm-and-reporting.md
     - deliverables/inactive-legacy-project-consolidation-2026-10-25.md
     - decisions/2026-10-08-qm-task-inherits-template-usecase-scope.md
     - subdomains/template-authoring-and-versioning/README.md
@@ -54,4 +62,6 @@ artifacts:
     - subdomains/process-scorecards-and-generation/README.md
     - deliverables/legacy-source-index.md
     - deliverables/scorecard-configuration-safety-initiative-proposals.md
-notes: Operating history stays at this parent. PG-to-ClickHouse projection consistency belongs to scorecard-data-sync even when a ticket also changes workflow behavior.
+notes: The omni-use-case plan source was checked at fetched origin/main on 2026-11-04 without changing the registered implementation worktree or asserting its ticket/PR status. Operating history stays at this parent. PG-to-ClickHouse projection consistency belongs to scorecard-data-sync even when a ticket also changes workflow behavior. CONVI-7981 backend worktree is /Users/xuanyu.wang/repos/go-servers-convi-7981-template-usecases on xw/convi-7981-template-usecase-validation.
+
+# Reporting inventory and local ticket drafts validated 2026-11-07; the nine newly created Linear issues were deleted at user request. The registered worktree above was not changed or revalidated by this investigation.

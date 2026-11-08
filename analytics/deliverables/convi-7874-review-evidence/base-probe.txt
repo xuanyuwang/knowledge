@@ -1,0 +1,7 @@
+=== RUN   TestReview34439
+=== RUN   TestReview34439/split_root_explicit_active_user_does_not_readd_inactive_dynamic_member
+    review_34439_test.go:48: empty=false actual_users=[customers/c/users/A] expected_users=[customers/c/users/A]
+--- PASS: TestReview34439 (0.00s)
+    --- PASS: TestReview34439/split_root_explicit_active_user_does_not_readd_inactive_dynamic_member (0.00s)
+PASS
+ok  	github.com/cresta/go-servers/insights-server/internal/shared	0.927s

@@ -1,0 +1,13 @@
+# CONVI-7810: frontend CSV using existing task-run APIs
+
+Source repo: `/Users/xuanyu.wang/repos/go-servers`; branch/worktree: `main` at `/Users/xuanyu.wang/repos/go-servers`, inspected commit `aca4c13774`. Related contract inspected in `/Users/xuanyu.wang/repos/cresta-proto-training-simulator-csv` at `69f4a5fa4c`.
+
+The user asked whether the export can use ListTrainingSimulatorTaskRuns and construct CSV in the frontend. Read-only evaluation; no source or PR changes made.
+
+Verified capabilities: ListTrainingSimulatorTaskRuns accepts multiple task, lesson, and module names and returns per-attempt conversation criterion results, normalized overall score/pass state, quiz question scores, submitter enrichment, and historical revision IDs. `action_list_training_simulator_task_runs.go` bulk-loads score rows and historical pass thresholds before converting the response. The task-run resource preserves attempts rather than aggregating latest-per-assignment results.
+
+Differences from the proposed export: the public List endpoint has a hard maximum of 1,000 runs per response (lines 24–35), uses page tokens, and has no assignment-window time filter. It queries task runs by supplied IDs rather than resolving active sessions, audiences, and exact reporting assignments. Frontend reuse therefore needs eligible session selection for the reporting date filter, all run pages, and the same assignment/reporting visibility semantics.
+
+Historical column completeness: criterion results include recorded criterion IDs, labels, and N/A flags, but cannot alone establish the configured-but-unevaluated criterion set. Quiz question scores carry question IDs/responses/scores without question text. ListTrainingModules accepts exact revision names and its backend resolves pinned (module, revision) pairs (`action_list_training_modules.go`, lines 29–74), so frontend orchestration can retrieve historical definitions. Quiz template revision reads and agent/session/lesson/module label enrichment also need to be reused or fetched. Preserve blank absent definitions versus configured Pending and recorded N/A.
+
+Conclusion: frontend CSV is feasible and avoids a new endpoint solely for serialization. It is not equivalent to one call to ListTaskRuns: report selection, history/label joins, column union, and pagination still need an owner. A dedicated export endpoint is justified by centralizing that report assembly, not by writing CSV bytes. The previous request to fetch all runs at once would require a different API behavior; the current public List endpoint remains paginated. No decision to drop the current proto PR has been made.

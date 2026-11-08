@@ -1,0 +1,6 @@
+Fetching latest config...
+Config:   origin/master:configv3/prod/oportun/us-west-2/config.yaml
+Cluster:  us-west-2-prod
+Host:     clickhouse-conversations.us-west-2-prod.internal.cresta.ai
+Database: oportun_us_west_2
+{"matched_parents":335,"weighted_score":0.9971823048746126}

@@ -10,9 +10,21 @@ related_source_repos:
 active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7707-scenario-v2
 branch: xw/convi-7707-scenario-images-v2
 additional_active_worktrees:
+  - path: /Users/xuanyu.wang/.codex/worktrees/training-csv-usecase/director
+    branch: xw/convi-7983-training-csv-usecase
+    work_item: CONVI-7983
+  - path: /Users/xuanyu.wang/repos/cresta-proto-training-simulator-csv
+    branch: xw/convi-7810-training-simulator-export-protos
+    work_item: CONVI-7810
   - path: /Users/xuanyu.wang/repos/director-convi-7812
     branch: xw/convi-7812-quiz-question-pass-rates
     work_item: CONVI-7812
+  - path: /Users/xuanyu.wang/repos/go-servers-convi-7810-csv
+    branch: xw/convi-7810-task-run-time-range
+    work_item: CONVI-7810
+  - path: /Users/xuanyu.wang/repos/director-convi-7810-csv
+    branch: xw/convi-7810-training-results-csv
+    work_item: CONVI-7810
 domain_owners:
   - Xuanyu Wang
 domain_scope: Scenario-based AI practice for agents — training content configuration (lessons/modules/scenarios), assignment as Director Tasks, Customer AI simulation runtime, Opera/LLM evaluation, and session-level reporting.
@@ -23,6 +35,7 @@ subdomains:
   - evaluation
   - reporting
 related_ticket_ids:
+  - CONVI-7810
   - CONVI-7812
   - CONVI-7707
   - CONVI-6747
@@ -46,6 +59,8 @@ related_ticket_ids:
   - CONVI-7601
   - CONVI-7638
 active_work_items:
+  - CONVI-7983
+  - CONVI-7810
   - CONVI-7812
   - CONVI-7707
   - CONVI-7280

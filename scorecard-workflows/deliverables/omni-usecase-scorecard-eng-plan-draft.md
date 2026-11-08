@@ -1,206 +1,659 @@
-# Omni-use-case scorecard workflows: engineering plan (draft)
+# Omni-use-case scorecard workflows: engineering plan
 
-Status: working draft, updated 2026-10-09. The criterion-level scope model is provisionally ready to pursue; consumer integration and rollout remain to be designed.
+**Author / design owner:** Xuanyu Wang; draft prepared with Codex\
+**Status:** Draft for engineering review; no implementation or rollout approval implied\
+**Last updated:** November 4, 2026\
+**Primary domain:** Scorecard Workflows / Template Authoring and Versioning\
+**Product input:** [Omni Use Case QM / Coaching PRD](https://docs.google.com/document/d/1iEYDUg7NrYo5NjeTcr9nHyNqEbv_sWHrDHJeAkFJS9c)\
+**Company format:** supplied engineering-plan template, originally dated October 17, 2023\
+**Continuing work:** [canonical work item](../work-items/omni-usecase-scorecard-plan.md)
 
-## Goal and boundary
+This design keeps one template identity and one revision history across use cases. Template applicability remains in PostgreSQL `usecase_ids`. Each criterion gets explicit applicability inside the versioned template JSON and typed Go model. Evaluations use their concrete use case and pinned template revision; criteria outside that use case have no score row. Performance Insights and QM then read the same facts over a selected set of use cases, together and separately.
 
-Define how one performance template can apply to multiple use cases and how each criterion can apply to a subset of that template's use cases. Specify the authoritative model, API/Go representation, PostgreSQL representation, revision behavior, validation, and compatibility/migration approach.
+**Reading the status labels:** “Confirmed decision” means Xuanyu settled the behavior in the linked design discussions or this review. “Verified source” means code was checked at the immutable commits below; it does not establish deployment or measured performance. “Proposed” means an engineering recommendation for review. The November 4 decisions are captured [separately](../decisions/2026-11-04-omni-usecase-autoqm-and-reporting.md).
 
-For Coaching, Performance Insights, QM reporting, task assignment, and other consumers, record the contract each will need and the class of change. Detailed designs for those domains are outside this draft.
+## Goal
 
-Product input: [Omni Use Case QM / Coaching PRD](https://docs.google.com/document/d/1iEYDUg7NrYo5NjeTcr9nHyNqEbv_sWHrDHJeAkFJS9c). Initial source investigation: [criterion applicability model](../sessions/2026-10-04/codex-omni-usecase-criterion-model.md).
+- Author one conversation performance template for A+B, retaining shared criterion identity, scoring options, weights, and revision history while allowing a criterion to apply only to B.
+- Make manual and AutoQM scoring enforce that applicability on the server. A missing automatic rule must not manufacture an N/A score in an uncovered use case.
+- Deliver the P0 journey in this order: template configuration, Performance Insights, QM task, QM Task Home, and QM Report. Show combined selected-use-case results and per-use-case breakdowns with consistent filters and permissions.
+- Preserve historical evaluations when template scope changes, and prevent older clients, jobs, or direct SQL readers from silently broadening scope or losing evaluations.
+- Provide a reviewable implementation sequence, compatibility strategy, test plan, operational checks, and planning estimates.
 
-## Verified starting point
+Success requires a shared A+B template and task to work in both A-only and B-only views, combined metrics to reconcile with their breakdown at the correct grain, and old scorecards to remain available after B is removed from the current template. Single-use-case behavior must remain equivalent.
 
-- `ScorecardTemplate` transports structure as `google.protobuf.Struct` and has repeated `usecase_names`.
-- Go structs in `shared/scoring/scorecard_templates.go` and `scorecard_template_parser.go` define and parse the template structure. Criterion scope is not represented there today.
-- PostgreSQL `director.scorecard_templates` and `director.scorecard_template_revisions` hold `usecase_ids` and `template` JSONB. There is no independent criterion record in this model.
-- An empty template use-case set is interpreted as all use cases on current applicability paths.
-- Some consumers query template rows directly in SQL, including group calibration analytics. An application query layer does not automatically cover them.
+## Non-goals
 
-## Core decisions, in dependency order
+- Independent criterion resources, cross-template criterion sharing, or independently versioned criteria.
+- An authoritative criterion table or a global materialized-view refresh on each template edit. Direct criterion lookup remains a separate engineering requirement, deferred until a concrete query justifies a derived index.
+- Per-use-case QM quotas, automatic historical rescoring, rewriting old template revisions, or automatically changing existing scorecard/task associations.
+- Enabling `enableGlobalOperaRule` for customers. Separate per-use-case Opera rules attached to one criterion are the baseline; one shared rule is supported where that authoring flag is enabled.
+- Broadening group-calibration tasks to multi-use-case tasks, changing scorecard permissions to use historical permissions, or redesigning scorecard mutation concurrency.
+- Delivering the Coaching plan model in P0. Coaching and data-platform exports need compatibility work before general exposure; their broader product changes are described as follow-up dependencies below.
 
-1. **Criterion identity and lifecycle (answered).** A criterion remains owned by one template; this project does not require sharing or independently versioning it across templates. Direct criterion queryability is a separate implementation concern, deferred until a concrete consumer requires it.
-2. **Scope semantics (answered; encoding details open).** A template has at least one applicable use case: it applies to all use cases (current empty array) or a non-empty finite set, with no NONE state. A criterion may have zero applicable use cases. Effective criterion scope is contained by template scope and needs three states: NONE, ALL, or a finite included subset. The earlier empty-list ALL meaning remains all profile use cases; a criterion applying throughout a finite template therefore repeats those finite IDs. Store scope on criteria, including nested branch criteria; chapters have no independent scope. When template membership changes, add new use cases to every criterion and remove deleted use cases from every criterion; if removal empties a criterion's included set, preserve it as explicit NONE in the new versioned JSON rather than converting it to ALL. A later template use-case addition also adds that use case to a NONE criterion, reactivating it. A missing criterion-scope field in a historical revision inherits that revision's template scope. The proposed criterion JSON uses `null` for NONE, `[]` for ALL, and non-empty included IDs for a finite subset; new writes must not omit the field. Whether to increment the JSON structure version is open.
-3. **Canonical data model (answered).** Keep the existing Go template structure serialized to revisioned JSON as the authoritative criterion definition and applicability model. Extend that model for scope. Direct criterion lookup remains a requirement, but any index or projection would be derived rather than authoritative.
-4. **Revision and evaluation semantics (partially answered).** Existing scorecards keep their template revision and scores when a use case is removed; removal affects future evaluations only. Canonical Get/list reads return the full shared template revision; evaluation and other consumers derive an effective view for a concrete use case. An inapplicable criterion produces no score row and does not enter the aggregate weight denominator. Validate use-case applicability on incoming scores, because the full template revision still contains every criterion. Multi-use-case Opera rule authoring requires `enableGlobalOperaRule`, which Xuanyu reports is enabled for only a few customers. The baseline AutoQM design must therefore allow one criterion to reference separate use-case-specific Opera rules; a shared rule remains an option where the flag is enabled. The template JSON already has a trigger array, but the builder edits only the first trigger and scoring does not filter rules by use case. The remaining configuration choice is how to handle criterion use cases with no eligible rule: keep manual scoring there or require complete rule coverage. A warning alone does not prevent an ineligible rule's missing annotations from becoming N/A. See the [rule-mapping investigation](../sessions/2026-10-08/codex-multi-usecase-autoqm-rule-mapping.md).
-5. **Queryability (high-level impact).** Some consumers read template rows directly and need to interpret the normalized criterion scope. Record the affected contract here; choose any SQL-specific helper only during the consumer's detailed design.
-6. **Compatibility and rollout.** Define legacy-template defaults, validation for new writes, any backfill/projection, and staged consumer migration with parity checks.
+## Background
 
-## High-level consumer contract to develop
+A **use case** partitions conversations and associated access/configuration. A **template** defines chapters and criteria and has its own audience, permissions, and revisions. A **criterion** is a template-owned item, possibly nested under a chapter or conditional branch. A **scorecard** evaluates a concrete conversation or process and records a template ID, revision, and concrete use case. A **score row** records an evaluated criterion; it is different from the criterion definition. A **QM task** attaches audience, quota, schedule, and conversation filters to a template. An **Opera rule** owns behaviors whose annotations can drive AutoQM through `auto_qa.triggers` on an ordinary criterion.
 
-Every consumer should resolve template and criterion applicability against a concrete use case and template revision. Discovery and aggregate readers additionally need a way to enumerate the applicable use cases without assuming one template ID per use case. The plan will list each affected surface and its required contract, leaving its page-specific logic to a later design.
+Today, scope exists at template level but not criterion level. A shared template therefore cannot express “quality applies to A+B, chat-specific applies only to B.” Several consumers further copy or assume a single use case. Merely adding a JSON field would leave scoring, task discovery, and reports inconsistent.
 
-## First discussion question
+### Verified source baseline
 
-Does this project require a criterion to be shared by **different templates** as one independently versioned resource? Or is the intended reuse limited to **one template spanning multiple use cases**, with criteria owned by that template?
+Source was refreshed with `git fetch origin main` and read with `git show` / `git grep`, without switching branches or changing product code:
 
-**Answer: No cross-template sharing or independent criterion versioning is required for this project.** One template can span multiple use cases, and each criterion remains owned by that template and follows its revisions. The product scope comes from the PRD and was confirmed by Xuanyu on 2026-10-05.
-
-The earlier interest in treating criteria as independent resources was primarily an engineering concern: we often need to search for criterion definitions directly, while the current representation requires searching template contents. In `go-servers/apiserver/sql-schema/director/director-schema.sql`, both `director.scorecard_templates` and `director.scorecard_template_revisions` store the structure in a `template JSONB` column. The schema defines no criterion-definition table or index on those JSONB contents. It does define `ix_scores_cp_criterion` on `director.scores (customer, profile, criterion_identifier)`, which supports searching evaluated scores by criterion identifier, not finding criterion definitions in templates. This schema review alone does not establish actual query performance or deployed index state.
-
-Direct criterion lookup and easier database operations remain design requirements. A template-owned relational representation or revision-keyed search projection could address them without making a criterion shareable across templates or giving it an independent revision lifecycle. Choose that representation after inventorying the queries and update paths; keep the criterion's owning template and revision explicit.
-
-## Second discussion: template scope changes
-
-Xuanyu confirmed on 2026-10-05:
-
-- Adding use case `U` to a template adds `U` to all criteria, including criteria that previously had explicit subsets.
-- Removing `U` from a template removes `U` from all criterion scopes.
-- The containment invariant must hold after every edit.
-
-Example: template `{A, B}`, criterion `{A}`; add `C` → template `{A, B, C}`, criterion `{A, C}`. This means an explicit subset is not a permanently fixed allowlist. Xuanyu chose **included use-case IDs** for criterion scope because it is easier to read. On every template scope edit, traverse all criteria (including nested criteria) and add or remove the changed ID before committing the new revision. The edit must preserve criterion scope as a subset of template scope.
-
-## Established historical behavior
-
-Xuanyu confirmed on 2026-10-05 that a scorecard stays pinned to the template revision used for evaluation. When a later revision removes its use case, the existing scorecard remains available with its original scores and historical template structure; removal affects future evaluations only.
-
-`director.scorecards` stores `template_revision`, and `GetScorecard` loads that revision to resolve the scorecard's criterion structure. `EvaluateScorecardsPermissions` loads the latest template revision for permission evaluation; Xuanyu confirmed that latest-revision template permissions remain the policy. This is a high-level compatibility constraint, not a core data-model design question.
-
-## Next core data-model question
-
-Xuanyu chose the current design: the versioned `template` JSONB and Go structs remain authoritative. A relational lookup aid, if needed, must be derived from that source.
-
-Xuanyu chose an included-use-case list on each criterion in the versioned JSON/Go model. Adding a template use case requires adding it to every criterion; removing one requires deleting it from each criterion where present.
-
-Xuanyu clarified that an empty list means **all use cases** at both template and criterion level. A finite scope uses explicit included IDs. Taken literally with the containment invariant, a finite-scope template cannot contain an empty-scope criterion (all use cases); a criterion that applies to the entire finite template repeats that finite set. The Go parser and JSON field must distinguish an omitted legacy field from an explicit empty list until migration/defaulting semantics are defined.
-
-The agreed rule requires an explicit finite template list before narrowing a criterion. Thus `template=[]` (all) has `criterion=[]` (all). A finite template cannot contain `criterion=[]`, because that would mean all profile use cases and violate containment. Criteria that apply throughout a finite template repeat its explicit IDs. When converting a universal template to finite scope, the new revision must materialize finite criterion lists.
-
-Xuanyu confirmed criterion-only scope, including criteria nested under conditional branches. Chapters have no independent use-case scope. A chapter's visibility for a use case can be derived from its applicable descendants; exact UI behavior belongs to the consumer design.
-
-Branch validation rule, confirmed by Xuanyu on 2026-10-07: a branch child's use-case scope must be contained by its parent criterion's scope. A child cannot be applicable where its parent is absent, and per-use-case coverage must not count an unreachable child. This is an edge validation rule, not a gate for assessing the core representation.
-
-Xuanyu confirmed that a criterion outside the scorecard's use case produces **no score row**, rather than an N/A row. The full shared template revision still contains the criterion; evaluation and scoring must apply the scorecard's use case to decide whether the criterion participates. Current `shared/scoring/scorecard_calculator.go:ComputeScores` skips criteria without score rows, so they add no weight to the aggregate. However, current score mapping/validation checks whether a criterion exists in the full template; it does not yet reject a supplied score for a criterion inapplicable to the scorecard's use case. This must become a server-side validity check, independent of frontend filtering.
-
-Xuanyu confirmed that a conversation template must not include a use case with zero applicable criteria. **Any criterion counts**, including sentence/date/user criteria that do not contribute to QA score. The frontend should validate this first and give immediate feedback during authoring; the backend must enforce the same invariant on Create and Commit so non-UI clients cannot persist an invalid revision. Director's `TemplateBuilderForm.tsx:frontendFormValidation` is an existing save-time validation seam, and `newDBScorecardTemplateFromProto` is shared by backend Create and Commit after it parses the structure and template use cases. Validation must traverse nested and branch criteria. Per-use-case coverage does not guarantee a non-null aggregate QA score.
-
-Xuanyu confirmed on 2026-10-05 that `GetScorecardTemplate` and canonical list reads return the **full shared template revision**, including criteria outside a selected use case. Evaluation and other consumers derive an effective view using their concrete use case and the relevant revision. This preserves a complete definition for editing and makes filtering an explicit consumer operation. The current `GetScorecardTemplate` path loads a revision and converts its structure into the API response; the new criterion-scope field will need to survive that parser/converter path.
-
-Xuanyu confirmed on 2026-10-05 that an **omitted criterion-scope field** in historical template JSON inherits that revision's template scope. Historical revisions stay untouched. When a finite-scope template is next committed, explicit criterion lists are materialized, including on criteria that apply to its entire scope. Omitted and explicit empty lists have different meanings when the template is finite and must remain distinguishable in the parser and write path.
-
-Current `newDBScorecardTemplateFromProto` parses and validates incoming `Template` JSON but stores the original `templateJSON` in `ScorecardTemplates.Template`. The implementation therefore needs a normalization step before persisting a new finite-scope revision; validation alone cannot materialize lists. This also exposes the next core compatibility question: after a revision contains scoped criteria, how should a Commit request that **omits** criterion scope on one or more criteria be handled? Silently inheriting template scope would broaden those criteria. Options include rejecting the incomplete write, or recovering prior scopes by matching criterion identifiers where safe. This is distinct from reading historical revisions and remains undecided.
-
-## Scope-only update proposal and schema edge case
-
-Xuanyu noted that the Director builder currently sends a whole template when saving and proposed a `FieldMask` on Commit so a caller can change template use cases alone. Source confirms that the builder constructs a complete `templateData` and the Director API wrapper picks the full set of mutable template fields. `CommitScorecardTemplateRequest` currently has no update mask, and the backend builds a new revision from the submitted template. A masked `usecase_names` update would need to load the prior full revision, apply the template-to-criterion scope transition on the server, validate, and write both template tables together as one new revision. A mask would not settle how omitted criterion scope behaves in a separate full-template Commit.
-
-The current Commit lookup filters the prior revision by the **incoming** `scorecard_template.usecase_names`. A change to a disjoint set of use cases may therefore fail to find the prior revision; a scope-only path should resolve the previous revision by resource identity and expected revision before applying new applicability.
-
-More fundamentally, the existing empty-list sentinel cannot represent a criterion with **zero** applicable use cases. Example: template `{A, B}`, criterion `{A}`; remove `A` from the template. Automatic removal produces criterion `[]`, which under the agreed rule means **all** and would make the criterion apply to `B`. Xuanyu clarified that criterion JSON should represent explicit NONE and proposed JSON `null` for that state. This leaves template-level SQL scope unchanged. New writes should require the criterion scope field so missing does not collide with explicit `null`; see the current-direction section below.
-
-## Superseded exploration: template-level three-state array
-
-The following template-column options were investigated before Xuanyu clarified that templates only need all/some. They are not the current scope direction; see [criterion-level versioned JSON](../sessions/2026-10-05/codex-criterion-three-state-versioned-json.md).
-
-The two template tables declare nullable `VARCHAR[] usecase_ids` with no explicit SQL default, so omission produces `NULL`. Normal Create/Commit does not omit the column: the backend builds a non-nil slice from `usecase_names`, which stores `{}` for an empty request. Director initializes a new template with the current use case, but the backend does not require a non-empty list. The user-specified `voice-sandbox-2` database has 1,513 rows in each table, all with exactly one use case and none NULL or empty; see [the source and data trace](../sessions/2026-10-05/codex-template-usecase-array-states.md). This does not establish counts for other databases.
-
-Using `NULL` for all, `{}` for none, and non-empty arrays for some is an option, not a current contract. Several readers intentionally interpret both `NULL` and `{}` as all, while the proto repeated field and DB-to-proto converter erase the distinction. Adopting three states requires a presence-bearing API representation, write normalization, reader updates, and a migration rule based on actual row counts in both current and revision tables. It would resolve the template-level none state; criterion-level zero applicability still needs its own representation or edit policy.
-
-The [backward-compatibility analysis](../sessions/2026-10-05/codex-template-three-state-compatibility.md) sketches a safe rollout: add an explicit API scope mode while preserving the legacy empty-request = all contract; canonicalize legacy all rows to SQL NULL; deploy every reader and retire old binaries; only then enable writes of SQL `{}` for none. A legacy full-template Commit against a new NONE revision must not silently turn it into all when an old client drops the new mode. This remains a candidate plan, not a selected schema decision.
-
-Xuanyu also proposed the reversed encoding: `{}` = all, SQL NULL = none. This keeps current empty API writes and existing empty DB rows aligned with all, reducing writer migration. It still requires a presence-bearing API mode and reader rollout because current code interprets NULL as all and proto readback collapses the two states. Both columns currently have no SQL default, so omitted-column inserts would become none unless an explicit `{}` default or required assignment is added. Legacy NULL rows in other databases would need migration to `{}` (including revision rows) or an encoding-version marker. No NONE rows may be emitted while old readers are running. The encoding choice remains open.
-
-Xuanyu's current working rollout is reader-first, then writer, assuming no existing NULL template rows. Before enabling NONE writes, verify that assumption in both template tables for each deployment database. Reader work includes SQL filters, Go applicability checks, readback/API scope presence, and direct SQL/background consumers. Writer work must preserve legacy empty-request = all, add an explicit NONE signal, avoid ambiguous old-client Commit widening, set an all-safe SQL default or require explicit assignment, and resolve prior Commit revision by identity rather than incoming use-case overlap. Keep writer emission of NULL gated until every old reader binary has been retired. This is an agreed rollout direction under a stated data assumption, not yet an implementation specification.
-
-The [historical test and ticket trace](../sessions/2026-10-05/codex-template-null-history-tests.md) found that the SQL NULL/empty-as-all condition began in DIRP-3728 / go-servers #8034 during the 2023 use-case rollout. DIRP-3819 / #8301 later tightened use-case checks after backfill but deliberately retained no-use-case templates as universally applicable; its PR body mentions empty use cases in Oportun production in an AutoQA/conversation context, not a confirmed template-row state. A scoring DAO test uses nil/SQL NULL fixtures and expects universal applicability, while the original list-filter test uses only non-empty template arrays. The source history does not prove a current NULL population, so the reader-first design still needs a per-database pre-enable count check.
-
-## Current direction: normalized criterion scope in template JSON
-
-The [source check](../sessions/2026-10-05/codex-criterion-three-state-versioned-json.md) confirms the JSON already has a version field: missing is parsed as V1, V2 is current, and V3 is rejected. All 1,513 current and 1,513 revision rows in the sampled `voice-sandbox-2` DB are V2. Xuanyu proposed criterion scope as JSON `null` = NONE, `[]` = ALL, and non-empty IDs = included subset. A backend normalization path should interpret old V1/V2 criteria using **that stored revision's** template `usecase_ids` for inherited scope, without rewriting historical rows. New writes persist explicit scope. Template-level SQL scope semantics remain unchanged. Xuanyu chose normalized full-template Get/list responses so API consumers see the current criterion model even when the stored revision is older. The choice to increment the JSON version, and the precise updater shape, remain implementation questions. Direct SQL needing criterion applicability must handle mixed stored representations or use a normalized projection.
-
-Go's `encoding/json` decodes both an omitted field and explicit `null` into a nil `*[]string`, while `[]` becomes a non-nil pointer to an empty slice. The normalization boundary must therefore check field presence before ordinary typed decoding, or use a presence-bearing custom type. Reject missing scope on new writes; accept omission on historical reads through the legacy normalizer. After that boundary, nil can represent explicit NONE in the normalized Go model. The canonical Get/list conversion must preserve explicit `null` when reserializing the normalized structure, and Director's criterion types and transforms must preserve `null` instead of dropping it. Xuanyu confirmed that a template has at least one use case, a criterion may have zero, and adding a new template use case reactivates a criterion currently at NONE by adding that use case.
-
-Xuanyu confirmed that canonical Get/list responses should normalize historical revisions to the current full criterion model, materializing inherited criterion scopes from **that revision's** `usecase_ids`, while keeping stored historical JSON unchanged. This is a semantic normalization direction; it does not yet require a particular new JSON version number. Current Go parsing preserves V1/V2 shapes and the DB-to-proto conversion marshals the parsed structure, so implementation will change that conversion boundary.
-
-Xuanyu confirmed on 2026-10-07 that a full-template Commit may accept an intentional criterion scope edit made after the automatic template-scope transition, provided each final criterion scope is contained by the final template scope. Thus the FE can apply the add/remove transition when the admin changes template use cases, and the submitted complete definition is authoritative for the final criterion scopes. The backend validates containment and the previously agreed per-use-case criterion coverage; it must not blindly re-add a newly added template use case over an explicit criterion edit in that full payload. A use-case-only masked Commit, if introduced, would perform the automatic transition server-side because it has no submitted criterion structure.
-
-Write compatibility follow-up: when a **full-template** Commit omits a criterion scope field, the backend should reject the incomplete new definition after scoped criteria exist. Historical stored omissions inherit that revision's template scope, but an omission in a new full replacement is ambiguous and could widen a previously narrowed criterion. The proposed safe rule is to require explicit scope on every criterion in new full definitions, with a dedicated normalization path for legacy revisions and any use-case-only masked request. Stage this safely for old clients that omit the new field.
-
-## Direct readers: high-level impact note
-
-The group calibration analytics path confirms that a complex SQL query need not necessarily migrate to a template query layer. `retrieve_group_calibration_stats.go:findTasks` joins `director.scorecard_templates`, selects the template JSON, then parses it in Go and iterates the criterion tree to build statistics. Its `findScores` query joins template and score rows, and the response has no score row for an inapplicable criterion under the agreed model. The Go aggregation currently iterates every criterion, so it must filter by the task/scorecard's concrete use case to avoid counting absent criteria as empty scores. The query may also need the joined row's `usecase_ids` to normalize historical criterion scope. Those are local contract changes; the SQL join does not itself filter criterion JSON by use case.
-
-This is one example of a consumer change, prompted by the initial concern about analytics querying template tables directly. It does not settle every direct reader or require a new database representation in the core design. This draft keeps the authoritative Go/JSON model and records direct readers as high-level impacts; detailed query changes and any additional SQL read structure belong to consumer implementation planning.
-
-## Candidate criterion read model: materialized view
-
-Xuanyu proposed a PostgreSQL materialized view that expands template JSON into one queryable row per criterion. This is technically plausible and would preserve the agreed ownership model: a row identifies a criterion **within a template revision**, while the authoritative definition and lifecycle remain in template JSON. A row could expose customer/profile, template ID, revision, criterion identifier, structural path or parent, criterion JSON, and stored/effective use-case scope. It would not by itself give criteria independent resource names, writes, permissions, or revision lifecycles.
-
-The repository has a relevant precedent: `app.moment_template_references_materialized` uses `jsonb_path_query` to extract relationships from JSON, has a unique index, and is refreshed by write triggers. A criterion view would have additional flattening rules for V1 versus V2 structure, chapters, and branch children. Historical omitted scope must inherit the **same revision row's** template `usecase_ids`; JSON `null`, `[]`, and explicit ID lists must remain distinguishable. Use one source of template revisions to avoid double counting the duplicated current/revision tables, and validate row identity before choosing a unique index. The current parser checks duplicate identifiers among siblings, while Go later builds a map keyed by identifier across the whole template; it does not visibly enforce global uniqueness, so `(template revision, criterion identifier)` should not be assumed unique without a wider check.
-
-The key tradeoff is refresh cost and freshness. PostgreSQL's standard materialized-view refresh recomputes the view; the repo's existing write-trigger refreshes are significant enough that test infrastructure disables them by default and notes roughly 500 ms even for an empty database. An asynchronous refresh permits stale criterion rows after a template commit. If criterion rows must be available with the committed revision immediately, a normal view (compute on read) or a transactionally maintained per-revision projection table may be preferable to refreshing a global materialized view on every edit. Benchmarking and parity checks against the normalized Go parser would be needed before selecting one.
-
-This option is deferred at Xuanyu's request. Its refresh timing and row-key questions do not block the core cross-use-case template design.
-
-## Provisional core assessment (2026-10-07)
-
-**Decision for planning: proceed with a criterion-level use-case field in the versioned template JSON and typed Go structure.** This is roughly at the requested 80% confidence level for the *core model*, not for implementation effort or a release date. The model expresses all required states without extracting criteria into independent resources: template all/some; criterion none/all/some; containment; automatic template-scope transitions; and revision-pinned evaluations. The existing DB JSONB and Go parser provide a place to implement it. There is no observed need for a new authoritative criterion table.
-
-The remaining core implementation proof is focused: (1) presence-aware parsing and serialization must distinguish historical omission, explicit `null`, and `[]`; (2) full-template writes must preserve explicit final criterion scopes while rejecting invalid subsets and use cases with no applicable criterion; (3) evaluation must filter the pinned revision by the scorecard's use case, create no score row for an inapplicable criterion, and reject a submitted out-of-scope score. These are implementation and compatibility checks, not unresolved data-model choices. The exact JSON version, old-client rollout order, and possible use-case-only FieldMask request remain open.
-
-Confidence in the **cross-service rollout is lower**. Current readers sometimes treat a template as belonging to one use case or iterate the full criterion tree. The core helper should expose a normalized template and an applicable-criteria view for a concrete use case; each consumer still needs its own contract review. A query-layer-only fence is insufficient because some readers use direct SQL. A materialized criterion view is deferred until a concrete query requires it.
-
-## Consumer fit: high-level change map
-
-| Surface | Current seam observed in `go-servers` | Change class for the shared-template model |
+| Repository | Verified commit | Context |
 | --- | --- | --- |
-| Manual scorecard evaluation | A scorecard stores its use case and pinned template revision; scoring currently sees the full parsed structure. | Filter criteria by that use case at scoring and validation; retain historical revision behavior and omit inapplicable score rows. |
-| AutoQA / QM evaluation | Template selection is use-case-aware, but `GetAutoScorableItems()` traverses all criteria. | Filter the selected template's auto-scorable criteria for the conversation use case before trigger resolution and scoring; check the current V2-only DAO gate if the structure version changes. |
-| QM task creation and backfill | A task row has one `usecase_id`; QM task-config backfill writes `template.UsecaseIds[0]`, and task-ID backfill matches scorecards to that one use case. | One QM task must span all applicable use cases of its template, as confirmed by Xuanyu. Define the task's effective use-case scope and update both backfills before enabling shared templates. Keep assignment policy details in QM design. |
-| Coaching | Coaching overviews and progresses call `ListCurrentScorecardTemplateIDs`; coaching also has direct latest-template SQL readers. | Keep template identity shared, apply use-case-aware discovery, and filter criterion-based coaching views where they use definitions. Review direct readers individually. |
-| Performance Insights and other analytics | Criterion stats and QA score stats call `ListCurrentScorecardTemplateIDs`; stats use evaluated score rows and some paths parse full template JSON. | Fix latest-template discovery and preserve the selected use-case filter when using a shared template ID. Aggregate applicable results across selected use cases and provide a per-use-case breakdown; filter criterion denominators by applicability. No universal SQL rewrite is assumed. |
-| Data-platform template and criterion export | The converter populates a single `UsecaseId` only when the template has exactly one use case. | Decide an explicit multi-use-case export contract (for example, repeated applicability or per-use-case records) before enabling shared templates in those resources. This is a contract decision outside the core JSON model. |
+| go-servers | `01c0d818b7793656005500f84efb2d1b69aa54bd` | fetched `origin/main`, November 4; primary source |
+| director | `a03e8e6597da5619fdbeb4e2b29120147ca1c2a1` | fetched `origin/main`, November 4 |
+| cresta-proto | `1938bb241393f0f54e5dd8242f03ba1a6617728e` | fetched `origin/main`, November 4 |
 
-The shared `ListCurrentScorecardTemplateIDs` query selects `DISTINCT ON (customer, profile, usecase_ids, resource_id)`, so changing a template's use-case array can expose multiple revisions to that query; its result map is keyed only by template ID. Latest-template selection must become revision-safe before consumers rely on it for shared templates. This is a cross-service integration seam and a focused rollout gate, not a reason to replace the criterion-level field.
-
-### Performance Insights product contract
-
-The [PRD](https://docs.google.com/document/d/1iEYDUg7NrYo5NjeTcr9nHyNqEbv_sWHrDHJeAkFJS9c/edit?tab=t.0#heading=h.i4n1p4ads1o) answers the earlier combined-versus-separate question for this page. A multi-select use-case filter and cross-use-case template filter allow results over the selected use cases. The first table shows which use cases the template and each criterion apply to. The second and third tables add use-case breakdowns. In a breakdown, a criterion absent from one use case displays **N/A** for that use case. That N/A is a reporting cell: evaluation still creates **no score row** for an inapplicable criterion, and the criterion contributes nothing to that use case's score denominator. Combined criterion metrics should aggregate only scorecards from selected use cases where the criterion applies; a use case with no applicable criterion must not be treated as a zero score. The exact aggregate formula and table query changes belong to the Performance Insights design.
-
-The PRD also calls for a cross-use-case roll-up in QM Report's overall evaluations table and a use-case drilldown for a task. Coaching Hub and Coaching Report filter by selected use cases and applicable coaching-plan scope. These are consumer presentation and aggregation contracts layered on the same template/criterion applicability model; they do not change the authoritative JSON representation.
-
-### Performance Insights phase-1 query feasibility (source and staging review, 2026-10-08)
-
-The [focused source trace](../sessions/2026-10-08/codex-performance-insights-clickhouse-feasibility.md) maps the conversations tab's main stats calls to `RetrieveQAScoreStats` and `RetrieveConversationStats`. The former covers the score/criterion progression and leaderboards; the latter supplies handle-time conversation metrics. A conversation examples drawer also uses `RetrieveQAConversations`, outside the first query comparison.
-
-`score_d` already stores both `criterion_id` and `usecase_id`, and `RetrieveQAScoreStats` already accepts multiple `criterion_identifiers` and `usecase_names`. Its current query can intersect those filters, including multiple use cases, without adding a ClickHouse column. Some page requests supply criterion IDs while scorecard-level and volume requests do not, so the migration must preserve both paths. `RetrieveConversationStats` can filter multiple use cases using conversation/message `usecase_id`; it has no criterion score to filter in its base query, so criterion-specific conversation denominators need a separate product/metric decision before adding a score join.
-
-The requested per-use-case breakdown is a separate API change: `QAAttributeType` and its ClickHouse group-by builder have no use-case dimension. Options are a use-case group-by extension or one request per selected use case. The preferred shape should be chosen after the staging plan comparison and response-contract review. `score` and `scorecard` local sort keys start with time/template (and criterion for `score`); `usecase_id` is present but outside those sort keys, so a multi-use-case predicate's scan benefit or cost needs measurement.
-
-Read-only staging check: `cresta/walter-dev` on `voice-staging`, conversations ClickHouse, seven days (`2026-10-01`–`2026-10-08`). With the same two populated templates and criteria held constant, representative local-table `EXPLAIN ESTIMATE` for the scorecard/score join gave **19 scorecard marks and 37 score marks** for one use case and the same estimates for two use cases plus a use-case breakdown. The conversation/message join gave **2 conversation marks and 4 message marks** for both filters. A direct score scan using independent criterion and use-case filters, or explicit allowed `(usecase_id, criterion_id)` pairs, also had identical estimates. `EXPLAIN indexes=1` showed score pruning by time, template, and criterion, while `usecase_id` was outside the primary-key condition. See the [query shapes and full estimates](../sessions/2026-10-08/codex-performance-insights-clickhouse-feasibility.md).
-
-**Planning conclusion:** the existing score schema and query language can filter several use cases and criteria and can group the result by use case. This is enough to proceed with an API/response design for the PRD breakdown, but it is not a performance sign-off. The staging sample has no template shared across use cases, `_d` distributed tables gave no scan estimates, and these simplified `EXPLAIN` queries do not measure returned-row volume, distributed execution, or API latency. Before implementation completion, compare captured generated SQL and timed requests with a shared-template fixture or representative population. Future inapplicable criteria should have no score row under the core contract; filtering scores by the **latest** applicability pairs could incorrectly discard historical scores tied to pinned revisions.
-
-Xuanyu confirmed on 2026-10-08 that historical Performance Insights results should follow each scorecard's pinned template revision, including scores from use cases later removed from a criterion's scope. Implement the reporting filter against the evaluated scorecard/revision, not only today's template scope.
-
-### Other phase-1 page fit (source review, 2026-10-08)
-
-The [cross-page request and query trace](../sessions/2026-10-08/codex-cross-page-usecase-fit.md) compares the current page contracts with the PRD. The main finding is that a criterion-level field fits evaluated score rows, but **QM task scope and coaching-plan scope are separate data-model changes**. Both resources currently have one `usecase_id` in PostgreSQL and one `usecase_name` in their API models.
-
-| Page | Current fit | Phase-one change class |
+| Fact checked at those commits | Design consequence | Evidence |
 | --- | --- | --- |
-| QM Task Home | Task/template filters and manual-QA suggestion use the current single use case. Task list accepts multiple names but filters a singular task column; suggestion and its period/progress lookups take one use case. | Define one task's effective scope from its template or store a plural scope, then carry the selected use-case set through discovery, periods, progress, and conversation suggestion. Audit backfills first. |
-| QM Report: Evaluations | Manual-QA count/detail/overwritten-score queries can filter scorecards by several use cases. The overall-chart and task-cycle scorecard queries omit that predicate, while task and period lookup filter singular `tasks.usecase_id`. | Pass the selected set through every frontend request; fix shared-task/period discovery and add the scorecard-use-case predicate to both missing stats branches. Preserve the template × task × cycle roll-up and add a per-use-case breakdown contract. Specify completion-rate behavior when the filter is narrower than the task's quota scope. |
-| QM Report: Appeals | Backend validation requires exactly one use case. | Extend backend query/validation and frontend filter for the P0 multi-select. |
-| QM Report: Group Calibrations | Backend stats can filter multiple singular-scope calibration tasks; frontend sends the current use case. | Pass the selected set consistently through task, session, and scorecard reads. Keep each calibration task's own use-case identity unless product scope changes. |
-| Coaching Hub and agent views | Overview/progress APIs accept use-case lists, but SQL reads plans by singular scope. Overview joins plans to agents and collapses to one plan row per agent; the PRD permits multiple plans for one agent. | Define plural plan scope and an overlapping-plan rule, change active-plan uniqueness, aggregate multiple plans correctly, and filter targets and scorecards by selected use cases and applicable criteria. Fix latest-template lookup in direct SQL. |
-| Coaching Report | `RetrieveCoachingEfficiencyStats` already filters sessions and score stats by a list, while Director sends one use case. | Send the page-selected list; count only sessions/conversations whose plan and concrete use case match that selection. This depends on the plan model and needs a focused query/performance check after its SQL shape is chosen. |
+| Both template tables store `usecase_ids` separately from `template JSONB`; scorecards store concrete `usecase_id` and `template_revision`. | Keep the storage split and revision pin. | [S1], [S2] |
+| `ScorecardTemplate.template` uses protobuf Struct; Go has typed criterion/parser structures. Parser accepts V1/V2 only; AutoQM DAO paths explicitly skip versions other than 2. | Add schema support and remove hard-coded V2 assumptions before V3 writes. | [S3], [S4], [S5] |
+| Create/Commit converter parses the structure but stores the original JSON; Commit writes both tables in one transaction and looks up the old row using incoming use cases. | Normalize before persistence; load old revision by identity before applying new scope. Strengthen concurrent Commit serialization. | [S6] |
+| `ListCurrentScorecardTemplateIDs` filters scope before `DISTINCT ON (customer, profile, usecase_ids, resource_id)`. | Choose the current revision by identity first; otherwise old revisions with old scope can survive discovery. | [S7] |
+| Builder reads `triggers[0]` and replaces the list with zero or one trigger; picker defaults to the page use case. | Extend authoring, validation, display, and saves together. | [S8] |
+| Opera multi-use-case picker is gated by `enableGlobalOperaRule`; policy use cases propagate to behavior records. | Support several use-case-specific behavior references without requiring the flag. | [S9] |
+| AutoQM processes all template AutoQA items, then each trigger, without criterion/rule use-case selection at those seams. Empty evidence can become NOT_APPLICABLE. | Select applicable criteria and eligible rules before evidence/outcome interpretation. | [S10] |
+| QM backfill copies `UsecaseIds[0]` and skips all-use-case templates; task-ID backfill matches singular task scope. | Migrate job logic together with live task reads. | [S11] |
+| QM task discovery filters singular `tasks.usecase_id`; the period and overall-chart scorecard queries omit the selected use-case predicate. Manual-QA frontend still overrides the list with one use case. Appeals stats require exactly one use case. | Shared templates require changes beyond template discovery. | [S12], [S13] |
+| QA filters already accept multiple use cases and criteria, but QA grouping enum has no use-case dimension. The ClickHouse builder now has additional conversation-version logic. | Add grouping through the existing builder, retaining current population/version semantics. | [S14], [S15] |
 
-No PostgreSQL `EXPLAIN` result is claimed for these pages. The significant queries depend on how QM task and coaching-plan scopes are represented; first settle those two contracts, then compare query plans, cardinality, and latency with representative shared-template and multi-plan data. A single template query layer will not cover the direct task, plan, scorecard, and coaching-session SQL readers.
+The October investigations remain useful decision evidence, but their source snapshots are older. The staging ClickHouse `EXPLAIN ESTIMATE` compared one/two-use-case filters in a sample with no shared template; it was not a latency benchmark. The October `voice-sandbox-2` NULL/version census covered one database only. Neither is current deployment evidence. No database, deployment configuration, or flag rollout was queried for this plan.
 
-The [focused QM Evaluations trace](../sessions/2026-10-08/codex-qm-report-evaluations-query-fit.md) found that the page currently aggregates whole scorecards rather than criterion scores. Its CSV overwritten-criterion count joins actual `director.scores` to use-case-filtered scorecards, so the proposed no-row-for-inapplicable rule fits PostgreSQL without a JSONB criterion predicate on this page. The two main `RetrieveQMTaskStats` scorecard branches must gain use-case predicates; today a shared task's B-only report can include A scorecards. `RetrieveManualQAStats` already filters scorecards by a list but its frontend hook forces the current single use case, and task/period helpers still use singular task scope. Neither RPC currently groups by use case. Historical score rows must follow their scorecard's pinned revision, not the latest criterion scope. This is source-level feasibility, not a PostgreSQL performance result.
+## Overview
 
-### Pre-implementation gate: backfill paths
+### Model first: one revision, several effective views
 
-Xuanyu confirmed on 2026-10-07 that **one QM task spans use cases A and B** when its template applies to both. A read-only source check found three immediate backfill seams:
+The following SQL is an excerpt of **existing** storage, not a migration. Actual tables have additional columns. `scorecard_templates` contains revision rows, not just a mutable singleton; do not assume one row per template ID.
 
-1. `cron/sync-users/internal/qm-task/backfill_qm_task_config.go` creates one task per template but stores only `template.UsecaseIds[0]` in the task's singular `UsecaseID`; it also skips templates with an empty all-use-cases list. Its behavior cannot represent the confirmed task scope as written.
-2. `cron/sync-users/internal/scorecard-task-id/backfill_scorecard_task_id.go` selects submitted scorecards by both template ID and the task's singular `UsecaseID`. A task spanning A and B would miss scorecards from at least one use case under that query.
-3. `temporal/ingestion/backfillscorecards/template_processor.go` checks template applicability against each conversation's use case, but initializes its AutoQA criterion list with `GetAutoScorableItems()` over the full template. It needs criterion-level filtering for each conversation before scoring.
+```sql
+CREATE TABLE director.scorecard_templates (
+  customer VARCHAR NOT NULL,
+  profile VARCHAR NOT NULL,
+  resource_id VARCHAR NOT NULL,  -- template identity
+  revision VARCHAR NOT NULL,
+  usecase_ids VARCHAR[],         -- existing NULL / '{}' legacy ALL behavior
+  template JSONB NOT NULL,
+  PRIMARY KEY (customer, profile, resource_id, revision)
+);
 
-Before implementing or enabling cross-use-case templates, audit these and other task/scorecard/template backfill entry points against the new scope contract; decide how a task represents or derives its effective use cases; and cover multi-use-case plus legacy single-use-case behavior in focused tests. This is an initial source inventory, not an exhaustive job audit. The local `go-servers` checkout was 64 commits behind `origin/main` during the check.
+CREATE TABLE director.scorecard_template_revisions (
+  customer VARCHAR NOT NULL,
+  profile VARCHAR NOT NULL,
+  resource_id VARCHAR NOT NULL,  -- revision ID in this table
+  template_id VARCHAR NOT NULL,
+  usecase_ids VARCHAR[],
+  template JSONB NOT NULL,
+  PRIMARY KEY (customer, profile, resource_id, template_id)
+);
+```
 
-**QM task scope decision (2026-10-08):** a template-based QM task shares the template's whole applicable scope. If the template adds or removes a use case, existing QM tasks follow its current scope for future evaluations. Historical scorecards retain their pinned template revision and existing task/score associations. The normal QM UI and backfill paths are template-based, but the backend/schema do not guarantee every persisted QM task has a valid template link; audit legacy rows and enforce this on new writes. The derived-versus-materialized task representation and template lifecycle behavior remain implementation choices. See the [decision record](../decisions/2026-10-08-qm-task-inherits-template-usecase-scope.md) and [source trace](../sessions/2026-10-08/codex-qm-task-template-usecase-relationship.md).
+For a revision whose SQL scope is `ARRAY['A','B']`, the **proposed V3 JSON** is:
 
-Source pointers for this snapshot: `shared/qa/scorecard_template.go`, `shared/scoring/scorecard_template_dao.go`, `apiserver/internal/autoqa/action_trigger_conversation_autoscoring.go`, `cron/sync-users/internal/qm-task/backfill_qm_task_config.go`, `apiserver/internal/coaching/action_retrieve_coaching_overviews.go`, `insights-server/internal/analyticsimpl/retrieve_scorecard_criteria_stats.go`, and `insights-server/internal/dataplatform/postgres/converter/converter.go`. The local `go-servers` `main` checkout was 64 commits behind `origin/main` at this review; recheck these seams against the implementation base before finalizing the plan.
+```json
+{
+  "version": 3,
+  "items": [
+    {
+      "identifier": "quality",
+      "displayName": "Quality",
+      "type": "numeric-radios",
+      "weight": 1,
+      "settings": {"range": {"min": 0, "max": 5}},
+      "usecase_ids": ["A", "B"],
+      "auto_qa": {
+        "triggers": [
+          {"type": "behavior", "resource_name": "customers/example/profiles/main/behaviors/quality-a"},
+          {"type": "behavior", "resource_name": "customers/example/profiles/main/behaviors/quality-b"}
+        ],
+        "detected": 5,
+        "not_detected": 0
+      }
+    },
+    {
+      "identifier": "chat-specific",
+      "displayName": "Chat-specific",
+      "type": "numeric-radios",
+      "weight": 1,
+      "settings": {"range": {"min": 0, "max": 5}},
+      "usecase_ids": ["B"]
+    },
+    {
+      "identifier": "retained-for-later",
+      "displayName": "Retained for later",
+      "type": "sentence",
+      "weight": 0,
+      "usecase_ids": null
+    }
+  ]
+}
+```
+
+A/B and resource names are illustrative. The first criterion refers to an A-only and a B-only behavior; those rule scopes live in Opera, not in the trigger JSON. A scorecard in A can write `quality` only. A scorecard in B can write `quality` and `chat-specific`. Neither writes `retained-for-later`. The NONE criterion remains part of the revision and can be reactivated by a later template use-case addition.
+
+The following Go is an **illustrative addition**, not current or copy-ready implementation. Keep raw field presence until normalization; only then use the compact typed representation:
+
+```go
+// Parser input, before legacy defaults or new-write validation.
+type criterionInput struct {
+    UsecaseIDs json.RawMessage `json:"usecase_ids"`
+    // Existing criterion fields omitted.
+}
+
+// Addition to the existing BaseCriterion after normalization.
+// nil => NONE; pointer to empty slice => ALL profile use cases;
+// pointer to nonempty slice => explicit included IDs. No omitempty.
+type BaseCriterion struct {
+    UsecaseIDs *[]string `json:"usecase_ids"`
+    // Existing criterion fields omitted.
+}
+
+// Proposed shared boundary. TemplateScope comes from this revision's SQL row.
+type TemplateScope struct {
+    All bool
+    IDs []string
+}
+type ParseMode int
+const (
+    HistoricalRead ParseMode = iota
+    NewDefinition
+)
+// NormalizeRevision(rawJSON, templateScope, mode) -> full normalized tree
+// ApplicableCriteria(normalizedTree, concreteUsecaseID) -> evaluation view
+```
+
+`json.RawMessage` is absent/nil for omission, bytes `null` for explicit NONE, and bytes `[]` for ALL. A plain `*[]string` at the parser boundary collapses omission and null and is insufficient. The implementation must validate JSON types, IDs, duplicates, ownership, and containment; this excerpt only shows representation.
+
+```mermaid
+flowchart LR
+  E["Template editor: full shared revision"] --> W["Create / Commit: normalize + validate"]
+  W --> P["PostgreSQL: scope columns + versioned JSON"]
+  P --> N["Normalize same revision"]
+  N --> C["Canonical Get/list: full model"]
+  N --> V["Evaluation view: concrete use case"]
+  O["Current Opera rule scope"] --> R["Eligible trigger selection"]
+  V --> R
+  V --> M["Manual scoring + server validation"]
+  R --> A["AutoQM scoring"]
+  M --> S["Revision-pinned scorecard + applicable score rows"]
+  A --> S
+  S --> Q["PostgreSQL QM reporting"]
+  S --> X["Existing data sync to ClickHouse"]
+  X --> I["Performance Insights"]
+```
+
+The normalizer owns representation; evaluation owns applicability; report queries own population and metric grain. A filtered evaluation view must never be saved back as the canonical template.
+
+## User Experience
+
+### 1. Template configuration
+
+The editor selects A+B once and displays scope on every criterion, including branch children. A newly created criterion defaults to the template's scope. A retained NONE criterion displays “No use cases.” Chapters have no separate scope; hide an empty chapter in evaluation while keeping its structure in authoring.
+
+Adding C to the template adds C to all criteria as an editing default, including NONE criteria. Removing A removes A from every criterion. The editor then allows explicit criterion changes before saving the complete final definition. If removing A would leave B with no applicable criterion, show the exact coverage error and block save until corrected. Any reachable criterion counts toward coverage, including sentence/date/user criteria; coverage does not guarantee a numeric QA score.
+
+“ALL” means all profile use cases, including future ones. Narrowing criteria first requires a finite template selection. Changing a finite template back to ALL displays the consequence and requires explicit confirmation: **all criteria, including NONE, reset to ALL**. A cancelled confirmation leaves the edit unchanged. This behavior was confirmed November 4; it does not introduce a template NONE state.
+
+The AutoQM picker loads the union of rules for the template's authorized use cases, displays each rule's coverage and status, and can attach A-only and B-only rules to one criterion. Multi-use-case rules appear where available; the editor does not enable the Opera authoring flag. Show uncovered use cases as “Manual scoring only.” Reject overlapping linked-rule coverage on a criterion, including global-plus-specific coverage. Do not try to infer whether different rule names mean the same business behavior.
+
+### 2. Performance Insights
+
+A local multi-select initializes from the page's top-level selection, then controls template discovery, score/conversation queries, examples, drilldowns, and export. The picker shows a shared template once. Use entitled use cases only; changing the set invalidates relevant cached data.
+
+Show current template/criterion applicability separately from historical results. Results include the combined selected set and a per-use-case breakdown. For a criterion that does not apply, display “Not applicable” (or the established N/A presentation) without synthesizing a score row. An applicable but unscored/manual-only criterion displays “No score,” distinct from explicit scored N/A. Historical results can remain present when current applicability has changed.
+
+### 3. QM task
+
+Select one template, then edit audience, quota, schedule, and conversation filters. The task displays the template's full current scope; there is no independent task scope selector. Conversation filters may narrow candidate selection without redefining the task's scope. Multiple tasks may share the same template. Quotas remain task-wide.
+
+### 4. QM Task Home
+
+List assigned tasks across entitled use cases and allow local narrowing. Suggest conversations from the intersection of the selected use cases, entitlement, current template scope, audience, and task conversation filters. Evaluate each conversation in its concrete use case. No eligible conversations produces an empty result with an explanation, never a fallback to a broader set.
+
+### 5. QM Report
+
+Use the same local selected set across Evaluations, Appeals, Group Calibrations, drilldowns, and CSV. Keep Evaluations' combined row at **template × task × cycle** and add per-use-case counts in detail. A shared A+B task appears once, not as cloned tasks.
+
+For a B-only view, show B's evaluated count and mark task completion rate **N/A**. Label the quota as whole-task; do not divide B's count by A+B's quota. The same rule applies when permissions expose only a subset of task scope. Display a completion rate only when the requested, authorized view covers the whole task scope and the existing time-period/quota rules permit it. Never fetch unauthorized A counts just to compute a percentage.
+
+Group calibrations can be listed across selected use cases while each calibration task retains its existing concrete use case. Coaching UI changes follow separately.
+
+## Detailed Design
+
+### Scope semantics and validation
+
+| Layer / encoded value | Meaning | Read/write contract |
+| --- | --- | --- |
+| Template SQL NULL or empty array | ALL under existing legacy semantics | Preserve reads; new writes canonicalize ALL to a non-null empty array. No template NONE. |
+| Template nonempty array | Finite included scope | Validate same-profile use cases; remove duplicates / use deterministic ordering. |
+| Historical V1/V2 criterion field omitted | Inherit that revision's template scope | Normalize in memory; never consult the latest revision for this default. |
+| Criterion JSON `null` | NONE | Keep criterion identity and definition; no applicable score row. Finite template required under the authoring rule. |
+| Criterion JSON `[]` | ALL profile use cases | Valid only under an ALL template under the agreed authoring rule. It does **not** mean “inherit finite template scope.” |
+| Criterion nonempty array | Finite included scope | Subset of the revision's template scope; finite template required before narrowing. |
+| New V3 criterion field omitted | Invalid definition | Reject; never silently inherit or recover by matching IDs. |
+
+Confirmed invariants:
+
+1. Criterion scope is contained by **its own template revision**, and branch-child scope is contained by the parent criterion's scope. Traverse all nested items and branch children.
+2. A conversation template has at least one reachable applicable criterion for every included use case. A branch child outside an absent parent cannot satisfy coverage.
+3. Canonical Get/list returns the full shared definition, normalized from the requested revision. Evaluation views are derived separately.
+4. Historical scorecards retain concrete use case, pinned revision, scores, and task associations after future edits. Current template permissions remain the permission policy; historical structure does not confer historical access.
+5. An inapplicable criterion has no score row, no aggregate weight, and cannot be supplied in an accepted score mutation. Explicit N/A on an applicable criterion remains the existing score concept.
+6. A template-based QM task follows current template scope for future evaluations; audience, schedule, quota, and conversation filters stay task-owned.
+
+For finite template scope T, new scope T′, and criterion C, the editing default is:
+
+`C′ = (C ∩ T′) ∪ (T′ − T)`
+
+Treat NONE as the empty mathematical set, then serialize a resulting empty set as JSON `null`, **never `[]`**. ALL is symbolic rather than a list of currently known IDs.
+
+| Edit | Before | Default after |
+| --- | --- | --- |
+| Add C | template A+B, criterion A | template A+B+C, criterion A+C |
+| Remove A | template A+B, criterion A | template B, criterion NONE |
+| Add C to retained NONE | template B, criterion NONE | template B+C, criterion C |
+| ALL → finite A+B | template ALL, criteria ALL | template A+B, all criteria explicitly A+B |
+| Finite → ALL | template A+B, mixed scopes | explicit reset confirmation; all criteria ALL |
+| Final explicit editor change | automatic addition gave A+C | author may submit A, subject to final coverage and containment |
+
+The ALL authoring rule avoids a separate event that must add each newly created profile use case to finite criterion lists under an ALL template. It limits flexibility intentionally; changing that rule requires a new design decision.
+
+### Schema version and normalization
+
+**Proposed:** introduce V3 using the current V2 `items` tree plus required criterion `usecase_ids`. A version discriminator makes new-write omission errors explicit and prevents treating dropped scope as legacy inheritance. Alternatives are adding an optional V2 field (weaker write discrimination) or a tagged object `{mode, ids}` (clearer but larger representation, inconsistent with the agreed compact encoding). Recommend V3; this is an engineering proposal rather than a previously settled version number.
+
+Implement a normalization boundary that receives the whole revision context: original JSON version, JSON structure, and same-row SQL template scope. Parse V1/V2 using their existing shapes and materialize missing scope from that row. Parse V3 with required scope presence. Explicit null/empty/IDs must survive serialization. Reject unsupported versions and malformed fields instead of normalizing them to ALL.
+
+New saves serialize the normalized final typed tree, not the original input bytes. Both template tables must receive identical scope and structure for the new revision. Preserve current scoring settings, comments, branching, per-message configuration, unknown-field handling policy, and identifier behavior through round-trip fixtures. Do not assume normalization is just changing `version` to 3; V1 shape conversion and nested branches need explicit handling.
+
+Audit every `ParseScorecardTemplateStructure` caller and every strict `version == 2` check. Replace version gates with explicit supported capabilities. API converters, score calculation, AutoQM/backfill, exports, group-calibration SQL, and direct template readers must consume compatible representations. SQL needing criterion definitions cannot call a Go normalizer; use version-aware extraction or read the corresponding normalized revision in application code. Defer a global criterion projection until those queries require it.
+
+### Create / Commit and concurrent edits
+
+Keep full-template Commit as the P0 API. Load current revision by customer/profile/template identity, without filtering it by incoming scope. Validate authorization against the relevant old and final scopes, then compare the caller's expected revision to the current revision. Scope replacement A→B must be possible for an authorized author even though the sets are disjoint.
+
+The existing revision comparison occurs before the insert transaction [S6]. A transaction around two inserts alone does not serialize two writers that read the same old revision. **Proposed:** serialize Commit for each template using a transaction-scoped lock keyed by customer/profile/template ID, reload the latest row after obtaining it, and check expected revision inside the transaction. Choose the repository's established lock facility during implementation; if using a PostgreSQL advisory lock, use stable namespaced keys and require every template mutation writer to participate. Locking only an old revision row and failing to re-read latest is insufficient. Return a caller-visible revision conflict; the editor reloads and requires reconciliation rather than silently replaying the whole stale definition.
+
+For a full definition, the backend validates the final explicit scopes and does not reapply template additions over the author's choices. Validate nested coverage, reference ownership, AutoQM rule eligibility, and format before writing. Atomically insert the new rows in both tables and update any existing derived trigger index from the normalized model. No successful response can expose a revision whose corresponding companion row was not committed.
+
+A `FieldMask` for use-case-only updates is **deferred**. If added later, it must load the prior complete definition, apply the confirmed transition on the server, validate, and create a revision through the same concurrency protocol. It cannot be implemented as a column-only update. Full Commit remains the editor contract and expected-revision check remains mandatory.
+
+### Manual evaluation and score mutations
+
+Resolve the scorecard's concrete use case and pinned template revision before deriving applicable criteria. For creation, validate the selected current template is applicable to the concrete use case; for existing scorecards, use their stored revision rather than today's scope. Missing/invalid concrete use case on legacy rows requires audit and an explicit migration decision; never default it to ALL.
+
+Use the applicable criterion view in create, update/autosave, submit, validation, scoring, appeals edits, calibration evaluation, exports, and any regeneration path. Validate required criteria and branch reachability within that view. Reject an otherwise known criterion ID that is outside scope with a field-specific InvalidArgument; do not silently accept it or turn it into N/A. Current mapping only checks membership in the full tree and can skip unknown IDs [S2].
+
+`ComputeScores` already skips criteria with no score rows [S2]. Reuse its established option/weight/N/A behavior after applicability selection. A template with only applicable sentence/date/user items can yield no numeric aggregate; preserve that distinction from an invalid zero-criterion configuration. Do not delete existing historical rows because the latest revision changes applicability. Use existing protected scorecard mutation/recomputation paths; the [reviewed race recommendations](../../scorecard-data-sync/deliverables/scorecard-races-corrected-recommendations.md) are a separate concurrency dependency, not a claim that this design implements them.
+
+### AutoQM rule selection
+
+**Confirmed November 4:** uncovered criterion use cases remain manually scorable; reject overlapping rule coverage in new mappings; check the rule's current scope for every new AutoQM run. Stored historical scores stay unchanged. A template revision pins criterion/configuration, but does not snapshot the entire Opera policy or promise reproduction of historical annotations.
+
+For concrete use case U:
+
+1. Select criteria applicable to U from the scorecard's chosen revision.
+2. Batch-resolve linked behavior/policy references within customer/profile and load current rule scope and supported status. Translate Opera's `all-usecases` sentinel explicitly; it is different from scorecard JSON empty-list encoding.
+3. For each criterion, intersect linked rule scopes with criterion scope; select only eligible rules for U. Drop ineligible rules **before** looking for evidence or applying `showNA`.
+4. With zero eligible rules, leave the criterion available for manual scoring and generate no automatic score for it. With one eligible rule, use the existing scoring mapping. Missing evidence for an **eligible** rule retains established N/A/outcome behavior.
+5. With conflicting eligible rules caused by a later Opera scope change, do not combine evidence or choose implicit precedence. Skip automatic scoring for that criterion, record a diagnostic, and surface configuration repair; manual scoring remains available. Preserve existing stored scores. Do not overwrite them with synthetic N/A.
+
+New definition validation rejects duplicate references and overlapping effective coverage **within the criterion's scope**. Distinct A-only and B-only behaviors are valid. A global behavior plus an A-only behavior is invalid on a criterion applicable to A. Coverage outside criterion scope does not alone create a collision. Recheck at runtime because Opera can change independently. Policy edit-time cross-template validation is a possible later enhancement; runtime correctness cannot rely on it.
+
+The single-rule-per-use-case mapping applies to new scope-aware configurations. Audit legacy multi-trigger configurations before upgrading them: some may intentionally combine evidence today. Do not reinterpret them silently. Keep legacy behavior while the feature is disabled; require explicit mapping repair or a separate supported combination contract before enabling affected templates. Also inventory legacy policy, metadata, SDX/moment, and behavior trigger types; scoped V3 AutoQM authoring must reject trigger types whose eligibility cannot be resolved safely rather than pretend they are global. Preserving existing legacy clients/configurations and supporting every trigger type in V3 are different requirements.
+
+Use a request/job-batch lookup cache to avoid a rule query per criterion or conversation, with invalidation or a freshness bound appropriate to the run. Do not serve a stale positive eligibility decision after a scope restriction. Exact cache mechanism and maximum acceptable age require evaluation with the Opera owner; a run must record which policy state it used for diagnosis. If rule metadata is unavailable, treat that as an error/retry or an explicit skipped automatic item, never as “no matching evidence.” Existing behavior when all AutoQM items are empty should be retained unless separately changed; do not create an empty automatic scorecard solely to represent an uncovered criterion.
+
+### Revision-safe discovery and historical reads
+
+Separate two questions:
+
+- **Current authoring/evaluation discovery:** first choose one latest revision by `(customer, profile, resource_id)`, then apply its activation/deletion/scope/audience filters. Do not group by scope and do not prefilter to an old matching revision.
+- **Historical reporting discovery:** identify eligible template/task identities from authorized historical scorecards and stored task links for the requested range, then load metadata and pinned definitions. Latest scope cannot remove an old B scorecard from a B report. Label archived/currently-inapplicable templates as appropriate.
+
+The proposed query shape below illustrates ordering only; production SQL must retain the endpoint's status, permission, and pagination rules and its canonical latest ordering:
+
+```sql
+WITH latest AS (
+  SELECT DISTINCT ON (customer, profile, resource_id) *
+  FROM director.scorecard_templates
+  WHERE customer = :customer AND profile = :profile
+  ORDER BY customer, profile, resource_id, created_at DESC
+)
+SELECT * FROM latest
+WHERE status = :active_status AND deleted_at IS NULL
+  AND deactivated_at IS NULL
+  AND (usecase_ids IS NULL OR usecase_ids = '{}'
+       OR usecase_ids && :authorized_selected_ids::varchar[]);
+```
+
+Define/test deterministic handling of equal `created_at` values using the actual revision-order contract; a random revision ID is not chronological. The per-template write serialization must prevent ambiguous new concurrent current revisions. Historical SQL must retain both `template_id` and `template_revision` when resolving definitions. Template identity alone cannot interpret a historical criterion scope.
+
+### 1. Template configuration implementation
+
+Extend the Director criterion union types, editor defaults, nested traversal, validation, serialization, display-name resolution, and multiple-trigger picker. Fetch rule coverage for the union of selected template use cases; preserve archived references for display without treating archived rules as newly eligible. Update validators and renderers that inspect only `triggers[0]`, including legacy save wrappers. A newer multi-trigger definition must not be truncated when opened and saved.
+
+Create/Commit server validation is authoritative. Frontend validation provides immediate feedback but does not protect non-UI writers. Include duplication/import/activation and administrative backfill paths in the writer inventory. Keep canonical full-template caches keyed by identity/revision; keep derived evaluation caches keyed additionally by concrete use case.
+
+### 2. Performance Insights implementation
+
+Use repeated selected use cases for QA score stats, conversation stats, and examples. Add use case as an explicit grouping dimension and response attribute to the existing QA stats API. Prefer one grouped request over one request per selected use case; per-use-case fan-out multiplies population queries and makes consistent filtering harder. This recommendation still requires query/load evidence.
+
+Carry the scorecard's own `usecase_id` through latest-scorecard and `filtered_scorecard` CTEs, ordinary and metadata-filter query paths, grouping, row scanning, response encoding, and rendering. Preserve current conversation-version selection, ACL/population filters, time basis, deduplication, and scorecard source-version join. The newer builder has logic absent from the October sketch; do not replace it with that old query wholesale [S15].
+
+```sql
+-- Conceptual final aggregation after existing population/version/dedup CTEs.
+SELECT filtered_scorecard.usecase_id, scorecard_score.criterion_id,
+       sumIf(percentage_value * float_weight, percentage_value >= 0) AS numerator,
+       sumIf(float_weight, percentage_value >= 0) AS denominator
+FROM scorecard_score
+JOIN filtered_scorecard
+  ON scorecard_score.scorecard_id = filtered_scorecard.scorecard_id
+ AND scorecard_score.scorecard_last_update_time =
+     filtered_scorecard.scorecard_last_update_time
+GROUP BY filtered_scorecard.usecase_id, scorecard_score.criterion_id;
+```
+
+This SQL illustrates grouping and the retained join; it is not the complete production query. `scorecard_last_update_time` is the parent source version, not ClickHouse arrival time. Keep it with scorecard ID to avoid mixing a newer parent with older criterion scores. Projection completeness/repair belongs to Scorecard Data Sync.
+
+For additive weighted facts, combined ratio is `sum(numerator) / sum(denominator)`, not the mean of use-case percentages. For example, A=80/100 and B=1/10 combine to 81/110, not 45%. Preserve existing metric definitions where the API averages at a different grain; prove reconciliation at each endpoint's actual grain. Distinct conversation counts across criterion or task groups are not generally additive. Zero denominator returns the established missing/N/A presentation, never numeric zero.
+
+Use current definitions for the applicability/configuration table and pinned historical facts for result tables. Do not discard old scores by checking today's criterion scope. If the report range spans scope changes, expose the current-scope label separately from historical results; provide pinned revision context in drilldown.
+
+### 3. QM task implementation
+
+**Proposed representation:** derive effective future task scope from the linked template's current revision rather than storing another plural authoritative scope. Retain the existing singular task field for other task types and legacy compatibility; it must no longer be the QM applicability predicate. Add an output-only resolved scope to the task API so the frontend does not infer it from the copied singleton.
+
+Validate new QM tasks have one existing same-profile template link in `qmTaskContentConfig`; reject missing/stale/cross-profile links on writes. Scope follows template changes without updating every task. Resolve latest template before applying overlap in task lists, GetTask authorization/discovery, evaluation-period queries, progress, reports, and suggestions. Batch joins/lookups and benchmark realistic task/template cardinalities. If derived reads are too expensive, an indexed projection can be proposed later with transactional synchronization and repair ownership; a task-owned user-editable list would violate the confirmed product invariant.
+
+Audit legacy tasks with missing/deleted/stale links. Quarantine invalid future assignment with actionable diagnostics and repair mapping from verified configuration; do not guess a template from a copied use case. Historical scorecards can still be read through existing task IDs under authorization. Template inactive/archive/deletion semantics need the lifecycle owner to confirm: proposed future-evaluation behavior is to stop new suggestions/automatic assignment and retain existing historical task references. Do not cascade-delete history as part of scope migration.
+
+Task conversation filters remain independent. Their use-case predicate intersects template scope; it cannot broaden it. Removing B from a template affects future B suggestions and associations, not completed B evaluations. Mid-cycle scope changes leave the quota task-wide; no retrospective per-use-case allocation is inferred.
+
+### 4. QM Task Home implementation
+
+Extend `SuggestManualQAConversations` with an additive repeated field while preserving the legacy singleton fallback. Resolve one normalized effective set and pass it consistently to template applicability, task/period lookup, progress, and conversation retrieval. The current fallback only fills from the template if the task filter is empty; that is insufficient when a populated filter contains incompatible IDs [S12].
+
+```mermaid
+flowchart LR
+  U["Page selection + user entitlement"] --> I["Intersect"]
+  T["Latest linked template scope"] --> I
+  F["Task conversation filters / audience"] --> I
+  I --> Q["Candidates across matching use cases"]
+  Q --> C["Concrete conversation use case"]
+  C --> V["Pinned revision + applicable criterion view"]
+  V --> S["Manual / eligible AutoQM scores"]
+```
+
+An empty intersection must short-circuit before calling a list API where empty means unrestricted. Deduplicate candidates at the existing conversation/evaluator grain. Assignment/remaining quota is one task-wide value, not the sum of independently computed A and B quotas. Avoid count-only calls per use case when a grouped or combined query can serve the same result; measure calls and rows, not just page counts.
+
+### 5. QM Report implementation
+
+| Surface | Required change | Historical / counting rule |
+| --- | --- | --- |
+| Evaluations discovery | Resolve current tasks through template scope for future work; union authorized historical task/template identities for report history. | Current scope removal cannot hide linked old scorecards. |
+| Overall chart and task-cycle table | Pass selected use-case IDs into both scorecard queries and filter **before** aggregation. | Keep template × task × cycle combined grain and current submit-time/period rules. |
+| Detail / export | Add explicit per-use-case breakdown, selected filters, and scope context; remove frontend singleton override. | Preserve actual score rows for overwritten-criterion counts; no fake inapplicable rows. |
+| Completion rate | When selection/permission covers only part of task scope, return explicit unavailable completion status. | Keep task-wide quota labeled separately; preserve existing partial-period N/A. |
+| Appeals | Replace exactly-one validation with validated authorized set; propagate to every query and picker. | Keep appeal permission and state logic unchanged. |
+| Group Calibrations | Apply selected set across list/stats/session/scorecard retrieval. | Each calibration task remains singular-scope; use its linked/pinned definition appropriately. |
+
+Filter scorecards by their stored `usecase_id`, template ID, task link, existing type/submission/time predicates, and access rules. A scorecard may have several task IDs; prevent duplication inside each intended task grain and do not claim that summing task totals equals distinct conversations. Keep existing no-task and calibrated/reference-scorecard semantics.
+
+### Consumers outside the P0 product journey
+
+| Consumer | Required compatibility before broad exposure | Separate follow-up |
+| --- | --- | --- |
+| Coaching overviews, progress, plans | Read V3 safely, use correct latest-template discovery, and never present out-of-scope criterion targets as applicable. | Plural coaching-plan scope, overlapping active-plan policy, multiple plans per agent, combined/breakdown UI and queries. |
+| Group-calibration direct SQL | Understand legacy/V3 criterion scope where reading definitions; preserve task's own scope and revision. | No plural calibration-task redesign in this plan. |
+| Data-platform template/criterion export | Replace “populate singleton only when len==1” ambiguity with an explicit reviewed multi-scope contract. | Proposed additive plural scope representation plus explicit ALL/NONE interpretation; agree with downstream consumers before release. |
+| Backfill / administrative tools | Parse V3, use same applicability helper, and stop first-use-case assumptions. | Broad repair/reindex execution remains separately reviewed. |
+
+These compatibility tasks are part of the V3 reader inventory even if their new UI is deferred. A feature flag hiding a page does not prevent a background job from reading V3 data.
+
+## API
+
+Keep `ScorecardTemplate.usecase_names` and `google.protobuf.Struct template`; criterion scope stays inside the versioned JSON and typed implementation. Canonical Get/list returns the full requested revision. Do not replace a shared template response with a use-case-filtered tree. Do not expose separate criterion write resources.
+
+The following protobuf illustrates **proposed additive contracts**, not allocated production fields. Numbers for additions must be checked/reserved in cresta-proto during implementation; service messages must follow the company's 11X API conventions and generated-client workflow. The supplied template names 11X guidance but does not include it; a conformance review remains required.
+
+```protobuf
+// Existing request: retain usecase_name = 8 for old clients.
+// Proposed addition to SuggestManualQAConversationsRequest:
+repeated string usecase_names = 11;
+
+// Proposed addition to QAAttributeType (current enum ends at 10):
+// QA_ATTRIBUTE_TYPE_USECASE = 11;
+
+// Proposed response dimension; attach to the existing QA grouping envelope.
+message QAUsecaseDimension {
+  string usecase_name = 1;
+}
+
+// Proposed output-only resolved task scope, populated for template-based QM tasks.
+// Empty repeated names alone must not conflate ALL and unresolved legacy data.
+message ResolvedQMTaskScope {
+  enum Mode {
+    MODE_UNSPECIFIED = 0;  // unresolved/invalid, never interpreted as ALL
+    ALL = 1;
+    INCLUDED = 2;
+  }
+  Mode mode = 1;
+  repeated string usecase_names = 2;
+  string scorecard_template_name = 3; // resolved revision used for this read
+}
+```
+
+For suggestion input: repeated names take effect when populated; singleton remains the legacy fallback. If both are populated, require a consistent singleton set or reject conflicting input instead of silently choosing one. An absent set uses the authorized task/template intersection; a user selection resolving to zero members is a real empty result, not absent input. Response grouping includes explicit use-case resource names without changing existing ungrouped responses.
+
+QM report responses need per-use-case detail plus explicit completion availability/reason, such as partial use-case scope versus partial period. Do not encode a new status as zero percent or rely on a previously numeric-only field to carry null. Final attachment points and field allocation require API owner review; old-client handling must be tested with generated clients.
+
+Use valid same-profile resource names at API boundaries and raw use-case IDs only inside revision JSON/DB as established. Reject cross-profile references, unsupported groupings, and malformed/new omitted scopes. Preserve standard permission-denied and not-found behavior to avoid revealing unavailable resource existence. Do not change existing Commit error codes speculatively; align caller-visible revision conflict handling with the shared API convention during implementation.
+
+## Storage
+
+### PostgreSQL
+
+No new authoritative criterion table and no new blob/object storage. Preserve both existing template tables, their scope columns, historical rows, scorecard revision foreign key, and score rows. V3 adds JSON bytes and requires normalized writes, not a new SQL criterion column. New ALL template writes use `{}`; existing NULL remains ALL on read. This is deliberately different from superseded experiments that made template NULL mean NONE.
+
+Do not rewrite historical V1/V2 rows just to upgrade format. Maintain reader compatibility indefinitely while those revisions are referenced. Reader discovery SQL must handle all/some template columns identically across versions; only criterion JSON requires version-aware interpretation. Do not claim deployed constraints/indexes match schema source without inspecting the target database.
+
+For QM derivation, start with a batched query through task template references plus latest-template selection; do not add a redundant plural task list by default. Existing task-ID GIN indexing supports one current association shape, but source schema alone does not prove the derived lookup is fast. Consider an expression index on the template-reference JSON path or another index only after representative EXPLAIN/latency evidence and the 11X DB review. Do not refresh a global materialized view on every template edit: earlier evidence showed meaningful refresh cost and no demonstrated P0 query need.
+
+### ClickHouse and exports
+
+Score and scorecard projections already carry concrete use-case IDs. No new score-fact scope column is required merely to group by that dimension. Carry existing fields through the query pipeline; keep source-version joins and deduplication. If template-definition exports need plural scope, evolve their schema explicitly with a compatibility/read-first migration and backfill plan; do not represent multi-scope as a blank singleton that downstream consumers might treat as ALL.
+
+### Audit and migration inventory
+
+Before enabling a customer/profile, count template versions and NULL/empty/finite scopes in **both** template tables, find invalid/missing task links and missing scorecard use cases, and inspect legacy multi-trigger configurations and duplicate criterion identifiers across complete trees. Parser sibling-level duplicate checks do not prove whole-template identifier uniqueness. Reuse existing identifier semantics where sound; quarantine ambiguous templates rather than guessing which scope belongs to a duplicated ID.
+
+Migration jobs must be resumable, dry-runnable, tenant-scoped, and report intended changes without secrets or conversation text. Update QM task-config backfill, scorecard-task-ID backfill, AutoQM scorecard backfill, and administrative/template import tools before enabling shared templates. Changing job logic does not authorize running a production backfill. Any later data rewrite needs its own reviewed selection, reconciliation, and recovery record.
+
+## Security & Privacy
+
+This proposal uses existing PostgreSQL, ClickHouse, and Opera data and adds no third-party service, region, or new PII type. It expands the set of use cases a single query/template can cover, so access-control changes require Security & Compliance review under the company template. No notification or external posting was performed as part of drafting.
+
+- Resolve allowed use cases server-side per principal/customer/profile and intersect them with the requested set. Preserve endpoint-specific behavior for unauthorized explicit requests; never let an empty authorized set become an unrestricted SQL predicate.
+- Template ALL is applicability, not an entitlement grant. Audience, template permissions, user/group ACLs, task assignment, conversation access, and per-score comment permissions still apply.
+- Keep historical structure pinned but evaluate access using current policy. Loading a removed-use-case historical scorecard must not bypass present-day entitlement.
+- Authoring a full canonical shared definition may reveal other criterion names/scopes. Preserve the existing template-author permission model and review how partial-use-case authors can edit a shared template; do not derive write authority from any overlap alone. If full-definition access is not allowed, return permission denied rather than a filtered editable tree.
+- Scope rule/behavior lookups to the same customer/profile and validate references even if the UI picker hid unavailable entries. Avoid leaking unauthorized scope/counts through task quota/completion details, cache keys, exports, or diagnostics.
+- Log IDs, revision, effective use-case set or safe summary, and validation reason using existing access/retention controls. Do not log transcript text, score comments, or credentials. Keep metric labels low-cardinality.
+
+Ask Security & Compliance to review the new multi-use-case authorization and historical discovery paths before pilot. API/DB design owners should review 11X conventions. These are release requirements, not completed reviews.
+
+## Monitoring
+
+Proposed instrumentation should distinguish correct skips from failures:
+
+| Signal | Purpose / response |
+| --- | --- |
+| Template validation rejection by reason/schema version | Detect missing scope, containment/coverage failure, overlap, stale editor saves. Return actionable author errors. |
+| Normalization failure / unsupported version by reader family | Find an unconverted reader before or during canary; block enabling writes. |
+| Automatic item skipped: criterion inapplicable / no eligible rule / overlap / metadata unavailable | Expected first two cases are counters; overlap and lookup failures need diagnostics and operator attention. |
+| Out-of-scope score mutation rejection | Detect stale clients or a missed consumer. Never turn rejection into silent scoring. |
+| Invalid QM task link / empty effective candidate set | Separate data repair from legitimate filtering; measure missing/stale links. |
+| API latency, query count, scanned rows/bytes, result cardinality, DB resource use | Compare one/many-use-case paths and identify fan-out or join regressions. |
+| Reconciliation mismatch at defined grain | Compare combined/breakdown numerators and denominators, selected-scope counts, and single-use-case parity. |
+| Existing scorecard sync freshness/version health | Keep reporting lag visible; do not attribute projection lag to applicability. |
+
+Use request traces to capture sanitized effective filters, template/revision IDs, policy lookup version/time, query shape/fingerprint and ClickHouse query ID where available. Avoid raw ID lists as high-cardinality metric labels. Define alert owners and dashboard links with service owners before pilot; no existing dashboard or alert coverage was verified here.
+
+## SLO
+
+The design does not establish a new independent service. Existing apiserver, insights-server, PostgreSQL, ClickHouse, Opera/annotation, and task-job reliability objectives continue to apply; their current numerical SLOs were not supplied or verified. Before pilot, service owners must attach the actual objectives and error budgets to this plan's review record.
+
+**Proposed release criteria:** no known applicability/access violations; all required reconciliation fixtures pass; no unsupported-reader incidents; and p95 latency for representative single- and multi-use-case workloads stays within the agreed service budget. Use a provisional **20% regression investigation threshold** versus the same-release single-use-case baseline at matched load, not an invented contractual SLO. Owners must approve the actual absolute latency budget and representative maximum selection before rollout.
+
+| Dependency failure | Intended behavior |
+| --- | --- |
+| PostgreSQL / revision resolution unavailable | Fail/retry create, commit, or evaluation; do not fall back to latest or universal scope. |
+| Opera rule metadata unavailable | Retry/explicitly skip automatic evaluation with an error reason; manual evaluation may proceed if its template and permissions can be resolved. Do not fabricate N/A. |
+| No rule covers the use case | Normal manual-only criterion behavior, not an outage. |
+| Rule scope changed into overlap | Skip conflicting automatic criterion, retain prior scores, surface repair. |
+| ClickHouse lag/unavailability | Historical scorecards remain in PostgreSQL; analytics shows existing loading/error/freshness behavior. No ad hoc fallback query with different population semantics. |
+| Invalid legacy task link | Stop new assignment for that task; preserve authorized historical reads and diagnose repair. |
+
+Keep rollout controls for schema emission, UI availability, and runtime adoption coherent. After V3 data exists, disabling new writes must retain compatible readers. Recovery is a roll-forward/read-compatible procedure, not redeploying a V2-only binary.
+
+## Testing Plans
+
+No product code or runtime tests were run for this document. The following is the implementation verification plan; ordinary unit tests are required in the source repos but are not the main release evidence.
+
+| End-to-end scenario | Expected proof |
+| --- | --- |
+| Create A+B template with shared, B-only, and NONE criteria | API/DB round trip retains every explicit state; canonical read is full; A and B evaluations have exactly the applicable score rows. |
+| Add C, remove sole criterion use case, then reactivate NONE | Apply transition across nested items/branches; serialize NONE as null; coverage errors appear in UI and API. |
+| ALL→finite and confirmed finite→ALL reset | Finite lists materialize; reset requires confirmation and does not happen on cancellation. |
+| Historical V1/V2 missing scope | Normalize from the same revision; old rows and scores unchanged; canonical new Commit writes explicit scope. |
+| Legacy editor/job writes against scoped template | Missing-field/V2 downgrade rejected; no scope broadening or trigger truncation. |
+| Two clients Commit same expected revision | Exactly one succeeds under the shared writer protocol; second receives a conflict; both template tables remain coherent. |
+| Disjoint template replacement A→B | Old identity resolves without new-scope filtering; authorized commit works; current A discovery excludes it, historical A report retains old scores. |
+| Manual update supplies B-only criterion on A scorecard | Server rejects before persistence/recalculation; UI hiding alone is not the proof. |
+| AutoQM A-rule + B-rule, flag disabled | Same criterion auto-scores each use case with its eligible rule only; no need for global-rule authoring. |
+| Shared A+B rule, flag enabled | One rule covers both; rule scope and metadata/status adapters are verified. |
+| Only A has a rule | B remains manually scorable and has no synthetic automatic N/A row; eligible-rule absence and unavailable-metadata errors differ. |
+| Global + specific overlap; later Opera scope change | New mapping rejected; later runtime conflict skipped with diagnostics; old scores unchanged. |
+| Partial authorization / empty intersection | No data or count leakage; empty set never becomes ALL; cached results and CSV use the same effective set. |
+| Shared task A+B with B-only list/suggestions/report | One task discoverable in B; B-only candidates/counts; completion N/A and whole-task quota clearly labeled. |
+| Scope changes mid-cycle, archived template, no-task scorecards | Preserve established periods, historical association and no-task semantics; validate lifecycle decision. |
+| Appeals and calibration across A+B | Same selected set for picker/card/table/export; each calibration task remains concrete-scope. |
+| PI combined/breakdown across revisions | Reconcile exact weighted facts and distinct counts at true grain; current scope does not filter historical facts. |
+| All-N/A / sentence-only / zero-weight / branch / per-message | Preserve established scoring/null semantics and branch reachability; distinguish not applicable from no score. |
+| Backfill dry-run and retry | Shared/single/ALL template cases, valid task links, idempotent association, concrete-use-case AutoQM filter; no first-ID assumption. |
+
+Use production-shaped synthetic fixtures with several template revisions, multi-task associations, historical scope removal, policy scope changes, metadata filters, voicemail/duration/time-basis/agent reassignment cases, and both ordinary/metadata ClickHouse paths. Include current conversation-version regression fixtures so use-case grouping does not undo newer correctness fixes.
+
+Benchmark PostgreSQL derived task discovery and report queries using EXPLAIN (ANALYZE, BUFFERS) in an approved test environment. Compare one, two, and representative high-end selected-use-case cardinality at matched rows/tasks/templates and concurrent load. Record plans, p50/p95, query/RPC count, returned/scanned rows, and CPU/I/O. For ClickHouse, measure actual query/API latency and scanned marks/bytes against a shared-template fixture, including cold/warm and metadata-filter cases. Equal EXPLAIN estimates alone are insufficient. Validate report pagination/export memory and cancellation at the largest supported result size.
+
+## Technical Debts
+
+- Mixed historical V1/V2 and new V3 definitions require a long-lived normalizer and version-aware direct readers. Centralize the shared logic and track direct SQL exceptions; avoid copying scope semantics into page-specific helpers.
+- `tasks.usecase_id` remains for other task types and legacy compatibility. Mark it non-authoritative for template-based QM in API/server documentation; do not let future readers resurrect the singleton assumption.
+- Protobuf Struct keeps the external criterion schema implicit. Typed Go/TypeScript models, schema fixtures, and version validation are necessary; replacing it with a new typed public criterion API is deferred.
+- Live Opera scope means reproducibility of future rescoring is not guaranteed by template revision alone. Record rule state used for diagnosis; full policy/annotation replay is a separate design.
+- Legacy multi-trigger combinations and unsupported trigger kinds need an explicit migration/adaptation record before scope-aware AutoQM is enabled on those templates.
+- Criterion lookup projection and global identifier cleanup remain deferred. Neither should become an unmeasured global materialized-view refresh in this work.
+- Full Coaching multi-use-case plans and explicit data-platform export scope remain follow-up designs, while read compatibility is mandatory before shared data is exposed to them.
+
+## Cost Estimate
+
+No new datastore, cluster, region, object bucket, or third-party service is proposed. That does **not** imply zero production cost: broader queries can read more rows, and newly eligible AutoQM conversations can add Opera/model processing.
+
+| Cost source | Estimate method / current confidence |
+| --- | --- |
+| Template storage | Added JSON bytes approximately `revisions × criteria × average encoded ID bytes × mean included IDs`, with compression/WAL/replica effects measured separately. Small per template relative to conversations; no fleet count measured. |
+| Serving queries | Compare normalized request/query count, scanned rows/bytes, DB CPU/I/O, and peak concurrency before/after. Grouped breakdown preferred to N repeated queries; delta unknown until load test. |
+| Rule lookups | Batch by distinct referenced behavior/policy per request/job batch; record lookup rate/cache freshness cost. Avoid O(conversations × criteria) DB round trips. |
+| Automatic scoring | `additional eligible conversations × actual per-conversation rule/model cost`, accounting for existing annotation reuse and inference triggers. Do not assume attaching an existing rule causes zero new inference. |
+| Offline work | Audit all relevant template/task rows; any approved repair/backfill cost scales with selected rows/conversations, retries, and replication. No full historical rescore in P0. |
+
+A defensible dollar estimate requires customer counts, daily eligible conversation volume, rule/model pricing, template revision size, and serving benchmarks. Finance/infra and Opera owners should fill in those inputs before broad rollout. If the delta fits existing capacity, no new fixed infrastructure is expected; capacity and variable-cost conclusions remain unmeasured.
+
+## Release Plans & Timelines
+
+### Recommended milestones
+
+| Milestone | Deliverable / exit evidence | Planning effort |
+| --- | --- | --- |
+| 0. Contract and inventory | Confirm proposals/review owners; classify every reader/writer/job; audit legacy rows/mappings; define baseline and performance budgets. | 1–2 SWE weeks |
+| 1. Template config + backend readers | V3 normalizer/capability support everywhere, full Commit validation/serialization/conflicts, builder scopes/multiple mappings, no V3 emission yet. | 4–6 SWE weeks |
+| 2. Scoring and job compatibility | Manual/AutoQM applicability, live rule eligibility, backfill code updates/dry-runs, supported legacy migration handling. | 3–4 SWE weeks |
+| 3. Performance Insights | Multi-select, grouped API/query/response, historical discovery, examples/exports, combined/breakdown reconciliation. | 3–5 SWE weeks |
+| 4. QM task + Task Home | Derived scope across list/period/progress/suggestion, valid links, plural suggestion API, frontend integration. | 3–5 SWE weeks |
+| 5. QM Report | Evaluations filters/breakdowns/completion state, Appeals list support, calibration selection, export parity. | 3–4 SWE weeks |
+| 6. Pilot and production readiness | Load tests, security/API/DB review, customer fixture validation, dashboards, rollout/recovery rehearsal. | 2–3 SWE weeks |
+
+**Rough total: 19–29 SWE weeks**, excluding full Coaching redesign, unmeasured data repair, and any new export-platform migration beyond compatibility. These are planning ranges, not staffed commitments. With roughly three engineers and some overlap, budget approximately 8–12 elapsed weeks after contract/inventory review, subject to service-owner availability and actual legacy-data findings. Assign named owners and calendar dates after staffing; no launch date is promised here.
+
+### Reader-first rollout
+
+1. Capture single-use-case golden fixtures and current service/query baselines. Inventory every running reader family, including background/Temporal/backfill/export workers and direct SQL consumers.
+2. Deploy V3-capable parsers, normalizers, scoring and API readers, task/query fixes, and compatible Director builds while new schema emission stays off. An idle worker or old deployment still counts as an incompatible reader. Verify the updated binary/build is actually serving; published images alone are not proof.
+3. Protect writes: once a template uses V3, reject V1/V2 full-definition downgrades and omitted scopes. Require a client build that can render/save V3 and multiple triggers; stale browsers receive an actionable refresh/read-only error instead of writing a truncated definition. Do not rely solely on a frontend flag to protect API writes.
+4. Enable controlled schema emission and UI for an internal/test profile with explicit A+B fixtures, then one pilot profile. Do not convert all historical revisions. Confirm all five P0 journeys and unaffected consumers before widening that profile's exposure.
+5. Verify real deployment health, rule eligibility diagnostics, report reconciliation, task backfill dry-runs, permissions, and performance at normal/peak load. Agree an observation window with owners; widening requires evidence across a representative task/report cycle, not just a successful save.
+6. Expand profile/customer cohorts and supported selection sizes gradually, preserving rollout records and support guidance. Run any separately approved repairs in explicit, resumable batches.
+
+Backfill first-ID assumptions must be removed before either live shared-template writes **or** a migration job can encounter them. Current/historical discovery and task-report query fixes must ship with the shared-template experience, not as later cosmetic work.
+
+### Recovery
+
+Disable new V3/shared-template edits and affected automation if validation, authorization, or reconciliation fails; preserve reads for existing V3 data. Retry failed operations only through the same version/permission checks. Do not redeploy a V2-only parser after V3 rows exist. Correct configuration by creating a new revision, preserving history; do not mutate pinned revisions or delete scores merely to match latest scope. Data repair needs explicit selection and a recovery record. Keep manual scoring available when only Opera eligibility is unavailable and template/permission resolution succeeds.
+
+## Design Review Notes
+
+### Confirmed decisions
+
+| Decision | Basis |
+| --- | --- |
+| PostgreSQL template scope; criterion scope in revisioned JSON/typed Go; no independent criterion resource | October 5 [canonical model](../sessions/2026-10-05/codex-omni-usecase-canonical-template-model.md) and [ownership discussion](../sessions/2026-10-05/codex-omni-usecase-criterion-ownership.md) |
+| Criterion NONE/ALL/included; same-revision inheritance; finite scope before narrowing; branch containment and per-use-case coverage | [three-state analysis](../sessions/2026-10-05/codex-criterion-three-state-versioned-json.md), [validity](../sessions/2026-10-05/codex-omni-usecase-template-validity.md), [branch rule](../sessions/2026-10-07/codex-branch-scope-invariant.md) |
+| Full Commit contains final explicit criterion scopes; transition is editor default | October 7 [write precedence decision](../sessions/2026-10-07/codex-omni-usecase-full-commit-scopes.md) |
+| Historical pinning, no inapplicable score rows, current permissions | [scope transitions](../sessions/2026-10-05/codex-omni-usecase-scope-transitions.md), original design discussions summarized in [November session](../sessions/2026-11-04/codex-omni-usecase-full-engineering-plan.md) |
+| QM task scope follows current template for future evaluations | October 8 [decision](../decisions/2026-10-08-qm-task-inherits-template-usecase-scope.md) |
+| Separate per-use-case Opera rules are baseline; shared rule conditional on flag | [rule-mapping investigation and correction](../sessions/2026-10-08/codex-multi-usecase-autoqm-rule-mapping.md) |
+| Manual-only where uncovered; overlapping new mappings rejected; current Opera scope for new automatic runs | November 4 [confirmed decisions](../decisions/2026-11-04-omni-usecase-autoqm-and-reporting.md) |
+| Filtered completion N/A; finite→ALL reset requires explicit confirmation | November 4 [confirmed decisions](../decisions/2026-11-04-omni-usecase-autoqm-and-reporting.md) |
+
+### Proposed engineering choices and remaining reviews
+
+| Topic | Recommendation / alternative | Required review evidence |
+| --- | --- | --- |
+| JSON version | V3 with required scope; optional V2 extension weakens omission discrimination. | API/scoring owners agree schema and reader inventory. |
+| Task representation | Derive from current template; plural synchronized projection only if measured need. | PostgreSQL plans/load, validated task linkage, historical discovery cases. |
+| PI breakdown | Explicit use-case grouping in existing API, rather than per-use-case fan-out. | API attachment/field review, combined/breakdown parity, load tests. |
+| Commit concurrency | Shared per-template transactional lock + re-read + expected-revision check. | Writer inventory and real concurrent-Commit test; choose repo-standard lock mechanism. |
+| Old client compatibility | Reject V2 downgrades/omissions on V3 templates, deploy all readers first. | Stale-browser, worker, generated-client and rollback rehearsals. |
+| Opera eligibility freshness | Current scope at evaluation, batched lookups; no snapshot promise. | Opera owner agrees lookup/status semantics, cache freshness and retry behavior; legacy trigger-type inventory. |
+| Template inactive/deletion and invalid legacy task links | Stop future work, preserve historical reads; repair invalid links from evidence. | Lifecycle owner confirms exact behavior and migration inventory. |
+| Shared-template edit authority | Preserve full-definition author policy; no overlap-only authorization. | Security owner reviews partial-use-case author scenario and information exposure. |
+| Export representation / Coaching compatibility | Explicit reviewed plural-scope export contract; V3-safe reads before broad exposure. | Downstream owner sign-off; separate Coaching plan design. |
+| Reliability/cost/timing | Measured budgets and staffed dates before broad release. | Service SLOs, cost inputs, load results, named review/rollout owners. |
+
+No design review meeting, security review, production benchmark, deployment verification, or implementation is claimed complete. The open items above have concrete recommendations and evidence requests rather than hidden defaults. The five product questions asked during drafting were answered and recorded as decisions; engineering proposals remain reviewable.
+
+### Evidence links
+
+The [P0 sketch](phase-1-p0-performance-insights-qm-sketch.md) is a concise navigation aid; this plan supersedes its implementation proposals where they differ. October sessions retain historical evidence, including deferred materialized-view exploration and superseded template-level NULL experiments; those are not selected designs.
+
+[S1]: https://github.com/cresta/go-servers/blob/01c0d818b7793656005500f84efb2d1b69aa54bd/apiserver/sql-schema/director/director-schema.sql#L27-L115
+[S2]: https://github.com/cresta/go-servers/blob/01c0d818b7793656005500f84efb2d1b69aa54bd/shared/scoring/scorecard_calculator.go#L20-L228
+[S3]: https://github.com/cresta/cresta-proto/blob/1938bb241393f0f54e5dd8242f03ba1a6617728e/cresta/v1/coaching/scorecard_template.proto#L21-L79
+[S4]: https://github.com/cresta/go-servers/blob/01c0d818b7793656005500f84efb2d1b69aa54bd/shared/scoring/scorecard_template_parser.go#L19-L92
+[S5]: https://github.com/cresta/go-servers/blob/01c0d818b7793656005500f84efb2d1b69aa54bd/shared/scoring/scorecard_template_dao.go#L143-L185
+[S6]: https://github.com/cresta/go-servers/blob/01c0d818b7793656005500f84efb2d1b69aa54bd/apiserver/internal/coaching/action_commit_scorecard_template.go#L17-L109
+[S7]: https://github.com/cresta/go-servers/blob/01c0d818b7793656005500f84efb2d1b69aa54bd/shared/qa/scorecard_template.go#L104-L161
+[S8]: https://github.com/cresta/director/blob/a03e8e6597da5619fdbeb4e2b29120147ca1c2a1/packages/director-app/src/features/admin/coaching/template-builder/configuration/TemplateBuilderAutoQA/TemplateBuilderAutoQA.tsx#L181-L239
+[S9]: https://github.com/cresta/director/blob/a03e8e6597da5619fdbeb4e2b29120147ca1c2a1/packages/director-app/src/features/opera/policy-editor/ReviewPolicySection.tsx#L350-L389
+[S10]: https://github.com/cresta/go-servers/blob/01c0d818b7793656005500f84efb2d1b69aa54bd/shared/scoring/autoqa_scoring.go#L34-L110
+[S11]: https://github.com/cresta/go-servers/blob/01c0d818b7793656005500f84efb2d1b69aa54bd/cron/sync-users/internal/qm-task/backfill_qm_task_config.go#L108-L132
+[S12]: https://github.com/cresta/go-servers/blob/01c0d818b7793656005500f84efb2d1b69aa54bd/insights-server/internal/analyticsimpl/retrieve_qm_task_stats.go#L279-L445
+[S13]: https://github.com/cresta/director/blob/a03e8e6597da5619fdbeb4e2b29120147ca1c2a1/packages/director-app/src/components/qa/hooks/useRetrieveManualQAStats.ts#L15-L25
+[S14]: https://github.com/cresta/cresta-proto/blob/1938bb241393f0f54e5dd8242f03ba1a6617728e/cresta/v1/analytics/qa_stats.proto#L335-L379
+[S15]: https://github.com/cresta/go-servers/blob/01c0d818b7793656005500f84efb2d1b69aa54bd/insights-server/internal/analyticsimpl/retrieve_qa_score_stats_clickhouse.go
+
+For additional verified seams (converter storage, task-ID backfill, suggestion, appeals, permissions, exports), see the [November 4 source ledger](../sessions/2026-11-04/codex-omni-usecase-full-engineering-plan.md). Source links identify code at review time, not running production versions.

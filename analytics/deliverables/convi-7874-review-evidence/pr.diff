@@ -1,0 +1,709 @@
+diff --git a/insights-server/internal/analyticsimpl/BUILD.bazel b/insights-server/internal/analyticsimpl/BUILD.bazel
+index 49d9ec56bbb9..188b8d0ac13a 100644
+--- a/insights-server/internal/analyticsimpl/BUILD.bazel
++++ b/insights-server/internal/analyticsimpl/BUILD.bazel
+@@ -1453,6 +1453,7 @@ go_test(
+         "//shared/testing/cmputil",
+         "//shared/testing/mock",
+         "//testing/shared/grpc/clientregistry",
++        "@com_github_cresta_cresta_proto_v2//cresta/nonpublic/config",
+         "@com_github_cresta_cresta_proto_v2//cresta/v1/analytics",
+         "@com_github_cresta_cresta_proto_v2//cresta/v1/auth",
+         "@com_github_cresta_cresta_proto_v2//cresta/v1/common/labels",
+@@ -1481,6 +1482,7 @@ go_test(
+         "@org_golang_google_grpc//codes",
+         "@org_golang_google_grpc//metadata",
+         "@org_golang_google_grpc//status",
++        "@org_golang_google_protobuf//encoding/protojson",
+         "@org_golang_google_protobuf//proto",
+         "@org_golang_google_protobuf//testing/protocmp",
+         "@org_golang_google_protobuf//types/known/durationpb",
+diff --git a/insights-server/internal/analyticsimpl/common_user_filter.go b/insights-server/internal/analyticsimpl/common_user_filter.go
+index 5cc98b000964..39758ba46b2a 100644
+--- a/insights-server/internal/analyticsimpl/common_user_filter.go
++++ b/insights-server/internal/analyticsimpl/common_user_filter.go
+@@ -2,7 +2,6 @@ package analyticsimpl
+ 
+ import (
+ 	"context"
+-	"fmt"
+ 	"slices"
+ 	"strings"
+ 
+@@ -231,7 +230,7 @@ func ParseUserFilterForAnalytics(
+ 	// Dynamic groups select their member users. Resolve the name-only request groups
+ 	// before applying the ACL, which grants group access through TEAM hierarchy.
+ 	if len(reqGroups) > 0 {
+-		teamGroups, dynamicGroups, err := resolveSelectedGroups(ctx, userClientRegistry, internalUserClientRegistry, customerID, profileID, reqGroups)
++		teamGroups, dynamicGroups, err := shared.SplitGroupsByType(ctx, userClientRegistry, internalUserClientRegistry, customerID, profileID, reqGroups)
+ 		if err != nil {
+ 			return nil, err
+ 		}
+@@ -392,53 +391,6 @@ func emptyParseUserFilterResult() *ParseUserFilterResult {
+ 	}
+ }
+ 
+-// resolveSelectedGroups uses UserService metadata because analytics requests
+-// carry group names without their types. Groups absent from the current profile
+-// are ignored as empty selections, never treated as unrestricted access.
+-func resolveSelectedGroups(
+-	ctx context.Context,
+-	userClientRegistry registry.Registry[userpb.UserServiceClient],
+-	internalUserClientRegistry registry.Registry[internaluserpb.InternalUserServiceClient],
+-	customerID, profileID string,
+-	reqGroups []*userpb.Group,
+-) ([]*userpb.Group, []*userpb.Group, error) {
+-	for _, group := range reqGroups {
+-		name, err := userpb.ParseGroupName(group.GetName())
+-		if err != nil {
+-			return nil, nil, err
+-		}
+-		if name.CustomerID != customerID {
+-			return nil, nil, fmt.Errorf("group %q belongs to a different customer", group.GetName())
+-		}
+-	}
+-
+-	resolvedGroups, err := shared.ListGroups(ctx, userClientRegistry, internalUserClientRegistry, customerID, profileID, reqGroups, true)
+-	if err != nil {
+-		return nil, nil, err
+-	}
+-	groupsByName := make(map[string]*userpb.Group, len(resolvedGroups))
+-	for _, group := range resolvedGroups {
+-		groupsByName[group.GetName()] = group
+-	}
+-
+-	var teamGroups, dynamicGroups []*userpb.Group
+-	for _, requested := range reqGroups {
+-		group, ok := groupsByName[requested.GetName()]
+-		if !ok {
+-			continue
+-		}
+-		switch group.GetType() {
+-		case userpb.Group_TEAM:
+-			teamGroups = append(teamGroups, group)
+-		case userpb.Group_DYNAMIC_GROUP:
+-			dynamicGroups = append(dynamicGroups, group)
+-		default:
+-			return nil, nil, fmt.Errorf("unsupported group type %v for %q", group.GetType(), group.GetName())
+-		}
+-	}
+-	return teamGroups, dynamicGroups, nil
+-}
+-
+ // convertLiteUsersToUsers converts map[string]*internaluserpb.LiteUser to []*userpb.User
+ func convertLiteUsersToUsers(liteUsers map[string]*internaluserpb.LiteUser, customerID string) []*userpb.User {
+ 	result := make([]*userpb.User, 0, len(liteUsers))
+diff --git a/insights-server/internal/analyticsimpl/evaluate_analytics_chart_filter_test.go b/insights-server/internal/analyticsimpl/evaluate_analytics_chart_filter_test.go
+index 4271770eb763..c1a37e4d8516 100644
+--- a/insights-server/internal/analyticsimpl/evaluate_analytics_chart_filter_test.go
++++ b/insights-server/internal/analyticsimpl/evaluate_analytics_chart_filter_test.go
+@@ -12,6 +12,7 @@ import (
+ 	dashboardpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/dashboarding"
+ 	userpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/user"
+ 	internalusermock "github.com/cresta/cresta-proto/v2/gen/gomock2/cresta/nonpublic/user"
++	usermock "github.com/cresta/cresta-proto/v2/gen/gomock2/cresta/v1/user"
+ 	"github.com/cresta/shared-go/fn"
+ 	logger "github.com/cresta/shared-go/framework/log"
+ 	"github.com/golang/mock/gomock"
+@@ -576,6 +577,7 @@ type ScopeOuterGroupByTestSuite struct {
+ 	ctx                   context.Context
+ 	server                AnalyticsServiceImpl
+ 	mockInternalUser      *internalusermock.MockInternalUserServiceClient
++	mockUser              *usermock.MockUserServiceClient
+ 	mockConfigClient      *mockconfig.MockClient
+ 	mockResourceACLHelper *authmocks.MockResourceACLHelper
+ }
+@@ -588,16 +590,27 @@ func (s *ScopeOuterGroupByTestSuite) SetupTest() {
+ 	ctrl := gomock.NewController(s.T())
+ 	s.ctx = context.Background()
+ 	s.mockInternalUser = internalusermock.NewMockInternalUserServiceClient(ctrl)
++	s.mockUser = usermock.NewMockUserServiceClient(ctrl)
+ 	s.mockConfigClient = mockconfig.NewMockClient(ctrl)
+ 	s.mockResourceACLHelper = authmocks.NewMockResourceACLHelper(ctrl)
+ 	resourceACLHelperProvider := authmocks.NewMockResourceACLHelperProvider(ctrl)
+ 	resourceACLHelperProvider.EXPECT().Get().AnyTimes().Return(s.mockResourceACLHelper)
+ 	s.server = AnalyticsServiceImpl{
+ 		logger:                            logger.GetLogger(),
++		userClientRegistry:                clientregistry.NewTestRegistry[userpb.UserServiceClient](s.mockUser),
+ 		internalUserServiceClientRegistry: clientregistry.NewTestRegistry[internaluserpb.InternalUserServiceClient](s.mockInternalUser),
+ 		configClient:                      s.mockConfigClient,
+ 		resourceACLHelperProvider:         resourceACLHelperProvider,
+ 	}
++	// The ACL path resolves requested groups by type; every group in these cases is a team.
++	s.mockUser.EXPECT().ListGroups(gomock.Any(), gomock.Any()).AnyTimes().DoAndReturn(
++		func(_ context.Context, req *userpb.ListGroupsRequest, _ ...grpc.CallOption) (*userpb.ListGroupsResponse, error) {
++			resp := &userpb.ListGroupsResponse{}
++			for _, groupID := range req.GetFilter().GetGroupIds() {
++				resp.Groups = append(resp.Groups, &userpb.Group{Name: scopeTestGroupName(groupID), Type: userpb.Group_TEAM})
++			}
++			return resp, nil
++		})
+ 	s.mockInternalUser.EXPECT().ListUsersForAnalytics(gomock.Any(), gomock.Any()).AnyTimes().DoAndReturn(
+ 		func(_ context.Context, req *internaluserpb.ListUsersForAnalyticsRequest, _ ...grpc.CallOption) (*internaluserpb.ListUsersForAnalyticsResponse, error) {
+ 			resp := &internaluserpb.ListUsersForAnalyticsResponse{}
+@@ -810,6 +823,18 @@ func TestEvaluateAnalyticsChart_TeamFilterScopesOuterGroupBy(t *testing.T) {
+ 			}
+ 			return resp, nil
+ 		})
++	// The ACL path splits requested groups by type, so every chart group resolves as a team here.
++	r.mockUserClient.EXPECT().ListGroups(gomock.Any(), gomock.Any()).AnyTimes().DoAndReturn(
++		func(_ context.Context, req *userpb.ListGroupsRequest, _ ...grpc.CallOption) (*userpb.ListGroupsResponse, error) {
++			resp := &userpb.ListGroupsResponse{}
++			for _, groupID := range req.GetFilter().GetGroupIds() {
++				resp.Groups = append(resp.Groups, &userpb.Group{
++					Name: userpb.GroupName{CustomerID: r.customerID, GroupID: groupID}.String(),
++					Type: userpb.Group_TEAM,
++				})
++			}
++			return resp, nil
++		})
+ 	// gomock matches the earliest registered expectation, so per-case AnyTimes expectations would
+ 	// leak the first case's config into later cases. Each case sets testCustomerConfig instead.
+ 	var testCustomerConfig *config.CustomerConfig
+diff --git a/insights-server/internal/analyticsimpl/retrieve_closed_conversations_test.go b/insights-server/internal/analyticsimpl/retrieve_closed_conversations_test.go
+index 8331187c55f0..b926e06c52d7 100644
+--- a/insights-server/internal/analyticsimpl/retrieve_closed_conversations_test.go
++++ b/insights-server/internal/analyticsimpl/retrieve_closed_conversations_test.go
+@@ -271,6 +271,8 @@ func TestRetrieveClosedConversations(t *testing.T) {
+ 	r := RetrieveClosedConversationsTestSuite{AnalyticsV2TestSuite: newTestSuite(t)}
+ 	r.SetupSuite()
+ 
++	wantTotalConversations := int32(5)
++
+ 	// V3 category tree shared by the V3 cases: a parent `v3-root` with two leaf children.
+ 	v3TemplatesResp := &momentpb.ListMomentsResponse{
+ 		Moments: []*momentpb.Moment{
+@@ -305,6 +307,7 @@ func TestRetrieveClosedConversations(t *testing.T) {
+ 		batchGetMomentResps                        []*momentpb.BatchGetMomentsResponse
+ 		listMomentsResp                            *momentpb.ListMomentsResponse
+ 		enableAdvancedDataAccessControl            bool
++		enableConversationAccessControl            bool
+ 		resourceACL                                *auth.ResourceACL
+ 		enableFilterConvosWithLastMomentAnnotation bool
+ 		enableEsQueryAttendeesForAgentUserIDs      bool
+@@ -312,6 +315,9 @@ func TestRetrieveClosedConversations(t *testing.T) {
+ 		enableNumHoldsField                        bool
+ 		expectedListUsersForAnalyticsResponse      *internaluserpb.ListUsersForAnalyticsResponse
+ 		expectedListUsersFromDynamicGroupsResponse *userpb.ListUsersResponse
++		listGroupsResponse                         *userpb.ListGroupsResponse
++		skipESQuery                                bool
++		wantTotalConversationCount                 *int32
+ 	}{
+ 		{
+ 			desc: "BasicRequest",
+@@ -915,6 +921,11 @@ func TestRetrieveClosedConversations(t *testing.T) {
+ 					{Name: "customers/customer_id/users/d072a51a8359fe51"},
+ 				},
+ 			},
++			listGroupsResponse: &userpb.ListGroupsResponse{
++				Groups: []*userpb.Group{
++					{Name: "customers/customer_id/groups/test_group_1", Type: userpb.Group_TEAM},
++				},
++			},
+ 			req: &analyticspb.RetrieveClosedConversationsRequest{
+ 				Parent:   fmt.Sprintf("customers/%s/profiles/%s", r.customerID, r.profileID),
+ 				Metadata: &analyticspb.Metadata{TimeZoneId: "Pacific/Honolulu"},
+@@ -1011,6 +1022,148 @@ func TestRetrieveClosedConversations(t *testing.T) {
+ 			},
+ 			esReqPath: "RetrieveClosedConversations_AccessControl_isRoot_withGroupFilter_filterAclGroups_es_request.json",
+ 		},
++		{
++			// Sunbit (CONVI-7874): Conversation Access Control alone must not treat a
++			// dynamic group as a team that is outside the caller's ACL.
++			desc:                            "AccessControl_conversationAccessControl_isNotRoot_withDynamicGroupFilter_inScope",
++			enableConversationAccessControl: true,
++			resourceACL: &auth.ResourceACL{
++				IsRootAccess:   false,
++				ManagedUserIDs: []string{"35636a572d7ec364", "2f540f161f3a452c"},
++			},
++			expectedListUsersForAnalyticsResponse: &internaluserpb.ListUsersForAnalyticsResponse{
++				Users: []*internaluserpb.LiteUser{
++					{UserId: "35636a572d7ec364"},
++				},
++			},
++			listGroupsResponse: &userpb.ListGroupsResponse{
++				Groups: []*userpb.Group{
++					{Name: "customers/customer_id/groups/test_dynamic_group_1", Type: userpb.Group_DYNAMIC_GROUP},
++				},
++			},
++			req: &analyticspb.RetrieveClosedConversationsRequest{
++				Parent:   fmt.Sprintf("customers/%s/profiles/%s", r.customerID, r.profileID),
++				Metadata: &analyticspb.Metadata{TimeZoneId: "Pacific/Honolulu"},
++				FilterByAttribute: &analyticspb.Attribute{
++					TimeRanges: []*analyticspb.TimeRange{
++						{
++							StartTimestamp: timestamppb.New(time.Date(2022, 4, 13, 0, 0, 0, 0, time.UTC)),
++							EndTimestamp:   timestamppb.New(time.Date(2022, 7, 13, 0, 0, 0, 0, time.UTC)),
++						},
++					},
++					Groups: []*userpb.Group{
++						{Name: "customers/customer_id/groups/test_dynamic_group_1"},
++					},
++				},
++			},
++			esReqPath:                  "RetrieveClosedConversations_AccessControl_isNotRoot_withUserFilter_aclUsers_es_request.json",
++			esRespPath:                 "RetrieveClosedConversations_BasicRequest_es_response.json",
++			wantTotalConversationCount: &wantTotalConversations,
++		},
++		{
++			// Security guardrail: dynamic group members outside the caller's ACL must
++			// not leak into the response.
++			desc:                            "AccessControl_conversationAccessControl_isNotRoot_withDynamicGroupFilter_outOfScope",
++			enableConversationAccessControl: true,
++			resourceACL: &auth.ResourceACL{
++				IsRootAccess:   false,
++				ManagedUserIDs: []string{"35636a572d7ec364"},
++			},
++			expectedListUsersForAnalyticsResponse: &internaluserpb.ListUsersForAnalyticsResponse{
++				Users: []*internaluserpb.LiteUser{
++					{UserId: "d072a51a8359fe51"},
++				},
++			},
++			listGroupsResponse: &userpb.ListGroupsResponse{
++				Groups: []*userpb.Group{
++					{Name: "customers/customer_id/groups/test_dynamic_group_1", Type: userpb.Group_DYNAMIC_GROUP},
++				},
++			},
++			req: &analyticspb.RetrieveClosedConversationsRequest{
++				Parent:   fmt.Sprintf("customers/%s/profiles/%s", r.customerID, r.profileID),
++				Metadata: &analyticspb.Metadata{TimeZoneId: "Pacific/Honolulu"},
++				FilterByAttribute: &analyticspb.Attribute{
++					TimeRanges: []*analyticspb.TimeRange{
++						{
++							StartTimestamp: timestamppb.New(time.Date(2022, 4, 13, 0, 0, 0, 0, time.UTC)),
++							EndTimestamp:   timestamppb.New(time.Date(2022, 7, 13, 0, 0, 0, 0, time.UTC)),
++						},
++					},
++					Groups: []*userpb.Group{
++						{Name: "customers/customer_id/groups/test_dynamic_group_1"},
++					},
++				},
++			},
++			skipESQuery: true,
++			want:        &analyticspb.RetrieveClosedConversationsResponse{},
++		},
++		{
++			// With `enableTeamsAndGroupsSplitInInsightsFilters` on, Director sends the
++			// dynamic group in `dynamic_groups` instead of `groups`.
++			desc:                            "AccessControl_conversationAccessControl_isNotRoot_withDynamicGroupsField_inScope",
++			enableConversationAccessControl: true,
++			resourceACL: &auth.ResourceACL{
++				IsRootAccess:   false,
++				ManagedUserIDs: []string{"35636a572d7ec364", "2f540f161f3a452c"},
++			},
++			expectedListUsersFromDynamicGroupsResponse: &userpb.ListUsersResponse{
++				Users: []*userpb.User{
++					{Name: "customers/customer_id/users/35636a572d7ec364"},
++				},
++			},
++			req: &analyticspb.RetrieveClosedConversationsRequest{
++				Parent:   fmt.Sprintf("customers/%s/profiles/%s", r.customerID, r.profileID),
++				Metadata: &analyticspb.Metadata{TimeZoneId: "Pacific/Honolulu"},
++				FilterByAttribute: &analyticspb.Attribute{
++					TimeRanges: []*analyticspb.TimeRange{
++						{
++							StartTimestamp: timestamppb.New(time.Date(2022, 4, 13, 0, 0, 0, 0, time.UTC)),
++							EndTimestamp:   timestamppb.New(time.Date(2022, 7, 13, 0, 0, 0, 0, time.UTC)),
++						},
++					},
++					DynamicGroups: []*userpb.Group{
++						{Name: "customers/customer_id/groups/test_dynamic_group_1"},
++					},
++				},
++			},
++			esReqPath:                  "RetrieveClosedConversations_AccessControl_isNotRoot_withUserFilter_aclUsers_es_request.json",
++			esRespPath:                 "RetrieveClosedConversations_BasicRequest_es_response.json",
++			wantTotalConversationCount: &wantTotalConversations,
++		},
++		{
++			// The `dynamic_groups` variant must also work for root callers, otherwise
++			// enabling `enableTeamsAndGroupsSplitInInsightsFilters` drops the filter
++			// and widens their query.
++			desc:                            "AccessControl_conversationAccessControl_isRoot_withDynamicGroupsField_inScope",
++			enableConversationAccessControl: true,
++			resourceACL: &auth.ResourceACL{
++				IsRootAccess:   true,
++				ManagedUserIDs: []string{"35636a572d7ec364", "2f540f161f3a452c"},
++			},
++			expectedListUsersFromDynamicGroupsResponse: &userpb.ListUsersResponse{
++				Users: []*userpb.User{
++					{Name: "customers/customer_id/users/35636a572d7ec364"},
++				},
++			},
++			req: &analyticspb.RetrieveClosedConversationsRequest{
++				Parent:   fmt.Sprintf("customers/%s/profiles/%s", r.customerID, r.profileID),
++				Metadata: &analyticspb.Metadata{TimeZoneId: "Pacific/Honolulu"},
++				FilterByAttribute: &analyticspb.Attribute{
++					TimeRanges: []*analyticspb.TimeRange{
++						{
++							StartTimestamp: timestamppb.New(time.Date(2022, 4, 13, 0, 0, 0, 0, time.UTC)),
++							EndTimestamp:   timestamppb.New(time.Date(2022, 7, 13, 0, 0, 0, 0, time.UTC)),
++						},
++					},
++					DynamicGroups: []*userpb.Group{
++						{Name: "customers/customer_id/groups/test_dynamic_group_1"},
++					},
++				},
++			},
++			esReqPath:                  "RetrieveClosedConversations_AccessControl_isRoot_withUserFilter_aclUsers_es_request.json",
++			esRespPath:                 "RetrieveClosedConversations_BasicRequest_es_response.json",
++			wantTotalConversationCount: &wantTotalConversations,
++		},
+ 		{
+ 			desc: "DurationRange",
+ 			req: &analyticspb.RetrieveClosedConversationsRequest{
+@@ -3662,9 +3815,10 @@ func TestRetrieveClosedConversations(t *testing.T) {
+ 						}
+ 					],
+ 					"authConfig": {
+-						"enableAdvancedDataAccessControl": %v
++						"enableAdvancedDataAccessControl": %v,
++						"enableConversationAccessControl": %v
+ 					}}
+-				`, tc.enableFilterConvosWithLastMomentAnnotation, tc.includeEmptyConvos, tc.enableNumHoldsField, tc.enableAdvancedDataAccessControl)), &cConfig))
++				`, tc.enableFilterConvosWithLastMomentAnnotation, tc.includeEmptyConvos, tc.enableNumHoldsField, tc.enableAdvancedDataAccessControl, tc.enableConversationAccessControl)), &cConfig))
+ 			testCustomerConfig := fn.Must(config.NewCustomerConfig(&cConfig))
+ 			r.mockConfigClient.EXPECT().
+ 				Get(gomock.Any()).Times(1).
+@@ -3673,10 +3827,16 @@ func TestRetrieveClosedConversations(t *testing.T) {
+ 				GetProfileConfig(gomock.Any(), gomock.Any()).Times(1).
+ 				Return(testCustomerConfig.ListProfiles()[0], nil)
+ 
+-			if tc.enableAdvancedDataAccessControl && tc.resourceACL != nil {
++			if (tc.enableAdvancedDataAccessControl || tc.enableConversationAccessControl) && tc.resourceACL != nil {
+ 				r.setupACLHelper(gomock.Any(), 1, tc.resourceACL)
+ 			}
+ 
++			if tc.listGroupsResponse != nil {
++				r.mockUserClient.EXPECT().
++					ListGroups(gomock.Any(), gomock.Any()).Times(1).
++					Return(tc.listGroupsResponse, nil)
++			}
++
+ 			if tc.req.FilterByAttribute.Groups != nil || tc.req.FilterByAttribute.ExcludeDeactivatedUsers {
+ 				r.mockInternalUserClient.EXPECT().
+ 					ListUsersForAnalytics(gomock.Any(), gomock.Any()).Times(1).
+@@ -3691,17 +3851,22 @@ func TestRetrieveClosedConversations(t *testing.T) {
+ 			if tc.expectedListUsersFromDynamicGroupsResponse != nil {
+ 				err := envflag.Set("ENABLE_DYNAMIC_GROUPS_ACL", "true")
+ 				r.Require().NoError(err)
++				t.Cleanup(func() {
++					_ = envflag.Set("ENABLE_DYNAMIC_GROUPS_ACL", "false")
++				})
+ 				r.mockUserClient.EXPECT().
+ 					ListUsers(gomock.Any(), gomock.Any()).Times(1).
+ 					Return(tc.expectedListUsersFromDynamicGroupsResponse, nil)
+ 			}
+ 
+-			r.mockESServer.EXPECT().Search(r.IndexName, r.getFile(tc.esReqPath))
++			if !tc.skipESQuery {
++				r.mockESServer.EXPECT().Search(r.IndexName, r.getFile(tc.esReqPath))
+ 
+-			if tc.esRespPath != "" {
+-				r.mockESServer.Resps = append(r.mockESServer.Resps, r.getFile(tc.esRespPath))
+-			} else {
+-				r.mockESServer.Resps = append(r.mockESServer.Resps, emptyESHitsResponse)
++				if tc.esRespPath != "" {
++					r.mockESServer.Resps = append(r.mockESServer.Resps, r.getFile(tc.esRespPath))
++				} else {
++					r.mockESServer.Resps = append(r.mockESServer.Resps, emptyESHitsResponse)
++				}
+ 			}
+ 			resp, err := r.Client.RetrieveClosedConversations(r.ctx, tc.req)
+ 			if err != nil {
+@@ -3714,6 +3879,10 @@ func TestRetrieveClosedConversations(t *testing.T) {
+ 					t.Fatalf("RetrieveClosedConversations return unexpected response with diff (-want +got):\n %v", diff)
+ 				}
+ 			}
++			if tc.wantTotalConversationCount != nil {
++				r.Equal(*tc.wantTotalConversationCount, resp.GetTotalConversationCount())
++				r.Len(resp.GetConversations(), int(*tc.wantTotalConversationCount))
++			}
+ 
+ 			if tc.enableEsQueryAttendeesForAgentUserIDs {
+ 				err := envflag.Set("ENABLE_ES_QUERY_ATTENDEES_FOR_AGENT_USER_IDS", "false")
+diff --git a/insights-server/internal/analyticsimpl/retrieve_conversation_message_stats_test.go b/insights-server/internal/analyticsimpl/retrieve_conversation_message_stats_test.go
+index 3bb4f86e31a5..8cb5fd668a8d 100644
+--- a/insights-server/internal/analyticsimpl/retrieve_conversation_message_stats_test.go
++++ b/insights-server/internal/analyticsimpl/retrieve_conversation_message_stats_test.go
+@@ -7,21 +7,27 @@ import (
+ 	"testing"
+ 	"time"
+ 
++	configpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/nonpublic/config"
++	internaluserpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/nonpublic/user"
+ 	analyticspb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/analytics"
+ 	labelspb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/common/labels"
+ 	"github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/common/metadata"
+ 	convopb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/conversation"
+ 	momentpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/moment"
++	userpb "github.com/cresta/cresta-proto/v2/gen/go/cresta/v1/user"
++	"github.com/cresta/shared-go/fn"
+ 	"github.com/golang/mock/gomock"
+ 	"github.com/google/go-cmp/cmp"
+ 	_ "github.com/stretchr/testify/mock"
+ 	"google.golang.org/grpc"
+ 	"google.golang.org/grpc/status"
++	"google.golang.org/protobuf/encoding/protojson"
+ 	"google.golang.org/protobuf/testing/protocmp"
+ 	"google.golang.org/protobuf/types/known/durationpb"
+ 	"google.golang.org/protobuf/types/known/timestamppb"
+ 
+ 	"github.com/cresta/go-servers/config/shared/grpcclient/config"
++	"github.com/cresta/go-servers/shared/auth"
+ 	"github.com/cresta/go-servers/shared/testing/cmputil"
+ 	envutil "github.com/cresta/shared-go/util/env"
+ )
+@@ -3291,3 +3297,66 @@ func TestRetrieveConversationMessageStats(t *testing.T) {
+ 		})
+ 	}
+ }
++
++// A dynamic group that resolves but has no members is an empty audience. A caller that passes
++// returnEmptyResponseWhenNoUsersAfterMove=false must still get no conversations; falling through
++// to the ACL-user fallback would return every conversation the caller can see.
++func TestRetrieveConversationMessageStats_EmptyDynamicGroupDoesNotWiden(t *testing.T) {
++	r := RetrieveConversationMessageStatsTestSuite{AnalyticsV2TestSuite: newTestSuite(t)}
++	r.SetupSuite()
++
++	// Given: Conversation Access Control on, a non-root caller, and a dynamic group whose
++	// member lookup returns nobody.
++	cConfig := configpb.CustomerConfig{}
++	r.Require().NoError(protojson.Unmarshal([]byte(`{
++		"customer": "customers/customer_id",
++		"authConfig": {
++			"enableConversationAccessControl": true
++		}
++	}`), &cConfig))
++	testCustomerConfig := fn.Must(config.NewCustomerConfig(&cConfig))
++	r.mockConfigClient.EXPECT().
++		GetProfileConfig(gomock.Any(), gomock.Any()).Times(1).
++		Return(&config.ProfileConfig{}, nil)
++	r.mockConfigClient.EXPECT().
++		Get(gomock.Any()).Times(1).
++		Return(testCustomerConfig, nil)
++	r.setupACLHelper(gomock.Any(), 1, &auth.ResourceACL{
++		IsRootAccess:   false,
++		ManagedUserIDs: []string{"35636a572d7ec364"},
++	})
++	r.mockUserClient.EXPECT().
++		ListGroups(gomock.Any(), gomock.Any()).Times(1).
++		Return(&userpb.ListGroupsResponse{
++			Groups: []*userpb.Group{
++				{Name: "customers/customer_id/groups/test_dynamic_group_1", Type: userpb.Group_DYNAMIC_GROUP},
++			},
++		}, nil)
++	r.mockInternalUserClient.EXPECT().
++		ListUsersForAnalytics(gomock.Any(), gomock.Any()).Times(1).
++		Return(&internaluserpb.ListUsersForAnalyticsResponse{}, nil)
++	// No ES expectation is registered: any query fails the test as an unexpected call.
++
++	req := &analyticspb.RetrieveConversationMessageStatsRequest{
++		Parent:   fmt.Sprintf("customers/%s/profiles/%s", r.customerID, r.profileID),
++		Metadata: &analyticspb.Metadata{TimeZoneId: "Pacific/Honolulu"},
++		FilterByTimeRange: &analyticspb.TimeRange{
++			StartTimestamp: timestamppb.New(time.Date(2022, 4, 13, 0, 0, 0, 0, time.UTC)),
++			EndTimestamp:   timestamppb.New(time.Date(2022, 7, 13, 0, 0, 0, 0, time.UTC)),
++		},
++		FilterConversationByAttribute: &analyticspb.Attribute{
++			Groups: []*userpb.Group{
++				{Name: "customers/customer_id/groups/test_dynamic_group_1"},
++			},
++		},
++	}
++
++	// When
++	resp, err := r.Client.RetrieveConversationMessageStats(r.ctx, req)
++
++	// Then
++	r.Require().NoError(err)
++	if diff := cmp.Diff(&analyticspb.RetrieveConversationMessageStatsResponse{}, resp, protocmp.Transform()); diff != "" {
++		t.Fatalf("RetrieveConversationMessageStats return unexpected response with diff (-want +got):\n %v", diff)
++	}
++}
+diff --git a/insights-server/internal/shared/common.go b/insights-server/internal/shared/common.go
+index e3a0991e71a8..2c0150b03efb 100644
+--- a/insights-server/internal/shared/common.go
++++ b/insights-server/internal/shared/common.go
+@@ -1103,6 +1103,57 @@ func ApplyResourceACLWithFilterGroups(
+ 	return users, groups, isRootAccess, nil
+ }
+ 
++// SplitGroupsByType resolves requested groups through UserService and returns them
++// grouped into teams and dynamic groups. Analytics requests carry group names without
++// their type, so the type has to be looked up. Groups that do not resolve are dropped;
++// callers that must not turn a dropped selection into "no filter" track the requested
++// count themselves.
++func SplitGroupsByType(
++	ctx context.Context,
++	userClientRegistry registry.Registry[userpb.UserServiceClient],
++	internalUserClientRegistry registry.Registry[internaluserpb.InternalUserServiceClient],
++	customerID, profileID string,
++	groups []*userpb.Group,
++) (teamGroups, dynamicGroups []*userpb.Group, err error) {
++	if len(groups) == 0 {
++		return nil, nil, nil
++	}
++	for _, group := range groups {
++		name, err := userpb.ParseGroupName(group.GetName())
++		if err != nil {
++			return nil, nil, err
++		}
++		if name.CustomerID != customerID {
++			return nil, nil, fmt.Errorf("group %q belongs to a different customer", group.GetName())
++		}
++	}
++
++	resolvedGroups, err := ListGroups(ctx, userClientRegistry, internalUserClientRegistry, customerID, profileID, groups, true)
++	if err != nil {
++		return nil, nil, fmt.Errorf("listing requested groups for %s/%s: %w", customerID, profileID, err)
++	}
++	groupsByName := make(map[string]*userpb.Group, len(resolvedGroups))
++	for _, group := range resolvedGroups {
++		groupsByName[group.GetName()] = group
++	}
++
++	for _, requested := range groups {
++		group, ok := groupsByName[requested.GetName()]
++		if !ok {
++			continue
++		}
++		switch group.GetType() {
++		case userpb.Group_TEAM:
++			teamGroups = append(teamGroups, group)
++		case userpb.Group_DYNAMIC_GROUP:
++			dynamicGroups = append(dynamicGroups, group)
++		default:
++			return nil, nil, fmt.Errorf("unsupported group type %v for %q", group.GetType(), group.GetName())
++		}
++	}
++	return teamGroups, dynamicGroups, nil
++}
++
+ // ApplyResourceACLToAttributeFilter applies ACL logic to an attribute filter in-place.
+ // It returns true when the caller should return an empty response for security or
+ // no-overlap cases after ACL filtering/intersection.
+@@ -1125,41 +1176,76 @@ func ApplyResourceACLToAttributeFilter(
+ 		filterByAttribute.GetUsers(),
+ 		func(u *userpb.User) string { return u.GetName() },
+ 	))
++	hadGroupFilter := len(filterByAttribute.GetGroups()) > 0
++	// Members of `Attribute.dynamic_groups`, expanded by the caller before this call.
++	dynamicGroupMemberUsers := fn.Filter(allFilterByAttributeUsers, func(u *userpb.User) bool {
++		return !originalFilterByUsers.Has(u.GetName())
++	})
+ 	// We have very complicated assumptions about user/group filters with ACL control.
+ 	// When updating the code, please carefully consider the following scenarios:
++	// Only teams are ACL-managed resources. A dynamic group in `groups` never matches
++	// the team-only ACL intersection, so it is kept and narrowed through its member
++	// users instead.
+ 	// - a) empty user filter, empty group filter => aclUsers non-empty, aclGroups empty
+ 	//   - a1) filter by aclUsers only
+ 	// - b) non-empty user filter, empty group filter => aclUsers non-empty, aclGroups empty
+ 	//   - b1) user filter is within ACL filtered users => intersection of both
+ 	//   - b2) user filter is out of ACL filtered users => empty response
+ 	//     - Note: b2) is not going to happen in prod, just for security concern in API design.
+-	// - c) empty user filter, non-empty group filter => aclUsers non-empty, aclGroups non-empty
+-	//   - c1) group filter is out of ACL filtered groups => empty response
+-	//     - Note: c1) is not going to happen in prod, just for security concern in API design.
+-	//   - c2) group filter is within ACL filtered groups => intersection of both => move group to user filter
+-	// - d) non-empty user filter, non-empty group filter => non-empty aclUsers, non-empty aclGroups
+-	//   - d1) group filter out of ACL => empty group filter => non-empty aclUsers filtered only
+-	//   - d2) group filter wihtin ACL => non-empty aclUsers filter, group moved to user filter => interestion of both user filters
++	// - c) empty user filter, non-empty group filter => aclUsers non-empty
++	//   - c1) requested TEAM out of ACL filtered groups => team dropped; empty response
++	//     when no dynamic group was requested alongside it
++	//   - c2) requested TEAM within ACL filtered groups => intersection of both => move team to user filter
++	//   - c3) requested DYNAMIC_GROUP => not ACL-managed, always kept => expanded to member users,
++	//     then intersected with aclUsers => empty response when no member is in scope
++	// - d) non-empty user filter, non-empty group filter => non-empty aclUsers
++	//   - d1) team filter out of ACL => empty response
++	//   - d2) team filter within ACL => non-empty aclUsers filter, team moved to user filter => intersection of both user filters
+ 	// TODO(xiaoyi.ge): refactor code to make it more readable.
+ 	if enableNewACLIntersectionWithUserFilter {
+ 		var aclFilterGroups []*userpb.Group
++		// The helper intersects the requested groups with the team-only managed group
++		// list, so dynamic group IDs simply match nothing here.
+ 		aclUsers, aclFilterGroups, isRootAccess, err = ApplyResourceACLWithFilterGroups(
+ 			ctx,
+ 			configClient,
+ 			customerID,
+ 			resourceACLHelper,
+-			filterByAttribute.Groups,
++			filterByAttribute.GetGroups(),
+ 			false, // includePeerUserStats
+ 		)
+ 		if err != nil {
+ 			return false, err
+ 		}
+ 		if !isRootAccess {
+-			// Group filter is outside ACL.
+-			if len(filterByAttribute.Groups) > 0 && len(aclFilterGroups) == 0 {
++			// The ACL universe is team-only, so its intersection with the requested
++			// groups cannot tell a dynamic group apart from a team outside the ACL.
++			// Look the types up only here: root and ACL-disabled callers keep the
++			// requested groups and need no extra lookup.
++			teamGroups, dynamicGroups, err := SplitGroupsByType(
++				ctx,
++				userClientRegistry,
++				internalUserClientRegistry,
++				customerID,
++				profileID,
++				filterByAttribute.GetGroups(),
++			)
++			if err != nil {
++				return false, err
++			}
++			// A requested TEAM outside the ACL is dropped. It is an empty audience only
++			// when no in-scope dynamic group was requested alongside it; dynamic groups
++			// are not ACL-managed and are narrowed through their member users below.
++			if len(teamGroups) > 0 && len(aclFilterGroups) == 0 && len(dynamicGroups) == 0 {
+ 				return true, nil
+ 			}
+-			filterByAttribute.Groups = aclFilterGroups
++			// Retained dynamic groups are narrowed below through their member users.
++			filterByAttribute.Groups = append(aclFilterGroups, dynamicGroups...)
++		}
++		// A selected group that no longer resolves is an empty audience, not the
++		// unfiltered request represented by an empty group filter.
++		if hadGroupFilter && len(filterByAttribute.GetGroups()) == 0 {
++			return true, nil
+ 		}
+ 	} else {
+ 		filterByAttribute.Users, filterByAttribute.Groups, err = ApplyResourceACL(
+@@ -1193,7 +1279,22 @@ func ApplyResourceACLToAttributeFilter(
+ 		filterByAttribute.Users = updatedFilterByAttribute.Users
+ 		filterByAttribute.Groups = updatedFilterByAttribute.Groups
+ 
+-		if returnEmptyResponseWhenNoUsersAfterMove && len(filterByAttribute.Users) == 0 {
++		// A requested group that expands to no users is an empty audience. This must
++		// not fall through to the ACL-user fallback below, which would widen the query
++		// to every conversation the caller can see.
++		if (hadGroupFilter || returnEmptyResponseWhenNoUsersAfterMove) && len(filterByAttribute.Users) == 0 {
++			return true, nil
++		}
++	}
++
++	// Dynamic groups in `Attribute.dynamic_groups` are not team-ACL resources: their
++	// member users are the filter. Merge them for root callers too, otherwise the
++	// group filter is dropped and the query widens to every conversation.
++	if enableNewACLIntersectionWithUserFilter && len(filterByAttribute.GetDynamicGroups()) > 0 {
++		filterByAttribute.Users = DedupUsers(append(filterByAttribute.GetUsers(), dynamicGroupMemberUsers...))
++		// An explicitly selected dynamic group with no resolved members is an empty
++		// audience, not the unfiltered request.
++		if len(filterByAttribute.Users) == 0 {
+ 			return true, nil
+ 		}
+ 	}
+@@ -1204,10 +1305,7 @@ func ApplyResourceACLToAttributeFilter(
+ 		// 1) users after group/deactivated filters are moved to user filters, and
+ 		// 2) precomputed users (e.g. dynamic group expansion) collected before mutation.
+ 		// This preserves users introduced during move while keeping precomputed expansions.
+-		supplementalUsers := fn.Filter(allFilterByAttributeUsers, func(u *userpb.User) bool {
+-			return !originalFilterByUsers.Has(u.GetName())
+-		})
+-		usersToIntersect := DedupUsers(append(filterByAttribute.Users, supplementalUsers...))
++		usersToIntersect := DedupUsers(append(filterByAttribute.Users, dynamicGroupMemberUsers...))
+ 		if len(usersToIntersect) == 0 {
+ 			usersToIntersect = filterByAttribute.Users
+ 		}

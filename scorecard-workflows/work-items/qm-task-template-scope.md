@@ -1,10 +1,10 @@
 # QM task template scope
 
-**Status:** active  
-**Primary domain:** `scorecard-workflows`  
-**Primary subdomain:** `evaluation-and-scoring`  
-**Official ticket:** none  
-**Last updated:** 2026-10-08
+**Status:** active\
+**Primary domain:** `scorecard-workflows`\
+**Primary subdomain:** `evaluation-and-scoring`\
+**Official ticket:** none for this implementation; [local TASK draft](../deliverables/cross-usecase-pi-qm-ticket-drafts.md#task). This document retains the earlier design context.
+**Last updated:** 2026-11-07
 
 ## Objective and Impact
 
@@ -14,7 +14,7 @@
 
 ## Scope
 
-**In scope:** QM task/template scope relationship, task discovery and evaluation, affected reporting and backfills.  
+**In scope:** QM task/template scope relationship, task discovery and evaluation, affected reporting and backfills.
 **Non-goals:** Independent task use-case subsets and changing group-calibration task scope.
 
 ## Source Context
@@ -32,7 +32,8 @@ The [decision](../decisions/2026-10-08-qm-task-inherits-template-usecase-scope.m
 
 - One QM task may cover several use cases when its template does; task-owned audience, quota, schedule, and conversation filters remain separate.
 - Existing scorecards retain their concrete use case and pinned template revision.
-- The exact derived-versus-materialized task scope representation remains open.
+- The [full engineering plan](../deliverables/omni-usecase-scorecard-eng-plan-draft.md) now recommends deriving future scope from the current linked template; this remains an engineering proposal pending query/performance review.
+- The [November 4 decision](../decisions/2026-11-04-omni-usecase-autoqm-and-reporting.md) makes completion N/A when only part of a task-wide scope is selected; no per-use-case quota is inferred.
 
 ## Blockers and Dependencies
 
@@ -51,3 +52,9 @@ Design capture only. Source evidence is in [the session note](../sessions/2026-1
 ## Timeline
 
 - 2026-10-08 — Confirmed normal QM authoring is template-based, distinguished it from the unenforced storage shape, and recorded equal template/task scope as the product invariant. Evidence: [decision](../decisions/2026-10-08-qm-task-inherits-template-usecase-scope.md), [session](../sessions/2026-10-08/codex-qm-task-template-usecase-relationship.md).
+
+- 2026-11-04 — Refreshed source confirms singular task predicates and first-ID backfill remain. The [parent plan work item](omni-usecase-scorecard-plan.md) holds the full design review; task-specific continuation remains here.
+
+## November 7 handoff
+
+Implementation is proposed in the local TASK draft, depending on shared validation and corrected current/historical template reads. The initially created issue was deleted at user request. The [PI/QM inventory](../deliverables/cross-usecase-pi-qm-change-inventory.md) names current task/list/helper/backfill readers and query evidence; no code or customer data changed.

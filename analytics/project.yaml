@@ -10,7 +10,11 @@ related_source_repos:
   - config
 active_worktree_path: /Users/xuanyu.wang/repos/go-servers-convi-7706
 related_worktrees:
+  - /Users/xuanyu.wang/repos/cresta-proto-convi-7852-membership-roles
+  - /Users/xuanyu.wang/repos/go-servers-convi-7852-analytics-roles
+  - /Users/xuanyu.wang/repos/go-servers-convi-7852-auth-roles
   - /Users/xuanyu.wang/repos/director-convi-7941-export-errors
+  - /Users/xuanyu.wang/repos/director-convi-7852
   - /Users/xuanyu.wang/repos/director-convi-7472
   - /Users/xuanyu.wang/repos/go-servers-convi-7879-conversation-tracing
   - /Users/xuanyu.wang/repos/director-convi-7879-conversation-tracing
@@ -32,7 +36,10 @@ subdomains:
   - insights-user-filter
   - conversation-volume
 related_ticket_ids:
+  - CONVI-7952
   - CONVI-7941
+  - CONVI-7931
+  - CONVI-7852
   - CONVI-7472
   - CONVI-6192
   - CONVI-6242
@@ -63,6 +70,9 @@ related_ticket_ids:
   - CONVI-7674
   - CONVI-7681
 active_work_items:
+  - CONVI-7952
+  - CONVI-7931
+  - CONVI-7852
   - CONVI-7879
   - CONVI-7807
   - CONVI-7777
@@ -87,6 +97,9 @@ active_work_items:
   - CONVI-7681
 related_prs:
   - https://github.com/cresta/director/pull/24681
+  - https://github.com/cresta/cresta-proto/pull/10620
+  - https://github.com/cresta/go-servers/pull/35092
+  - https://github.com/cresta/go-servers/pull/35094
   - https://github.com/cresta/director/pull/24302
   - https://github.com/cresta/go-servers/pull/34417
   - https://github.com/cresta/director/pull/24065

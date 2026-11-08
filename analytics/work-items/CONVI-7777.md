@@ -243,3 +243,7 @@ October 22 closure: Director [#24020](https://github.com/cresta/director/pull/24
 ### Post-release checkpoint (October 23)
 
 The reported new backend image is now running. Current GitHub production config requests chart 0.24.110 and that image; this supersedes the older desired-config snapshot above. Live public POST still returns 405 and ingress lacks the route. Investigate chart reconciliation rather than assuming another promotion is needed. HelmRelease reconciliation status was unavailable in Groundcover. [Evidence](../sessions/2026-10-23/codex-convi-7777-prod-api-verification.md).
+
+## November 3 — Utilization definition Q&A
+
+[Collected definitions and local-source verification](../sessions/2026-11-03/codex-convi-7777-utilization-definitions.md) explain usage versus Overall Engagement and conversation coverage. Workflow open/navigation requires no completion percentage. Searches counts qualifying events without a query-tab restriction, but every GenAI-tab request emitting that event is not established. Summary preserves types 1/2 (copy-all/edit-note), omitting single-note copy type 3; do not describe it as strictly copy-only. No implementation, customer-data or deployment changes.

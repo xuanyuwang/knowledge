@@ -1,0 +1,30 @@
+=== RUN   TestReview34439
+=== RUN   TestReview34439/legacy_dynamic_scoped_positive
+    review_34439_test.go:48: empty=false actual_users=[customers/c/users/A] expected_users=[customers/c/users/A]
+=== RUN   TestReview34439/legacy_mixed_dynamic_survives_inaccessible_team
+    review_34439_test.go:48: empty=false actual_users=[customers/c/users/A] expected_users=[customers/c/users/A]
+=== RUN   TestReview34439/split_root_positive
+    review_34439_test.go:48: empty=false actual_users=[customers/c/users/A] expected_users=[customers/c/users/A]
+=== RUN   TestReview34439/split_dynamic_survives_inaccessible_team
+    review_34439_test.go:48: empty=true actual_users=[] expected_users=[customers/c/users/A]
+    review_34439_test.go:49: selected audience was not preserved
+=== RUN   TestReview34439/split_root_dynamic_survives_empty_team
+    review_34439_test.go:48: empty=true actual_users=[] expected_users=[customers/c/users/A]
+    review_34439_test.go:49: selected audience was not preserved
+=== RUN   TestReview34439/split_root_explicit_active_user_does_not_readd_inactive_dynamic_member
+    review_34439_test.go:48: empty=false actual_users=[customers/c/users/A customers/c/users/B] expected_users=[customers/c/users/A]
+    review_34439_test.go:49: selected audience was not preserved
+=== RUN   TestReview34439/split_root_excludes_inactive_and_unselected_users
+    review_34439_test.go:48: empty=false actual_users=[customers/c/users/A customers/c/users/B customers/c/users/C] expected_users=[customers/c/users/A]
+    review_34439_test.go:49: selected audience was not preserved
+--- FAIL: TestReview34439 (0.00s)
+    --- PASS: TestReview34439/legacy_dynamic_scoped_positive (0.00s)
+    --- PASS: TestReview34439/legacy_mixed_dynamic_survives_inaccessible_team (0.00s)
+    --- PASS: TestReview34439/split_root_positive (0.00s)
+    --- FAIL: TestReview34439/split_dynamic_survives_inaccessible_team (0.00s)
+    --- FAIL: TestReview34439/split_root_dynamic_survives_empty_team (0.00s)
+    --- FAIL: TestReview34439/split_root_explicit_active_user_does_not_readd_inactive_dynamic_member (0.00s)
+    --- FAIL: TestReview34439/split_root_excludes_inactive_and_unselected_users (0.00s)
+FAIL
+FAIL	github.com/cresta/go-servers/insights-server/internal/shared	0.952s
+FAIL

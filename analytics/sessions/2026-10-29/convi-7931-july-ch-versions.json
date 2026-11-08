@@ -1,0 +1,2030 @@
+[
+  {
+    "scorecard_id": "019f2933-bd9e-7627-861c-ab250e2efc85",
+    "parent_version": "2026-07-03 18:18:05.194416",
+    "criterion_version": "2026-07-03 18:18:05.194416",
+    "valid_criterion_version": "2026-07-03 18:18:05.194416"
+  },
+  {
+    "scorecard_id": "019f2936-d56c-7719-a908-8022af4c9334",
+    "parent_version": "2026-07-03 18:21:27.681675",
+    "criterion_version": "2026-07-03 18:21:27.681675",
+    "valid_criterion_version": "2026-07-03 18:21:27.681675"
+  },
+  {
+    "scorecard_id": "019f295e-2159-731c-b4a0-10f50ff65535",
+    "parent_version": "2026-07-03 19:04:23.004645",
+    "criterion_version": "2026-07-03 19:04:23.004645",
+    "valid_criterion_version": "2026-07-03 19:04:23.004645"
+  },
+  {
+    "scorecard_id": "019f2964-9a2b-7461-bc5f-bc5f54bd735b",
+    "parent_version": "2026-07-03 19:11:27.137771",
+    "criterion_version": "2026-07-03 19:11:27.137771",
+    "valid_criterion_version": "2026-07-03 19:11:27.137771"
+  },
+  {
+    "scorecard_id": "019f2967-98d1-728d-8821-fdcb377b6d8c",
+    "parent_version": "2026-07-03 19:14:43.578639",
+    "criterion_version": "2026-07-03 19:14:43.578639",
+    "valid_criterion_version": "2026-07-03 19:14:43.578639"
+  },
+  {
+    "scorecard_id": "019f298c-71cd-71ad-a7ba-09b6f9104b35",
+    "parent_version": "2026-07-03 19:54:58.505912",
+    "criterion_version": "2026-07-03 19:54:58.505912",
+    "valid_criterion_version": "2026-07-03 19:54:58.505912"
+  },
+  {
+    "scorecard_id": "019f298f-190b-73ea-beeb-c234a3a52ff1",
+    "parent_version": "2026-07-03 19:57:52.543671",
+    "criterion_version": "2026-07-03 19:57:52.543671",
+    "valid_criterion_version": "2026-07-03 19:57:52.543671"
+  },
+  {
+    "scorecard_id": "019f2992-9443-71bb-92d6-9c4e681989a6",
+    "parent_version": "2026-07-03 20:01:40.515695",
+    "criterion_version": "2026-07-03 20:01:40.515695",
+    "valid_criterion_version": "2026-07-03 20:01:40.515695"
+  },
+  {
+    "scorecard_id": "019f2995-e1a5-74c2-9594-584b8dc4fc5a",
+    "parent_version": "2026-07-03 20:05:17.245239",
+    "criterion_version": "2026-07-03 20:05:17.245239",
+    "valid_criterion_version": "2026-07-03 20:05:17.245239"
+  },
+  {
+    "scorecard_id": "019f2997-60dc-74e6-b9f6-fe5867f551a6",
+    "parent_version": "2026-07-03 20:06:55.064075",
+    "criterion_version": "2026-07-03 20:06:55.064075",
+    "valid_criterion_version": "2026-07-03 20:06:55.064075"
+  },
+  {
+    "scorecard_id": "019f299a-ee0b-7678-ac01-52fb9440cff7",
+    "parent_version": "2026-07-03 20:10:48.364154",
+    "criterion_version": "2026-07-03 20:10:48.364154",
+    "valid_criterion_version": "2026-07-03 20:10:48.364154"
+  },
+  {
+    "scorecard_id": "019f29a1-bf3d-74ec-a472-ec00d6a6c0d1",
+    "parent_version": "2026-07-03 20:18:14.487836",
+    "criterion_version": "2026-07-03 20:18:14.487836",
+    "valid_criterion_version": "2026-07-03 20:18:14.487836"
+  },
+  {
+    "scorecard_id": "019f29a5-f728-77fc-b430-04696aa84204",
+    "parent_version": "2026-07-03 20:22:51.094087",
+    "criterion_version": "2026-07-03 20:22:51.094087",
+    "valid_criterion_version": "2026-07-03 20:22:51.094087"
+  },
+  {
+    "scorecard_id": "019f29b0-0b25-72ad-bd1f-ac63a6c592a3",
+    "parent_version": "2026-07-03 20:33:51.414540",
+    "criterion_version": "2026-07-03 20:33:51.414540",
+    "valid_criterion_version": "2026-07-03 20:33:51.414540"
+  },
+  {
+    "scorecard_id": "019f29bf-7180-73a5-aab3-7a6393f9c0c3",
+    "parent_version": "2026-07-03 20:50:40.883334",
+    "criterion_version": "2026-07-03 20:50:40.883334",
+    "valid_criterion_version": "2026-07-03 20:50:40.883334"
+  },
+  {
+    "scorecard_id": "019f37af-2221-706e-bd13-76985737143e",
+    "parent_version": "2026-07-06 13:47:32.452418",
+    "criterion_version": "2026-07-06 13:47:32.919140",
+    "valid_criterion_version": "2026-07-06 13:47:32.919140"
+  },
+  {
+    "scorecard_id": "019f37b9-cfbf-76de-885e-bb5f9811d8e0",
+    "parent_version": "2026-07-06 13:59:12.545430",
+    "criterion_version": "2026-07-06 13:59:12.545430",
+    "valid_criterion_version": "2026-07-06 13:59:12.545430"
+  },
+  {
+    "scorecard_id": "019f37c3-2dea-71f5-af9b-ee17dc144314",
+    "parent_version": "2026-07-06 14:09:26.489255",
+    "criterion_version": "2026-07-06 14:09:26.489255",
+    "valid_criterion_version": "2026-07-06 14:09:26.489255"
+  },
+  {
+    "scorecard_id": "019f37ce-95dd-7566-9c0b-066ae7b78dc6",
+    "parent_version": "2026-07-06 14:21:53.981755",
+    "criterion_version": "2026-07-06 14:21:53.981755",
+    "valid_criterion_version": "2026-07-06 14:21:53.981755"
+  },
+  {
+    "scorecard_id": "019f37de-475f-7409-8bfd-38e526305110",
+    "parent_version": "2026-07-06 14:39:02.504298",
+    "criterion_version": "2026-07-06 14:39:02.504298",
+    "valid_criterion_version": "2026-07-06 14:39:02.504298"
+  },
+  {
+    "scorecard_id": "019f37e6-f383-7555-9688-16ba30ac2c32",
+    "parent_version": "2026-07-06 14:48:30.818863",
+    "criterion_version": "2026-07-06 14:48:30.818863",
+    "valid_criterion_version": "2026-07-06 14:48:30.818863"
+  },
+  {
+    "scorecard_id": "019f3803-6d0a-76f8-9a82-a1c1b8d98520",
+    "parent_version": "2026-07-06 15:19:36.997907",
+    "criterion_version": "2026-07-06 15:19:36.997907",
+    "valid_criterion_version": "2026-07-06 15:19:36.997907"
+  },
+  {
+    "scorecard_id": "019f3816-00d9-76ce-8317-ca7f781084d8",
+    "parent_version": "2026-07-06 15:39:54.384349",
+    "criterion_version": "2026-07-06 15:39:54.384349",
+    "valid_criterion_version": "2026-07-06 15:39:54.384349"
+  },
+  {
+    "scorecard_id": "019f382d-d1c8-7394-856f-27970c5b4f7e",
+    "parent_version": "2026-07-06 16:05:55.410214",
+    "criterion_version": "2026-07-06 16:05:55.410214",
+    "valid_criterion_version": "2026-07-06 16:05:55.410214"
+  },
+  {
+    "scorecard_id": "019f383a-ea62-7077-a1ea-3325db4306be",
+    "parent_version": "2026-07-06 16:20:13.502107",
+    "criterion_version": "2026-07-06 16:20:13.502107",
+    "valid_criterion_version": "2026-07-06 16:20:13.502107"
+  },
+  {
+    "scorecard_id": "019f384a-4f18-71ea-b27d-1543246f9f2b",
+    "parent_version": "2026-07-06 16:37:02.585970",
+    "criterion_version": "2026-07-06 16:37:02.585970",
+    "valid_criterion_version": "2026-07-06 16:37:02.585970"
+  },
+  {
+    "scorecard_id": "019f3857-f67b-75fe-b7be-4f374a06e461",
+    "parent_version": "2026-07-06 16:51:57.132925",
+    "criterion_version": "2026-07-06 16:51:57.132925",
+    "valid_criterion_version": "2026-07-06 16:51:57.132925"
+  },
+  {
+    "scorecard_id": "019f3869-2537-7104-98f4-02233681d011",
+    "parent_version": "2026-07-06 17:10:43.292211",
+    "criterion_version": "2026-07-06 17:10:43.292211",
+    "valid_criterion_version": "2026-07-06 17:10:43.292211"
+  },
+  {
+    "scorecard_id": "019f3877-d0d7-751b-a03d-297935577fac",
+    "parent_version": "2026-07-06 17:26:44.777770",
+    "criterion_version": "2026-07-06 17:26:44.777770",
+    "valid_criterion_version": "2026-07-06 17:26:44.777770"
+  },
+  {
+    "scorecard_id": "019f3885-e073-740d-8f94-4dacee5f987b",
+    "parent_version": "2026-07-06 17:42:06.847970",
+    "criterion_version": "2026-07-06 17:42:06.847970",
+    "valid_criterion_version": "2026-07-06 17:42:06.847970"
+  },
+  {
+    "scorecard_id": "019f3893-0158-73ca-b733-c5a5359feb74",
+    "parent_version": "2026-07-06 17:56:27.108685",
+    "criterion_version": "2026-07-06 17:56:27.108685",
+    "valid_criterion_version": "2026-07-06 17:56:27.108685"
+  },
+  {
+    "scorecard_id": "019f38a2-d1e5-7559-8fc9-04b682c40758",
+    "parent_version": "2026-07-06 18:13:43.199083",
+    "criterion_version": "2026-07-06 18:13:43.199083",
+    "valid_criterion_version": "2026-07-06 18:13:43.199083"
+  },
+  {
+    "scorecard_id": "019f38aa-3989-7689-9b70-d9c75842ef5f",
+    "parent_version": "2026-07-06 18:21:48.373423",
+    "criterion_version": "2026-07-06 18:21:48.373423",
+    "valid_criterion_version": "2026-07-06 18:21:48.373423"
+  },
+  {
+    "scorecard_id": "019f38b3-3a1f-773f-9c7b-6507f0203968",
+    "parent_version": "2026-07-06 18:31:38.286767",
+    "criterion_version": "2026-07-06 18:31:38.286767",
+    "valid_criterion_version": "2026-07-06 18:31:38.286767"
+  },
+  {
+    "scorecard_id": "019f398f-5298-758a-b507-43bbc3165582",
+    "parent_version": "2026-07-06 22:32:02.172721",
+    "criterion_version": "2026-07-06 22:32:02.586275",
+    "valid_criterion_version": "2026-07-06 22:32:02.586275"
+  },
+  {
+    "scorecard_id": "019f398f-52ae-7290-a7d6-af70267b8dab",
+    "parent_version": "2026-07-06 22:32:02.711371",
+    "criterion_version": "2026-07-06 22:32:02.711371",
+    "valid_criterion_version": "2026-07-06 22:32:02.711371"
+  },
+  {
+    "scorecard_id": "019f3e67-b58e-768b-82bd-bb86eba47747",
+    "parent_version": "2026-07-07 21:06:52.529006",
+    "criterion_version": "2026-07-07 21:06:52.529006",
+    "valid_criterion_version": "2026-07-07 21:06:52.529006"
+  },
+  {
+    "scorecard_id": "019f3e6a-8fe8-7237-87be-845f3ca9318b",
+    "parent_version": "2026-07-07 21:09:59.315936",
+    "criterion_version": "2026-07-07 21:09:59.315936",
+    "valid_criterion_version": "2026-07-07 21:09:59.315936"
+  },
+  {
+    "scorecard_id": "019f3e6e-d53b-718a-9da9-14523fc9111e",
+    "parent_version": "2026-07-07 21:14:38.821688",
+    "criterion_version": "2026-07-07 21:14:39.172396",
+    "valid_criterion_version": "2026-07-07 21:14:39.172396"
+  },
+  {
+    "scorecard_id": "019f3e71-303a-702d-818b-360f20e908da",
+    "parent_version": "2026-07-07 21:17:13.560905",
+    "criterion_version": "2026-07-07 21:17:13.560905",
+    "valid_criterion_version": "2026-07-07 21:17:13.560905"
+  },
+  {
+    "scorecard_id": "019f3e73-15a4-774c-ae53-df4983df1d5e",
+    "parent_version": "2026-07-07 21:19:17.518689",
+    "criterion_version": "2026-07-07 21:19:17.858220",
+    "valid_criterion_version": "2026-07-07 21:19:17.858220"
+  },
+  {
+    "scorecard_id": "019f3e76-7143-744a-ad4e-b701efb6f0bf",
+    "parent_version": "2026-07-07 21:22:57.876878",
+    "criterion_version": "2026-07-07 21:22:57.876878",
+    "valid_criterion_version": "2026-07-07 21:22:57.876878"
+  },
+  {
+    "scorecard_id": "019f3ebc-eed9-759d-8197-723fc0b8194d",
+    "parent_version": "2026-07-07 22:39:57.534783",
+    "criterion_version": "2026-07-07 22:39:57.534783",
+    "valid_criterion_version": "2026-07-07 22:39:57.534783"
+  },
+  {
+    "scorecard_id": "019f3ec3-30b9-778d-921e-e9adf5317857",
+    "parent_version": "2026-07-07 22:46:47.633312",
+    "criterion_version": "2026-07-07 22:46:47.633312",
+    "valid_criterion_version": "2026-07-07 22:46:47.633312"
+  },
+  {
+    "scorecard_id": "019f3ec8-3d4f-7099-8e00-6bdef6be855e",
+    "parent_version": "2026-07-07 22:52:18.484087",
+    "criterion_version": "2026-07-07 22:52:18.484087",
+    "valid_criterion_version": "2026-07-07 22:52:18.484087"
+  },
+  {
+    "scorecard_id": "019f4349-66cf-76b0-b803-293f1c84428e",
+    "parent_version": "2026-07-08 19:51:52.433504",
+    "criterion_version": "2026-07-08 19:51:52.433504",
+    "valid_criterion_version": "2026-07-08 19:51:52.433504"
+  },
+  {
+    "scorecard_id": "019f434a-edbf-768b-9000-5bf12053f246",
+    "parent_version": "2026-07-08 19:53:31.941408",
+    "criterion_version": "2026-07-08 19:53:31.941408",
+    "valid_criterion_version": "2026-07-08 19:53:31.941408"
+  },
+  {
+    "scorecard_id": "019f4350-923d-773e-b3a9-704ec250ad8c",
+    "parent_version": "2026-07-08 19:59:42.122407",
+    "criterion_version": "2026-07-08 19:59:42.122407",
+    "valid_criterion_version": "2026-07-08 19:59:42.122407"
+  },
+  {
+    "scorecard_id": "019f4355-0db1-72a1-a4d0-b60b09533827",
+    "parent_version": "2026-07-08 20:04:35.965937",
+    "criterion_version": "2026-07-08 20:04:35.965937",
+    "valid_criterion_version": "2026-07-08 20:04:35.965937"
+  },
+  {
+    "scorecard_id": "019f4356-156e-731a-b7c4-26583a4b44ae",
+    "parent_version": "2026-07-08 20:05:43.580327",
+    "criterion_version": "2026-07-08 20:05:43.580327",
+    "valid_criterion_version": "2026-07-08 20:05:43.580327"
+  },
+  {
+    "scorecard_id": "019f435b-3df1-757b-9e34-ed6c74e184da",
+    "parent_version": "2026-07-08 20:11:21.558153",
+    "criterion_version": "2026-07-08 20:11:21.558153",
+    "valid_criterion_version": "2026-07-08 20:11:21.558153"
+  },
+  {
+    "scorecard_id": "019f435d-e510-701d-98f2-31f17187c3c7",
+    "parent_version": "2026-07-08 20:14:15.414897",
+    "criterion_version": "2026-07-08 20:14:15.414897",
+    "valid_criterion_version": "2026-07-08 20:14:15.414897"
+  },
+  {
+    "scorecard_id": "019f4360-fa69-7658-8eb7-336c55cfe0f1",
+    "parent_version": "2026-07-08 20:17:37.508123",
+    "criterion_version": "2026-07-08 20:17:37.508123",
+    "valid_criterion_version": "2026-07-08 20:17:37.508123"
+  },
+  {
+    "scorecard_id": "019f43a6-1a5a-74db-8e6e-ce672073a4ed",
+    "parent_version": "2026-07-08 21:33:07.399405",
+    "criterion_version": "2026-07-08 21:33:07.399405",
+    "valid_criterion_version": "2026-07-08 21:33:07.399405"
+  },
+  {
+    "scorecard_id": "019f43aa-9361-77bd-86f8-34871cb9f298",
+    "parent_version": "2026-07-08 21:38:00.199136",
+    "criterion_version": "2026-07-08 21:38:00.593322",
+    "valid_criterion_version": "2026-07-08 21:38:00.593322"
+  },
+  {
+    "scorecard_id": "019f47e8-a505-75dd-b4c6-80c4f3d4effe",
+    "parent_version": "2026-07-09 17:24:17.761384",
+    "criterion_version": "2026-07-09 17:24:17.761384",
+    "valid_criterion_version": "2026-07-09 17:24:17.761384"
+  },
+  {
+    "scorecard_id": "019f47f3-efa3-70aa-89df-662f9cf3c563",
+    "parent_version": "2026-07-09 17:36:37.282544",
+    "criterion_version": "2026-07-09 17:36:37.282544",
+    "valid_criterion_version": "2026-07-09 17:36:37.282544"
+  },
+  {
+    "scorecard_id": "019f47fd-4bdc-73f4-a2f0-15699a654bfb",
+    "parent_version": "2026-07-09 17:46:50.761450",
+    "criterion_version": "2026-07-09 17:46:50.761450",
+    "valid_criterion_version": "2026-07-09 17:46:50.761450"
+  },
+  {
+    "scorecard_id": "019f4803-1a81-748a-9b1e-da9476fab891",
+    "parent_version": "2026-07-09 17:53:11.603705",
+    "criterion_version": "2026-07-09 17:53:11.603705",
+    "valid_criterion_version": "2026-07-09 17:53:11.603705"
+  },
+  {
+    "scorecard_id": "019f4837-f3d3-700f-9853-697039744a76",
+    "parent_version": "2026-07-09 18:50:54.867182",
+    "criterion_version": "2026-07-09 18:50:54.867182",
+    "valid_criterion_version": "2026-07-09 18:50:54.867182"
+  },
+  {
+    "scorecard_id": "019f4843-3bf0-710a-bea7-6925338b463c",
+    "parent_version": "2026-07-09 19:03:14.135085",
+    "criterion_version": "2026-07-09 19:03:14.135085",
+    "valid_criterion_version": "2026-07-09 19:03:14.135085"
+  },
+  {
+    "scorecard_id": "019f4845-e401-703c-9e14-e2fc7f800c59",
+    "parent_version": "2026-07-09 19:06:08.536463",
+    "criterion_version": "2026-07-09 19:06:08.536463",
+    "valid_criterion_version": "2026-07-09 19:06:08.536463"
+  },
+  {
+    "scorecard_id": "019f4848-3009-73a8-ad54-ed77a26aff92",
+    "parent_version": "2026-07-09 19:23:24.967057",
+    "criterion_version": "2026-07-09 19:23:24.967057",
+    "valid_criterion_version": "2026-07-09 19:23:24.967057"
+  },
+  {
+    "scorecard_id": "019f484f-f0e2-7778-b8fa-e376f5c7ee87",
+    "parent_version": "2026-07-09 19:17:06.435059",
+    "criterion_version": "2026-07-09 19:17:06.774400",
+    "valid_criterion_version": "2026-07-09 19:17:06.774400"
+  },
+  {
+    "scorecard_id": "019f4855-0fbe-76db-b47b-935308412f35",
+    "parent_version": "2026-07-09 19:22:42.485310",
+    "criterion_version": "2026-07-09 19:22:42.485310",
+    "valid_criterion_version": "2026-07-09 19:22:42.485310"
+  },
+  {
+    "scorecard_id": "019f4855-61e6-7719-a0e0-b9d223f7e13d",
+    "parent_version": "2026-07-09 19:23:03.416260",
+    "criterion_version": "2026-07-09 19:23:03.416260",
+    "valid_criterion_version": "2026-07-09 19:23:03.416260"
+  },
+  {
+    "scorecard_id": "019f4859-ac07-72ce-a77b-2fc54bf111f7",
+    "parent_version": "2026-07-09 19:27:44.524858",
+    "criterion_version": "2026-07-09 19:27:44.524858",
+    "valid_criterion_version": "2026-07-09 19:27:44.524858"
+  },
+  {
+    "scorecard_id": "019f4861-4f10-733f-9eeb-194398e8161a",
+    "parent_version": "2026-07-09 19:36:05.286506",
+    "criterion_version": "2026-07-09 19:36:05.286506",
+    "valid_criterion_version": "2026-07-09 19:36:05.286506"
+  },
+  {
+    "scorecard_id": "019f4869-6b24-763d-94fb-7b94a213d40f",
+    "parent_version": "2026-07-09 19:44:56.813957",
+    "criterion_version": "2026-07-09 19:44:56.813957",
+    "valid_criterion_version": "2026-07-09 19:44:56.813957"
+  },
+  {
+    "scorecard_id": "019f487c-5954-7240-8c7a-7feab86d299c",
+    "parent_version": "2026-07-09 20:05:37.472158",
+    "criterion_version": "2026-07-09 20:05:37.472158",
+    "valid_criterion_version": "2026-07-09 20:05:37.472158"
+  },
+  {
+    "scorecard_id": "019f4889-645c-76eb-b8d0-2215fc43050a",
+    "parent_version": "2026-07-09 20:19:52.082079",
+    "criterion_version": "2026-07-09 20:19:52.082079",
+    "valid_criterion_version": "2026-07-09 20:19:52.082079"
+  },
+  {
+    "scorecard_id": "019f489c-b570-73fa-9a26-d2cef88b66e8",
+    "parent_version": "2026-07-09 20:40:57.968718",
+    "criterion_version": "2026-07-09 20:40:57.968718",
+    "valid_criterion_version": "2026-07-09 20:40:57.968718"
+  },
+  {
+    "scorecard_id": "019f48ac-4ce3-72a9-823f-78957111b92b",
+    "parent_version": "2026-07-09 20:57:59.806041",
+    "criterion_version": "2026-07-09 20:57:59.806041",
+    "valid_criterion_version": "2026-07-09 20:57:59.806041"
+  },
+  {
+    "scorecard_id": "019f48e3-e631-7425-ac5b-ec2ebcefc9f5",
+    "parent_version": "2026-07-09 21:58:43.009124",
+    "criterion_version": "2026-07-09 21:58:43.009124",
+    "valid_criterion_version": "2026-07-09 21:58:43.009124"
+  },
+  {
+    "scorecard_id": "019f48f8-ca42-77e3-adc7-b34092133108",
+    "parent_version": "2026-07-09 22:21:32.770578",
+    "criterion_version": "2026-07-09 22:21:32.770578",
+    "valid_criterion_version": "2026-07-09 22:21:32.770578"
+  },
+  {
+    "scorecard_id": "019f4904-2d63-722e-ae77-a39c393d11ec",
+    "parent_version": "2026-07-09 22:33:58.972143",
+    "criterion_version": "2026-07-09 22:33:58.972143",
+    "valid_criterion_version": "2026-07-09 22:33:58.972143"
+  },
+  {
+    "scorecard_id": "019f4913-bac2-7354-8a04-e8b55a7b7dbb",
+    "parent_version": "2026-07-09 22:50:57.668405",
+    "criterion_version": "2026-07-09 22:50:58.072636",
+    "valid_criterion_version": "2026-07-09 22:50:58.072636"
+  },
+  {
+    "scorecard_id": "019f4c42-7d05-7021-b4e6-0a004a5dacc1",
+    "parent_version": "2026-07-10 13:40:54.407976",
+    "criterion_version": "2026-07-10 13:40:54.407976",
+    "valid_criterion_version": "2026-07-10 13:40:54.407976"
+  },
+  {
+    "scorecard_id": "019f4c51-7ee8-70a3-83bd-2c88f586ef39",
+    "parent_version": "2026-07-10 13:57:17.886122",
+    "criterion_version": "2026-07-10 13:57:17.886122",
+    "valid_criterion_version": "2026-07-10 13:57:17.886122"
+  },
+  {
+    "scorecard_id": "019f4c59-1fc6-7175-a34b-6bbf1c16abc2",
+    "parent_version": "2026-07-10 14:05:37.664171",
+    "criterion_version": "2026-07-10 14:05:37.664171",
+    "valid_criterion_version": "2026-07-10 14:05:37.664171"
+  },
+  {
+    "scorecard_id": "019f4c64-08e0-73fd-8ccf-2da6c5d435f3",
+    "parent_version": "2026-07-10 14:17:32.608761",
+    "criterion_version": "2026-07-10 14:17:32.608761",
+    "valid_criterion_version": "2026-07-10 14:17:32.608761"
+  },
+  {
+    "scorecard_id": "019f4c78-eae4-70bd-84df-1de832d1bf27",
+    "parent_version": "2026-07-10 14:40:21.275255",
+    "criterion_version": "2026-07-10 14:40:21.275255",
+    "valid_criterion_version": "2026-07-10 14:40:21.275255"
+  },
+  {
+    "scorecard_id": "019f4c8b-beed-70eb-b06c-5b4e1d192c17",
+    "parent_version": "2026-07-10 15:00:55.116903",
+    "criterion_version": "2026-07-10 15:00:55.116903",
+    "valid_criterion_version": "2026-07-10 15:00:55.116903"
+  },
+  {
+    "scorecard_id": "019f4c93-fec7-7518-9c22-5be278f63251",
+    "parent_version": "2026-07-10 15:09:55.773028",
+    "criterion_version": "2026-07-10 15:09:55.773028",
+    "valid_criterion_version": "2026-07-10 15:09:55.773028"
+  },
+  {
+    "scorecard_id": "019f4c9a-3dc0-75e6-9c4d-91fcb94af5ce",
+    "parent_version": "2026-07-10 15:16:45.109322",
+    "criterion_version": "2026-07-10 15:16:45.109322",
+    "valid_criterion_version": "2026-07-10 15:16:45.109322"
+  },
+  {
+    "scorecard_id": "019f4d8c-e801-7009-8ac1-45dafe7b474b",
+    "parent_version": "2026-07-10 19:41:48.085469",
+    "criterion_version": "2026-07-10 19:41:48.501970",
+    "valid_criterion_version": "2026-07-10 19:41:48.501970"
+  },
+  {
+    "scorecard_id": "019f4d91-5079-712e-b5cb-a7660686f8ac",
+    "parent_version": "2026-07-10 19:46:37.285051",
+    "criterion_version": "2026-07-10 19:46:37.285051",
+    "valid_criterion_version": "2026-07-10 19:46:37.285051"
+  },
+  {
+    "scorecard_id": "019f4dae-ac9c-77f9-b1ae-76c2883ad4a4",
+    "parent_version": "2026-07-10 20:18:41.370458",
+    "criterion_version": "2026-07-10 20:18:41.370458",
+    "valid_criterion_version": "2026-07-10 20:18:41.370458"
+  },
+  {
+    "scorecard_id": "019f4db1-6054-7119-875a-5557919d43e1",
+    "parent_version": "2026-07-10 20:22:04.509615",
+    "criterion_version": "2026-07-10 20:22:04.509615",
+    "valid_criterion_version": "2026-07-10 20:22:04.509615"
+  },
+  {
+    "scorecard_id": "019f4db4-395a-716a-9acd-092566286d7a",
+    "parent_version": "2026-07-10 20:24:45.078690",
+    "criterion_version": "2026-07-10 20:24:45.078690",
+    "valid_criterion_version": "2026-07-10 20:24:45.078690"
+  },
+  {
+    "scorecard_id": "019f4dbc-4736-7479-b75f-ac07ebb995e1",
+    "parent_version": "2026-07-10 20:33:32.901653",
+    "criterion_version": "2026-07-10 20:33:32.901653",
+    "valid_criterion_version": "2026-07-10 20:33:32.901653"
+  },
+  {
+    "scorecard_id": "019f4dc2-4b3f-778e-bbed-06fbdc0ae301",
+    "parent_version": "2026-07-10 20:40:06.763790",
+    "criterion_version": "2026-07-10 20:40:07.145507",
+    "valid_criterion_version": "2026-07-10 20:40:07.145507"
+  },
+  {
+    "scorecard_id": "019f4de7-3906-7345-b41b-ffb0fa3f52d7",
+    "parent_version": "2026-07-10 21:20:26.967658",
+    "criterion_version": "2026-07-10 21:20:26.967658",
+    "valid_criterion_version": "2026-07-10 21:20:26.967658"
+  },
+  {
+    "scorecard_id": "019f4de9-b3ce-710d-96c4-20062d01a3e4",
+    "parent_version": "2026-07-10 21:23:10.214490",
+    "criterion_version": "2026-07-10 21:23:10.214490",
+    "valid_criterion_version": "2026-07-10 21:23:10.214490"
+  },
+  {
+    "scorecard_id": "019f5bb5-3ede-73fd-9b8e-f296eaa26f34",
+    "parent_version": "2026-07-13 13:40:33.347435",
+    "criterion_version": "2026-07-13 13:40:33.347435",
+    "valid_criterion_version": "2026-07-13 13:40:33.347435"
+  },
+  {
+    "scorecard_id": "019f5bbe-3b20-71db-a0fd-46f32c3c66a7",
+    "parent_version": "2026-07-13 13:50:22.012642",
+    "criterion_version": "2026-07-13 13:50:22.012642",
+    "valid_criterion_version": "2026-07-13 13:50:22.012642"
+  },
+  {
+    "scorecard_id": "019f5bd7-f3ca-75ab-a5c0-6949309a280f",
+    "parent_version": "2026-07-13 14:18:27.676481",
+    "criterion_version": "2026-07-13 14:18:27.676481",
+    "valid_criterion_version": "2026-07-13 14:18:27.676481"
+  },
+  {
+    "scorecard_id": "019f5be1-85b3-717c-975b-9a34f36284a1",
+    "parent_version": "2026-07-13 14:28:54.900241",
+    "criterion_version": "2026-07-13 14:28:54.900241",
+    "valid_criterion_version": "2026-07-13 14:28:54.900241"
+  },
+  {
+    "scorecard_id": "019f5bea-028b-71af-b808-d5bf9316e6b8",
+    "parent_version": "2026-07-13 14:38:11.234340",
+    "criterion_version": "2026-07-13 14:38:11.234340",
+    "valid_criterion_version": "2026-07-13 14:38:11.234340"
+  },
+  {
+    "scorecard_id": "019f5c0f-9c45-77ca-9389-889b57cf2fd4",
+    "parent_version": "2026-07-13 15:19:15.273073",
+    "criterion_version": "2026-07-13 15:19:15.273073",
+    "valid_criterion_version": "2026-07-13 15:19:15.273073"
+  },
+  {
+    "scorecard_id": "019f5c21-5faf-741b-8263-63c0f1a0ae18",
+    "parent_version": "2026-07-13 15:38:39.372170",
+    "criterion_version": "2026-07-13 15:38:39.372170",
+    "valid_criterion_version": "2026-07-13 15:38:39.372170"
+  },
+  {
+    "scorecard_id": "019f5c5a-1848-721b-b637-2d236d2a5ee5",
+    "parent_version": "2026-07-13 16:40:36.824524",
+    "criterion_version": "2026-07-13 16:40:36.824524",
+    "valid_criterion_version": "2026-07-13 16:40:36.824524"
+  },
+  {
+    "scorecard_id": "019f5c76-ee0c-756a-ba73-cfdc2af63208",
+    "parent_version": "2026-07-13 17:12:06.516794",
+    "criterion_version": "2026-07-13 17:12:06.516794",
+    "valid_criterion_version": "2026-07-13 17:12:06.516794"
+  },
+  {
+    "scorecard_id": "019f5c89-eeaa-72ca-a728-9f81189fe54c",
+    "parent_version": "2026-07-13 17:32:51.800915",
+    "criterion_version": "2026-07-13 17:32:51.800915",
+    "valid_criterion_version": "2026-07-13 17:32:51.800915"
+  },
+  {
+    "scorecard_id": "019f5c97-7fbe-7686-8a39-b0558806e89f",
+    "parent_version": "2026-07-13 17:47:40.883058",
+    "criterion_version": "2026-07-13 17:47:40.883058",
+    "valid_criterion_version": "2026-07-13 17:47:40.883058"
+  },
+  {
+    "scorecard_id": "019f5ca3-f335-7369-8573-c11254315366",
+    "parent_version": "2026-07-13 18:01:16.925418",
+    "criterion_version": "2026-07-13 18:01:16.925418",
+    "valid_criterion_version": "2026-07-13 18:01:16.925418"
+  },
+  {
+    "scorecard_id": "019f5ca9-976c-74e0-8f74-e28f3bf7bffd",
+    "parent_version": "2026-07-13 18:07:26.546434",
+    "criterion_version": "2026-07-13 18:07:26.546434",
+    "valid_criterion_version": "2026-07-13 18:07:26.546434"
+  },
+  {
+    "scorecard_id": "019f5cc1-c2a2-710c-b015-1e8954ba1e2a",
+    "parent_version": "2026-07-13 18:33:50.523543",
+    "criterion_version": "2026-07-13 18:33:50.523543",
+    "valid_criterion_version": "2026-07-13 18:33:50.523543"
+  },
+  {
+    "scorecard_id": "019f5cd1-d438-703f-8795-71ee4667f76f",
+    "parent_version": "2026-07-13 18:51:23.671033",
+    "criterion_version": "2026-07-13 18:51:23.671033",
+    "valid_criterion_version": "2026-07-13 18:51:23.671033"
+  },
+  {
+    "scorecard_id": "019f5ce1-bb19-7343-9e93-84215ca60782",
+    "parent_version": "2026-07-13 19:08:53.218757",
+    "criterion_version": "2026-07-13 19:08:53.218757",
+    "valid_criterion_version": "2026-07-13 19:08:53.218757"
+  },
+  {
+    "scorecard_id": "019f5cf2-9d61-77fa-bfe3-86b61eb6f110",
+    "parent_version": "2026-07-13 19:27:12.379304",
+    "criterion_version": "2026-07-13 19:27:12.379304",
+    "valid_criterion_version": "2026-07-13 19:27:12.379304"
+  },
+  {
+    "scorecard_id": "019f5cfc-74ea-75be-8f11-3a994715313e",
+    "parent_version": "2026-07-13 19:37:57.550055",
+    "criterion_version": "2026-07-13 19:37:57.550055",
+    "valid_criterion_version": "2026-07-13 19:37:57.550055"
+  },
+  {
+    "scorecard_id": "019f5d05-86c1-757c-8f01-672faf7bb675",
+    "parent_version": "2026-07-13 19:47:51.770998",
+    "criterion_version": "2026-07-13 19:47:51.770998",
+    "valid_criterion_version": "2026-07-13 19:47:51.770998"
+  },
+  {
+    "scorecard_id": "019f5d12-86db-71c6-8249-ddb49c790abb",
+    "parent_version": "2026-07-13 20:17:54.353127",
+    "criterion_version": "2026-07-13 20:17:54.353127",
+    "valid_criterion_version": "2026-07-13 20:17:54.353127"
+  },
+  {
+    "scorecard_id": "019f5d31-0654-74cd-8ef7-763fc43ee74c",
+    "parent_version": "2026-07-13 20:35:22.501868",
+    "criterion_version": "2026-07-13 20:35:22.501868",
+    "valid_criterion_version": "2026-07-13 20:35:22.501868"
+  },
+  {
+    "scorecard_id": "019f5d44-20f2-73f7-9bbb-b9ea60f0dc70",
+    "parent_version": "2026-07-13 20:56:14.530859",
+    "criterion_version": "2026-07-13 20:56:14.530859",
+    "valid_criterion_version": "2026-07-13 20:56:14.530859"
+  },
+  {
+    "scorecard_id": "019f5d98-93b7-760c-bbd5-7eb93b40019e",
+    "parent_version": "2026-07-13 22:28:28.880599",
+    "criterion_version": "2026-07-13 22:28:28.880599",
+    "valid_criterion_version": "2026-07-13 22:28:28.880599"
+  },
+  {
+    "scorecard_id": "019f5d9e-6a7f-726f-acc8-09345aaf2d40",
+    "parent_version": "2026-07-13 22:34:51.508840",
+    "criterion_version": "2026-07-13 22:34:51.508840",
+    "valid_criterion_version": "2026-07-13 22:34:51.508840"
+  },
+  {
+    "scorecard_id": "019f5da7-271d-730f-a781-715a8a52fb0e",
+    "parent_version": "2026-07-13 22:44:23.522164",
+    "criterion_version": "2026-07-13 22:44:23.927547",
+    "valid_criterion_version": "2026-07-13 22:44:23.927547"
+  },
+  {
+    "scorecard_id": "019f5dac-a005-711c-8cb7-f5bc98a8527f",
+    "parent_version": "2026-07-13 22:50:22.657578",
+    "criterion_version": "2026-07-13 22:50:22.657578",
+    "valid_criterion_version": "2026-07-13 22:50:22.657578"
+  },
+  {
+    "scorecard_id": "019f5dad-1a30-7267-8e3e-7d91ba7c1e87",
+    "parent_version": "2026-07-13 22:50:57.234065",
+    "criterion_version": "2026-07-13 22:50:57.234065",
+    "valid_criterion_version": "2026-07-13 22:50:57.234065"
+  },
+  {
+    "scorecard_id": "019f5db1-5ab5-7578-bb82-132c1bc0c7a7",
+    "parent_version": "2026-07-13 22:55:32.509768",
+    "criterion_version": "2026-07-13 22:55:32.509768",
+    "valid_criterion_version": "2026-07-13 22:55:32.509768"
+  },
+  {
+    "scorecard_id": "019f5db8-111e-7237-9773-f19282c39a7e",
+    "parent_version": "2026-07-13 23:02:52.516794",
+    "criterion_version": "2026-07-13 23:02:52.516794",
+    "valid_criterion_version": "2026-07-13 23:02:52.516794"
+  },
+  {
+    "scorecard_id": "019f5dbb-9b2a-7698-aa13-8c4363a7dac1",
+    "parent_version": "2026-07-13 23:06:44.411358",
+    "criterion_version": "2026-07-13 23:06:44.411358",
+    "valid_criterion_version": "2026-07-13 23:06:44.411358"
+  },
+  {
+    "scorecard_id": "019f5dbd-dc3f-72de-ba42-aac8138e725f",
+    "parent_version": "2026-07-13 23:09:12.092699",
+    "criterion_version": "2026-07-13 23:09:12.092699",
+    "valid_criterion_version": "2026-07-13 23:09:12.092699"
+  },
+  {
+    "scorecard_id": "019f5dde-f694-72aa-9b84-da976d3f139a",
+    "parent_version": "2026-07-13 23:45:22.441284",
+    "criterion_version": "2026-07-13 23:45:22.441284",
+    "valid_criterion_version": "2026-07-13 23:45:22.441284"
+  },
+  {
+    "scorecard_id": "019f617b-a5ae-76b1-a74a-305488a5d3be",
+    "parent_version": "2026-07-14 16:35:22.166059",
+    "criterion_version": "2026-07-14 16:35:22.166059",
+    "valid_criterion_version": "2026-07-14 16:35:22.166059"
+  },
+  {
+    "scorecard_id": "019f67ae-3a03-71de-b0d8-10a31dd77ced",
+    "parent_version": "2026-07-15 21:28:19.829059",
+    "criterion_version": "2026-07-15 21:28:19.829059",
+    "valid_criterion_version": "2026-07-15 21:28:19.829059"
+  },
+  {
+    "scorecard_id": "019f67b1-53e1-765c-8263-8159494a667b",
+    "parent_version": "2026-07-15 21:31:42.931102",
+    "criterion_version": "2026-07-15 21:31:42.931102",
+    "valid_criterion_version": "2026-07-15 21:31:42.931102"
+  },
+  {
+    "scorecard_id": "019f67d2-59b0-71b6-ae50-1bd801e09e00",
+    "parent_version": "2026-07-15 22:07:47.100547",
+    "criterion_version": "2026-07-15 22:07:47.100547",
+    "valid_criterion_version": "2026-07-15 22:07:47.100547"
+  },
+  {
+    "scorecard_id": "019f67d6-08ac-715f-b51f-b301a1ba4fa4",
+    "parent_version": "2026-07-15 22:11:48.174411",
+    "criterion_version": "2026-07-15 22:11:48.174411",
+    "valid_criterion_version": "2026-07-15 22:11:48.174411"
+  },
+  {
+    "scorecard_id": "019f67dc-1672-77d4-8444-522698cc234a",
+    "parent_version": "2026-07-21 22:37:03.724190",
+    "criterion_version": "2026-07-21 22:37:03.724190",
+    "valid_criterion_version": "2026-07-21 22:37:03.724190"
+  },
+  {
+    "scorecard_id": "019f67e5-8194-757a-970b-cbb53e702682",
+    "parent_version": "2026-07-15 22:28:42.434735",
+    "criterion_version": "2026-07-15 22:28:42.434735",
+    "valid_criterion_version": "2026-07-15 22:28:42.434735"
+  },
+  {
+    "scorecard_id": "019f67ed-2e39-726e-a146-5fa900c0c585",
+    "parent_version": "2026-07-15 22:37:05.391244",
+    "criterion_version": "2026-07-15 22:37:05.391244",
+    "valid_criterion_version": "2026-07-15 22:37:05.391244"
+  },
+  {
+    "scorecard_id": "019f67f2-6150-721b-bfe4-368ccf345efc",
+    "parent_version": "2026-07-15 22:42:46.120633",
+    "criterion_version": "2026-07-15 22:42:46.120633",
+    "valid_criterion_version": "2026-07-15 22:42:46.120633"
+  },
+  {
+    "scorecard_id": "019f67f6-39c7-70e9-b0eb-7f8eff27e159",
+    "parent_version": "2026-07-15 22:46:58.177861",
+    "criterion_version": "2026-07-15 22:46:58.177861",
+    "valid_criterion_version": "2026-07-15 22:46:58.177861"
+  },
+  {
+    "scorecard_id": "019f6c70-9ac1-76ed-b7b8-b15f68fd7121",
+    "parent_version": "2026-07-16 19:39:07.650896",
+    "criterion_version": "2026-07-16 19:39:07.650896",
+    "valid_criterion_version": "2026-07-16 19:39:07.650896"
+  },
+  {
+    "scorecard_id": "019f6c77-c1a1-70b4-ac51-04536d4cc1d3",
+    "parent_version": "2026-07-16 19:46:56.328604",
+    "criterion_version": "2026-07-16 19:46:56.328604",
+    "valid_criterion_version": "2026-07-16 19:46:56.328604"
+  },
+  {
+    "scorecard_id": "019f6cb8-befb-72df-b9ad-5acee2c72e8b",
+    "parent_version": "2026-07-16 20:57:56.243563",
+    "criterion_version": "2026-07-16 20:57:56.243563",
+    "valid_criterion_version": "2026-07-16 20:57:56.243563"
+  },
+  {
+    "scorecard_id": "019f6cba-b362-719d-b2f0-726ccfb34ec7",
+    "parent_version": "2026-07-16 21:00:05.017372",
+    "criterion_version": "2026-07-16 21:00:05.017372",
+    "valid_criterion_version": "2026-07-16 21:00:05.017372"
+  },
+  {
+    "scorecard_id": "019f6cbd-1dc1-7599-be8a-99186b800ce8",
+    "parent_version": "2026-07-16 21:02:42.003850",
+    "criterion_version": "2026-07-16 21:02:42.003850",
+    "valid_criterion_version": "2026-07-16 21:02:42.003850"
+  },
+  {
+    "scorecard_id": "019f6cbf-d489-7362-878e-406edc25b62b",
+    "parent_version": "2026-07-16 21:05:41.858829",
+    "criterion_version": "2026-07-16 21:05:41.858829",
+    "valid_criterion_version": "2026-07-16 21:05:41.858829"
+  },
+  {
+    "scorecard_id": "019f6cc1-d68b-745e-b277-f493051ad059",
+    "parent_version": "2026-07-16 21:07:52.133383",
+    "criterion_version": "2026-07-16 21:07:52.133383",
+    "valid_criterion_version": "2026-07-16 21:07:52.133383"
+  },
+  {
+    "scorecard_id": "019f6cd5-9ee9-770a-89e1-c660ae461a18",
+    "parent_version": "2026-07-16 21:29:27.618366",
+    "criterion_version": "2026-07-16 21:29:27.618366",
+    "valid_criterion_version": "2026-07-16 21:29:27.618366"
+  },
+  {
+    "scorecard_id": "019f6cdc-c43e-74c8-a8ec-40aa95e5c651",
+    "parent_version": "2026-07-16 21:37:17.035680",
+    "criterion_version": "2026-07-16 21:37:17.035680",
+    "valid_criterion_version": "2026-07-16 21:37:17.035680"
+  },
+  {
+    "scorecard_id": "019f7125-6b5a-7688-97f1-1f8d85350607",
+    "parent_version": "2026-07-17 17:35:07.818343",
+    "criterion_version": "2026-07-17 17:35:07.818343",
+    "valid_criterion_version": "2026-07-17 17:35:07.818343"
+  },
+  {
+    "scorecard_id": "019f7fe7-14f8-710d-97b2-a47d3af5e487",
+    "parent_version": "2026-07-20 14:21:19.365330",
+    "criterion_version": "2026-07-20 14:21:19.365330",
+    "valid_criterion_version": "2026-07-20 14:21:19.365330"
+  },
+  {
+    "scorecard_id": "019f7ff3-9543-74b1-a667-792b2abdf856",
+    "parent_version": "2026-07-20 14:34:58.311779",
+    "criterion_version": "2026-07-20 14:34:58.311779",
+    "valid_criterion_version": "2026-07-20 14:34:58.311779"
+  },
+  {
+    "scorecard_id": "019f7ffc-e9b4-77ff-a9d8-11a4495a8550",
+    "parent_version": "2026-07-20 14:45:09.713595",
+    "criterion_version": "2026-07-20 14:45:09.713595",
+    "valid_criterion_version": "2026-07-20 14:45:09.713595"
+  },
+  {
+    "scorecard_id": "019f800a-c27e-76ed-a41e-98ee3b274deb",
+    "parent_version": "2026-07-20 15:00:17.767027",
+    "criterion_version": "2026-07-20 15:00:17.767027",
+    "valid_criterion_version": "2026-07-20 15:00:17.767027"
+  },
+  {
+    "scorecard_id": "019f801a-b8bc-7780-9ce5-824ed26e2071",
+    "parent_version": "2026-07-20 15:17:43.312004",
+    "criterion_version": "2026-07-20 15:17:43.312004",
+    "valid_criterion_version": "2026-07-20 15:17:43.312004"
+  },
+  {
+    "scorecard_id": "019f801a-c1a6-732d-8cfc-61b10bd3d801",
+    "parent_version": "2026-07-20 15:17:45.575517",
+    "criterion_version": "2026-07-20 15:17:45.575517",
+    "valid_criterion_version": "2026-07-20 15:17:45.575517"
+  },
+  {
+    "scorecard_id": "019f801e-3fa5-7438-ab1c-57372f75bf3e",
+    "parent_version": "2026-07-20 15:21:40.875466",
+    "criterion_version": "2026-07-20 15:21:40.875466",
+    "valid_criterion_version": "2026-07-20 15:21:40.875466"
+  },
+  {
+    "scorecard_id": "019f8022-7bf5-73ee-8fe9-b79345c6d1bf",
+    "parent_version": "2026-07-20 15:26:11.908164",
+    "criterion_version": "2026-07-20 15:26:11.908164",
+    "valid_criterion_version": "2026-07-20 15:26:11.908164"
+  },
+  {
+    "scorecard_id": "019f8025-7ae2-70c2-9bfa-0f704ce6a4a0",
+    "parent_version": "2026-07-20 15:29:28.196633",
+    "criterion_version": "2026-07-20 15:29:28.196633",
+    "valid_criterion_version": "2026-07-20 15:29:28.196633"
+  },
+  {
+    "scorecard_id": "019f802b-9af6-7417-9211-1ba265154bfe",
+    "parent_version": "2026-07-20 15:36:09.669553",
+    "criterion_version": "2026-07-20 15:36:09.669553",
+    "valid_criterion_version": "2026-07-20 15:36:09.669553"
+  },
+  {
+    "scorecard_id": "019f802c-350f-761c-9d5e-7420dbb1c5ed",
+    "parent_version": "2026-07-20 15:36:49.325492",
+    "criterion_version": "2026-07-20 15:36:49.325492",
+    "valid_criterion_version": "2026-07-20 15:36:49.325492"
+  },
+  {
+    "scorecard_id": "019f8036-c1ba-7143-90cd-6e551c039707",
+    "parent_version": "2026-07-20 15:48:20.467374",
+    "criterion_version": "2026-07-20 15:48:20.467374",
+    "valid_criterion_version": "2026-07-20 15:48:20.467374"
+  },
+  {
+    "scorecard_id": "019f8040-86b5-76d8-b65b-e2132eba3f29",
+    "parent_version": "2026-07-20 15:59:00.711137",
+    "criterion_version": "2026-07-20 15:59:00.711137",
+    "valid_criterion_version": "2026-07-20 15:59:00.711137"
+  },
+  {
+    "scorecard_id": "019f8044-5583-7643-9018-79a966bcb4b4",
+    "parent_version": "2026-07-20 16:03:10.503922",
+    "criterion_version": "2026-07-20 16:03:10.503922",
+    "valid_criterion_version": "2026-07-20 16:03:10.503922"
+  },
+  {
+    "scorecard_id": "019f8048-5d6b-734a-ad7f-1e1a5f939b2c",
+    "parent_version": "2026-07-20 16:07:34.469454",
+    "criterion_version": "2026-07-20 16:07:34.469454",
+    "valid_criterion_version": "2026-07-20 16:07:34.469454"
+  },
+  {
+    "scorecard_id": "019f804b-9e7d-7497-b5ab-934b5c4b7c9e",
+    "parent_version": "2026-07-20 16:11:09.516194",
+    "criterion_version": "2026-07-20 16:11:09.516194",
+    "valid_criterion_version": "2026-07-20 16:11:09.516194"
+  },
+  {
+    "scorecard_id": "019f807b-6cfb-77a1-921d-d3e48e3bd739",
+    "parent_version": "2026-07-20 17:03:21.050717",
+    "criterion_version": "2026-07-20 17:03:21.050717",
+    "valid_criterion_version": "2026-07-20 17:03:21.050717"
+  },
+  {
+    "scorecard_id": "019f80a5-d36a-7326-8ea6-ca7b5113e1ce",
+    "parent_version": "2026-07-20 17:49:41.872796",
+    "criterion_version": "2026-07-20 17:49:41.872796",
+    "valid_criterion_version": "2026-07-20 17:49:41.872796"
+  },
+  {
+    "scorecard_id": "019f80ae-8785-7429-a8cf-95a8eee10fa1",
+    "parent_version": "2026-07-20 17:59:12.058711",
+    "criterion_version": "2026-07-20 17:59:12.058711",
+    "valid_criterion_version": "2026-07-20 17:59:12.058711"
+  },
+  {
+    "scorecard_id": "019f80c1-c68b-706d-bf42-6239e8e010f1",
+    "parent_version": "2026-07-20 18:20:11.306020",
+    "criterion_version": "2026-07-20 18:20:11.306020",
+    "valid_criterion_version": "2026-07-20 18:20:11.306020"
+  },
+  {
+    "scorecard_id": "019f80d1-b09e-7223-8244-ec9431365d18",
+    "parent_version": "2026-07-20 18:37:33.903511",
+    "criterion_version": "2026-07-20 18:37:33.903511",
+    "valid_criterion_version": "2026-07-20 18:37:33.903511"
+  },
+  {
+    "scorecard_id": "019f80d4-1c45-75cb-bf62-27adc56df5cc",
+    "parent_version": "2026-07-20 18:40:12.462403",
+    "criterion_version": "2026-07-20 18:40:12.462403",
+    "valid_criterion_version": "2026-07-20 18:40:12.462403"
+  },
+  {
+    "scorecard_id": "019f80d7-d2e1-731f-a0d2-93ce41c6ffb1",
+    "parent_version": "2026-07-20 18:44:16.486634",
+    "criterion_version": "2026-07-20 18:44:16.486634",
+    "valid_criterion_version": "2026-07-20 18:44:16.486634"
+  },
+  {
+    "scorecard_id": "019f80db-1639-70db-8802-937c4f6b1b5d",
+    "parent_version": "2026-07-20 18:47:50.070124",
+    "criterion_version": "2026-07-20 18:47:50.070124",
+    "valid_criterion_version": "2026-07-20 18:47:50.070124"
+  },
+  {
+    "scorecard_id": "019f80e6-e045-75f9-851b-87222dc8b6ab",
+    "parent_version": "2026-07-20 19:00:42.764697",
+    "criterion_version": "2026-07-20 19:00:42.764697",
+    "valid_criterion_version": "2026-07-20 19:00:42.764697"
+  },
+  {
+    "scorecard_id": "019f80f4-c3db-77a9-af15-024b245a464a",
+    "parent_version": "2026-07-20 19:15:53.478620",
+    "criterion_version": "2026-07-20 19:15:53.478620",
+    "valid_criterion_version": "2026-07-20 19:15:53.478620"
+  },
+  {
+    "scorecard_id": "019f8105-ce48-77c9-a54f-53ae543f4333",
+    "parent_version": "2026-07-20 19:34:29.835816",
+    "criterion_version": "2026-07-20 19:34:29.835816",
+    "valid_criterion_version": "2026-07-20 19:34:29.835816"
+  },
+  {
+    "scorecard_id": "019f8110-6428-7347-a13c-9fd37c67f4d0",
+    "parent_version": "2026-07-20 19:46:04.416198",
+    "criterion_version": "2026-07-20 19:46:04.416198",
+    "valid_criterion_version": "2026-07-20 19:46:04.416198"
+  },
+  {
+    "scorecard_id": "019f812d-7477-712f-93d8-bf1b10c926a7",
+    "parent_version": "2026-07-20 20:17:48.072839",
+    "criterion_version": "2026-07-20 20:17:48.072839",
+    "valid_criterion_version": "2026-07-20 20:17:48.072839"
+  },
+  {
+    "scorecard_id": "019f8131-7869-7769-a483-3cd752a96bd3",
+    "parent_version": "2026-07-20 20:22:11.272260",
+    "criterion_version": "2026-07-20 20:22:11.272260",
+    "valid_criterion_version": "2026-07-20 20:22:11.272260"
+  },
+  {
+    "scorecard_id": "019f8139-450a-73fe-aed5-87189afd1cf7",
+    "parent_version": "2026-07-20 20:30:42.410210",
+    "criterion_version": "2026-07-20 20:30:42.410210",
+    "valid_criterion_version": "2026-07-20 20:30:42.410210"
+  },
+  {
+    "scorecard_id": "019f813d-2491-763a-b21b-3e20c25f0463",
+    "parent_version": "2026-07-20 20:34:56.263178",
+    "criterion_version": "2026-07-20 20:34:56.263178",
+    "valid_criterion_version": "2026-07-20 20:34:56.263178"
+  },
+  {
+    "scorecard_id": "019f8151-b2d6-7053-9783-8203ca59c125",
+    "parent_version": "2026-07-20 20:57:23.404685",
+    "criterion_version": "2026-07-20 20:57:23.404685",
+    "valid_criterion_version": "2026-07-20 20:57:23.404685"
+  },
+  {
+    "scorecard_id": "019f8155-448d-7728-a69c-74fe55557c5f",
+    "parent_version": "2026-07-20 21:01:17.283334",
+    "criterion_version": "2026-07-20 21:01:17.283334",
+    "valid_criterion_version": "2026-07-20 21:01:17.283334"
+  },
+  {
+    "scorecard_id": "019f8158-242e-724b-a14c-45789ced22b3",
+    "parent_version": "2026-07-20 21:04:25.715911",
+    "criterion_version": "2026-07-20 21:04:25.715911",
+    "valid_criterion_version": "2026-07-20 21:04:25.715911"
+  },
+  {
+    "scorecard_id": "019f815e-37b2-70c8-8997-0ce6da1afaad",
+    "parent_version": "2026-07-20 21:11:05.450473",
+    "criterion_version": "2026-07-20 21:11:05.450473",
+    "valid_criterion_version": "2026-07-20 21:11:05.450473"
+  },
+  {
+    "scorecard_id": "019f815e-4bc8-7118-8f21-42aaecd208f0",
+    "parent_version": "2026-07-20 21:11:08.921014",
+    "criterion_version": "2026-07-20 21:11:08.921014",
+    "valid_criterion_version": "2026-07-20 21:11:08.921014"
+  },
+  {
+    "scorecard_id": "019f8170-2bc9-73d9-92db-2017a624bc85",
+    "parent_version": "2026-07-20 21:30:40.342800",
+    "criterion_version": "2026-07-20 21:30:40.342800",
+    "valid_criterion_version": "2026-07-20 21:30:40.342800"
+  },
+  {
+    "scorecard_id": "019f817c-1340-72c8-8f80-464277cb8287",
+    "parent_version": "2026-07-20 21:43:40.525000",
+    "criterion_version": "2026-07-20 21:43:40.525000",
+    "valid_criterion_version": "2026-07-20 21:43:40.525000"
+  },
+  {
+    "scorecard_id": "019f817e-ca98-72a5-996e-443a4dfe987e",
+    "parent_version": "2026-07-20 21:46:38.501400",
+    "criterion_version": "2026-07-20 21:46:38.501400",
+    "valid_criterion_version": "2026-07-20 21:46:38.501400"
+  },
+  {
+    "scorecard_id": "019f81a4-9307-7421-b577-590f3495afaf",
+    "parent_version": "2026-07-20 22:27:56.376774",
+    "criterion_version": "2026-07-20 22:27:56.376774",
+    "valid_criterion_version": "2026-07-20 22:27:56.376774"
+  },
+  {
+    "scorecard_id": "019f81c0-dfbc-704c-9464-9077c45ab2a0",
+    "parent_version": "2026-07-20 22:58:51.746817",
+    "criterion_version": "2026-07-20 22:58:51.746817",
+    "valid_criterion_version": "2026-07-20 22:58:51.746817"
+  },
+  {
+    "scorecard_id": "019f8590-0b08-72e0-86b3-ea936729da22",
+    "parent_version": "2026-07-21 16:43:58.372346",
+    "criterion_version": "2026-07-21 16:43:58.372346",
+    "valid_criterion_version": "2026-07-21 16:43:58.372346"
+  },
+  {
+    "scorecard_id": "019f85a3-d658-70f6-88df-fc694f36b7f8",
+    "parent_version": "2026-07-21 17:05:35.411227",
+    "criterion_version": "2026-07-21 17:05:35.411227",
+    "valid_criterion_version": "2026-07-21 17:05:35.411227"
+  },
+  {
+    "scorecard_id": "019f85b1-a80c-70fa-b5e5-d7ada504f299",
+    "parent_version": "2026-07-21 17:20:41.074463",
+    "criterion_version": "2026-07-21 17:20:41.074463",
+    "valid_criterion_version": "2026-07-21 17:20:41.074463"
+  },
+  {
+    "scorecard_id": "019f85bf-7130-72cc-b104-65d0204bc30d",
+    "parent_version": "2026-07-21 17:35:44.832086",
+    "criterion_version": "2026-07-21 17:35:44.832086",
+    "valid_criterion_version": "2026-07-21 17:35:44.832086"
+  },
+  {
+    "scorecard_id": "019f85cd-4b12-7348-ad29-4211254e8d47",
+    "parent_version": "2026-07-29 20:04:22.557809",
+    "criterion_version": "2026-07-29 20:04:22.557809",
+    "valid_criterion_version": "2026-07-29 20:04:22.557809"
+  },
+  {
+    "scorecard_id": "019f8b83-e16e-751c-9490-625ad892933b",
+    "parent_version": "2026-07-22 20:28:24.544863",
+    "criterion_version": "2026-07-22 20:28:24.544863",
+    "valid_criterion_version": "2026-07-22 20:28:24.544863"
+  },
+  {
+    "scorecard_id": "019f8b89-f91d-73f8-bd8e-5e7e820a631b",
+    "parent_version": "2026-07-22 20:35:03.662706",
+    "criterion_version": "2026-07-22 20:35:03.662706",
+    "valid_criterion_version": "2026-07-22 20:35:03.662706"
+  },
+  {
+    "scorecard_id": "019f8b8f-01d7-713b-a3f2-a98ff4288343",
+    "parent_version": "2026-07-22 20:40:33.491149",
+    "criterion_version": "2026-07-22 20:40:33.491149",
+    "valid_criterion_version": "2026-07-22 20:40:33.491149"
+  },
+  {
+    "scorecard_id": "019f8b90-118d-75bd-8ca9-eb6e575e9b3e",
+    "parent_version": "2026-07-22 20:41:43.240732",
+    "criterion_version": "2026-07-22 20:41:43.240732",
+    "valid_criterion_version": "2026-07-22 20:41:43.240732"
+  },
+  {
+    "scorecard_id": "019f8b92-6c74-73ba-8354-77df1057c9d6",
+    "parent_version": "2026-07-22 20:44:17.324202",
+    "criterion_version": "2026-07-22 20:44:17.324202",
+    "valid_criterion_version": "2026-07-22 20:44:17.324202"
+  },
+  {
+    "scorecard_id": "019f8ba0-e5b6-7270-8aaf-6429aa42c002",
+    "parent_version": "2026-07-22 21:00:06.364009",
+    "criterion_version": "2026-07-22 21:00:06.364009",
+    "valid_criterion_version": "2026-07-22 21:00:06.364009"
+  },
+  {
+    "scorecard_id": "019f8ba7-2a4c-71fa-9259-f0801157ef8e",
+    "parent_version": "2026-07-22 21:06:56.664935",
+    "criterion_version": "2026-07-22 21:06:56.664935",
+    "valid_criterion_version": "2026-07-22 21:06:56.664935"
+  },
+  {
+    "scorecard_id": "019f8bb0-019a-728c-9820-f556df7eb6cb",
+    "parent_version": "2026-07-22 21:16:36.109495",
+    "criterion_version": "2026-07-22 21:16:36.109495",
+    "valid_criterion_version": "2026-07-22 21:16:36.109495"
+  },
+  {
+    "scorecard_id": "019f8bf8-3ebd-745e-8a98-d6702c6d4e55",
+    "parent_version": "2026-07-22 22:35:30.764260",
+    "criterion_version": "2026-07-22 22:35:30.764260",
+    "valid_criterion_version": "2026-07-22 22:35:30.764260"
+  },
+  {
+    "scorecard_id": "019f8bfe-3463-737c-9f39-08ad52f35940",
+    "parent_version": "2026-07-22 22:42:01.552367",
+    "criterion_version": "2026-07-22 22:42:01.552367",
+    "valid_criterion_version": "2026-07-22 22:42:01.552367"
+  },
+  {
+    "scorecard_id": "019f8c01-af91-77de-ad99-8e2b174ca4c2",
+    "parent_version": "2026-07-22 22:45:49.268312",
+    "criterion_version": "2026-07-22 22:45:49.268312",
+    "valid_criterion_version": "2026-07-22 22:45:49.268312"
+  },
+  {
+    "scorecard_id": "019f8c06-bae9-75bc-82e9-be0633e19c14",
+    "parent_version": "2026-07-22 22:51:20.414455",
+    "criterion_version": "2026-07-22 22:51:20.414455",
+    "valid_criterion_version": "2026-07-22 22:51:20.414455"
+  },
+  {
+    "scorecard_id": "019f8c0c-8393-73ad-826e-41181e527849",
+    "parent_version": "2026-07-22 22:57:38.812261",
+    "criterion_version": "2026-07-22 22:57:38.812261",
+    "valid_criterion_version": "2026-07-22 22:57:38.812261"
+  },
+  {
+    "scorecard_id": "019f8c0f-35cd-71a8-b573-472db075375c",
+    "parent_version": "2026-07-22 23:00:35.891375",
+    "criterion_version": "2026-07-22 23:00:35.891375",
+    "valid_criterion_version": "2026-07-22 23:00:35.891375"
+  },
+  {
+    "scorecard_id": "019f8c14-1355-72a3-a777-5d8c443f9350",
+    "parent_version": "2026-07-22 23:05:54.438497",
+    "criterion_version": "2026-07-22 23:05:54.438497",
+    "valid_criterion_version": "2026-07-22 23:05:54.438497"
+  },
+  {
+    "scorecard_id": "019f8fad-605d-7488-be15-9b7386af0149",
+    "parent_version": "2026-07-23 15:52:12.845901",
+    "criterion_version": "2026-07-23 15:52:12.845901",
+    "valid_criterion_version": "2026-07-23 15:52:12.845901"
+  },
+  {
+    "scorecard_id": "019f8fb2-a612-711a-8916-66935c335197",
+    "parent_version": "2026-07-23 15:57:58.121771",
+    "criterion_version": "2026-07-23 15:57:58.121771",
+    "valid_criterion_version": "2026-07-23 15:57:58.121771"
+  },
+  {
+    "scorecard_id": "019f8fb7-4e14-77de-b4be-c97ce694f519",
+    "parent_version": "2026-07-23 16:03:03.276797",
+    "criterion_version": "2026-07-23 16:03:03.276797",
+    "valid_criterion_version": "2026-07-23 16:03:03.276797"
+  },
+  {
+    "scorecard_id": "019f8ff0-fcac-77eb-bc7a-4981bce4b453",
+    "parent_version": "2026-07-23 17:06:03.518835",
+    "criterion_version": "2026-07-23 17:06:03.518835",
+    "valid_criterion_version": "2026-07-23 17:06:03.518835"
+  },
+  {
+    "scorecard_id": "019f8fff-e0bc-730e-9815-ddca8611b015",
+    "parent_version": "2026-07-23 17:22:19.369348",
+    "criterion_version": "2026-07-23 17:22:19.369348",
+    "valid_criterion_version": "2026-07-23 17:22:19.369348"
+  },
+  {
+    "scorecard_id": "019f9006-7cf2-7772-bc5c-591734fe935d",
+    "parent_version": "2026-07-23 17:29:32.677542",
+    "criterion_version": "2026-07-23 17:29:32.677542",
+    "valid_criterion_version": "2026-07-23 17:29:32.677542"
+  },
+  {
+    "scorecard_id": "019f9013-3636-7539-b5d6-04da948eaf75",
+    "parent_version": "2026-07-23 17:43:26.485380",
+    "criterion_version": "2026-07-23 17:43:26.485380",
+    "valid_criterion_version": "2026-07-23 17:43:26.485380"
+  },
+  {
+    "scorecard_id": "019f902c-df06-739e-9e6c-84ccef9a8d3c",
+    "parent_version": "2026-07-23 18:11:28.220642",
+    "criterion_version": "2026-07-23 18:11:28.220642",
+    "valid_criterion_version": "2026-07-23 18:11:28.220642"
+  },
+  {
+    "scorecard_id": "019f9043-41ac-772b-bf22-3dc691a8f3c6",
+    "parent_version": "2026-07-23 18:35:55.153582",
+    "criterion_version": "2026-07-23 18:35:55.153582",
+    "valid_criterion_version": "2026-07-23 18:35:55.153582"
+  },
+  {
+    "scorecard_id": "019f906c-6e12-7561-ad63-82b7c83cfb04",
+    "parent_version": "2026-07-23 19:20:53.530099",
+    "criterion_version": "2026-07-23 19:20:53.530099",
+    "valid_criterion_version": "2026-07-23 19:20:53.530099"
+  },
+  {
+    "scorecard_id": "019f90f8-35e3-72ea-bae4-c9d20d3bde94",
+    "parent_version": "2026-07-23 21:53:34.148417",
+    "criterion_version": "2026-07-23 21:53:34.148417",
+    "valid_criterion_version": "2026-07-23 21:53:34.148417"
+  },
+  {
+    "scorecard_id": "019f90ff-ee5c-76fb-8618-6b11c33ba57d",
+    "parent_version": "2026-07-23 22:02:00.115513",
+    "criterion_version": "2026-07-23 22:02:00.115513",
+    "valid_criterion_version": "2026-07-23 22:02:00.115513"
+  },
+  {
+    "scorecard_id": "019f94a4-3eb7-727f-b8eb-fcb80f6225c1",
+    "parent_version": "2026-07-24 15:00:20.468645",
+    "criterion_version": "2026-07-24 15:00:20.468645",
+    "valid_criterion_version": "2026-07-24 15:00:20.468645"
+  },
+  {
+    "scorecard_id": "019f94aa-3046-74a0-9a7e-0ec15225e4fc",
+    "parent_version": "2026-07-24 15:06:49.724051",
+    "criterion_version": "2026-07-24 15:06:49.724051",
+    "valid_criterion_version": "2026-07-24 15:06:49.724051"
+  },
+  {
+    "scorecard_id": "019f94af-b9db-71ed-a20b-21a461419138",
+    "parent_version": "2026-07-24 15:12:52.591024",
+    "criterion_version": "2026-07-24 15:12:52.591024",
+    "valid_criterion_version": "2026-07-24 15:12:52.591024"
+  },
+  {
+    "scorecard_id": "019f94b3-ecb0-7626-ae9a-d51e16daa293",
+    "parent_version": "2026-07-24 15:17:27.811027",
+    "criterion_version": "2026-07-24 15:17:27.811027",
+    "valid_criterion_version": "2026-07-24 15:17:27.811027"
+  },
+  {
+    "scorecard_id": "019f94cd-9367-7339-aeb2-7310694deae1",
+    "parent_version": "2026-07-24 15:45:29.359697",
+    "criterion_version": "2026-07-24 15:45:29.359697",
+    "valid_criterion_version": "2026-07-24 15:45:29.359697"
+  },
+  {
+    "scorecard_id": "019f94f7-49b1-74e8-9a5e-3c2f113c1668",
+    "parent_version": "2026-07-24 16:31:02.845452",
+    "criterion_version": "2026-07-24 16:31:02.845452",
+    "valid_criterion_version": "2026-07-24 16:31:02.845452"
+  },
+  {
+    "scorecard_id": "019f9514-824d-722e-8d9b-99d2cabb81ef",
+    "parent_version": "2026-07-24 17:02:58.639757",
+    "criterion_version": "2026-07-24 17:02:58.639757",
+    "valid_criterion_version": "2026-07-24 17:02:58.639757"
+  },
+  {
+    "scorecard_id": "019f9517-9e7b-76dd-aba4-ab73b32ceedd",
+    "parent_version": "2026-07-24 17:06:21.706678",
+    "criterion_version": "2026-07-24 17:06:21.706678",
+    "valid_criterion_version": "2026-07-24 17:06:21.706678"
+  },
+  {
+    "scorecard_id": "019f951d-31c5-7342-9806-5fa2a41cca91",
+    "parent_version": "2026-07-24 17:12:26.796888",
+    "criterion_version": "2026-07-24 17:12:26.796888",
+    "valid_criterion_version": "2026-07-24 17:12:26.796888"
+  },
+  {
+    "scorecard_id": "019f952f-8243-70af-8b8b-313be95ec27f",
+    "parent_version": "2026-07-24 17:32:26.941444",
+    "criterion_version": "2026-07-24 17:32:26.941444",
+    "valid_criterion_version": "2026-07-24 17:32:26.941444"
+  },
+  {
+    "scorecard_id": "019f9536-8a37-77b6-b211-c7b5cd92bbba",
+    "parent_version": "2026-07-24 17:40:07.788253",
+    "criterion_version": "2026-07-24 17:40:07.788253",
+    "valid_criterion_version": "2026-07-24 17:40:07.788253"
+  },
+  {
+    "scorecard_id": "019f953e-12be-7466-a6fc-e714c3d1cb6f",
+    "parent_version": "2026-07-24 17:48:21.453252",
+    "criterion_version": "2026-07-24 17:48:21.453252",
+    "valid_criterion_version": "2026-07-24 17:48:21.453252"
+  },
+  {
+    "scorecard_id": "019f9543-5c66-75d7-933c-5b3065d2b42a",
+    "parent_version": "2026-07-24 17:54:08.061559",
+    "criterion_version": "2026-07-24 17:54:08.061559",
+    "valid_criterion_version": "2026-07-24 17:54:08.061559"
+  },
+  {
+    "scorecard_id": "019f9549-c857-76d8-9d67-13f4a16b5a9f",
+    "parent_version": "2026-07-24 18:01:08.921956",
+    "criterion_version": "2026-07-24 18:01:08.921956",
+    "valid_criterion_version": "2026-07-24 18:01:08.921956"
+  },
+  {
+    "scorecard_id": "019f955a-be6f-75ef-8b8f-e2c805423329",
+    "parent_version": "2026-07-24 18:19:40.529191",
+    "criterion_version": "2026-07-24 18:19:40.529191",
+    "valid_criterion_version": "2026-07-24 18:19:40.529191"
+  },
+  {
+    "scorecard_id": "019f9568-7a40-705f-bd7b-025a2883a1b2",
+    "parent_version": "2026-07-24 18:34:40.468237",
+    "criterion_version": "2026-07-24 18:34:40.468237",
+    "valid_criterion_version": "2026-07-24 18:34:40.468237"
+  },
+  {
+    "scorecard_id": "019f95b5-9e9b-723b-87da-36eb89e58c4c",
+    "parent_version": "2026-07-24 19:58:56.689071",
+    "criterion_version": "2026-07-24 19:58:56.689071",
+    "valid_criterion_version": "2026-07-24 19:58:56.689071"
+  },
+  {
+    "scorecard_id": "019f95bd-298f-707c-95d5-630b1a97772c",
+    "parent_version": "2026-07-24 20:07:10.788594",
+    "criterion_version": "2026-07-24 20:07:10.788594",
+    "valid_criterion_version": "2026-07-24 20:07:10.788594"
+  },
+  {
+    "scorecard_id": "019f95c4-6daa-7367-9ee5-a5cf473ba231",
+    "parent_version": "2026-07-24 20:15:06.724685",
+    "criterion_version": "2026-07-24 20:15:06.724685",
+    "valid_criterion_version": "2026-07-24 20:15:06.724685"
+  },
+  {
+    "scorecard_id": "019f95d6-e086-7279-9d26-73cc062e485a",
+    "parent_version": "2026-07-24 20:35:15.782212",
+    "criterion_version": "2026-07-24 20:35:15.782212",
+    "valid_criterion_version": "2026-07-24 20:35:15.782212"
+  },
+  {
+    "scorecard_id": "019f95e3-add8-7739-8961-60ecaf47d022",
+    "parent_version": "2026-07-24 20:49:14.852107",
+    "criterion_version": "2026-07-24 20:49:14.852107",
+    "valid_criterion_version": "2026-07-24 20:49:14.852107"
+  },
+  {
+    "scorecard_id": "019fa3d4-9849-76c9-b412-d9da646f9a45",
+    "parent_version": "2026-07-27 13:47:29.088442",
+    "criterion_version": "2026-07-27 13:47:29.088442",
+    "valid_criterion_version": "2026-07-27 13:47:29.088442"
+  },
+  {
+    "scorecard_id": "019fa3d8-fb69-7659-be1a-a3b8d6e065b1",
+    "parent_version": "2026-07-27 13:52:15.236291",
+    "criterion_version": "2026-07-27 13:52:15.236291",
+    "valid_criterion_version": "2026-07-27 13:52:15.236291"
+  },
+  {
+    "scorecard_id": "019fa3e5-1d51-7529-9b2e-248cfe1bb66d",
+    "parent_version": "2026-07-27 14:05:30.005580",
+    "criterion_version": "2026-07-27 14:05:30.005580",
+    "valid_criterion_version": "2026-07-27 14:05:30.005580"
+  },
+  {
+    "scorecard_id": "019fa3ea-7900-760b-9bc5-b7233c1d686c",
+    "parent_version": "2026-07-27 14:11:22.407860",
+    "criterion_version": "2026-07-27 14:11:22.407860",
+    "valid_criterion_version": "2026-07-27 14:11:22.407860"
+  },
+  {
+    "scorecard_id": "019fa3f6-1f36-72d6-a9dd-8ebdc2516337",
+    "parent_version": "2026-07-27 14:24:04.433776",
+    "criterion_version": "2026-07-27 14:24:04.433776",
+    "valid_criterion_version": "2026-07-27 14:24:04.433776"
+  },
+  {
+    "scorecard_id": "019fa3fc-d6d6-7794-a8fd-7e5649194891",
+    "parent_version": "2026-07-27 14:31:26.371498",
+    "criterion_version": "2026-07-27 14:31:26.371498",
+    "valid_criterion_version": "2026-07-27 14:31:26.371498"
+  },
+  {
+    "scorecard_id": "019fa40a-d1f3-757b-bc42-fcd6c732a229",
+    "parent_version": "2026-07-27 14:46:41.102354",
+    "criterion_version": "2026-07-27 14:46:41.102354",
+    "valid_criterion_version": "2026-07-27 14:46:41.102354"
+  },
+  {
+    "scorecard_id": "019fa438-78cb-73ac-819e-d34922930c0e",
+    "parent_version": "2026-07-27 15:36:32.768563",
+    "criterion_version": "2026-07-27 15:36:32.768563",
+    "valid_criterion_version": "2026-07-27 15:36:32.768563"
+  },
+  {
+    "scorecard_id": "019fa443-025c-75d1-a491-0c31bc1cacec",
+    "parent_version": "2026-07-27 15:48:03.701359",
+    "criterion_version": "2026-07-27 15:48:03.701359",
+    "valid_criterion_version": "2026-07-27 15:48:03.701359"
+  },
+  {
+    "scorecard_id": "019fa45c-8231-7589-a2da-961f8ea56a5c",
+    "parent_version": "2026-07-27 16:19:33.328413",
+    "criterion_version": "2026-07-27 16:19:33.328413",
+    "valid_criterion_version": "2026-07-27 16:19:33.328413"
+  },
+  {
+    "scorecard_id": "019fa46e-7816-73cb-afac-8de0c3e47af5",
+    "parent_version": "2026-07-27 16:35:31.646546",
+    "criterion_version": "2026-07-27 16:35:31.646546",
+    "valid_criterion_version": "2026-07-27 16:35:31.646546"
+  },
+  {
+    "scorecard_id": "019fa475-aee1-7139-9d19-ccf0eb779558",
+    "parent_version": "2026-07-27 16:43:24.263055",
+    "criterion_version": "2026-07-27 16:43:24.263055",
+    "valid_criterion_version": "2026-07-27 16:43:24.263055"
+  },
+  {
+    "scorecard_id": "019fa47a-6336-748d-9e0d-6a4ab129c606",
+    "parent_version": "2026-07-27 16:48:34.638647",
+    "criterion_version": "2026-07-27 16:48:34.638647",
+    "valid_criterion_version": "2026-07-27 16:48:34.638647"
+  },
+  {
+    "scorecard_id": "019fa47d-1fe1-7260-b15c-5471dfcaabc8",
+    "parent_version": "2026-07-27 16:51:31.907783",
+    "criterion_version": "2026-07-27 16:51:31.907783",
+    "valid_criterion_version": "2026-07-27 16:51:31.907783"
+  },
+  {
+    "scorecard_id": "019fa480-9f4f-701a-90bc-565d8186ef1f",
+    "parent_version": "2026-07-27 16:55:21.179453",
+    "criterion_version": "2026-07-27 16:55:21.179453",
+    "valid_criterion_version": "2026-07-27 16:55:21.179453"
+  },
+  {
+    "scorecard_id": "019fa484-5736-727b-b392-1813ef919ec4",
+    "parent_version": "2026-07-27 16:59:25.141254",
+    "criterion_version": "2026-07-27 16:59:25.141254",
+    "valid_criterion_version": "2026-07-27 16:59:25.141254"
+  },
+  {
+    "scorecard_id": "019fa48f-d5ea-711c-969c-a5987802f2c3",
+    "parent_version": "2026-07-27 17:11:58.627263",
+    "criterion_version": "2026-07-27 17:11:58.627263",
+    "valid_criterion_version": "2026-07-27 17:11:58.627263"
+  },
+  {
+    "scorecard_id": "019fa494-1779-70f3-9e26-9faded424d71",
+    "parent_version": "2026-07-27 17:16:37.129052",
+    "criterion_version": "2026-07-27 17:16:37.129052",
+    "valid_criterion_version": "2026-07-27 17:16:37.129052"
+  },
+  {
+    "scorecard_id": "019fa496-f8b1-76f3-8820-b8c2e38a7367",
+    "parent_version": "2026-07-27 17:19:46.078593",
+    "criterion_version": "2026-07-27 17:19:46.078593",
+    "valid_criterion_version": "2026-07-27 17:19:46.078593"
+  },
+  {
+    "scorecard_id": "019fa4c5-14df-756e-8cee-cb2a02268b81",
+    "parent_version": "2026-07-27 18:10:07.858986",
+    "criterion_version": "2026-07-27 18:10:07.858986",
+    "valid_criterion_version": "2026-07-27 18:10:07.858986"
+  },
+  {
+    "scorecard_id": "019fa95a-b6a5-7784-820c-d7befacf1f68",
+    "parent_version": "2026-07-28 15:32:03.305110",
+    "criterion_version": "2026-07-28 15:32:03.305110",
+    "valid_criterion_version": "2026-07-28 15:32:03.305110"
+  },
+  {
+    "scorecard_id": "019fa95e-85cf-704e-a2d2-a8e8ddaea93b",
+    "parent_version": "2026-07-28 15:36:12.536793",
+    "criterion_version": "2026-07-28 15:36:12.536793",
+    "valid_criterion_version": "2026-07-28 15:36:12.536793"
+  },
+  {
+    "scorecard_id": "019fa966-0017-7689-bbde-cbbd800cc7e8",
+    "parent_version": "2026-07-28 15:44:22.562713",
+    "criterion_version": "2026-07-28 15:44:22.562713",
+    "valid_criterion_version": "2026-07-28 15:44:22.562713"
+  },
+  {
+    "scorecard_id": "019fa96b-e4b0-76db-b1cf-05d5078fc353",
+    "parent_version": "2026-07-28 15:50:48.785658",
+    "criterion_version": "2026-07-28 15:50:48.785658",
+    "valid_criterion_version": "2026-07-28 15:50:48.785658"
+  },
+  {
+    "scorecard_id": "019fa971-1224-7613-8d3b-098a3edd0e9a",
+    "parent_version": "2026-07-28 15:56:28.099632",
+    "criterion_version": "2026-07-28 15:56:28.099632",
+    "valid_criterion_version": "2026-07-28 15:56:28.099632"
+  },
+  {
+    "scorecard_id": "019fa977-6fac-729b-846b-500cb3edc6dc",
+    "parent_version": "2026-07-28 16:03:25.284563",
+    "criterion_version": "2026-07-28 16:03:25.284563",
+    "valid_criterion_version": "2026-07-28 16:03:25.284563"
+  },
+  {
+    "scorecard_id": "019fa97e-2a3c-713d-8649-711f5d327b0c",
+    "parent_version": "2026-07-28 16:10:46.287252",
+    "criterion_version": "2026-07-28 16:10:46.287252",
+    "valid_criterion_version": "2026-07-28 16:10:46.287252"
+  },
+  {
+    "scorecard_id": "019fa98d-101c-7706-bcb8-7cac83ca1b05",
+    "parent_version": "2026-07-28 16:27:02.672749",
+    "criterion_version": "2026-07-28 16:27:02.672749",
+    "valid_criterion_version": "2026-07-28 16:27:02.672749"
+  },
+  {
+    "scorecard_id": "019fa993-c1ac-766f-b742-46fa1e148233",
+    "parent_version": "2026-07-28 16:34:21.328855",
+    "criterion_version": "2026-07-28 16:34:21.328855",
+    "valid_criterion_version": "2026-07-28 16:34:21.328855"
+  },
+  {
+    "scorecard_id": "019fa9a2-5fce-726b-84b8-43e9226119c5",
+    "parent_version": "2026-07-28 16:50:19.181583",
+    "criterion_version": "2026-07-28 16:50:19.181583",
+    "valid_criterion_version": "2026-07-28 16:50:19.181583"
+  },
+  {
+    "scorecard_id": "019fa9da-857a-772c-b5a0-27da9b23b232",
+    "parent_version": "2026-07-28 17:54:01.847968",
+    "criterion_version": "2026-07-28 17:54:01.847968",
+    "valid_criterion_version": "2026-07-28 17:54:01.847968"
+  },
+  {
+    "scorecard_id": "019fa9e3-4ee3-716a-8916-6a60f392d7a1",
+    "parent_version": "2026-07-28 18:01:14.705657",
+    "criterion_version": "2026-07-28 18:01:14.705657",
+    "valid_criterion_version": "2026-07-28 18:01:14.705657"
+  },
+  {
+    "scorecard_id": "019fa9ed-2364-722c-a8b8-e87ed7d0546e",
+    "parent_version": "2026-07-28 18:11:58.876673",
+    "criterion_version": "2026-07-28 18:11:58.876673",
+    "valid_criterion_version": "2026-07-28 18:11:58.876673"
+  },
+  {
+    "scorecard_id": "019fae1a-bc03-731c-bc69-cdbf37964406",
+    "parent_version": "2026-07-29 13:40:17.580085",
+    "criterion_version": "2026-07-29 13:40:17.580085",
+    "valid_criterion_version": "2026-07-29 13:40:17.580085"
+  },
+  {
+    "scorecard_id": "019fae1d-7f96-7294-9778-965f20ecdae2",
+    "parent_version": "2026-07-29 13:43:20.902287",
+    "criterion_version": "2026-07-29 13:43:20.902287",
+    "valid_criterion_version": "2026-07-29 13:43:20.902287"
+  },
+  {
+    "scorecard_id": "019fae25-888a-73dd-bba5-057bdd0a0209",
+    "parent_version": "2026-07-29 13:52:04.131985",
+    "criterion_version": "2026-07-29 13:52:04.131985",
+    "valid_criterion_version": "2026-07-29 13:52:04.131985"
+  },
+  {
+    "scorecard_id": "019fae2b-9cf1-73ae-bdee-787862b082ef",
+    "parent_version": "2026-07-29 13:58:42.174873",
+    "criterion_version": "2026-07-29 13:58:42.174873",
+    "valid_criterion_version": "2026-07-29 13:58:42.174873"
+  },
+  {
+    "scorecard_id": "019fae45-53ef-7434-a781-8b4eadae68e5",
+    "parent_version": "2026-07-29 14:26:47.476461",
+    "criterion_version": "2026-07-29 14:26:47.476461",
+    "valid_criterion_version": "2026-07-29 14:26:47.476461"
+  },
+  {
+    "scorecard_id": "019fae56-9700-73b5-8ad3-93dd68f65542",
+    "parent_version": "2026-07-29 14:45:38.773425",
+    "criterion_version": "2026-07-29 14:45:38.773425",
+    "valid_criterion_version": "2026-07-29 14:45:38.773425"
+  },
+  {
+    "scorecard_id": "019fae63-45e9-771c-b9a6-fd97e1cd12ff",
+    "parent_version": "2026-07-29 14:59:29.976886",
+    "criterion_version": "2026-07-29 14:59:29.976886",
+    "valid_criterion_version": "2026-07-29 14:59:29.976886"
+  },
+  {
+    "scorecard_id": "019fae65-ef94-771c-957d-9f398fd37a1f",
+    "parent_version": "2026-07-29 15:02:24.360630",
+    "criterion_version": "2026-07-29 15:02:24.360630",
+    "valid_criterion_version": "2026-07-29 15:02:24.360630"
+  },
+  {
+    "scorecard_id": "019fae68-14de-76ba-882e-7fa1ae07afbf",
+    "parent_version": "2026-07-29 15:04:45.758449",
+    "criterion_version": "2026-07-29 15:04:45.758449",
+    "valid_criterion_version": "2026-07-29 15:04:45.758449"
+  },
+  {
+    "scorecard_id": "019fae6f-45cf-71ad-a4c6-6e04dc3f0436",
+    "parent_version": "2026-07-29 15:12:38.513225",
+    "criterion_version": "2026-07-29 15:12:38.513225",
+    "valid_criterion_version": "2026-07-29 15:12:38.513225"
+  },
+  {
+    "scorecard_id": "019fae6f-faac-733c-8136-96fcb3cf7cad",
+    "parent_version": "2026-07-29 15:13:22.538374",
+    "criterion_version": "2026-07-29 15:13:22.538374",
+    "valid_criterion_version": "2026-07-29 15:13:22.538374"
+  },
+  {
+    "scorecard_id": "019fae76-f05a-7438-9264-0e7cbaea37c6",
+    "parent_version": "2026-07-29 15:20:58.659097",
+    "criterion_version": "2026-07-29 15:20:58.659097",
+    "valid_criterion_version": "2026-07-29 15:20:58.659097"
+  },
+  {
+    "scorecard_id": "019fae79-5158-75cf-888f-f0c9e654286f",
+    "parent_version": "2026-07-29 15:23:35.355383",
+    "criterion_version": "2026-07-29 15:23:35.355383",
+    "valid_criterion_version": "2026-07-29 15:23:35.355383"
+  },
+  {
+    "scorecard_id": "019fae81-8f7b-775d-ae83-01b4987f5dc5",
+    "parent_version": "2026-07-29 15:32:34.745201",
+    "criterion_version": "2026-07-29 15:32:34.745201",
+    "valid_criterion_version": "2026-07-29 15:32:34.745201"
+  },
+  {
+    "scorecard_id": "019fae84-ad80-705c-9983-abc4143b8b54",
+    "parent_version": "2026-07-29 15:35:59.441354",
+    "criterion_version": "2026-07-29 15:35:59.441354",
+    "valid_criterion_version": "2026-07-29 15:35:59.441354"
+  },
+  {
+    "scorecard_id": "019fae95-306b-75a7-a62e-073eb5082ec6",
+    "parent_version": "2026-07-29 15:54:01.651992",
+    "criterion_version": "2026-07-29 15:54:01.651992",
+    "valid_criterion_version": "2026-07-29 15:54:01.651992"
+  },
+  {
+    "scorecard_id": "019fae9a-7322-7127-a91a-b57f9e8ddd70",
+    "parent_version": "2026-07-29 15:59:47.283648",
+    "criterion_version": "2026-07-29 15:59:47.283648",
+    "valid_criterion_version": "2026-07-29 15:59:47.283648"
+  },
+  {
+    "scorecard_id": "019faea7-e11b-767d-9a2f-e56fd0ad61d5",
+    "parent_version": "2026-07-29 16:14:27.778491",
+    "criterion_version": "2026-07-29 16:14:27.778491",
+    "valid_criterion_version": "2026-07-29 16:14:27.778491"
+  },
+  {
+    "scorecard_id": "019faece-ee28-707a-8973-ae0460ffe0f5",
+    "parent_version": "2026-07-29 16:57:05.598039",
+    "criterion_version": "2026-07-29 16:57:05.598039",
+    "valid_criterion_version": "2026-07-29 16:57:05.598039"
+  },
+  {
+    "scorecard_id": "019faedb-d80d-7287-b38c-3e2d54305a6c",
+    "parent_version": "2026-07-29 17:11:11.844027",
+    "criterion_version": "2026-07-29 17:11:11.844027",
+    "valid_criterion_version": "2026-07-29 17:11:11.844027"
+  },
+  {
+    "scorecard_id": "019faeed-eb05-7209-9e3c-ce9c54f650ad",
+    "parent_version": "2026-07-29 17:30:56.308561",
+    "criterion_version": "2026-07-29 17:30:56.308561",
+    "valid_criterion_version": "2026-07-29 17:30:56.308561"
+  },
+  {
+    "scorecard_id": "019faf08-b00c-731e-9b42-afadbdef6ed9",
+    "parent_version": "2026-07-29 18:00:10.936335",
+    "criterion_version": "2026-07-29 18:00:10.936335",
+    "valid_criterion_version": "2026-07-29 18:00:10.936335"
+  },
+  {
+    "scorecard_id": "019faf12-e506-75bc-a130-ca0630e6684b",
+    "parent_version": "2026-07-29 18:11:20.524782",
+    "criterion_version": "2026-07-29 18:11:20.524782",
+    "valid_criterion_version": "2026-07-29 18:11:20.524782"
+  },
+  {
+    "scorecard_id": "019faf20-388e-70e7-bcca-c74917405541",
+    "parent_version": "2026-07-29 18:25:53.117682",
+    "criterion_version": "2026-07-29 18:25:53.117682",
+    "valid_criterion_version": "2026-07-29 18:25:53.117682"
+  },
+  {
+    "scorecard_id": "019faf31-e646-75a9-96bb-947777373a0d",
+    "parent_version": "2026-07-29 18:45:12.450280",
+    "criterion_version": "2026-07-29 18:45:12.450280",
+    "valid_criterion_version": "2026-07-29 18:45:12.450280"
+  },
+  {
+    "scorecard_id": "019faf48-8d2c-777f-b247-f51ae4ffcba9",
+    "parent_version": "2026-07-29 19:09:57.648959",
+    "criterion_version": "2026-07-29 19:09:57.648959",
+    "valid_criterion_version": "2026-07-29 19:09:57.648959"
+  },
+  {
+    "scorecard_id": "019faf4f-bdfc-767d-8812-c424de621459",
+    "parent_version": "2026-07-29 19:17:47.099949",
+    "criterion_version": "2026-07-29 19:17:47.099949",
+    "valid_criterion_version": "2026-07-29 19:17:47.099949"
+  },
+  {
+    "scorecard_id": "019faf55-81b5-737a-91c5-25eec21a72cd",
+    "parent_version": "2026-07-29 19:24:05.165561",
+    "criterion_version": "2026-07-29 19:24:05.165561",
+    "valid_criterion_version": "2026-07-29 19:24:05.165561"
+  },
+  {
+    "scorecard_id": "019faf5a-9291-7025-b8cb-a1be9cc3bb64",
+    "parent_version": "2026-07-29 19:29:37.019682",
+    "criterion_version": "2026-07-29 19:29:37.019682",
+    "valid_criterion_version": "2026-07-29 19:29:37.019682"
+  },
+  {
+    "scorecard_id": "019faf64-6c56-7747-9c76-d89a63a9d133",
+    "parent_version": "2026-07-29 19:40:22.615534",
+    "criterion_version": "2026-07-29 19:40:22.615534",
+    "valid_criterion_version": "2026-07-29 19:40:22.615534"
+  },
+  {
+    "scorecard_id": "019faf74-6857-7701-974c-c6022348f909",
+    "parent_version": "2026-07-29 19:57:51.725370",
+    "criterion_version": "2026-07-29 19:57:51.725370",
+    "valid_criterion_version": "2026-07-29 19:57:51.725370"
+  },
+  {
+    "scorecard_id": "019faf92-42f1-746d-8bc9-1621f031869e",
+    "parent_version": "2026-07-29 20:30:26.998166",
+    "criterion_version": "2026-07-29 20:30:26.998166",
+    "valid_criterion_version": "2026-07-29 20:30:26.998166"
+  },
+  {
+    "scorecard_id": "019faf96-37f1-70dd-910d-2b3dbfc2b26c",
+    "parent_version": "2026-07-29 20:34:45.896166",
+    "criterion_version": "2026-07-29 20:34:45.896166",
+    "valid_criterion_version": "2026-07-29 20:34:45.896166"
+  },
+  {
+    "scorecard_id": "019fafa1-79e6-748b-9824-bca16ec96422",
+    "parent_version": "2026-07-29 20:47:03.729171",
+    "criterion_version": "2026-07-29 20:47:03.729171",
+    "valid_criterion_version": "2026-07-29 20:47:03.729171"
+  },
+  {
+    "scorecard_id": "019fafaa-93b3-70b6-852c-c90ffe2aabd3",
+    "parent_version": "2026-07-29 20:57:02.225001",
+    "criterion_version": "2026-07-29 20:57:02.225001",
+    "valid_criterion_version": "2026-07-29 20:57:02.225001"
+  },
+  {
+    "scorecard_id": "019fafb9-e834-7108-8514-390eec93dd30",
+    "parent_version": "2026-07-29 21:13:46.415190",
+    "criterion_version": "2026-07-29 21:13:46.415190",
+    "valid_criterion_version": "2026-07-29 21:13:46.415190"
+  },
+  {
+    "scorecard_id": "019fafbd-6776-7769-b134-72d2ed946f02",
+    "parent_version": "2026-07-29 21:17:34.715567",
+    "criterion_version": "2026-07-29 21:17:34.715567",
+    "valid_criterion_version": "2026-07-29 21:17:34.715567"
+  },
+  {
+    "scorecard_id": "019fafc8-0167-7505-a6d7-9c82ca827c79",
+    "parent_version": "2026-07-29 21:29:09.429133",
+    "criterion_version": "2026-07-29 21:29:09.429133",
+    "valid_criterion_version": "2026-07-29 21:29:09.429133"
+  },
+  {
+    "scorecard_id": "019fafcf-1390-71be-b49a-b55a248b5ddf",
+    "parent_version": "2026-07-29 21:36:52.672518",
+    "criterion_version": "2026-07-29 21:36:52.672518",
+    "valid_criterion_version": "2026-07-29 21:36:52.672518"
+  },
+  {
+    "scorecard_id": "019fafe5-d487-7189-a737-5509a979db3c",
+    "parent_version": "2026-07-29 22:01:43.823708",
+    "criterion_version": "2026-07-29 22:01:43.823708",
+    "valid_criterion_version": "2026-07-29 22:01:43.823708"
+  },
+  {
+    "scorecard_id": "019fafee-b5fb-715c-8326-cb97d1662fe5",
+    "parent_version": "2026-07-29 22:11:25.702690",
+    "criterion_version": "2026-07-29 22:11:25.702690",
+    "valid_criterion_version": "2026-07-29 22:11:25.702690"
+  },
+  {
+    "scorecard_id": "019faff8-c177-71a8-81cb-8c95672463bd",
+    "parent_version": "2026-07-29 22:22:24.017766",
+    "criterion_version": "2026-07-29 22:22:24.017766",
+    "valid_criterion_version": "2026-07-29 22:22:24.017766"
+  },
+  {
+    "scorecard_id": "019fb449-7906-76bd-a22f-e206c4b0dee7",
+    "parent_version": "2026-07-30 18:29:02.623119",
+    "criterion_version": "2026-07-30 18:29:02.623119",
+    "valid_criterion_version": "2026-07-30 18:29:02.623119"
+  },
+  {
+    "scorecard_id": "019fb44e-f0c5-76f2-a483-a66f000c7399",
+    "parent_version": "2026-07-30 18:35:00.555630",
+    "criterion_version": "2026-07-30 18:35:00.555630",
+    "valid_criterion_version": "2026-07-30 18:35:00.555630"
+  },
+  {
+    "scorecard_id": "019fb45a-6a55-74db-b85d-738607960e1c",
+    "parent_version": "2026-07-30 18:47:32.713059",
+    "criterion_version": "2026-07-30 18:47:32.713059",
+    "valid_criterion_version": "2026-07-30 18:47:32.713059"
+  },
+  {
+    "scorecard_id": "019fb45d-03d4-7129-8f36-f5c39608ed01",
+    "parent_version": "2026-07-30 18:50:22.987497",
+    "criterion_version": "2026-07-30 18:50:22.987497",
+    "valid_criterion_version": "2026-07-30 18:50:22.987497"
+  },
+  {
+    "scorecard_id": "019fb460-8ec4-70dd-aea7-6e561b1f67f0",
+    "parent_version": "2026-07-30 18:54:15.142303",
+    "criterion_version": "2026-07-30 18:54:15.142303",
+    "valid_criterion_version": "2026-07-30 18:54:15.142303"
+  },
+  {
+    "scorecard_id": "019fb465-d1fd-716b-a254-21982800f97a",
+    "parent_version": "2026-07-30 19:00:00.102668",
+    "criterion_version": "2026-07-30 19:00:00.102668",
+    "valid_criterion_version": "2026-07-30 19:00:00.102668"
+  },
+  {
+    "scorecard_id": "019fb46b-6afc-7585-85e5-b19f1e5e7a5f",
+    "parent_version": "2026-07-30 19:06:06.932183",
+    "criterion_version": "2026-07-30 19:06:06.932183",
+    "valid_criterion_version": "2026-07-30 19:06:06.932183"
+  },
+  {
+    "scorecard_id": "019fb474-a52d-77a8-82a3-2c9ecde44f2e",
+    "parent_version": "2026-07-30 19:16:11.649425",
+    "criterion_version": "2026-07-30 19:16:11.649425",
+    "valid_criterion_version": "2026-07-30 19:16:11.649425"
+  },
+  {
+    "scorecard_id": "019fb47d-7698-731a-bea9-eadacdf0bb1a",
+    "parent_version": "2026-07-30 19:25:49.628959",
+    "criterion_version": "2026-07-30 19:25:49.628959",
+    "valid_criterion_version": "2026-07-30 19:25:49.628959"
+  },
+  {
+    "scorecard_id": "019fb536-e701-773f-87c9-d3cde10bc59b",
+    "parent_version": "2026-07-30 22:48:23.396364",
+    "criterion_version": "2026-07-30 22:48:23.396364",
+    "valid_criterion_version": "2026-07-30 22:48:23.396364"
+  },
+  {
+    "scorecard_id": "019fb539-d2ee-7749-8276-88a5bb0173a5",
+    "parent_version": "2026-07-30 22:51:34.256015",
+    "criterion_version": "2026-07-30 22:51:34.256015",
+    "valid_criterion_version": "2026-07-30 22:51:34.256015"
+  },
+  {
+    "scorecard_id": "019fb53c-1e4d-73de-9bc2-24f454854fb7",
+    "parent_version": "2026-07-30 22:54:05.822704",
+    "criterion_version": "2026-07-30 22:54:05.822704",
+    "valid_criterion_version": "2026-07-30 22:54:05.822704"
+  },
+  {
+    "scorecard_id": "019fb53e-d213-7398-9adb-2656f1d7eea2",
+    "parent_version": "2026-07-30 22:57:01.608216",
+    "criterion_version": "2026-07-30 22:57:01.608216",
+    "valid_criterion_version": "2026-07-30 22:57:01.608216"
+  },
+  {
+    "scorecard_id": "019fb540-ceac-71e6-8af5-74b89f99f61b",
+    "parent_version": "2026-07-30 22:59:12.041186",
+    "criterion_version": "2026-07-30 22:59:12.041186",
+    "valid_criterion_version": "2026-07-30 22:59:12.041186"
+  },
+  {
+    "scorecard_id": "019fb544-9439-76bc-9537-2786c7ba6efd",
+    "parent_version": "2026-07-30 23:03:19.142449",
+    "criterion_version": "2026-07-30 23:03:19.142449",
+    "valid_criterion_version": "2026-07-30 23:03:19.142449"
+  },
+  {
+    "scorecard_id": "019fb54b-a638-7244-a728-ee2f6196e919",
+    "parent_version": "2026-07-30 23:11:04.380978",
+    "criterion_version": "2026-07-30 23:11:04.380978",
+    "valid_criterion_version": "2026-07-30 23:11:04.380978"
+  },
+  {
+    "scorecard_id": "019fb54e-1068-7299-8acc-71057100981a",
+    "parent_version": "2026-07-30 23:13:43.770637",
+    "criterion_version": "2026-07-30 23:13:43.770637",
+    "valid_criterion_version": "2026-07-30 23:13:43.770637"
+  },
+  {
+    "scorecard_id": "019fb550-7c53-7333-918d-7c49d352f031",
+    "parent_version": "2026-07-30 23:16:22.787602",
+    "criterion_version": "2026-07-30 23:16:22.787602",
+    "valid_criterion_version": "2026-07-30 23:16:22.787602"
+  },
+  {
+    "scorecard_id": "019fb9cf-d0ef-764d-980f-ff58464a43d7",
+    "parent_version": "2026-07-31 20:13:52.284735",
+    "criterion_version": "2026-07-31 20:13:52.788779",
+    "valid_criterion_version": "2026-07-31 20:13:52.788779"
+  },
+  {
+    "scorecard_id": "019fb9d3-1a98-7762-ba5c-37bf1343dda6",
+    "parent_version": "2026-07-31 20:17:27.747964",
+    "criterion_version": "2026-07-31 20:17:28.107808",
+    "valid_criterion_version": "2026-07-31 20:17:28.107808"
+  },
+  {
+    "scorecard_id": "019fb9d5-55f7-7188-b9d7-6769b790b9e0",
+    "parent_version": "2026-07-31 20:19:54.455454",
+    "criterion_version": "2026-07-31 20:19:54.455454",
+    "valid_criterion_version": "2026-07-31 20:19:54.455454"
+  },
+  {
+    "scorecard_id": "019fb9da-fd63-76aa-904c-c0aeccd39cc3",
+    "parent_version": "2026-07-31 20:26:05.005952",
+    "criterion_version": "2026-07-31 20:26:05.005952",
+    "valid_criterion_version": "2026-07-31 20:26:05.005952"
+  }
+]

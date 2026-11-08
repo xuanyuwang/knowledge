@@ -1,0 +1,2375 @@
+[
+  {
+    "scorecard_id": "019f2933-bd9e-7627-861c-ab250e2efc85",
+    "agent_user_id": "ded1dbe017522376",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 18:18:05.194416",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f2936-d56c-7719-a908-8022af4c9334",
+    "agent_user_id": "bdb11b74a94a08cc",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 18:21:27.681675",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f295e-2159-731c-b4a0-10f50ff65535",
+    "agent_user_id": "4f889bce6909e1bd",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 19:04:23.004645",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f2964-9a2b-7461-bc5f-bc5f54bd735b",
+    "agent_user_id": "686ce9c4ada540d0",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 19:11:27.137771",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f2967-98d1-728d-8821-fdcb377b6d8c",
+    "agent_user_id": "3cb360dd50ebdb2e",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 19:14:43.578639",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f298c-71cd-71ad-a7ba-09b6f9104b35",
+    "agent_user_id": "c0c9f388aee30a50",
+    "scorecard_time": "2026-07-01 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 19:54:58.505912",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f298f-190b-73ea-beeb-c234a3a52ff1",
+    "agent_user_id": "e2944dae70d8cfb",
+    "scorecard_time": "2026-07-01 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 19:57:52.543671",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f2992-9443-71bb-92d6-9c4e681989a6",
+    "agent_user_id": "8346e954837cf71a",
+    "scorecard_time": "2026-07-01 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 20:01:40.515695",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f2995-e1a5-74c2-9594-584b8dc4fc5a",
+    "agent_user_id": "e48416c1af6b157f",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 20:05:17.245239",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f2997-60dc-74e6-b9f6-fe5867f551a6",
+    "agent_user_id": "528c9a0060d6a7e3",
+    "scorecard_time": "2026-07-03 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 20:06:55.064075",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f299a-ee0b-7678-ac01-52fb9440cff7",
+    "agent_user_id": "193901ee38498373",
+    "scorecard_time": "2026-07-01 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 20:10:48.364154",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f29a1-bf3d-74ec-a472-ec00d6a6c0d1",
+    "agent_user_id": "846dc70494440a71",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 20:18:14.487836",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f29a5-f728-77fc-b430-04696aa84204",
+    "agent_user_id": "eec2b1763384e3f8",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 20:22:51.094087",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f29b0-0b25-72ad-bd1f-ac63a6c592a3",
+    "agent_user_id": "3938ddbe59199baa",
+    "scorecard_time": "2026-07-01 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 20:33:51.414540",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f29bf-7180-73a5-aab3-7a6393f9c0c3",
+    "agent_user_id": "ba16a77edfbcf155",
+    "scorecard_time": "2026-07-01 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-03 20:50:40.883334",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f37af-2221-706e-bd13-76985737143e",
+    "agent_user_id": "2d443d4563964d1a",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 13:47:32.452418",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f37b9-cfbf-76de-885e-bb5f9811d8e0",
+    "agent_user_id": "d9d88f0aed9f4ee6",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 13:59:12.545430",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f37c3-2dea-71f5-af9b-ee17dc144314",
+    "agent_user_id": "111ebfe2caa0a569",
+    "scorecard_time": "2026-07-03 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 14:09:26.489255",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f37ce-95dd-7566-9c0b-066ae7b78dc6",
+    "agent_user_id": "7677d467aad1c6b2",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 14:21:53.981755",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f37de-475f-7409-8bfd-38e526305110",
+    "agent_user_id": "d9be2e76ec9ba649",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 14:39:02.504298",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f37e6-f383-7555-9688-16ba30ac2c32",
+    "agent_user_id": "603da5606d66508f",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 14:48:30.818863",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3803-6d0a-76f8-9a82-a1c1b8d98520",
+    "agent_user_id": "d15cbb0cc9fbadd9",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 15:19:36.997907",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3816-00d9-76ce-8317-ca7f781084d8",
+    "agent_user_id": "f9768414d7e5343a",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 15:39:54.384349",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f382d-d1c8-7394-856f-27970c5b4f7e",
+    "agent_user_id": "3d58d6e8543b509e",
+    "scorecard_time": "2026-07-03 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 16:05:55.410214",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f383a-ea62-7077-a1ea-3325db4306be",
+    "agent_user_id": "d26952e22585f4aa",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 16:20:13.502107",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f384a-4f18-71ea-b27d-1543246f9f2b",
+    "agent_user_id": "f5f644f131c06b21",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 16:37:02.585970",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3857-f67b-75fe-b7be-4f374a06e461",
+    "agent_user_id": "7f015629087e274c",
+    "scorecard_time": "2026-07-03 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 16:51:57.132925",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3869-2537-7104-98f4-02233681d011",
+    "agent_user_id": "3afbb6e821c4d884",
+    "scorecard_time": "2026-07-01 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 17:10:43.292211",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3877-d0d7-751b-a03d-297935577fac",
+    "agent_user_id": "7f8ff7fb72b9eb47",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 17:26:44.777770",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3885-e073-740d-8f94-4dacee5f987b",
+    "agent_user_id": "62591afd496b7246",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 17:42:06.847970",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3893-0158-73ca-b733-c5a5359feb74",
+    "agent_user_id": "6265f6356640f7bd",
+    "scorecard_time": "2026-07-01 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 17:56:27.108685",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f38a2-d1e5-7559-8fc9-04b682c40758",
+    "agent_user_id": "1cb2451c235825f3",
+    "scorecard_time": "2026-07-03 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 18:13:43.199083",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f38aa-3989-7689-9b70-d9c75842ef5f",
+    "agent_user_id": "24f976961a7f32b7",
+    "scorecard_time": "2026-07-03 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 18:21:48.373423",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f38b3-3a1f-773f-9c7b-6507f0203968",
+    "agent_user_id": "3c8dc94adc0b1e78",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 18:31:38.286767",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f398f-5298-758a-b507-43bbc3165582",
+    "agent_user_id": "7f6712b1a65973c",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 22:32:02.172721",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f398f-52ae-7290-a7d6-af70267b8dab",
+    "agent_user_id": "7f6712b1a65973c",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-06 22:32:02.711371",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3e67-b58e-768b-82bd-bb86eba47747",
+    "agent_user_id": "c8ad1a0ba1432944",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-07 21:06:52.529006",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3e6a-8fe8-7237-87be-845f3ca9318b",
+    "agent_user_id": "6a06bb7edacba899",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-07 21:09:59.315936",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3e6e-d53b-718a-9da9-14523fc9111e",
+    "agent_user_id": "fce17153cf3ec02c",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-07 21:14:38.821688",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3e71-303a-702d-818b-360f20e908da",
+    "agent_user_id": "7e29c6a1077e721a",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-07 21:17:13.560905",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3e73-15a4-774c-ae53-df4983df1d5e",
+    "agent_user_id": "a35bce45d8968c7d",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-07 21:19:17.518689",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3e76-7143-744a-ad4e-b701efb6f0bf",
+    "agent_user_id": "e47be010078f8973",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-07 21:22:57.876878",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3ebc-eed9-759d-8197-723fc0b8194d",
+    "agent_user_id": "be15f7263d116d97",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-07 22:39:57.534783",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3ec3-30b9-778d-921e-e9adf5317857",
+    "agent_user_id": "95ad074ba08705cb",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-07 22:46:47.633312",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f3ec8-3d4f-7099-8e00-6bdef6be855e",
+    "agent_user_id": "c941871db39cdfdf",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-07 22:52:18.484087",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4349-66cf-76b0-b803-293f1c84428e",
+    "agent_user_id": "14effd1af2e3e481",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-08 19:51:52.433504",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f434a-edbf-768b-9000-5bf12053f246",
+    "agent_user_id": "310ac4f6fc8c26d",
+    "scorecard_time": "2026-07-03 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-08 19:53:31.941408",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4350-923d-773e-b3a9-704ec250ad8c",
+    "agent_user_id": "c4ab52a117bb80ad",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-08 19:59:42.122407",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4355-0db1-72a1-a4d0-b60b09533827",
+    "agent_user_id": "2f00f820b8d16c04",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-08 20:04:35.965937",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4356-156e-731a-b7c4-26583a4b44ae",
+    "agent_user_id": "5437980c4ffcfa4f",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-08 20:05:43.580327",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f435b-3df1-757b-9e34-ed6c74e184da",
+    "agent_user_id": "5a5c1e2f74aaf38a",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-08 20:11:21.558153",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f435d-e510-701d-98f2-31f17187c3c7",
+    "agent_user_id": "edae817821427690",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-08 20:14:15.414897",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4360-fa69-7658-8eb7-336c55cfe0f1",
+    "agent_user_id": "39d5fbf78f67cad4",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-08 20:17:37.508123",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f43a6-1a5a-74db-8e6e-ce672073a4ed",
+    "agent_user_id": "aae0b6e5224c0b0c",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-08 21:33:07.399405",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f43aa-9361-77bd-86f8-34871cb9f298",
+    "agent_user_id": "49ec9471b0aee4c7",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-08 21:38:00.199136",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f47e8-a505-75dd-b4c6-80c4f3d4effe",
+    "agent_user_id": "528c9a0060d6a7e3",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 17:24:17.761384",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f47f3-efa3-70aa-89df-662f9cf3c563",
+    "agent_user_id": "ba16a77edfbcf155",
+    "scorecard_time": "2026-07-04 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 17:36:37.282544",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f47fd-4bdc-73f4-a2f0-15699a654bfb",
+    "agent_user_id": "2d443d4563964d1a",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 17:46:50.761450",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4803-1a81-748a-9b1e-da9476fab891",
+    "agent_user_id": "111ebfe2caa0a569",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 17:53:11.603705",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4837-f3d3-700f-9853-697039744a76",
+    "agent_user_id": "7677d467aad1c6b2",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 18:50:54.867182",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4843-3bf0-710a-bea7-6925338b463c",
+    "agent_user_id": "d9be2e76ec9ba649",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 19:03:14.135085",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4845-e401-703c-9e14-e2fc7f800c59",
+    "agent_user_id": "ded1dbe017522376",
+    "scorecard_time": "2026-07-03 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 19:06:08.536463",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4848-3009-73a8-ad54-ed77a26aff92",
+    "agent_user_id": "bdb11b74a94a08cc",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 19:23:24.967057",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f484f-f0e2-7778-b8fa-e376f5c7ee87",
+    "agent_user_id": "4f889bce6909e1bd",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 19:17:06.435059",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4855-0fbe-76db-b47b-935308412f35",
+    "agent_user_id": "603da5606d66508f",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 19:22:42.485310",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4855-61e6-7719-a0e0-b9d223f7e13d",
+    "agent_user_id": "686ce9c4ada540d0",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 19:23:03.416260",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4859-ac07-72ce-a77b-2fc54bf111f7",
+    "agent_user_id": "3cb360dd50ebdb2e",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 19:27:44.524858",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4861-4f10-733f-9eeb-194398e8161a",
+    "agent_user_id": "d15cbb0cc9fbadd9",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 19:36:05.286506",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4869-6b24-763d-94fb-7b94a213d40f",
+    "agent_user_id": "3d58d6e8543b509e",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 19:44:56.813957",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f487c-5954-7240-8c7a-7feab86d299c",
+    "agent_user_id": "f9768414d7e5343a",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 20:05:37.472158",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4889-645c-76eb-b8d0-2215fc43050a",
+    "agent_user_id": "d26952e22585f4aa",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 20:19:52.082079",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f489c-b570-73fa-9a26-d2cef88b66e8",
+    "agent_user_id": "c8ad1a0ba1432944",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 20:40:57.968718",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f48ac-4ce3-72a9-823f-78957111b92b",
+    "agent_user_id": "6a06bb7edacba899",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 20:57:59.806041",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f48e3-e631-7425-ac5b-ec2ebcefc9f5",
+    "agent_user_id": "f5f644f131c06b21",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 21:58:43.009124",
+    "score": 95.2
+  },
+  {
+    "scorecard_id": "019f48f8-ca42-77e3-adc7-b34092133108",
+    "agent_user_id": "7f015629087e274c",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 22:21:32.770578",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4904-2d63-722e-ae77-a39c393d11ec",
+    "agent_user_id": "3afbb6e821c4d884",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 22:33:58.972143",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4913-bac2-7354-8a04-e8b55a7b7dbb",
+    "agent_user_id": "7f8ff7fb72b9eb47",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-09 22:50:57.668405",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4c42-7d05-7021-b4e6-0a004a5dacc1",
+    "agent_user_id": "6265f6356640f7bd",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 13:40:54.407976",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4c51-7ee8-70a3-83bd-2c88f586ef39",
+    "agent_user_id": "7f6712b1a65973c",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 13:57:17.886122",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4c59-1fc6-7175-a34b-6bbf1c16abc2",
+    "agent_user_id": "1cb2451c235825f3",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 14:05:37.664171",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4c64-08e0-73fd-8ccf-2da6c5d435f3",
+    "agent_user_id": "24f976961a7f32b7",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 14:17:32.608761",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4c78-eae4-70bd-84df-1de832d1bf27",
+    "agent_user_id": "3c8dc94adc0b1e78",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 14:40:21.275255",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4c8b-beed-70eb-b06c-5b4e1d192c17",
+    "agent_user_id": "2f00f820b8d16c04",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 15:00:55.116903",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4c93-fec7-7518-9c22-5be278f63251",
+    "agent_user_id": "62591afd496b7246",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 15:09:55.773028",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4c9a-3dc0-75e6-9c4d-91fcb94af5ce",
+    "agent_user_id": "14effd1af2e3e481",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 15:16:45.109322",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4d8c-e801-7009-8ac1-45dafe7b474b",
+    "agent_user_id": "fce17153cf3ec02c",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 19:41:48.085469",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4d91-5079-712e-b5cb-a7660686f8ac",
+    "agent_user_id": "7e29c6a1077e721a",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 19:46:37.285051",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4dae-ac9c-77f9-b1ae-76c2883ad4a4",
+    "agent_user_id": "a35bce45d8968c7d",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 20:18:41.370458",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4db1-6054-7119-875a-5557919d43e1",
+    "agent_user_id": "e47be010078f8973",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 20:22:04.509615",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4db4-395a-716a-9acd-092566286d7a",
+    "agent_user_id": "be15f7263d116d97",
+    "scorecard_time": "2026-07-02 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 20:24:45.078690",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4dbc-4736-7479-b75f-ac07ebb995e1",
+    "agent_user_id": "95ad074ba08705cb",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 20:33:32.901653",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4dc2-4b3f-778e-bbed-06fbdc0ae301",
+    "agent_user_id": "c941871db39cdfdf",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 20:40:06.763790",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4de7-3906-7345-b41b-ffb0fa3f52d7",
+    "agent_user_id": "9850d859dd10a911",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 21:20:26.967658",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f4de9-b3ce-710d-96c4-20062d01a3e4",
+    "agent_user_id": "e1801e494dc02358",
+    "scorecard_time": "2026-07-03 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-10 21:23:10.214490",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5bb5-3ede-73fd-9b8e-f296eaa26f34",
+    "agent_user_id": "528c9a0060d6a7e3",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 13:40:33.347435",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5bbe-3b20-71db-a0fd-46f32c3c66a7",
+    "agent_user_id": "ba16a77edfbcf155",
+    "scorecard_time": "2026-07-10 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 13:50:22.012642",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5bd7-f3ca-75ab-a5c0-6949309a280f",
+    "agent_user_id": "2d443d4563964d1a",
+    "scorecard_time": "2026-07-10 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 14:18:27.676481",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5be1-85b3-717c-975b-9a34f36284a1",
+    "agent_user_id": "111ebfe2caa0a569",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 14:28:54.900241",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5bea-028b-71af-b808-d5bf9316e6b8",
+    "agent_user_id": "3aeaae5a0e88dd28",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 14:38:11.234340",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5c0f-9c45-77ca-9389-889b57cf2fd4",
+    "agent_user_id": "7677d467aad1c6b2",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 15:19:15.273073",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5c21-5faf-741b-8263-63c0f1a0ae18",
+    "agent_user_id": "d9be2e76ec9ba649",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 15:38:39.372170",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5c5a-1848-721b-b637-2d236d2a5ee5",
+    "agent_user_id": "603da5606d66508f",
+    "scorecard_time": "2026-07-10 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 16:40:36.824524",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5c76-ee0c-756a-ba73-cfdc2af63208",
+    "agent_user_id": "14effd1af2e3e481",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 17:12:06.516794",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5c89-eeaa-72ca-a728-9f81189fe54c",
+    "agent_user_id": "d15cbb0cc9fbadd9",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 17:32:51.800915",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5c97-7fbe-7686-8a39-b0558806e89f",
+    "agent_user_id": "3d58d6e8543b509e",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 17:47:40.883058",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5ca3-f335-7369-8573-c11254315366",
+    "agent_user_id": "f9768414d7e5343a",
+    "scorecard_time": "2026-07-12 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 18:01:16.925418",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5ca9-976c-74e0-8f74-e28f3bf7bffd",
+    "agent_user_id": "f3957524d5c0fea1",
+    "scorecard_time": "2026-07-12 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 18:07:26.546434",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5cc1-c2a2-710c-b015-1e8954ba1e2a",
+    "agent_user_id": "d26952e22585f4aa",
+    "scorecard_time": "2026-07-10 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 18:33:50.523543",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5cd1-d438-703f-8795-71ee4667f76f",
+    "agent_user_id": "f5f644f131c06b21",
+    "scorecard_time": "2026-07-10 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 18:51:23.671033",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5ce1-bb19-7343-9e93-84215ca60782",
+    "agent_user_id": "7f015629087e274c",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 19:08:53.218757",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5cf2-9d61-77fa-bfe3-86b61eb6f110",
+    "agent_user_id": "3afbb6e821c4d884",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 19:27:12.379304",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5cfc-74ea-75be-8f11-3a994715313e",
+    "agent_user_id": "7f8ff7fb72b9eb47",
+    "scorecard_time": "2026-07-12 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 19:37:57.550055",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5d05-86c1-757c-8f01-672faf7bb675",
+    "agent_user_id": "62591afd496b7246",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 19:47:51.770998",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5d12-86db-71c6-8249-ddb49c790abb",
+    "agent_user_id": "6265f6356640f7bd",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 20:17:54.353127",
+    "score": 83.3
+  },
+  {
+    "scorecard_id": "019f5d31-0654-74cd-8ef7-763fc43ee74c",
+    "agent_user_id": "7f6712b1a65973c",
+    "scorecard_time": "2026-07-09 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 20:35:22.501868",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5d44-20f2-73f7-9bbb-b9ea60f0dc70",
+    "agent_user_id": "1cb2451c235825f3",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 20:56:14.530859",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5d98-93b7-760c-bbd5-7eb93b40019e",
+    "agent_user_id": "c0c9f388aee30a50",
+    "scorecard_time": "2026-07-01 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 22:28:28.880599",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5d9e-6a7f-726f-acc8-09345aaf2d40",
+    "agent_user_id": "e2944dae70d8cfb",
+    "scorecard_time": "2026-07-07 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 22:34:51.508840",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5da7-271d-730f-a781-715a8a52fb0e",
+    "agent_user_id": "8346e954837cf71a",
+    "scorecard_time": "2026-07-01 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 22:44:23.522164",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5dac-a005-711c-8cb7-f5bc98a8527f",
+    "agent_user_id": "e48416c1af6b157f",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 22:50:22.657578",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5dad-1a30-7267-8e3e-7d91ba7c1e87",
+    "agent_user_id": "24f976961a7f32b7",
+    "scorecard_time": "2026-07-10 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 22:50:57.234065",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5db1-5ab5-7578-bb82-132c1bc0c7a7",
+    "agent_user_id": "193901ee38498373",
+    "scorecard_time": "2026-07-09 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 22:55:32.509768",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5db8-111e-7237-9773-f19282c39a7e",
+    "agent_user_id": "846dc70494440a71",
+    "scorecard_time": "2026-07-03 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 23:02:52.516794",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5dbb-9b2a-7698-aa13-8c4363a7dac1",
+    "agent_user_id": "eec2b1763384e3f8",
+    "scorecard_time": "2026-07-12 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 23:06:44.411358",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5dbd-dc3f-72de-ba42-aac8138e725f",
+    "agent_user_id": "e1801e494dc02358",
+    "scorecard_time": "2026-07-06 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 23:09:12.092699",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f5dde-f694-72aa-9b84-da976d3f139a",
+    "agent_user_id": "3938ddbe59199baa",
+    "scorecard_time": "2026-07-10 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-13 23:45:22.441284",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f617b-a5ae-76b1-a74a-305488a5d3be",
+    "agent_user_id": "3c8dc94adc0b1e78",
+    "scorecard_time": "2026-07-11 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-14 16:35:22.166059",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f67ae-3a03-71de-b0d8-10a31dd77ced",
+    "agent_user_id": "310ac4f6fc8c26d",
+    "scorecard_time": "2026-07-15 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-15 21:28:19.829059",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f67b1-53e1-765c-8263-8159494a667b",
+    "agent_user_id": "c4ab52a117bb80ad",
+    "scorecard_time": "2026-07-14 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-15 21:31:42.931102",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f67d2-59b0-71b6-ae50-1bd801e09e00",
+    "agent_user_id": "5437980c4ffcfa4f",
+    "scorecard_time": "2026-07-14 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-15 22:07:47.100547",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f67d6-08ac-715f-b51f-b301a1ba4fa4",
+    "agent_user_id": "5a5c1e2f74aaf38a",
+    "scorecard_time": "2026-07-14 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-15 22:11:48.174411",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f67dc-1672-77d4-8444-522698cc234a",
+    "agent_user_id": "edae817821427690",
+    "scorecard_time": "2026-07-14 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-21 22:37:03.724190",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f67e5-8194-757a-970b-cbb53e702682",
+    "agent_user_id": "39d5fbf78f67cad4",
+    "scorecard_time": "2026-07-13 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-15 22:28:42.434735",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f67ed-2e39-726e-a146-5fa900c0c585",
+    "agent_user_id": "7c63ca22fe41bb79",
+    "scorecard_time": "2026-07-14 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-15 22:37:05.391244",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f67f2-6150-721b-bfe4-368ccf345efc",
+    "agent_user_id": "aae0b6e5224c0b0c",
+    "scorecard_time": "2026-07-14 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-15 22:42:46.120633",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f67f6-39c7-70e9-b0eb-7f8eff27e159",
+    "agent_user_id": "49ec9471b0aee4c7",
+    "scorecard_time": "2026-07-14 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-15 22:46:58.177861",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f6c70-9ac1-76ed-b7b8-b15f68fd7121",
+    "agent_user_id": "c0c9f388aee30a50",
+    "scorecard_time": "2026-07-13 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-16 19:39:07.650896",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f6c77-c1a1-70b4-ac51-04536d4cc1d3",
+    "agent_user_id": "e2944dae70d8cfb",
+    "scorecard_time": "2026-07-13 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-16 19:46:56.328604",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f6cb8-befb-72df-b9ad-5acee2c72e8b",
+    "agent_user_id": "8346e954837cf71a",
+    "scorecard_time": "2026-07-15 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-16 20:57:56.243563",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f6cba-b362-719d-b2f0-726ccfb34ec7",
+    "agent_user_id": "e48416c1af6b157f",
+    "scorecard_time": "2026-07-13 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-16 21:00:05.017372",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f6cbd-1dc1-7599-be8a-99186b800ce8",
+    "agent_user_id": "193901ee38498373",
+    "scorecard_time": "2026-07-15 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-16 21:02:42.003850",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f6cbf-d489-7362-878e-406edc25b62b",
+    "agent_user_id": "846dc70494440a71",
+    "scorecard_time": "2026-07-15 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-16 21:05:41.858829",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f6cc1-d68b-745e-b277-f493051ad059",
+    "agent_user_id": "eec2b1763384e3f8",
+    "scorecard_time": "2026-07-15 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-16 21:07:52.133383",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f6cd5-9ee9-770a-89e1-c660ae461a18",
+    "agent_user_id": "e1801e494dc02358",
+    "scorecard_time": "2026-07-13 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-16 21:29:27.618366",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f6cdc-c43e-74c8-a8ec-40aa95e5c651",
+    "agent_user_id": "3938ddbe59199baa",
+    "scorecard_time": "2026-07-15 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-16 21:37:17.035680",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f7125-6b5a-7688-97f1-1f8d85350607",
+    "agent_user_id": "2f00f820b8d16c04",
+    "scorecard_time": "2026-07-16 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-17 17:35:07.818343",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f7fe7-14f8-710d-97b2-a47d3af5e487",
+    "agent_user_id": "528c9a0060d6a7e3",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 14:21:19.365330",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f7ff3-9543-74b1-a667-792b2abdf856",
+    "agent_user_id": "ba16a77edfbcf155",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 14:34:58.311779",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f7ffc-e9b4-77ff-a9d8-11a4495a8550",
+    "agent_user_id": "2d443d4563964d1a",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 14:45:09.713595",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f800a-c27e-76ed-a41e-98ee3b274deb",
+    "agent_user_id": "111ebfe2caa0a569",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 15:00:17.767027",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f801a-b8bc-7780-9ce5-824ed26e2071",
+    "agent_user_id": "ded1dbe017522376",
+    "scorecard_time": "2026-07-14 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 15:17:43.312004",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f801a-c1a6-732d-8cfc-61b10bd3d801",
+    "agent_user_id": "3aeaae5a0e88dd28",
+    "scorecard_time": "2026-07-16 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 15:17:45.575517",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f801e-3fa5-7438-ab1c-57372f75bf3e",
+    "agent_user_id": "bdb11b74a94a08cc",
+    "scorecard_time": "2026-07-19 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 15:21:40.875466",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8022-7bf5-73ee-8fe9-b79345c6d1bf",
+    "agent_user_id": "4f889bce6909e1bd",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 15:26:11.908164",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8025-7ae2-70c2-9bfa-0f704ce6a4a0",
+    "agent_user_id": "686ce9c4ada540d0",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 15:29:28.196633",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f802b-9af6-7417-9211-1ba265154bfe",
+    "agent_user_id": "3cb360dd50ebdb2e",
+    "scorecard_time": "2026-07-19 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 15:36:09.669553",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f802c-350f-761c-9d5e-7420dbb1c5ed",
+    "agent_user_id": "7677d467aad1c6b2",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 15:36:49.325492",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8036-c1ba-7143-90cd-6e551c039707",
+    "agent_user_id": "c8ad1a0ba1432944",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 15:48:20.467374",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8040-86b5-76d8-b65b-e2132eba3f29",
+    "agent_user_id": "6a06bb7edacba899",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 15:59:00.711137",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8044-5583-7643-9018-79a966bcb4b4",
+    "agent_user_id": "d9be2e76ec9ba649",
+    "scorecard_time": "2026-07-16 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 16:03:10.503922",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8048-5d6b-734a-ad7f-1e1a5f939b2c",
+    "agent_user_id": "fce17153cf3ec02c",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 16:07:34.469454",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f804b-9e7d-7497-b5ab-934b5c4b7c9e",
+    "agent_user_id": "603da5606d66508f",
+    "scorecard_time": "2026-07-16 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 16:11:09.516194",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f807b-6cfb-77a1-921d-d3e48e3bd739",
+    "agent_user_id": "d15cbb0cc9fbadd9",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 17:03:21.050717",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f80a5-d36a-7326-8ea6-ca7b5113e1ce",
+    "agent_user_id": "3d58d6e8543b509e",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 17:49:41.872796",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f80ae-8785-7429-a8cf-95a8eee10fa1",
+    "agent_user_id": "f9768414d7e5343a",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 17:59:12.058711",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f80c1-c68b-706d-bf42-6239e8e010f1",
+    "agent_user_id": "f3957524d5c0fea1",
+    "scorecard_time": "2026-07-16 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 18:20:11.306020",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f80d1-b09e-7223-8244-ec9431365d18",
+    "agent_user_id": "7e29c6a1077e721a",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 18:37:33.903511",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f80d4-1c45-75cb-bf62-27adc56df5cc",
+    "agent_user_id": "a35bce45d8968c7d",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 18:40:12.462403",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f80d7-d2e1-731f-a0d2-93ce41c6ffb1",
+    "agent_user_id": "e47be010078f8973",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 18:44:16.486634",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f80db-1639-70db-8802-937c4f6b1b5d",
+    "agent_user_id": "be15f7263d116d97",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 18:47:50.070124",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f80e6-e045-75f9-851b-87222dc8b6ab",
+    "agent_user_id": "d26952e22585f4aa",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 19:00:42.764697",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f80f4-c3db-77a9-af15-024b245a464a",
+    "agent_user_id": "f5f644f131c06b21",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 19:15:53.478620",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8105-ce48-77c9-a54f-53ae543f4333",
+    "agent_user_id": "7f015629087e274c",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 19:34:29.835816",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8110-6428-7347-a13c-9fd37c67f4d0",
+    "agent_user_id": "3afbb6e821c4d884",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 19:46:04.416198",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f812d-7477-712f-93d8-bf1b10c926a7",
+    "agent_user_id": "95ad074ba08705cb",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 20:17:48.072839",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8131-7869-7769-a483-3cd752a96bd3",
+    "agent_user_id": "c941871db39cdfdf",
+    "scorecard_time": "2026-07-19 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 20:22:11.272260",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8139-450a-73fe-aed5-87189afd1cf7",
+    "agent_user_id": "9850d859dd10a911",
+    "scorecard_time": "2026-07-10 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 20:30:42.410210",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f813d-2491-763a-b21b-3e20c25f0463",
+    "agent_user_id": "c4ab52a117bb80ad",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 20:34:56.263178",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8151-b2d6-7053-9783-8203ca59c125",
+    "agent_user_id": "5437980c4ffcfa4f",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 20:57:23.404685",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8155-448d-7728-a69c-74fe55557c5f",
+    "agent_user_id": "5a5c1e2f74aaf38a",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 21:01:17.283334",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8158-242e-724b-a14c-45789ced22b3",
+    "agent_user_id": "edae817821427690",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 21:04:25.715911",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f815e-37b2-70c8-8997-0ce6da1afaad",
+    "agent_user_id": "7f8ff7fb72b9eb47",
+    "scorecard_time": "2026-07-16 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 21:11:05.450473",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f815e-4bc8-7118-8f21-42aaecd208f0",
+    "agent_user_id": "39d5fbf78f67cad4",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 21:11:08.921014",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8170-2bc9-73d9-92db-2017a624bc85",
+    "agent_user_id": "7c63ca22fe41bb79",
+    "scorecard_time": "2026-07-14 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 21:30:40.342800",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f817c-1340-72c8-8f80-464277cb8287",
+    "agent_user_id": "aae0b6e5224c0b0c",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 21:43:40.525000",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f817e-ca98-72a5-996e-443a4dfe987e",
+    "agent_user_id": "49ec9471b0aee4c7",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 21:46:38.501400",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f81a4-9307-7421-b577-590f3495afaf",
+    "agent_user_id": "62591afd496b7246",
+    "scorecard_time": "2026-07-16 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 22:27:56.376774",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f81c0-dfbc-704c-9464-9077c45ab2a0",
+    "agent_user_id": "6265f6356640f7bd",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-20 22:58:51.746817",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8590-0b08-72e0-86b3-ea936729da22",
+    "agent_user_id": "7f6712b1a65973c",
+    "scorecard_time": "2026-07-08 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-21 16:43:58.372346",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f85a3-d658-70f6-88df-fc694f36b7f8",
+    "agent_user_id": "1cb2451c235825f3",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-21 17:05:35.411227",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f85b1-a80c-70fa-b5e5-d7ada504f299",
+    "agent_user_id": "24f976961a7f32b7",
+    "scorecard_time": "2026-07-19 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-21 17:20:41.074463",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f85bf-7130-72cc-b104-65d0204bc30d",
+    "agent_user_id": "3c8dc94adc0b1e78",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-21 17:35:44.832086",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f85cd-4b12-7348-ad29-4211254e8d47",
+    "agent_user_id": "2f00f820b8d16c04",
+    "scorecard_time": "2026-07-14 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 20:04:22.557809",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f85cd-4b12-7348-ad29-4211254e8d47",
+    "agent_user_id": "2f00f820b8d16c04",
+    "scorecard_time": "2026-07-16 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 20:02:42.637883",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8b83-e16e-751c-9490-625ad892933b",
+    "agent_user_id": "7c63ca22fe41bb79",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 20:28:24.544863",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8b89-f91d-73f8-bd8e-5e7e820a631b",
+    "agent_user_id": "aae0b6e5224c0b0c",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 20:35:03.662706",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8b8f-01d7-713b-a3f2-a98ff4288343",
+    "agent_user_id": "49ec9471b0aee4c7",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 20:40:33.491149",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8b90-118d-75bd-8ca9-eb6e575e9b3e",
+    "agent_user_id": "c0c9f388aee30a50",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 20:41:43.240732",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8b92-6c74-73ba-8354-77df1057c9d6",
+    "agent_user_id": "39d5fbf78f67cad4",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 20:44:17.324202",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8ba0-e5b6-7270-8aaf-6429aa42c002",
+    "agent_user_id": "e2944dae70d8cfb",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 21:00:06.364009",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8ba7-2a4c-71fa-9259-f0801157ef8e",
+    "agent_user_id": "edae817821427690",
+    "scorecard_time": "2026-07-18 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 21:06:56.664935",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8bb0-019a-728c-9820-f556df7eb6cb",
+    "agent_user_id": "5a5c1e2f74aaf38a",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 21:16:36.109495",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8bf8-3ebd-745e-8a98-d6702c6d4e55",
+    "agent_user_id": "8346e954837cf71a",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 22:35:30.764260",
+    "score": 95.2
+  },
+  {
+    "scorecard_id": "019f8bfe-3463-737c-9f39-08ad52f35940",
+    "agent_user_id": "e48416c1af6b157f",
+    "scorecard_time": "2026-07-16 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 22:42:01.552367",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8c01-af91-77de-ad99-8e2b174ca4c2",
+    "agent_user_id": "193901ee38498373",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 22:45:49.268312",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8c06-bae9-75bc-82e9-be0633e19c14",
+    "agent_user_id": "846dc70494440a71",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 22:51:20.414455",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8c0c-8393-73ad-826e-41181e527849",
+    "agent_user_id": "eec2b1763384e3f8",
+    "scorecard_time": "2026-07-16 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 22:57:38.812261",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8c0f-35cd-71a8-b573-472db075375c",
+    "agent_user_id": "e1801e494dc02358",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 23:00:35.891375",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8c14-1355-72a3-a777-5d8c443f9350",
+    "agent_user_id": "3938ddbe59199baa",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-22 23:05:54.438497",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8fad-605d-7488-be15-9b7386af0149",
+    "agent_user_id": "5437980c4ffcfa4f",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-23 15:52:12.845901",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8fb2-a612-711a-8916-66935c335197",
+    "agent_user_id": "c4ab52a117bb80ad",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-23 15:57:58.121771",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8fb7-4e14-77de-b4be-c97ce694f519",
+    "agent_user_id": "310ac4f6fc8c26d",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-23 16:03:03.276797",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8ff0-fcac-77eb-bc7a-4981bce4b453",
+    "agent_user_id": "c941871db39cdfdf",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-23 17:06:03.518835",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f8fff-e0bc-730e-9815-ddca8611b015",
+    "agent_user_id": "95ad074ba08705cb",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-23 17:22:19.369348",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f9006-7cf2-7772-bc5c-591734fe935d",
+    "agent_user_id": "be15f7263d116d97",
+    "scorecard_time": "2026-07-14 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-23 17:29:32.677542",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f9013-3636-7539-b5d6-04da948eaf75",
+    "agent_user_id": "e47be010078f8973",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-23 17:43:26.485380",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f902c-df06-739e-9e6c-84ccef9a8d3c",
+    "agent_user_id": "a35bce45d8968c7d",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-23 18:11:28.220642",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f9043-41ac-772b-bf22-3dc691a8f3c6",
+    "agent_user_id": "7e29c6a1077e721a",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-23 18:35:55.153582",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f906c-6e12-7561-ad63-82b7c83cfb04",
+    "agent_user_id": "fce17153cf3ec02c",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-23 19:20:53.530099",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f90f8-35e3-72ea-bae4-c9d20d3bde94",
+    "agent_user_id": "6a06bb7edacba899",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-23 21:53:34.148417",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f90ff-ee5c-76fb-8618-6b11c33ba57d",
+    "agent_user_id": "c8ad1a0ba1432944",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-23 22:02:00.115513",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f94a4-3eb7-727f-b8eb-fcb80f6225c1",
+    "agent_user_id": "3cb360dd50ebdb2e",
+    "scorecard_time": "2026-07-19 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 15:00:20.468645",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f94aa-3046-74a0-9a7e-0ec15225e4fc",
+    "agent_user_id": "686ce9c4ada540d0",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 15:06:49.724051",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f94af-b9db-71ed-a20b-21a461419138",
+    "agent_user_id": "4f889bce6909e1bd",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 15:12:52.591024",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f94b3-ecb0-7626-ae9a-d51e16daa293",
+    "agent_user_id": "bdb11b74a94a08cc",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 15:17:27.811027",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f94cd-9367-7339-aeb2-7310694deae1",
+    "agent_user_id": "ded1dbe017522376",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 15:45:29.359697",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f94f7-49b1-74e8-9a5e-3c2f113c1668",
+    "agent_user_id": "14effd1af2e3e481",
+    "scorecard_time": "2026-07-17 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 16:31:02.845452",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f9514-824d-722e-8d9b-99d2cabb81ef",
+    "agent_user_id": "49ec9471b0aee4c7",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 17:02:58.639757",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f9517-9e7b-76dd-aba4-ab73b32ceedd",
+    "agent_user_id": "aae0b6e5224c0b0c",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 17:06:21.706678",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f951d-31c5-7342-9806-5fa2a41cca91",
+    "agent_user_id": "7c63ca22fe41bb79",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 17:12:26.796888",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f952f-8243-70af-8b8b-313be95ec27f",
+    "agent_user_id": "39d5fbf78f67cad4",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 17:32:26.941444",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f9536-8a37-77b6-b211-c7b5cd92bbba",
+    "agent_user_id": "edae817821427690",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 17:40:07.788253",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f953e-12be-7466-a6fc-e714c3d1cb6f",
+    "agent_user_id": "5a5c1e2f74aaf38a",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 17:48:21.453252",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f9543-5c66-75d7-933c-5b3065d2b42a",
+    "agent_user_id": "5437980c4ffcfa4f",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 17:54:08.061559",
+    "score": 83.3
+  },
+  {
+    "scorecard_id": "019f9549-c857-76d8-9d67-13f4a16b5a9f",
+    "agent_user_id": "c4ab52a117bb80ad",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 18:01:08.921956",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f955a-be6f-75ef-8b8f-e2c805423329",
+    "agent_user_id": "310ac4f6fc8c26d",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 18:19:40.529191",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f9568-7a40-705f-bd7b-025a2883a1b2",
+    "agent_user_id": "c941871db39cdfdf",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 18:34:40.468237",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f95b5-9e9b-723b-87da-36eb89e58c4c",
+    "agent_user_id": "528c9a0060d6a7e3",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 19:58:56.689071",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f95bd-298f-707c-95d5-630b1a97772c",
+    "agent_user_id": "ba16a77edfbcf155",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 20:07:10.788594",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f95c4-6daa-7367-9ee5-a5cf473ba231",
+    "agent_user_id": "2d443d4563964d1a",
+    "scorecard_time": "2026-07-23 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 20:15:06.724685",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f95d6-e086-7279-9d26-73cc062e485a",
+    "agent_user_id": "d9d88f0aed9f4ee6",
+    "scorecard_time": "2026-07-23 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 20:35:15.782212",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019f95e3-add8-7739-8961-60ecaf47d022",
+    "agent_user_id": "111ebfe2caa0a569",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-24 20:49:14.852107",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa3d4-9849-76c9-b412-d9da646f9a45",
+    "agent_user_id": "3aeaae5a0e88dd28",
+    "scorecard_time": "2026-07-25 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 13:47:29.088442",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa3d8-fb69-7659-be1a-a3b8d6e065b1",
+    "agent_user_id": "7677d467aad1c6b2",
+    "scorecard_time": "2026-07-25 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 13:52:15.236291",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa3e5-1d51-7529-9b2e-248cfe1bb66d",
+    "agent_user_id": "d9be2e76ec9ba649",
+    "scorecard_time": "2026-07-25 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 14:05:30.005580",
+    "score": 66.7
+  },
+  {
+    "scorecard_id": "019fa3ea-7900-760b-9bc5-b7233c1d686c",
+    "agent_user_id": "603da5606d66508f",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 14:11:22.407860",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa3f6-1f36-72d6-a9dd-8ebdc2516337",
+    "agent_user_id": "14effd1af2e3e481",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 14:24:04.433776",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa3fc-d6d6-7794-a8fd-7e5649194891",
+    "agent_user_id": "d15cbb0cc9fbadd9",
+    "scorecard_time": "2026-07-25 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 14:31:26.371498",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa40a-d1f3-757b-bc42-fcd6c732a229",
+    "agent_user_id": "3d58d6e8543b509e",
+    "scorecard_time": "2026-07-25 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 14:46:41.102354",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa438-78cb-73ac-819e-d34922930c0e",
+    "agent_user_id": "f9768414d7e5343a",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 15:36:32.768563",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa443-025c-75d1-a491-0c31bc1cacec",
+    "agent_user_id": "d26952e22585f4aa",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 15:48:03.701359",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa45c-8231-7589-a2da-961f8ea56a5c",
+    "agent_user_id": "f5f644f131c06b21",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 16:19:33.328413",
+    "score": 71.4
+  },
+  {
+    "scorecard_id": "019fa46e-7816-73cb-afac-8de0c3e47af5",
+    "agent_user_id": "7f015629087e274c",
+    "scorecard_time": "2026-07-26 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 16:35:31.646546",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa475-aee1-7139-9d19-ccf0eb779558",
+    "agent_user_id": "3afbb6e821c4d884",
+    "scorecard_time": "2026-07-25 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 16:43:24.263055",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa47a-6336-748d-9e0d-6a4ab129c606",
+    "agent_user_id": "7f8ff7fb72b9eb47",
+    "scorecard_time": "2026-07-26 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 16:48:34.638647",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa47d-1fe1-7260-b15c-5471dfcaabc8",
+    "agent_user_id": "62591afd496b7246",
+    "scorecard_time": "2026-07-23 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 16:51:31.907783",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa480-9f4f-701a-90bc-565d8186ef1f",
+    "agent_user_id": "6265f6356640f7bd",
+    "scorecard_time": "2026-07-25 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 16:55:21.179453",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa484-5736-727b-b392-1813ef919ec4",
+    "agent_user_id": "7f6712b1a65973c",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 16:59:25.141254",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa48f-d5ea-711c-969c-a5987802f2c3",
+    "agent_user_id": "1cb2451c235825f3",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 17:11:58.627263",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa494-1779-70f3-9e26-9faded424d71",
+    "agent_user_id": "24f976961a7f32b7",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 17:16:37.129052",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa496-f8b1-76f3-8820-b8c2e38a7367",
+    "agent_user_id": "3c8dc94adc0b1e78",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 17:19:46.078593",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa4c5-14df-756e-8cee-cb2a02268b81",
+    "agent_user_id": "2f00f820b8d16c04",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-27 18:10:07.858986",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa95a-b6a5-7784-820c-d7befacf1f68",
+    "agent_user_id": "7c63ca22fe41bb79",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 15:32:03.305110",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa95e-85cf-704e-a2d2-a8e8ddaea93b",
+    "agent_user_id": "95ad074ba08705cb",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 15:36:12.536793",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa966-0017-7689-bbde-cbbd800cc7e8",
+    "agent_user_id": "be15f7263d116d97",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 15:44:22.562713",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa96b-e4b0-76db-b1cf-05d5078fc353",
+    "agent_user_id": "e47be010078f8973",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 15:50:48.785658",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa971-1224-7613-8d3b-098a3edd0e9a",
+    "agent_user_id": "a35bce45d8968c7d",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 15:56:28.099632",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa977-6fac-729b-846b-500cb3edc6dc",
+    "agent_user_id": "7e29c6a1077e721a",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 16:03:25.284563",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa97e-2a3c-713d-8649-711f5d327b0c",
+    "agent_user_id": "fce17153cf3ec02c",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 16:10:46.287252",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa98d-101c-7706-bcb8-7cac83ca1b05",
+    "agent_user_id": "6a06bb7edacba899",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 16:27:02.672749",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa993-c1ac-766f-b742-46fa1e148233",
+    "agent_user_id": "c8ad1a0ba1432944",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 16:34:21.328855",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa9a2-5fce-726b-84b8-43e9226119c5",
+    "agent_user_id": "3cb360dd50ebdb2e",
+    "scorecard_time": "2026-07-21 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 16:50:19.181583",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa9da-857a-772c-b5a0-27da9b23b232",
+    "agent_user_id": "686ce9c4ada540d0",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 17:54:01.847968",
+    "score": 83.3
+  },
+  {
+    "scorecard_id": "019fa9e3-4ee3-716a-8916-6a60f392d7a1",
+    "agent_user_id": "4f889bce6909e1bd",
+    "scorecard_time": "2026-07-25 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 18:01:14.705657",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fa9ed-2364-722c-a8b8-e87ed7d0546e",
+    "agent_user_id": "bdb11b74a94a08cc",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-28 18:11:58.876673",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae1a-bc03-731c-bc69-cdbf37964406",
+    "agent_user_id": "528c9a0060d6a7e3",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 13:40:17.580085",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae1d-7f96-7294-9778-965f20ecdae2",
+    "agent_user_id": "ba16a77edfbcf155",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 13:43:20.902287",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae25-888a-73dd-bba5-057bdd0a0209",
+    "agent_user_id": "2d443d4563964d1a",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 13:52:04.131985",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae2b-9cf1-73ae-bdee-787862b082ef",
+    "agent_user_id": "d9d88f0aed9f4ee6",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 13:58:42.174873",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae45-53ef-7434-a781-8b4eadae68e5",
+    "agent_user_id": "111ebfe2caa0a569",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 14:26:47.476461",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae56-9700-73b5-8ad3-93dd68f65542",
+    "agent_user_id": "3aeaae5a0e88dd28",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 14:45:38.773425",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae63-45e9-771c-b9a6-fd97e1cd12ff",
+    "agent_user_id": "49ec9471b0aee4c7",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 14:59:29.976886",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae65-ef94-771c-957d-9f398fd37a1f",
+    "agent_user_id": "aae0b6e5224c0b0c",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 15:02:24.360630",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae68-14de-76ba-882e-7fa1ae07afbf",
+    "agent_user_id": "7677d467aad1c6b2",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 15:04:45.758449",
+    "score": 90
+  },
+  {
+    "scorecard_id": "019fae6f-45cf-71ad-a4c6-6e04dc3f0436",
+    "agent_user_id": "d9be2e76ec9ba649",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 15:12:38.513225",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae6f-faac-733c-8136-96fcb3cf7cad",
+    "agent_user_id": "39d5fbf78f67cad4",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 15:13:22.538374",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae76-f05a-7438-9264-0e7cbaea37c6",
+    "agent_user_id": "edae817821427690",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 15:20:58.659097",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae79-5158-75cf-888f-f0c9e654286f",
+    "agent_user_id": "603da5606d66508f",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 15:23:35.355383",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae81-8f7b-775d-ae83-01b4987f5dc5",
+    "agent_user_id": "5a5c1e2f74aaf38a",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 15:32:34.745201",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae84-ad80-705c-9983-abc4143b8b54",
+    "agent_user_id": "14effd1af2e3e481",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 15:35:59.441354",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae95-306b-75a7-a62e-073eb5082ec6",
+    "agent_user_id": "d15cbb0cc9fbadd9",
+    "scorecard_time": "2026-07-25 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 15:54:01.651992",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fae9a-7322-7127-a91a-b57f9e8ddd70",
+    "agent_user_id": "3d58d6e8543b509e",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 15:59:47.283648",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faea7-e11b-767d-9a2f-e56fd0ad61d5",
+    "agent_user_id": "f9768414d7e5343a",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 16:14:27.778491",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faece-ee28-707a-8973-ae0460ffe0f5",
+    "agent_user_id": "f3957524d5c0fea1",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 16:57:05.598039",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faedb-d80d-7287-b38c-3e2d54305a6c",
+    "agent_user_id": "d26952e22585f4aa",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 17:11:11.844027",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faeed-eb05-7209-9e3c-ce9c54f650ad",
+    "agent_user_id": "f5f644f131c06b21",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 17:30:56.308561",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faf08-b00c-731e-9b42-afadbdef6ed9",
+    "agent_user_id": "7f015629087e274c",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 18:00:10.936335",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faf12-e506-75bc-a130-ca0630e6684b",
+    "agent_user_id": "3afbb6e821c4d884",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 18:11:20.524782",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faf20-388e-70e7-bcca-c74917405541",
+    "agent_user_id": "7f8ff7fb72b9eb47",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 18:25:53.117682",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faf31-e646-75a9-96bb-947777373a0d",
+    "agent_user_id": "62591afd496b7246",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 18:45:12.450280",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faf48-8d2c-777f-b247-f51ae4ffcba9",
+    "agent_user_id": "6265f6356640f7bd",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 19:09:57.648959",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faf4f-bdfc-767d-8812-c424de621459",
+    "agent_user_id": "7f6712b1a65973c",
+    "scorecard_time": "2026-07-23 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 19:17:47.099949",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faf55-81b5-737a-91c5-25eec21a72cd",
+    "agent_user_id": "1cb2451c235825f3",
+    "scorecard_time": "2026-07-23 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 19:24:05.165561",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faf5a-9291-7025-b8cb-a1be9cc3bb64",
+    "agent_user_id": "24f976961a7f32b7",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 19:29:37.019682",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faf64-6c56-7747-9c76-d89a63a9d133",
+    "agent_user_id": "3c8dc94adc0b1e78",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 19:40:22.615534",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faf74-6857-7701-974c-c6022348f909",
+    "agent_user_id": "2f00f820b8d16c04",
+    "scorecard_time": "2026-07-20 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 19:57:51.725370",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faf92-42f1-746d-8bc9-1621f031869e",
+    "agent_user_id": "5437980c4ffcfa4f",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 20:30:26.998166",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faf96-37f1-70dd-910d-2b3dbfc2b26c",
+    "agent_user_id": "c4ab52a117bb80ad",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 20:34:45.896166",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fafa1-79e6-748b-9824-bca16ec96422",
+    "agent_user_id": "c0c9f388aee30a50",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 20:47:03.729171",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fafaa-93b3-70b6-852c-c90ffe2aabd3",
+    "agent_user_id": "e2944dae70d8cfb",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 20:57:02.225001",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fafb9-e834-7108-8514-390eec93dd30",
+    "agent_user_id": "8346e954837cf71a",
+    "scorecard_time": "2026-07-24 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 21:13:46.415190",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fafbd-6776-7769-b134-72d2ed946f02",
+    "agent_user_id": "e48416c1af6b157f",
+    "scorecard_time": "2026-07-23 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 21:17:34.715567",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fafc8-0167-7505-a6d7-9c82ca827c79",
+    "agent_user_id": "193901ee38498373",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 21:29:09.429133",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fafcf-1390-71be-b49a-b55a248b5ddf",
+    "agent_user_id": "846dc70494440a71",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 21:36:52.672518",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fafe5-d487-7189-a737-5509a979db3c",
+    "agent_user_id": "eec2b1763384e3f8",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 22:01:43.823708",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fafee-b5fb-715c-8326-cb97d1662fe5",
+    "agent_user_id": "e1801e494dc02358",
+    "scorecard_time": "2026-07-22 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 22:11:25.702690",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019faff8-c177-71a8-81cb-8c95672463bd",
+    "agent_user_id": "3938ddbe59199baa",
+    "scorecard_time": "2026-07-26 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-29 22:22:24.017766",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb449-7906-76bd-a22f-e206c4b0dee7",
+    "agent_user_id": "310ac4f6fc8c26d",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 18:29:02.623119",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb44e-f0c5-76f2-a483-a66f000c7399",
+    "agent_user_id": "c941871db39cdfdf",
+    "scorecard_time": "2026-07-26 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 18:35:00.555630",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb45a-6a55-74db-b85d-738607960e1c",
+    "agent_user_id": "95ad074ba08705cb",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 18:47:32.713059",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb45d-03d4-7129-8f36-f5c39608ed01",
+    "agent_user_id": "be15f7263d116d97",
+    "scorecard_time": "2026-07-25 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 18:50:22.987497",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb460-8ec4-70dd-aea7-6e561b1f67f0",
+    "agent_user_id": "e47be010078f8973",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 18:54:15.142303",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb465-d1fd-716b-a254-21982800f97a",
+    "agent_user_id": "a35bce45d8968c7d",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 19:00:00.102668",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb46b-6afc-7585-85e5-b19f1e5e7a5f",
+    "agent_user_id": "7e29c6a1077e721a",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 19:06:06.932183",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb474-a52d-77a8-82a3-2c9ecde44f2e",
+    "agent_user_id": "fce17153cf3ec02c",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 19:16:11.649425",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb47d-7698-731a-bea9-eadacdf0bb1a",
+    "agent_user_id": "6a06bb7edacba899",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 19:25:49.628959",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb536-e701-773f-87c9-d3cde10bc59b",
+    "agent_user_id": "c0c9f388aee30a50",
+    "scorecard_time": "2026-07-29 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 22:48:23.396364",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb539-d2ee-7749-8276-88a5bb0173a5",
+    "agent_user_id": "e2944dae70d8cfb",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 22:51:34.256015",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb53c-1e4d-73de-9bc2-24f454854fb7",
+    "agent_user_id": "8346e954837cf71a",
+    "scorecard_time": "2026-07-29 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 22:54:05.822704",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb53e-d213-7398-9adb-2656f1d7eea2",
+    "agent_user_id": "e48416c1af6b157f",
+    "scorecard_time": "2026-07-29 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 22:57:01.608216",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb540-ceac-71e6-8af5-74b89f99f61b",
+    "agent_user_id": "193901ee38498373",
+    "scorecard_time": "2026-07-29 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 22:59:12.041186",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb544-9439-76bc-9537-2786c7ba6efd",
+    "agent_user_id": "846dc70494440a71",
+    "scorecard_time": "2026-07-29 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 23:03:19.142449",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb54b-a638-7244-a728-ee2f6196e919",
+    "agent_user_id": "eec2b1763384e3f8",
+    "scorecard_time": "2026-07-29 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 23:11:04.380978",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb54e-1068-7299-8acc-71057100981a",
+    "agent_user_id": "e1801e494dc02358",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 23:13:43.770637",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb550-7c53-7333-918d-7c49d352f031",
+    "agent_user_id": "3938ddbe59199baa",
+    "scorecard_time": "2026-07-26 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-30 23:16:22.787602",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb9cf-d0ef-764d-980f-ff58464a43d7",
+    "agent_user_id": "c8ad1a0ba1432944",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-31 20:13:52.284735",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb9d3-1a98-7762-ba5c-37bf1343dda6",
+    "agent_user_id": "686ce9c4ada540d0",
+    "scorecard_time": "2026-07-27 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-31 20:17:27.747964",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb9d5-55f7-7188-b9d7-6769b790b9e0",
+    "agent_user_id": "4f889bce6909e1bd",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-31 20:19:54.455454",
+    "score": 100
+  },
+  {
+    "scorecard_id": "019fb9da-fd63-76aa-904c-c0aeccd39cc3",
+    "agent_user_id": "bdb11b74a94a08cc",
+    "scorecard_time": "2026-07-28 06:00:00.000000",
+    "scorecard_last_update_time": "2026-07-31 20:26:05.005952",
+    "score": 100
+  }
+]
