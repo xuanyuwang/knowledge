@@ -4,7 +4,7 @@
 **Primary domain:** `train-for-staff`
 **Primary subdomain:** none
 **Official ticket:** none
-**Last updated:** 2026-11-05
+**Last updated:** 2026-11-07
 
 ## Objective and Impact
 
@@ -34,7 +34,7 @@
 
 ## Current Understanding
 
-The evidence strongly supports an established, high-performing Senior Engineer calibration and repeated Staff-like behavior within bounded backend, analytics, and data-correctness domains. The first working career hypothesis is a Senior backend and product-infrastructure engineer who owns ambiguous data-correctness and business-semantic problems across system boundaries, turns them into explicit reusable contracts, and carries solutions through safe production validation. The target role should improve the work–life exchange through meaningful financial value, technical interest and learning, sustainable hours/on-call, and authority/resources for reasonable root-cause work. Broader influence and execution through others are optional, not requirements. The governing guidance is now [career-position.md](../deliverables/career-position.md), superseding promotion-first legacy prescriptions. A tailored resume and six-story interview portfolio now project this position while preserving claim boundaries.
+The evidence strongly supports an established, high-performing Senior Engineer calibration and repeated Staff-like behavior within bounded backend, analytics, and data-correctness domains. The first working career hypothesis is a Senior backend and product-infrastructure engineer who owns ambiguous data-correctness and business-semantic problems across system boundaries, turns them into explicit reusable contracts, and carries solutions through safe production validation. A November 7 resume reconstruction pass found the user's “Technical Owner” hypothesis substantially supported when scoped to hands-on ownership of ambiguous product/technical outcomes; broader organizational authority and repeatable PM/CTO alignment are not yet established. The target role should improve the work–life exchange through meaningful financial value, technical interest and learning, sustainable hours/on-call, and authority/resources for reasonable root-cause work. Broader influence and execution through others are optional, not requirements. The governing guidance is now [career-position.md](../deliverables/career-position.md), superseding promotion-first legacy prescriptions. A tailored resume and six-story interview portfolio now project this position while preserving claim boundaries.
 
 ## Findings and Decisions
 
@@ -47,6 +47,8 @@ The evidence strongly supports an established, high-performing Senior Engineer c
 - Prefer a worthwhile work–life exchange over title, prestige, or scope. Bounded, difficult individual technical work can be an excellent fit; organizational rescue is not a desired responsibility.
 - Use the product-infrastructure resume projection for matching roles while preserving the canonical general resume.
 - Treat the six interview briefs as a portfolio: scorecard consistency is ready; external tables, monitoring/repair, user filters, Leaderboard, and Group Calibration need varying levels of rehearsal or evidence recovery.
+- Keep the proposed responsibility-first “Technical Owner” framing as a working hypothesis, grounded in examples of problem reframing, technical investigation, explicit tradeoffs, rollout, and production validation; do not imply unilateral authority or organization-wide influence.
+- Keep historic-schema scorecard omissions distinct from PG/CH asynchronous races and regional ClickHouse delivery incidents unless evidence confirms they belong to one shared project narrative.
 
 ## Blockers and Dependencies
 
@@ -62,6 +64,8 @@ The evidence strongly supports an established, high-performing Senior Engineer c
 
 Recruiter introduction draft: lead with product responsibility, explain technical decisions and production follow-through, and use projects as evidence. Full-service ownership and the page-rebuilding example still need clarification; see the [2026-11-05 draft](../sessions/2026-11-05/codex-recruiter-introduction.md).
 
+Resume reconstruction is active. An initial Markdown draft is available; it is based on current documented evidence and remains provisional because the user reports additional end-to-end workflow features that are not represented in this repository. Inventory those features and compare their distinctiveness before final project selection or polishing.
+
 1. Apply the Workstream 5 scorecard to representative job descriptions and record false-positive role matches.
 2. Tailor the visually verified one-page resume only for roles that pass the fit screen.
 3. Rehearse the scorecard-consistency and external-table stories as short and deep versions.
@@ -69,6 +73,9 @@ Recruiter introduction draft: lead with product responsibility, explain technica
 5. Recover only evidence useful for accurate claims and suitable interviews; broader Staff readiness is optional.
 
 ## Timeline
+
+- 2026-11-07 — Validated the “Technical Owner” hypothesis against existing project evidence and opened a selective resume project inventory. The user clarified that the 90%-to-~1% story was illustrative, not a historical metric. Evidence: [session](../sessions/2026-11-07/codex-resume-identity-evidence.md).
+- 2026-11-07 — Drafted a Markdown resume from existing claims and added Group Calibration as a representative end-to-end workflow feature. The user reports additional new workflows that are not captured in this repository; the current project mix remains provisional pending inventory. Evidence: [resume draft](../deliverables/resume-draft.md), conversation clarification.
 
 - 2026-11-05 — Proposed a responsibility-first recruiter introduction using existing Group Calibration and scorecard-consistency evidence. Wording remains a draft; no new ownership or seniority claim confirmed. Evidence: [session](../sessions/2026-11-05/codex-recruiter-introduction.md).
 - 2026-09-02 — Recast `CAREER_POSITION.md` as the governing operating brief and completed the first recurring-strength synthesis. Evidence: `log/2026-09-02.md`, `sessions/2026-09-02/codex-career-positioning.md`, `sessions/2026-09-02/codex-workstream-2-recurring-strengths.md`.

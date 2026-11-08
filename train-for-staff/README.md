@@ -20,4 +20,6 @@ The general [resume source](resume.typ), PDF, and [snippet bank](resume-snippets
 
 ## Latest movement
 
+2026-11-07: Began a responsibility-first resume reconstruction and drafted an initial [Markdown resume](deliverables/resume-draft.md). “Technical Owner” is supported as bounded end-to-end technical ownership. The user reports additional end-to-end product workflows that are not captured in the repository, so project selection remains provisional. See the [session](sessions/2026-11-07/codex-resume-identity-evidence.md) and [career work item](work-items/career-positioning.md).
+
 2026-09-18: Revised the governing priorities and role criteria without replacing the career history. See the [session](sessions/2026-09-18/codex-career-work-life-exchange.md) and [daily log](log/2026-09-18.md).

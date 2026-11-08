@@ -7,7 +7,7 @@ branch: main
 related_ticket_ids: []
 related_prs: []
 current_objective: Seek meaningfully higher financial value and interesting technical work while protecting family time, health, and mental attention; preserve evidence-backed resume claims without requiring organizational transformation.
-last_validated: 2026-09-18
+last_validated: 2026-11-07
 artifacts:
   readme: README.md
   log_dir: log/
