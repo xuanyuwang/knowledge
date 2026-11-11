@@ -4,7 +4,7 @@
 **Primary domain:** `train-for-staff`
 **Primary subdomain:** none
 **Official ticket:** none
-**Last updated:** 2026-11-07
+**Last updated:** 2026-11-10
 
 ## Objective and Impact
 
@@ -73,6 +73,8 @@ Resume reconstruction is active. An initial Markdown draft is available; it is b
 5. Recover only evidence useful for accurate claims and suitable interviews; broader Staff readiness is optional.
 
 ## Timeline
+
+- 2026-11-10 — Added a [CONVI-7777 resume candidate](../deliverables/resume-assistance-metric-candidate.md) based on the user's account and analytics records: product definition from a one-line request, investigation across seven APIs, future feature-level details, and a separately proposed page-wide API improvement. Main resume unchanged pending wording/portfolio selection. [Session](../sessions/2026-11-10/codex-resume-assistance-metric.md).
 
 - 2026-11-07 — Validated the “Technical Owner” hypothesis against existing project evidence and opened a selective resume project inventory. The user clarified that the 90%-to-~1% story was illustrative, not a historical metric. Evidence: [session](../sessions/2026-11-07/codex-resume-identity-evidence.md).
 - 2026-11-07 — Drafted a Markdown resume from existing claims and added Group Calibration as a representative end-to-end workflow feature. The user reports additional new workflows that are not captured in this repository; the current project mix remains provisional pending inventory. Evidence: [resume draft](../deliverables/resume-draft.md), conversation clarification.
